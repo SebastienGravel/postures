@@ -1,0 +1,20 @@
+audioapi: 2
+noaudioin: False
+audioindev1: 0 2
+noaudioout: False
+audiooutdev1: 0 2
+audiobuf: 50
+rate: 44100
+callback: 0
+nomidiin: True
+nomidiout: True
+path1: ~/Documents/pdsheefa
+path2: ~/Documents/xjimmies
+path3: ~/Documents/spinwidgets
+path4: ~/Documents/aScape2
+npath: 4
+standardpath: 1
+verbose: 0
+nloadlib: 0
+defeatrt: 0
+flags: 
