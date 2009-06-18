@@ -12,9 +12,9 @@ path1: ~/src/spinwidgets/patches
 path2: ~/src/pdsheefa/patches
 path3: ~/src/audioscape_2.0/patches
 path4: ~/Documents/aScape2
-path5: ~/Documents/pdsheefa
-path6: ~/Documents/xjimmies
-path7: ~/Documents/spinwidgets
+path5: ~/Documents/pdSheefa
+path6: ~/Documents/nSlam
+path7: ~/Documents/spinWidgets
 npath: 7
 standardpath: 1
 verbose: 0
