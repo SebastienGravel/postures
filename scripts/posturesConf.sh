@@ -1,6 +1,7 @@
 # This is a helper script that can be sourced to provide aliases and any other
 # useful features for Postures/NTA ::
 
+NTA=~/src/nta
 POSTURES=~/src/postures/trunk
 SPINWIDGETS=~/src/spinwidgets
 PDSHEEFA=~/src/pdsheefa
@@ -21,7 +22,7 @@ alias cdpostures='cd ${POSTURES}'
 alias cdsw='cd ${SPINWIDGETS}/patches'
 alias cdpds='cd ${PDSHEEFA}/patches'
 
-alias svnupALL='svn up ${SPIN}; svn up ${SPINWIDGETS}; svn up ${PDSHEEFA}; svn up ${POSTURES}'
+alias svnupALL='svn up ${NTA}; svn up ${SPIN}; svn up ${SPINWIDGETS}; svn up ${PDSHEEFA}; svn up ${POSTURES}'
 
 alias spinEdit='pd ${SPINWIDGETS}/patches/spinEdit.pd'
 alias spinViewer='${SPIN}/src/vess/asViewer -viewerID ${SPINID}'
