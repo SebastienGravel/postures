@@ -13,10 +13,11 @@ SPINID=`hostname -s`
 `cp ${POSTURES}/scripts/pdsettings ~/.pdsettings`
 
 # use custom pd instead of installed version:
-alias pd='~/src/pd-0.41-4/bin/pd'
+alias pd='~/src/pd-0.41-4/bin/pd -jack'
 
 # some useful aliases:
 
+alias cdnta='cd ${NTA}'
 alias cdvess='cd ${SPIN}/src/vess'
 alias cdpostures='cd ${POSTURES}'
 alias cdsw='cd ${SPINWIDGETS}/patches'
@@ -26,6 +27,8 @@ alias svnupALL='svn up ${NTA}; svn up ${SPIN}; svn up ${SPINWIDGETS}; svn up ${P
 
 alias spinEdit='pd ${SPINWIDGETS}/patches/spinEdit.pd'
 alias spinViewer='${SPIN}/src/vess/asViewer -viewerID ${SPINID}'
+alias ntaMaster='pd ${NTA}/ntaControl.pd'
+alias ntaClient='pd ${NTA}/ntaClient.pd'
 
 # this can be removed once the code is more stable:
 export LD_LIBRARY_PATH=${SPIN}/src/osgWrappers

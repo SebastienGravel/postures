@@ -11,10 +11,10 @@ nomidiout: True
 path1: /home/postures/src/spinwidgets/patches
 path2: /home/postures/src/pdsheefa/patches
 path3: /home/postures/src/audioscape_2.0/patches
-path4: /home/postures/Documents/aScape2
-path5: /home/postures/Documents/pdSheefa
-path6: /home/postures/Documents/nSlam
-path7: /home/postures/Documents/spinWidgets
+path4: /home/postures/Documents/ascape2
+path5: /home/postures/Documents/pdsheefa
+path6: /home/postures/Documents/nslam
+path7: /home/postures/Documents/spinwidgets
 npath: 7
 standardpath: 1
 verbose: 0
