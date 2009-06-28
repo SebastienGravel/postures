@@ -13,6 +13,7 @@ SPINID=`hostname -s`
 `cp ${POSTURES}/scripts/pdsettings ~/.pdsettings`
 
 # use custom pd instead of installed version:
+#alias pd='pd -jack'
 alias pd='~/src/pd-0.41-4/bin/pd -jack'
 
 # some useful aliases:
@@ -27,7 +28,7 @@ alias svnupALL='svn up ${NTA}; svn up ${SPIN}; svn up ${SPINWIDGETS}; svn up ${P
 
 alias spinEdit='pd ${SPINWIDGETS}/patches/spinEdit.pd'
 alias spinViewer='${SPIN}/src/vess/asViewer -viewerID ${SPINID}'
-alias ntaServer='pd ${NTA}/ntaControl.pd'
+alias ntaServer='pd ${NTA}/ntaController.pd'
 alias ntaClient='pd ${NTA}/ntaClient.pd'
 
 # this can be removed once the code is more stable:
