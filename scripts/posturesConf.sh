@@ -27,7 +27,7 @@ alias svnupALL='svn up ${NTA}; svn up ${SPIN}; svn up ${SPINWIDGETS}; svn up ${P
 
 alias spinEdit='pd ${SPINWIDGETS}/patches/spinEdit.pd'
 alias spinViewer='${SPIN}/src/vess/asViewer -viewerID ${SPINID}'
-alias ntaMaster='pd ${NTA}/ntaControl.pd'
+alias ntaServer='pd ${NTA}/ntaControl.pd'
 alias ntaClient='pd ${NTA}/ntaClient.pd'
 
 # this can be removed once the code is more stable:
