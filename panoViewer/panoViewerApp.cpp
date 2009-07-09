@@ -1,48 +1,43 @@
-// ===================================================================
-// Audioscape library for PureData
-// Copyright (c) 2007
+// -----------------------------------------------------------------------------
+// |    ___  ___  _  _ _     ___                                        _      |
+// |   / __>| . \| || \ |   | __>_ _  ___ ._ _ _  ___  _ _ _  ___  _ _ | |__   |
+// |   \__ \|  _/| ||   |   | _>| '_><_> || ' ' |/ ._>| | | |/ . \| '_>| / /   |
+// |   <___/|_|  |_||_\_|   |_| |_|  <___||_|_|_|\___.|__/_/ \___/|_|  |_\_\   |
+// |                                                                           |
+// |---------------------------------------------------------------------------|
 //
-// Collaborators:
-//    Shared Reality Lab (SRE), McGill University Centre for Intelligent Machines (CIM)
-//       www.cim.mcgill.ca/sre
-//    La Société des Arts Technologiques (SAT)
-//       www.sat.qc.ca
+// http://spinframework.sourceforge.net
+// Copyright (C) 2009 Mike Wozniewski, Zack Settel
 //
-// Project Directors:
-//    Science - Jeremy R. Cooperstock (SRE/CIM)
-//    Arts - Zack Settel
+// Developed/Maintained by:
+//    Mike Wozniewski (http://www.mikewoz.com)
+//    Zack Settel (http://www.sheefa.net/zack)
+// 
+// Principle Partners:
+//    Shared Reality Lab, McGill University (http://www.cim.mcgill.ca/sre)
+//    La Societe des Arts Technologiques (http://www.sat.qc.ca)
 //
-// Conception:
-//    Zack Settel
-//
-// Development Team:
-//    Mike Wozniewski (SRE/CIM): Researcher, Head Developer
-//    Zack Settel: Artist, Researcher, Audio/DSP programming
-//    Jean-Michel Dumas (SAT): Assistant Researcher
-//    Mitchel Benovoy (SRE/CIM): Video Texture Programming
-//    Stéphane Pelletier (SRE/CIM): Video Texture Programming
-//    Pierre-Olivier Charlebois (SRE/CIM): Former Developer
-//
-// Funding by / Souventionné par:
-//    Natural Sciences and Engineering Research Council of Canada (NSERC)
-//    Canada Council for the Arts
+// Funding by:
 //    NSERC/Canada Council for the Arts - New Media Initiative
+//    Heritage Canada
+//    Ministere du Developpement economique, de l'Innovation et de l'Exportation
 //
-// ===================================================================
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation; either version 2 of the License, or
-// (at your option) any later version.
+// -----------------------------------------------------------------------------
+//  This file is part of the SPIN Framework.
 //
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
+//  SPIN Framework is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU Lesser General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
 //
-// You should have received a copy of the GNU General Public License
-// along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-// ===================================================================
+//  SPIN Framework is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU Lesser General Public License for more details.
+//
+//  You should have received a copy of the Lesser GNU General Public License
+//  along with SPIN Framework. If not, see <http://www.gnu.org/licenses/>.
+// -----------------------------------------------------------------------------
 
 #include <string>
 #include <iostream>
@@ -55,21 +50,12 @@
 #include "asUtil.h"
 #include "vessThreads.h"
 #include "asCameraManager.h"
+#include "panoViewer.h"
 
 using namespace std;
 
 extern pthread_mutex_t pthreadLock;
 
-
-
-// *****************************************************************************
-// ******************************* GLOBALS: ************************************
-// *****************************************************************************
-
-//extern lo_server_thread oscParser; // defined in oscParser.cpp
-
-//asSceneManager *sceneManager;
-//asMediaManager *mediaManager;
 
 
 // *****************************************************************************
@@ -81,7 +67,7 @@ int main(int argc, char **argv)
 	osgDB::Registry *reg = osgDB::Registry::instance();
 	osgDB::DynamicLibrary::loadLibrary(reg->createLibraryNameForNodeKit("libAudioscape"));
 
-	std::cout <<"\nasViewer launching..." << std::endl;
+	std::cout <<"\npanoViewer launching..." << std::endl;
 
 	vessListener *vess = new vessListener();
 
@@ -99,7 +85,7 @@ int main(int argc, char **argv)
 	osg::ArgumentParser arguments(&argc,argv);
 
 	// set up the usage document, which a user can acess with -h or --help
-	arguments.getApplicationUsage()->setDescription(arguments.getApplicationName()+" is a viewer for VESS.");
+	arguments.getApplicationUsage()->setDescription(arguments.getApplicationName()+" is a panoscope viewer for VESS.");
 	arguments.getApplicationUsage()->setCommandLineUsage(arguments.getApplicationName()+" [options]");
 	arguments.getApplicationUsage()->addCommandLineOption("-h or --help", "Display this information");
 
@@ -110,8 +96,6 @@ int main(int argc, char **argv)
 	arguments.getApplicationUsage()->addCommandLineOption("-viewerID <uniqueID>", "Specify a unique ID for the embedded asViewer (Default: '" + viewerID + "')");
 	arguments.getApplicationUsage()->addCommandLineOption("-viewerAddr <addr>", "Specify the address for camera/view events (default: " + viewerAddr + ")");
 	arguments.getApplicationUsage()->addCommandLineOption("-viewerPort <port>", "Specify the port for camera/view events (default: " + viewerPort + ")");
-
-	arguments.getApplicationUsage()->addCommandLineOption("-resolution <WIDTHxHEIGHT>", "Specify the resolution of the viewing window, either as a ratio (eg, 0.5x0.5) or in pixel values. (Default: " + resolutionString + ")");
 
 
 	// *************************************************************************
@@ -149,9 +133,8 @@ int main(int argc, char **argv)
 	// construct the viewer:
 	// (note, this constructor gets rid of some additional args)
 
-	osgViewer::CompositeViewer viewer = osgViewer::CompositeViewer(arguments);
-	//osgViewer::CompositeViewer viewer(arguments);
-
+	panoViewer viewer = panoViewer(arguments);
+	
 
 	// set the threading model for the viewer:
 	/*
@@ -187,21 +170,6 @@ int main(int argc, char **argv)
 
 
 	// *************************************************************************
-	// initialize the cameraManager:
-
-	asCameraManager *cameraManager = new asCameraManager(viewerID, viewer, viewerAddr, viewerPort);
-	cameraManager->createCamera("default"); // must create at least one camera to start
-
-	cameraManager->setSceneData(vess->sceneManager->rootNode.get());
-
-	cameraManager->init(); // must call this before viewer.realize()
-
-	cameraManager->setResolution(resolutionString);
-
-	//cameraManager->debugPrint();
-
-
-	// *************************************************************************
 	// set up any initial scene elements:
 
 	if (argScene.valid()) {
@@ -213,7 +181,6 @@ int main(int argc, char **argv)
 	// *************************************************************************
 	// start threads:
 	viewer.realize();
-	cameraManager->refreshWindows();
 
 	osg::Timer_t lastTick = osg::Timer::instance()->tick();
 	osg::Timer_t frameTick = lastTick;
