@@ -1,48 +1,9 @@
-// -----------------------------------------------------------------------------
-// |    ___  ___  _  _ _     ___                                        _      |
-// |   / __>| . \| || \ |   | __>_ _  ___ ._ _ _  ___  _ _ _  ___  _ _ | |__   |
-// |   \__ \|  _/| ||   |   | _>| '_><_> || ' ' |/ ._>| | | |/ . \| '_>| / /   |
-// |   <___/|_|  |_||_\_|   |_| |_|  <___||_|_|_|\___.|__/_/ \___/|_|  |_\_\   |
-// |                                                                           |
-// |---------------------------------------------------------------------------|
-//
-// http://spinframework.sourceforge.net
-// Copyright (C) 2009 Mike Wozniewski, Zack Settel
-//
-// Developed/Maintained by:
-//    Mike Wozniewski (http://www.mikewoz.com)
-//    Zack Settel (http://www.sheefa.net/zack)
-// 
-// Principle Partners:
-//    Shared Reality Lab, McGill University (http://www.cim.mcgill.ca/sre)
-//    La Societe des Arts Technologiques (http://www.sat.qc.ca)
-//
-// Funding by:
-//    NSERC/Canada Council for the Arts - New Media Initiative
-//    Heritage Canada
-//    Ministere du Developpement economique, de l'Innovation et de l'Exportation
-//
-// -----------------------------------------------------------------------------
-//  This file is part of the SPIN Framework.
-//
-//  SPIN Framework is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU Lesser General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
-//
-//  SPIN Framework is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU Lesser General Public License for more details.
-//
-//  You should have received a copy of the Lesser GNU General Public License
-//  along with SPIN Framework. If not, see <http://www.gnu.org/licenses/>.
-// -----------------------------------------------------------------------------
-
 #include <string>
 #include <iostream>
 
-#include <osgViewer/CompositeViewer>
+#include <osgViewer/Viewer>
+#include <osgViewer/ViewerEventHandlers>
+#include <osgGA/TrackballManipulator>
 #include <osgDB/ReadFile>
 #include <osg/Timer>
 
@@ -65,7 +26,7 @@ int main(int argc, char **argv)
 {
 	// Now make sure we can load the libAudioscape library:
 	osgDB::Registry *reg = osgDB::Registry::instance();
-	osgDB::DynamicLibrary::loadLibrary(reg->createLibraryNameForNodeKit("libAudioscape"));
+	osgDB::DynamicLibrary::loadLibrary(reg->createLibraryNameForNodeKit("libSPIN"));
 
 	std::cout <<"\npanoViewer launching..." << std::endl;
 
@@ -134,6 +95,7 @@ int main(int argc, char **argv)
 	// (note, this constructor gets rid of some additional args)
 
 	panoViewer viewer = panoViewer(arguments);
+	//osgViewer::Viewer viewer = osgViewer::Viewer(arguments);
 	
 
 	// set the threading model for the viewer:
@@ -144,7 +106,15 @@ int main(int argc, char **argv)
 	while (arguments.read("-c")) { viewer.setThreadingModel(osgViewer::Viewer::CullThreadPerCameraDrawThreadPerContext); }
 	*/
 
-	viewer.setThreadingModel(osgViewer::CompositeViewer::SingleThreaded);
+	viewer.setCameraManipulator(new osgGA::TrackballManipulator());
+	
+	viewer.addEventHandler(new osgViewer::StatsHandler);
+	viewer.addEventHandler(new osgViewer::ThreadingHandler);
+	viewer.addEventHandler(new osgViewer::WindowSizeHandler);
+
+
+	
+	viewer.setThreadingModel(osgViewer::Viewer::SingleThreaded);
 	
 	// *************************************************************************
 	// any option left unread are converted into errors to write out later.
@@ -174,31 +144,22 @@ int main(int argc, char **argv)
 
 	if (argScene.valid()) {
 		std::cout << "Loading sample model" << std::endl;
-		vess->sceneManager->rootNode->addChild(argScene.get());
+		vess->sceneManager->worldNode->addChild(argScene.get());
 	}
 
 
+	
 	// *************************************************************************
 	// start threads:
+
+	viewer.setSceneData(vess->sceneManager->rootNode.get());
+	viewer.setupViewForPanoscope();
+
 	viewer.realize();
-
-	osg::Timer_t lastTick = osg::Timer::instance()->tick();
-	osg::Timer_t frameTick = lastTick;
-
-	// convert ports to integers for sending:
-	int i_viewerPort;
-	fromString<int>(i_viewerPort, viewerPort);
 
 	// program loop:
 	while( !viewer.done() && vess->isRunning() )
 	{
-		frameTick = osg::Timer::instance()->tick();
-		if (osg::Timer::instance()->delta_s(lastTick,frameTick) > 5) // every 5 seconds
-		{
-			cameraManager->sendCameraList(vess->lo_infoAddr, vess->lo_infoServ);
-			lastTick = frameTick;
-		}
-
 		// We now have to go through all the nodes, and check if we need to update the
 		// graph. Note: this cannot be done as a callback in a traversal - dangerous.
 		// In the callback, we have simply flagged what needs to be done (eg, set the
@@ -207,11 +168,6 @@ int main(int argc, char **argv)
 		vess->sceneManager->updateGraph();
 		pthread_mutex_unlock(&pthreadLock);
 		
-		
-		// same goes for the cameraManager:
-		pthread_mutex_lock(&pthreadLock);
-		cameraManager->update();
-		pthread_mutex_unlock(&pthreadLock);
 		
 		pthread_mutex_lock(&pthreadLock);
 		viewer.frame();

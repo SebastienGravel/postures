@@ -16,7 +16,7 @@
 
 #include <osgViewer/GraphicsWindow>
 #include <osgViewer/View>
-
+#include <osgViewer/Viewer>
 
 class panoViewer : public osgViewer::Viewer
 {
