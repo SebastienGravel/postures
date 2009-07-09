@@ -106,7 +106,11 @@ int main(int argc, char **argv)
 	while (arguments.read("-c")) { viewer.setThreadingModel(osgViewer::Viewer::CullThreadPerCameraDrawThreadPerContext); }
 	*/
 
-	viewer.setCameraManipulator(new osgGA::TrackballManipulator());
+	osgGA::TrackballManipulator *manipulator = new osgGA::TrackballManipulator();
+	manipulator->setMinimumDistance ( 0.0001 );
+	manipulator->setHomePosition( osg::Vec3(0,-1,0), osg::Vec3(0,0,0), osg::Vec3(0,0,1), false );
+	
+	viewer.setCameraManipulator(manipulator);
 	
 	viewer.addEventHandler(new osgViewer::StatsHandler);
 	viewer.addEventHandler(new osgViewer::ThreadingHandler);
