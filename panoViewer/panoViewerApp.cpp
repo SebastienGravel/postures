@@ -4,6 +4,7 @@
 #include <osgViewer/Viewer>
 #include <osgViewer/ViewerEventHandlers>
 #include <osgGA/TrackballManipulator>
+#include <osgGA/NodeTrackerManipulator>
 #include <osgDB/ReadFile>
 #include <osg/Timer>
 
@@ -48,17 +49,40 @@ int panoViewer_liblo_callback(const char *path, const char *types, lo_arg **argv
 			stringArgs.push_back( (const char*) argv[i] );
 		}
 	}	
-	
+
+	// try to find the node id:
+	std::string nodeStr = string(path);
+	nodeStr = nodeStr.substr(nodeStr.rfind("/")+1);
+	t_symbol *s = gensym(nodeStr.c_str());
+	osg::ref_ptr<asReferenced> n = s->s_thing;
+	if (!n.valid())
+	{
+		std::cout << "panoViewer_liblo_callback: Could not find node: " << nodeStr << std::endl;
+		return 0;
+	}
 	
 	if ( (theMethod=="global6DOF") && (floatArgs.size()==6))
 	{
-    
-		std::cout << "got camera update:" << floatArgs[0] << "," << floatArgs[0] << "," << floatArgs[1] << "," << floatArgs[2] << "  " << floatArgs[3] << "," << floatArgs[4] << "," << floatArgs[5] << std::endl;
+//    	viewer->getCamera(0)->setViewMatrixAsLookAt(
+		std::cout << "got camera update:" << floatArgs[0] << "," << floatArgs[1] << "," << floatArgs[2] << "  " << floatArgs[3] << "," << floatArgs[4] << "," << floatArgs[5] << std::endl;
+
+	//    osg::Vec3 = dirVector
+    	//viewer->getCamera(0)->setViewMatrixAsLookAt(osg::Vec3(floatArgs[0],floatArgs[1],floatArgs[2]), 
 	}
+
+
+	osgGA::NodeTrackerManipulator *manipulator = new osgGA::NodeTrackerManipulator();
+
+	manipulator->setTrackerMode( osgGA::NodeTrackerManipulator::NODE_CENTER_AND_ROTATION );
+	manipulator->setRotationMode( osgGA::NodeTrackerManipulator::ELEVATION_AZIM );
+	manipulator->setMinimumDistance ( 0.0001 );
+	manipulator->setHomePosition( osg::Vec3(0,-1,0), osg::Vec3(0,0,0), osg::Vec3(0,0,1), false );
+	
+	manipulator->setTrackNode(n->getAttachmentNode());
+	viewer->setCameraManipulator(manipulator);
 
 	return 1;
 }
-
 
 
 
