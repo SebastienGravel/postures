@@ -18,6 +18,49 @@ using namespace std;
 extern pthread_mutex_t pthreadLock;
 
 
+int panoViewer_liblo_callback(const char *path, const char *types, lo_arg **argv, int argc, void *data, void *user_data)
+{
+	
+    // make sure there is at least one argument (ie, a method):
+	if (!argc) return 0;
+
+	panoViewer *viewer = (panoViewer*)user_data;
+    if (!viewer) return 0;
+
+    
+	// get the method (argv[0]):
+    std::string theMethod;
+	if (lo_is_string_type((lo_type)types[0]))
+	{
+		theMethod = string((char *)argv[0]);
+	}
+	else return 0;
+    
+	// parse the rest of the args:
+	vector<float> floatArgs;
+	vector<const char*> stringArgs;
+	for (int i=1; i<argc; i++)
+	{
+		if (lo_is_numerical_type((lo_type)types[i]))
+		{
+			floatArgs.push_back( (float) lo_hires_val((lo_type)types[i], argv[i]) );
+		} else {
+			stringArgs.push_back( (const char*) argv[i] );
+		}
+	}	
+	
+	
+	if ( (theMethod=="global6DOF") && (floatArgs.size()==6))
+	{
+    
+		std::cout << "got camera update:" << floatArgs[0] << "," << floatArgs[0] << "," << floatArgs[1] << "," << floatArgs[2] << "  " << floatArgs[3] << "," << floatArgs[4] << "," << floatArgs[5] << std::endl;
+	}
+
+	return 1;
+}
+
+
+
 
 // *****************************************************************************
 // *****************************************************************************
@@ -32,12 +75,7 @@ int main(int argc, char **argv)
 
 	vessListener *vess = new vessListener();
 
-
-    std::string viewerID = "default";
-    std::string viewerAddr = "224.0.0.1";
-    //std::string viewerAddr = getMyIPAddress();
-    std::string viewerPort = "54322";
-    std::string resolutionString = "720x480";
+	std::string id = "defaultUser";
 
 
 	// *************************************************************************
@@ -50,13 +88,11 @@ int main(int argc, char **argv)
 	arguments.getApplicationUsage()->setCommandLineUsage(arguments.getApplicationName()+" [options]");
 	arguments.getApplicationUsage()->addCommandLineOption("-h or --help", "Display this information");
 
-	arguments.getApplicationUsage()->addCommandLineOption("-rxID <uniqueID>", "Specify the VESS scene ID to listen to (Default: '" + vess->id + "')");
-	arguments.getApplicationUsage()->addCommandLineOption("-rxAddr <addr>", "Set the receiving address for incoming OSC messages (Default: " + vess->rxAddr + ")");
-	arguments.getApplicationUsage()->addCommandLineOption("-rxPort <port>", "Set the receiving port for incoming OSC messages (Default: " + vess->rxPort + ")");
-
-	arguments.getApplicationUsage()->addCommandLineOption("-viewerID <uniqueID>", "Specify a unique ID for the embedded asViewer (Default: '" + viewerID + "')");
-	arguments.getApplicationUsage()->addCommandLineOption("-viewerAddr <addr>", "Specify the address for camera/view events (default: " + viewerAddr + ")");
-	arguments.getApplicationUsage()->addCommandLineOption("-viewerPort <port>", "Specify the port for camera/view events (default: " + viewerPort + ")");
+	arguments.getApplicationUsage()->addCommandLineOption("-id <uniqueID>", "Specify an ID for this viewer (Default: '" + vess->id + "')");	
+	
+	arguments.getApplicationUsage()->addCommandLineOption("-vessID <uniqueID>", "Specify the VESS scene ID to listen to (Default: '" + vess->id + "')");
+	arguments.getApplicationUsage()->addCommandLineOption("-vessAddr <addr>", "Set the receiving address for incoming OSC messages (Default: " + vess->rxAddr + ")");
+	arguments.getApplicationUsage()->addCommandLineOption("-vessPort <port>", "Set the receiving port for incoming OSC messages (Default: " + vess->rxPort + ")");
 
 
 	// *************************************************************************
@@ -69,21 +105,15 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
-	osg::ArgumentParser::Parameter param_rxID(vess->id);
-	arguments.read("-rxID", param_rxID);
-	osg::ArgumentParser::Parameter param_rxAddr(vess->rxAddr);
-	arguments.read("-rxAddr", param_rxAddr);
-	osg::ArgumentParser::Parameter param_rxPort(vess->rxPort);
-	arguments.read("-rxPort", param_rxPort);
+	osg::ArgumentParser::Parameter param_id(id);
+	arguments.read("-id", param_id);
+	osg::ArgumentParser::Parameter param_vessID(vess->id);
+	arguments.read("-vessID", param_vessID);
+	osg::ArgumentParser::Parameter param_vessAddr(vess->rxAddr);
+	arguments.read("-vessAddr", param_vessAddr);
+	osg::ArgumentParser::Parameter param_vessPort(vess->rxPort);
+	arguments.read("-vessPort", param_vessPort);
 
-	osg::ArgumentParser::Parameter param_viewerID(viewerID);
-	arguments.read("-viewerID", param_viewerID);
-	osg::ArgumentParser::Parameter param_viewerAddr(viewerAddr);
-	arguments.read("-viewerAddr", param_viewerAddr);
-	osg::ArgumentParser::Parameter param_viewerPort(viewerPort);
-	arguments.read("-viewerPort", param_viewerPort);
-	osg::ArgumentParser::Parameter param_resolution(resolutionString);
-	arguments.read("-resolution", param_resolution);
 
 
 	// For testing purposes, we allow loading a scene with a commandline arg:
@@ -146,14 +176,19 @@ int main(int argc, char **argv)
 	// the viewer's camera. We expect that this node will be created in VESS and
 	// that updates will be generated
 	
+	/*
 	std::string OSCpath = "/vess/" + vess->id;
 	
 	lo_message msg;
 	msg = lo_message_new();
 	lo_message_add(msg, "ss", "createNode", "user1", "userNode");
     vess->sendMessage(OSCpath.c_str(), msg);
+	 */
+	
+    std::string oscPattern = "/vess/" + vess->id + "/" + std::string(id);
+    lo_server_thread_add_method(vess->sceneManager->rxServ, oscPattern.c_str(), NULL, panoViewer_liblo_callback, (void*)&viewer);
 
-
+    
 	// *************************************************************************
 	// set up any initial scene elements:
 
