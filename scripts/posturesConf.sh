@@ -5,7 +5,7 @@ NTA=~/src/nta
 POSTURES=~/src/postures/trunk
 SPINWIDGETS=~/src/spinwidgets
 PDSHEEFA=~/src/pdsheefa
-SPIN=~/src/spinframework
+SPIN=~/src/spinframework/trunk
 
 export SPINID=`hostname -s`
 

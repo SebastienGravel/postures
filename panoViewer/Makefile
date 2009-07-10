@@ -1,5 +1,6 @@
 # First, we must provide the path to SPIN:
-export SPIN_PATH = $(HOME)/src/spinframework/trunk
+#export SPIN_PATH = $(HOME)/src/spinframework/trunk
+export SPIN_PATH = $(HOME)/src/spinframework
 
 # the following file must be included:
 include $(SPIN_PATH)/Makefile.include
