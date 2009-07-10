@@ -142,6 +142,17 @@ int main(int argc, char **argv)
 	vess->sceneManager->isGraphical = true;
 
 
+	// Add a userNode to the local scene and use it to feed a NodeTracker for
+	// the viewer's camera. We expect that this node will be created in VESS and
+	// that updates will be generated
+	
+	std::string OSCpath = "/vess/" + vess->id;
+	
+	lo_message msg;
+	msg = lo_message_new();
+	lo_message_add(msg, "ss", "createNode", "user1", "userNode");
+    vess->sendMessage(OSCpath.c_str(), msg);
+
 
 	// *************************************************************************
 	// set up any initial scene elements:

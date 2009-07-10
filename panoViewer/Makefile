@@ -1,5 +1,5 @@
 # First, we must provide the path to SPIN:
-export SPIN_PATH = $(HOME)/src/spinframework
+export SPIN_PATH = $(HOME)/src/spinframework/trunk
 
 # the following file must be included:
 include $(SPIN_PATH)/Makefile.include
@@ -22,7 +22,7 @@ SPINOBJS =  vessThreads.o pdUtil.o osgUtil.o asUtil.o libloUtil.o \
 	asSceneManager.o asMediaManager.o asReferenced.o \
 	asBasicNode.o asShape.o asModel.o asVideo.o asLightSource.o \
 	asRay.o asContour.o asConstraints.o asRayIntersector.o \
-	asPointer.o asMeasurementNode.o asToggle.o \
+	asPointer.o asMeasurementNode.o asToggle.o userNode.o \
 	asDSPnode.o asSoundNode.o asSoundSpace.o asSoundConnection.o
 
 SPIN_FLAGS += -g -O2 -DC_PLUSPLUS -D__cplusplus -DASDEBUG
