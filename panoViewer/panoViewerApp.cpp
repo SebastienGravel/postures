@@ -71,15 +71,7 @@ int panoViewer_liblo_callback(const char *path, const char *types, lo_arg **argv
 	}
 
 
-	osgGA::NodeTrackerManipulator *manipulator = new osgGA::NodeTrackerManipulator();
 
-	manipulator->setTrackerMode( osgGA::NodeTrackerManipulator::NODE_CENTER_AND_ROTATION );
-	manipulator->setRotationMode( osgGA::NodeTrackerManipulator::ELEVATION_AZIM );
-	manipulator->setMinimumDistance ( 0.0001 );
-	manipulator->setHomePosition( osg::Vec3(0,-1,0), osg::Vec3(0,0,0), osg::Vec3(0,0,1), false );
-	
-	manipulator->setTrackNode(n->getAttachmentNode());
-	viewer->setCameraManipulator(manipulator);
 
 	return 1;
 }
@@ -151,28 +143,12 @@ int main(int argc, char **argv)
 	panoViewer viewer = panoViewer(arguments);
 	//osgViewer::Viewer viewer = osgViewer::Viewer(arguments);
 	
+	viewer.setThreadingModel(osgViewer::Viewer::SingleThreaded);
 
-	// set the threading model for the viewer:
-	/*
-	while (arguments.read("-s")) { viewer.setThreadingModel(osgViewer::Viewer::SingleThreaded); }
-	while (arguments.read("-g")) { viewer.setThreadingModel(osgViewer::Viewer::CullDrawThreadPerContext); }
-	while (arguments.read("-d")) { viewer.setThreadingModel(osgViewer::Viewer::DrawThreadPerContext); }
-	while (arguments.read("-c")) { viewer.setThreadingModel(osgViewer::Viewer::CullThreadPerCameraDrawThreadPerContext); }
-	*/
-
-	osgGA::TrackballManipulator *manipulator = new osgGA::TrackballManipulator();
-	manipulator->setMinimumDistance ( 0.0001 );
-	manipulator->setHomePosition( osg::Vec3(0,-1,0), osg::Vec3(0,0,0), osg::Vec3(0,0,1), false );
-	
-	viewer.setCameraManipulator(manipulator);
-	
 	viewer.addEventHandler(new osgViewer::StatsHandler);
 	viewer.addEventHandler(new osgViewer::ThreadingHandler);
 	viewer.addEventHandler(new osgViewer::WindowSizeHandler);
-
-
 	
-	viewer.setThreadingModel(osgViewer::Viewer::SingleThreaded);
 	
 	// *************************************************************************
 	// any option left unread are converted into errors to write out later.
@@ -208,11 +184,31 @@ int main(int argc, char **argv)
 	lo_message_add(msg, "ss", "createNode", "user1", "userNode");
     vess->sendMessage(OSCpath.c_str(), msg);
 	 */
+
+	asReferenced *userNode = vess->sceneManager->createNode(id, "userNode");
 	
     std::string oscPattern = "/vess/" + vess->id + "/" + std::string(id);
     lo_server_thread_add_method(vess->sceneManager->rxServ, oscPattern.c_str(), NULL, panoViewer_liblo_callback, (void*)&viewer);
 
-    
+
+	// *************************************************************************
+	// create a camera manipulator
+
+	/*
+	osgGA::TrackballManipulator *manipulator = new osgGA::TrackballManipulator();
+	manipulator->setMinimumDistance ( 0.0001 );
+	manipulator->setHomePosition( osg::Vec3(0,-1,0), osg::Vec3(0,0,0), osg::Vec3(0,0,1), false );
+	*/
+
+	osgGA::NodeTrackerManipulator *manipulator = new osgGA::NodeTrackerManipulator();
+	manipulator->setTrackerMode(  osgGA::NodeTrackerManipulator::NODE_CENTER_AND_ROTATION );
+	manipulator->setRotationMode( osgGA::NodeTrackerManipulator::ELEVATION_AZIM );
+	manipulator->setMinimumDistance( 0.0001 );
+	manipulator->setHomePosition( osg::Vec3(0,-1,0), osg::Vec3(0,0,0), osg::Vec3(0,0,1), false );
+	manipulator->setTrackNode(userNode->getAttachmentNode());
+	
+	viewer.setCameraManipulator(manipulator);
+	
 	// *************************************************************************
 	// set up any initial scene elements:
 
