@@ -7,8 +7,6 @@ SPINWIDGETS=~/src/spinwidgets
 PDSHEEFA=~/src/pdsheefa
 SPIN=~/src/spinframework/trunk
 
-export SPINID=`hostname -s`
-
 # copy the latest .pdsettings from our svn repository:
 `cp ${POSTURES}/scripts/pdsettings ~/.pdsettings`
 
@@ -27,8 +25,8 @@ alias cdpds='cd ${PDSHEEFA}/patches'
 alias svnupALL='svn up ${NTA}; svn up ${SPIN}; svn up ${SPINWIDGETS}; svn up ${PDSHEEFA}; svn up ${POSTURES}'
 
 alias spinEdit='pd ${SPINWIDGETS}/patches/spinEdit.pd'
-alias spinViewer='${SPIN}/src/vess/asViewer -viewerID ${SPINID}'
-alias ntaServer='pd ${NTA}/ntaServer.pd'
+alias spinViewer='${SPIN}/src/vess/spinViewer'
+alias panoViewer='${POSTURES}/panoViewer/panoViewer'
 alias ntaClient='pd ${NTA}/ntaClient.pd'
 
 # this can be removed once the code is more stable:
