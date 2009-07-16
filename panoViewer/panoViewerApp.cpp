@@ -5,6 +5,8 @@
 #include <osgViewer/ViewerEventHandlers>
 #include <osgGA/TrackballManipulator>
 #include <osgGA/NodeTrackerManipulator>
+#include <osgGA/StateSetManipulator>
+
 #include <osgDB/ReadFile>
 #include <osg/Timer>
 
@@ -148,7 +150,15 @@ int main(int argc, char **argv)
 	viewer.addEventHandler(new osgViewer::StatsHandler);
 	viewer.addEventHandler(new osgViewer::ThreadingHandler);
 	viewer.addEventHandler(new osgViewer::WindowSizeHandler);
-	
+
+
+	viewer.addEventHandler(new osgViewer::HelpHandler(arguments.getApplicationUsage()));
+	viewer.addEventHandler( new osgGA::StateSetManipulator(viewer.getCamera()->getOrCreateStateSet()) );
+
+	//viewer.setLightingMode(osg::View::NO_LIGHT);
+	viewer.setLightingMode(osg::View::HEADLIGHT);
+	//viewer.setLightingMode(osg::View::SKY_LIGHT);
+
 	
 	// *************************************************************************
 	// any option left unread are converted into errors to write out later.
@@ -207,7 +217,9 @@ int main(int argc, char **argv)
 	manipulator->setTrackerMode(  osgGA::NodeTrackerManipulator::NODE_CENTER_AND_ROTATION );
 	manipulator->setRotationMode( osgGA::NodeTrackerManipulator::ELEVATION_AZIM );
 	manipulator->setMinimumDistance( 0.0001 );
-	manipulator->setHomePosition( osg::Vec3(0,-1,0), osg::Vec3(0,0,0), osg::Vec3(0,0,1), false );
+//	manipulator->setHomePosition( osg::Vec3(0,-1,0), osg::Vec3(0,0,0), osg::Vec3(0,0,1), false );
+	manipulator->setHomePosition( osg::Vec3(0,-0.0001,0), osg::Vec3(0,0,0), osg::Vec3(0,0,1), false );
+//	manipulator->setHomePosition( osg::Vec3(0,1,0), osg::Vec3(0,0,0), osg::Vec3(0,0,1), false );
 	manipulator->setTrackNode(userNode->getAttachmentNode());
 	
 	viewer.setCameraManipulator(manipulator);
