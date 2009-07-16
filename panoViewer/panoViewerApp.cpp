@@ -91,7 +91,7 @@ int main(int argc, char **argv)
 
 	vessListener *vess = new vessListener();
 
-	std::string id = "defaultUser";
+	std::string id = getHostname();
 
 
 	// *************************************************************************
@@ -104,7 +104,7 @@ int main(int argc, char **argv)
 	arguments.getApplicationUsage()->setCommandLineUsage(arguments.getApplicationName()+" [options]");
 	arguments.getApplicationUsage()->addCommandLineOption("-h or --help", "Display this information");
 
-	arguments.getApplicationUsage()->addCommandLineOption("-id <uniqueID>", "Specify an ID for this viewer (Default: '" + vess->id + "')");	
+	arguments.getApplicationUsage()->addCommandLineOption("-id <uniqueID>", "Specify an ID for this viewer (Default is hostname: '" + id + "')");	
 	
 	arguments.getApplicationUsage()->addCommandLineOption("-vessID <uniqueID>", "Specify the VESS scene ID to listen to (Default: '" + vess->id + "')");
 	arguments.getApplicationUsage()->addCommandLineOption("-vessAddr <addr>", "Set the receiving address for incoming OSC messages (Default: " + vess->rxAddr + ")");
@@ -171,25 +171,28 @@ int main(int argc, char **argv)
 	vess->start();
 	vess->sceneManager->isGraphical = true;
 
+	std::cout << "Registering user '" << id << "' with VESS" << std::endl;
 
 	// Add a userNode to the local scene and use it to feed a NodeTracker for
 	// the viewer's camera. We expect that this node will be created in VESS and
-	// that updates will be generated
+	// that updates will be generated. Also note that we store it in a ref_ptr
+	// so that it can't be deleted by vess threads.
+	osg::ref_ptr<asReferenced> userNode = vess->sceneManager->createNode(id, "userNode");
 	
-	/*
-	std::string OSCpath = "/vess/" + vess->id;
-	
-	lo_message msg;
-	msg = lo_message_new();
-	lo_message_add(msg, "ss", "createNode", "user1", "userNode");
-    vess->sendMessage(OSCpath.c_str(), msg);
-	 */
+    std::string OSCpath;
+    
+    OSCpath = "/vess/" + vess->id + "/" + std::string(id);
+    lo_server_thread_add_method(vess->sceneManager->rxServ, OSCpath.c_str(), NULL, panoViewer_liblo_callback, (void*)&viewer);
 
-	asReferenced *userNode = vess->sceneManager->createNode(id, "userNode");
-	
-    std::string oscPattern = "/vess/" + vess->id + "/" + std::string(id);
-    lo_server_thread_add_method(vess->sceneManager->rxServ, oscPattern.c_str(), NULL, panoViewer_liblo_callback, (void*)&viewer);
-
+    
+    // for now, we try to send a message to vess that creates this node (assumes
+    // that the server is running). Eventually, we'll need a better method to 
+    // synchronize user state with vess server... how? Maybe if VESS receives a
+    // ping for a user that doesn't exist, it can request the creation messages?
+	lo_message msg = lo_message_new();
+	lo_message_add(msg, "sss", "createNode", (char*) id.c_str(), "userNode");
+	vess->sceneMessage(msg);
+    
 
 	// *************************************************************************
 	// create a camera manipulator
