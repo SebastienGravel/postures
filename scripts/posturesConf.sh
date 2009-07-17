@@ -24,7 +24,7 @@ alias cdpds='cd ${PDSHEEFA}/patches'
 
 alias svnupALL='svn up ${NTA}; svn up ${SPIN}; svn up ${SPINWIDGETS}; svn up ${PDSHEEFA}; svn up ${POSTURES}'
 
-alias spinEdit='pd ${SPINWIDGETS}/patches/spinEdit.pd'
+alias spin='${SPIN}/src/vess/spin'
 alias spinViewer='${SPIN}/src/vess/spinViewer'
 alias panoViewer='${POSTURES}/panoViewer/panoViewer'
 alias ntaClient='pd ${NTA}/ntaClient.pd'
