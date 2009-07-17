@@ -1,0 +1,14 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Exec=/usr/local/bin/launch_postures
+Type=Application
+Terminal=false
+Name=Postures
+Name[en_CA]=Postures
+Name[fr]=Postures
+Comment=Postutes is the software for the NTA project
+Comment[en_CA]=Postutes is the software for the NTA project
+Comment[fr]=Postures est le logiciel du projet NTA
+Icon=apport
+Icon[en_CA]=apport
