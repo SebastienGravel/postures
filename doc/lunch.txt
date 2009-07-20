@@ -1,0 +1,18 @@
+INPUT:
+commandes:
+    host
+    command_line
+    user
+    priority
+    title
+
+OUTPUT:
+    execution
+    pid
+    stdout
+    status: [running, stopped, stalled ]
+
+
+
+ssh user@host -X rxvt -T title -e lunch -s DISPLAY=:0.0 ~/src/postures/trunk/src/spinViewer
+~                                                                               
