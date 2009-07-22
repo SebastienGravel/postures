@@ -25,8 +25,13 @@ alias cdpds='cd ${PDSHEEFA}/patches'
 alias svnupALL='svn up ${NTA}; svn up ${SPIN}; svn up ${SPINWIDGETS}; svn up ${PDSHEEFA}; svn up ${POSTURES}'
 
 alias ntaClient='pd ${NTA}/ntaClient.pd &'
+alias vess='cd ${SPIN}/src/vess; ./vess'
+alias spin='cd ${SPIN}/src/vess; ./spin &'
+alias spinViewer='cd ${SPIN}/src/vess; ./spinViewer &'
+alias panoViewer='cd ${POSTURES}/panoViewer; ./panoViewer &'
 
-export PATH=${PATH}:${SPIN}/src/vess:${POSTURES}/panoViewer:${NTA}
+
+#export PATH=${PATH}:${SPIN}/src/vess:${POSTURES}/panoViewer:${NTA}
 
 
 # this can be removed once the code is more stable:
