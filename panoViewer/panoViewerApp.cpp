@@ -23,14 +23,14 @@ extern pthread_mutex_t pthreadLock;
 
 int panoViewer_liblo_callback(const char *path, const char *types, lo_arg **argv, int argc, void *data, void *user_data)
 {
-	
+
     // make sure there is at least one argument (ie, a method):
 	if (!argc) return 0;
 
 	panoViewer *viewer = (panoViewer*)user_data;
     if (!viewer) return 0;
 
-    
+
 	// get the method (argv[0]):
     std::string theMethod;
 	if (lo_is_string_type((lo_type)types[0]))
@@ -38,7 +38,7 @@ int panoViewer_liblo_callback(const char *path, const char *types, lo_arg **argv
 		theMethod = string((char *)argv[0]);
 	}
 	else return 0;
-    
+
 	// parse the rest of the args:
 	vector<float> floatArgs;
 	vector<const char*> stringArgs;
@@ -50,7 +50,7 @@ int panoViewer_liblo_callback(const char *path, const char *types, lo_arg **argv
 		} else {
 			stringArgs.push_back( (const char*) argv[i] );
 		}
-	}	
+	}
 
 	// try to find the node id:
 	std::string nodeStr = string(path);
@@ -62,14 +62,14 @@ int panoViewer_liblo_callback(const char *path, const char *types, lo_arg **argv
 		std::cout << "panoViewer_liblo_callback: Could not find node: " << nodeStr << std::endl;
 		return 0;
 	}
-	
+
 	if ( (theMethod=="global6DOF") && (floatArgs.size()==6))
 	{
 //    	viewer->getCamera(0)->setViewMatrixAsLookAt(
 		std::cout << "got camera update:" << floatArgs[0] << "," << floatArgs[1] << "," << floatArgs[2] << "  " << floatArgs[3] << "," << floatArgs[4] << "," << floatArgs[5] << std::endl;
 
 	//    osg::Vec3 = dirVector
-    	//viewer->getCamera(0)->setViewMatrixAsLookAt(osg::Vec3(floatArgs[0],floatArgs[1],floatArgs[2]), 
+    	//viewer->getCamera(0)->setViewMatrixAsLookAt(osg::Vec3(floatArgs[0],floatArgs[1],floatArgs[2]),
 	}
 
 
@@ -85,13 +85,9 @@ int panoViewer_liblo_callback(const char *path, const char *types, lo_arg **argv
 // *****************************************************************************
 int main(int argc, char **argv)
 {
-	// Now make sure we can load the libAudioscape library:
-	osgDB::Registry *reg = osgDB::Registry::instance();
-	osgDB::DynamicLibrary::loadLibrary(reg->createLibraryNameForNodeKit("libSPIN"));
-
 	std::cout <<"\npanoViewer launching..." << std::endl;
 
-	vessListener *vess = new vessListener();
+	vessThread *vess = new vessThread();
 
 	std::string id = getHostname();
 
@@ -106,8 +102,8 @@ int main(int argc, char **argv)
 	arguments.getApplicationUsage()->setCommandLineUsage(arguments.getApplicationName()+" [options]");
 	arguments.getApplicationUsage()->addCommandLineOption("-h or --help", "Display this information");
 
-	arguments.getApplicationUsage()->addCommandLineOption("-id <uniqueID>", "Specify an ID for this viewer (Default is hostname: '" + id + "')");	
-	
+	arguments.getApplicationUsage()->addCommandLineOption("-id <uniqueID>", "Specify an ID for this viewer (Default is hostname: '" + id + "')");
+
 	arguments.getApplicationUsage()->addCommandLineOption("-vessID <uniqueID>", "Specify the VESS scene ID to listen to (Default: '" + vess->id + "')");
 	arguments.getApplicationUsage()->addCommandLineOption("-vessAddr <addr>", "Set the receiving address for incoming OSC messages (Default: " + vess->rxAddr + ")");
 	arguments.getApplicationUsage()->addCommandLineOption("-vessPort <port>", "Set the receiving port for incoming OSC messages (Default: " + vess->rxPort + ")");
@@ -144,7 +140,7 @@ int main(int argc, char **argv)
 
 	panoViewer viewer = panoViewer(arguments);
 	//osgViewer::Viewer viewer = osgViewer::Viewer(arguments);
-	
+
 	viewer.setThreadingModel(osgViewer::Viewer::SingleThreaded);
 
 	viewer.addEventHandler(new osgViewer::StatsHandler);
@@ -159,7 +155,7 @@ int main(int argc, char **argv)
 	viewer.setLightingMode(osg::View::HEADLIGHT);
 	//viewer.setLightingMode(osg::View::SKY_LIGHT);
 
-	
+
 	// *************************************************************************
 	// any option left unread are converted into errors to write out later.
 	arguments.reportRemainingOptionsAsUnrecognized();
@@ -188,21 +184,26 @@ int main(int argc, char **argv)
 	// that updates will be generated. Also note that we store it in a ref_ptr
 	// so that it can't be deleted by vess threads.
 	osg::ref_ptr<asReferenced> userNode = vess->sceneManager->createNode(id, "userNode");
-	
+
     std::string OSCpath;
-    
+
     OSCpath = "/vess/" + vess->id + "/" + std::string(id);
     lo_server_thread_add_method(vess->sceneManager->rxServ, OSCpath.c_str(), NULL, panoViewer_liblo_callback, (void*)&viewer);
 
-    
+
     // for now, we try to send a message to vess that creates this node (assumes
-    // that the server is running). Eventually, we'll need a better method to 
+    // that the server is running). Eventually, we'll need a better method to
     // synchronize user state with vess server... how? Maybe if VESS receives a
     // ping for a user that doesn't exist, it can request the creation messages?
+    /*
 	lo_message msg = lo_message_new();
 	lo_message_add(msg, "sss", "createNode", (char*) id.c_str(), "userNode");
 	vess->sceneMessage(msg);
-    
+	*/
+	vess->sendSceneMessage("sss", "createNode", (char*) id.c_str(), "userNode", LO_ARGS_END);
+
+
+
 
 	// *************************************************************************
 	// create a camera manipulator
@@ -221,9 +222,9 @@ int main(int argc, char **argv)
 	manipulator->setHomePosition( osg::Vec3(0,-0.0001,0), osg::Vec3(0,0,0), osg::Vec3(0,0,1), false );
 //	manipulator->setHomePosition( osg::Vec3(0,1,0), osg::Vec3(0,0,0), osg::Vec3(0,0,1), false );
 	manipulator->setTrackNode(userNode->getAttachmentNode());
-	
+
 	viewer.setCameraManipulator(manipulator);
-	
+
 	// *************************************************************************
 	// set up any initial scene elements:
 
@@ -233,7 +234,7 @@ int main(int argc, char **argv)
 	}
 
 
-	
+
 	// *************************************************************************
 	// start threads:
 
@@ -252,8 +253,8 @@ int main(int argc, char **argv)
 		pthread_mutex_lock(&pthreadLock);
 		vess->sceneManager->updateGraph();
 		pthread_mutex_unlock(&pthreadLock);
-		
-		
+
+
 		pthread_mutex_lock(&pthreadLock);
 		viewer.frame();
 		pthread_mutex_unlock(&pthreadLock);
