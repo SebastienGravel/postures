@@ -1,0 +1,160 @@
+#!/usr/bin/env python
+#
+# ToonLoop for Python
+#
+# Copyright 2008 Alexandre Quessy & Tristan Matthews
+# <alexandre@quessy.net> & <le.businessman@gmail.com>
+# http://www.toonloop.com
+#
+# Original idea by Alexandre Quessy
+# http://alexandre.quessy.net
+#
+# ToonLoop is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# ToonLoop is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the gnu general public license
+# along with ToonLoop.  If not, see <http://www.gnu.org/licenses/>.
+#
+"""
+God is a tool to speedup python development.
+
+Dependencies : 
+ * subversion 
+ * colordiff
+ * rm
+ * find
+ * grep
+ * sed
+
+"""
+__version__ = "0.1"
+
+import sys
+import subprocess
+import time
+from optparse import OptionParser
+
+class CmdError(Exception):
+    """Raised by anything here."""
+    pass
+
+def shell_command(cmd, options):
+    """
+    Do a bash command
+    Return : not sure yet.
+    """
+    if options.verbose:
+        print cmd
+    return subprocess.call(cmd, shell=True)
+
+def ask_confirmation(self, mess="Are you sure?"):
+    print(mess + " (y/N)")
+    inp = raw_input()
+    return inp == "y"
+
+def do_replace(options, args):
+    """
+    Find/replace in python files.
+    VERY DANGEROUS !
+    """
+    interactive = True # options.interactive
+    command = "replace"
+    if len(args) != 3:
+        raise CmdError("Usage %s [from] [to]" % (command))
+    else:
+        str_from = args[1]
+        str_to = args[2]
+        ok = True
+        if interactive:
+            ok = ask_confirmation("Do you really want to replace %s by %s in all python files?")
+        if ok:
+            cmd = """find -name "*.py" -exec sed -i "s!%s!%s!g" {}  \;""" % (str_from, str_to)
+            shell_command(cmd, options)
+
+def do_svndiff(options, args):
+    """
+    Colored svn diff
+    """
+    command = " svn diff | colordiff | less -r"
+    shell_command(command, options)
+
+def do_grep(options, args):
+    """
+    Grep a pattern in python files.
+    """
+    command = "grep"
+    if len(args) != 2:
+        raise CmdError("Usage %s [pattern]" % (command))
+    else:
+        pattern = args[1]
+        cmd = """find . -name "*.py" | sort | xargs grep --color=auto -nH %s""" % (pattern)
+        shell_command(cmd, options)
+
+def do_watch(options, args):
+    """
+    Watches for a process using ps.
+    """
+    command = "watch"
+    if len(args) != 2:
+        raise CmdError("Usage %s [processname]" % (command))
+    name = args[1]
+    try:
+        while True:
+            shell_command("clear", options)
+            shell_command("ps aux | grep %s | grep -v grep | grep -v god | grep -v bash" % (name), options)
+            time.sleep(0.2)
+    except KeyboardInterrupt:
+        print("")
+ 
+def do_rmpyc(options, args):
+    """
+    Removes *.pyc files.
+    Recursive
+    """
+    if options.interactive:
+        extra = " -i "
+    else:
+        extra = ""
+    command = """find -name "*.pyc" -exec rm %s {} \;""" % (extra)
+    shell_command(command, options)
+
+if __name__ == "__main__":
+    commands = {
+        'rmpyc':do_rmpyc, 
+        'replace':do_replace,
+        'grep':do_grep,
+        'svndiff':do_svndiff,
+        'watch':do_watch,
+    }
+    cmds = "["
+    for cmd in commands.keys():
+        cmds += "%s|" % (cmd)
+    cmds += "]"
+    parser = OptionParser(usage="%prog " + cmds, version=str(__version__))
+    parser.add_option("-v", "--verbose", action="store_true", \
+        help="Sets the output to verbose.")
+    parser.add_option("-i", "--interactive", action="store_true", \
+        help="Prompt before doing anything.")
+    
+    (options, args) = parser.parse_args()
+    
+    if len(args) < 1:
+        print("You need to provide an action.")
+        print(""" Actions : %s""" % (cmds))
+    else:
+        if args[0] in commands:
+            try:
+                function = commands[args[0]]
+                function(options, args)
+            except CmdError, e:
+                print(e.message)
+        else:
+            print("No such command : %s" % (args[0]))
+            
