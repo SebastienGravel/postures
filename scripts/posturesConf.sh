@@ -17,7 +17,7 @@ alias pd='~/src/pd-0.41-4/bin/pd -jack'
 # some useful aliases:
 
 alias cdnta='cd ${NTA}'
-alias cdvess='cd ${SPIN}/src/vess'
+alias cdspin='cd ${SPIN}/src/spin'
 alias cdpostures='cd ${POSTURES}'
 alias cdsw='cd ${SPINWIDGETS}/patches'
 alias cdpds='cd ${PDSHEEFA}/patches'
@@ -25,13 +25,13 @@ alias cdpds='cd ${PDSHEEFA}/patches'
 alias svnupALL='svn up ${NTA}; svn up ${SPIN}; svn up ${SPINWIDGETS}; svn up ${PDSHEEFA}; svn up ${POSTURES}'
 
 alias ntaClient='pd ${NTA}/ntaClient.pd &'
-alias vess='cd ${SPIN}/src/vess; ./vess'
-alias spin='cd ${SPIN}/src/vess; ./spin &'
-alias spinViewer='cd ${SPIN}/src/vess; ./spinViewer &'
+alias spin='cd ${SPIN}/src/spin; ./spin &'
+alias spinServer='cd ${SPIN}/src/spin; ./spinServer &'
+alias spinViewer='cd ${SPIN}/src/spin; ./spinViewer &'
 alias panoViewer='cd ${POSTURES}/panoViewer; ./panoViewer &'
 
 
-#export PATH=${PATH}:${SPIN}/src/vess:${POSTURES}/panoViewer:${NTA}
+#export PATH=${PATH}:${SPIN}/src/spin:${POSTURES}/panoViewer:${NTA}
 
 
 # this can be removed once the code is more stable:
