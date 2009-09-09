@@ -7,6 +7,8 @@ SPINWIDGETS=~/src/spinwidgets
 PDSHEEFA=~/src/pdsheefa
 SPIN=~/src/spinframework/trunk
 
+export BOOST_ROOT=/usr/include
+
 # copy the latest .pdsettings from our svn repository:
 `cp ${POSTURES}/scripts/pdsettings ~/.pdsettings`
 
