@@ -7,20 +7,21 @@ include $(SPIN_PATH)/Makefile.include
 all: $(OS)
 
 Linux: panoViewer
-Darwin: panoViewer panoViewer.app
-
+Darwin: panoViewer 
+#Darwin: panoViewer panoViewer.app
+apps: panoViewer.app
 
 ########################################################
 ## YOU SHOULDN'T NEED TO CHANGE ANYTHING BEYONG HERE! ##
 ########################################################
 
-vpath %.cpp . $(SPIN_PATH)/src/vess $(SPIN_PATH)/src/tinyxml
+vpath %.cpp . $(SPIN_PATH)/src/spin $(SPIN_PATH)/src/tinyxml $(APPSINK_PATH)
 
 SPINOBJS = spinContext.o spinUtil.o osgUtil.o libloUtil.o \
 	tinystr.o tinyxml.o tinyxmlerror.o tinyxmlparser.o \
 	SceneManager.o MediaManager.o ReferencedNode.o \
-	GroupNode.o ShapeNode.o asModelNode.o VideoNode.o LightSource.o \
-	RayNode.o Contour.o ConstraintsNode.o PointerNode \
+	GroupNode.o ShapeNode.o ModelNode.o VideoNode.o LightSource.o \
+	RayNode.o Contour.o ConstraintsNode.o PointerNode.o \
 	MeasurementNode.o UserNode.o \
 	DSPNode.o SoundNode.o SoundSpace.o SoundConnection.o \
     SharedVideoNode.o sharedVideoBuffer.o
@@ -35,14 +36,14 @@ SPIN_LIBS += -llo -L$(SPIN_PATH)/src/osgWrappers
 
 %.o:%.cpp
 	@echo "--------------- compiling $@ ---------------" 
-	$(CXX) $(OSG_INCLUDE) $(WX_CXXFLAGS) $(SPIN_FLAGS) $(SPIN_INCLUDE) -c $< -o $@
+	$(CXX) $(OSG_INCLUDE) $(WX_CXXFLAGS) $(SPIN_FLAGS) $(SPIN_INCLUDE) $(BOOST_INCLUDE) -c $< -o $@
 
 ###################################################################
 # TARGETS:
 
 panoViewer: $(SPINOBJS) panoViewer.o panoViewerApp.o
 	@echo "\n--------------- linking $@: ---------------" 
-	$(CXX) -o $@ $^ $(SPIN_LIBS) -lSPIN $(OSG_LIBS)
+	$(CXX) -o $@ $^ $(SPIN_LIBS) -lSPIN $(OSG_LIBS) $(BOOST_LIBS)
 
 panoViewer.app: panoViewer
 	@echo "\n--------------- building $@: ---------------" 
