@@ -1,6 +1,5 @@
 # First, we must provide the path to SPIN:
 export SPIN_PATH = $(HOME)/src/spinframework/trunk
-#export SPIN_PATH = $(HOME)/src/spinframework
 
 # the following file must be included:
 include $(SPIN_PATH)/Makefile.include
@@ -17,14 +16,14 @@ Darwin: panoViewer panoViewer.app
 
 vpath %.cpp . $(SPIN_PATH)/src/vess $(SPIN_PATH)/src/tinyxml
 
-SPINOBJS =  vessThreads.o pdUtil.o osgUtil.o asUtil.o libloUtil.o \
-	findNodeVisitor.o DebugVisitor.o  \
+SPINOBJS = spinContext.o spinUtil.o osgUtil.o libloUtil.o \
 	tinystr.o tinyxml.o tinyxmlerror.o tinyxmlparser.o \
-	asSceneManager.o asMediaManager.o asReferenced.o \
-	asBasicNode.o asShape.o asModel.o asVideo.o asLightSource.o \
-	asRay.o asContour.o asConstraints.o asRayIntersector.o \
-	asPointer.o asMeasurementNode.o asToggle.o userNode.o \
-	asDSPnode.o asSoundNode.o asSoundSpace.o asSoundConnection.o
+	SceneManager.o MediaManager.o ReferencedNode.o \
+	GroupNode.o ShapeNode.o asModelNode.o VideoNode.o LightSource.o \
+	RayNode.o Contour.o ConstraintsNode.o PointerNode \
+	MeasurementNode.o UserNode.o \
+	DSPNode.o SoundNode.o SoundSpace.o SoundConnection.o \
+    SharedVideoNode.o sharedVideoBuffer.o
 
 SPIN_FLAGS += -g -O2 -DC_PLUSPLUS -D__cplusplus
 
