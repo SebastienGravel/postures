@@ -206,12 +206,13 @@ int main(int argc, char **argv)
 	// *************************************************************************
 	// create a camera manipulator
 
-	/*
+	
 	osgGA::TrackballManipulator *manipulator = new osgGA::TrackballManipulator();
-	manipulator->setMinimumDistance ( 0.0001 );
-	manipulator->setHomePosition( osg::Vec3(0,-1,0), osg::Vec3(0,0,0), osg::Vec3(0,0,1), false );
-	*/
+	//manipulator->setMinimumDistance ( 0.0001 );
+	manipulator->setHomePosition( osg::Vec3(0,0,0), osg::Vec3(0,1,0), osg::Vec3(0,0,1), false );
 
+	
+	/*
 	osgGA::NodeTrackerManipulator *manipulator = new osgGA::NodeTrackerManipulator();
 	manipulator->setTrackerMode(  osgGA::NodeTrackerManipulator::NODE_CENTER_AND_ROTATION );
 	manipulator->setRotationMode( osgGA::NodeTrackerManipulator::ELEVATION_AZIM );
@@ -220,7 +221,8 @@ int main(int argc, char **argv)
 	manipulator->setHomePosition( osg::Vec3(0,-0.0001,0), osg::Vec3(0,0,0), osg::Vec3(0,0,1), false );
 //	manipulator->setHomePosition( osg::Vec3(0,1,0), osg::Vec3(0,0,0), osg::Vec3(0,0,1), false );
 	manipulator->setTrackNode(userNode->getAttachmentNode());
-
+	*/
+	
 	viewer.setCameraManipulator(manipulator);
 
 	// *************************************************************************
@@ -253,6 +255,14 @@ int main(int argc, char **argv)
 			spin->sendInfoMessage("/ping/user", "s", (char*) id.c_str(), LO_ARGS_END);
 			lastTick = frameTick;
 		}
+
+		// TODO: move this into the callback, and do it only when userNode sends
+		// a global6DOF message:
+		osg::Matrix m = osg::computeLocalToWorld(userNode->currentNodePath);
+		osg::Vec3 rot = QuatToEuler(m.getRotate());
+		manipulator->setCenter(m.getTrans());
+		manipulator->setRotation(osg::Quat( rot.x()+osg::PI_2,osg::X_AXIS, rot.y(),osg::Y_AXIS, rot.z(),osg::Z_AXIS) );
+		
 		
 		// We now have to go through all the nodes, and check if we need to update the
 		// graph. Note: this cannot be done as a callback in a traversal - dangerous.
