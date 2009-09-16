@@ -14,6 +14,7 @@
 #include "spinUtil.h"
 #include "spinContext.h"
 #include "panoViewer.h"
+#include "osgUtil.h"
 
 using namespace std;
 
