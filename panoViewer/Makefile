@@ -15,20 +15,11 @@ apps: panoViewer.app
 ## YOU SHOULDN'T NEED TO CHANGE ANYTHING BEYONG HERE! ##
 ########################################################
 
-vpath %.cpp . $(SPIN_PATH)/src/spin $(SPIN_PATH)/src/tinyxml $(APPSINK_PATH)
-
-SPINOBJS = spinContext.o spinUtil.o osgUtil.o libloUtil.o \
-	tinystr.o tinyxml.o tinyxmlerror.o tinyxmlparser.o \
-	SceneManager.o MediaManager.o ReferencedNode.o \
-	GroupNode.o ShapeNode.o ModelNode.o VideoNode.o LightSource.o \
-	RayNode.o Contour.o ConstraintsNode.o PointerNode.o \
-	MeasurementNode.o UserNode.o \
-	DSPNode.o SoundNode.o SoundSpace.o SoundConnection.o \
-    SharedVideoNode.o sharedVideoBuffer.o
-
 SPIN_FLAGS += -g -O2 -DC_PLUSPLUS -D__cplusplus
 
-SPIN_LIBS += -llo -L$(SPIN_PATH)/src/osgWrappers
+DEV_LDFLAGS = -L. -Wl,-rpath,. -L$(SPIN_PATH)/src/osgWrappers -Wl,-rpath,$(SPIN_PATH)/src/spin -Wl,-rpath,$(SPIN_INSTALL_PREFIX)/lib
+
+SPIN_LIBS += -llo -lSPIN
 
 
 ###################################################################
@@ -36,14 +27,14 @@ SPIN_LIBS += -llo -L$(SPIN_PATH)/src/osgWrappers
 
 %.o:%.cpp
 	@echo "--------------- compiling $@ ---------------" 
-	$(CXX) $(OSG_INCLUDE) $(WX_CXXFLAGS) $(SPIN_FLAGS) $(SPIN_INCLUDE) $(BOOST_INCLUDE) -c $< -o $@
+	$(CXX) $(OSG_INCLUDE) $(SPIN_FLAGS) $(SPIN_INCLUDE) -c $< -o $@
 
 ###################################################################
 # TARGETS:
 
-panoViewer: $(SPINOBJS) panoViewer.o panoViewerApp.o
+panoViewer: panoViewer.o panoViewerApp.o
 	@echo "\n--------------- linking $@: ---------------" 
-	$(CXX) -o $@ $^ $(SPIN_LIBS) -lSPIN $(OSG_LIBS) $(BOOST_LIBS)
+	$(CXX) -o $@ $^ $(SPIN_LIBS) $(OSG_LIBS)
 
 panoViewer.app: panoViewer
 	@echo "\n--------------- building $@: ---------------" 
@@ -70,7 +61,7 @@ panoViewer.app: panoViewer
 
 ########################################################
 install:
-	@echo "make install NOT YET DONE. Where do we install to??"
+	-cp panoViewer ${SPIN_INSTALL_PREFIX}/bin
 
 
 ########################################################
