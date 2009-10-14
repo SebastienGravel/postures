@@ -34,5 +34,5 @@ alias ntaClient='pd ${NTA}/ntaClient.pd &'
 
 
 # this can be removed once the code is more stable:
-export LD_LIBRARY_PATH=${SPIN}/src/osgWrappers
+#export LD_LIBRARY_PATH=${SPIN}/src/osgWrappers
 
