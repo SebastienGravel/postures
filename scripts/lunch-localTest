@@ -8,7 +8,7 @@
 # -------------------------------------------------------------------
 
 import os
-execfile(os.path.join(os.path.dirname(__file__), "postures.py"))
+execfile(os.path.join(os.path.expanduder("~"), "postureVars.py"))
 
 add_command("spinServer", title="local_spinServer", sleep=1.0, priority=1) 
 

@@ -8,8 +8,9 @@
 # -------------------------------------------------------------------
 
 import os
-#execfile(os.path.join(os.path.dirname(__file__), "postures.py"))
-execfile(os.path.join(os.getcwd(), "postures.py"))
+#execfile(os.path.join(os.path.dirname(__file__), "postureVars.py"))
+#execfile(os.path.join(os.getcwd(), "postureVars.py"))
+execfile(os.path.join(os.path.expanduder("~"), "postureVars.py"))
 
 _hosts = ["posture01", "posture02", "posture03", "streamer01", "streamer03"]
 _clients = ["posture01", "posture03"]
