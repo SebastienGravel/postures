@@ -154,7 +154,8 @@ int main(int argc, char **argv)
 	viewer.addEventHandler(new osgViewer::ThreadingHandler);
 	viewer.addEventHandler(new osgViewer::WindowSizeHandler);
 
-
+	viewer.addEventHandler(new osgViewer::LODScaleHandler);
+	
 	viewer.addEventHandler(new osgViewer::HelpHandler(arguments.getApplicationUsage()));
 	viewer.addEventHandler( new osgGA::StateSetManipulator(viewer.getCamera()->getOrCreateStateSet()) );
 
