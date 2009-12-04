@@ -8,9 +8,7 @@
 # -------------------------------------------------------------------
 
 import os
-#execfile(os.path.join(os.path.dirname(__file__), "postureVars.py"))
-#execfile(os.path.join(os.getcwd(), "postureVars.py"))
-execfile(os.path.join(os.path.expanduder("~"), "postureVars.py"))
+execfile(os.path.expanduser("~/src/postures/trunk/scripts/postureVars.py"))
 
 _hosts = ["posture01", "posture02", "posture03", "streamer01", "streamer03"]
 _clients = ["posture01", "posture03"]
@@ -31,7 +29,7 @@ _milhouses = [ {"sender":"streamer01", "camera":"df44", "receiver":"posture03" }
                {"sender":"posture01", "audio":True, "receiver":"posture03" },
                {"sender":"posture03", "audio":True, "receiver":"posture01" },
              ]
-_milhouses = []
+#_milhouses = []
 
 # clear log files:
 for h in _hosts:
