@@ -21,73 +21,6 @@ using namespace std;
 extern pthread_mutex_t pthreadLock;
 
 
-// global:
-// we store userNode in a global ref_ptr so that it can't be deleted
-//static osg::ref_ptr<ReferencedNode> userNode;
-static UserNode *userNode;
-
-
-
-
-void registerUser()
-{
-	spinContext &spin = spinContext::Instance();
-	
-    if (!userNode)
-	{
-        std::cout << "ERROR: could not register user" << std::endl;
-        exit(1);
-	}
-	
-	
-	// Send a message to the server to create this node (assumes that the server
-	// is running). If not, it will send a 'userRefresh' method upon startup
-	// that will request that this function is called again
-	spin.sendSceneMessage("sss", "createNode", userNode->id->s_name, "UserNode", LO_ARGS_END);
-
-	std::cout << "  Registered user '" << userNode->id->s_name << "' with SPIN" << std::endl;
-
-}
-
-int panoViewer_liblo_callback(const char *path, const char *types, lo_arg **argv, int argc, void *data, void *user_data)
-{
-    spinContext &spin = spinContext::Instance();
-
-    // make sure there is at least one argument (ie, a method):
-	if (!argc) return 0;
-
-	// get the method (argv[0]):
-    std::string theMethod;
-	if (lo_is_string_type((lo_type)types[0]))
-	{
-		theMethod = string((char *)argv[0]);
-	}
-	else return 0;
-
-	// parse the rest of the args:
-	vector<float> floatArgs;
-	vector<const char*> stringArgs;
-	for (int i=1; i<argc; i++)
-	{
-		if (lo_is_numerical_type((lo_type)types[i]))
-		{
-			floatArgs.push_back( (float) lo_hires_val((lo_type)types[i], argv[i]) );
-		} else {
-			stringArgs.push_back( (const char*) argv[i] );
-		}
-	}
-
-	if (theMethod=="userRefresh")
-	{
-		registerUser();
-	}
-
-
-	return 1;
-}
-
-
-
 // *****************************************************************************
 // *****************************************************************************
 // *****************************************************************************
@@ -191,38 +124,24 @@ int main(int argc, char **argv)
 	}
 	
 	spin.sceneManager->setGraphical(true);
-
-	// register an extra OSC callback so that we can spy on OSC messages:
-	std::string OSCpath = "/SPIN/" + spin.id;
-	lo_server_thread_add_method(spin.sceneManager->rxServ, OSCpath.c_str(), NULL, panoViewer_liblo_callback, NULL);
-
 	
-	// Add a UserNode to the local scene and use it to feed a NodeTracker for
-	// the viewer's camera. We expect that this node will be created in the
-	// sceneManager and that updates will be generated. 
-	userNode = dynamic_cast<UserNode*>(spin.sceneManager->getOrCreateNode(id.c_str(), "UserNode"));
-
+	// register a user
+	spin.registerUser(id.c_str());
 	
-	// send userNode info to spin
-	registerUser();
-	
-	
-
 	// *************************************************************************
 	// create a camera manipulator
 
-	/*
-	osgGA::TrackballManipulator *manipulator = new osgGA::TrackballManipulator();
-	manipulator->setMinimumDistance ( 0.0001 );
-	//manipulator->setHomePosition( osg::Vec3(0,0,0), osg::Vec3(0,1,0), osg::Vec3(0,0,1), false );
-	manipulator->setHomePosition( osg::Vec3(0,-0.0001,0), osg::Vec3(0,0,0), osg::Vec3(0,0,1), false );
-	 */
+	osg::ref_ptr<ViewerManipulator> manipulator;
+	if (spin.user.valid())
+	{
+		manipulator = new ViewerManipulator(spin.user.get());
+		
+		manipulator->setPicker(false);
+		manipulator->setMover(true);
+
+		viewer.setCameraManipulator(manipulator.get());
+	}
 	
-	ViewerManipulator *manipulator = new ViewerManipulator(userNode);
-	manipulator->setPicker(false);
-	manipulator->setMover(true);
-	
-	viewer.setCameraManipulator(manipulator);
 
 	// *************************************************************************
 	// set up any initial scene elements:
@@ -269,12 +188,16 @@ int main(int argc, char **argv)
 	    	spin.sceneManager->updateGraph();
 	    	pthread_mutex_unlock(&pthreadLock);
 
-
 	    	pthread_mutex_lock(&pthreadLock);
 	    	viewer.frame();
 	    	pthread_mutex_unlock(&pthreadLock);
 
 		} else {
+			if (manipulator.valid())
+			{
+				viewer.setCameraManipulator(NULL);
+				manipulator.release();
+			}
 			viewer.setDone(true);
 		}
 	}
