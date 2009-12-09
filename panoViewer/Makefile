@@ -21,6 +21,11 @@ DEV_LDFLAGS = -L. -Wl,-rpath,. -L$(SPIN_PATH)/src/osgWrappers -Wl,-rpath,$(SPIN_
 
 SPIN_LIBS += -llo -lSPIN
 
+ifdef SHARED_VIDEO_LIB
+  SPIN_LIBS += -lshared_video
+endif
+
+
 
 ###################################################################
 # GENERIC COMPILATION RULE
