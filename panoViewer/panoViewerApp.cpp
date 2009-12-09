@@ -242,6 +242,9 @@ int main(int argc, char **argv)
 
 	viewer.realize();
 	
+	// ask for refresh:
+	spin.sendSceneMessage("s", "refresh", LO_ARGS_END);
+	
 	osg::Timer_t lastTick = osg::Timer::instance()->tick();
 	osg::Timer_t frameTick = lastTick;
 
