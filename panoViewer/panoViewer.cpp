@@ -9,6 +9,7 @@
 
 
 #include <stdio.h>
+#include <iostream>
 
 #include <osg/DeleteHandler>
 #include <osg/io_utils>
@@ -439,7 +440,8 @@ void panoViewer::setupViewForPanoscope()
 
         addSlave(camera.get(), osg::Matrixd(), osg::Matrixd(), false);
     }
-    
+
+	//getCamera()->setComputeNearFarMode(osg::CullSettings::DO_NOT_COMPUTE_NEAR_FAR);
     getCamera()->setNearFarRatio(0.0001f);
     
     if (getLightingMode()==osg::View::HEADLIGHT)
