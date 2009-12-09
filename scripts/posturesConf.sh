@@ -7,6 +7,8 @@ SPINWIDGETS=~/src/spinwidgets
 PDSHEEFA=~/src/pdsheefa
 SPIN=~/src/spinframework/trunk
 AUDIOSCAPE=~/src/audioscape_2.0
+#AUDIOSCAPE=~/src/audioscape_2.1
+MIVILLE=~/src/miville
 
 export BOOST_ROOT=/usr/include
 
@@ -26,7 +28,9 @@ alias cdsw='cd ${SPINWIDGETS}/patches'
 alias cdpds='cd ${PDSHEEFA}/patches'
 alias cdas='cd ${AUDIOSCAPE}/patches'
 
-alias svnupALL='echo svn up ${NTA} && svn up ${NTA} && echo svn up ${SPIN} && svn up ${SPIN} && echo svn up ${SPINWIDGETS} && svn up ${SPINWIDGETS} && echo svn up ${PDSHEEFA} && svn up ${PDSHEEFA} && echo svn up ${POSTURES} && svn up ${POSTURES} && echo svn up ${AUDIOSCAPE} && svn up ${AUDIOSCAPE}'
+
+
+alias svnupALL='echo svn up ${NTA} && svn up ${NTA} && echo svn up ${SPIN} && svn up ${SPIN} && echo svn up ${SPINWIDGETS} && svn up ${SPINWIDGETS} && echo svn up ${PDSHEEFA} && svn up ${PDSHEEFA} && echo svn up ${POSTURES} && svn up ${POSTURES} && echo svn up ${AUDIOSCAPE} && svn up ${AUDIOSCAPE} && echo svn up ${MIVILLE} && svn up ${MIVILLE}'
 
 alias ntaClient='pd ${NTA}/ntaClient.pd &'
 
