@@ -50,6 +50,9 @@ int main(int argc, char **argv)
 	arguments.getApplicationUsage()->addCommandLineOption("-serverAddr <addr>", "Set the receiving address for incoming OSC messages (Default: " + spin.rxAddr + ")");
 	arguments.getApplicationUsage()->addCommandLineOption("-serverPort <port>", "Set the receiving port for incoming OSC messages (Default: " + spin.rxPort + ")");
 
+	arguments.getApplicationUsage()->addCommandLineOption("--hideCursor", "Hide the mouse cursor");
+	arguments.getApplicationUsage()->addCommandLineOption("--framerate <num>", "Set the maximum framerate (Default: not limited)");
+
 
 	// *************************************************************************
 	// PARSE ARGS:
@@ -70,7 +73,10 @@ int main(int argc, char **argv)
 	osg::ArgumentParser::Parameter param_spinPort(spin.rxPort);
 	arguments.read("-serverPort", param_spinPort);
 
-
+	bool hideCursor=false;
+    while (arguments.read("--hideCursor")) hideCursor=true;
+	double maxFrameRate = -1;
+	while (arguments.read("--framerate",maxFrameRate)) {}
 
 	// For testing purposes, we allow loading a scene with a commandline arg:
 	osg::ref_ptr<osg::Node> argScene = osgDB::readNodeFiles(arguments);
@@ -97,6 +103,15 @@ int main(int argc, char **argv)
 	//viewer.setLightingMode(osg::View::NO_LIGHT);
 	viewer.setLightingMode(osg::View::HEADLIGHT);
 	//viewer.setLightingMode(osg::View::SKY_LIGHT);
+
+	osgViewer::ViewerBase::Windows windows;
+    osgViewer::ViewerBase::Windows::iterator wIter;
+    viewer.getWindows(windows);
+    for (wIter=windows.begin(); wIter!=windows.end(); wIter++)
+    {
+    	(*wIter)->setWindowName("panoViewer");
+		if (hideCursor) (*wIter)->useCursor(false);
+    }
 
 
 	// *************************************************************************
@@ -131,16 +146,10 @@ int main(int argc, char **argv)
 	// *************************************************************************
 	// create a camera manipulator
 
-	osg::ref_ptr<ViewerManipulator> manipulator;
-	if (spin.user.valid())
-	{
-		manipulator = new ViewerManipulator(spin.user.get());
-		
-		manipulator->setPicker(false);
-		manipulator->setMover(true);
-
-		viewer.setCameraManipulator(manipulator.get());
-	}
+	osg::ref_ptr<ViewerManipulator> manipulator = new ViewerManipulator();
+	manipulator->setPicker(false);
+	manipulator->setMover(true);
+	viewer.setCameraManipulator(manipulator.get());
 	
 
 	// *************************************************************************
@@ -162,36 +171,38 @@ int main(int argc, char **argv)
 	viewer.realize();
 	
 	// ask for refresh:
-	spin.sendSceneMessage("s", "refresh", LO_ARGS_END);
-	
-	osg::Timer_t lastTick = osg::Timer::instance()->tick();
-	osg::Timer_t frameTick = lastTick;
+	spin.SceneMessage("s", "refresh", LO_ARGS_END);
 
+	
+	double minFrameTime = 1.0 / maxFrameRate;
+
+	
 	// program loop:
 	while( !viewer.done() )
 	{
 		
 		if (spin.isRunning())
 		{
-	    	frameTick = osg::Timer::instance()->tick();
-	    	if (osg::Timer::instance()->delta_s(lastTick,frameTick) > 5) // every 5 seconds
-	    	{
-			    spin.sendInfoMessage("/ping/user", "s", (char*) id.c_str(), LO_ARGS_END);
-	    		lastTick = frameTick;
-	    	}
+	    	osg::Timer_t startFrameTick = osg::Timer::instance()->tick();
 
-	    	// We now have to go through all the nodes, and check if we need to update the
-	    	// graph. Note: this cannot be done as a callback in a traversal - dangerous.
-	    	// In the callback, we have simply flagged what needs to be done (eg, set the
-	    	// newParent symbol).
 	    	pthread_mutex_lock(&pthreadLock);
-	    	spin.sceneManager->updateGraph();
+	    	spin.sceneManager->update();
 	    	pthread_mutex_unlock(&pthreadLock);
 
 	    	pthread_mutex_lock(&pthreadLock);
 	    	viewer.frame();
 	    	pthread_mutex_unlock(&pthreadLock);
 
+			if (maxFrameRate>0)
+			{
+				// work out if we need to force a sleep to hold back the frame rate
+				osg::Timer_t endFrameTick = osg::Timer::instance()->tick();
+				double frameTime = osg::Timer::instance()->delta_s(startFrameTick, endFrameTick);
+				if (frameTime < minFrameTime) OpenThreads::Thread::microSleep(static_cast<unsigned int>(1000000.0*(minFrameTime-frameTime)));
+			}
+
+
+			
 		} else {
 			if (manipulator.valid())
 			{
