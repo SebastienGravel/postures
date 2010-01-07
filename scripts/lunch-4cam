@@ -33,8 +33,8 @@ _milhouses = [ {"sender":"streamer01", "camera":"df44", "receiver":"posture03" }
 
 # clear log files:
 for h in _hosts:
-    add_command("rm /var/tmp/lunch.log", user=postures.user, host=h)
-    add_command("killall milhouse", user=postures.user, host=h, priority=1)
+    add_command("rm /var/tmp/lunch.log", user=postures.user, host=h, priority=1)
+    #add_command("killall milhouse", user=postures.user, host=h, priority=1)
 
 # server:
 add_command("spinServer", title="spinServer (local)", sleep=1.0, priority=2) 
@@ -47,7 +47,8 @@ for c in _clients:
         add_command(postures.ntaClient, env={"DISPLAY":":0.0"}, user=postures.user, host=c, title="ntaClient")
 
 # viewers:
-add_command("spinViewer", env={"DISPLAY":":0.0"}, user=postures.user, host="posture03", title="spinViewer")
+#add_command("spinViewer", env={"DISPLAY":":0.0"}, user=postures.user, host="posture03", title="spinViewer")
+add_command("panoViewer", env={"DISPLAY":":0.0"}, user=postures.user, host="posture03", title="panoViewer")
 add_command("panoViewer", env={"DISPLAY":":0.0"}, user=postures.user, host="posture01", title="panoViewer")
 
 
@@ -68,18 +69,19 @@ for m in _milhouses:
         sendOpt += " --videocodec h263 --videosource dc1394src"
         #sendOpt += " --videobitrate 750000 --framerate 15"
         sendOpt += " --framerate 15"
+        sendOpt += " --grayscale"
         
         recvOpt += " --videoport %d" % (_port)
         #recvOpt += " --videocodec h263 --videosink xvimagesink"
         recvOpt += " --videocodec h263 --videosink sharedvideosink"
         #recvOpt += " --shared-video-id %s_%s" % (m['sender'], m['camera'])
-        recvOpt += " --shared-video-id %s" % (m['camera'])
+        recvOpt += " --shared-video-id shvid_%s" % (m['camera'])
 
         _title += "_VID\(%s\)" % (m['camera'])
 
     if ("audio" in m):
-        add_command("jack.plumbing", user=postures.user, host=m['sender'], title="jack.plumbing")
-        add_command("jack.plumbing", user=postures.user, host=m['receiver'], title="jack.plumbing")
+        #add_command("jack.plumbing", user=postures.user, host=m['sender'], title="jack.plumbing")
+        #add_command("jack.plumbing", user=postures.user, host=m['receiver'], title="jack.plumbing")
 
         sendOpt += " --audioport %d --audiocodec raw --audiosource jackaudiosrc --disable-jack-autoconnect --jack-client-name %s" % (_port+10, m['sender'])
         recvOpt += " --audioport %d --audiocodec raw --audiosink jackaudiosink --disable-jack-autoconnect --jack-client-name %s" % (_port+10, m['sender'])
