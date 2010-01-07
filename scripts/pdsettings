@@ -10,8 +10,8 @@ nomidiin: True
 nomidiout: True
 path1: /home/postures/src/spinwidgets/patches
 path2: /home/postures/src/pdsheefa/patches
-path3: /home/postures/src/audioscape_2.0/patches
-path4: /home/postures/src/audioscape_2.0/patches/plugins
+path3: /home/postures/src/audioscape_2.1/patches
+path4: /home/postures/src/audioscape_2.1/patches/plugins
 path5: /home/postures/Documents/ascape2
 path6: /home/postures/Documents/pdsheefa
 path7: /home/postures/Documents/nslam
