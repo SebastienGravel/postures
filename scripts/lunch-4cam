@@ -41,6 +41,7 @@ add_command("spinServer", title="spinServer (local)", sleep=1.0, priority=2)
 
 # ntaClients:
 for c in _clients:
+    add_command("jack.plumbing", user=postures.user, host=c, title="jack.plumbing")
     if Debug:    
         add_command(postures.ntaClientDebug, env={"DISPLAY":":0.0"}, user=postures.user, host=c, title="ntaClient")
     else:
@@ -93,7 +94,4 @@ for m in _milhouses:
     _port += 20
 
 # local editor
-if Debug:
-    add_command(postures.spinEditorDebug, env={"DISPLAY":":0.0"}, title="spinEditor (local)")
-else:
-    add_command(postures.spinEditor, env={"DISPLAY":":0.0"}, title="spinEditor (local)")
+add_command(postures.spinEditor, env={"DISPLAY":":0.0"}, title="spinEditor (local)")
