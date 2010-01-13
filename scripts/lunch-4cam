@@ -31,27 +31,22 @@ _milhouses = [ {"sender":"streamer01", "camera":"df44", "receiver":"posture03" }
              ]
 #_milhouses = []
 
-# clear log files:
+# prep:
 for h in _hosts:
-    add_command("rm /var/tmp/lunch.log", user=postures.user, host=h, priority=1)
-    #add_command("killall milhouse", user=postures.user, host=h, priority=1)
+    add_command("rm /var/tmp/lunch.log", user=postures.user, host=h, priority=1, respawn=False)
+    add_command("firereset", user=postures.user, host=h, priority=1, respawn=False)
+    add_command("pkill -9 milhouse", user=postures.user, host=h, priority=1, respawn=False)
 
 # server:
-add_command("spinServer", title="spinServer (local)", sleep=1.0, priority=2) 
+add_command("spinServer", title="spinServer (local)", sleep=1.0, priority=5) 
 
-# ntaClients:
+# clients:
 for c in _clients:
     add_command("jack.plumbing", user=postures.user, host=c, title="jack.plumbing")
-    if Debug:    
-        add_command(postures.ntaClientDebug, env={"DISPLAY":":0.0"}, user=postures.user, host=c, title="ntaClient")
-    else:
-        add_command(postures.ntaClient, env={"DISPLAY":":0.0"}, user=postures.user, host=c, title="ntaClient")
+    add_command(postures.ntaClient, env={"DISPLAY":":0.0"}, user=postures.user, host=c, title="ntaClient")
+    add_command("panoViewer", env={"DISPLAY":":0.0"}, user=postures.user, host=c, title="panoViewer")
 
-# viewers:
-#add_command("spinViewer", env={"DISPLAY":":0.0"}, user=postures.user, host="posture03", title="spinViewer")
-add_command("panoViewer", env={"DISPLAY":":0.0"}, user=postures.user, host="posture03", title="panoViewer")
-add_command("panoViewer", env={"DISPLAY":":0.0"}, user=postures.user, host="posture01", title="panoViewer")
-
+#add_command("panoViewer", env={"DISPLAY":":0.0"}, user=postures.user, host="posture01", title="panoViewer")
 
 # milhouse invocations:
 _port = 10000
