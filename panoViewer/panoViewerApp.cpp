@@ -167,6 +167,7 @@ int main(int argc, char **argv)
 
 	viewer.setSceneData(spin.sceneManager->rootNode.get());
 	viewer.setupViewForPanoscope();
+    viewer.setNearFar(0.1,100);
 
 	viewer.realize();
 	
