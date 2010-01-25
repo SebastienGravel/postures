@@ -2,9 +2,6 @@
  *  panoViewer.h
  *  Panoscope
  *
- *  Created by Gideon May on 12-10-07.
- *  Copyright 2007 __MyCompanyName__. All rights reserved.
- *
  */
 
 #ifndef PANOVIEWER
@@ -16,19 +13,31 @@
 
 #include <osgViewer/GraphicsWindow>
 #include <osgViewer/View>
-#include <osgViewer/Viewer>
+#include <vector>
 
-class panoViewer : public osgViewer::Viewer
-{
-public:
-    panoViewer();
-    panoViewer(osg::ArgumentParser& arguments);
-    void setupViewForPanoscope();
+#define TEXTURE_SIZE    1024
+
+typedef std::vector< osg::ref_ptr<osg::Camera> > CameraList;
+
+namespace osgPano {
+    class OSG_EXPORT panoViewer : public virtual osgViewer::Viewer
+    {
+    public:
+        panoViewer();
+        panoViewer(osg::ArgumentParser& arguments);
+        void setupViewForPanoscope();
+        
+        /** Set the near and far clipping plane, disables the automatic update of the clipping planes */
+        void setNearFar(float near, float far);
+        
+        virtual void requestRedraw();
+        virtual void requestContinuousUpdate(bool needed=true);
+        virtual void requestWarpPointer(float x,float y);
+    private:
+        CameraList _cameras;
+    };
     
-    virtual void requestRedraw();
-    virtual void requestContinuousUpdate(bool needed=true);
-    virtual void requestWarpPointer(float x,float y);
-};
-
+    
+}
 
 #endif

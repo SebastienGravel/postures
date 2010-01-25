@@ -86,7 +86,7 @@ int main(int argc, char **argv)
 	// construct the viewer:
 	// (note, this constructor gets rid of some additional args)
 
-	panoViewer viewer = panoViewer(arguments);
+	osgPano::panoViewer viewer = osgPano::panoViewer(arguments);
 	//osgViewer::Viewer viewer = osgViewer::Viewer(arguments);
 
 	viewer.setThreadingModel(osgViewer::Viewer::SingleThreaded);

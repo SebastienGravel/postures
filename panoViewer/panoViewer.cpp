@@ -9,7 +9,6 @@
 
 
 #include <stdio.h>
-#include <iostream>
 
 #include <osg/DeleteHandler>
 #include <osg/io_utils>
@@ -41,8 +40,7 @@
 
 #include "panoViewer.h"
 
-#define TEXTURE_SIZE    1024
-
+namespace osgPano {
 
 panoViewer::panoViewer()
 {
@@ -284,6 +282,8 @@ void panoViewer::setupViewForPanoscope()
 
         // attach the texture and use it as the color buffer.
         camera->attach(osg::Camera::COLOR_BUFFER, texture, 0, osg::TextureCubeMap::POSITIVE_Y);
+        
+        _cameras.push_back(camera);
 
         // addSlave(camera.get(), osg::Matrixd(), osg::Matrixd());
         addSlave(camera.get(), osg::Matrixd(), osg::Matrixd::rotate(osg::inDegrees(180.0f), 1.0,0.0,0.0));
@@ -304,6 +304,9 @@ void panoViewer::setupViewForPanoscope()
         
         // attach the texture and use it as the color buffer.
         camera->attach(osg::Camera::COLOR_BUFFER, texture, 0, osg::TextureCubeMap::NEGATIVE_Y);
+        
+        _cameras.push_back(camera);
+
         
         // addSlave(camera.get(), osg::Matrixd(), osg::Matrixd::rotate(osg::inDegrees(180.0f), 1.0,0.0,0.0));
         addSlave(camera.get(), osg::Matrixd(), osg::Matrixd());
@@ -326,6 +329,9 @@ void panoViewer::setupViewForPanoscope()
         // attach the texture and use it as the color buffer.
         camera->attach(osg::Camera::COLOR_BUFFER, texture, 0, osg::TextureCubeMap::POSITIVE_Z);
         // camera->attach(osg::Camera::COLOR_BUFFER, texture, 0, osg::TextureCubeMap::NEGATIVE_Z);
+        
+        _cameras.push_back(camera);
+
 
         // addSlave(camera.get(), osg::Matrixd(), osg::Matrixd::rotate(osg::inDegrees(-90.0f), 1.0,0.0,0.0));
         addSlave(camera.get(), osg::Matrixd(), osg::Matrixd::rotate(osg::inDegrees(90.0f), 1.0,0.0,0.0));
@@ -348,6 +354,9 @@ void panoViewer::setupViewForPanoscope()
         camera->attach(osg::Camera::COLOR_BUFFER, texture, 0, osg::TextureCubeMap::NEGATIVE_Z);
         // camera->attach(osg::Camera::COLOR_BUFFER, texture, 0, osg::TextureCubeMap::POSITIVE_Z);
         
+        _cameras.push_back(camera);
+
+        
         // addSlave(camera.get(), osg::Matrixd(), osg::Matrixd::rotate(osg::inDegrees(90.0f), 1.0,0.0,0.0) * osg::Matrixd::rotate(osg::inDegrees(180.0f), 0.0,0.0,1.0));
         addSlave(camera.get(), osg::Matrixd(), osg::Matrixd::rotate(osg::inDegrees(-90.0f), 1.0,0.0,0.0) * osg::Matrixd::rotate(osg::inDegrees(180.0f), 0.0,0.0,1.0));
     }
@@ -369,6 +378,9 @@ void panoViewer::setupViewForPanoscope()
         // attach the texture and use it as the color buffer.
         camera->attach(osg::Camera::COLOR_BUFFER, texture, 0, osg::TextureCubeMap::NEGATIVE_X);
         // camera->attach(osg::Camera::COLOR_BUFFER, texture, 0, osg::TextureCubeMap::POSITIVE_X);
+        
+        _cameras.push_back(camera);
+
 
         // addSlave(camera.get(), osg::Matrixd(), osg::Matrixd::rotate(osg::inDegrees(-90.0f), 0.0,1.0,0.0) * osg::Matrixd::rotate(osg::inDegrees(-90.0f), 0.0,0.0,1.0));
         addSlave(camera.get(), osg::Matrixd(), osg::Matrixd::rotate(osg::inDegrees(-90.0f), 0.0,1.0,0.0) * osg::Matrixd::rotate(osg::inDegrees(90.0f), 0.0,0.0,1.0));
@@ -390,6 +402,9 @@ void panoViewer::setupViewForPanoscope()
         // attach the texture and use it as the color buffer.
         camera->attach(osg::Camera::COLOR_BUFFER, texture, 0, osg::TextureCubeMap::POSITIVE_X);
         // camera->attach(osg::Camera::COLOR_BUFFER, texture, 0, osg::TextureCubeMap::NEGATIVE_X);
+        
+        _cameras.push_back(camera);
+
 
         // addSlave(camera.get(), osg::Matrixd(), osg::Matrixd::rotate(osg::inDegrees(90.0f), 0.0,1.0,0.0 ) * osg::Matrixd::rotate(osg::inDegrees(90.0f), 0.0,0.0,1.0));
         addSlave(camera.get(), osg::Matrixd(), osg::Matrixd::rotate(osg::inDegrees(90.0f), 0.0,1.0,0.0 ) * osg::Matrixd::rotate(osg::inDegrees(-90.0f), 0.0,0.0,1.0));
@@ -440,8 +455,7 @@ void panoViewer::setupViewForPanoscope()
 
         addSlave(camera.get(), osg::Matrixd(), osg::Matrixd(), false);
     }
-
-	//getCamera()->setComputeNearFarMode(osg::CullSettings::DO_NOT_COMPUTE_NEAR_FAR);
+    
     getCamera()->setNearFarRatio(0.0001f);
     
     if (getLightingMode()==osg::View::HEADLIGHT)
@@ -485,5 +499,24 @@ void panoViewer::requestWarpPointer(float x,float y)
     }
 }
 
+void panoViewer::setNearFar(float near, float far)
+{
+    double fovy, aspectRatio, zNear, zFar;        
+    
+/*
+    for(CameraList::iterator itr=_cameras.begin(); itr!=_cameras.end(); ++itr) {
+        
+        (*itr)->setComputeNearFarMode(osg::CullSettings::DO_NOT_COMPUTE_NEAR_FAR);
+        (*itr)->getProjectionMatrixAsPerspective(fovy, aspectRatio, zNear, zFar);
+        (*itr)->setProjectionMatrixAsPerspective(fovy, aspectRatio, near,  far);
+    }
+*/
+    getCamera()->setComputeNearFarMode(osg::CullSettings::DO_NOT_COMPUTE_NEAR_FAR);
+    getCamera()->getProjectionMatrixAsPerspective(fovy, aspectRatio, zNear, zFar);
+    getCamera()->setProjectionMatrixAsPerspective(fovy, aspectRatio, near, far);    
+        
+}
+
+}
 
 
