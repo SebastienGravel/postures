@@ -517,6 +517,20 @@ void panoViewer::setNearFar(float near, float far)
         
 }
 
+void panoViewer::setClearColor(osg::Vec4 v)
+{
+/*
+    for(CameraList::iterator itr=_cameras.begin(); itr!=_cameras.end(); ++itr) {
+    {
+
+
+    }
+*/
+
+    getCamera()->setClearColor(v);
+
+}
+
 }
 
 

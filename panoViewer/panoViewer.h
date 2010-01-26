@@ -29,7 +29,9 @@ namespace osgPano {
         
         /** Set the near and far clipping plane, disables the automatic update of the clipping planes */
         void setNearFar(float near, float far);
-        
+       
+        void setClearColor(osg::Vec4 v);
+ 
         virtual void requestRedraw();
         virtual void requestContinuousUpdate(bool needed=true);
         virtual void requestWarpPointer(float x,float y);

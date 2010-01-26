@@ -167,7 +167,9 @@ int main(int argc, char **argv)
 
 	viewer.setSceneData(spin.sceneManager->rootNode.get());
 	viewer.setupViewForPanoscope();
-    viewer.setNearFar(0.1,100);
+    viewer.setNearFar(0.01,10000);
+
+    viewer.setClearColor(osg::Vec4(0.0,0.0,0.0,0.0));
 
 	viewer.realize();
 	
