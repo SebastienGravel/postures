@@ -33,9 +33,9 @@ _milhouses = [ {"sender":"streamer01", "camera":"df44", "receiver":"posture03" }
 
 # prep:
 for h in _hosts:
-    add_command("rm /var/tmp/lunch.log", user=postures.user, host=h, priority=1, respawn=False)
     add_command("firereset", user=postures.user, host=h, priority=1, respawn=False)
     add_command("pkill -9 milhouse", user=postures.user, host=h, priority=1, respawn=False)
+    add_command("killall pd", user=postures.user, host=h, priority=1, respawn=False)
 
 # server:
 add_command("spinServer", title="spinServer (local)", sleep=1.0, priority=5) 
@@ -79,8 +79,8 @@ for m in _milhouses:
         #add_command("jack.plumbing", user=postures.user, host=m['sender'], title="jack.plumbing")
         #add_command("jack.plumbing", user=postures.user, host=m['receiver'], title="jack.plumbing")
 
-        sendOpt += " --audioport %d --audiocodec raw --audiosource jackaudiosrc --disable-jack-autoconnect --jack-client-name %s" % (_port+10, m['sender'])
-        recvOpt += " --audioport %d --audiocodec raw --audiosink jackaudiosink --disable-jack-autoconnect --jack-client-name %s" % (_port+10, m['sender'])
+        sendOpt += " -c 1 --audioport %d --audiocodec raw --audiosource jackaudiosrc --disable-jack-autoconnect --jack-client-name %s" % (_port+10, m['sender'])
+        recvOpt += " -c 1 --audioport %d --audiocodec raw --audiosink jackaudiosink --disable-jack-autoconnect --jack-client-name %s" % (_port+10, m['sender'])
 
         _title += "_AUD"
 
