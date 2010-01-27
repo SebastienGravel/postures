@@ -43,7 +43,7 @@ add_command("spinServer", title="spinServer (local)", sleep=1.0, priority=5)
 # clients:
 for c in _clients:
     add_command("jack.plumbing", user=postures.user, host=c, title="jack.plumbing")
-    add_command(postures.ntaClient, env={"DISPLAY":":0.0"}, user=postures.user, host=c, title="ntaClient")
+    add_command("%s %s/ntaAudio.pd" % (postures.pdheadset, postures.ntaPath), env={"DISPLAY":":0.0"}, user=postures.user, host=c, title="ntaAudio")
     add_command("panoViewer", env={"DISPLAY":":0.0"}, user=postures.user, host=c, title="panoViewer")
 
 #add_command("panoViewer", env={"DISPLAY":":0.0"}, user=postures.user, host="posture01", title="panoViewer")

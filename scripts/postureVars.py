@@ -18,10 +18,13 @@ class postures:
     ntaPath = "%s/nta" % (srcPath)
     spinwidgetsPath = "%s/spinwidgets" % (srcPath)
     spinPath = "%s/spinframework/trunk" % (srcPath)
+    
+    pd = "%s/pd-0.41-4/bin/pd" % (srcPath)
 
-    pd = "%s/pd-0.41-4/bin/pd -jack -r 16000 -inchannels 3 -outchannels 3" % (srcPath)
-    pdnoaudio = "%s/pd-0.41-4/bin/pd -noaudio" % (srcPath)
-    ntaClient = "%s %s/ntaClient.pd" % (pd, ntaPath)
+    pdheadset = "%s -jack -r 16000 -inchannels 3 -outchannels 3" % (pd)
+    pdstereo = "%s -jack -r 48000 -inchannels 2 -outchannels 2" % (pd)
+    pdnoaudio = "%s -noaudio" % (pd)
+
     spinEditor = "%s %s/patches/spinEdit.pd %s/milhouseTest.pd" % (pdnoaudio, spinwidgetsPath, ntaPath)
 
 
