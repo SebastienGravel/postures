@@ -6,8 +6,7 @@ POSTURES=~/src/postures/trunk
 SPINWIDGETS=~/src/spinwidgets
 PDSHEEFA=~/src/pdsheefa
 SPIN=~/src/spinframework/trunk
-#AUDIOSCAPE=~/src/audioscape_2.0
-AUDIOSCAPE=~/src/audioscape_2.1
+AUDIOSCAPE=~/src/audioscape
 MIVILLE=~/src/miville
 
 export BOOST_ROOT=/usr/include
