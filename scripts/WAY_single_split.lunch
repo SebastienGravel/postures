@@ -6,20 +6,21 @@ import os
 execfile(os.path.expanduser("~/src/postures/trunk/scripts/postureVars.py"))
 
 
-#_host = "localhost"
-_host = "posture01"
+_client = "posture01"
+_server = "posture02"
+
 
 # prep:
-add_command("killall pd", respawn=False)
+add_command("killall pd", user=posture.user, host=_server, respawn=False)
+add_command("killall pd", user=posture.user, host=_client, respawn=False)
 
 # server:
-add_command("spinServer", sleep=1.0, title="spinServer") 
+add_command("spinServer", user=postures.user, host=_server, sleep=1.0, title="spinServer") 
 
 # clients:
-add_command("%s -rt %s/ntaAudio.pd" % (postures.pdstereo, postures.ntaPath), user=postures.user, host=_host, env={"DISPLAY":":0.0"}, title="NTA_Audio")
-add_command("%s spinEdit.pd %s/WAY_single.pd" % (postures.pdnoaudio, postures.ntaPath), env={"DISPLAY":":0.0"}, sleep=1.0, title="NTA_Control")
+add_command("%s -rt %s/ntaAudio.pd" % (postures.pdstereo, postures.ntaPath), user=postures.user, host=_client, env={"DISPLAY":":0.0"}, title="NTA_Audio")
+add_command("%s spinEdit.pd %s/WAY_single.pd" % (postures.pdnoaudio, postures.ntaPath), env={"DISPLAY":":0.0"}, user=postures.user, host=_server, sleep=1.0, title="NTA_Control")
 
 # lastly:
-add_command("panoViewer", env={"DISPLAY":":0.0"}, user=postures.user, host=_host, title="panoViewer")
-
+add_command("panoViewer", env={"DISPLAY":":0.0"}, user=postures.user, host=_client, title="panoViewer")
 
