@@ -104,14 +104,6 @@ int main(int argc, char **argv)
 	viewer.setLightingMode(osg::View::HEADLIGHT);
 	//viewer.setLightingMode(osg::View::SKY_LIGHT);
 
-	osgViewer::ViewerBase::Windows windows;
-    osgViewer::ViewerBase::Windows::iterator wIter;
-    viewer.getWindows(windows);
-    for (wIter=windows.begin(); wIter!=windows.end(); wIter++)
-    {
-    	(*wIter)->setWindowName("panoViewer");
-		if (hideCursor) (*wIter)->useCursor(false);
-    }
 
 
 	// *************************************************************************
@@ -171,6 +163,27 @@ int main(int argc, char **argv)
 
     viewer.setClearColor(osg::Vec4(0.0,0.0,0.0,0.0));
 
+	
+	
+	
+	
+	osgViewer::ViewerBase::Windows windows;
+    osgViewer::ViewerBase::Windows::iterator wIter;
+    viewer.getWindows(windows);
+    for (wIter=windows.begin(); wIter!=windows.end(); wIter++)
+    {
+    	(*wIter)->setWindowName("panoViewer");
+		if (hideCursor) (*wIter)->useCursor(false);
+    }
+
+	
+	
+	
+	
+	
+	
+	
+	
 	viewer.realize();
 	
 	// ask for refresh:
