@@ -1,0 +1,17 @@
+//
+// Prefix header for all source files of the 'NTARemote' target in the 'NTARemote' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+	#import <CoreLocation/CoreLocation.h>
+    #import <UIKit/UIKit.h>
+#include "lo/lo.h"
+
+#define kCalibrationSamples 10
+#define kUpdateFrequency 0.10
+#define kDataPushFrequency 0.25
+#define PI 3.14159265
+
+#endif
+

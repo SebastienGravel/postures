@@ -1,0 +1,622 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D3623260D0F684500981E51 /* NTARemoteAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* NTARemoteAppDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		2200494910E1524B00CE51FB /* InfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C3A05210DC65B8002DA85E /* InfoView.m */; };
+		2200498910E1548A00CE51FB /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22C3A05310DC65B8002DA85E /* InfoView.xib */; };
+		220049AD10E167C200CE51FB /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 220049A710E167C200CE51FB /* info.png */; };
+		220049AE10E167C300CE51FB /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 220049A810E167C200CE51FB /* background.png */; };
+		220049AF10E167C300CE51FB /* settingsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 220049A910E167C200CE51FB /* settingsButton.png */; };
+		220049B010E167C300CE51FB /* calibrateButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 220049AA10E167C200CE51FB /* calibrateButton.png */; };
+		220049B110E167C300CE51FB /* infoButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 220049AB10E167C200CE51FB /* infoButton.png */; };
+		220049B610E1686000CE51FB /* error.png in Resources */ = {isa = PBXBuildFile; fileRef = 220049B410E1686000CE51FB /* error.png */; };
+		22004A2410E16B0100CE51FB /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 220049A810E167C200CE51FB /* background.png */; };
+		22004A2810E16B0900CE51FB /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 220049A710E167C200CE51FB /* info.png */; };
+		22004A2910E16B0900CE51FB /* error.png in Resources */ = {isa = PBXBuildFile; fileRef = 220049B410E1686000CE51FB /* error.png */; };
+		22004A2A10E16B0900CE51FB /* settingsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 220049A910E167C200CE51FB /* settingsButton.png */; };
+		22004A2B10E16B0900CE51FB /* calibrateButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 220049AA10E167C200CE51FB /* calibrateButton.png */; };
+		22004A2C10E16B0900CE51FB /* infoButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 220049AB10E167C200CE51FB /* infoButton.png */; };
+		22004AFE10E1829B00CE51FB /* Icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = 22004AFD10E1829A00CE51FB /* Icon57.png */; };
+		22004AFF10E1829B00CE51FB /* Icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = 22004AFD10E1829A00CE51FB /* Icon57.png */; };
+		2239C784100E6ACD00BA5DEC /* FlipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2239C782100E6ACD00BA5DEC /* FlipView.m */; };
+		2239C785100E6ACD00BA5DEC /* FlipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2239C783100E6ACD00BA5DEC /* FlipView.xib */; };
+		224E89FD10F660380019EF30 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 224E89FC10F660380019EF30 /* Entitlements.plist */; };
+		224E89FE10F660380019EF30 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 224E89FC10F660380019EF30 /* Entitlements.plist */; };
+		22671772109B99C100B68528 /* liblo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22671771109B99C100B68528 /* liblo.a */; };
+		22A05A18100512DB002062AC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A05A16100512DB002062AC /* CFNetwork.framework */; };
+		22A05A19100512DB002062AC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A05A17100512DB002062AC /* SystemConfiguration.framework */; };
+		22C3A05410DC65B8002DA85E /* InfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C3A05210DC65B8002DA85E /* InfoView.m */; };
+		22C3A05510DC65B8002DA85E /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22C3A05310DC65B8002DA85E /* InfoView.xib */; };
+		22C3A0C810DC7082002DA85E /* PosturePad-Info copy.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22C3A0C710DC7082002DA85E /* PosturePad-Info copy.plist */; };
+		22EB7E2210A0F599000492ED /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		22EB7E2310A0F599000492ED /* NTARemoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* NTARemoteViewController.xib */; };
+		22EB7E2510A0F599000492ED /* FlipView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2239C783100E6ACD00BA5DEC /* FlipView.xib */; };
+		22EB7E2910A0F599000492ED /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		22EB7E2A10A0F599000492ED /* NTARemoteAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* NTARemoteAppDelegate.m */; };
+		22EB7E2B10A0F599000492ED /* NTARemoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* NTARemoteViewController.m */; };
+		22EB7E2C10A0F599000492ED /* FlipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2239C782100E6ACD00BA5DEC /* FlipView.m */; };
+		22EB7E2E10A0F599000492ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		22EB7E2F10A0F599000492ED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		22EB7E3010A0F599000492ED /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		22EB7E3110A0F599000492ED /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F9C5AB1003B84100A97A19 /* CoreLocation.framework */; };
+		22EB7E3210A0F599000492ED /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A05A16100512DB002062AC /* CFNetwork.framework */; };
+		22EB7E3310A0F599000492ED /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A05A17100512DB002062AC /* SystemConfiguration.framework */; };
+		22EB7E3410A0F599000492ED /* liblo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22671771109B99C100B68528 /* liblo.a */; };
+		22F9C5AC1003B84100A97A19 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22F9C5AB1003B84100A97A19 /* CoreLocation.framework */; };
+		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		2899E5220DE3E06400AC0155 /* NTARemoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* NTARemoteViewController.xib */; };
+		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		28D7ACF80DDB3853001CB0EB /* NTARemoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* NTARemoteViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* NTARemoteAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NTARemoteAppDelegate.h; path = Classes/NTARemoteAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* NTARemoteAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NTARemoteAppDelegate.m; path = Classes/NTARemoteAppDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* PosturePad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PosturePad.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		220049A710E167C200CE51FB /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
+		220049A810E167C200CE51FB /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		220049A910E167C200CE51FB /* settingsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingsButton.png; sourceTree = "<group>"; };
+		220049AA10E167C200CE51FB /* calibrateButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calibrateButton.png; sourceTree = "<group>"; };
+		220049AB10E167C200CE51FB /* infoButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infoButton.png; sourceTree = "<group>"; };
+		220049B410E1686000CE51FB /* error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error.png; sourceTree = "<group>"; };
+		22004AFD10E1829A00CE51FB /* Icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon57.png; sourceTree = "<group>"; };
+		2239C781100E6ACD00BA5DEC /* FlipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipView.h; sourceTree = "<group>"; };
+		2239C782100E6ACD00BA5DEC /* FlipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipView.m; sourceTree = "<group>"; };
+		2239C783100E6ACD00BA5DEC /* FlipView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlipView.xib; sourceTree = "<group>"; };
+		224E89FC10F660380019EF30 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		22671771109B99C100B68528 /* liblo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblo.a; sourceTree = "<group>"; };
+		22A05A16100512DB002062AC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		22A05A17100512DB002062AC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		22C3A05110DC65B8002DA85E /* InfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoView.h; sourceTree = "<group>"; };
+		22C3A05210DC65B8002DA85E /* InfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoView.m; sourceTree = "<group>"; };
+		22C3A05310DC65B8002DA85E /* InfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoView.xib; sourceTree = "<group>"; };
+		22C3A0C710DC7082002DA85E /* PosturePad-Info copy.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PosturePad-Info copy.plist"; sourceTree = "<group>"; };
+		22EB7E0710A0F4D7000492ED /* PosturePad Device-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PosturePad Device-Info.plist"; sourceTree = "<group>"; };
+		22EB7E3810A0F599000492ED /* PosturePad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PosturePad.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		22F9C5AB1003B84100A97A19 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2899E5210DE3E06400AC0155 /* NTARemoteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NTARemoteViewController.xib; path = ../NTARemoteViewController.xib; sourceTree = "<group>"; };
+		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		28D7ACF60DDB3853001CB0EB /* NTARemoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTARemoteViewController.h; sourceTree = "<group>"; };
+		28D7ACF70DDB3853001CB0EB /* NTARemoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTARemoteViewController.m; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* PosturePad_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PosturePad_Prefix.pch; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* PosturePad-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PosturePad-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
+				22F9C5AC1003B84100A97A19 /* CoreLocation.framework in Frameworks */,
+				22A05A18100512DB002062AC /* CFNetwork.framework in Frameworks */,
+				22A05A19100512DB002062AC /* SystemConfiguration.framework in Frameworks */,
+				22671772109B99C100B68528 /* liblo.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22EB7E2D10A0F599000492ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22EB7E2E10A0F599000492ED /* Foundation.framework in Frameworks */,
+				22EB7E2F10A0F599000492ED /* UIKit.framework in Frameworks */,
+				22EB7E3010A0F599000492ED /* CoreGraphics.framework in Frameworks */,
+				22EB7E3110A0F599000492ED /* CoreLocation.framework in Frameworks */,
+				22EB7E3210A0F599000492ED /* CFNetwork.framework in Frameworks */,
+				22EB7E3310A0F599000492ED /* SystemConfiguration.framework in Frameworks */,
+				22EB7E3410A0F599000492ED /* liblo.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				28D7ACF60DDB3853001CB0EB /* NTARemoteViewController.h */,
+				28D7ACF70DDB3853001CB0EB /* NTARemoteViewController.m */,
+				2899E5210DE3E06400AC0155 /* NTARemoteViewController.xib */,
+				22C3A05110DC65B8002DA85E /* InfoView.h */,
+				22C3A05210DC65B8002DA85E /* InfoView.m */,
+				22C3A05310DC65B8002DA85E /* InfoView.xib */,
+				2239C781100E6ACD00BA5DEC /* FlipView.h */,
+				2239C782100E6ACD00BA5DEC /* FlipView.m */,
+				2239C783100E6ACD00BA5DEC /* FlipView.xib */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* PosturePad.app */,
+				22EB7E3810A0F599000492ED /* PosturePad.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+				22EB7E0710A0F4D7000492ED /* PosturePad Device-Info.plist */,
+				224E89FC10F660380019EF30 /* Entitlements.plist */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				1D3623240D0F684500981E51 /* NTARemoteAppDelegate.h */,
+				1D3623250D0F684500981E51 /* NTARemoteAppDelegate.m */,
+				220049A710E167C200CE51FB /* info.png */,
+				220049B410E1686000CE51FB /* error.png */,
+				220049A810E167C200CE51FB /* background.png */,
+				22004AFD10E1829A00CE51FB /* Icon57.png */,
+				220049A910E167C200CE51FB /* settingsButton.png */,
+				220049AA10E167C200CE51FB /* calibrateButton.png */,
+				220049AB10E167C200CE51FB /* infoButton.png */,
+				22671771109B99C100B68528 /* liblo.a */,
+				32CA4F630368D1EE00C91783 /* PosturePad_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				8D1107310486CEB800E47090 /* PosturePad-Info.plist */,
+				22C3A0C710DC7082002DA85E /* PosturePad-Info copy.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				22A05A16100512DB002062AC /* CFNetwork.framework */,
+				22A05A17100512DB002062AC /* SystemConfiguration.framework */,
+				22F9C5AB1003B84100A97A19 /* CoreLocation.framework */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* PosturePad */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "PosturePad" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PosturePad;
+			productName = NTARemote;
+			productReference = 1D6058910D05DD3D006BFB54 /* PosturePad.app */;
+			productType = "com.apple.product-type.application";
+		};
+		22EB7E2010A0F599000492ED /* PosturePad Device */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22EB7E3510A0F599000492ED /* Build configuration list for PBXNativeTarget "PosturePad Device" */;
+			buildPhases = (
+				22EB7E2110A0F599000492ED /* Resources */,
+				22EB7E2810A0F599000492ED /* Sources */,
+				22EB7E2D10A0F599000492ED /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PosturePad Device";
+			productName = NTARemote;
+			productReference = 22EB7E3810A0F599000492ED /* PosturePad.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "PosturePad" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* PosturePad */,
+				22EB7E2010A0F599000492ED /* PosturePad Device */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				2899E5220DE3E06400AC0155 /* NTARemoteViewController.xib in Resources */,
+				2239C785100E6ACD00BA5DEC /* FlipView.xib in Resources */,
+				22C3A05510DC65B8002DA85E /* InfoView.xib in Resources */,
+				22C3A0C810DC7082002DA85E /* PosturePad-Info copy.plist in Resources */,
+				22004A2410E16B0100CE51FB /* background.png in Resources */,
+				22004A2810E16B0900CE51FB /* info.png in Resources */,
+				22004A2910E16B0900CE51FB /* error.png in Resources */,
+				22004A2A10E16B0900CE51FB /* settingsButton.png in Resources */,
+				22004A2B10E16B0900CE51FB /* calibrateButton.png in Resources */,
+				22004A2C10E16B0900CE51FB /* infoButton.png in Resources */,
+				22004AFE10E1829B00CE51FB /* Icon57.png in Resources */,
+				224E89FE10F660380019EF30 /* Entitlements.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22EB7E2110A0F599000492ED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22EB7E2210A0F599000492ED /* MainWindow.xib in Resources */,
+				22EB7E2310A0F599000492ED /* NTARemoteViewController.xib in Resources */,
+				22EB7E2510A0F599000492ED /* FlipView.xib in Resources */,
+				2200498910E1548A00CE51FB /* InfoView.xib in Resources */,
+				220049AD10E167C200CE51FB /* info.png in Resources */,
+				220049AE10E167C300CE51FB /* background.png in Resources */,
+				220049AF10E167C300CE51FB /* settingsButton.png in Resources */,
+				220049B010E167C300CE51FB /* calibrateButton.png in Resources */,
+				220049B110E167C300CE51FB /* infoButton.png in Resources */,
+				220049B610E1686000CE51FB /* error.png in Resources */,
+				22004AFF10E1829B00CE51FB /* Icon57.png in Resources */,
+				224E89FD10F660380019EF30 /* Entitlements.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				1D3623260D0F684500981E51 /* NTARemoteAppDelegate.m in Sources */,
+				28D7ACF80DDB3853001CB0EB /* NTARemoteViewController.m in Sources */,
+				2239C784100E6ACD00BA5DEC /* FlipView.m in Sources */,
+				22C3A05410DC65B8002DA85E /* InfoView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22EB7E2810A0F599000492ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22EB7E2910A0F599000492ED /* main.m in Sources */,
+				22EB7E2A10A0F599000492ED /* NTARemoteAppDelegate.m in Sources */,
+				22EB7E2B10A0F599000492ED /* NTARemoteViewController.m in Sources */,
+				22EB7E2C10A0F599000492ED /* FlipView.m in Sources */,
+				2200494910E1524B00CE51FB /* InfoView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Luc Courchesne (WR7DXW2SUH)";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PosturePad_Prefix.pch;
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				INFOPLIST_FILE = "PosturePad-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				OTHER_LDFLAGS = (
+					"-llo",
+					"-L/usr/local/lib",
+				);
+				PRODUCT_NAME = PosturePad;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C0434459-34D9-4D04-B660-106F94CFA9ED";
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Samuel Vermette";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PosturePad_Prefix.pch;
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				INFOPLIST_FILE = "PosturePad-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../../../../Downloads\"",
+				);
+				OTHER_LDFLAGS = "-llo";
+				PRODUCT_NAME = PosturePad;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "779B63C6-4CCC-4B6D-AF0D-F268238A5662";
+			};
+			name = Release;
+		};
+		22004AEF10E1817400CE51FB /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Luc Courchesne";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4104AD7A-6DE5-405F-AF03-A20D1ACB5DAC";
+				SDKROOT = iphoneos3.0;
+			};
+			name = Distribution;
+		};
+		22004AF010E1817400CE51FB /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Luc Courchesne (WR7DXW2SUH)";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PosturePad_Prefix.pch;
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				INFOPLIST_FILE = "PosturePad-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				OTHER_LDFLAGS = (
+					"-llo",
+					"-L/usr/local/lib",
+				);
+				PRODUCT_NAME = PosturePad;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C0434459-34D9-4D04-B660-106F94CFA9ED";
+			};
+			name = Distribution;
+		};
+		22004AF110E1817400CE51FB /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Luc Courchesne";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PosturePad_Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)\"",
+					/usr/local/include,
+				);
+				INFOPLIST_FILE = "PosturePad-Info.plist";
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)\"";
+				OTHER_LDFLAGS = (
+					"-L.",
+					"-llo",
+				);
+				PRODUCT_NAME = PosturePad;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4104AD7A-6DE5-405F-AF03-A20D1ACB5DAC";
+			};
+			name = Distribution;
+		};
+		224E89FF10F660430019EF30 /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Luc Courchesne";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E79F1E8A-AD36-4679-9951-025A0055DE33";
+				SDKROOT = iphoneos3.0;
+			};
+			name = "Ad Hoc";
+		};
+		224E8A0010F660430019EF30 /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Luc Courchesne (WR7DXW2SUH)";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PosturePad_Prefix.pch;
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				INFOPLIST_FILE = "PosturePad-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				OTHER_LDFLAGS = (
+					"-llo",
+					"-L/usr/local/lib",
+				);
+				PRODUCT_NAME = PosturePad;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C0434459-34D9-4D04-B660-106F94CFA9ED";
+			};
+			name = "Ad Hoc";
+		};
+		224E8A0110F660430019EF30 /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Luc Courchesne";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PosturePad_Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)\"",
+					/usr/local/include,
+				);
+				INFOPLIST_FILE = "PosturePad-Info.plist";
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)\"";
+				OTHER_LDFLAGS = (
+					"-L.",
+					"-llo",
+				);
+				PRODUCT_NAME = PosturePad;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E79F1E8A-AD36-4679-9951-025A0055DE33";
+			};
+			name = "Ad Hoc";
+		};
+		22EB7E3610A0F599000492ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Luc Courchesne (WR7DXW2SUH)";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PosturePad_Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					"\"$(SRCROOT)\"",
+					/usr/local/include,
+				);
+				INFOPLIST_FILE = "PosturePad-Info.plist";
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)\"";
+				OTHER_LDFLAGS = (
+					"-L.",
+					"-llo",
+				);
+				PRODUCT_NAME = PosturePad;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C0434459-34D9-4D04-B660-106F94CFA9ED";
+			};
+			name = Debug;
+		};
+		22EB7E3710A0F599000492ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Samuel Vermette";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PosturePad_Prefix.pch;
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				INFOPLIST_FILE = "PosturePad-Info copy.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\\\"$(SRCROOT)\\\"",
+					"\\\"$(SRCROOT)/../../../../../Downloads\\\"",
+				);
+				OTHER_LDFLAGS = "-llo";
+				PRODUCT_NAME = PosturePad;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "779B63C6-4CCC-4B6D-AF0D-F268238A5662";
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.0;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "PosturePad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				224E8A0010F660430019EF30 /* Ad Hoc */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+				22004AF010E1817400CE51FB /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		22EB7E3510A0F599000492ED /* Build configuration list for PBXNativeTarget "PosturePad Device" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22EB7E3610A0F599000492ED /* Debug */,
+				224E8A0110F660430019EF30 /* Ad Hoc */,
+				22EB7E3710A0F599000492ED /* Release */,
+				22004AF110E1817400CE51FB /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "PosturePad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				224E89FF10F660430019EF30 /* Ad Hoc */,
+				C01FCF5008A954540054247B /* Release */,
+				22004AEF10E1817400CE51FB /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
