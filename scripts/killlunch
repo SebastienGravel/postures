@@ -1,0 +1,2 @@
+#!/bin/sh
+kill `cat /var/tmp/lunch/master-lunchrc.pid`

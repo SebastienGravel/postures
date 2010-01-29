@@ -6,7 +6,7 @@ import os
 execfile(os.path.expanduser("~/src/postures/trunk/scripts/postureVars.py"))
 
 
-_client = "posture01"
+_client = "localhost"
 _server = "posture02"
 
 
