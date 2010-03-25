@@ -1,13 +1,15 @@
 # This is a helper script that can be sourced to provide aliases and any other
 # useful features for Postures/NTA ::
 
+echo "Loaded Postures configuration"
+
 NTA=~/src/nta
 POSTURES=~/src/postures/trunk
 SPINWIDGETS=~/src/spinwidgets
 PDSHEEFA=~/src/pdsheefa
-SPIN=~/src/spinframework/trunk
+SPIN=~/src/spinframework
 AUDIOSCAPE=~/src/audioscape
-MIVILLE=~/src/miville
+SCENIC=~/src/scenic
 
 export BOOST_ROOT=/usr/include
 
@@ -21,7 +23,7 @@ alias pd='~/src/pd-0.41-4/bin/pd -jack'
 # some useful aliases:
 
 alias cdnta='cd ${NTA}'
-alias cdspin='cd ${SPIN}/src/spin'
+alias cdspin='cd ${SPIN}'
 alias cdpostures='cd ${POSTURES}'
 alias cdsw='cd ${SPINWIDGETS}/patches'
 alias cdpds='cd ${PDSHEEFA}/patches'
@@ -29,7 +31,7 @@ alias cdas='cd ${AUDIOSCAPE}/patches'
 
 
 
-alias svnupALL='echo svn up ${NTA} && svn up ${NTA} && echo svn up ${SPIN} && svn up ${SPIN} && echo svn up ${SPINWIDGETS} && svn up ${SPINWIDGETS} && echo svn up ${PDSHEEFA} && svn up ${PDSHEEFA} && echo svn up ${POSTURES} && svn up ${POSTURES} && echo svn up ${AUDIOSCAPE} && svn up ${AUDIOSCAPE} && echo svn up ${MIVILLE} && svn up ${MIVILLE}'
+alias svnupALL='echo svn up ${NTA} && svn up ${NTA} && echo svn up ${SPIN} && svn up ${SPIN} && echo svn up ${SPINWIDGETS} && svn up ${SPINWIDGETS} && echo svn up ${PDSHEEFA} && svn up ${PDSHEEFA} && echo svn up ${POSTURES} && svn up ${POSTURES} && echo svn up ${AUDIOSCAPE} && svn up ${AUDIOSCAPE} && echo svn up ${SCENIC} && svn up ${SCENIC}'
 
 alias ntaClient='pd ${NTA}/ntaClient.pd &'
 
