@@ -17,8 +17,9 @@ export BOOST_ROOT=/usr/include
 `cp ${POSTURES}/scripts/pdsettings ~/.pdsettings`
 
 # use custom pd instead of installed version:
-#alias pd='pd -jack'
-alias pd='~/src/pd-0.41-4/bin/pd -jack'
+alias pd='pd -jack'
+#alias pd='~/src/pd-0.41-4/bin/pd -jack'
+
 
 # some useful aliases:
 
@@ -36,6 +37,9 @@ alias svnupALL='echo svn up ${NTA} && svn up ${NTA} && echo svn up ${SPIN} && sv
 alias ntaClient='pd ${NTA}/ntaClient.pd &'
 
 #export PATH=${PATH}:${SPIN}/src/spin:${POSTURES}/panoViewer:${NTA}
+
+export PATH=${PATH}:/usr/local/share/OpenSceneGraph/bin
+export OSG_FILE_PATH=~/src/OpenSceneGraph-Data
 
 
 # this can be removed once the code is more stable:
