@@ -19,7 +19,8 @@ class postures:
     spinwidgetsPath = "%s/spinwidgets" % (srcPath)
     spinPath = "%s/spinframework/trunk" % (srcPath)
     
-    pd = "%s/pd-0.41-4/bin/pd" % (srcPath)
+    #pd = "%s/pd-0.41-4/bin/pd" % (srcPath)
+    pd = "/usr/bin/pd"
 
     pdheadset = "%s -jack -r 16000 -inchannels 3 -outchannels 3" % (pd)
     pdstereo = "%s -jack -r 48000 -inchannels 2 -outchannels 2" % (pd)

@@ -10,11 +10,11 @@
 #include <osgDB/ReadFile>
 #include <osg/Timer>
 
-#include "ViewerManipulator.h"
-#include "spinUtil.h"
-#include "spinContext.h"
+#include <spinFramework/ViewerManipulator.h>
+#include <spinFramework/spinUtil.h>
+#include <spinFramework/spinContext.h>
+
 #include "panoViewer.h"
-//#include "osgUtil.h"
 
 using namespace std;
 
@@ -33,6 +33,10 @@ int main(int argc, char **argv)
 
 	std::string id = getHostname();
 
+	std::string rxHost = lo_address_get_hostname(spin.lo_rxAddr);
+	std::string rxPort = lo_address_get_port(spin.lo_rxAddr);
+	std::string syncPort = lo_address_get_port(spin.lo_rxAddr);
+
 
 	// *************************************************************************
 
@@ -47,8 +51,7 @@ int main(int argc, char **argv)
 	arguments.getApplicationUsage()->addCommandLineOption("-id <uniqueID>", "Specify an ID for this viewer (Default is hostname: '" + id + "')");
 
 	arguments.getApplicationUsage()->addCommandLineOption("-sceneID <uniqueID>", "Specify the scene ID to listen to (Default: '" + spin.id + "')");
-	arguments.getApplicationUsage()->addCommandLineOption("-serverAddr <addr>", "Set the receiving address for incoming OSC messages (Default: " + spin.rxAddr + ")");
-	arguments.getApplicationUsage()->addCommandLineOption("-serverPort <port>", "Set the receiving port for incoming OSC messages (Default: " + spin.rxPort + ")");
+	arguments.getApplicationUsage()->addCommandLineOption("-serverAddr <host> <port>", "Set the receiving address for incoming OSC messages (Default: " + rxHost + " " + rxPort + ")");
 
 	arguments.getApplicationUsage()->addCommandLineOption("--hideCursor", "Hide the mouse cursor");
 	arguments.getApplicationUsage()->addCommandLineOption("--framerate <num>", "Set the maximum framerate (Default: not limited)");
@@ -68,10 +71,10 @@ int main(int argc, char **argv)
 	arguments.read("-id", param_id);
 	osg::ArgumentParser::Parameter param_spinID(spin.id);
 	arguments.read("-sceneID", param_spinID);
-	osg::ArgumentParser::Parameter param_spinAddr(spin.rxAddr);
-	arguments.read("-serverAddr", param_spinAddr);
-	osg::ArgumentParser::Parameter param_spinPort(spin.rxPort);
-	arguments.read("-serverPort", param_spinPort);
+
+	while (arguments.read("-serverAddr", rxHost, rxPort)) {
+		spin.lo_rxAddr = lo_address_new(rxHost.c_str(), rxPort.c_str());
+	}
 
 	bool hideCursor=false;
     while (arguments.read("--hideCursor")) hideCursor=true;

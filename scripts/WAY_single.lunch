@@ -6,8 +6,8 @@ import os
 execfile(os.path.expanduser("~/src/postures/trunk/scripts/postureVars.py"))
 
 
-#_host = "localhost"
-_host = "posture01"
+_host = "localhost"
+#_host = "posture04"
 
 # prep:
 add_command("killall pd", user=postures.user, host=_host, priority=1, respawn=False)
@@ -17,10 +17,12 @@ add_command("jack.plumbing", user=postures.user, host=_host, priority=1, title="
 add_command("spinServer", user=postures.user, host=_host, sleep=1.0, priority=5, title="spinServer") 
 
 # clients:
-add_command("%s %s/ntaAudio.pd" % (postures.pdstereo, postures.ntaPath), env={"DISPLAY":":0.0"}, user=postures.user, host=_host, priority=50, title="NTA_Audio")
-add_command("%s spinEdit.pd %s/WAY_single.pd" % (postures.pdnoaudio, postures.ntaPath), env={"DISPLAY":":0.0"}, user=postures.user, host=_host, priority=60, sleep=1.0, title="NTA_Control")
+add_command("%s %s/ntaAudio.pd spinEdit.pd %s/WAY_single.pd" % (postures.pdstereo, postures.ntaPath, postures.ntaPath), env={"DISPLAY":":0.0"}, user=postures.user, host=_host, priority=50, title="NTA_Audio")
+#add_command("%s %s/ntaAudio.pd" % (postures.pdstereo, postures.ntaPath), env={"DISPLAY":":0.0"}, user=postures.user, host=_host, priority=50, title="NTA_Audio")
+#add_command("%s spinEdit.pd %s/WAY_single.pd" % (postures.pdnoaudio, postures.ntaPath), env={"DISPLAY":":0.0"}, user=postures.user, host=_host, priority=60, sleep=1.0, title="NTA_Control")
 
 # lastly:
-add_command("panoViewer", env={"DISPLAY":":0.0"}, user=postures.user, host=_host, priority=100, title="panoViewer")
+#add_command("panoViewer", env={"DISPLAY":":0.0"}, user=postures.user, host=_host, priority=100, title="panoViewer")
+#add_command("spinViewer", env={"DISPLAY":":0.0"}, user=postures.user, host=_host, priority=100, title="spinViewer")
 
 
