@@ -446,8 +446,11 @@ void panoViewer::setupViewForPanoscope()
         //camera->setComputeNearFarMode(osg::CullSettings::DO_NOT_COMPUTE_NEAR_FAR);
         
         //camera->setProjectionMatrixAsOrtho2D(0,width,0,height);
-        int crop = 125;
-        std::cout << "stretch=" << stretch_x << std::endl;
+        //int crop = 125;
+        //int crop = 132;
+        //int crop = 50;
+        int crop = 0;
+		std::cout << "stretch=" << stretch_x << std::endl;
         camera->setProjectionMatrixAsOrtho2D( crop*4/3, width-(crop*4/3), crop, height-crop);
 
         camera->setViewMatrix(osg::Matrix::identity());
