@@ -186,7 +186,7 @@ UIActionSheet *nodesListSheet, *setNorthSheet;
 	else if(buttonIndex == 2) {
 		NSString *string = [NSString stringWithFormat:@"/SPIN/default/%@", postureName];
 		const char *path = [string UTF8String];
-		lo_send(txAddr, path, "siii", "setTranslation", 0, 0, 0);
+		lo_send(txAddr, path, "sfff", "setTranslation", 0.0, 0.0, 1.5);
 		NSLog(@"2");
 	}
 	
@@ -327,7 +327,7 @@ int socket_handler(const char *path, const char *types, lo_arg **argv, int argc,
 	lo_server_thread server = lo_server_thread_new_multicast("224.0.0.1", "54320", NULL);
 	
 	if(server != nil) {
-		lo_server_thread_add_method(server, "/ping/SPIN", "ssisi", socket_handler, self);
+		lo_server_thread_add_method(server, "/ping/SPIN", "ssisii", socket_handler, self);
 		lo_server_thread_start(server);
 	}
 }
