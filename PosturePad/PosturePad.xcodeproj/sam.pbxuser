@@ -9,7 +9,7 @@
 	};
 	1D3623250D0F684500981E51 /* NTARemoteAppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1094, 612}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1094, 606}}";
 			sepNavSelRange = "{372, 0}";
 			sepNavVisRange = "{0, 713}";
 		};
@@ -66,48 +66,6 @@
 		vrLen = 324;
 		vrLoc = 0;
 	};
-	22004A8910E1766E00CE51FB /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 1D3623250D0F684500981E51 /* NTARemoteAppDelegate.m */;
-		name = "NTARemoteAppDelegate.m: 18";
-		rLen = 0;
-		rLoc = 372;
-		rType = 0;
-		vrLen = 613;
-		vrLoc = 0;
-	};
-	22004B0810E182FB00CE51FB /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 28D7ACF70DDB3853001CB0EB /* NTARemoteViewController.m */;
-		name = "NTARemoteViewController.m: 331";
-		rLen = 0;
-		rLoc = 8578;
-		rType = 0;
-		vrLen = 1118;
-		vrLoc = 7933;
-	};
-	22004B0910E182FB00CE51FB /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 22EB7E0710A0F4D7000492ED /* PosturePad Device-Info.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-		);
-		name = "/Users/sam/Documents/Design/SAT/PosturePad/PosturePad/PosturePad Device-Info.plist";
-		rLen = 0;
-		rLoc = 9223372036854775808;
-	};
-	22004B1510E18CED00CE51FB /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 8D1107310486CEB800E47090 /* PosturePad-Info.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-		);
-		name = "/Users/sam/Documents/Design/SAT/PosturePad/PosturePad/PosturePad-Info.plist";
-		rLen = 0;
-		rLoc = 9223372036854775808;
-	};
 	2239C781100E6ACD00BA5DEC /* FlipView.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1094, 387}}";
@@ -122,17 +80,10 @@
 			sepNavVisRange = "{272, 700}";
 		};
 	};
-	2245B2EE10F6B27900E05460 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 224E89FC10F660380019EF30 /* Entitlements.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			"get-task-allow",
-		);
-		name = /Users/sam/Documents/Design/SAT/PosturePad/PosturePad/Entitlements.plist;
-		rLen = 0;
-		rLoc = 9223372036854775807;
+	224E89FC10F660380019EF30 /* Entitlements.plist */ = {
+		uiCtxt = {
+			sepNavWindowFrame = "{{15, 471}, {858, 702}}";
+		};
 	};
 	224E8A0410F6606F0019EF30 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -144,18 +95,6 @@
 		vrLen = 1617;
 		vrLoc = 0;
 	};
-	224E8A1010F660F70019EF30 /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 224E89FC10F660380019EF30 /* Entitlements.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-			"get-task-allow",
-		);
-		name = /Users/sam/Documents/Design/SAT/PosturePad/PosturePad/Entitlements.plist;
-		rLen = 0;
-		rLoc = 9223372036854775808;
-	};
 	22671722109B907F00B68528 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 1D3623240D0F684500981E51 /* NTARemoteAppDelegate.h */;
@@ -165,17 +104,6 @@
 		rType = 0;
 		vrLen = 483;
 		vrLoc = 0;
-	};
-	22BBEC1710E33B0F0037162D /* PlistBookmark */ = {
-		isa = PlistBookmark;
-		fRef = 22C3A0C710DC7082002DA85E /* PosturePad-Info copy.plist */;
-		fallbackIsa = PBXBookmark;
-		isK = 0;
-		kPath = (
-		);
-		name = "/Users/sam/Documents/Design/SAT/PosturePad/PosturePad/PosturePad-Info copy.plist";
-		rLen = 0;
-		rLoc = 9223372036854775808;
 	};
 	22C3A05110DC65B8002DA85E /* InfoView.h */ = {
 		uiCtxt = {
@@ -211,11 +139,6 @@
 		vrLen = 363;
 		vrLoc = 0;
 	};
-	22C3A0C710DC7082002DA85E /* PosturePad-Info copy.plist */ = {
-		uiCtxt = {
-			sepNavWindowFrame = "{{38, 121}, {1318, 731}}";
-		};
-	};
 	22DDC3CD10C5F6D2003ACB4F /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 2239C782100E6ACD00BA5DEC /* FlipView.m */;
@@ -226,10 +149,59 @@
 		vrLen = 700;
 		vrLoc = 272;
 	};
-	22EB7E0710A0F4D7000492ED /* PosturePad Device-Info.plist */ = {
-		uiCtxt = {
-			sepNavWindowFrame = "{{333, 131}, {1318, 731}}";
-		};
+	22EA70DF1194CB4F00D2E32B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* NTARemoteAppDelegate.m */;
+		name = "NTARemoteAppDelegate.m: 18";
+		rLen = 0;
+		rLoc = 372;
+		rType = 0;
+		vrLen = 713;
+		vrLoc = 0;
+	};
+	22EA70E01194CB4F00D2E32B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF70DDB3853001CB0EB /* NTARemoteViewController.m */;
+		name = "NTARemoteViewController.m: 331";
+		rLen = 0;
+		rLoc = 8578;
+		rType = 0;
+		vrLen = 1164;
+		vrLoc = 3850;
+	};
+	22EA70F71194CDA200D2E32B /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 224E89FC10F660380019EF30 /* Entitlements.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			"get-task-allow",
+		);
+		name = "/Users/sam/Documents/Design/SAT/PosturePad/PosturePad SVN/Entitlements.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	22EA70F81194CDA200D2E32B /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* PosturePad-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/sam/Documents/Design/SAT/PosturePad/PosturePad SVN/PosturePad-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	22EA70F91194CDA200D2E32B /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* PosturePad-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/sam/Documents/Design/SAT/PosturePad/PosturePad SVN/PosturePad-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
 	};
 	22EB7E2010A0F599000492ED /* PosturePad Device */ = {
 		activeExec = 0;
@@ -330,14 +302,14 @@
 	};
 	28D7ACF70DDB3853001CB0EB /* NTARemoteViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1188, 5343}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1188, 5382}}";
 			sepNavSelRange = "{8578, 0}";
-			sepNavVisRange = "{7933, 1235}";
+			sepNavVisRange = "{3850, 1164}";
 			sepNavWindowFrame = "{{15, 142}, {1318, 731}}";
 		};
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
-		activeBuildConfigurationName = "Ad Hoc";
+		activeBuildConfigurationName = Distribution;
 		activeExecutable = 22EB7E3910A0F599000492ED /* PosturePad Device */;
 		activeSDKPreference = iphoneos3.0;
 		activeTarget = 22EB7E2010A0F599000492ED /* PosturePad Device */;
@@ -419,8 +391,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 284602325;
-			PBXWorkspaceStateSaveDate = 284602325;
+			PBXPerProjectTemplateStateSaveDate = 294964004;
+			PBXWorkspaceStateSaveDate = 294964004;
 		};
 		perUserProjectItems = {
 			220049C610E1693D00CE51FB /* PBXBookmark */ = 220049C610E1693D00CE51FB /* PBXBookmark */;
@@ -430,18 +402,16 @@
 			22004A3A10E16B6F00CE51FB /* PBXTextBookmark */ = 22004A3A10E16B6F00CE51FB /* PBXTextBookmark */;
 			22004A6D10E174BF00CE51FB /* PBXTextBookmark */ = 22004A6D10E174BF00CE51FB /* PBXTextBookmark */;
 			22004A8810E1766E00CE51FB /* PBXTextBookmark */ = 22004A8810E1766E00CE51FB /* PBXTextBookmark */;
-			22004A8910E1766E00CE51FB /* PBXTextBookmark */ = 22004A8910E1766E00CE51FB /* PBXTextBookmark */;
-			22004B0810E182FB00CE51FB /* PBXTextBookmark */ = 22004B0810E182FB00CE51FB /* PBXTextBookmark */;
-			22004B0910E182FB00CE51FB /* PlistBookmark */ = 22004B0910E182FB00CE51FB /* PlistBookmark */;
-			22004B1510E18CED00CE51FB /* PlistBookmark */ = 22004B1510E18CED00CE51FB /* PlistBookmark */;
-			2245B2EE10F6B27900E05460 /* PlistBookmark */ = 2245B2EE10F6B27900E05460 /* PlistBookmark */;
 			224E8A0410F6606F0019EF30 /* PBXTextBookmark */ = 224E8A0410F6606F0019EF30 /* PBXTextBookmark */;
-			224E8A1010F660F70019EF30 /* PlistBookmark */ = 224E8A1010F660F70019EF30 /* PlistBookmark */;
 			22671722109B907F00B68528 /* PBXTextBookmark */ = 22671722109B907F00B68528 /* PBXTextBookmark */;
-			22BBEC1710E33B0F0037162D /* PlistBookmark */ = 22BBEC1710E33B0F0037162D /* PlistBookmark */;
 			22C3A06510DC660C002DA85E /* PBXTextBookmark */ = 22C3A06510DC660C002DA85E /* PBXTextBookmark */;
 			22C3A07510DC6EA0002DA85E /* PBXTextBookmark */ = 22C3A07510DC6EA0002DA85E /* PBXTextBookmark */;
 			22DDC3CD10C5F6D2003ACB4F /* PBXTextBookmark */ = 22DDC3CD10C5F6D2003ACB4F /* PBXTextBookmark */;
+			22EA70DF1194CB4F00D2E32B /* PBXTextBookmark */ = 22EA70DF1194CB4F00D2E32B /* PBXTextBookmark */;
+			22EA70E01194CB4F00D2E32B /* PBXTextBookmark */ = 22EA70E01194CB4F00D2E32B /* PBXTextBookmark */;
+			22EA70F71194CDA200D2E32B /* PlistBookmark */ = 22EA70F71194CDA200D2E32B /* PlistBookmark */;
+			22EA70F81194CDA200D2E32B /* PlistBookmark */ = 22EA70F81194CDA200D2E32B /* PlistBookmark */;
+			22EA70F91194CDA200D2E32B /* PlistBookmark */ = 22EA70F91194CDA200D2E32B /* PlistBookmark */;
 		};
 		sourceControlManager = 22F9C35C10039A5A00A97A19 /* Source Control */;
 		userBuildSettings = {
