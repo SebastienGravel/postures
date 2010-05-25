@@ -18,14 +18,15 @@ Debug = True
 
 # camera -> receiver relationships:
 _camPrefix = "81443610264"
-_milhouses = [ {"sender":"streamer01", "camera":"df44", "receiver":"posture03" },
-               {"sender":"streamer01", "camera":"df9f", "receiver":"posture03" },
-               {"sender":"streamer01", "camera":"e606", "receiver":"posture03" },
-               {"sender":"streamer01", "camera":"df4e", "receiver":"posture03" },
-               {"sender":"streamer03", "camera":"e5e3", "receiver":"posture01" },
-               {"sender":"streamer03", "camera":"df80", "receiver":"posture01" },
-               {"sender":"streamer03", "camera":"e117", "receiver":"posture01" },
+_milhouses = [ 
+               {"sender":"streamer01", "camera":"df80", "receiver":"posture03" },
+               {"sender":"streamer01", "camera":"df44", "receiver":"posture03" },
+               {"sender":"streamer01", "camera":"df38", "receiver":"posture03" },
+               {"sender":"streamer01", "camera":"e117", "receiver":"posture03" },
                {"sender":"streamer03", "camera":"dca3", "receiver":"posture01" },
+               {"sender":"streamer03", "camera":"df4e", "receiver":"posture01" },
+               {"sender":"streamer03", "camera":"e5e3", "receiver":"posture01" },
+               {"sender":"streamer03", "camera":"df9f", "receiver":"posture01" },
                {"sender":"posture01", "audio":True, "receiver":"posture03" },
                {"sender":"posture03", "audio":True, "receiver":"posture01" },
              ]
@@ -42,9 +43,10 @@ add_command("spinServer", title="spinServer (local)", sleep=1.0, priority=5)
 
 # clients:
 for c in _clients:
-    add_command("jack.plumbing", user=postures.user, host=c, title="jack.plumbing")
-    add_command("%s %s/ntaAudio.pd" % (postures.pdheadset, postures.ntaPath), env={"DISPLAY":":0.0"}, user=postures.user, host=c, title="ntaAudio")
-    add_command("panoViewer", env={"DISPLAY":":0.0"}, user=postures.user, host=c, title="panoViewer")
+    add_command("rm /dev/shm/shvid*", user=postures.user, host=c, priority=1, respawn=False)
+    add_command("jack.plumbing", user=postures.user, host=c, title="jack.plumbing.%s"%(c))
+    add_command("%s %s/ntaAudio.pd" % (postures.pdheadset, postures.ntaPath), env={"DISPLAY":":0.0"}, user=postures.user, host=c, title="ntaAudio.%s"%(c))
+    add_command("panoViewer", env={"DISPLAY":":0.0"}, user=postures.user, host=c, title="panoViewer.%s"%(c))
 
 #add_command("panoViewer", env={"DISPLAY":":0.0"}, user=postures.user, host="posture01", title="panoViewer")
 
@@ -79,8 +81,8 @@ for m in _milhouses:
         #add_command("jack.plumbing", user=postures.user, host=m['sender'], title="jack.plumbing")
         #add_command("jack.plumbing", user=postures.user, host=m['receiver'], title="jack.plumbing")
 
-        sendOpt += " -c 1 --audioport %d --audiocodec raw --audiosource jackaudiosrc --disable-jack-autoconnect --jack-client-name %s" % (_port+10, m['sender'])
-        recvOpt += " -c 1 --audioport %d --audiocodec raw --audiosink jackaudiosink --disable-jack-autoconnect --jack-client-name %s" % (_port+10, m['sender'])
+        sendOpt += " -C -c 1 --audioport %d --audiocodec raw --audiosource jackaudiosrc --disable-jack-autoconnect --jack-client-name %s" % (_port+10, m['sender'])
+        recvOpt += " -C -c 1 --audioport %d --audiocodec raw --audiosink jackaudiosink --disable-jack-autoconnect --jack-client-name %s" % (_port+10, m['sender'])
 
         _title += "_AUD"
 
