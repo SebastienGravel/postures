@@ -9,8 +9,9 @@ from twisted.internet import gtk2reactor
 gtk2reactor.install()
 from twisted.internet import reactor
 import gtk
+import spinic
+from spinic.osc import SpinicOscInterface
 
-__version__ = "0.1.0"
 PACKAGE_DATA = "./data"
 APP_NAME = "spinic"
 GLADE_FILE_NAME = "spinic.glade"
@@ -41,6 +42,13 @@ class Gui(object):
         reactor.stop()
 
 def run():
+    import optparse
+    parser = optparse.OptionParser(usage="%prog", version=spinic.__version__, description=__doc__)
+    parser.add_option("-p", "--listener-port", type="int", default=54323, help="Port to listen on")
+    (options, args) = parser.parse_args()
+    # receives messages from the SPIN server
+    app = SpinicOscInterface(receive_port=options.listener_port) 
     gui = Gui()
     reactor.run()
+    print("\nGoodbye.")
 

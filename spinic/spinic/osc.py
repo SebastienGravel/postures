@@ -11,10 +11,7 @@ from txosc import osc
 from txosc import dispatch
 from txosc import async
 
-__version__ = "0.1.0a"
-
-
-class Spinic(object):
+class SpinicOscInterface(object):
     """
     Example that receives UDP OSC messages.
     """
@@ -22,7 +19,7 @@ class Spinic(object):
         self.receive_port = receive_port
         self.receiver = dispatch.Receiver()
         try:
-            self._datagram_protocol = reactor.listenMulticast(self.receive_port, async.DatagramServerProtocol(self.receiver)) # need the reuse port socket option
+            self._datagram_protocol = reactor.listenMulticast(self.receive_port, async.MulticastDatagramServerProtocol(self.receiver), listenMultiple=True) 
         except error.CannotListenError, e:
             print(e)
             print("Giving up!")
@@ -62,14 +59,4 @@ class Spinic(object):
         Fallback.
         """
         print("fallback: Got %s from %s" % (message, address))
-
-if __name__ == "__main__":
-    import optparse
-    parser = optparse.OptionParser(usage="%prog", version=__version__, description=__doc__)
-    parser.add_option("-p", "--listener-port", type="int", default=54323, help="Port to listen on")
-    (options, args) = parser.parse_args()
-    # receives messages from the SPIN server
-    app = Spinic(receive_port=options.listener_port) 
-    reactor.run()
-    print("\nGoodbye.")
 
