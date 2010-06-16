@@ -11,6 +11,7 @@ from twisted.internet import reactor
 import gtk
 import spinic
 from spinic.osc import SpinicOscInterface
+from spinic.launching import ProcessLauncher
 
 PACKAGE_DATA = "./data"
 APP_NAME = "spinic"
@@ -48,6 +49,7 @@ def run():
     (options, args) = parser.parse_args()
     # receives messages from the SPIN server
     app = SpinicOscInterface(receive_port=options.listener_port) 
+    launcher = ProcessLauncher()
     gui = Gui()
     reactor.run()
     print("\nGoodbye.")
