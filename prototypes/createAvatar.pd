@@ -1,0 +1,23 @@
+#N canvas 94 83 553 435 10;
+#X obj 108 159 symbol \$2;
+#X obj 108 178 t s s;
+#X obj 98 86 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 118 87 inlet;
+#X msg 135 197 createNode \$1 UserNode \, createNode \$1-avatar ModelNode
+;
+#X text 197 88 3D avatar;
+#X obj 122 307 outlet;
+#X msg 107 352 /\$1-avatar setParent \$1 \, /\$1-avatar setModelFromFile
+~/src/postures/trunk/prototypes/avatar.osg \, /\$1-avatar setTranslation
+0 0 -0.2 \, /\$1-avatar setHost \$1;
+#X msg 108 216 /\$1-avatar setParent \$1 \, /\$1-avatar setModelFromFile
+~/src/postures/trunk/prototypes/avatar.osg \, /\$1-avatar setTranslation
+0 0 0;
+#X connect 0 0 1 0;
+#X connect 1 0 8 0;
+#X connect 1 1 4 0;
+#X connect 2 0 0 0;
+#X connect 3 0 0 0;
+#X connect 4 0 6 0;
+#X connect 8 0 6 0;

@@ -20,17 +20,18 @@ apps: panoViewer.app
 
 #CPPFLAGS += -g -O2 -DC_PLUSPLUS -D__cplusplus 
 CPPFLAGS += -g -I/usr/include/boost $(shell python-config --cflags)
-LDFLAGS += -llo -lSPIN 
+LDFLAGS += -llo -lSPIN -lboost_python $(shell python-config --libs) 
 
 ifeq ($(shell uname -s),Darwin)
   export MACOSX_DEPLOYMENT_TARGET=10.5
   export SDKROOT=/Developer/SDKs/MacOSX10.5.sdk
   
+  CPPFLAGS += -I/opt/local/include
   CPPFLAGS += -D__USE_OSX_AGL_IMPLEMENTATION__
   FRAMEWORKS = OpenThreads osg osgGA osgSim osgDB \
            osgManipulator osgText osgUtil osgFX osgParticle osgViewer osgIntrospection
-  LDFLAGS += -lpthread $(patsubst %,-framework %,$(FRAMEWORKS)) 
-  #LDFLAGS += -lpthread \
+  #LDFLAGS += -lpthread $(patsubst %,-framework %,$(FRAMEWORKS)) 
+  LDFLAGS += -lpthread \
           -lOpenThreads -losg -losgGA -losgSim -losgDB -losgIntrospection \
           -losgManipulator -losgText -losgUtil -losgFX -losgParticle -losgViewer
   LDFLAGS += -isysroot $(SDKROOT)

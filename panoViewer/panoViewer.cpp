@@ -450,7 +450,7 @@ void panoViewer::setupViewForPanoscope()
         //int crop = 132;
         //int crop = 50;
         int crop = 0;
-		std::cout << "stretch=" << stretch_x << std::endl;
+	//std::cout << "stretch=" << stretch_x << std::endl;
         camera->setProjectionMatrixAsOrtho2D( crop*4/3, width-(crop*4/3), crop, height-crop);
 
         camera->setViewMatrix(osg::Matrix::identity());

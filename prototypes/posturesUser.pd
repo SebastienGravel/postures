@@ -1,0 +1,139 @@
+#N canvas 97 268 1343 605 10;
+#X obj 18 -18 inlet;
+#X msg 960 168 /\$1-avatar setParent \$1 \, /\$1-avatar setModelFromFile
+~/Documents/NTA/models/man_listener/man_listener.osg \, /\$1-avatar
+setTranslation 0 0 -0.2 \, /\$1-avatar setHost \$1;
+#X obj 11 92 symbol \$2;
+#X obj 86 314 s \$1-to-SPIN;
+#X obj 960 112 symbol \$2;
+#X obj 960 131 t s s;
+#X obj 950 39 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#N canvas 0 22 450 300 old 0;
+#X msg 58 98 /\$1-text setParent \$1 \, /\$1-text setText \$1 \, /\$1-text
+setTranslation 0 0 0.8 \, /\$1-text setBillboard 2;
+#X msg 47 76 /\$1-meas setParent \$1 \, /\$1-meas setReportingLevel
+1;
+#X msg 73 136 /\$1-light setParent \$1 \, /\$1-light setTranslation
+0 0 -2 \, /\$1-light setOrientation -90 0 0 \, /\$1-light setCutoff
+180 \, /\$1-light setExponent 100 \, /\$1-light setAttenuation 0.25
+;
+#X msg 35 29 /\$1-video setParent \$1 \, /\$1-video setHost \$1 \,
+/\$1-video setTranslation 0 0 0.2 \, /\$1-video setBillboard 0 \, /\$1-video
+setScale 1.333 1 1 \, /\$1-video setShape 6;
+#X restore 321 17 pd old;
+#X obj 494 50 inlet;
+#X obj 494 86 symbol \$2;
+#X obj 494 106 t s s;
+#X msg 561 130 createNode \$1 UserNode \, createNode \$1-video SharedVideoNode
+\, createNode \$1-meas MeasurementNode \, createNode \$1-text TextNode
+;
+#X msg 482 231 /\$1-meas setParent \$1 \, /\$1-meas setReportingLevel
+1;
+#X obj 490 327 s \$1-to-SPIN;
+#X msg 470 184 /\$1-video setParent \$1 \, /\$1-video setHost \$1 \,
+/\$1-video setTranslation 0 0 0 \, /\$1-video setBillboard 0 \, /\$1-video
+setScale 2.666 1 2 \, /\$1-video setShape 6;
+#X msg 493 253 /\$1-text setParent \$1 \, /\$1-text setHost \$1 \,
+/\$1-text setText \$1 \, /\$1-text setTranslation 0 0 1.5 \, /\$1-text
+setBillboard 0 \, /\$1-text setScale 2 2 2;
+#X obj 970 40 inlet;
+#X text 534 51 shared_video;
+#X obj 974 260 s \$1-to-SPIN;
+#X msg 987 150 createNode \$1 UserNode \, createNode \$1-avatar ModelNode
+;
+#X text 1010 40 3D avatar;
+#X obj 11 415 delay 500;
+#X obj 99 352 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 50 492 s \$1-to-SPIN;
+#X obj 11 322 t b b;
+#X msg 11 438 /\$2-listener stateDump;
+#X msg 101 383 audioInit;
+#X obj 101 405 OSCprepend /\$2;
+#X obj 11 460 OSCprepend /\$2-listener;
+#X msg 79 135 createNode \$1 UserNode \, createNode \$1-light LightSource
+;
+#X obj 11 111 t b s s b;
+#X obj 177 66 anyreg g_SCENE_BOUND;
+#X obj 65 161 list append;
+#X obj 43 40 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 779 327 /\$1-light setParent \$1 \, /\$1-light setTranslation
+0 0 -2 \, /\$1-light setOrientation -90 0 0 \, /\$1-light setCutoff
+180 \, /\$1-light setExponent 100 \, /\$1-light setAttenuation 0.25
+;
+#X msg 22 242 /\$1-light setParent \$1 \, /\$1-light setTranslation
+0 0 0 \, /\$1-light setOrientation -90 0 0 \, /\$1-light setCutoff
+180 \, /\$1-light setExponent 100 \, /\$1-light setAttenuation 0.2
+\, /\$1-light setAmbient 1 1 1 1 \, /\$1-light setDiffuse 1 1 1 1 \,
+/\$1-light setSpecular 1 1 1 1;
+#X msg 57 189 /\$1 setCubeOffset \$2 \$3 \$4 \, /\$1 setCubeSize \$5
+\$6 \$7 \, /\$1 setConstraintMode 3 \, /\$1 setTarget Cinematheque
+;
+#X obj 486 394 r \$1-from-SPIN;
+#X obj 486 416 route /\$2;
+#X obj 486 440 route setTranslation;
+#X obj 537 504 delay 180000;
+#X obj 643 371 loadbang;
+#X obj 643 396 float 4;
+#X text 705 396 <- 4min delay (inactivity);
+#X obj 643 425 * 60;
+#X obj 643 445 * 1000;
+#X msg 486 460 bang;
+#X obj 537 549 s \$1-to-SPIN;
+#X msg 537 526 /posture0? setTranslation 0 0 1.43;
+#X msg 618 335 4;
+#X msg 594 362 0.1;
+#X floatatom 652 494 8 0 0 0 - - -;
+#X msg 1013 223 /\$1-avatar setHost \$1;
+#X connect 0 0 2 0;
+#X connect 1 0 18 0;
+#X connect 2 0 30 0;
+#X connect 4 0 5 0;
+#X connect 5 0 1 0;
+#X connect 5 1 19 0;
+#X connect 6 0 4 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 10 0 14 0;
+#X connect 10 0 12 0;
+#X connect 10 0 15 0;
+#X connect 10 1 11 0;
+#X connect 11 0 13 0;
+#X connect 12 0 13 0;
+#X connect 14 0 13 0;
+#X connect 15 0 13 0;
+#X connect 16 0 4 0;
+#X connect 19 0 18 0;
+#X connect 21 0 25 0;
+#X connect 22 0 26 0;
+#X connect 24 1 26 0;
+#X connect 25 0 28 0;
+#X connect 26 0 27 0;
+#X connect 27 0 23 0;
+#X connect 28 0 23 0;
+#X connect 29 0 3 0;
+#X connect 30 0 24 0;
+#X connect 30 1 35 0;
+#X connect 30 1 32 0;
+#X connect 30 2 29 0;
+#X connect 30 3 31 0;
+#X connect 31 0 32 1;
+#X connect 32 0 36 0;
+#X connect 33 0 2 0;
+#X connect 35 0 3 0;
+#X connect 36 0 3 0;
+#X connect 37 0 38 0;
+#X connect 38 0 39 0;
+#X connect 39 0 46 0;
+#X connect 40 0 48 0;
+#X connect 41 0 42 0;
+#X connect 42 0 44 0;
+#X connect 44 0 45 0;
+#X connect 45 0 40 1;
+#X connect 45 0 51 0;
+#X connect 46 0 40 0;
+#X connect 48 0 47 0;
+#X connect 49 0 42 0;
+#X connect 50 0 42 0;
