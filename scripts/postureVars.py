@@ -11,7 +11,7 @@
 
 class postures:
 
-    user = "postures"
+    user = "posture"
 
     srcPath = "/home/%s/src" % (user)
     posturesPath = "%s/postures/trunk" % (srcPath)

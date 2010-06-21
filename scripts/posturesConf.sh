@@ -26,9 +26,9 @@ alias pd='pd -jack'
 alias cdnta='cd ${NTA}'
 alias cdspin='cd ${SPIN}'
 alias cdpostures='cd ${POSTURES}'
-alias cdsw='cd ${SPINWIDGETS}/patches'
-alias cdpds='cd ${PDSHEEFA}/patches'
-alias cdas='cd ${AUDIOSCAPE}/patches'
+alias cdsw='cd ${SPINWIDGETS}'
+alias cdpds='cd ${PDSHEEFA}'
+alias cdas='cd ${AUDIOSCAPE}'
 
 
 
