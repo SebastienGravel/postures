@@ -1,0 +1,62 @@
+#N canvas 487 206 1323 849 10;
+#X obj 31 20 inlet;
+#X text 316 316 IMPORTANT: the context must be set to the hostname
+of the user's machine. ie \,;
+#X text 241 105 create a UserNode (just in case) \, a ShapeNode to
+map the video texture on:;
+#X obj 1000 219 cnv 15 120 15 empty empty empty 20 12 0 14 -257985
+-66577 0;
+#X obj 901 150 list length;
+#X obj 807 198 expr 360/$f1;
+#X obj 807 235 s \$0-angle-between-cameras;
+#X obj 1006 238 s \$0-numCameras;
+#X floatatom 807 218 5 0 0 1 (angle-between-cameras) - -;
+#X floatatom 1006 221 5 0 0 1 (numCameras) - -;
+#X msg 898 55 cam1 cam2 cam3 cam4;
+#X obj 79 475 outlet;
+#X text 911 308 TODO: set orientation of each plane;
+#X msg 249 166 createNode \$1 UserNode \, createNode \$1-video ShapeNode
+;
+#X msg 303 375 /\$1-video setContext \$1;
+#X msg 259 231 /\$1-video setParent \$1 \, /\$1-video setTranslation
+0 -0.01 1 \, /\$1-video setBillboard 0 \, /\$1-video setScale 2.666
+1 2 \, /\$1-video setShape 6;
+#X obj 258 566 list prepend;
+#X msg 318 505 \$1;
+#X obj 201 450 list split 1;
+#X obj 212 526 list split 1;
+#X obj 236 490 list;
+#X obj 301 648 t a a;
+#X msg 301 723 /\$1-\$2 setParent \$1 \, /\$1-\$2 setTranslation 0
+-0.01 1 \, /\$1-\$2 setBillboard 0 \, /\$1-\$2 setScale 2.666 1 2 \,
+/\$1-\$2 setShape 6;
+#X msg 368 680 createStateSet \$1-\$2 ImageTexture;
+#X text 628 677 TODO: replace with SharedVideoTexture;
+#X obj 31 80 t a a;
+#X obj 31 57 list;
+#X obj 390 794 pp;
+#X obj 279 425;
+#X connect 0 0 26 0;
+#X connect 4 0 5 0;
+#X connect 4 0 9 0;
+#X connect 5 0 8 0;
+#X connect 8 0 6 0;
+#X connect 9 0 7 0;
+#X connect 10 0 4 0;
+#X connect 13 0 11 0;
+#X connect 14 0 11 0;
+#X connect 15 0 11 0;
+#X connect 16 0 21 0;
+#X connect 17 0 16 1;
+#X connect 18 1 19 0;
+#X connect 19 0 16 0;
+#X connect 19 1 20 0;
+#X connect 20 0 19 0;
+#X connect 21 0 22 0;
+#X connect 21 1 23 0;
+#X connect 23 0 27 0;
+#X connect 25 0 15 0;
+#X connect 25 0 14 0;
+#X connect 25 0 18 0;
+#X connect 25 1 13 0;
+#X connect 26 0 25 0;
