@@ -1,32 +1,19 @@
-#N canvas 669 185 811 849 10;
+#N canvas 1023 99 811 849 10;
 #X obj 31 20 inlet;
-#X msg 129 462 /\$1-shape setContext \$1;
-#X text 119 393 IMPORTANT: the context must be set to the hostname
+#X text 162 449 IMPORTANT: the context must be set to the hostname
 of the user's machine. ie \,;
 #X obj 31 40 list;
 #X text 241 105 create a UserNode (just in case) \, a ShapeNode to
 map the video texture on:;
-#X obj 573 772 cnv 15 120 15 empty empty empty 20 12 0 14 -257985 -66577
+#X obj 452 682 cnv 15 120 15 empty empty empty 20 12 0 14 -257985 -66577
 0;
-#X obj 295 548 cnv 15 180 15 empty empty empty 20 12 0 14 -257985 -66577
-0;
-#X msg 484 621 posture03_1 posture03_0 posture03_2 posture03_3;
-#X obj 474 675 anyreg \$0-cameras;
-#X obj 474 703 list length;
-#X obj 380 751 expr 360/$f1;
-#X obj 463 647 t b a;
-#X obj 380 788 s \$0-angle-between-cameras;
-#X obj 579 791 s \$0-numCameras;
-#X floatatom 380 771 5 0 0 1 (angle-between-cameras) - -;
-#X floatatom 579 774 5 0 0 1 (numCameras) - -;
+#X obj 353 613 list length;
+#X obj 259 661 expr 360/$f1;
+#X obj 259 698 s \$0-angle-between-cameras;
+#X obj 458 701 s \$0-numCameras;
+#X floatatom 259 681 5 0 0 1 (angle-between-cameras) - -;
+#X floatatom 458 684 5 0 0 1 (numCameras) - -;
 #X msg 87 21 posture05 cam1 cam2 cam3 cam4;
-#X obj 491 513 anyreg \$0-cameras;
-#X obj 36 657 pp;
-#X msg 170 520 createNode \$1 UserNode \, createNode \$1-video ShapeNode
-;
-#X obj 678 500 anyreg \$0-cameras;
-#X obj 500 47 t;
-#X obj 503 77 t a a;
 #X obj 31 60 t a a a;
 #X obj 197 69 anyreg \$0-userid;
 #X msg 197 49 \$1;
@@ -36,37 +23,39 @@ map the video texture on:;
 #X obj 5 91 list split 1;
 #X obj 16 167 list split 1;
 #X obj 40 131 list;
-#X obj 120 237 t a a;
-#X msg 187 269 createNode \$1-\$2 ShapeNode;
-#X msg 120 318 /\$1-\$2 setParent \$1 \, /\$1-\$2 setTranslation 0
+#X obj 105 289 t a a;
+#X msg 172 321 createNode \$1-\$2 ShapeNode;
+#X msg 105 364 /\$1-\$2 setParent \$1 \, /\$1-\$2 setTranslation 0
 -0.01 1 \, /\$1-\$2 setBillboard 0 \, /\$1-\$2 setScale 2.666 1 2 \,
 /\$1-\$2 setShape 6;
-#X connect 0 0 3 0;
-#X connect 1 0 18 0;
-#X connect 3 0 23 0;
-#X connect 7 0 11 0;
-#X connect 8 0 9 0;
-#X connect 9 0 10 0;
-#X connect 9 0 15 0;
-#X connect 10 0 14 0;
-#X connect 11 0 8 0;
-#X connect 11 1 8 0;
-#X connect 14 0 12 0;
-#X connect 15 0 13 0;
-#X connect 16 0 3 0;
-#X connect 23 0 29 0;
-#X connect 23 2 25 0;
-#X connect 23 2 26 0;
-#X connect 23 2 28 0;
-#X connect 25 0 24 0;
-#X connect 26 0 18 0;
-#X connect 27 0 32 0;
-#X connect 28 0 27 1;
-#X connect 29 1 30 0;
-#X connect 30 0 27 0;
-#X connect 30 1 31 0;
-#X connect 31 0 30 0;
-#X connect 32 0 34 0;
-#X connect 32 1 33 0;
-#X connect 33 0 18 0;
-#X connect 34 0 18 0;
+#X msg 350 518 cam1 cam2 cam3 cam4;
+#X msg 149 508 /\$1-\$2 setContext \$1;
+#X obj 36 657 outlet;
+#X text 237 757 TODO: set orientation of each plane;
+#X connect 0 0 2 0;
+#X connect 2 0 12 0;
+#X connect 5 0 6 0;
+#X connect 5 0 10 0;
+#X connect 6 0 9 0;
+#X connect 9 0 7 0;
+#X connect 10 0 8 0;
+#X connect 11 0 2 0;
+#X connect 12 0 18 0;
+#X connect 12 2 14 0;
+#X connect 12 2 15 0;
+#X connect 12 2 17 0;
+#X connect 14 0 13 0;
+#X connect 15 0 26 0;
+#X connect 16 0 21 0;
+#X connect 17 0 16 1;
+#X connect 18 1 19 0;
+#X connect 19 0 16 0;
+#X connect 19 1 20 0;
+#X connect 20 0 19 0;
+#X connect 21 0 23 0;
+#X connect 21 0 25 0;
+#X connect 21 1 22 0;
+#X connect 22 0 26 0;
+#X connect 23 0 26 0;
+#X connect 24 0 5 0;
+#X connect 25 0 26 0;
