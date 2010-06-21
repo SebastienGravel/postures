@@ -1,6 +1,6 @@
-#N canvas 1005 29 765 968 10;
+#N canvas 1005 29 866 968 10;
 #X obj 11 12 widget-spinConnect \$0;
-#N canvas 45 238 943 700 SHARED_VIDEO_STUFF 0;
+#N canvas 45 238 943 700 SHARED_VIDEO_STUFF 1;
 #X obj 505 38 r \$0-from-SPIN;
 #X obj 383 141 rad2deg;
 #X obj 602 131 rad2deg;
@@ -220,6 +220,12 @@ debugging:;
 #X msg 181 648 /posture04-seenby-posture06 setStateSet posture04-west.jpg
 ;
 #X text 191 557 test:;
+#X obj 582 416 cnv 15 150 24 empty empty callback: 4 12 1 24 -99865
+-262144 0;
+#X obj 574 499 userMeasurement posture05;
+#X obj 562 466 r \$0-from-SPIN;
+#X msg 184 671 /posture04-seenby-posture06 setStateSet posture04-east.jpg
+;
 #X connect 9 0 2 0;
 #X connect 10 0 24 0;
 #X connect 11 0 24 0;
@@ -241,3 +247,5 @@ debugging:;
 #X connect 27 0 2 0;
 #X connect 28 0 2 0;
 #X connect 30 0 2 0;
+#X connect 34 0 33 0;
+#X connect 35 0 2 0;
