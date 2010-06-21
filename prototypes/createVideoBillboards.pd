@@ -1,0 +1,36 @@
+#N canvas 465 126 728 502 10;
+#X obj 198 -5 inlet;
+#X obj 184 163 t a a;
+#X obj 121 430 outlet;
+#X msg 252 233 /\$2 setParent \$1 \, /\$2 setTranslation 0 -0.01 1
+\, /\$2 setOrientation 0 0 180 \, /\$2 setBillboard 0 \, /\$2 setScale
+2.666 1 2 \, /\$2 setShape 6;
+#X msg 241 380 /\$2 setContext \$3;
+#X text 257 307 IMPORTANT: the context of a "seenby" node must be set
+to the *hostname* of user who wants to "see" it. The spinviewer app
+looks at the context paramter to decide if it should render it \, and
+only renders if it matches the hostname...;
+#X msg 184 140 list \$1 \$1-seenby-\$2 \$2;
+#X msg 237 194 createNode \$1 UserNode \, createNode \$2 ShapeNode
+;
+#X obj 184 118 list append \$1;
+#X text 247 -3 list of all UserNodes in SPIN;
+#X text 286 118 <- arg #1 to this patch is the current user/viewer
+;
+#X text 231 160 create ShapeNode for each user: "userID-seenby-currentUser"
+;
+#X obj 198 58 route NULL;
+#X text 275 61 ignore empty user list (a string that says "NULL");
+#X msg 218 29 posture04 posture05 posture06;
+#X text 412 32 <- test;
+#X connect 0 0 12 0;
+#X connect 1 0 3 0;
+#X connect 1 0 4 0;
+#X connect 1 1 7 0;
+#X connect 3 0 2 0;
+#X connect 4 0 2 0;
+#X connect 6 0 1 0;
+#X connect 7 0 2 0;
+#X connect 8 0 6 0;
+#X connect 12 1 8 0;
+#X connect 14 0 12 0;

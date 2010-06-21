@@ -1,7 +1,6 @@
-#N canvas 9 41 788 835 10;
+#N canvas 1005 29 765 968 10;
 #X obj 11 12 widget-spinConnect \$0;
-#X obj 558 724 delay 500;
-#N canvas 497 200 943 700 SHARED_VIDEO_STUFF 1;
+#N canvas 675 361 943 700 SHARED_VIDEO_STUFF 1;
 #X obj 505 38 r \$0-from-SPIN;
 #X obj 383 141 rad2deg;
 #X obj 602 131 rad2deg;
@@ -107,176 +106,147 @@
 #X connect 44 0 40 3;
 #X connect 45 0 41 3;
 #X connect 47 0 28 0;
-#X restore 575 704 pd SHARED_VIDEO_STUFF;
-#X obj 558 551 bng 30 250 50 0 initBang! initBang init 4 15 1 14 -261234
--1 -1;
-#X obj 558 585 t b b b b;
-#X obj 25 408 s \$0-to-SPIN;
-#N canvas 787 246 1055 766 AUDIO_STUFF 0;
-#X obj 434 30 inlet;
-#X msg 676 261 /posture01-audio-in* connect posture03-listener;
-#X msg 672 286 /posture03-audio-in* connect posture01-listener;
-#X obj 618 343 s \$0-to-SPIN;
-#X obj 478 40 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 579 65 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X msg 626 122 /posture03 audioInit;
-#X msg 616 102 /posture01 audioInit;
-#X msg 97 387 NYC911_audio;
-#X obj 97 409 symbol;
-#X obj 114 362 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 72 648 s \$0-to-SPIN;
-#X obj 448 81 t b b b;
-#X obj 654 233 delay 200;
-#X obj 492 147 delay 500;
-#X msg 76 561 /posture0?-listener connectSource \$1;
-#X msg 143 457 createNode \$1 SoundNode \, createNode \$1-shp ShapeNode
-;
-#X obj 97 434 t b s s s;
-#X msg 133 491 /\$1-shp setShape 1 \, /\$1-shp setScale 0 0 0 \, /\$1-shp
-setTranslation 13 -52.5 -2.5 \, /\$1 setParent \$1-shp \, /\$1 setPlugin
-looper1~ \, /\$1 setParam filename /home/postures/src/nta_videos/NYC911_SA_H264_16khz.aif
-;
-#X obj 516 425 symbol;
-#X obj 518 372 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 491 664 s \$0-to-SPIN;
-#X msg 495 577 /posture0?-listener connectSource \$1;
-#X msg 562 473 createNode \$1 SoundNode \, createNode \$1-shp ShapeNode
-;
-#X obj 516 450 t b s s s;
-#X msg 515 403 OceanBeach1_WAY_N3_16khz.aif;
-#X msg 552 507 /\$1-shp setShape 1 \, /\$1-shp setScale 0 0 0 \, /\$1-shp
-setTranslation 0 0 1000 \, /\$1 setParent \$1-shp \, /\$1 setPlugin
-looper1~ \, /\$1 setParam filename /home/postures/src/nta_videos/\$1
-;
-#X obj 43 183 t b b;
-#X obj 100 163 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X msg 70 204 createNode NYC911 ShapeNode;
-#X msg 73 254 /NYC911 setTextureFromFile ~/src/nta_videos/NYC911_SA_H264_PasdeSon.mov
-;
-#X obj 55 303 s \$0-to-SPIN;
-#X msg 44 224 /NYC911 setShape 6 \, /NYC911 setTranslation 12.5 -50
--2.5;
-#X msg 468 610 /OceanBeach*.conn setRolloffEffect 0 \, /OceanBeach*.conn
-setDistanceEffect 100;
-#X msg 50 594 /NYC*.conn setRolloffEffect 0 \, /NYC*.conn setDistanceEffect
-150;
-#X msg 533 207 /posture0?-listener stateDump;
-#X msg 491 168 /posture*.conn setDistanceEffect 50 \, /posture*.conn
-setRolloffEffect 75 \, /posture*.conn setDiffractionEffect 0;
-#X connect 0 0 12 0;
-#X connect 1 0 3 0;
-#X connect 2 0 3 0;
-#X connect 4 0 12 0;
-#X connect 5 0 7 0;
-#X connect 5 0 6 0;
-#X connect 6 0 3 0;
-#X connect 7 0 3 0;
-#X connect 8 0 9 0;
-#X connect 9 0 17 0;
-#X connect 10 0 8 0;
-#X connect 12 0 14 0;
-#X connect 12 0 8 0;
-#X connect 12 0 25 0;
-#X connect 12 1 13 0;
-#X connect 12 2 7 0;
-#X connect 12 2 6 0;
-#X connect 13 0 1 0;
-#X connect 13 0 2 0;
-#X connect 14 0 36 0;
-#X connect 14 0 35 0;
-#X connect 15 0 11 0;
-#X connect 16 0 11 0;
-#X connect 17 0 34 0;
-#X connect 17 1 15 0;
-#X connect 17 2 18 0;
-#X connect 17 3 16 0;
-#X connect 18 0 11 0;
-#X connect 19 0 24 0;
-#X connect 20 0 25 0;
-#X connect 22 0 21 0;
-#X connect 23 0 21 0;
-#X connect 24 0 33 0;
-#X connect 24 1 22 0;
-#X connect 24 2 26 0;
-#X connect 24 3 23 0;
-#X connect 25 0 19 0;
-#X connect 26 0 21 0;
-#X connect 27 0 32 0;
-#X connect 27 0 30 0;
-#X connect 27 1 29 0;
-#X connect 28 0 27 0;
-#X connect 29 0 31 0;
-#X connect 30 0 31 0;
-#X connect 32 0 31 0;
-#X connect 33 0 21 0;
-#X connect 34 0 11 0;
-#X connect 35 0 3 0;
-#X connect 36 0 3 0;
-#X restore 565 163 pd AUDIO_STUFF;
-#X obj 565 129 bng 30 250 50 0 initBang! initBang init 4 15 1 14 -261234
--1 -1;
-#X obj 558 745 s \$0-refresh!;
-#X obj 565 680 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X msg 109 699 /posture0? setVelocity 0 0 0 \, /posture0? setSpin 0
-0 0;
-#X obj 109 679 bng 15 250 50 0 empty empty STOP_MOVING 19 9 1 10 -261234
--1 -1;
-#X obj 109 717 s \$0-to-SPIN;
-#X obj 539 59 t b b;
-#X obj 553 91 delay 2000;
-#X obj 611 660 posturesUser \$0 posture01;
+#X restore 380 49 pd SHARED_VIDEO_STUFF;
+#X obj 31 708 s \$0-to-SPIN;
+#X obj 381 29 posturesUser \$0 posture01;
 #X obj 12 76 cnv 15 24 24 empty empty 1 4 12 1 24 -99865 -262144 0
 ;
 #X obj 114 226 cnv 15 24 24 empty empty 3 4 12 1 24 -99865 -262144
 0;
-#X obj 130 298 cnv 15 24 24 empty empty 4 4 12 1 24 -99865 -262144
+#X obj 158 303 cnv 15 24 24 empty empty 4 4 12 1 24 -99865 -262144
 0;
-#X obj 327 626 cnv 15 24 24 empty empty 5 4 12 1 24 -99865 -262144
+#X obj 138 490 cnv 15 24 24 empty empty 5 4 12 1 24 -99865 -262144
 0;
 #X obj 62 121 cnv 15 24 24 empty empty 2 4 12 1 24 -99865 -262144 0
 ;
-#X msg 148 228 posture05;
-#X obj 142 255 createAvatar;
 #X msg 50 82 refresh;
-#X obj 592 681 posturesUser \$0 posture03;
-#X obj 107 185 createUser;
-#X obj 161 359 createSharedVideo1;
-#X msg 101 123 posture05 1 3 1.5 0 0 135;
-#X msg 139 148 posture06 -1 3 1.5 0 0 -135;
-#X msg 222 229 posture06;
-#X obj 221 550;
-#X msg 191 501 createStateSet \$1-;
-#X obj 370 415 createSharedVideo;
-#X msg 216 327 posture06 cam5 cam6 cam7 cam8;
-#X msg 165 301 posture05 north.jpg east.jpg south.jpg west.jpg;
+#X msg 139 148 posture06 -1 0 1.5 0 0 -135;
+#X msg 101 123 posture04 1 0 1.5 0 0 135;
+#X msg 148 228 posture04;
+#X msg 157 341 posture04 north.jpg east.jpg south.jpg west.jpg;
+#X msg 215 228 posture06;
+#X text 385 12 old stuff:;
+#X msg 172 367 posture06 north.jpg east.jpg south.jpg west.jpg;
+#X msg 181 680 /posture06-video setStateSet posture04-west.jpg;
+#X msg 170 575 /posture04-video setStateSet posture04-south.jpg;
+#X msg 178 601 /posture04-video setStateSet posture04-north.jpg;
+#X obj 303 879 OSCtx;
+#X obj 293 926 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X msg 263 770 /SPIN/mikes/posture04-video setStateSet posture04-south.jpg
+;
+#X msg 241 792 /SPIN/mikes/posture04-video setStateSet posture04-east.jpg
+;
+#X msg 333 839 setAddress 127.0.0.1 54323;
+#X obj 414 130 r \$0-from-SPIN;
+#X obj 414 153 route nodeList;
+#X obj 414 172 route UserNode;
+#X obj 393 282 s \$0-to-SPIN;
+#X obj 380 207 createVideoBillboards posture04;
+#X obj 393 229 createVideoBillboards posture05;
+#X obj 405 249 createVideoBillboards posture06;
+#N canvas 0 0 635 422 CreateTextures 0;
+#X obj 153 50 inlet;
+#X obj 234 373 outlet;
+#X obj 164 181 list prepend;
+#X msg 233 130 \$1;
+#X obj 110 125 list split 1;
+#X obj 109 153 list split 1;
+#X obj 193 153 list;
+#X obj 164 202 t a a;
+#X msg 231 234 createStateSet \$1-\$2 ImageTexture;
+#X text 230 215 TODO: replace with SharedVideoTexture;
+#X obj 145 102 t a a;
+#X msg 164 277 /\$1-\$2 setPath ~/src/postures/trunk/prototypes/\$2
+;
+#X obj 153 71 list;
+#X connect 0 0 12 0;
+#X connect 2 0 7 0;
+#X connect 3 0 2 1;
+#X connect 4 1 5 0;
+#X connect 5 0 2 0;
+#X connect 5 1 6 0;
+#X connect 6 0 5 0;
+#X connect 7 0 11 0;
+#X connect 7 1 8 0;
+#X connect 8 0 1 0;
+#X connect 10 0 4 0;
+#X connect 10 1 3 0;
+#X connect 11 0 1 0;
+#X connect 12 0 10 0;
+#X restore 137 406 pd CreateTextures;
+#X obj 524 352 createSharedVideo1;
+#N canvas 0 0 450 300 CreateAvatar 0;
+#X obj 91 132 t s s;
+#X obj 81 40 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 101 41 inlet;
+#X msg 118 151 createNode \$1 UserNode \, createNode \$1-avatar ModelNode
+;
+#X text 180 42 3D avatar;
+#X obj 105 261 outlet;
+#X msg 90 306 /\$1-avatar setParent \$1 \, /\$1-avatar setModelFromFile
+~/src/postures/trunk/prototypes/avatar.osg \, /\$1-avatar setTranslation
+0 0 -0.2 \, /\$1-avatar setHost \$1;
+#X msg 91 170 /\$1-avatar setParent \$1 \, /\$1-avatar setModelFromFile
+~/src/postures/trunk/prototypes/avatar.osg \, /\$1-avatar setTranslation
+0 0 0;
+#X obj 91 113 symbol;
+#X connect 0 0 7 0;
+#X connect 0 1 3 0;
 #X connect 1 0 8 0;
-#X connect 3 0 4 0;
-#X connect 4 0 1 0;
-#X connect 4 1 2 0;
-#X connect 4 2 15 0;
-#X connect 4 2 15 1;
-#X connect 4 2 24 0;
-#X connect 4 2 24 1;
-#X connect 7 0 6 0;
+#X connect 2 0 8 0;
+#X connect 3 0 5 0;
+#X connect 7 0 5 0;
+#X connect 8 0 0 0;
+#X restore 148 256 pd CreateAvatar;
+#N canvas 0 0 669 414 CreateUser 0;
+#X obj 101 27 inlet;
+#X obj 89 121 t a a;
+#X obj 89 103 list;
+#X obj 95 351 outlet;
+#X msg 195 148 createNode \$1 UserNode \, createNode \$1-text TextNode
+;
+#X text 239 105 create a UserNode (just in case) and a TextNode for
+debugging:;
+#X msg 188 205 /\$1 setTranslation \$2 \$3 \$4 \, /\$1 setOrientation
+\$5 \$6 \$7;
+#X msg 193 250 /\$1-text setParent \$1 \, /\$1-text setContext \$1
+\, /\$1-text setTextValue \$1 \, /\$1-text setTranslation 0 0 0.2 \,
+/\$1-text setBillboard 0 \, /\$1-text setScale 2 2 2;
+#X connect 0 0 2 0;
+#X connect 1 0 6 0;
+#X connect 1 0 7 0;
+#X connect 1 1 4 0;
+#X connect 2 0 1 0;
+#X connect 4 0 3 0;
+#X connect 6 0 3 0;
+#X connect 7 0 3 0;
+#X restore 96 173 pd CreateUser;
+#X obj 322 306 pp;
 #X connect 9 0 2 0;
-#X connect 10 0 12 0;
-#X connect 11 0 10 0;
-#X connect 13 0 14 0;
-#X connect 13 1 7 0;
-#X connect 14 0 7 0;
-#X connect 21 0 22 0;
-#X connect 22 0 5 0;
-#X connect 23 0 5 0;
-#X connect 25 0 5 0;
-#X connect 26 0 5 0;
-#X connect 27 0 25 0;
-#X connect 28 0 25 0;
-#X connect 29 0 22 0;
-#X connect 33 0 26 0;
-#X connect 34 0 26 0;
+#X connect 10 0 35 0;
+#X connect 11 0 35 0;
+#X connect 12 0 34 0;
+#X connect 13 0 32 0;
+#X connect 14 0 34 0;
+#X connect 16 0 32 0;
+#X connect 17 0 2 0;
+#X connect 18 0 2 0;
+#X connect 19 0 2 0;
+#X connect 20 0 21 0;
+#X connect 22 0 20 0;
+#X connect 23 0 20 0;
+#X connect 24 0 20 0;
+#X connect 25 0 26 0;
+#X connect 26 0 27 0;
+#X connect 27 0 29 0;
+#X connect 27 0 30 0;
+#X connect 27 0 31 0;
+#X connect 27 0 36 0;
+#X connect 29 0 28 0;
+#X connect 30 0 28 0;
+#X connect 31 0 28 0;
+#X connect 32 0 2 0;
+#X connect 34 0 2 0;
+#X connect 35 0 2 0;
