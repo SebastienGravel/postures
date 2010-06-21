@@ -1,4 +1,4 @@
-#N canvas 592 27 728 502 10;
+#N canvas 546 107 728 502 10;
 #X obj 198 -5 inlet;
 #X obj 184 193 t a a;
 #X obj 121 460 outlet;
@@ -10,8 +10,8 @@
 to the *hostname* of user who wants to "see" it. The spinviewer app
 looks at the context paramter to decide if it should render it \, and
 only renders if it matches the hostname...;
-#X msg 184 170 list \$1 \$1-seenby-\$2 \$2;
-#X msg 237 224 createNode \$1 UserNode \, createNode \$2 ShapeNode
+#X msg 183 170 list \$1 \$1-seenby-\$2 \$2;
+#X msg 237 223 createNode \$1 UserNode \, createNode \$2 ShapeNode
 ;
 #X obj 184 148 list append \$1;
 #X text 247 -3 list of all UserNodes in SPIN;

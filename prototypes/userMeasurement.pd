@@ -1,0 +1,11 @@
+#N canvas 811 345 869 630 10;
+#X obj 305 13 inlet;
+#X obj 336 453 symbol \$1;
+#X obj 579 151 pp;
+#X obj 266 87 OSCsplit;
+#X obj 386 62 OSCparse /\$1;
+#X obj 386 82 route global6DOF;
+#X text 396 42 current viewer orientation;
+#X connect 0 0 3 0;
+#X connect 0 0 4 0;
+#X connect 4 0 5 0;

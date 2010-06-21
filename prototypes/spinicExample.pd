@@ -1,4 +1,4 @@
-#N canvas 1005 29 866 968 10;
+#N canvas 744 29 956 751 10;
 #X obj 11 12 widget-spinConnect \$0;
 #N canvas 45 238 943 700 SHARED_VIDEO_STUFF 1;
 #X obj 505 38 r \$0-from-SPIN;
@@ -209,23 +209,27 @@ debugging:;
 #X connect 6 0 3 0;
 #X connect 7 0 3 0;
 #X restore 111 234 pd CreateUser;
-#X obj 495 281 createVideoBillboards posture05;
-#X obj 507 301 createVideoBillboards posture06;
 #X msg 163 590 /posture04-seenby-posture05 setStateSet posture04-south.jpg
 ;
 #X msg 171 616 /posture04-seenby-posture05 setStateSet posture04-north.jpg
 ;
-#X obj 495 146 cnv 15 150 24 empty empty callback: 4 12 1 24 -99865
+#X obj 481 124 cnv 15 150 24 empty empty callback: 4 12 1 24 -99865
 -262144 0;
 #X msg 181 648 /posture04-seenby-posture06 setStateSet posture04-west.jpg
 ;
 #X text 191 557 test:;
-#X obj 582 416 cnv 15 150 24 empty empty callback: 4 12 1 24 -99865
+#X obj 612 414 cnv 15 150 24 empty empty callback: 4 12 1 24 -99865
 -262144 0;
-#X obj 574 499 userMeasurement posture05;
-#X obj 562 466 r \$0-from-SPIN;
+#X obj 620 505 userMeasurement posture05;
+#X obj 608 472 r \$0-from-SPIN;
 #X msg 184 671 /posture04-seenby-posture06 setStateSet posture04-east.jpg
 ;
+#X obj 495 281 createVideoBillboards posture05;
+#X obj 507 301 createVideoBillboards posture06;
+#X text 432 154 (creates video billboards given a user \, for EACH
+OTHER user);
+#X text 547 443 (measures distance/angle between users and siwtches
+texture);
 #X connect 9 0 2 0;
 #X connect 10 0 24 0;
 #X connect 11 0 24 0;
@@ -236,16 +240,16 @@ debugging:;
 #X connect 17 0 18 0;
 #X connect 18 0 19 0;
 #X connect 19 0 21 0;
-#X connect 19 0 25 0;
-#X connect 19 0 26 0;
+#X connect 19 0 34 0;
+#X connect 19 0 35 0;
 #X connect 21 0 20 0;
 #X connect 22 0 2 0;
 #X connect 23 0 2 0;
 #X connect 24 0 2 0;
-#X connect 25 0 20 0;
-#X connect 26 0 20 0;
-#X connect 27 0 2 0;
+#X connect 25 0 2 0;
+#X connect 26 0 2 0;
 #X connect 28 0 2 0;
-#X connect 30 0 2 0;
-#X connect 34 0 33 0;
-#X connect 35 0 2 0;
+#X connect 32 0 31 0;
+#X connect 33 0 2 0;
+#X connect 34 0 20 0;
+#X connect 35 0 20 0;
