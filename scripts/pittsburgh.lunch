@@ -21,8 +21,8 @@ add_command("spinServer", user=postures.user, host=_host, sleep=1.0, priority=5,
 add_command("%s %s/ntaAudio.pd spinEdit.pd %s/Pittsburgh.pd" % (postures.pdstereo, postures.ntaPath, postures.ntaPath), env={"DISPLAY":":0.0"}, user=postures.user, host=_host, priority=50, title="NTA_Audio")
 
 # lastly:
-#add_command("panoViewer --hideCursor --framerate 30", env={"DISPLAY":":0.0"}, user=postures.user, host=_host, priority=100, title="panoViewer")
-add_command("panoViewer --framerate 30", env={"DISPLAY":":0.0"}, user=postures.user, host=_host, priority=100, title="panoViewer")
+add_command("panoViewer --hideCursor --framerate 30", env={"DISPLAY":":0.0"}, user=postures.user, host=_host, priority=100, title="panoViewer")
+#add_command("panoViewer --framerate 30", env={"DISPLAY":":0.0"}, user=postures.user, host=_host, priority=100, title="panoViewer")
 #add_command("spinViewer", env={"DISPLAY":":0.0"}, user=postures.user, host=_host, priority=100, title="spinViewer")
 
 
