@@ -11,8 +11,11 @@
 #include <osg/Timer>
 
 #include <spinFramework/ViewerManipulator.h>
+#include <spinFramework/spinApp.h>
+#include <spinFramework/spinClientContext.h>
 #include <spinFramework/spinUtil.h>
 #include <spinFramework/spinContext.h>
+#include <spinFramework/SceneManager.h>
 
 #include "panoViewer.h"
 
@@ -28,15 +31,15 @@ int main(int argc, char **argv)
 {
 	std::cout <<"\npanoViewer launching..." << std::endl;
 
-	spinContext &spin = spinContext::Instance();
+	spinClientContext spinListener;
+	spinApp &spin = spinApp::Instance();
 	//spin.setMode(spinContext::LISTENER_MODE);
 
 	std::string id = getHostname();
 
-	std::string rxHost = lo_address_get_hostname(spin.lo_rxAddr);
-	std::string rxPort = lo_address_get_port(spin.lo_rxAddr);
-	std::string syncPort = lo_address_get_port(spin.lo_rxAddr);
-
+	std::string rxHost = lo_address_get_hostname(spin.getContext()->lo_rxAddr);
+	std::string rxPort = lo_address_get_port(spin.getContext()->lo_rxAddr);
+	std::string syncPort = lo_address_get_port(spin.getContext()->lo_syncAddr);
 
 	// *************************************************************************
 
@@ -47,12 +50,9 @@ int main(int argc, char **argv)
 	arguments.getApplicationUsage()->setDescription(arguments.getApplicationName()+" is a panoscope viewer for the SPIN Framework.");
 	arguments.getApplicationUsage()->setCommandLineUsage(arguments.getApplicationName()+" [options]");
 	arguments.getApplicationUsage()->addCommandLineOption("-h or --help", "Display this information");
-
-	arguments.getApplicationUsage()->addCommandLineOption("-id <uniqueID>", "Specify an ID for this viewer (Default is hostname: '" + id + "')");
-
-	arguments.getApplicationUsage()->addCommandLineOption("-sceneID <uniqueID>", "Specify the scene ID to listen to (Default: '" + spin.id + "')");
+	arguments.getApplicationUsage()->addCommandLineOption("--user-id <uniqueID>", "Specify an ID for this viewer (Default is hostname: '" + id + "')");
+	arguments.getApplicationUsage()->addCommandLineOption("--scene-id <uniqueID>", "Specify the scene ID to listen to (Default: '" + spin.getSceneID() + "')");
 	arguments.getApplicationUsage()->addCommandLineOption("-serverAddr <host> <port>", "Set the receiving address for incoming OSC messages (Default: " + rxHost + " " + rxPort + ")");
-
 	arguments.getApplicationUsage()->addCommandLineOption("--hideCursor", "Hide the mouse cursor");
 	arguments.getApplicationUsage()->addCommandLineOption("--framerate <num>", "Set the maximum framerate (Default: not limited)");
 
@@ -68,12 +68,13 @@ int main(int argc, char **argv)
 	}
 
 	osg::ArgumentParser::Parameter param_id(id);
-	arguments.read("-id", param_id);
-	osg::ArgumentParser::Parameter param_spinID(spin.id);
-	arguments.read("-sceneID", param_spinID);
+	arguments.read("--user-id", param_id);
+    std::string sceneID = spin.getSceneID();
+	osg::ArgumentParser::Parameter param_spinID(sceneID);
+	arguments.read("--scene-id", param_spinID);
 
 	while (arguments.read("-serverAddr", rxHost, rxPort)) {
-		spin.lo_rxAddr = lo_address_new(rxHost.c_str(), rxPort.c_str());
+		spin.getContext()->lo_rxAddr = lo_address_new(rxHost.c_str(), rxPort.c_str());
 	}
 
 	bool hideCursor=false;
@@ -127,16 +128,13 @@ int main(int argc, char **argv)
 	// *************************************************************************
 	// start the listener thread:
 
-	if (!spin.start())
+	if (!spin.getContext()->start())
 	{
         std::cout << "ERROR: could not start SPIN listener thread" << std::endl;
         exit(1);
 	}
 	
 	spin.sceneManager->setGraphical(true);
-	
-	// register a user
-	spin.registerUser(id.c_str());
 	
 	// *************************************************************************
 	// create a camera manipulator
@@ -200,7 +198,7 @@ int main(int argc, char **argv)
 	while( !viewer.done() )
 	{
 		
-		if (spin.isRunning())
+		if (spin.getContext()->isRunning())
 		{
 	    	osg::Timer_t startFrameTick = osg::Timer::instance()->tick();
 
