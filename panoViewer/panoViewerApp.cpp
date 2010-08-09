@@ -14,14 +14,12 @@
 #include <spinFramework/spinApp.h>
 #include <spinFramework/spinClientContext.h>
 #include <spinFramework/spinUtil.h>
-#include <spinFramework/spinContext.h>
+#include <spinFramework/spinClientContext.h>
 #include <spinFramework/SceneManager.h>
 
 #include "panoViewer.h"
 
-using namespace std;
-
-extern pthread_mutex_t pthreadLock;
+extern pthread_mutex_t sceneMutex;
 
 
 // *****************************************************************************
@@ -33,10 +31,12 @@ int main(int argc, char **argv)
 
 	spinClientContext spinListener;
 	spinApp &spin = spinApp::Instance();
-	//spin.setMode(spinContext::LISTENER_MODE);
 
-	std::string id = getHostname();
+    bool hideCursor=false;
+    double maxFrameRate = 60;
 
+	std::string userID;
+    std::string sceneID = spin.getSceneID();
 	std::string rxHost = lo_address_get_hostname(spin.getContext()->lo_rxAddr);
 	std::string rxPort = lo_address_get_port(spin.getContext()->lo_rxAddr);
 	std::string syncPort = lo_address_get_port(spin.getContext()->lo_syncAddr);
@@ -50,10 +50,10 @@ int main(int argc, char **argv)
 	arguments.getApplicationUsage()->setDescription(arguments.getApplicationName()+" is a panoscope viewer for the SPIN Framework.");
 	arguments.getApplicationUsage()->setCommandLineUsage(arguments.getApplicationName()+" [options]");
 	arguments.getApplicationUsage()->addCommandLineOption("-h or --help", "Display this information");
-	arguments.getApplicationUsage()->addCommandLineOption("--user-id <uniqueID>", "Specify an ID for this viewer (Default is hostname: '" + id + "')");
+	arguments.getApplicationUsage()->addCommandLineOption("--user-id <uniqueID>", "Specify an ID for this viewer (Default is the localhost name)");
 	arguments.getApplicationUsage()->addCommandLineOption("--scene-id <uniqueID>", "Specify the scene ID to listen to (Default: '" + spin.getSceneID() + "')");
-	arguments.getApplicationUsage()->addCommandLineOption("-serverAddr <host> <port>", "Set the receiving address for incoming OSC messages (Default: " + rxHost + " " + rxPort + ")");
-	arguments.getApplicationUsage()->addCommandLineOption("--hideCursor", "Hide the mouse cursor");
+	arguments.getApplicationUsage()->addCommandLineOption("--server-addr <host> <port>", "Set the receiving address for incoming OSC messages (Default: " + rxHost + " " + rxPort + ")");
+	arguments.getApplicationUsage()->addCommandLineOption("--hide-cursor", "Hide the mouse cursor");
 	arguments.getApplicationUsage()->addCommandLineOption("--framerate <num>", "Set the maximum framerate (Default: not limited)");
 
 
@@ -67,20 +67,24 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
-	osg::ArgumentParser::Parameter param_id(id);
-	arguments.read("--user-id", param_id);
-    std::string sceneID = spin.getSceneID();
-	osg::ArgumentParser::Parameter param_spinID(sceneID);
-	arguments.read("--scene-id", param_spinID);
+    osg::ArgumentParser::Parameter param_userID(userID);
+    arguments.read("--user-id", param_userID);
+    if (not userID.empty())
+        spin.setUserID(userID);
 
-	while (arguments.read("-serverAddr", rxHost, rxPort)) {
-		spin.getContext()->lo_rxAddr = lo_address_new(rxHost.c_str(), rxPort.c_str());
-	}
+    osg::ArgumentParser::Parameter param_spinID(sceneID);
+    arguments.read("--scene-id", param_spinID);
+    spin.setSceneID(sceneID);
 
-	bool hideCursor=false;
-    while (arguments.read("--hideCursor")) hideCursor=true;
-	double maxFrameRate = -1;
+	while (arguments.read("--server-addr", rxHost, rxPort)) {
+        spinListener.lo_rxAddr = lo_address_new(rxHost.c_str(), rxPort.c_str());
+    }
+
+    while (arguments.read("--hide-cursor")) hideCursor=true;
 	while (arguments.read("--framerate",maxFrameRate)) {}
+
+
+	// *************************************************************************
 
 	// For testing purposes, we allow loading a scene with a commandline arg:
 	osg::ref_ptr<osg::Node> argScene = osgDB::readNodeFiles(arguments);
@@ -136,13 +140,6 @@ int main(int argc, char **argv)
 	
 	spin.sceneManager->setGraphical(true);
 	
-	// *************************************************************************
-	// create a camera manipulator
-
-	osg::ref_ptr<ViewerManipulator> manipulator = new ViewerManipulator();
-	manipulator->setPicker(false);
-	manipulator->setMover(true);
-	viewer.setCameraManipulator(manipulator.get());
 	
 
 	// *************************************************************************
@@ -156,7 +153,7 @@ int main(int argc, char **argv)
 
 
 	// *************************************************************************
-	// start threads:
+	// set up viewer:
 
 	viewer.setSceneData(spin.sceneManager->rootNode.get());
 	viewer.setupViewForPanoscope();
@@ -166,49 +163,48 @@ int main(int argc, char **argv)
 
 	
 	
-	
-	
 	osgViewer::ViewerBase::Windows windows;
     osgViewer::ViewerBase::Windows::iterator wIter;
     viewer.getWindows(windows);
     for (wIter=windows.begin(); wIter!=windows.end(); wIter++)
     {
-    	(*wIter)->setWindowName("panoViewer");
+        (*wIter)->setWindowName("panoviewer " + spin.getUserID() + "@" + spin.getSceneID());
 		if (hideCursor) (*wIter)->useCursor(false);
     }
 
+
+	// *************************************************************************
+	// create a camera manipulator
+
+	osg::ref_ptr<ViewerManipulator> manipulator = new ViewerManipulator();
+	manipulator->setPicker(false);
+	manipulator->setMover(true);
+	viewer.setCameraManipulator(manipulator.get());
+
+
 	
-	
-	
-	
-	
-	
-	
-	
+    // *************************************************************************
+    // start threads:
 	viewer.realize();
 	
 	// ask for refresh:
 	spin.SceneMessage("s", "refresh", LO_ARGS_END);
 
+
 	
 	double minFrameTime = 1.0 / maxFrameRate;
-
 	
 	// program loop:
 	while( !viewer.done() )
 	{
 		
-		if (spin.getContext()->isRunning())
+		if (spinListener.isRunning())
 		{
 	    	osg::Timer_t startFrameTick = osg::Timer::instance()->tick();
 
-	    	pthread_mutex_lock(&pthreadLock);
-	    	spin.sceneManager->update();
-	    	pthread_mutex_unlock(&pthreadLock);
-
-	    	pthread_mutex_lock(&pthreadLock);
+	    	pthread_mutex_lock(&sceneMutex);
 	    	viewer.frame();
-	    	pthread_mutex_unlock(&pthreadLock);
+	    	pthread_mutex_unlock(&sceneMutex);
 
 			if (maxFrameRate>0)
 			{
@@ -217,8 +213,6 @@ int main(int argc, char **argv)
 				double frameTime = osg::Timer::instance()->delta_s(startFrameTick, endFrameTick);
 				if (frameTime < minFrameTime) OpenThreads::Thread::microSleep(static_cast<unsigned int>(1000000.0*(minFrameTime-frameTime)));
 			}
-
-
 			
 		} else {
 			if (manipulator.valid())
@@ -229,6 +223,8 @@ int main(int argc, char **argv)
 			viewer.setDone(true);
 		}
 	}
+
+    spinListener.stop();
 	
 	std::cout << "panoViewer done." << std::endl;
 	
