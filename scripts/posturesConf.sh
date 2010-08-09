@@ -3,7 +3,7 @@
 
 echo "Loaded Postures configuration"
 
-NTA=~/src/nta
+NTA=~/content/nta
 POSTURES=~/src/postures/trunk
 SPINWIDGETS=~/src/spinwidgets
 PDSHEEFA=~/src/pdsheefa

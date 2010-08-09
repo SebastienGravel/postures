@@ -14,6 +14,7 @@ path3: /home/posture/src/audioscape/patches
 path4: /home/posture/src/audioscape/patches/plugins
 path5: /home/posture/pd-externals/pdworks
 path6: /home/posture/pd-externals/pdworks/plugins
+path7: /home/posture/content/nta/abstractions
 npath: 8
 standardpath: 1
 verbose: 0
