@@ -37,8 +37,8 @@ int main(int argc, char **argv)
 
 	std::string userID;
     std::string sceneID = spin.getSceneID();
-	std::string rxHost = lo_address_get_hostname(spin.getContext()->lo_rxAddr);
-	std::string rxPort = lo_address_get_port(spin.getContext()->lo_rxAddr);
+	std::string rxHost = lo_address_get_hostname(spin.getContext()->lo_rxAddrs_[0]);
+	std::string rxPort = lo_address_get_port(spin.getContext()->lo_rxAddrs_[0]);
 	std::string syncPort = lo_address_get_port(spin.getContext()->lo_syncAddr);
 
 	// *************************************************************************
@@ -77,7 +77,7 @@ int main(int argc, char **argv)
     spin.setSceneID(sceneID);
 
 	while (arguments.read("--server-addr", rxHost, rxPort)) {
-        spinListener.lo_rxAddr = lo_address_new(rxHost.c_str(), rxPort.c_str());
+        spinListener.lo_rxAddrs_[0] = lo_address_new(rxHost.c_str(), rxPort.c_str());
     }
 
     while (arguments.read("--hide-cursor")) hideCursor=true;
@@ -191,7 +191,8 @@ int main(int argc, char **argv)
 	spin.SceneMessage("s", "refresh", LO_ARGS_END);
 
 
-	
+	osg::Timer_t lastFrameTick = osg::Timer::instance()->tick();
+
 	double minFrameTime = 1.0 / maxFrameRate;
 	
 	// program loop:
@@ -200,19 +201,30 @@ int main(int argc, char **argv)
 		
 		if (spinListener.isRunning())
 		{
-	    	osg::Timer_t startFrameTick = osg::Timer::instance()->tick();
 
-	    	pthread_mutex_lock(&sceneMutex);
-	    	viewer.frame();
-	    	pthread_mutex_unlock(&sceneMutex);
+			int recv = spinListener.pollUpdates();
+			
+			double dt = osg::Timer::instance()->delta_s(lastFrameTick, osg::Timer::instance()->tick());
 
-			if (maxFrameRate>0)
+			if (dt > minFrameTime)
 			{
-				// work out if we need to force a sleep to hold back the frame rate
-				osg::Timer_t endFrameTick = osg::Timer::instance()->tick();
-				double frameTime = osg::Timer::instance()->delta_s(startFrameTick, endFrameTick);
-				if (frameTime < minFrameTime) OpenThreads::Thread::microSleep(static_cast<unsigned int>(1000000.0*(minFrameTime-frameTime)));
+				pthread_mutex_lock(&sceneMutex);
+				viewer.frame();
+				pthread_mutex_unlock(&sceneMutex);
+
+				// save time when the last time a frame was rendered:
+				lastFrameTick = osg::Timer::instance()->tick();
+				dt = 0;
 			}
+
+			unsigned int sleepTime;
+
+			if (!recv) sleepTime = static_cast<unsigned int>(1000000.0*(minFrameTime-dt));
+			else sleepTime = 0;
+			if (sleepTime > 100) sleepTime = 100;
+
+			if (!recv) OpenThreads::Thread::microSleep(sleepTime);
+
 			
 		} else {
 			if (manipulator.valid())
