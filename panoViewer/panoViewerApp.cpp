@@ -202,8 +202,14 @@ int main(int argc, char **argv)
 		if (spinListener.isRunning())
 		{
 
-			int recv = spinListener.pollUpdates();
 			
+            pthread_mutex_lock(&sceneMutex);
+			viewer.frame();
+			pthread_mutex_unlock(&sceneMutex);
+		    
+			OpenThreads::Thread::microSleep(5);
+            	
+            /*
 			double dt = osg::Timer::instance()->delta_s(lastFrameTick, osg::Timer::instance()->tick());
 
 			if (dt > minFrameTime)
@@ -219,13 +225,12 @@ int main(int argc, char **argv)
 
 			unsigned int sleepTime;
 
-			if (!recv) sleepTime = static_cast<unsigned int>(1000000.0*(minFrameTime-dt));
-			else sleepTime = 0;
+			sleepTime = static_cast<unsigned int>(1000000.0*(minFrameTime-dt));
 			if (sleepTime > 100) sleepTime = 100;
 
+            // only sleep if there weren't any messages 
 			if (!recv) OpenThreads::Thread::microSleep(sleepTime);
-
-			
+			*/
 		} else {
 			if (manipulator.valid())
 			{
