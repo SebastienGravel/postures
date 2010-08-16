@@ -10,19 +10,19 @@ _host = "localhost"
 #_host = "posture04"
 
 # prep:
-add_command("killall pd", user=postures.user, host=_host, priority=1, respawn=False)
-add_command("jack.plumbing", user=postures.user, host=_host, priority=1, title="jack.plumbing")
-add_command("devilspie", user=postures.user, host=_host, priority=1, title="devilspie")
+add_command("killall pd", user=postures.user, host=_host, respawn=False)
+#add_command("jack.plumbing", user=postures.user, host=_host, identifier="jack.plumbing")
+#add_command("devilspie", user=postures.user, host=_host, identifier="devilspie")
 
 # server:
-add_command("spinServer", user=postures.user, host=_host, sleep=1.0, priority=5, title="spinServer") 
+add_command("spinserver", env={"LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib"}, user=postures.user, host=_host, sleep_after=1.0, identifier="spinServer") 
 
 # clients:
-add_command("%s %s/ntaAudio.pd spinEdit.pd %s/poland/poland.pd" % (postures.pdstereo, postures.ntaPath, postures.ntaPath), env={"DISPLAY":":0.0"}, user=postures.user, host=_host, priority=50, sleep=1.0, title="NTA_Audio")
+add_command("%s %s/ntaAudio.pd spinEdit.pd %s/poland/poland.pd" % (postures.pdstereo, postures.ntaPath, postures.ntaPath), env={"DISPLAY":":0.0"}, user=postures.user, host=_host, sleep_after=1.0, identifier="NTA_Audio")
 
 # lastly:
-add_command("panoViewer --hideCursor --framerate 30", env={"DISPLAY":":0.0"}, user=postures.user, host=_host, priority=100, title="panoViewer")
-#add_command("panoViewer --framerate 30", env={"DISPLAY":":0.0"}, user=postures.user, host=_host, priority=100, title="panoViewer")
-#add_command("spinViewer", env={"DISPLAY":":0.0"}, user=postures.user, host=_host, priority=100, title="spinViewer")
+add_command("panoViewer --hide-cursor --framerate 30", env={"DISPLAY":":0.0", "LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib"}, user=postures.user, host=_host, identifier="panoViewer")
+#add_command("panoViewer --framerate 30", env={"DISPLAY":":0.0"}, user=postures.user, host=_host, identifier="panoViewer")
+#add_command("spinViewer", env={"DISPLAY":":0.0"}, user=postures.user, host=_host, identifier="spinViewer")
 
 
