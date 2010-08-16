@@ -27,7 +27,7 @@ extern pthread_mutex_t sceneMutex;
 // *****************************************************************************
 int main(int argc, char **argv)
 {
-	std::cout <<"\npanoViewer launching..." << std::endl;
+	std::cout << std::endl <<"panoViewer launching..." << std::endl;
 
 	spinClientContext spinListener;
 	spinApp &spin = spinApp::Instance();
@@ -52,7 +52,7 @@ int main(int argc, char **argv)
 	arguments.getApplicationUsage()->addCommandLineOption("-h or --help", "Display this information");
 	arguments.getApplicationUsage()->addCommandLineOption("--user-id <uniqueID>", "Specify an ID for this viewer (Default is the localhost name)");
 	arguments.getApplicationUsage()->addCommandLineOption("--scene-id <uniqueID>", "Specify the scene ID to listen to (Default: '" + spin.getSceneID() + "')");
-	arguments.getApplicationUsage()->addCommandLineOption("--server-addr <host> <port>", "Set the receiving address for incoming OSC messages (Default: " + rxHost + " " + rxPort + ")");
+	arguments.getApplicationUsage()->addCommandLineOption("--server-addr <host> <port>", "Set the receiving address for incoming OSC messages (Default: <local host name> " + rxPort + ")");
 	arguments.getApplicationUsage()->addCommandLineOption("--hide-cursor", "Hide the mouse cursor");
 	arguments.getApplicationUsage()->addCommandLineOption("--framerate <num>", "Set the maximum framerate (Default: not limited)");
 
@@ -79,6 +79,10 @@ int main(int argc, char **argv)
 	while (arguments.read("--server-addr", rxHost, rxPort)) {
         spinListener.lo_rxAddrs_[0] = lo_address_new(rxHost.c_str(), rxPort.c_str());
     }
+    // FIXME:2010-08-16:aalex:Is using the --sync-port option like that ok?
+	//while (arguments.read("--sync-port", syncPort)) {
+	//	spinListener.lo_syncAddr = lo_address_new(rxHost.c_str(), syncPort.c_str());
+	//}
 
     while (arguments.read("--hide-cursor")) hideCursor=true;
 	while (arguments.read("--framerate",maxFrameRate)) {}
