@@ -1,0 +1,10 @@
+(if
+    (or
+        (is (application_name) "Pd")
+        (contains (window_name) ".pd")
+    )
+    (begin
+        (set_workspace 2)
+        (minimize)
+    )
+)
