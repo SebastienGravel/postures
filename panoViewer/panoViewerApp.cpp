@@ -162,8 +162,9 @@ int main(int argc, char **argv)
 	viewer.setSceneData(spin.sceneManager->rootNode.get());
 	viewer.setupViewForPanoscope();
     viewer.setNearFar(0.01,10000);
+    //viewer.setNearFar(0.01,500);
 
-    viewer.setClearColor(osg::Vec4(0.0,0.0,0.0,0.0));
+    viewer.setClearColor(osg::Vec4(0.0,0.0,0.2,0.0));
 
 	
 	
@@ -211,7 +212,7 @@ int main(int argc, char **argv)
 			viewer.frame();
 			pthread_mutex_unlock(&sceneMutex);
 		    
-			OpenThreads::Thread::microSleep(5);
+			OpenThreads::Thread::microSleep(1);
             	
             /*
 			double dt = osg::Timer::instance()->delta_s(lastFrameTick, osg::Timer::instance()->tick());

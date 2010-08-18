@@ -12,13 +12,13 @@ _host = "localhost"
 # prep:
 add_command("killall pd", user=postures.user, host=_host, respawn=False)
 #add_command("jack.plumbing", user=postures.user, host=_host, identifier="jack.plumbing")
-#add_command("devilspie", user=postures.user, host=_host, identifier="devilspie")
+add_command("devilspie", user=postures.user, host=_host, identifier="devilspie")
 
 # server:
 add_command("spinserver", env={"LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib"}, user=postures.user, host=_host, sleep_after=1.0, identifier="spinServer") 
 
 # clients:
-add_command("%s %s/ntaAudio.pd spinEdit.pd %s/poland/poland.pd" % (postures.pdstereo, postures.ntaPath, postures.ntaPath), env={"DISPLAY":":0.0"}, user=postures.user, host=_host, sleep_after=1.0, identifier="NTA_Audio")
+add_command("%s -audiobuf 100 %s/ntaAudio.pd %s/poland/poland.pd" % (postures.pdstereo, postures.ntaPath, postures.ntaPath), env={"DISPLAY":":0.0"}, user=postures.user, host=_host, sleep_after=4.0, identifier="NTA_Audio")
 
 # lastly:
 add_command("panoViewer --hide-cursor --framerate 30", env={"DISPLAY":":0.0", "LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib"}, user=postures.user, host=_host, identifier="panoViewer")
