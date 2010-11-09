@@ -173,7 +173,7 @@ int main(int argc, char **argv)
 
 	viewer.setSceneData(spin.sceneManager->rootNode.get());
 	viewer.setupViewForPanoscope();
-    //viewer.setNearFar(0.01,1000);
+    viewer.setNearFar(0.01,1000);
 
     //viewer.setClearColor(osg::Vec4(1.0,1.0,1.0,0.0));
     //viewer.setClearColor(osg::Vec4(0.0,0.0,0.0,0.0));
