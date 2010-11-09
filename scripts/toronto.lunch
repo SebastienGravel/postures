@@ -1,0 +1,27 @@
+#!/usr/bin/env python
+# lunch config file for the custom project postures/NTA
+# -------------------------------------------------------------------
+
+import os
+execfile(os.path.expanduser("~/src/postures/trunk/scripts/postureVars.py"))
+
+
+_host = "localhost"
+#_host = "posture04"
+
+# prep:
+add_command("killall pd", user=postures.user, host=_host, respawn=False)
+#add_command("jack.plumbing", user=postures.user, host=_host, identifier="jack.plumbing")
+#add_command("devilspie", user=postures.user, host=_host, identifier="devilspie")
+
+# server:
+add_command("spinserver --scene-id toronto", env={"LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib"}, user=postures.user, host=_host, sleep_after=1.0, identifier="spinServer") 
+
+# clients:
+add_command("%s -send \"GLOBAL_SPINWIDGETS_CONFIG sceneID toronto\" %s/ntaAudio.pd spinEdit.pd %s/toronto/toronto.pd" % (postures.pdstereo, postures.ntaPath, postures.ntaPath), env={"DISPLAY":":0.0"}, user=postures.user, host=_host, sleep_after=1.0, identifier="Pd")
+
+# lastly:
+#add_command("panoViewer --scene-id toronto --hide-cursor --framerate 30", env={"DISPLAY":":0.0", "LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib"}, user=postures.user, host=_host, identifier="panoViewer")
+add_command("panoViewer --scene-id toronto --framerate 30", env={"DISPLAY":":0.0", "LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib"}, user=postures.user, host=_host, identifier="panoViewer")
+
+
