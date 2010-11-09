@@ -10,6 +10,10 @@
 #include <osgDB/ReadFile>
 #include <osg/Timer>
 
+#include <osg/Fog>
+#include <osgParticle/PrecipitationEffect>
+
+
 #include <spinFramework/ViewerManipulator.h>
 #include <spinFramework/spinApp.h>
 #include <spinFramework/spinClientContext.h>
@@ -40,6 +44,9 @@ int main(int argc, char **argv)
 	std::string rxHost = lo_address_get_hostname(spin.getContext()->lo_rxAddrs_[0]);
 	std::string rxPort = lo_address_get_port(spin.getContext()->lo_rxAddrs_[0]);
 	std::string syncPort = lo_address_get_port(spin.getContext()->lo_syncAddr);
+
+    bool fog = false;
+    bool snow = false;
 
 	// *************************************************************************
 
@@ -87,6 +94,8 @@ int main(int argc, char **argv)
     while (arguments.read("--hide-cursor")) hideCursor=true;
 	while (arguments.read("--framerate",maxFrameRate)) {}
 
+    while (arguments.read("--fog")) fog=true;
+    while (arguments.read("--snow")) snow=true;
 
 	// *************************************************************************
 
@@ -101,7 +110,10 @@ int main(int argc, char **argv)
 	osgPano::panoViewer viewer = osgPano::panoViewer(arguments);
 	//osgViewer::Viewer viewer = osgViewer::Viewer(arguments);
 
-	viewer.setThreadingModel(osgViewer::Viewer::SingleThreaded);
+	//viewer.setThreadingModel(osgViewer::Viewer::SingleThreaded);
+	viewer.setThreadingModel(osgViewer::Viewer::CullDrawThreadPerContext);
+	//viewer.setThreadingModel(osgViewer::Viewer::CullThreadPerCameraDrawThreadPerContext);
+
 
 	viewer.addEventHandler(new osgViewer::StatsHandler);
 	viewer.addEventHandler(new osgViewer::ThreadingHandler);
@@ -161,10 +173,11 @@ int main(int argc, char **argv)
 
 	viewer.setSceneData(spin.sceneManager->rootNode.get());
 	viewer.setupViewForPanoscope();
-    viewer.setNearFar(0.01,10000);
-    //viewer.setNearFar(0.01,500);
+    //viewer.setNearFar(0.01,1000);
 
-    viewer.setClearColor(osg::Vec4(0.0,0.0,0.2,0.0));
+    //viewer.setClearColor(osg::Vec4(1.0,1.0,1.0,0.0));
+    //viewer.setClearColor(osg::Vec4(0.0,0.0,0.0,0.0));
+    viewer.setClearColor(osg::Vec4(0.8,0.8,0.8,0.0));
 
 	
 	
@@ -177,6 +190,59 @@ int main(int argc, char **argv)
 		if (hideCursor) (*wIter)->useCursor(false);
     }
 
+
+    // *************************************************************************
+    // SNOW & FOG
+
+    if (snow)
+    {
+        osg::ref_ptr<osgParticle::PrecipitationEffect> precipitationEffect = new osgParticle::PrecipitationEffect;
+
+	    // initializes a bunch of parameters
+        precipitationEffect->setParticleSize(0.02);
+
+	    // override some specific params:
+	
+        precipitationEffect->setMaximumParticleDensity(1000);
+        precipitationEffect->setParticleColor(osg::Vec4(1.0,1.0,1.0,1.0));
+	    //precipitationEffect->setWind(osg::Vec3(-0.5,0.0,0.0));
+
+        precipitationEffect->setParticleSpeed(0.25);
+
+	    // near/far clipping
+	    //precipitationEffect->setNearTransition(0);
+        precipitationEffect->setFarTransition(10);
+	
+        precipitationEffect->getFog()->setDensity(0.005);
+        //precipitationEffect->getFog()->setColor(osg::Vec4(0.3,0.3,0.325,0.5));
+        //precipitationEffect->getFog()->setColor(osg::Vec4(1.0,1.0,1.0,0.0));
+        precipitationEffect->getFog()->setColor(osg::Vec4(0.8,0.8,0.8,0.0));
+
+	    // volume (world coords); particle system repeats in tiled volumetric cells
+        //precipitationEffect->setCellSize(osg::Vec3(5,5,5));
+
+	
+        spin.sceneManager->rootNode->addChild(precipitationEffect.get());
+        spin.sceneManager->rootNode->getOrCreateStateSet()->setAttributeAndModes(precipitationEffect->getFog());
+    }
+
+	if (fog)
+	{
+  	    float fog_density = 0.005;
+        //osg::Vec4d fog_colour = osg::Vec4(0.5, 0.5, 0.5, 0.0);
+        osg::Vec4d fog_colour = osg::Vec4(1.0,1.0,1.0,0.0);
+	
+        osg::Fog* fog = new osg::Fog();
+        fog->setMode(osg::Fog::EXP);
+        fog->setColor(fog_colour);
+	    fog->setStart(-100.f);
+        fog->setDensity(fog_density);
+
+	    osg::StateSet *worldStateSet = spin.sceneManager->worldNode->getOrCreateStateSet();
+	    worldStateSet->setMode(GL_FOG, osg::StateAttribute::ON);
+        worldStateSet->setAttribute(fog,osg::StateAttribute::ON);
+	}
+	
 
 	// *************************************************************************
 	// create a camera manipulator
@@ -207,12 +273,22 @@ int main(int argc, char **argv)
 		if (spinListener.isRunning())
 		{
 
-			
+			/*
             pthread_mutex_lock(&sceneMutex);
 			viewer.frame();
 			pthread_mutex_unlock(&sceneMutex);
-		    
-			OpenThreads::Thread::microSleep(1);
+	        */
+
+
+			viewer.advance();
+			viewer.eventTraversal();
+			pthread_mutex_lock(&sceneMutex);
+			viewer.updateTraversal();
+			viewer.renderingTraversals();
+			pthread_mutex_unlock(&sceneMutex);
+
+	    
+			//OpenThreads::Thread::microSleep(5);
             	
             /*
 			double dt = osg::Timer::instance()->delta_s(lastFrameTick, osg::Timer::instance()->tick());
