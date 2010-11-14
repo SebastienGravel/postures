@@ -25,7 +25,7 @@ namespace osgPano {
     public:
         panoViewer();
         panoViewer(osg::ArgumentParser& arguments);
-        void setupViewForPanoscope();
+        void setupViewForPanoscope(unsigned int screenNum);
         
         /** Set the near and far clipping plane, disables the automatic update of the clipping planes */
         void setNearFar(float near, float far);

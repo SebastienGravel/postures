@@ -199,11 +199,11 @@ static osg::Geometry* create3DSphericalDisplayDistortionMesh(const osg::Vec3& or
  *
  */
 
-void panoViewer::setupViewForPanoscope()
+void panoViewer::setupViewForPanoscope(unsigned int screenNum)
 {
     double radius = 1.8;
     double collar = -0.4;
-    unsigned int screenNum = 0;
+    //unsigned int screenNum = 0;
     osg::Image * intensityMap = NULL;
     
     osg::notify(osg::INFO)<<"View::setUpViewFor3DSphericalDisplay(rad="<<radius<<", cllr="<<collar<<", sn="<<screenNum<<", im="<<intensityMap<<")"<<std::endl;
@@ -217,7 +217,9 @@ void panoViewer::setupViewForPanoscope()
 
     osg::GraphicsContext::ScreenIdentifier si;
     si.readDISPLAY();
+   
     
+ 
     // displayNum has not been set so reset it to 0.
     if (si.displayNum<0) si.displayNum = 0;
 

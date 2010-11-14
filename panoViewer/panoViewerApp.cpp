@@ -38,6 +38,7 @@ int main(int argc, char **argv)
 
     bool hideCursor=false;
     double maxFrameRate = 60;
+    unsigned int screenNum = 0;
 
 	std::string userID;
     std::string sceneID = spin.getSceneID();
@@ -93,7 +94,8 @@ int main(int argc, char **argv)
 
     while (arguments.read("--hide-cursor")) hideCursor=true;
 	while (arguments.read("--framerate",maxFrameRate)) {}
-
+	while (arguments.read("--screen",screenNum)) {}
+    
     while (arguments.read("--fog")) fog=true;
     while (arguments.read("--snow")) snow=true;
 
@@ -172,7 +174,7 @@ int main(int argc, char **argv)
 	// set up viewer:
 
 	viewer.setSceneData(spin.sceneManager->rootNode.get());
-	viewer.setupViewForPanoscope();
+	viewer.setupViewForPanoscope(screenNum);
     viewer.setNearFar(0.01,1000);
 
     //viewer.setClearColor(osg::Vec4(1.0,1.0,1.0,0.0));
