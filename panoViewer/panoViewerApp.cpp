@@ -113,8 +113,8 @@ int main(int argc, char **argv)
 	//osgViewer::Viewer viewer = osgViewer::Viewer(arguments);
 
 	//viewer.setThreadingModel(osgViewer::Viewer::SingleThreaded);
-	viewer.setThreadingModel(osgViewer::Viewer::CullDrawThreadPerContext);
-	//viewer.setThreadingModel(osgViewer::Viewer::CullThreadPerCameraDrawThreadPerContext);
+	//viewer.setThreadingModel(osgViewer::Viewer::CullDrawThreadPerContext);
+	viewer.setThreadingModel(osgViewer::Viewer::CullThreadPerCameraDrawThreadPerContext);
 
 
 	viewer.addEventHandler(new osgViewer::StatsHandler);
@@ -175,11 +175,11 @@ int main(int argc, char **argv)
 
 	viewer.setSceneData(spin.sceneManager->rootNode.get());
 	viewer.setupViewForPanoscope(screenNum);
-    viewer.setNearFar(0.01,1000);
+    viewer.setNearFar(0.001,1000);
 
     //viewer.setClearColor(osg::Vec4(1.0,1.0,1.0,0.0));
-    //viewer.setClearColor(osg::Vec4(0.0,0.0,0.0,0.0));
-    viewer.setClearColor(osg::Vec4(0.8,0.8,0.8,0.0));
+    viewer.setClearColor(osg::Vec4(0.0,0.0,0.0,0.0));
+    //viewer.setClearColor(osg::Vec4(0.8,0.8,0.8,0.0));
 
 	
 	
@@ -274,13 +274,11 @@ int main(int argc, char **argv)
 		
 		if (spinListener.isRunning())
 		{
-
-			/*
+/*
             pthread_mutex_lock(&sceneMutex);
 			viewer.frame();
 			pthread_mutex_unlock(&sceneMutex);
-	        */
-
+*/
 
 			viewer.advance();
 			viewer.eventTraversal();
