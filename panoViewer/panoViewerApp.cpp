@@ -280,24 +280,27 @@ int main(int argc, char **argv)
 			pthread_mutex_unlock(&sceneMutex);
 */
 
-			viewer.advance();
-			viewer.eventTraversal();
-			pthread_mutex_lock(&sceneMutex);
-			viewer.updateTraversal();
-			viewer.renderingTraversals();
-			pthread_mutex_unlock(&sceneMutex);
 
 	    
 			//OpenThreads::Thread::microSleep(5);
             	
-            /*
+            
 			double dt = osg::Timer::instance()->delta_s(lastFrameTick, osg::Timer::instance()->tick());
 
 			if (dt > minFrameTime)
 			{
+                /*
 				pthread_mutex_lock(&sceneMutex);
 				viewer.frame();
 				pthread_mutex_unlock(&sceneMutex);
+			    */
+
+                viewer.advance();
+			    viewer.eventTraversal();
+			    pthread_mutex_lock(&sceneMutex);
+			    viewer.updateTraversal();
+			    viewer.renderingTraversals();
+			    pthread_mutex_unlock(&sceneMutex);
 
 				// save time when the last time a frame was rendered:
 				lastFrameTick = osg::Timer::instance()->tick();
@@ -306,12 +309,14 @@ int main(int argc, char **argv)
 
 			unsigned int sleepTime;
 
-			sleepTime = static_cast<unsigned int>(1000000.0*(minFrameTime-dt));
-			if (sleepTime > 100) sleepTime = 100;
+			if (!recv) sleepTime = static_cast<unsigned int>(1000000.0*(minFrameTime-dt));
+			else sleepTime = 0;
+            if (sleepTime > 100) sleepTime = 100;
 
             // only sleep if there weren't any messages 
 			if (!recv) OpenThreads::Thread::microSleep(sleepTime);
-			*/
+			
+
 		} else {
 			if (manipulator.valid())
 			{

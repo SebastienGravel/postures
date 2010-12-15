@@ -15,13 +15,13 @@ add_command("killall pd", user=postures.user, host=_host, respawn=False)
 #add_command("devilspie", user=postures.user, host=_host, identifier="devilspie")
 
 # server:
-add_command("spinserver --scene-id toronto", env={"LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib"}, user=postures.user, host=_host, sleep_after=1.0, identifier="spinServer") 
+add_command("spinserver", env={"LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib", "OSG_NOTIFY_LEVEL":"FATAL"}, user=postures.user, host=_host, sleep_after=1.0, identifier="spinServer") 
 
 # clients:
-add_command("%s -send \"GLOBAL_SPINWIDGETS_CONFIG sceneID toronto\" %s/ntaAudio.pd spinEdit.pd %s/toronto/toronto.pd" % (postures.pdstereo, postures.ntaPath, postures.ntaPath), env={"DISPLAY":":0.0"}, user=postures.user, host=_host, sleep_after=1.0, identifier="Pd")
+add_command("%s spinEdit.pd %s/toronto/toronto.pd" % (postures.pdstereo, postures.ntaPath), env={"DISPLAY":":0.0"}, user=postures.user, host=_host, sleep_after=1.0, identifier="Pd")
 
 # lastly:
 #add_command("panoViewer --scene-id toronto --hide-cursor --framerate 30", env={"DISPLAY":":0.0", "LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib"}, user=postures.user, host=_host, identifier="panoViewer")
-add_command("panoViewer --scene-id toronto --framerate 30 --screen 0", env={"DISPLAY":":0.0", "LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib"}, user=postures.user, host=_host, identifier="panoViewer")
+add_command("panoViewer --framerate 30", env={"DISPLAY":":0.0", "LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib", "OSG_NOTIFY_LEVEL":"FATAL"}, user=postures.user, host=_host, identifier="panoViewer")
 
 
