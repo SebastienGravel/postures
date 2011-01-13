@@ -41,6 +41,7 @@ alias ntaClient='pd ${NTA}/ntaClient.pd &'
 export PATH=${PATH}:/usr/local/share/OpenSceneGraph/bin
 export OSG_FILE_PATH=~/src/OpenSceneGraph-Data
 export LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib:/usr/local/lib64/osgPlugins-2.9.8
+export OSG_NOTIFY_LEVEL=FATAL
 
 # this can be removed once the code is more stable:
 #export LD_LIBRARY_PATH=${SPIN}/src/osgWrappers
