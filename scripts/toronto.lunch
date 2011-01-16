@@ -18,7 +18,7 @@ add_command("devilspie", user=postures.user, host=_host, identifier="devilspie")
 add_command("spinserver", env={"LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib", "OSG_NOTIFY_LEVEL":"FATAL"}, user=postures.user, host=_host, sleep_after=1.0, identifier="spinServer") 
 
 # clients:
-add_command("%s -audiobuf 100 spinEdit.pd %s/toronto/toronto.pd" % (postures.pdstereo, postures.ntaPath), env={"DISPLAY":":0.0"}, user=postures.user, host=_host, sleep_after=1.0, identifier="Pd")
+add_command("%s -audiobuf 100 %s/toronto/toronto.pd" % (postures.pdstereo, postures.ntaPath), env={"DISPLAY":":0.0"}, user=postures.user, host=_host, sleep_after=1.0, identifier="Pd")
 
 # lastly:
 #add_command("panoViewer --scene-id toronto --hide-cursor --framerate 30", env={"DISPLAY":":0.0", "LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib"}, user=postures.user, host=_host, identifier="panoViewer")
