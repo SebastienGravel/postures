@@ -16,7 +16,7 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		22004A2410E16B0100CE51FB /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 220049A810E167C200CE51FB /* background.png */; };
+		22004A2410E16B0100CE51FB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 220049A810E167C200CE51FB /* Default.png */; };
 		22004A2810E16B0900CE51FB /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 220049A710E167C200CE51FB /* info.png */; };
 		22004A2910E16B0900CE51FB /* error.png in Resources */ = {isa = PBXBuildFile; fileRef = 220049B410E1686000CE51FB /* error.png */; };
 		22004A2A10E16B0900CE51FB /* settingsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 220049A910E167C200CE51FB /* settingsButton.png */; };
@@ -49,7 +49,7 @@
 		1D6058910D05DD3D006BFB54 /* PosturePad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PosturePad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		220049A710E167C200CE51FB /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
-		220049A810E167C200CE51FB /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		220049A810E167C200CE51FB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		220049A910E167C200CE51FB /* settingsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingsButton.png; sourceTree = "<group>"; };
 		220049AA10E167C200CE51FB /* calibrateButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calibrateButton.png; sourceTree = "<group>"; };
 		220049AB10E167C200CE51FB /* infoButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infoButton.png; sourceTree = "<group>"; };
@@ -140,7 +140,7 @@
 				1D3623250D0F684500981E51 /* NTARemoteAppDelegate.m */,
 				220049A710E167C200CE51FB /* info.png */,
 				220049B410E1686000CE51FB /* error.png */,
-				220049A810E167C200CE51FB /* background.png */,
+				220049A810E167C200CE51FB /* Default.png */,
 				22004AFD10E1829A00CE51FB /* Icon57.png */,
 				220049A910E167C200CE51FB /* settingsButton.png */,
 				220049AA10E167C200CE51FB /* calibrateButton.png */,
@@ -229,7 +229,7 @@
 				2899E5220DE3E06400AC0155 /* NTARemoteViewController.xib in Resources */,
 				2239C785100E6ACD00BA5DEC /* FlipView.xib in Resources */,
 				22C3A05510DC65B8002DA85E /* InfoView.xib in Resources */,
-				22004A2410E16B0100CE51FB /* background.png in Resources */,
+				22004A2410E16B0100CE51FB /* Default.png in Resources */,
 				22004A2810E16B0900CE51FB /* info.png in Resources */,
 				22004A2910E16B0900CE51FB /* error.png in Resources */,
 				22004A2A10E16B0900CE51FB /* settingsButton.png in Resources */,
@@ -265,6 +265,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -285,6 +286,7 @@
 					"-L/usr/local/lib",
 				);
 				PRODUCT_NAME = PosturePad;
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 			};
 			name = Debug;
@@ -342,7 +344,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -353,6 +356,7 @@
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = "PosturePad-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -362,7 +366,9 @@
 					"-L/usr/local/lib",
 				);
 				PRODUCT_NAME = PosturePad;
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
 			};
 			name = Distribution;
 		};
@@ -396,8 +402,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Mike Wozniewski";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Mike Wozniewski";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -417,8 +423,9 @@
 					"-L/usr/local/lib",
 				);
 				PRODUCT_NAME = PosturePad;
-				PROVISIONING_PROFILE = "3C8FDFFC-D4C6-46F5-9D0A-A63FE1EB5E42";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3C8FDFFC-D4C6-46F5-9D0A-A63FE1EB5E42";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
 			};
 			name = "Ad Hoc";
 		};

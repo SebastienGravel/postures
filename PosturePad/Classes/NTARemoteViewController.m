@@ -25,6 +25,9 @@
 	menuEnabled,
 	postureName,
 	currentSpeed,
+	pitch,
+	yaw,
+	motionMode,
 	motionManager;
 
 lo_address txAddr;
@@ -50,36 +53,37 @@ UIActionSheet *nodesListSheet, *setNorthSheet;
 	
 	
 	// SETUP MOTION MANAGER:
-	NSLog(@"deviceMotionAvailable? %d", motionManager.deviceMotionAvailable);
 	
 	motionManager = [[CMMotionManager alloc] init];
+	locationManager.delegate = self;
 	
-	//BOOL motionEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"motionEnabled"];
-	BOOL motionEnabled = YES;
-	NSLog(@"default motionEnabled: %d", motionEnabled);
-	[self setMotionEnabled:motionEnabled];
 	
-	//zeroAttitude = [[NSUserDefaults standardUserDefaults] objectForKey:@"zeroAttitude"];
+	if (motionManager.deviceMotionAvailable)
+	{
+		motionMode = MOTION_MANAGER;
+		NSLog(@"Using motion manager (with gyro) for orientation");
+		
+		[self setMotionEnabled:YES];	
+		
+		updateRate = 1.0/10.0; // 10Hz = 100ms
+		motionManager.deviceMotionUpdateInterval = updateRate;
+		
+		NSLog(@"motionManager rate: %f sec", motionManager.deviceMotionUpdateInterval);
+		
+		
+	}
+	else if ([CLLocationManager headingAvailable])
+	{
+		motionMode = LOCATION_MANAGER;
+		NSLog(@"Using location manager (compass only) for heading");
+		locationManager.headingFilter = 0.1;
+		[locationManager startUpdatingHeading];
+		updateRate = kDataPushFrequency;
+	}
+	else {
+		motionMode = DISABLED;
+	}
 	
-	//motionManager.deviceMotionUpdateInterval = 1.0/60.0; // 60Hz = 16.6667ms
-	//motionManager.deviceMotionUpdateInterval = 1.0/50.0; // 50Hz = 20ms
-	//motionManager.deviceMotionUpdateInterval = 1.0/40.0; // 40Hz = 25ms
-	//motionManager.deviceMotionUpdateInterval = 1.0/30.0; // 30Hz = 33.333ms
-	//motionManager.deviceMotionUpdateInterval = 1.0/15.0; // 15Hz = 66.67ms
-	motionManager.deviceMotionUpdateInterval = 1.0/10.0; // 10Hz = 100ms
-	//motionManager.deviceMotionUpdateInterval = 1.0/4.00; //  4Hz = 250ms
-	
-	/*
-	//NSLog(@"initial motionManager rate: %d hz", (int)motionManager.deviceMotionUpdateInterval);
-	//NSTimeInterval t = motionManager.deviceMotionUpdateInterval;
-	//NSLog(@"initial motionManager rate: %@", (int)t*60);
-	
-	int hz = [[NSUserDefaults standardUserDefaults] integerForKey:@"motionRate"];
-	NSLog(@"stored update rate: %d hz", hz);
-	if (hz > 0) [self setMotionRate:hz];
-	else [self setMotionRate:40];
-	*/
-	NSLog(@"motionManager rate: %f sec", motionManager.deviceMotionUpdateInterval);
 	
 }
 /*
@@ -97,22 +101,25 @@ UIActionSheet *nodesListSheet, *setNorthSheet;
 */
 
 
-- (void)viewWillAppear:(BOOL)animated {
-	
-		
-	screenMode = [defaults boolForKey:@"ScreenMode"];
+- (void)viewWillAppear:(BOOL)animated
+{			
 	NSLog(@"viewWillAppear");
 	self.dontConnect = 0;
 	NSLog(@"connected = %d", self.connected);
 	
-	if(!screenMode && locationManager.headingAvailable) {
+	/*
+	if(locationManager.headingAvailable) {
 		NSLog(@"compass is available");
 		locationManager.delegate = self;
 		locationManager.headingFilter = 0.1;
 		[locationManager startUpdatingHeading];
 	}
+	*/
 	
-	if(self.connected == 0)
+		
+	
+	
+	if (self.connected == 0)
 		[self getSockets];
 	else
 		[self sendData];
@@ -120,41 +127,43 @@ UIActionSheet *nodesListSheet, *setNorthSheet;
 
 
 
-- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
-	float orientationY = (0-acceleration.y*90)-calY;
-	currentInclination = orientationY;
-	
-	//self.incLabel.text = [NSString stringWithFormat:@"%d", (int)orientationY];
-	
-	if(flatCalibration) {
-		collectedSamples++;
-		totalY+=orientationY;
+- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
+{
+	if (motionMode == LOCATION_MANAGER)
+	{
+		pitch = ((0-acceleration.y*90)-calY);
 		
-		if(collectedSamples == kCalibrationSamples) {
-			flatCalibration = NO;
-			calY = totalY/collectedSamples;
-			[self.calibratingSpin stopAnimating];
-			self.calibrateButton.hidden = NO;
-		}		
+		if (flatCalibration)
+		{
+			collectedSamples++;
+			totalY += ((0-acceleration.y*90)-calY);
+			
+			if (collectedSamples == kCalibrationSamples)
+			{
+				flatCalibration = NO;
+				calY = totalY/collectedSamples;
+				[self.calibratingSpin stopAnimating];
+				//self.calibrateButton.hidden = NO;
+			}
+		}
 	}
-
 }
 
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {
-	currentHeading = (int)newHeading.magneticHeading-calO;
-	
-	if(currentHeading < 0)
-		currentHeading = 360+currentHeading;
-	
-	else if(currentHeading > 360)
-		currentHeading = currentHeading-360;
-	
-	//headingLabel.text = [NSString stringWithFormat:@"%d", currentHeading];
+- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
+{
+	if (motionMode == LOCATION_MANAGER)
+	{
+		yaw = -(newHeading.magneticHeading-calO) + 90.0;
+		
+		if (yaw < 0) yaw = yaw + (2.0 * PI);
+		else if (yaw > 2*PI) yaw = yaw -  (2.0 * PI);
+	}
 }
 
 
-- (void)promptSetNorth {
+- (void)promptSetNorth
+{
 	setNorthSheet = [[UIActionSheet alloc] 
 					 initWithTitle:@"Point the device towards the base's north"  
 					 delegate:self 
@@ -167,10 +176,8 @@ UIActionSheet *nodesListSheet, *setNorthSheet;
 }
 
 
-- (IBAction)promptActions {
-	
-	
-	
+- (IBAction)promptActions
+{
 	
 	NSString *string = [NSString stringWithFormat:@"/SPIN/default/%@-target", postureName];
 	const char *path = [string UTF8String];
@@ -228,9 +235,10 @@ UIActionSheet *nodesListSheet, *setNorthSheet;
 	
 }
 
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-	
-	if(self.connected == 1) {
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	if (self.connected == 1)
+	{
 		UITouch *touch = [[touches allObjects] lastObject];
 		CGPoint fPosition = [touch locationInView:self.view];
 		
@@ -239,11 +247,6 @@ UIActionSheet *nodesListSheet, *setNorthSheet;
 		currentSpeed = pow(posY,3) * [defaults floatForKey:@"Speed"];
 
 		//NSLog(@"fPosition=%f, posY=%f, currentSpeed=%f, speedScaleValue=%f", fPosition.y, posY, currentSpeed, speedScaleValue);
-		
-		if(screenMode) {
-			float posX = ((-160+fPosition.x)/-1.60)/100;
-			currentFakeOrientation = posX*0.15;
-		}
 	}
 }
 
@@ -283,7 +286,6 @@ UIActionSheet *nodesListSheet, *setNorthSheet;
 			NSLog(@"touchedEnded");
 			currentSpeed = 0;
 			speedScaleValue = 1.0;
-			currentFakeOrientation = 0;
 		}
 	}
 }
@@ -314,19 +316,27 @@ UIActionSheet *nodesListSheet, *setNorthSheet;
 		
 		if (buttonIndex == 0)
 		{
-			[self setMotionZero:self];
+			if (motionMode==MOTION_MANAGER)
+			{
+				[self setMotionZero:self];
+				
+				NSLog(@"Set zero orientation");
+			}
+			else if (motionMode==LOCATION_MANAGER)
+			{
+				calO = yaw+calO;
 			
-			//calO = currentHeading+calO;
+				flatCalibration = YES;
+				totalY = 0;
+				collectedSamples = 0;
+				[self.calibratingSpin startAnimating];
+				
+				NSLog(@"Recalibrating accelerometer");
+			}
+			
 			//headingLabel.text = [NSString stringWithFormat:@"0"];
-			NSLog(@"Recalibrated");
-		
+			
 			[self actionSheetCancel:actionSheet];
-			/*
-			NSString *string = [NSString stringWithFormat:@"/SPIN/default/%@-target", postureName];
-			const char *path = [string UTF8String];
-			lo_send(txAddr, path, "ss", "setParent", [[NSString stringWithFormat:@"%@-pointer", postureName] UTF8String]);
-			lo_send(txAddr, path, "ssi", "setEnabled", [[NSString stringWithFormat:@"%@-target-instructions", postureName] UTF8String], 0);	
-			*/
 		}
 		
 		else {
@@ -345,6 +355,8 @@ UIActionSheet *nodesListSheet, *setNorthSheet;
 		collectedSamples = 0;
 	}
 	*/
+	
+	
 	
 }
 
@@ -387,11 +399,10 @@ UIActionSheet *nodesListSheet, *setNorthSheet;
 #pragma mark Sockets:
 
 
-int nodelist_handler(const char *path, const char *types, lo_arg **argv, int argc, void *data, void *user_data) {
-	int i;
-	
-	
+int nodelist_handler(const char *path, const char *types, lo_arg **argv, int argc, void *data, void *user_data)
+{
 	/*
+	int i;
 	printf("path: <%s>\n", path);
 	for (i=0; i<argc; i++) {
 		printf("arg %d '%c' ", i, types[i]);
@@ -469,6 +480,7 @@ int menu_handler(const char *path, const char *types, lo_arg **argv, int argc, v
 		if([argOne compare:@"setEnabled"] == NSOrderedSame)
 		{
 			self.menuEnabled = (BOOL)lo_hires_val(types[1], argv[1]);
+			NSLog(@"menu setEnabled %d", self.menuEnabled);
 			lo_send(txAddr, [[NSString stringWithFormat:@"/SPIN/default/%@", self.postureName] UTF8String], "sfff", "setVelocity", 0.0, 0.0, 0.0);
 			self.currentSpeed = 0;
 		}
@@ -482,28 +494,34 @@ int menu_handler(const char *path, const char *types, lo_arg **argv, int argc, v
 int socket_handler(const char *path, const char *types, lo_arg **argv, int argc, void *data, void *user_data) {
 	NTARemoteViewController *self = (NTARemoteViewController*)user_data;
 	
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
     if ((self.connected == 0) && (self.dontConnect == 0)) {
 		
-		char *ip = (char*)argv[1];
-		int port = lo_hires_val('i', argv[2]);
+		const char *tPath = (const char*)argv[0];
+		const char *ip = (const char*)argv[1];
+		char port[7]; sprintf(port, "%d", (int)lo_hires_val('i', argv[2]));
+		const char *tIp = (const char*)argv[4];
+		char tPort[7]; sprintf(tPort, "%d", (int)lo_hires_val('i', argv[5]));
 		
-		const char *tPath = (char*)argv[0];
-		const char *tIp = (char*)argv[4];
-		int tPort = lo_hires_val('i', argv[5]);
+		NSLog(@"SPIN INFO: %s %s %s %s %s", tPath, ip, port, tIp, tPort);
 		
-		char path[50];
-		sprintf(path, "/SPIN/%s", tPath);
+		txAddr = lo_address_new(ip, port);
+		NSLog(@"Discovered SPIN server at: %s:%s", ip, port);
 		
-		char portString[7];
-		sprintf(portString, "%d", tPort);
 		
-		lo_server_thread tServer = lo_server_thread_new_multicast(tIp, portString, NULL);
-		lo_server_thread_add_method(tServer, path, NULL, nodelist_handler, self);
+		
+		lo_server_thread tServer = lo_server_thread_new_multicast(tIp, tPort, NULL);
+		lo_server_thread_add_method(tServer, [[NSString stringWithFormat:@"/SPIN/%s", tPath] UTF8String], NULL, nodelist_handler, self);
 		lo_server_thread_add_method(tServer, [[NSString stringWithFormat:@"/SPIN/%s/menu", tPath] UTF8String], NULL, menu_handler, self);
 		lo_server_thread_start(tServer);
+		NSLog(@"Created OSC receive server for SPIN messages at: %s", lo_server_thread_get_url(tServer));
 		
-		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-
+		NSLog(@"Requesting list of UserNodes...");
+		lo_send(txAddr, [[NSString stringWithFormat:@"/SPIN/%s", tPath] UTF8String], "ss", "getNodeList", "UserNode");
+		
+		
+/*
 		NSDictionary *aDict = [NSDictionary dictionaryWithObjectsAndKeys:
 							   [NSString stringWithUTF8String:ip], @"IP",
 							   [NSNumber numberWithInt:port], @"Port", 
@@ -512,19 +530,22 @@ int socket_handler(const char *path, const char *types, lo_arg **argv, int argc,
 
 		
 		[self performSelectorOnMainThread:@selector(setupSocketWithArgs:) withObject:aDict waitUntilDone:YES];
+		*/
 		
-		[pool release];
 		
 		//fflush(stdout);		
 	}
 	
+	[pool release];
 	
 	return 1;
 }
 
 
-- (void)notConnected {
-	if(self.connected == 0) {
+- (void)notConnected
+{
+	if (self.connected == 0)
+	{
 		self.dontConnect = 0;
 		self.view.userInteractionEnabled = NO;
 		[self.loadingView setHidden:YES];
@@ -533,21 +554,27 @@ int socket_handler(const char *path, const char *types, lo_arg **argv, int argc,
 }
 
 - (IBAction)getSockets {
-	[self performSelector:@selector(notConnected) withObject:nil afterDelay:10];
+	[self performSelector:@selector(notConnected) withObject:nil afterDelay:12];
 	
 	[self.loadingView setHidden:NO];
 	[offlineView setHidden:YES];
 	self.view.userInteractionEnabled = NO;
 	lo_server_thread server = lo_server_thread_new_multicast("239.0.0.1", "54320", NULL);
 	
-	if(server != nil) {
+	if (server != nil)
+	{
 		lo_server_thread_add_method(server, "/SPIN/__server__", "ssiisii", socket_handler, self);
 		lo_server_thread_start(server);
 	}
+	
+	NSLog(@"Listening for SPIN messages on: %s", lo_server_thread_get_url(server));
 }
 
-
-- (void)setupSocketWithArgs:(NSDictionary*)args {
+/*
+- (void)setupSocketWithArgs:(NSDictionary*)args
+{
+	
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
 	const char *ip = [[args valueForKey:@"IP"] UTF8String];
 	const char *path = [[args valueForKey:@"Path"] UTF8String];
@@ -559,13 +586,11 @@ int socket_handler(const char *path, const char *types, lo_arg **argv, int argc,
 	txAddr = lo_address_new(ip, portString);
 	lo_send(txAddr, path, "ss", "getNodeList", "UserNode");
 	
-	NSLog(@"setupSocketWithIP:%s onPort:%d", ip, port);
+	NSLog(@"Discovered SPIN server at: %s:%d. Requesting list of UserNodes", ip, port);
 	
-//	NSString *pathString = [NSMutableString stringWithFormat:@"/SPIN/default/%@", [defaults stringForKey:@"Client"]];
-//	const char *path = [pathString UTF8String];
-//	lo_send(txAddr, path, "siii", "setOrientation", 0, 0, 0);
+	[pool release];
 }
-
+*/
 
 
 - (void)gotNode:(NSString*)pName {
@@ -577,57 +602,56 @@ int socket_handler(const char *path, const char *types, lo_arg **argv, int argc,
 }
 
 
-- (void)sendData {
+- (void)sendData
+{
 	
-	return;
-	
-	if (!menuEnabled)
+
+	// note: for motionMode==MOTION_MANAGER, the direction vector is updated
+	// upon every new motion message
+	if (motionMode==LOCATION_MANAGER)
 	{
+		/*
+		dirX = sin(yaw*PI/180)*cos(pitch*PI/180);
+		dirY = cos(yaw*PI/180)*cos(pitch*PI/180);
+		dirZ = sin(pitch*PI/180);
+		*/
 		
-		float osX, osY, osZ;
-		float speedX, speedY, speedZ;
+		dirY = sin(-pitch/57.2957795 + 1.570796326795) * cos(-yaw/57.2957795);
+		dirX = sin(-pitch/57.2957795 + 1.570796326795) * sin(-yaw/57.2957795);
+		dirZ = cos(-pitch/57.2957795 + 1.570796326795);
 		
-		
-		speedZ = currentSpeed*sin(currentInclination*PI/180);
-		NSString *string = [NSString stringWithFormat:@"/SPIN/default/%@", postureName];
-		const char *path = [string UTF8String];
-		
-		if(!screenMode) {
-			speedX = currentSpeed*sin(currentHeading*PI/180)*cos(currentInclination*PI/180);
-			speedY = currentSpeed*cos(currentHeading*PI/180)*cos(currentInclination*PI/180);
-			
-			if(speedX != pSpeedX || speedY != pSpeedY || speedZ != pSpeedZ) {
-				lo_send(txAddr, path, "sfff", "setVelocity", speedX, speedY, speedZ);
-				pSpeedX = speedX;
-				pSpeedY = speedY;
-				pSpeedZ = speedZ;
-				NSLog(@"%f, %f, %f", speedX, speedY, speedZ);
-			}
-		}
-		
-		else {
-			speedX = 0;
-			speedY = currentSpeed*cos(currentInclination*PI/180);
-			
-			if(osX != speedX || osY != speedY || osZ != speedZ) {
-				lo_send(txAddr, path, "sfff", "setVelocity", speedX, speedY, speedZ);
-				lo_send(txAddr, path, "siif", "rotate", 0, 0, currentFakeOrientation);
-			}
-		}
-		
-		//NSLog(@"sending data to %@", string);
-		
-		osX = speedX;
-		osY = speedY;
-		osZ = speedZ;
-	
 	}
 	
-	if(self.dontConnect == 0)
-		[self performSelector:@selector(sendData) withObject:nil afterDelay:kDataPushFrequency];
+	if (txAddr)
+	{
+
+		lo_send(txAddr, [[NSString stringWithFormat:@"/SPIN/default/%@-pointer", postureName] UTF8String], "sfff",
+				"setOrientation", pitch, 0.0, yaw);
+		
+		
+		if (!menuEnabled)
+			lo_send(txAddr, [[NSString stringWithFormat:@"/SPIN/default/%@", postureName] UTF8String], "sfff",
+					"setVelocity",
+					currentSpeed * speedScaleValue * dirX,
+					currentSpeed * speedScaleValue * dirY,
+					currentSpeed * speedScaleValue * dirZ
+					);
+	}
+	
+	//NSLog(@"in sendData. speed=%.1f yaw=%.0f pitch=%.0f", currentSpeed * speedScaleValue, yaw, pitch);
+	
+	speedLabel.text = [NSString stringWithFormat:@"%.1f", currentSpeed * speedScaleValue];
+	headingLabel.text = [NSString stringWithFormat:@"%.0f", yaw];
+	incLabel.text = [NSString stringWithFormat:@"%.0f", pitch];
+
+	
+	if (self.dontConnect == 0)
+		[self performSelector:@selector(sendData) withObject:nil afterDelay:updateRate];
+	
 }
 
-- (void)disconnect {
+- (void) disconnect
+{
 	lo_address_free(txAddr);
 	self.connected = 0;
 	NSLog(@"disconnect");
@@ -652,16 +676,13 @@ int socket_handler(const char *path, const char *types, lo_arg **argv, int argc,
 		{
 			if (zeroAttitude) [mData.attitude multiplyByInverseOfAttitude:zeroAttitude];
 			
-			double y = sin(-mData.attitude.pitch + 1.570796326795) * cos(-mData.attitude.yaw);
-			double x = sin(-mData.attitude.pitch + 1.570796326795) * sin(-mData.attitude.yaw);
-			double z = cos(-mData.attitude.pitch + 1.570796326795);
-			double pitch = mData.attitude.pitch*57.2957795;
-			double yaw =   mData.attitude.yaw*57.2957795;
+			dirY = sin(-mData.attitude.pitch + 1.570796326795) * cos(-mData.attitude.yaw);
+			dirX = sin(-mData.attitude.pitch + 1.570796326795) * sin(-mData.attitude.yaw);
+			dirZ = cos(-mData.attitude.pitch + 1.570796326795);
+			pitch = mData.attitude.pitch*57.2957795;
+			yaw =   mData.attitude.yaw*57.2957795;
 			
-			speedLabel.text = [NSString stringWithFormat:@"%.1f", currentSpeed * speedScaleValue];
-			headingLabel.text = [NSString stringWithFormat:@"%.1f", yaw];
-			incLabel.text = [NSString stringWithFormat:@"%.1f", pitch];
-			
+
 			/*
 			NSLog(@"orientation: [%f, %f, %f], dirVector: [%f, %f, %f], speed=%f, speedScale=%f",
 				  mData.attitude.pitch,
@@ -674,31 +695,6 @@ int socket_handler(const char *path, const char *types, lo_arg **argv, int argc,
 			//NSLog(@"quat = [%f, %f, %f]", mData.attitude.quaternion.x, mData.attitude.quaternion.y, mData.attitude.quaternion.z, mData.attitude.quaternion.w);	
 			 */
 			
-			if (txAddr)
-			{
-				
-				 //lo_send(lo_addr, [sweeperOSCpath UTF8String], "sffff",
-				/*
-				 lo_send(txAddr, [[NSString stringWithFormat:@"/SPIN/default/%@-pointer", postureName] UTF8String], "sffff",
-						 "setOrientationQuat",
-						 mData.attitude.quaternion.x,
-						 mData.attitude.quaternion.y,
-						 mData.attitude.quaternion.z,
-						 mData.attitude.quaternion.w);
-				 */
-				
-				lo_send(txAddr, [[NSString stringWithFormat:@"/SPIN/default/%@-pointer", postureName] UTF8String], "sfff",
-						"setOrientation", pitch, 0.0, yaw);
-
-				if (!menuEnabled)
-					lo_send(txAddr, [[NSString stringWithFormat:@"/SPIN/default/%@", postureName] UTF8String], "sfff",
-							"setVelocity",
-							currentSpeed * speedScaleValue * x,
-							currentSpeed * speedScaleValue * y,
-							currentSpeed * speedScaleValue * z
-							);
-
-			}
 		};
 		
 		[motionManager startDeviceMotionUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:motionHandler];
@@ -709,7 +705,7 @@ int socket_handler(const char *path, const char *types, lo_arg **argv, int argc,
 	}
 	[[NSUserDefaults standardUserDefaults] setBool:enable forKey:@"motionEnabled"];
 	
-	NSLog(@"motionManager enabled? %d", [motionManager isDeviceMotionActive]);
+	//NSLog(@"motionManager enabled? %d", [motionManager isDeviceMotionActive]);
 	
 	return [motionManager isDeviceMotionActive];
 }

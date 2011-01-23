@@ -11,6 +11,7 @@
 #import "FlipView.h"
 #import "InfoView.h"
 
+typedef enum { DISABLED, LOCATION_MANAGER, MOTION_MANAGER } MotionMode;
 
 @interface NTARemoteViewController : UIViewController <UIAccelerometerDelegate, CLLocationManagerDelegate, UIActionSheetDelegate> {
 	FlipView *flipView;
@@ -25,16 +26,24 @@
 	NSString *postureName;
 	float totalY, calY, calO;
 	
-	int currentHeading, currentInclination, connected, dontConnect;
-	float currentSpeed, currentFakeOrientation, pSpeedX, pSpeedY, pSpeedZ;
-	BOOL screenMode, flatCalibration, northCalibration;
+	int connected, dontConnect;
+	double pitch, yaw;
+	double dirX, dirY, dirZ;
+	float currentSpeed;
+	BOOL flatCalibration, northCalibration;
+	
+	float updateRate;
 	
 	NSTimer *speedScaleTimer;
 	float speedScaleValue;
 	
 	BOOL menuEnabled;
 	
+	
+	
 	CGPoint startTouch;
+	
+	MotionMode motionMode;
 	
 	CMMotionManager *motionManager;
 	CMAttitude *zeroAttitude;
@@ -53,7 +62,11 @@
 @property (readwrite) int connected;
 @property (readwrite) int dontConnect;
 @property (readwrite) float currentSpeed;
+@property (readwrite) double pitch;
+@property (readwrite) double yaw;
+
 @property (readwrite) BOOL menuEnabled;
+@property (readwrite) MotionMode motionMode;
 
 - (void)setupSocketWithArgs:(NSDictionary*)args;
 - (IBAction)getSockets;
