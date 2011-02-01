@@ -25,6 +25,8 @@
 	menuEnabled,
 	postureName,
 	currentSpeed,
+	minAccel,
+	maxAccel,
 	pitch,
 	yaw,
 	motionMode,
@@ -63,7 +65,7 @@ UIActionSheet *nodesListSheet, *setNorthSheet;
 		motionMode = MOTION_MANAGER;
 		NSLog(@"Using motion manager (with gyro) for orientation");
 		
-		[self setMotionEnabled:YES];	
+		[self setMotionEnabled:YES];
 		
 		updateRate = 1.0/10.0; // 10Hz = 100ms
 		motionManager.deviceMotionUpdateInterval = updateRate;
@@ -84,7 +86,10 @@ UIActionSheet *nodesListSheet, *setNorthSheet;
 		motionMode = DISABLED;
 	}
 	
-	
+	minAccel = 0;
+	maxAccel = 0;
+	userHolding = YES;
+	[self checkAccumAccel];
 }
 /*
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -147,6 +152,48 @@ UIActionSheet *nodesListSheet, *setNorthSheet;
 			}
 		}
 	}
+	
+	//accumAccel += sqrt((acceleration.x*acceleration.x) + (acceleration.y*acceleration.y) + (acceleration.z*acceleration.z));
+	//accumAccel += fabs(acceleration.z);
+	
+	if (acceleration.z < minAccel) minAccel = acceleration.z;
+	if (acceleration.z > maxAccel) maxAccel = acceleration.z;
+	
+	/*
+	NSLog(@"accel=%f,%f,%f  mag=%f  accumAccel=%f", acceleration.x, acceleration.y, acceleration.z,
+		  sqrt((acceleration.x*acceleration.x) + (acceleration.y*acceleration.y) + (acceleration.z*acceleration.z)),
+		  accumAccel); 
+	*/
+}
+
+- (void)checkAccumAccel
+{
+	//NSLog(@"minAccel=%f, maxAccel=%f, diff=%f", minAccel, maxAccel, (maxAccel-minAccel));
+	
+	float delta = maxAccel - minAccel;
+	if (delta > 0.03)
+	{
+		if (userHolding==NO)
+		{
+			[self promptActions];
+			userHolding = YES;
+		}			
+	}
+	else if (delta < 0.02)
+	{
+		// if it is really still, we start checking more frequently for movement
+		if (userHolding)
+		{
+			if (calibrateActionSheet) [calibrateActionSheet dismissWithClickedButtonIndex:-1 animated:NO];
+		}		
+		userHolding = NO;
+	}
+	
+	
+	minAccel = 99;
+	maxAccel = -99;
+	[self performSelector:@selector(checkAccumAccel) withObject:nil afterDelay:3];
+
 }
 
 
@@ -178,14 +225,16 @@ UIActionSheet *nodesListSheet, *setNorthSheet;
 
 - (IBAction)promptActions
 {
-	
+	if (!self.connected) return;
+		
 	NSString *string = [NSString stringWithFormat:@"/SPIN/default/%@-target", postureName];
 	const char *path = [string UTF8String];
 	lo_send(txAddr, path, "ss", "setParent", [postureName UTF8String]);
 	lo_send(txAddr, path, "ssi", "setEnabled", [[NSString stringWithFormat:@"%@-target-instructions", postureName] UTF8String], 1);	
 	
+	if (calibrateActionSheet) [calibrateActionSheet dismissWithClickedButtonIndex:-1 animated:NO];
 	
-	UIActionSheet *actionsMessage = [[UIActionSheet alloc] 
+	calibrateActionSheet = [[UIActionSheet alloc] 
 								  initWithTitle:@"Point at the calibration target on the screen, and click 'Calibrate'" 
 								  delegate:self 
 								  cancelButtonTitle:@"Cancel" 
@@ -193,8 +242,8 @@ UIActionSheet *nodesListSheet, *setNorthSheet;
 								  otherButtonTitles:@"Calibrate", nil];
 							      //otherButtonTitles:@"Set North", @"Set Horizon", @"Reset Position", nil];
 	
-	[actionsMessage showInView:self.view];
-	[actionsMessage release];
+	[calibrateActionSheet showInView:self.view];
+	//[calibrateActionSheet release];
 	
 }
 

@@ -224,7 +224,7 @@
 					<object class="IBUIButton" id="749313303">
 						<reference key="NSNextResponder" ref="419751060"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{8, 383}, {32, 33}}</string>
+						<string key="NSFrame">{{260, 416}, {55, 55}}</string>
 						<reference key="NSSuperview" ref="419751060"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -257,7 +257,7 @@
 					<object class="IBUIButton" id="715672547">
 						<reference key="NSNextResponder" ref="419751060"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{8, 439}, {32, 32}}</string>
+						<string key="NSFrame">{{20, 428}, {32, 32}}</string>
 						<reference key="NSSuperview" ref="419751060"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -543,10 +543,10 @@
 							<reference ref="952695883"/>
 							<reference ref="271575637"/>
 							<reference ref="586706837"/>
-							<reference ref="749313303"/>
-							<reference ref="715672547"/>
 							<reference ref="33733271"/>
 							<reference ref="1092217"/>
+							<reference ref="715672547"/>
+							<reference ref="749313303"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -676,7 +676,7 @@
 					<string>UIResponder</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABBAAAAw+sAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABDggAAw+6AAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -712,7 +712,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDjAAAw+sAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABBAAAAw+qAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>

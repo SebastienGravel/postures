@@ -26,6 +26,10 @@ typedef enum { DISABLED, LOCATION_MANAGER, MOTION_MANAGER } MotionMode;
 	NSString *postureName;
 	float totalY, calY, calO;
 	
+	float minAccel, maxAccel;
+	BOOL userHolding;
+	UIActionSheet *calibrateActionSheet;
+	
 	int connected, dontConnect;
 	double pitch, yaw;
 	double dirX, dirY, dirZ;
@@ -62,13 +66,16 @@ typedef enum { DISABLED, LOCATION_MANAGER, MOTION_MANAGER } MotionMode;
 @property (readwrite) int connected;
 @property (readwrite) int dontConnect;
 @property (readwrite) float currentSpeed;
+@property (readwrite) float minAccel;
+@property (readwrite) float maxAccel;
 @property (readwrite) double pitch;
 @property (readwrite) double yaw;
 
 @property (readwrite) BOOL menuEnabled;
 @property (readwrite) MotionMode motionMode;
 
-- (void)setupSocketWithArgs:(NSDictionary*)args;
+- (void)checkAccumAccel;
+//- (void)setupSocketWithArgs:(NSDictionary*)args;
 - (IBAction)getSockets;
 - (IBAction)promptActions;
 - (void) speedScale:(NSTimer *)timer;
