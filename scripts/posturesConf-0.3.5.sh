@@ -5,7 +5,7 @@ NTA=~/src/nta
 POSTURES=~/src/postures/trunk
 SPINWIDGETS=~/src/spinwidgets-0.3.5
 PDSHEEFA=~/src/pdsheefa-0.3.5
-SPIN=~/src/spinframework-0.3.5
+SPIN=~/src/spinframework
 AUDIOSCAPE=~/src/audioscape-2.3.5
 XJIMMIES=~/src/xjimmies-2.3.5
 
