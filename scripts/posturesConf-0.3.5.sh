@@ -28,4 +28,4 @@ alias cdpds='cd ${PDSHEEFA}/patches'
 alias cdas='cd ${AUDIOSCAPE}/patches'
 alias cdxj='cd ${XJIMMIES}/patches'
 
-
+alias cdscale='cd ${NTA}/scale'
