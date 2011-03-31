@@ -16,14 +16,10 @@ end
 
 section: aliases
 	rightScreen:
-#		posture06
-#		asEEEPC-3
+		posture08
 	leftScreen:
-		thinkPad5
-#		ascape-tpad1
-#		zop
-#		192.168.1.169
+#		streamer05
 	centreScreen:
-		dragon
+		posture05
 end
 
