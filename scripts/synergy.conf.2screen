@@ -1,0 +1,29 @@
+section: screens
+	leftScreen:
+	centreScreen:
+	rightScreen:
+end
+
+section: links
+	centreScreen:
+		right = rightScreen
+		left  = leftScreen
+	rightScreen:
+		left  = centreScreen
+	leftScreen:
+		right = centreScreen
+end
+
+section: aliases
+	rightScreen:
+#		posture06
+#		asEEEPC-3
+	leftScreen:
+		thinkPad5
+#		ascape-tpad1
+#		zop
+#		192.168.1.169
+	centreScreen:
+		dragon
+end
+
