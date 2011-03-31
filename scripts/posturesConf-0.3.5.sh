@@ -1,7 +1,7 @@
 # This is a helper script that can be sourced to provide aliases and any other
 # useful features for Postures/NTA ::
 
-NTA=~/src/nta
+NTA=~/content/nta
 POSTURES=~/src/postures/trunk
 SPINWIDGETS=~/src/spinwidgets-0.3.5
 PDSHEEFA=~/src/pdsheefa-0.3.5
