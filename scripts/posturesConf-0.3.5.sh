@@ -11,6 +11,13 @@ XJIMMIES=~/src/xjimmies-2.3.5
 
 export BOOST_ROOT=/usr/include
 
+LDPATHS=/usr/local/lib:/usr/local/lib64:/usr/local/lib64/osgPlugins-2.9.9:/usr/local/lib64/osgPlugins-2.9.8
+if [ -n "$LD_LIBRARY_PATH" ]; then
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${LDPATHS}
+else
+  export LD_LIBRARY_PATH=${LDPATHS}
+fi
+
 # copy the latest .pdsettings from our svn repository:
 `cp ${POSTURES}/scripts/pdsettings-0.3.5 ~/.pdsettings`
 
