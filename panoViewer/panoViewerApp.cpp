@@ -45,6 +45,7 @@ int main(int argc, char **argv)
 	std::string rxHost = lo_address_get_hostname(spin.getContext()->lo_rxAddrs_[0]);
 	std::string rxPort = lo_address_get_port(spin.getContext()->lo_rxAddrs_[0]);
 	std::string syncPort = lo_address_get_port(spin.getContext()->lo_syncAddr);
+    int ttl=1;
 
     bool fog = false;
     bool snow = false;
@@ -61,6 +62,7 @@ int main(int argc, char **argv)
 	arguments.getApplicationUsage()->addCommandLineOption("--user-id <uniqueID>", "Specify an ID for this viewer (Default is the localhost name)");
 	arguments.getApplicationUsage()->addCommandLineOption("--scene-id <uniqueID>", "Specify the scene ID to listen to (Default: '" + spin.getSceneID() + "')");
 	arguments.getApplicationUsage()->addCommandLineOption("--server-addr <host> <port>", "Set the receiving address for incoming OSC messages (Default: <local host name> " + rxPort + ")");
+    arguments.getApplicationUsage()->addCommandLineOption("--ttl <number>", "Set the TTL (time to live) for multicast packets in order to hop across routers (Default: 1)");
 	arguments.getApplicationUsage()->addCommandLineOption("--hide-cursor", "Hide the mouse cursor");
 	arguments.getApplicationUsage()->addCommandLineOption("--framerate <num>", "Set the maximum framerate (Default: not limited)");
 
@@ -91,6 +93,10 @@ int main(int argc, char **argv)
 	//while (arguments.read("--sync-port", syncPort)) {
 	//	spinListener.lo_syncAddr = lo_address_new(rxHost.c_str(), syncPort.c_str());
 	//}
+
+    while (arguments.read("--ttl", ttl)) {
+        spinListener.setTTL(ttl);
+    }
 
     while (arguments.read("--hide-cursor")) hideCursor=true;
 	while (arguments.read("--framerate",maxFrameRate)) {}
