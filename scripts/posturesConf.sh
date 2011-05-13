@@ -5,10 +5,8 @@ echo "Loaded Postures configuration"
 
 NTA=~/content/nta
 POSTURES=~/src/postures/trunk
-SPINWIDGETS=~/src/spinwidgets
 PDSHEEFA=~/src/pdsheefa
 SPIN=~/src/spinframework
-AUDIOSCAPE=~/src/audioscape
 SCENIC=~/src/scenic
 
 export BOOST_ROOT=/usr/include
@@ -17,7 +15,8 @@ export BOOST_ROOT=/usr/include
 `cp ${POSTURES}/scripts/pdsettings ~/.pdsettings`
 
 # use custom pd instead of installed version:
-alias pd='pd -jack'
+alias pd='pdextended -jack'
+#alias pd='pd -jack'
 #alias pd='~/src/pd-0.41-4/bin/pd -jack'
 
 
@@ -26,13 +25,9 @@ alias pd='pd -jack'
 alias cdnta='cd ${NTA}'
 alias cdspin='cd ${SPIN}'
 alias cdpostures='cd ${POSTURES}'
-alias cdsw='cd ${SPINWIDGETS}'
 alias cdpds='cd ${PDSHEEFA}'
-alias cdas='cd ${AUDIOSCAPE}'
 
-
-
-alias svnupALL='echo svn up ${NTA} && svn up ${NTA} && echo svn up ${SPIN} && svn up ${SPIN} && echo svn up ${SPINWIDGETS} && svn up ${SPINWIDGETS} && echo svn up ${PDSHEEFA} && svn up ${PDSHEEFA} && echo svn up ${POSTURES} && svn up ${POSTURES} && echo svn up ${AUDIOSCAPE} && svn up ${AUDIOSCAPE} && echo svn up ${SCENIC} && svn up ${SCENIC}'
+alias svnupALL='echo svn up ${NTA} && svn up ${NTA} && echo svn up ${SPIN} && svn up ${SPIN} && echo svn up ${PDSHEEFA} && svn up ${PDSHEEFA} && echo svn up ${POSTURES} && svn up ${POSTURES}'
 
 alias ntaClient='pd ${NTA}/ntaClient.pd &'
 
