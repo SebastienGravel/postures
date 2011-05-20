@@ -9,6 +9,7 @@ PDSHEEFA=~/src/pdsheefa
 SPIN=~/src/spinframework
 SCENIC=~/src/scenic
 
+export EDITOR=vim
 export BOOST_ROOT=/usr/include
 
 # copy the latest .pdsettings from our svn repository:
