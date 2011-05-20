@@ -33,7 +33,7 @@ alias ntaClient='pd ${NTA}/ntaClient.pd &'
 
 #export PATH=${PATH}:${SPIN}/src/spin:${POSTURES}/panoViewer:${NTA}
 
-export PATH=${PATH}:/usr/local/share/OpenSceneGraph/bin
+export PATH=${PATH}:/usr/local/share/OpenSceneGraph/bin:~/src/spinic/utils:~/bin
 export OSG_FILE_PATH=~/src/OpenSceneGraph-Data
 export LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib:/usr/local/lib64/osgPlugins-2.9.8
 export OSG_NOTIFY_LEVEL=FATAL
