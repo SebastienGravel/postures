@@ -13,7 +13,8 @@ export EDITOR=vim
 export BOOST_ROOT=/usr/include
 
 # copy the latest .pdsettings from our svn repository:
-`cp ${POSTURES}/scripts/pdsettings ~/.pdsettings`
+#`cp ${POSTURES}/scripts/pdsettings ~/.pdsettings`
+`cp ${POSTURES}/scripts/pdextended ~/.pdextended`
 
 # use custom pd instead of installed version:
 alias pd='pdextended -jack'
