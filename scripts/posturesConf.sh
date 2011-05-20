@@ -11,6 +11,9 @@ SCENIC=~/src/scenic
 
 export EDITOR=vim
 export BOOST_ROOT=/usr/include
+if [ `arch` = x86_64 ] ; then 
+  export PKG_CONFIG_PATH=/usr/local/lib64/pkgconfig
+fi
 
 # copy the latest .pdsettings from our svn repository:
 #`cp ${POSTURES}/scripts/pdsettings ~/.pdsettings`
