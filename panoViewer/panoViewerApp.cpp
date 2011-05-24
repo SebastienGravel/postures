@@ -33,8 +33,8 @@ int main(int argc, char **argv)
 {
 	std::cout << std::endl <<"panoViewer launching..." << std::endl;
 
-	spinClientContext spinListener;
-	spinApp &spin = spinApp::Instance();
+	spin::spinClientContext spinListener;
+	spin::spinApp &spin = spin::spinApp::Instance();
 
     bool hideCursor=false;
     double maxFrameRate = 60;
@@ -255,7 +255,7 @@ int main(int argc, char **argv)
 	// *************************************************************************
 	// create a camera manipulator
 
-	osg::ref_ptr<ViewerManipulator> manipulator = new ViewerManipulator();
+	osg::ref_ptr<spin::ViewerManipulator> manipulator = new spin::ViewerManipulator();
 	manipulator->setPicker(false);
 	manipulator->setMover(true);
 	viewer.setCameraManipulator(manipulator.get());
