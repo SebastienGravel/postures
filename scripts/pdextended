@@ -43,7 +43,8 @@ path32: /home/posture/src/pdsheefa/patches
 path33: /home/posture/src/pdsheefa/xjimmies/patches
 path34: /usr/local/lib/pd-externals/xjimmies
 path35: /usr/local/lib/pd-externals/pdsheefa
-npath: 35
+path36: /home/posture/content/nta/abstractions
+npath: 36
 standardpath: 1
 verbose: 0
 loadlib1: libdir

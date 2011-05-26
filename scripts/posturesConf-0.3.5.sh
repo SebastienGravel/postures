@@ -23,7 +23,8 @@ fi
 
 # use custom pd instead of installed version:
 #alias pd='pd -jack'
-alias pd='~/src/pd-0.41-4/bin/pd -jack'
+#FIXME:aalex was here 2011-05-18
+# alias pd='~/src/pd-0.41-4/bin/pd -jack'
 
 # some useful aliases:
 
