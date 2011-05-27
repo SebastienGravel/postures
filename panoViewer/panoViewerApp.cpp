@@ -308,7 +308,8 @@ int main(int argc, char **argv)
                 viewer.advance();
 			    viewer.eventTraversal();
 			    pthread_mutex_lock(&sceneMutex);
-			    viewer.updateTraversal();
+			    spin.sceneManager->update();
+                viewer.updateTraversal();
 			    viewer.renderingTraversals();
 			    pthread_mutex_unlock(&sceneMutex);
 
