@@ -199,7 +199,7 @@ static osg::Geometry* create3DSphericalDisplayDistortionMesh(const osg::Vec3& or
  *
  */
 
-void panoViewer::setupViewForPanoscope(unsigned int screenNum)
+void panoViewer::setupViewForPanoscope(unsigned int screenNum, bool fullscreen)
 {
     double radius = 1.8;
     double collar = -0.4;
@@ -215,21 +215,29 @@ void panoViewer::setupViewForPanoscope(unsigned int screenNum)
     }
 
 
+    osg::ref_ptr<osg::GraphicsContext::Traits> traits = new osg::GraphicsContext::Traits;
+    
+
     osg::GraphicsContext::ScreenIdentifier si;
     si.readDISPLAY();
-   
-    
  
     // displayNum has not been set so reset it to 0.
     if (si.displayNum<0) si.displayNum = 0;
-
     si.screenNum = screenNum;
 
     unsigned int width, height;
-    wsi->getScreenResolution(si, width, height);
+    if (fullscreen)
+    {
+        wsi->getScreenResolution(si, width, height);
+        traits->windowDecoration = false;
+    }
+    else 
+    {
+        width = 700;
+        height = 525;
+        traits->windowDecoration = true;
+    }
 
-
-    osg::ref_ptr<osg::GraphicsContext::Traits> traits = new osg::GraphicsContext::Traits;
     traits->hostName = si.hostName;
     traits->displayNum = si.displayNum;
     traits->screenNum = si.screenNum;
@@ -237,7 +245,6 @@ void panoViewer::setupViewForPanoscope(unsigned int screenNum)
     traits->y = 0;
     traits->width = width;
     traits->height = height;
-    traits->windowDecoration = false;
     traits->doubleBuffer = true;
     traits->sharedContext = 0;
     

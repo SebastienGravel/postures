@@ -39,6 +39,7 @@ int main(int argc, char **argv)
     bool hideCursor=false;
     double maxFrameRate = 60;
     unsigned int screenNum = 0;
+    bool fullscreen = false;
 
 	std::string userID;
     std::string sceneID = spin.getSceneID();
@@ -67,6 +68,7 @@ int main(int argc, char **argv)
     arguments.getApplicationUsage()->addCommandLineOption("--ttl <number>", "Set the TTL (time to live) for multicast packets in order to hop across routers (Default: 1)");
 	arguments.getApplicationUsage()->addCommandLineOption("--hide-cursor", "Hide the mouse cursor");
 	arguments.getApplicationUsage()->addCommandLineOption("--framerate <num>", "Set the maximum framerate (Default: not limited)");
+	arguments.getApplicationUsage()->addCommandLineOption("--fullscreen", "Enable fullscreen");
 
 
 	// *************************************************************************
@@ -105,6 +107,7 @@ int main(int argc, char **argv)
     while (arguments.read("--hide-cursor")) hideCursor=true;
 	while (arguments.read("--framerate",maxFrameRate)) {}
 	while (arguments.read("--screen",screenNum)) {}
+    while (arguments.read("--fullscreen")) fullscreen=true;
     
     while (arguments.read("--fog")) fog=true;
     while (arguments.read("--snow")) snow=true;
@@ -184,7 +187,7 @@ int main(int argc, char **argv)
 	// set up viewer:
 
 	viewer.setSceneData(spin.sceneManager->rootNode.get());
-	viewer.setupViewForPanoscope(screenNum);
+	viewer.setupViewForPanoscope(screenNum, fullscreen);
     viewer.setNearFar(0.001,1000);
 
     //viewer.setClearColor(osg::Vec4(1.0,1.0,1.0,0.0));
