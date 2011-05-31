@@ -44,7 +44,8 @@ path33: /home/posture/src/pdsheefa/xjimmies/patches
 path34: /usr/local/lib/pd-externals/xjimmies
 path35: /usr/local/lib/pd-externals/pdsheefa
 path36: /home/posture/content/nta/abstractions
-npath: 36
+path37: /home/posture/src/spinic/utils
+npath: 37
 standardpath: 1
 verbose: 0
 loadlib1: libdir
