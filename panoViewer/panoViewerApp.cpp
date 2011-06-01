@@ -31,7 +31,6 @@ extern pthread_mutex_t sceneMutex;
 // *****************************************************************************
 int main(int argc, char **argv)
 {
-	std::cout << std::endl <<"panoViewer launching..." << std::endl;
 
 	spin::spinClientContext spinListener;
 	spin::spinApp &spin = spin::spinApp::Instance();
@@ -55,11 +54,10 @@ int main(int argc, char **argv)
 	// set up the usage document, which a user can acess with -h or --help
 	arguments.getApplicationUsage()->setDescription(arguments.getApplicationName()+" is a panoscope viewer for the SPIN Framework.");
 	arguments.getApplicationUsage()->setCommandLineUsage(arguments.getApplicationName()+" [options]");
-	arguments.getApplicationUsage()->addCommandLineOption("-h or --help", "Display this information");
-	arguments.getApplicationUsage()->addCommandLineOption("--user-id <uniqueID>", "Specify an ID for this viewer (Default is the localhost name)");
 	
     spinListener.addCommandLineOptions(&arguments);
 
+	arguments.getApplicationUsage()->addCommandLineOption("--user-id <uniqueID>", "Specify an ID for this viewer (Default is the localhost name)");
     arguments.getApplicationUsage()->addCommandLineOption("--hide-cursor", "Hide the mouse cursor");
 	arguments.getApplicationUsage()->addCommandLineOption("--framerate <num>", "Set the maximum framerate (Default: not limited)");
 	arguments.getApplicationUsage()->addCommandLineOption("--fullscreen", "Enable fullscreen");
@@ -68,19 +66,15 @@ int main(int argc, char **argv)
 	// *************************************************************************
 	// PARSE ARGS:
 
-	// if user request help write it out to cout.
-	if (arguments.read("-h") || arguments.read("--help"))
-	{
-		arguments.getApplicationUsage()->write(std::cout);
-		return 1;
-	}
 
+    if (!spinListener.parseCommandLineOptions(&arguments))
+        return 0;
+    
     osg::ArgumentParser::Parameter param_userID(userID);
     arguments.read("--user-id", param_userID);
     if (not userID.empty())
         spin.setUserID(userID);
 
-    spinListener.parseCommandLineOptions(&arguments);
 
     while (arguments.read("--hide-cursor")) hideCursor=true;
 	while (arguments.read("--framerate",maxFrameRate)) {}
@@ -263,7 +257,9 @@ int main(int argc, char **argv)
 
 	double minFrameTime = 1.0 / maxFrameRate;
 	
-	// program loop:
+	std::cout << std::endl <<"STARTING panoViewer..." << std::endl;
+	
+    // program loop:
 	while( !viewer.done() )
 	{
 		
