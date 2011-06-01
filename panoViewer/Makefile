@@ -22,19 +22,20 @@ CPPFLAGS += -g -I/usr/include/boost $(shell python-config --cflags) `pkg-config 
 LDFLAGS += -llo -lSPIN -lboost_python $(shell python-config --libs) `pkg-config --libs $(DEPS)`
 
 ifeq ($(shell uname -s),Darwin)
-  export MACOSX_DEPLOYMENT_TARGET=10.5
-  export SDKROOT=/Developer/SDKs/MacOSX10.5.sdk
+  #export MACOSX_DEPLOYMENT_TARGET=10.5
+  #export SDKROOT=/Developer/SDKs/MacOSX10.5.sdk
   
   CPPFLAGS += -I/opt/local/include
   CPPFLAGS += -D__USE_OSX_AGL_IMPLEMENTATION__
-  FRAMEWORKS = OpenThreads osg osgGA osgSim osgDB \
+  #FRAMEWORKS = OpenThreads osg osgGA osgSim osgDB \
            osgManipulator osgText osgUtil osgFX osgParticle osgViewer 
   #LDFLAGS += -lpthread $(patsubst %,-framework %,$(FRAMEWORKS)) 
   LDFLAGS += -lpthread \
           -lOpenThreads -losg -losgGA -losgSim -losgDB \
           -losgManipulator -losgText -losgUtil -losgFX -losgParticle -losgViewer
-  LDFLAGS += -isysroot $(SDKROOT)
-  LDFLAGS += -L/usr/local/lib -F/Library/Frameworks -L/opt/local/lib -L$(SDKROOT)/usr/X11R6/lib
+  #LDFLAGS += -isysroot $(SDKROOT)
+  #LDFLAGS += -L/usr/local/lib -F/Library/Frameworks -L/opt/local/lib -L$(SDKROOT)/usr/X11R6/lib
+  LDFLAGS += -L/usr/local/lib -L/opt/local/lib
 
 else #linux
 

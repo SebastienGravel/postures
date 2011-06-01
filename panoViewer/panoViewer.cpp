@@ -37,6 +37,8 @@
 
 #include <sstream>
 
+#include <osg/Depth>
+#include <osg/ShapeDrawable>
 
 #include "panoViewer.h"
 
@@ -459,7 +461,7 @@ void panoViewer::setupViewForPanoscope(unsigned int screenNum, bool fullscreen)
         //int crop = 132;
         //int crop = 50;
         int crop = 0;
-	//std::cout << "stretch=" << stretch_x << std::endl;
+        //std::cout << "stretch=" << stretch_x << std::endl;
         camera->setProjectionMatrixAsOrtho2D( crop*4/3, width-(crop*4/3), crop, height-crop);
 
         camera->setViewMatrix(osg::Matrix::identity());
@@ -467,6 +469,52 @@ void panoViewer::setupViewForPanoscope(unsigned int screenNum, bool fullscreen)
         // add subgraph to render
         camera->addChild(geode);
         
+
+
+        // *****************************
+        // MIKEWOZ EDIT:
+        // add mask image to hud:
+
+        osg::Geode* maskGeode = new osg::Geode();
+        maskGeode->addDrawable(new osg::ShapeDrawable(new osg::Box(osg::Vec3(0.0f,0.0f,0.0f), 1.0)));
+        //maskGeode->addDrawable(create3DSphericalDisplayDistortionMesh(osg::Vec3(0.0f,0.0f,0.0f), osg::Vec3(width,0.0f,0.0f), osg::Vec3(0.0f,height,0.0f), radius, collar));
+
+        osg::StateSet *maskss = maskGeode->getOrCreateStateSet();
+
+        osg::Image *maskImage = osgDB::readImageFile( "/home/mikewoz/content/nta/images/pano_mask.png" );
+        osg::Texture2D* maskTexture = new osg::Texture2D();
+        maskTexture->setBorderColor(osg::Vec4(1.0f,1.0f,1.0f,0.0f));
+        maskTexture->setImage(maskImage);
+
+        maskss->setTextureAttributeAndModes(0,maskTexture,osg::StateAttribute::ON);
+
+        // Turn blending on:
+        maskss->setMode( GL_BLEND, osg::StateAttribute::ON );
+        maskss->setRenderingHint(osg::StateSet::TRANSPARENT_BIN);
+
+        // Disable lighting:
+        maskss->setMode( GL_LIGHTING, osg::StateAttribute::OFF );
+
+        // Make sure this geometry is draw last. RenderBins are handled
+        // in numerical order.
+        //maskss->setRenderBinDetails( 99, "RenderBin");
+
+        // Disable depth testing so geometry is drawn regardless of depth values
+        // of geometry already draw.
+        //maskss->setMode(GL_DEPTH_TEST,osg::StateAttribute::OFF);
+
+        // another way to force this to be drawn last?:
+        maskss->setAttribute( new osg::Depth(osg::Depth::ALWAYS) );
+
+        camera->addChild(maskGeode);
+
+        // END MIKEWOZ EDIT
+        // *****************************
+
+
+
+
+
         camera->setName("DistortionCorrectionCamera");
 
         addSlave(camera.get(), osg::Matrixd(), osg::Matrixd(), false);
