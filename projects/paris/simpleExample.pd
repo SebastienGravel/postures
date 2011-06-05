@@ -1,0 +1,192 @@
+#N canvas 700 194 745 587 10;
+#X obj 18 18 widget-spinConnect \$0;
+#X text 226 479 map the texture onto the shape;
+#X msg 205 226 createNode \$1-shp ShapeNode \, createStateSet \$1-vidTexture
+SharedVideoTexture;
+#X obj 51 173 t a a a;
+#X msg 18 481 /\$1-shp setStateSet \$1-vidTexture;
+#X obj 204 327 makefilename shvid_%s;
+#X symbolatom 204 349 25 0 0 0 - - -;
+#X obj 205 259 s \$0-to-SPIN;
+#X obj 141 373 list append;
+#X msg 141 395 /\$1-vidTexture setTextureID \$3;
+#X obj 51 153 list;
+#X obj 204 307 list split 1;
+#X msg 25 97 posture05 1 \, posture08 -1;
+#X msg 44 431 /\$1-shp setShape 6 \, /\$1-shp setTranslation \$2 0
+0 \, /\$1-shp setOrientation 0 90 0 \, /\$1-shp setScale 2 2 2;
+#X obj 520 487 tgl 25 0 tgl_timeline tgl_timeline-set timeline 30 12
+0 10 -261682 -1 -1 0 1;
+#N canvas 206 122 1044 807 timeline 0;
+#X obj 370 21 inlet;
+#X obj 424 175 list;
+#X obj 424 197 t a a;
+#X obj 371 292 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 458 646 ntaVideoLoop \$0;
+#X obj 503 318 s \$0-to-SPIN-TCP;
+#X msg 610 126 WAY_N1_lieux -3;
+#X obj 46 308 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 467 220 createNode \$1 ModelNode;
+#X msg 38 342 360 0 0 -6 0 0 1950 1 101;
+#X msg 67 369 -261 0 0 -21 0 0 2100 50 3;
+#X obj 44 401 makeTimeline \$0;
+#X msg 603 147 WAY_N1_album -3;
+#X msg 474 84 createNode timeline SwitchNode \, /timeline setTranslation
+-7.5 0 0 \, /timeline setOrientation 0 0 180;
+#X obj 425 760 s \$0-to-SPIN-TCP;
+#X obj 409 375 t b b;
+#X msg 603 170 WAY_N1_center -3;
+#X obj 913 350 s \$0-to-SPIN-TCP;
+#X msg 913 331 /timeline setAll \$1;
+#X msg 439 148 WAY_N1_timeline 0 0 0;
+#X msg 440 129 WAY_N1_art 0 -22.6 1.5;
+#X msg 425 740 /NYC* setParent timeline \, /TwelveOfUs* setParent timeline
+;
+#X obj 442 704 ntaVideoLoop \$0;
+#X msg 442 673 TwelveOfUs TwelveOfUs-nosound.mov TwelveOfUs.wav 163.51
+-5 1.5 180 120;
+#X msg 458 615 NYC Untitled-NYC911_MP4_SansSon.mov NYC911.wav 52.4
+-5.5 1.5 180 90;
+#X obj 51 167 s tgl_timeline-set;
+#X msg 51 147 0;
+#X obj 886 252 r tgl_timeline;
+#X obj 845 350 sel 0 1;
+#X msg 794 395 0;
+#X msg 930 422 1;
+#X text 70 323 create TextNodes for years:;
+#X text 14 425 (x y z offsetX offsetY offsetZ startValue increment
+count);
+#X text 422 351 Create VIDEOS & SOUNDS:;
+#X text 485 59 Create TIMELINE:;
+#X msg 424 244 createNode \$1 ModelNode \, /\$1 setOrientation 90 0
+90 \, /\$1 setTranslation \$2 \$3 \$4 \, /\$1 setModelFromFile ~/content/nta/models/environnements/ac3d/WAY_N1/\$1.ac
+\, /\$1 setParent timeline \, /timeline setEnabled \$1 0;
+#X obj 370 44 t b b b b b;
+#X obj 470 30 print CREATE_TIMELINE;
+#X obj 930 400 delay 500;
+#X msg 930 486 1;
+#X msg 930 541 1;
+#X obj 46 270 delay 10000;
+#X obj 930 522 delay 3000;
+#X obj 916 581 t b b;
+#X msg 916 622 1;
+#X obj 916 603 delay 1500;
+#X obj 930 467 delay 1000;
+#X obj 49 510 bng 15 250 50 0 empty empty empty 4 15 1 14 -262144 -1
+-1;
+#X obj 93 655 s \$0-to-SPIN-TCP;
+#X msg 104 599 /OceanBeach1.mov rewind \, /OceanBeach1 setPlay 1;
+#X msg 71 624 /OceanBeach1 setPlay 0;
+#X msg 153 558 /OceanBeach1.mov setIndex 0;
+#X obj 57 545 delay 1000;
+#X obj 50 567 delay 2000;
+#X obj 930 449 t b b;
+#X obj 930 378 t b b;
+#X obj 831 328 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 470 479 ntaPanoVideo \$0 Kujukurihama1 Kujukurihama1.mov Kujukurihama1.aif
+-19.5 -17 0 270 -4.5 0 1.43 0 0;
+#X obj 466 435 ntaPanoVideo \$0 OceanBeach1 OceanBeach1.mov OceanBeach1.aif
+-19.5 -34 0 270 -4.5 0 1.43 0 0;
+#X obj 476 523 ntaPanoVideo \$0 HirtleBeach1 HirtleBeach1.mov HirtleBeach1.aif
+-19.5 -1 0 270 -4.5 0 1.43 0 0;
+#X obj 471 565 ntaPanoVideo \$0 BMO-Terrace_Midi BMO-Terrace_Midi.mov
+BMO-Terrace_Midi.aif -19.5 17 0 270 -4.5 0 1.43 0 0;
+#X connect 0 0 36 0;
+#X connect 1 0 2 0;
+#X connect 2 0 35 0;
+#X connect 2 1 8 0;
+#X connect 3 0 15 0;
+#X connect 7 0 10 0;
+#X connect 7 0 9 0;
+#X connect 8 0 5 0;
+#X connect 9 0 11 0;
+#X connect 10 0 11 0;
+#X connect 13 0 5 0;
+#X connect 15 0 21 0;
+#X connect 15 1 24 0;
+#X connect 15 1 23 0;
+#X connect 15 1 57 0;
+#X connect 15 1 58 0;
+#X connect 15 1 59 0;
+#X connect 15 1 60 0;
+#X connect 18 0 17 0;
+#X connect 19 0 1 0;
+#X connect 20 0 1 0;
+#X connect 21 0 14 0;
+#X connect 23 0 22 0;
+#X connect 24 0 4 0;
+#X connect 26 0 25 0;
+#X connect 27 0 28 0;
+#X connect 27 0 18 0;
+#X connect 28 0 29 0;
+#X connect 28 1 43 0;
+#X connect 28 1 54 0;
+#X connect 28 1 55 0;
+#X connect 29 0 4 1;
+#X connect 29 0 22 1;
+#X connect 29 0 57 2;
+#X connect 29 0 58 2;
+#X connect 29 0 59 2;
+#X connect 29 0 60 2;
+#X connect 30 0 57 2;
+#X connect 30 0 58 2;
+#X connect 30 0 59 2;
+#X connect 30 0 60 2;
+#X connect 35 0 5 0;
+#X connect 36 0 26 0;
+#X connect 36 1 3 0;
+#X connect 36 1 41 0;
+#X connect 36 1 47 0;
+#X connect 36 2 20 0;
+#X connect 36 2 19 0;
+#X connect 36 3 13 0;
+#X connect 36 4 37 0;
+#X connect 38 0 30 0;
+#X connect 39 0 4 1;
+#X connect 41 0 7 0;
+#X connect 42 0 40 0;
+#X connect 43 0 45 0;
+#X connect 43 1 44 0;
+#X connect 44 0 22 1;
+#X connect 45 0 44 0;
+#X connect 46 0 39 0;
+#X connect 47 0 52 0;
+#X connect 47 0 53 0;
+#X connect 49 0 48 0;
+#X connect 50 0 48 0;
+#X connect 51 0 48 0;
+#X connect 52 0 49 0;
+#X connect 53 0 50 0;
+#X connect 54 0 46 0;
+#X connect 54 1 39 0;
+#X connect 55 0 38 0;
+#X connect 55 1 30 0;
+#X connect 56 0 28 0;
+#X restore 522 443 pd timeline;
+#X obj 522 422 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 116 543 s \$0-to-SPIN-TCP;
+#X text 367 348 <- specify the shared video path (the file in /dev/shm)
+;
+#X text 549 420 make a bunch of stuff;
+#X text 519 466 turn it on/off:;
+#X text 214 204 create a ShapeNode and SharedVideoTexture;
+#X connect 2 0 7 0;
+#X connect 3 0 4 0;
+#X connect 3 1 13 0;
+#X connect 3 1 8 0;
+#X connect 3 2 2 0;
+#X connect 3 2 11 0;
+#X connect 4 0 17 0;
+#X connect 5 0 6 0;
+#X connect 6 0 8 1;
+#X connect 8 0 9 0;
+#X connect 9 0 17 0;
+#X connect 10 0 3 0;
+#X connect 11 0 5 0;
+#X connect 12 0 10 0;
+#X connect 13 0 17 0;
+#X connect 16 0 15 0;

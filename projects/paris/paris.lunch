@@ -1,0 +1,107 @@
+#!/usr/bin/env lunch
+
+#PAR_posture  = "posture06.nta.sat.qc.ca"
+#PAR_streamer = "streamer05.nta.sat.qc.ca"
+PAR_posture  = "posture05.nta.sat.qc.ca"
+PAR_streamer = "posture05.nta.sat.qc.ca"
+MTL_posture  = "posture08.nta.sat.qc.ca"
+MTL_streamer = "streamer08.nta.sat.qc.ca"
+spinserverAddr = PAR_posture
+controlAddr = MTL_posture
+DELAY = 0.5
+
+# clean-up from previous session:
+
+add_command("firereset", host=MTL_streamer, respawn=False)
+add_command("firereset", host=PAR_streamer, respawn=False)
+add_command("killall pdextended", host=MTL_posture, respawn=False)
+add_command("killall pdextended", host=PAR_posture, respawn=False)
+add_command("killall jack.plumbing", host=MTL_posture, respawn=False)
+add_command("killall jack.plumbing", host=PAR_posture, respawn=False)
+
+
+# milhouse instances:
+milhouses = [
+ {"send":MTL_posture, "audio":True, "recv":PAR_posture, "port":54500 },
+ {"send":PAR_posture, "audio":True, "recv":MTL_posture, "port":54400 },
+ {"send":MTL_streamer, "cam":"81443610264e63e", "recv":PAR_posture, "port":54510, "desc":"NORD"},
+ {"send":MTL_streamer, "cam":"81443610264e437", "recv":PAR_posture, "port":54520, "desc":"EST"},
+ {"send":MTL_streamer, "cam":"81443610264e626", "recv":PAR_posture, "port":54530, "desc":"SUD"},
+ {"send":MTL_streamer, "cam":"81443610264e5f4", "recv":PAR_posture, "port":54540, "desc":"OUEST"},
+#{"send":PAR_streamer, "cam":"81443610264e5e3", "recv":MTL_posture, "port":54410, "desc":"NORD"},
+#{"send":PAR_streamer, "cam":"81443610264df4e", "recv":MTL_posture, "port":54420, "desc":"EST"},
+#{"send":PAR_streamer, "cam":"81443610264df44", "recv":MTL_posture, "port":54430, "desc":"SUD"},
+#{"send":PAR_streamer, "cam":"81443610264dca3", "recv":MTL_posture, "port":54440, "desc":"OUEST"},
+# posture05 test:
+ {"send":PAR_streamer, "cam":"81443610264df38", "recv":MTL_posture, "port":54410, "desc":"NORD"},
+ {"send":PAR_streamer, "cam":"81443610264df9f", "recv":MTL_posture, "port":54420, "desc":"EST"},
+ {"send":PAR_streamer, "cam":"81443610264df80", "recv":MTL_posture, "port":54430, "desc":"SUD"},
+ {"send":PAR_streamer, "cam":"81443610264e117", "recv":MTL_posture, "port":54440, "desc":"OUEST"},
+ ]
+#milhouses = []
+
+add_command("meterbridge -c 4 -t dpm system:capture_1 system:capture_2", identifier="meterbridge")
+
+add_command("jack.plumbing", host=PAR_posture, identifier="jack.plumbing_PAR")
+add_command("jack.plumbing", host=MTL_posture, identifier="jack.plumbing_MTL")
+
+# launch milhouses:
+for m in milhouses:
+
+    title = "milhouse"
+    sendOpt = "-s --address %s" % (m['recv'])
+    recvOpt = "-r --address %s" % (m['send'])
+ 
+    if ("cam" in m):
+
+        sendOpt += " --videoport %d" % (m['port'])
+        #sendOpt += " --camera-number %d" % (m['cam'])
+        sendOpt += " --camera-guid %s" % (m['cam'])
+        sendOpt += " --videocodec h263 --videosource dc1394src"
+        #sendOpt += " --videobitrate 750000 --framerate 15"
+        sendOpt += " --framerate 15"
+        sendOpt += " --grayscale"
+        
+        recvOpt += " --videoport %d" % (m['port'])
+        #recvOpt += " --videocodec h263 --videosink xvimagesink"
+        recvOpt += " --videocodec h263 --videosink sharedvideosink"
+        #recvOpt += " --shared-video-id %s_%s" % (m['send'], m['cam'])
+        recvOpt += " --shared-video-id shvid_%s" % (m['cam'])
+        recvOpt += " --text-overlay %s" % (m['desc'])
+
+        title += "_VID_%s" % (m['cam'][-4:])
+
+    if ("audio" in m):
+
+        sendOpt += " --numchannels 1 --audioport %d --audiocodec raw --audiosource jackaudiosrc" % (m['port'])
+        #sendOpt += " --disable-jack-autoconnect"
+        #sendOpt += " --jack-client-name %s" % (m['send'])
+        recvOpt += " --numchannels 1 --audioport %d --audiocodec raw --audiosink jackaudiosink" % (m['port'])
+        #recvOpt += " --disable-jack-autoconnect"
+        #recvOpt += " --jack-client-name %s" % (m['send'])
+
+        title += "_AUD"
+
+    
+    #sendTitle = "milhouse_%s-TO-%s" % (m['send'].split('.')[0], m['recv'].split('.')[0]))
+    #recvTitle = "milhouse_%s-FROM-%s" % (m['recv'].split('.')[0], m['send'].split('.')[0]))
+    
+    add_command("milhouse %s" % (sendOpt), host=m['send'], identifier="%s_%s_TO_%s" % (title, m['send'].split('.')[0], m['recv'].split('.')[0]))
+    add_command("milhouse %s"%(recvOpt), env={"DISPLAY":":0.0"}, host=m['recv'], identifier="%s_%s_FROM_%s" % (title, m['recv'].split('.')[0], m['send'].split('.')[0]))
+
+
+
+# spinserver sends UDP to panoViewers on 54326, and to Pd on 54323:
+add_command("spinserver --send-udp-msg %s 54323 --send-udp-msg %s 54326 --send-udp-msg %s 54326" % (controlAddr, PAR_posture, MTL_posture), env={"LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib:/usr/local/lib64/osgPlugins-2.9.8"}, identifier="spinserver", host=PAR_posture, sleep_after=DELAY)
+
+# PARIS viewer:
+add_command("panoViewer --send-udp-msg %s 54324 --send-tcp-msg %s 54322 --recv-udp-msg localhost 54326 --recv-tcp-msg %s 54325" % (spinserverAddr, spinserverAddr, PAR_posture), identifier="panoViewer_PAR", env={"DISPLAY":":0.0", "LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib:/usr/local/lib64/osgPlugins-2.9.8"}, host=PAR_posture, sleep_after=DELAY)
+
+# MONTREAL viewer:
+add_command("panoViewer --send-udp-msg %s 54324 --send-tcp-msg %s 54322 --recv-udp-msg localhost 54326 --recv-tcp-msg %s 54325" % (spinserverAddr, spinserverAddr, MTL_posture), identifier="panoViewer_MTL", env={"DISPLAY":":0.0","LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib:/usr/local/lib64/osgPlugins-2.9.8"})
+
+# netstat:
+add_command("netstat -lnp | grep python | grep -v orbit", identifier="netstat_MTL", respawn=False)
+add_command("netstat -lnp | grep python | grep -v orbit", identifier="netstat_PAR", host=PAR_posture, respawn=False)
+
+add_command("pdextended /home/posture/src/postures/trunk/projects/paris/main.pd spinEdit.pd", host=controlAddr, identifier="Pd_controller", env={"DISPLAY":":0.0"})

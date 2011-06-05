@@ -1,0 +1,51 @@
+#N canvas 734 206 741 617 10;
+#X obj 198 -5 inlet;
+#X obj 184 233 t a a;
+#X obj 161 547 outlet;
+#X msg 241 480 /\$2 setContext \$3;
+#X text 257 407 IMPORTANT: the context of a "seenby" node must be set
+to the *hostname* of user who wants to "see" it. The spinviewer app
+looks at the context paramter to decide if it should render it \, and
+only renders if it matches the hostname...;
+#X msg 183 210 list \$1 \$1-seenby-\$2 \$2;
+#X obj 184 188 list append \$1;
+#X text 247 -3 list of all UserNodes in SPIN;
+#X text 231 230 create ShapeNode for each user: "userID-seenby-currentUser"
+;
+#X obj 198 58 route NULL;
+#X text 275 61 ignore empty user list (a string that says "NULL");
+#X text 355 31 <- test;
+#X obj 185 96 list split 1;
+#X obj 269 96 list;
+#X msg 252 303 /\$2 setParent \$1 \, /\$2 setTranslation 0 -0.01 1
+\, /\$2 setOrientation 0 0 180 \, /\$2 setBillboard 0 \, /\$2 setScale
+2.666 1 2 \, /\$2 setShape 6 \, /\$2 setLighting 0;
+#X obj 185 159 route \$1;
+#X text 144 -25 arg #1 to this patch is the current user/viewer;
+#X text 247 158 <- shouldn't see yourself \, so ignore current userID
+;
+#X obj 185 118 list trim;
+#X text 258 117 <- this will output all userID's \, one at a time;
+#X msg 218 29 posture05 posture08;
+#X msg 237 263 createNode \$1 UserNode \, createNode \$2 ShapeNode
+\, createNode \$1-reporter ReporterNode;
+#X msg 259 356 /\$1-reporter setParent \$1 \, /\$1-reporter setReporting
+INCIDENCE 1 \, /\$1-reporter addTarget \$3;
+#X connect 0 0 9 0;
+#X connect 1 0 14 0;
+#X connect 1 0 3 0;
+#X connect 1 0 22 0;
+#X connect 1 1 21 0;
+#X connect 3 0 2 0;
+#X connect 5 0 1 0;
+#X connect 6 0 5 0;
+#X connect 9 1 12 0;
+#X connect 12 0 18 0;
+#X connect 12 1 13 0;
+#X connect 13 0 12 0;
+#X connect 14 0 2 0;
+#X connect 15 1 6 0;
+#X connect 18 0 15 0;
+#X connect 20 0 9 0;
+#X connect 21 0 2 0;
+#X connect 22 0 2 0;
