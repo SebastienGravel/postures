@@ -1,5 +1,5 @@
-#N canvas 725 25 926 908 10;
-#X obj 2 83 bng 30 250 50 0 initBang! initBang init 4 15 1 14 -261234
+#N canvas 708 25 926 908 10;
+#X obj 2 133 bng 30 250 50 0 initBang! initBang init 4 15 1 14 -261234
 -1 -1;
 #N canvas 297 127 450 300 SPIN_stuff 0;
 #X obj 157 27 inlet;
@@ -12,8 +12,8 @@
 #X connect 1 0 2 0;
 #X connect 2 0 4 0;
 #X connect 4 0 3 0;
-#X restore 4 46 pd SPIN_stuff;
-#X obj 412 125 bng 20 250 50 0 \$0-stop-moving empty STOP_MOVING 25
+#X restore 4 96 pd SPIN_stuff;
+#X obj 412 175 bng 20 250 50 0 \$0-stop-moving empty STOP_MOVING 25
 10 1 10 -261234 -1 -1;
 #N canvas 352 109 808 496 INIT 0;
 #X msg 620 113 0;
@@ -59,140 +59,8 @@
 #X connect 19 0 18 0;
 #X connect 20 0 10 0;
 #X connect 22 0 10 0;
-#X restore 13 423 pd INIT;
-#X obj 4 1 widget-spinConnect \$0;
-#X obj 295 167 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#N canvas 895 114 949 846 user 0;
-#X obj 107 18 inlet;
-#X msg 215 63 hostname -s;
-#X obj 215 43 loadbang;
-#X obj 147 156 symbol;
-#X obj 341 815 s \$0-to-SPIN-TCP;
-#X obj 436 116 print Creating_User;
-#X obj 43 411 delay 500;
-#X msg 133 379 audioInit;
-#X obj 133 401 OSCprepend /\$2;
-#X msg 43 434 /posture0?-listener stateDump;
-#X obj 214 381 OSCsymbol;
-#X obj 103 504 s \$0-to-SPIN-TCP;
-#X text 474 359 Reporter (used to report hotspot enter/exit);
-#X msg 475 718 /\$1-light setParent \$1 \, /\$1-light setTranslation
-0 0 0 \, /\$1-light setOrientation -90 0 0 \, /\$1-light setCutoff
-180 \, /\$1-light setExponent 100 \, /\$1-light setAttenuation 0.2
-\, /\$1-light setAmbient 0.75 0.75 0.75 1 \, /\$1-light setDiffuse
-0.75 0.75 0.75 1 \, /\$1-light setSpecular 1 1 1 1;
-#X text 476 702 LIGHT:;
-#X msg 471 317 1;
-#X obj 471 336 s g_collisions;
-#X text 504 317 enable collisions;
-#X text 481 431 Reporter (used to report angle wrt the 4-angle video)
-;
-#X obj 231 150 s g_userID;
-#X obj 183 18 inlet;
-#X text 232 19 <-override user id;
-#X msg 447 149 userRefresh;
-#X obj 447 169 s \$0-to-SPIN;
-#X obj 152 173 t b s s b s;
-#X text 481 486 Pointer Reporter;
-#X obj 78 79 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X msg 475 449 /\$1-reporter-video setParent \$1 \, /\$1-reporter-video
-setReporting INCIDENCE 1 \, /\$1-reporter-video setMaxRate 10;
-#X msg 468 379 /\$1-reporter-hotspot setParent \$1 \, /\$1-reporter-hotspot
-setReporting CONTAINMENT 1 \, /\$1-reporter-hotspot setMaxRate 10;
-#X msg 478 503 /\$1-pointer setParent \$1 \, /\$1-pointer-reporter
-setParent \$1-pointer \, /\$1-pointer-reporter setReporting INCIDENCE
-1 \, /\$1-pointer-reporter setReporting DISTANCE 1 \, /\$1-pointer-reporter
-setMaxRate 2;
-#X obj 25 568 r g_currentPos;
-#X obj 25 588 t b;
-#X obj 25 609 delay 180000;
-#X text 108 609 3 min;
-#X msg 107 693 /posture?? setTranslation 0 0 1.5;
-#X text 24 546 inactivity timer:;
-#X obj 473 563 pack s s;
-#X obj 856 547 list2symbol;
-#X obj 856 508 loadbang;
-#X msg 462 272 createNode \$1-target SwitchNode \, createNode \$1-target-cursor
-TextNode \, createNode \$1-target-instructions TextNode;
-#X msg 473 582 /\$1-target setParent \$1-pointer \, /\$1-target-instructions
-setParent \$1-target \, /\$1-target-cursor setParent \$1-target \,
-/\$1-target-cursor setTextValue + \, /\$1-target-instructions setTextValue
-\$2 \, /\$1-target setTranslation 0 0.01 0 \, /\$1-target setScale
-0.01 0.01 0.01 \, /\$1-target-* setColor 1 0 0 1 \, /\$1-target-* setDecoration
-9 \, /\$1-target-* setFont GillSans.ttf \, /\$1-target-* setBillboard
-2 \, /\$1-target-instructions setTranslation 0 0 0.1 \, /\$1-target
-setEnabled \$1-target-instructions 0;
-#X msg 856 528 Point HERE;
-#X obj 80 674 t b b;
-#X obj 80 750 s gScene-set;
-#X msg 80 731 0;
-#X obj 151 572 r \$0-from-SPIN;
-#X obj 151 590 OSCparse /posture??;
-#X obj 150 630 route reset;
-#X obj 150 609 route event setTranslation;
-#X obj 226 632 s g_currentPos;
-#X text 238 650 ^ NEED this!;
-#X msg 442 193 createNode \$1 UserNode \, createNode \$1-reporter-hotspot
-ReporterNode \, createNode \$1-reporter-video ReporterNode \, createNode
-\$1-light LightSource \, createNode \$1-pointer GroupNode \, createNode
-\$1-pointer-reporter ReporterNode;
-#X obj 215 83 shell;
-#X obj 214 111 symbol;
-#X connect 0 0 3 0;
-#X connect 1 0 52 0;
-#X connect 2 0 1 0;
-#X connect 3 0 24 0;
-#X connect 6 0 9 0;
-#X connect 7 0 8 0;
-#X connect 8 0 11 0;
-#X connect 9 0 11 0;
-#X connect 10 0 8 1;
-#X connect 13 0 4 0;
-#X connect 15 0 16 0;
-#X connect 20 0 3 0;
-#X connect 22 0 23 0;
-#X connect 24 0 7 0;
-#X connect 24 0 6 0;
-#X connect 24 1 28 0;
-#X connect 24 1 15 0;
-#X connect 24 1 13 0;
-#X connect 24 1 27 0;
-#X connect 24 1 29 0;
-#X connect 24 1 36 0;
-#X connect 24 2 39 0;
-#X connect 24 2 51 0;
-#X connect 24 3 22 0;
-#X connect 24 4 5 0;
-#X connect 26 0 3 0;
-#X connect 27 0 4 0;
-#X connect 28 0 4 0;
-#X connect 29 0 4 0;
-#X connect 30 0 31 0;
-#X connect 31 0 32 0;
-#X connect 32 0 42 0;
-#X connect 34 0 4 0;
-#X connect 36 0 40 0;
-#X connect 37 0 36 1;
-#X connect 38 0 41 0;
-#X connect 39 0 4 0;
-#X connect 40 0 4 0;
-#X connect 41 0 37 0;
-#X connect 42 0 44 0;
-#X connect 42 1 34 0;
-#X connect 44 0 43 0;
-#X connect 45 0 46 0;
-#X connect 46 0 48 0;
-#X connect 47 0 42 0;
-#X connect 48 0 47 0;
-#X connect 48 1 49 0;
-#X connect 51 0 4 0;
-#X connect 52 0 53 0;
-#X connect 53 0 3 1;
-#X connect 53 0 10 0;
-#X connect 53 0 19 0;
-#X restore 244 177 pd user;
+#X restore 6 448 pd INIT;
+#X obj 4 51 widget-spinConnect \$0;
 #N canvas 1091 190 712 366 UTILITIES 0;
 #X msg 403 55 refreshSubscribers;
 #X obj 403 74 s \$0-to-SPIN-TCP;
@@ -220,60 +88,20 @@ ReporterNode \, createNode \$1-reporter-video ReporterNode \, createNode
 #X connect 12 0 5 0;
 #X connect 13 0 14 0;
 #X connect 14 0 5 0;
-#X restore 548 101 pd UTILITIES;
-#X obj 214 220 widget-AudioRenderer \$0;
-#N canvas 234 296 560 374 NTA_audio_stuff 0;
-#X obj 16 32 inlet;
-#X text 74 180 < userID inbus outbus_l outbus_2 ... outbus_N >;
-#X obj 11 240 outlet;
-#X obj 399 113 delay 1000;
-#X msg 399 132 \; pd dsp 1 \;;
-#X obj 333 21 r \$0-from-SPIN;
-#X obj 333 43 OSCparse /userID;
-#X obj 333 64 route audioInit;
-#X obj 274 113 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 201 64 route userRefresh;
-#X obj 80 91 r g_userID;
-#X obj 11 147 symbol;
-#X obj 426 21 r g_userID;
-#X msg 11 178 \$1 1 1 2;
-#X msg 92 44 \; pd dsp 0 \;;
-#X obj 16 52 t b b;
-#X connect 0 0 15 0;
-#X connect 3 0 4 0;
-#X connect 5 0 6 0;
-#X connect 5 0 9 0;
-#X connect 6 0 7 0;
-#X connect 8 0 11 0;
-#X connect 9 0 8 0;
-#X connect 10 0 11 1;
-#X connect 11 0 13 0;
-#X connect 12 0 6 1;
-#X connect 13 0 2 0;
-#X connect 15 0 11 0;
-#X connect 15 1 14 0;
-#X restore 214 200 pd NTA_audio_stuff;
-#X obj 416 72 bng 15 250 50 0 \$0-go-home \$0-go-home-set home 20 9
+#X restore 548 151 pd UTILITIES;
+#X obj 416 122 bng 15 250 50 0 \$0-go-home \$0-go-home-set home 20
+9 1 10 -261682 -1 -1;
+#X obj 416 137 bng 15 250 50 0 \$0-go-911 \$0-go-911-set 9/11 20 9
 1 10 -261682 -1 -1;
-#X obj 416 87 bng 15 250 50 0 \$0-go-911 \$0-go-911-set 9/11 20 9 1
-10 -261682 -1 -1;
-#X obj 342 190 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 548 230 vsl 20 118 -99 18 0 0 \$0-gain \$0-gain-set gain -2
--12 1 12 -261704 -1 -1 0 1;
-#X obj 548 354 nbx 3 16 -1e+37 1e+37 0 0 empty \$1-gain-set db 40 10
-1 10 -262144 -1 -1 0 256;
-#X text 544 242 ------ 0db;
-#X obj 93 413 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 86 438 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X floatatom 415 422 6 0 0 0 - - -;
-#X obj 421 401 unpack 0 0 0;
-#X floatatom 455 422 6 0 0 0 - - -;
-#X floatatom 495 422 7 0 0 0 - - -;
-#X obj 104 328 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 125 78 tgl 15 0 g_hotspot_debugview g_hotspot_debugview-set
+#X floatatom 502 309 6 0 0 0 - - -;
+#X obj 508 288 unpack 0 0 0;
+#X floatatom 542 309 6 0 0 0 - - -;
+#X floatatom 582 309 7 0 0 0 - - -;
+#X obj 97 353 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 125 128 tgl 15 0 g_hotspot_debugview g_hotspot_debugview-set
 hotspot_debug 20 8 1 10 -261234 -1 -1 0 1;
 #N canvas 790 188 1044 696 timeline 0;
 #X obj 370 21 inlet;
@@ -413,12 +241,12 @@ count);
 #X connect 56 0 27 0;
 #X connect 58 0 27 0;
 #X connect 59 0 25 0;
-#X restore 83 295 pd timeline;
-#X obj 273 54 tgl 25 0 tgl_timeline tgl_timeline-set timeline 30 12
+#X restore 76 320 pd timeline;
+#X obj 273 104 tgl 25 0 tgl_timeline tgl_timeline-set timeline 30 12
 1 12 -262130 -1 -1 0 1;
-#X obj 166 285 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 159 310 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 125 96 tgl 15 0 g_snap_toggle g_snap_toggle-set snapToPanoscope
+#X obj 125 146 tgl 15 0 g_snap_toggle g_snap_toggle-set snapToPanoscope
 20 8 1 10 -261234 -1 -1 0 1;
 #N canvas 965 353 843 563 fog 0;
 #X obj 236 -65 inlet;
@@ -481,12 +309,11 @@ count);
 #X connect 26 1 2 0;
 #X connect 26 2 25 0;
 #X connect 27 0 3 0;
-#X restore 40 338 pd fog;
-#X obj 214 156 t b b;
-#X obj 421 383 r g_currentPos;
-#X obj 125 60 tgl 15 0 g_noPointer g_noPointer-set noPointer 20 8 1
-10 -261234 -1 -1 0 1;
-#X obj 13 404 delay 5000;
+#X restore 33 363 pd fog;
+#X obj 508 270 r g_currentPos;
+#X obj 125 110 tgl 15 0 g_noPointer g_noPointer-set noPointer 20 8
+1 10 -261234 -1 -1 0 1;
+#X obj 6 429 delay 5000;
 #N canvas 871 77 801 634 GO-THERE 0;
 #X obj 70 465 s \$0-to-SPIN;
 #X msg 76 161 setTranslation 0 0 1.5;
@@ -505,72 +332,30 @@ count);
 #X connect 6 0 2 0;
 #X connect 7 0 8 0;
 #X connect 8 0 2 0;
-#X restore 415 52 pd GO-THERE;
-#X obj 412 149 bng 20 250 50 0 \$0-debug-scene empty DEBUG 25 10 1
+#X restore 415 102 pd GO-THERE;
+#X obj 412 199 bng 20 250 50 0 \$0-debug-scene empty DEBUG 25 10 1
 10 -261234 -1 -1;
-#X symbolatom 336 26 15 0 0 2 userID: g_userID -;
-#X obj 83 276 delay 1000;
-#X obj 2 117 t b b b b b b;
-#X obj 416 102 bng 15 250 50 0 \$0-go-twelveOfUs \$0-go-twelveOfUs-set
+#X symbolatom 336 76 15 0 0 2 userID: g_userID -;
+#X obj 76 301 delay 1000;
+#X obj 2 167 t b b b b b b;
+#X obj 416 152 bng 15 250 50 0 \$0-go-twelveOfUs \$0-go-twelveOfUs-set
 TwelveOfUs 20 9 1 10 -261682 -1 -1;
-#X obj 273 83 tgl 25 0 tgl_audiovideo tgl_audiovideo-set audio/video
+#X obj 273 133 tgl 25 0 tgl_audiovideo tgl_audiovideo-set audio/video
 30 12 1 12 -262130 -1 -1 0 1;
-#X msg 244 436 refreshSubscribers;
-#X obj 256 462 s \$0-to-SPIN-TCP;
-#X obj 408 482 anyreg g_SCENE_BOUND 0 0 0 0 0 0;
-#X text 390 460 need this or snap2panoscope won't work:;
-#X obj 87 703 r \$0-from-SPIN;
-#X obj 87 726 route nodeList;
-#X obj 87 747 route UserNode;
-#X obj 52 645 cnv 15 150 24 empty empty callback: 4 12 1 24 -99865
+#X msg 244 486 refreshSubscribers;
+#X obj 256 512 s \$0-to-SPIN-TCP;
+#X obj 495 369 anyreg g_SCENE_BOUND 0 0 0 0 0 0;
+#X text 477 347 need this or snap2panoscope won't work:;
+#X obj 87 753 r \$0-from-SPIN;
+#X obj 87 776 route nodeList;
+#X obj 87 797 route UserNode;
+#X obj 52 695 cnv 15 150 24 empty empty callback: 4 12 1 24 -99865
 -262144 0;
-#X text 3 675 (creates video billboards given a user \, for EACH OTHER
+#X text 3 725 (creates video billboards given a user \, for EACH OTHER
 user);
-#X obj 53 780 createVideoBillboards posture05;
-#X obj 58 831 s \$0-to-SPIN-TCP;
-#X obj 373 880 s \$0-to-SPIN;
-#N canvas 475 511 635 422 CreateTextures 0;
-#X obj 153 50 inlet;
-#X obj 234 373 outlet;
-#X obj 164 181 list prepend;
-#X msg 233 130 \$1;
-#X obj 110 125 list split 1;
-#X obj 109 153 list split 1;
-#X obj 193 153 list;
-#X obj 164 202 t a a;
-#X msg 231 234 createStateSet \$1-\$2 ImageTexture;
-#X text 230 215 TODO: replace with SharedVideoTexture;
-#X obj 145 102 t a a;
-#X obj 153 71 list;
-#X msg 164 277 /\$1-\$2 setPath ~/src/postures/trunk/prototypes/\$2
-\, /\$1-\$2 setLighting 0;
-#X connect 0 0 11 0;
-#X connect 2 0 7 0;
-#X connect 3 0 2 1;
-#X connect 4 1 5 0;
-#X connect 5 0 2 0;
-#X connect 5 1 6 0;
-#X connect 6 0 5 0;
-#X connect 7 0 12 0;
-#X connect 7 1 8 0;
-#X connect 8 0 1 0;
-#X connect 10 0 4 0;
-#X connect 10 1 3 0;
-#X connect 11 0 10 0;
-#X connect 12 0 1 0;
-#X restore 416 735 pd CreateTextures;
-#X text 533 729 test:;
-#X msg 505 762 /posture08-seenby-posture05 setStateSet posture08-south.jpg
-;
-#X msg 513 788 /posture08-seenby-posture05 setStateSet posture08-north.jpg
-;
-#X msg 524 820 /posture08-seenby-posture06 setStateSet posture08-west.jpg
-;
-#X msg 525 844 /posture08-seenby-posture06 setStateSet posture08-east.jpg
-;
-#X msg 412 673 posture05 north.jpg east.jpg south.jpg west.jpg;
-#X msg 427 699 posture08 north.jpg east.jpg south.jpg west.jpg;
-#N canvas 601 98 956 497 CAMERA_SWITCHING 1;
+#X obj 53 830 createVideoBillboards posture05;
+#X obj 58 881 s \$0-to-SPIN-TCP;
+#N canvas 601 98 956 497 CAMERA_SWITCHING 0;
 #X obj 24 16 cnv 15 150 24 empty empty callback: 4 12 1 24 -99865 -262144
 0;
 #X obj 35 159 r \$0-from-SPIN;
@@ -580,7 +365,6 @@ user);
 #X msg 90 189 north.jpg east.jpg south.jpg west.jpg;
 #X msg 503 210 north.jpg east.jpg south.jpg west.jpg;
 #X obj 280 123 inlet;
-#X obj 35 268 4cam-user posture08;
 #X msg 146 232 shvid_81443610264e63e shvid_81443610264e437 shvid_81443610264e626
 shvid_81443610264e5f4;
 #X text 154 214 streamer08's cameras:;
@@ -592,82 +376,91 @@ shvid_81443610264dca3;
 shvid_81443610264e117;
 #X obj 448 185 r \$0-from-SPIN;
 #X text 327 123 <- init bang;
+#X obj 35 268 4cam-user posture08;
 #X obj 448 295 4cam-user posture05;
-#X connect 1 0 7 0;
-#X connect 4 0 7 1;
+#X connect 1 0 15 0;
+#X connect 4 0 15 1;
 #X connect 5 0 16 1;
-#X connect 6 0 5 0;
-#X connect 6 0 4 0;
-#X connect 7 0 3 0;
-#X connect 8 0 7 2;
-#X connect 13 0 16 2;
-#X connect 14 0 16 0;
+#X connect 6 0 12 0;
+#X connect 6 0 7 0;
+#X connect 7 0 15 2;
+#X connect 12 0 16 2;
+#X connect 13 0 16 0;
+#X connect 15 0 3 0;
 #X connect 16 0 3 0;
-#X restore 700 254 pd CAMERA_SWITCHING;
-#N canvas 0 0 669 414 CreateUser 0;
-#X obj 101 27 inlet;
-#X obj 89 121 t a a;
-#X obj 89 103 list;
-#X obj 95 351 outlet;
-#X text 239 105 create a UserNode (just in case) and a TextNode for
-debugging:;
-#X msg 188 205 /\$1 setTranslation \$2 \$3 \$4 \, /\$1 setOrientation
-\$5 \$6 \$7;
-#X msg 193 250 /\$1-text setParent \$1 \, /\$1-text setContext \$1
-\, /\$1-text setTextValue \$1 \, /\$1-text setTranslation 0 0 0.2 \,
-/\$1-text setBillboard 0 \, /\$1-text setScale 2 2 2;
-#X msg 196 148 createNode \$1 UserNode \, createNode \$1-text TextNode
-createNode;
-#X connect 0 0 2 0;
-#X connect 1 0 5 0;
-#X connect 1 0 6 0;
-#X connect 1 1 7 0;
-#X connect 2 0 1 0;
-#X connect 5 0 3 0;
-#X connect 6 0 3 0;
-#X connect 7 0 3 0;
-#X restore 309 604 pd CreateUser;
-#X msg 314 554 posture05 1 0 1.5 0 0 135;
-#X msg 352 579 posture08 -1 0 1.5 0 0 -135;
-#X obj 66 801 createVideoBillboards posture08;
-#X obj 712 214 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X restore 144 254 pd CAMERA_SWITCHING;
+#X obj 144 216 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X connect 0 0 36 0;
+#X msg 136 561 posture05 Paris \, posture08 Montreal;
+#N canvas 989 488 743 426 TextLabels 0;
+#X obj 84 23 inlet;
+#X obj 73 91 list;
+#X text 255 153 create a UserNode (just in case) and a TextNode for
+debugging:;
+#X msg 212 196 createNode \$1 UserNode \, createNode \$1-text TextNode
+;
+#X msg -94 210 /posture05-text setContext posture08;
+#X msg -87 235 /posture08-text setContext posture05;
+#X msg 173 50 posture05 Paris \, posture08 Montreal;
+#X obj 73 114 t b a;
+#X obj 107 161 t a a;
+#X obj 95 351 s \$0-to-SPIN-TCP;
+#X msg 215 233 /\$1-text setParent \$1 \, /\$1-text setTextValue \$2
+\, /\$1-text setTranslation 0 0 1.5 \, /\$1-text setBillboard 2 \,
+/\$1-text setScale 3 3 3 \, \$1-text setFont GillSans.ttf;
+#X connect 0 0 1 0;
+#X connect 1 0 7 0;
+#X connect 3 0 9 0;
+#X connect 4 0 9 0;
+#X connect 5 0 9 0;
+#X connect 6 0 1 0;
+#X connect 7 0 4 0;
+#X connect 7 0 5 0;
+#X connect 7 1 8 0;
+#X connect 8 0 10 0;
+#X connect 8 1 3 0;
+#X connect 10 0 9 0;
+#X restore 136 585 pd TextLabels;
+#X obj 115 551 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 66 851 createVideoBillboards posture08;
+#X obj 568 64 client;
+#X msg 4 34 default 10.10.10.162 54324 54322 NULL 54323 54321;
+#X obj 4 15 loadbang;
+#X msg 622 508 createNode grid GridNode;
+#X msg 641 488 deleteNode grid;
+#X obj 622 469 sel 1 0;
+#X obj 602 428 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 553 549 s \$0-to-SPIN-TCP;
+#X connect 0 0 27 0;
 #X connect 4 0 1 0;
-#X connect 5 0 6 0;
-#X connect 9 0 8 0;
-#X connect 12 0 9 0;
-#X connect 13 0 14 0;
-#X connect 16 0 3 0;
-#X connect 18 0 17 0;
-#X connect 18 1 19 0;
-#X connect 18 2 20 0;
-#X connect 21 0 27 0;
-#X connect 25 0 23 0;
-#X connect 28 0 9 0;
-#X connect 28 1 6 0;
-#X connect 29 0 18 0;
-#X connect 31 0 3 0;
-#X connect 35 0 23 0;
-#X connect 36 0 31 0;
-#X connect 36 2 27 0;
-#X connect 36 3 35 0;
-#X connect 36 5 28 0;
+#X connect 8 0 3 0;
+#X connect 10 0 9 0;
+#X connect 10 1 11 0;
+#X connect 10 2 12 0;
+#X connect 13 0 19 0;
+#X connect 17 0 15 0;
+#X connect 20 0 10 0;
+#X connect 22 0 3 0;
+#X connect 26 0 15 0;
+#X connect 27 0 22 0;
+#X connect 27 2 19 0;
+#X connect 27 3 26 0;
+#X connect 30 0 31 0;
+#X connect 34 0 35 0;
+#X connect 35 0 36 0;
+#X connect 36 0 39 0;
+#X connect 36 0 46 0;
 #X connect 39 0 40 0;
+#X connect 42 0 41 0;
 #X connect 43 0 44 0;
-#X connect 44 0 45 0;
-#X connect 45 0 48 0;
-#X connect 45 0 63 0;
-#X connect 48 0 49 0;
-#X connect 51 0 50 0;
-#X connect 53 0 50 0;
-#X connect 54 0 50 0;
-#X connect 55 0 50 0;
-#X connect 56 0 50 0;
-#X connect 57 0 51 0;
-#X connect 58 0 51 0;
-#X connect 60 0 50 0;
-#X connect 61 0 60 0;
-#X connect 62 0 60 0;
-#X connect 63 0 49 0;
-#X connect 64 0 59 0;
+#X connect 45 0 43 0;
+#X connect 46 0 40 0;
+#X connect 48 0 4 1;
+#X connect 49 0 48 0;
+#X connect 50 0 54 0;
+#X connect 51 0 54 0;
+#X connect 52 0 50 0;
+#X connect 52 1 51 0;
+#X connect 53 0 52 0;

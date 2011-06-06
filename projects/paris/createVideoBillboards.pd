@@ -1,4 +1,4 @@
-#N canvas 734 206 741 617 10;
+#N canvas 291 304 741 617 10;
 #X obj 198 -5 inlet;
 #X obj 184 233 t a a;
 #X obj 161 547 outlet;
@@ -17,9 +17,6 @@ only renders if it matches the hostname...;
 #X text 355 31 <- test;
 #X obj 185 96 list split 1;
 #X obj 269 96 list;
-#X msg 252 303 /\$2 setParent \$1 \, /\$2 setTranslation 0 -0.01 1
-\, /\$2 setOrientation 0 0 180 \, /\$2 setBillboard 0 \, /\$2 setScale
-2.666 1 2 \, /\$2 setShape 6 \, /\$2 setLighting 0;
 #X obj 185 159 route \$1;
 #X text 144 -25 arg #1 to this patch is the current user/viewer;
 #X text 247 158 <- shouldn't see yourself \, so ignore current userID
@@ -27,25 +24,28 @@ only renders if it matches the hostname...;
 #X obj 185 118 list trim;
 #X text 258 117 <- this will output all userID's \, one at a time;
 #X msg 218 29 posture05 posture08;
-#X msg 237 263 createNode \$1 UserNode \, createNode \$2 ShapeNode
-\, createNode \$1-reporter ReporterNode;
-#X msg 259 356 /\$1-reporter setParent \$1 \, /\$1-reporter setReporting
+#X msg 252 303 /\$2 setParent \$1 \, /\$2 setTranslation 0 -0.01 -0.5
+\, /\$2 setOrientation 0 0 180 \, /\$2 setBillboard 0 \, /\$2 setScale
+2 1 2.666 \, /\$2 setShape 6;
+#X msg 259 356 /\$1-reporter-video setParent \$1 \, /\$1-reporter setReporting
 INCIDENCE 1 \, /\$1-reporter addTarget \$3;
+#X msg 236 264 createNode \$1 UserNode \, createNode \$2 ShapeNode
+\, createNode \$1-reporter-video ReporterNode;
 #X connect 0 0 9 0;
-#X connect 1 0 14 0;
+#X connect 1 0 20 0;
 #X connect 1 0 3 0;
-#X connect 1 0 22 0;
-#X connect 1 1 21 0;
+#X connect 1 0 21 0;
+#X connect 1 1 22 0;
 #X connect 3 0 2 0;
 #X connect 5 0 1 0;
 #X connect 6 0 5 0;
 #X connect 9 1 12 0;
-#X connect 12 0 18 0;
+#X connect 12 0 17 0;
 #X connect 12 1 13 0;
 #X connect 13 0 12 0;
-#X connect 14 0 2 0;
-#X connect 15 1 6 0;
-#X connect 18 0 15 0;
-#X connect 20 0 9 0;
+#X connect 14 1 6 0;
+#X connect 17 0 14 0;
+#X connect 19 0 9 0;
+#X connect 20 0 2 0;
 #X connect 21 0 2 0;
 #X connect 22 0 2 0;
