@@ -1,4 +1,4 @@
-#N canvas 310 295 1042 558 10;
+#N canvas 603 145 1042 558 10;
 #X obj 60 61 inlet;
 #X obj 727 68 inlet;
 #X obj 58 212 cameraSwitcher;
@@ -35,6 +35,10 @@ setOrientation 0 0 \$2;
 #X text 768 66 sharedvideo camera list;
 #X msg 730 355 /\$1-\$2 setTextureID \$2;
 #X obj 60 91 OSCparse /\$1-reporter-video;
+#X msg 82 437 /posture08-seenby-posture06 setStateSet posture08-shvid_81443610264e437
+;
+#X msg 79 476 /posture08-seenby-posture06 setStateSet posture08-shvid_81443610264e626
+;
 #X connect 0 0 33 0;
 #X connect 1 0 2 1;
 #X connect 1 0 20 0;
@@ -70,3 +74,5 @@ setOrientation 0 0 \$2;
 #X connect 28 0 11 0;
 #X connect 32 0 11 0;
 #X connect 33 0 4 0;
+#X connect 34 0 11 0;
+#X connect 35 0 11 0;

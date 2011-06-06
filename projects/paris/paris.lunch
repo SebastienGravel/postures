@@ -6,8 +6,8 @@ PAR_streamer = "streamer05.nta.sat.qc.ca"
 #PAR_streamer = "posture05.nta.sat.qc.ca"
 MTL_posture  = "posture08.nta.sat.qc.ca"
 MTL_streamer = "streamer08.nta.sat.qc.ca"
-spinserverAddr = PAR_posture
-#spinserverAddr = MTL_posture
+#spinserverAddr = PAR_posture
+spinserverAddr = MTL_posture
 DELAY = 0.5
 
 # clean-up from previous session:
@@ -24,10 +24,12 @@ add_command("killall jack.plumbing", host=PAR_posture, respawn=False)
 milhouses = [
  {"send":MTL_posture, "audio":True, "recv":PAR_posture, "port":54500 },
  {"send":PAR_posture, "audio":True, "recv":MTL_posture, "port":54400 },
- {"send":MTL_streamer, "cam":"81443610264e63e", "recv":PAR_posture, "port":54510, "desc":"e63e"},
- {"send":MTL_streamer, "cam":"81443610264e437", "recv":PAR_posture, "port":54520, "desc":"e437"},
- {"send":MTL_streamer, "cam":"81443610264e626", "recv":PAR_posture, "port":54530, "desc":"e626"},
- {"send":MTL_streamer, "cam":"81443610264e5f4", "recv":PAR_posture, "port":54540, "desc":"e5f4"},
+# cameras in MTL
+# {"send":MTL_streamer, "cam":"81443610264e63e", "recv":PAR_posture, "port":54510, "desc":"e63e"},
+# {"send":MTL_streamer, "cam":"81443610264e437", "recv":PAR_posture, "port":54520, "desc":"e437"},
+# {"send":MTL_streamer, "cam":"81443610264e626", "recv":PAR_posture, "port":54530, "desc":"e626"},
+# {"send":MTL_streamer, "cam":"81443610264e5f4", "recv":PAR_posture, "port":54540, "desc":"e5f4"},
+# cameras in PARIS
  {"send":PAR_streamer, "cam":"81443610264e5e3", "recv":MTL_posture, "port":54410, "desc":"e5e3"},
  {"send":PAR_streamer, "cam":"81443610264df4e", "recv":MTL_posture, "port":54420, "desc":"fd4e"},
  {"send":PAR_streamer, "cam":"81443610264df44", "recv":MTL_posture, "port":54430, "desc":"df44"},
@@ -51,9 +53,7 @@ for m in milhouses:
     title = "milhouse"
     sendOpt = "-s --address %s" % (m['recv'])
     recvOpt = "-r --address %s" % (m['send'])
- 
     if ("cam" in m):
-
         sendOpt += " --videoport %d" % (m['port'])
         #sendOpt += " --camera-number %d" % (m['cam'])
         sendOpt += " --camera-guid %s" % (m['cam'])
@@ -74,7 +74,6 @@ for m in milhouses:
         title += "_VID_%s" % (m['cam'][-4:])
 
     if ("audio" in m):
-
         sendOpt += " --numchannels 1 --audioport %d --audiocodec raw --audiosource jackaudiosrc" % (m['port'])
         #sendOpt += " --disable-jack-autoconnect"
         #sendOpt += " --jack-client-name %s" % (m['send'])
@@ -83,14 +82,9 @@ for m in milhouses:
         #recvOpt += " --jack-client-name %s" % (m['send'])
 
         title += "_AUD"
-
-    
-    #sendTitle = "milhouse_%s-TO-%s" % (m['send'].split('.')[0], m['recv'].split('.')[0]))
-    #recvTitle = "milhouse_%s-FROM-%s" % (m['recv'].split('.')[0], m['send'].split('.')[0]))
     
     add_command("milhouse %s" % (sendOpt), host=m['send'], identifier="%s_%s_TO_%s" % (title, m['send'].split('.')[0], m['recv'].split('.')[0]))
     add_command("milhouse %s"%(recvOpt), env={"DISPLAY":":0.0"}, host=m['recv'], identifier="%s_%s_FROM_%s" % (title, m['recv'].split('.')[0], m['send'].split('.')[0]))
-
 
 
 # spinserver sends UDP to panoViewers on 54326, and to Pd on 54323:

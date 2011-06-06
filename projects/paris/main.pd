@@ -1,4 +1,4 @@
-#N canvas 936 286 882 619 10;
+#N canvas 739 218 882 619 10;
 #X obj 12 103 bng 30 250 50 0 initBang! initBang init 4 15 1 14 -261234
 -1 -1;
 #X obj 414 176 bng 20 250 50 0 \$0-stop-moving empty STOP_MOVING 25
@@ -88,7 +88,7 @@ count);
 #X obj 879 405 delay 500;
 #X msg 879 491 1;
 #X msg 879 546 1;
-#X obj 733 368 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 733 368 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 46 270 delay 10000;
 #X obj 879 527 delay 3000;
@@ -147,7 +147,6 @@ count);
 #X connect 34 0 5 0;
 #X connect 35 0 59 0;
 #X connect 35 1 3 0;
-#X connect 35 1 41 0;
 #X connect 35 1 47 0;
 #X connect 35 2 20 0;
 #X connect 35 2 19 0;
@@ -176,10 +175,10 @@ count);
 #X connect 56 0 27 0;
 #X connect 58 0 27 0;
 #X connect 59 0 25 0;
-#X restore 27 396 pd timeline;
+#X restore 27 397 pd timeline;
 #X obj 273 104 tgl 25 0 tgl_timeline tgl_timeline-set timeline 30 12
-1 12 -262130 -1 -1 0 1;
-#X obj 101 386 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+1 12 -262130 -1 -1 1 1;
+#X obj 101 387 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 125 146 tgl 15 0 g_snap_toggle g_snap_toggle-set snapToPanoscope
 20 8 1 10 -261234 -1 -1 0 1;
@@ -285,7 +284,7 @@ TwelveOfUs 20 9 1 10 -261682 -1 -1;
 #X text 134 401 (creates video billboards given a user \, for EACH
 OTHER user);
 #X obj 189 557 s \$0-to-SPIN-TCP;
-#N canvas 825 408 956 497 CAMERA_SWITCHING 0;
+#N canvas 581 65 956 497 CAMERA_SWITCHING 0;
 #X obj 24 16 cnv 15 150 24 empty empty callback: 4 12 1 24 -99865 -262144
 0;
 #X obj 35 159 r \$0-from-SPIN;
@@ -309,20 +308,20 @@ shvid_81443610264e117;
 0;
 #X obj 686 182 cnv 20 20 20 empty empty * 0 18 0 32 -262144 -258113
 0;
-#X obj 448 295 4cam-user posture06;
 #X msg 544 205 shvid_81443610264df44 shvid_81443610264e5e3 shvid_81443610264df4e
 shvid_81443610264dca3;
+#X obj 448 295 4cam-user posture06;
 #X connect 1 0 14 0;
 #X connect 4 0 14 1;
-#X connect 5 0 17 1;
+#X connect 5 0 18 1;
 #X connect 6 0 7 0;
-#X connect 6 0 18 0;
+#X connect 6 0 17 0;
 #X connect 7 0 14 2;
-#X connect 11 0 17 2;
-#X connect 12 0 17 0;
+#X connect 11 0 18 2;
+#X connect 12 0 18 0;
 #X connect 14 0 3 0;
-#X connect 17 0 3 0;
-#X connect 18 0 17 2;
+#X connect 17 0 18 2;
+#X connect 18 0 3 0;
 #X restore 124 251 pd CAMERA_SWITCHING;
 #N canvas 989 488 743 426 TextLabels 0;
 #X obj 84 23 inlet;
@@ -359,7 +358,7 @@ debugging:;
 #X msg 626 225 createNode grid GridNode;
 #X msg 645 205 deleteNode grid;
 #X obj 626 186 sel 1 0;
-#X obj 606 145 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 627 157 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 645 250 s \$0-to-SPIN-TCP;
 #X obj 197 527 createVideoBillboards posture08;
@@ -377,7 +376,7 @@ debugging:;
 #X obj 12 77 delay 2500;
 #X obj 245 241 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 27 377 delay 5000;
+#X obj 27 378 delay 5000;
 #X obj 12 443 delay 10000;
 #X msg 135 196 refresh;
 #X obj 395 517 cnv 20 20 20 empty empty * 0 18 0 32 -262144 -258113
@@ -389,6 +388,7 @@ debugging:;
 #X msg 75 288 posture06 Paris \, posture08 Montreal;
 #X obj 184 506 createVideoBillboards posture06;
 #X obj 135 216 s \$0-to-SPIN-TCP;
+#X msg 339 472 posture06 posture08;
 #X connect 0 0 15 0;
 #X connect 5 0 11 0;
 #X connect 9 0 7 0;
@@ -419,3 +419,5 @@ debugging:;
 #X connect 50 0 56 0;
 #X connect 54 0 29 0;
 #X connect 55 0 27 0;
+#X connect 57 0 37 0;
+#X connect 57 0 55 0;
