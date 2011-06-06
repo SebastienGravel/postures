@@ -7,6 +7,7 @@ PAR_streamer = "streamer05.nta.sat.qc.ca"
 MTL_posture  = "posture08.nta.sat.qc.ca"
 MTL_streamer = "streamer08.nta.sat.qc.ca"
 spinserverAddr = PAR_posture
+#spinserverAddr = MTL_posture
 DELAY = 0.5
 
 # clean-up from previous session:
@@ -23,19 +24,19 @@ add_command("killall jack.plumbing", host=PAR_posture, respawn=False)
 milhouses = [
  {"send":MTL_posture, "audio":True, "recv":PAR_posture, "port":54500 },
  {"send":PAR_posture, "audio":True, "recv":MTL_posture, "port":54400 },
- {"send":MTL_streamer, "cam":"81443610264e63e", "recv":PAR_posture, "port":54510, "desc":"NORD"},
- {"send":MTL_streamer, "cam":"81443610264e437", "recv":PAR_posture, "port":54520, "desc":"EST"},
- {"send":MTL_streamer, "cam":"81443610264e626", "recv":PAR_posture, "port":54530, "desc":"SUD"},
- {"send":MTL_streamer, "cam":"81443610264e5f4", "recv":PAR_posture, "port":54540, "desc":"OUEST"},
- {"send":PAR_streamer, "cam":"81443610264e5e3", "recv":MTL_posture, "port":54410, "desc":"NORD"},
- {"send":PAR_streamer, "cam":"81443610264df4e", "recv":MTL_posture, "port":54420, "desc":"EST"},
- {"send":PAR_streamer, "cam":"81443610264df44", "recv":MTL_posture, "port":54430, "desc":"SUD"},
- {"send":PAR_streamer, "cam":"81443610264dca3", "recv":MTL_posture, "port":54440, "desc":"OUEST"},
+ {"send":MTL_streamer, "cam":"81443610264e63e", "recv":PAR_posture, "port":54510, "desc":"e63e"},
+ {"send":MTL_streamer, "cam":"81443610264e437", "recv":PAR_posture, "port":54520, "desc":"e437"},
+ {"send":MTL_streamer, "cam":"81443610264e626", "recv":PAR_posture, "port":54530, "desc":"e626"},
+ {"send":MTL_streamer, "cam":"81443610264e5f4", "recv":PAR_posture, "port":54540, "desc":"e5f4"},
+ {"send":PAR_streamer, "cam":"81443610264e5e3", "recv":MTL_posture, "port":54410, "desc":"e5e3"},
+ {"send":PAR_streamer, "cam":"81443610264df4e", "recv":MTL_posture, "port":54420, "desc":"fd4e"},
+ {"send":PAR_streamer, "cam":"81443610264df44", "recv":MTL_posture, "port":54430, "desc":"df44"},
+ {"send":PAR_streamer, "cam":"81443610264dca3", "recv":MTL_posture, "port":54440, "desc":"dca3"},
 # posture05 test:
-# {"send":PAR_streamer, "cam":"81443610264df38", "recv":MTL_posture, "port":54410, "desc":"NORD"},
-# {"send":PAR_streamer, "cam":"81443610264df9f", "recv":MTL_posture, "port":54420, "desc":"EST"},
-# {"send":PAR_streamer, "cam":"81443610264df80", "recv":MTL_posture, "port":54430, "desc":"SUD"},
-# {"send":PAR_streamer, "cam":"81443610264e117", "recv":MTL_posture, "port":54440, "desc":"OUEST"},
+# {"send":PAR_streamer, "cam":"81443610264df38", "recv":MTL_posture, "port":54410, "desc":"df38"},
+# {"send":PAR_streamer, "cam":"81443610264df9f", "recv":MTL_posture, "port":54420, "desc":"df9f"},
+# {"send":PAR_streamer, "cam":"81443610264df80", "recv":MTL_posture, "port":54430, "desc":"df80"},
+# {"send":PAR_streamer, "cam":"81443610264e117", "recv":MTL_posture, "port":54440, "desc":"e117"},
  ]
 #milhouses = []
 
@@ -67,7 +68,8 @@ for m in milhouses:
         #recvOpt += " --shared-video-id %s_%s" % (m['send'], m['cam'])
         recvOpt += " --shared-video-id shvid_%s" % (m['cam'])
         recvOpt += " --text-overlay %s" % (m['desc'])
-        recvOpt += " --flip-video counterclockwise"
+        #recvOpt += " --flip-video counterclockwise"
+        recvOpt += " --flip-video clockwise"
 
         title += "_VID_%s" % (m['cam'][-4:])
 
@@ -92,7 +94,7 @@ for m in milhouses:
 
 
 # spinserver sends UDP to panoViewers on 54326, and to Pd on 54323:
-add_command("spinserver --disable-discovery --send-udp-msg %s 54323 --send-udp-msg %s 54323 --send-udp-msg %s 54326 --send-udp-msg %s 54326" % (PAR_posture, MTL_posture, PAR_posture, MTL_posture), env={"LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib:/usr/local/lib64/osgPlugins-2.9.8"}, identifier="spinserver", host=spinserverAddr, sleep_after=DELAY)
+add_command("spinserver --disable-discovery --disable-auto-cleanup --send-udp-msg %s 54323 --send-udp-msg %s 54323 --send-udp-msg %s 54326 --send-udp-msg %s 54326" % (PAR_posture, MTL_posture, PAR_posture, MTL_posture), env={"LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib:/usr/local/lib64/osgPlugins-2.9.8"}, identifier="spinserver", host=spinserverAddr, sleep_after=DELAY)
 
 # PARIS viewer:
 add_command("panoViewer --send-udp-msg %s 54324 --send-tcp-msg %s 54322 --recv-udp-msg localhost 54326 --recv-tcp-msg %s 54325" % (spinserverAddr, spinserverAddr, PAR_posture), identifier="panoViewer_PAR", env={"DISPLAY":":0.0", "LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib:/usr/local/lib64/osgPlugins-2.9.8"}, host=PAR_posture, sleep_after=DELAY)

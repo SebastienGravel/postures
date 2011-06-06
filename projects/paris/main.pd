@@ -285,7 +285,7 @@ TwelveOfUs 20 9 1 10 -261682 -1 -1;
 #X text 134 401 (creates video billboards given a user \, for EACH
 OTHER user);
 #X obj 189 557 s \$0-to-SPIN-TCP;
-#N canvas 815 404 956 497 CAMERA_SWITCHING 0;
+#N canvas 825 408 956 497 CAMERA_SWITCHING 0;
 #X obj 24 16 cnv 15 150 24 empty empty callback: 4 12 1 24 -99865 -262144
 0;
 #X obj 35 159 r \$0-from-SPIN;
@@ -299,30 +299,30 @@ OTHER user);
 shvid_81443610264e5f4;
 #X text 154 214 streamer08's cameras:;
 #X text 555 184 streamer05's cameras:;
-#X msg 544 205 shvid_81443610264e5e3 shvid_81443610264df4e shvid_81443610264df44
-shvid_81443610264dca3;
 #X text 571 238 posture05's cameras:;
 #X msg 559 258 shvid_81443610264df38 shvid_81443610264df9f shvid_81443610264df80
 shvid_81443610264e117;
 #X obj 448 115 r \$0-from-SPIN;
 #X text 327 123 <- init bang;
 #X obj 35 268 4cam-user posture08;
-#X obj 448 295 4cam-user posture05;
 #X obj 573 302 cnv 20 20 20 empty empty * 0 18 0 32 -262144 -258113
 0;
 #X obj 686 182 cnv 20 20 20 empty empty * 0 18 0 32 -262144 -258113
 0;
-#X connect 1 0 15 0;
-#X connect 4 0 15 1;
-#X connect 5 0 16 1;
+#X obj 448 295 4cam-user posture06;
+#X msg 544 205 shvid_81443610264df44 shvid_81443610264e5e3 shvid_81443610264df4e
+shvid_81443610264dca3;
+#X connect 1 0 14 0;
+#X connect 4 0 14 1;
+#X connect 5 0 17 1;
 #X connect 6 0 7 0;
-#X connect 6 0 10 0;
-#X connect 7 0 15 2;
-#X connect 10 0 16 2;
-#X connect 12 0 16 2;
-#X connect 13 0 16 0;
-#X connect 15 0 3 0;
-#X connect 16 0 3 0;
+#X connect 6 0 18 0;
+#X connect 7 0 14 2;
+#X connect 11 0 17 2;
+#X connect 12 0 17 0;
+#X connect 14 0 3 0;
+#X connect 17 0 3 0;
+#X connect 18 0 17 2;
 #X restore 124 251 pd CAMERA_SWITCHING;
 #N canvas 989 488 743 426 TextLabels 0;
 #X obj 84 23 inlet;
@@ -361,7 +361,7 @@ debugging:;
 #X obj 626 186 sel 1 0;
 #X obj 606 145 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 557 266 s \$0-to-SPIN-TCP;
+#X obj 645 250 s \$0-to-SPIN-TCP;
 #X obj 197 527 createVideoBillboards posture08;
 #X obj 266 4 r \$0-to-SPIN;
 #X obj 299 27 r \$0-to-SPIN-TCP;
@@ -379,7 +379,7 @@ debugging:;
 -1 -1;
 #X obj 27 377 delay 5000;
 #X obj 12 443 delay 10000;
-#X msg 138 214 refresh;
+#X msg 135 196 refresh;
 #X obj 395 517 cnv 20 20 20 empty empty * 0 18 0 32 -262144 -258113
 0;
 #X obj 297 286 cnv 20 20 20 empty empty * 0 18 0 32 -262144 -258113
@@ -388,6 +388,7 @@ debugging:;
 0;
 #X msg 75 288 posture06 Paris \, posture08 Montreal;
 #X obj 184 506 createVideoBillboards posture06;
+#X obj 135 216 s \$0-to-SPIN-TCP;
 #X connect 0 0 15 0;
 #X connect 5 0 11 0;
 #X connect 9 0 7 0;
@@ -415,5 +416,6 @@ debugging:;
 #X connect 47 0 28 0;
 #X connect 48 0 7 0;
 #X connect 49 0 18 0;
+#X connect 50 0 56 0;
 #X connect 54 0 29 0;
 #X connect 55 0 27 0;
