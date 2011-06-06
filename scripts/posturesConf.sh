@@ -32,6 +32,8 @@ alias cdspin='cd ${SPIN}'
 alias cdpostures='cd ${POSTURES}'
 alias cdpds='cd ${PDSHEEFA}'
 
+alias cdparis='cd ${POSTURES}/projects/paris'
+
 alias svnupALL='echo svn up ${NTA} && svn up ${NTA} && echo svn up ${SPIN} && svn up ${SPIN} && echo svn up ${PDSHEEFA} && svn up ${PDSHEEFA} && echo svn up ${POSTURES} && svn up ${POSTURES}'
 
 alias ntaClient='pd ${NTA}/ntaClient.pd &'
