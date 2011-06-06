@@ -1,4 +1,4 @@
-#N canvas 375 226 784 452 10;
+#N canvas 677 252 784 452 10;
 #X obj 374 281 outlet;
 #X obj 150 312 outlet;
 #X obj -3 156 shell;
@@ -7,7 +7,6 @@
 #X obj 176 15 loadbang;
 #X obj -3 194 makefilename %s.nta.sat.qc.ca;
 #X obj 150 276 pack s 0;
-#X obj 374 133 symbol posture05.nta.sat.qc.ca;
 #X symbolatom 374 163 25 0 0 0 spinserver - -;
 #X msg 374 184 default \$1 54324 54322 NULL 54323 54321;
 #X obj 129 21 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
@@ -22,21 +21,24 @@
 #X obj -114 126 symbol default;
 #X obj -114 284 outlet;
 #X text -117 307 scene-id;
+#X obj 563 127 cnv 20 20 20 empty empty * 0 18 0 32 -262144 -258113
+0;
+#X obj 374 133 symbol posture06.nta.sat.qc.ca;
 #X connect 2 0 3 0;
 #X connect 3 0 6 0;
 #X connect 4 0 2 0;
-#X connect 5 0 18 0;
-#X connect 6 0 17 0;
+#X connect 5 0 17 0;
+#X connect 6 0 16 0;
 #X connect 7 0 1 0;
 #X connect 8 0 9 0;
-#X connect 9 0 10 0;
-#X connect 10 0 0 0;
-#X connect 11 0 18 0;
-#X connect 12 0 13 0;
-#X connect 13 0 7 1;
-#X connect 17 0 7 0;
+#X connect 9 0 0 0;
+#X connect 10 0 17 0;
+#X connect 11 0 12 0;
+#X connect 12 0 7 1;
+#X connect 16 0 7 0;
+#X connect 17 0 18 0;
+#X connect 17 1 4 0;
+#X connect 17 2 11 0;
+#X connect 17 3 22 0;
 #X connect 18 0 19 0;
-#X connect 18 1 4 0;
-#X connect 18 2 12 0;
-#X connect 18 3 8 0;
-#X connect 19 0 20 0;
+#X connect 22 0 8 0;

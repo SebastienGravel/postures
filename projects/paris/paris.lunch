@@ -1,9 +1,9 @@
 #!/usr/bin/env lunch
 
-#PAR_posture  = "posture06.nta.sat.qc.ca"
-#PAR_streamer = "streamer05.nta.sat.qc.ca"
-PAR_posture  = "posture05.nta.sat.qc.ca"
-PAR_streamer = "posture05.nta.sat.qc.ca"
+PAR_posture  = "posture06.nta.sat.qc.ca"
+PAR_streamer = "streamer05.nta.sat.qc.ca"
+#PAR_posture  = "posture05.nta.sat.qc.ca"
+#PAR_streamer = "posture05.nta.sat.qc.ca"
 MTL_posture  = "posture08.nta.sat.qc.ca"
 MTL_streamer = "streamer08.nta.sat.qc.ca"
 spinserverAddr = PAR_posture
@@ -27,15 +27,15 @@ milhouses = [
  {"send":MTL_streamer, "cam":"81443610264e437", "recv":PAR_posture, "port":54520, "desc":"EST"},
  {"send":MTL_streamer, "cam":"81443610264e626", "recv":PAR_posture, "port":54530, "desc":"SUD"},
  {"send":MTL_streamer, "cam":"81443610264e5f4", "recv":PAR_posture, "port":54540, "desc":"OUEST"},
-#{"send":PAR_streamer, "cam":"81443610264e5e3", "recv":MTL_posture, "port":54410, "desc":"NORD"},
-#{"send":PAR_streamer, "cam":"81443610264df4e", "recv":MTL_posture, "port":54420, "desc":"EST"},
-#{"send":PAR_streamer, "cam":"81443610264df44", "recv":MTL_posture, "port":54430, "desc":"SUD"},
-#{"send":PAR_streamer, "cam":"81443610264dca3", "recv":MTL_posture, "port":54440, "desc":"OUEST"},
+ {"send":PAR_streamer, "cam":"81443610264e5e3", "recv":MTL_posture, "port":54410, "desc":"NORD"},
+ {"send":PAR_streamer, "cam":"81443610264df4e", "recv":MTL_posture, "port":54420, "desc":"EST"},
+ {"send":PAR_streamer, "cam":"81443610264df44", "recv":MTL_posture, "port":54430, "desc":"SUD"},
+ {"send":PAR_streamer, "cam":"81443610264dca3", "recv":MTL_posture, "port":54440, "desc":"OUEST"},
 # posture05 test:
- {"send":PAR_streamer, "cam":"81443610264df38", "recv":MTL_posture, "port":54410, "desc":"NORD"},
- {"send":PAR_streamer, "cam":"81443610264df9f", "recv":MTL_posture, "port":54420, "desc":"EST"},
- {"send":PAR_streamer, "cam":"81443610264df80", "recv":MTL_posture, "port":54430, "desc":"SUD"},
- {"send":PAR_streamer, "cam":"81443610264e117", "recv":MTL_posture, "port":54440, "desc":"OUEST"},
+# {"send":PAR_streamer, "cam":"81443610264df38", "recv":MTL_posture, "port":54410, "desc":"NORD"},
+# {"send":PAR_streamer, "cam":"81443610264df9f", "recv":MTL_posture, "port":54420, "desc":"EST"},
+# {"send":PAR_streamer, "cam":"81443610264df80", "recv":MTL_posture, "port":54430, "desc":"SUD"},
+# {"send":PAR_streamer, "cam":"81443610264e117", "recv":MTL_posture, "port":54440, "desc":"OUEST"},
  ]
 #milhouses = []
 
@@ -101,8 +101,6 @@ add_command("panoViewer --send-udp-msg %s 54324 --send-tcp-msg %s 54322 --recv-u
 add_command("panoViewer --send-udp-msg %s 54324 --send-tcp-msg %s 54322 --recv-udp-msg localhost 54326 --recv-tcp-msg %s 54325" % (spinserverAddr, spinserverAddr, MTL_posture), identifier="panoViewer_MTL", env={"DISPLAY":":0.0","LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib:/usr/local/lib64/osgPlugins-2.9.8"})
 
 # netstat:
-add_command("netstat -lnp | grep python | grep -v orbit", identifier="netstat_MTL", respawn=False)
-add_command("netstat -lnp | grep python | grep -v orbit", identifier="netstat_PAR", host=PAR_posture, respawn=False)
 
-add_command("pdextended /home/posture/src/postures/trunk/projects/paris/main.pd spinEdit.pd", host=MTL_posture, identifier="pd_MTL_master", env={"DISPLAY":":0.0"})
+add_command("pdextended /home/posture/src/postures/trunk/projects/paris/main.pd", host=MTL_posture, identifier="pd_MTL_master", env={"DISPLAY":":0.0"})
 add_command("pdextended /home/posture/src/postures/trunk/projects/paris/client.pd", host=PAR_posture, identifier="pd_PAR_client", env={"DISPLAY":":0.0"})

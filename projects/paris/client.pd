@@ -15,37 +15,32 @@
 #X restore 14 156 pd SPIN_stuff;
 #X obj 118 229 postureUser \$0;
 #X obj 91 271 widget-AudioRenderer \$0;
-#N canvas 234 296 560 374 NTA_audio_stuff 0;
-#X obj 16 32 inlet;
-#X text 74 180 < userID inbus outbus_l outbus_2 ... outbus_N >;
-#X obj 11 240 outlet;
-#X obj 399 113 delay 1000;
-#X msg 399 132 \; pd dsp 1 \;;
-#X obj 333 21 r \$0-from-SPIN;
-#X obj 333 43 OSCparse /userID;
-#X obj 333 64 route audioInit;
-#X obj 274 113 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 201 64 route userRefresh;
-#X obj 80 91 r g_userID;
-#X obj 11 147 symbol;
-#X obj 426 21 r g_userID;
-#X msg 11 178 \$1 1 1 2;
-#X msg 92 44 \; pd dsp 0 \;;
-#X obj 16 52 t b b;
-#X connect 0 0 15 0;
+#N canvas 808 351 560 374 NTA_audio_stuff 0;
+#X obj 80 -54 inlet;
+#X text 138 94 < userID inbus outbus_l outbus_2 ... outbus_N >;
+#X obj 75 154 outlet;
+#X obj 3 -1 delay 1000;
+#X msg 3 18 \; pd dsp 1 \;;
+#X obj 265 -45 r \$0-from-SPIN;
+#X obj 265 30 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 265 -22 route userRefresh;
+#X obj 108 30 r g_userID;
+#X obj 75 70 symbol;
+#X msg 75 92 \$1 1 1 2;
+#X msg 107 -11 \; pd dsp 0 \;;
+#X obj 80 -34 t b b;
+#X connect 0 0 12 0;
 #X connect 3 0 4 0;
-#X connect 5 0 6 0;
-#X connect 5 0 9 0;
-#X connect 6 0 7 0;
-#X connect 8 0 11 0;
-#X connect 9 0 8 0;
-#X connect 10 0 11 1;
-#X connect 11 0 13 0;
-#X connect 12 0 6 1;
-#X connect 13 0 2 0;
-#X connect 15 0 11 0;
-#X connect 15 1 14 0;
+#X connect 5 0 7 0;
+#X connect 6 0 9 0;
+#X connect 7 0 6 0;
+#X connect 8 0 9 1;
+#X connect 9 0 10 0;
+#X connect 10 0 2 0;
+#X connect 12 0 9 0;
+#X connect 12 0 3 0;
+#X connect 12 1 11 0;
 #X restore 91 251 pd NTA_audio_stuff;
 #X obj 219 241 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
@@ -68,7 +63,7 @@
 #X msg 79 533 deleteNode grid;
 #X obj 60 514 sel 1 0;
 #X obj 69 593 s \$0-to-SPIN-TCP;
-#X obj 57 464 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 57 464 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 131 71 paris-config;
 #X obj 291 29 inlet;
@@ -82,6 +77,8 @@
 #X obj 59 37 cnv 15 15 15 empty empty PARIS<->MONTREAL 0 7 0 8 -233017
 -66577 0;
 #X obj 202 22 cnv 15 15 15 empty empty CLIENT 0 8 1 10 -228856 -258113
+0;
+#X obj 211 65 cnv 20 20 20 empty empty * 0 18 0 32 -262144 -258113
 0;
 #X connect 0 0 2 0;
 #X connect 2 0 17 0;
