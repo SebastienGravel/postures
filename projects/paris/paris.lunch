@@ -6,8 +6,8 @@ PAR_streamer = "streamer05.nta.sat.qc.ca"
 #PAR_streamer = "posture05.nta.sat.qc.ca"
 MTL_posture  = "posture08.nta.sat.qc.ca"
 MTL_streamer = "streamer08.nta.sat.qc.ca"
-#spinserverAddr = PAR_posture
-spinserverAddr = MTL_posture
+spinserverAddr = PAR_posture
+#spinserverAddr = MTL_posture
 DELAY = 0.5
 
 # clean-up from previous session:
@@ -25,10 +25,10 @@ milhouses = [
  {"send":MTL_posture, "audio":True, "recv":PAR_posture, "port":54500 },
  {"send":PAR_posture, "audio":True, "recv":MTL_posture, "port":54400 },
 # cameras in MTL
-# {"send":MTL_streamer, "cam":"81443610264e63e", "recv":PAR_posture, "port":54510, "desc":"e63e"},
-# {"send":MTL_streamer, "cam":"81443610264e437", "recv":PAR_posture, "port":54520, "desc":"e437"},
-# {"send":MTL_streamer, "cam":"81443610264e626", "recv":PAR_posture, "port":54530, "desc":"e626"},
-# {"send":MTL_streamer, "cam":"81443610264e5f4", "recv":PAR_posture, "port":54540, "desc":"e5f4"},
+ {"send":MTL_streamer, "cam":"81443610264e63e", "recv":PAR_posture, "port":54510, "desc":"e63e"},
+ {"send":MTL_streamer, "cam":"81443610264e437", "recv":PAR_posture, "port":54520, "desc":"e437"},
+ {"send":MTL_streamer, "cam":"81443610264e626", "recv":PAR_posture, "port":54530, "desc":"e626"},
+ {"send":MTL_streamer, "cam":"81443610264e5f4", "recv":PAR_posture, "port":54540, "desc":"e5f4"},
 # cameras in PARIS
  {"send":PAR_streamer, "cam":"81443610264e5e3", "recv":MTL_posture, "port":54410, "desc":"e5e3"},
  {"send":PAR_streamer, "cam":"81443610264df4e", "recv":MTL_posture, "port":54420, "desc":"fd4e"},
