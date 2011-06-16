@@ -1,9 +1,9 @@
-#N canvas 739 218 882 619 10;
+#N canvas 0 280 882 705 10;
 #X obj 12 103 bng 30 250 50 0 initBang! initBang init 4 15 1 14 -261234
 -1 -1;
-#X obj 414 176 bng 20 250 50 0 \$0-stop-moving empty STOP_MOVING 25
+#X obj 414 128 bng 20 250 50 0 \$0-stop-moving empty STOP_MOVING 25
 10 1 10 -261234 -1 -1;
-#N canvas 1135 459 712 366 UTILITIES 0;
+#N canvas 688 459 712 366 UTILITIES 0;
 #X msg 403 55 refreshSubscribers;
 #X obj 403 74 s \$0-to-SPIN-TCP;
 #X msg 394 121 optimize all;
@@ -30,15 +30,15 @@
 #X connect 13 0 14 0;
 #X connect 14 0 5 0;
 #X restore 546 77 pd UTILITIES;
-#X obj 416 122 bng 15 250 50 0 \$0-go-home \$0-go-home-set home 20
-9 1 10 -261682 -1 -1;
-#X obj 416 137 bng 15 250 50 0 \$0-go-911 \$0-go-911-set 9/11 20 9
+#X obj 416 34 bng 15 250 50 0 \$0-go-home \$0-go-home-set home 20 9
 1 10 -261682 -1 -1;
-#X obj 106 336 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 416 49 bng 15 250 50 0 \$0-go-911 \$0-go-911-set 9/11 20 9 1
+10 -261682 -1 -1;
+#X obj 100 331 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 125 128 tgl 15 0 g_hotspot_debugview g_hotspot_debugview-set
 hotspot_debug 20 8 1 10 -261234 -1 -1 0 1;
-#N canvas 790 188 1044 696 timeline 0;
+#N canvas 114 230 1044 696 timeline 0;
 #X obj 370 21 inlet;
 #X obj 424 175 list;
 #X obj 424 197 t a a;
@@ -47,15 +47,8 @@ hotspot_debug 20 8 1 10 -261234 -1 -1 0 1;
 #X obj 452 507 ntaVideoLoop \$0;
 #X obj 503 318 s \$0-to-SPIN-TCP;
 #X msg 610 126 WAY_N1_lieux -3;
-#X obj 46 308 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
 #X msg 467 220 createNode \$1 ModelNode;
-#X msg 38 342 360 0 0 -6 0 0 1950 1 101;
-#X msg 67 369 -261 0 0 -21 0 0 2100 50 3;
-#X obj 44 401 makeTimeline \$0;
 #X msg 603 147 WAY_N1_album -3;
-#X msg 474 84 createNode timeline SwitchNode \, /timeline setTranslation
--7.5 0 0 \, /timeline setOrientation 0 0 180;
 #X obj 409 618 s \$0-to-SPIN-TCP;
 #X obj 409 375 t b b;
 #X msg 603 170 WAY_N1_center -3;
@@ -70,14 +63,11 @@ hotspot_debug 20 8 1 10 -261234 -1 -1 0 1;
 -5 1.5 180 120;
 #X msg 452 476 NYC Untitled-NYC911_MP4_SansSon.mov NYC911.wav 52.4
 -5.5 1.5 180 90;
-#X obj 51 167 s tgl_timeline-set;
+#X obj 88 219 s tgl_timeline-set;
 #X obj 835 257 r tgl_timeline;
 #X obj 794 355 sel 0 1;
-#X msg 768 403 0;
+#X msg 737 398 0;
 #X msg 879 424 1;
-#X text 70 323 create TextNodes for years:;
-#X text 14 425 (x y z offsetX offsetY offsetZ startValue increment
-count);
 #X text 422 351 Create VIDEOS & SOUNDS:;
 #X text 485 59 Create TIMELINE:;
 #X msg 424 244 createNode \$1 ModelNode \, /\$1 setOrientation 90 0
@@ -90,7 +80,6 @@ count);
 #X msg 879 546 1;
 #X obj 733 368 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
-#X obj 46 270 delay 10000;
 #X obj 879 527 delay 3000;
 #X obj 865 586 t b b;
 #X msg 865 627 1;
@@ -108,100 +97,98 @@ count);
 #X obj 879 383 t b b;
 #X obj 780 333 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 469 440 ntaPanoVideo \$0 OceanBeach1 OceanBeach1.mov OceanBeach1.aif
--19.5 -8 0 270 -4.5 0 1.43 0 0;
 #X obj 859 287 r tgl_audiovideo;
-#X msg 51 147 1;
-#X connect 0 0 35 0;
+#X msg 88 199 1;
+#X msg 474 84 createNode timeline SwitchNode \, /timeline setTranslation
+0 8 0 \, /timeline setOrientation 0 0 90;
+#X obj 469 440 ntaPanoVideo \$0 OceanBeach1 OceanBeach1.mov OceanBeach1.aif
+8 8 0 270 -4.5 0 1.43 0 0;
+#X text 476 421 was -19.5 -8 0 270 -4.5 0 1.43 0 0;
+#X connect 0 0 28 0;
 #X connect 1 0 2 0;
-#X connect 2 0 34 0;
-#X connect 2 1 8 0;
-#X connect 3 0 15 0;
-#X connect 7 0 10 0;
-#X connect 7 0 9 0;
-#X connect 8 0 5 0;
-#X connect 9 0 11 0;
-#X connect 10 0 11 0;
-#X connect 13 0 5 0;
-#X connect 15 0 21 0;
-#X connect 15 1 24 0;
-#X connect 15 1 23 0;
-#X connect 15 1 57 0;
+#X connect 2 0 27 0;
+#X connect 2 1 7 0;
+#X connect 3 0 10 0;
+#X connect 7 0 5 0;
+#X connect 10 0 16 0;
+#X connect 10 1 19 0;
+#X connect 10 1 18 0;
+#X connect 10 1 52 0;
+#X connect 13 0 12 0;
+#X connect 14 0 1 0;
+#X connect 15 0 1 0;
+#X connect 16 0 9 0;
 #X connect 18 0 17 0;
-#X connect 19 0 1 0;
-#X connect 20 0 1 0;
-#X connect 21 0 14 0;
-#X connect 23 0 22 0;
-#X connect 24 0 4 0;
-#X connect 26 0 27 0;
-#X connect 26 0 18 0;
-#X connect 26 0 40 0;
-#X connect 27 0 28 0;
-#X connect 27 1 43 0;
-#X connect 27 1 54 0;
-#X connect 27 1 55 0;
-#X connect 28 0 4 1;
-#X connect 28 0 22 1;
-#X connect 28 0 57 2;
-#X connect 29 0 57 2;
-#X connect 34 0 5 0;
-#X connect 35 0 59 0;
-#X connect 35 1 3 0;
-#X connect 35 1 47 0;
-#X connect 35 2 20 0;
-#X connect 35 2 19 0;
-#X connect 35 3 13 0;
-#X connect 35 4 36 0;
-#X connect 37 0 29 0;
-#X connect 38 0 4 1;
-#X connect 41 0 7 0;
-#X connect 42 0 39 0;
-#X connect 43 0 45 0;
-#X connect 43 1 44 0;
-#X connect 44 0 22 1;
-#X connect 45 0 44 0;
+#X connect 19 0 4 0;
+#X connect 21 0 22 0;
+#X connect 21 0 13 0;
+#X connect 21 0 33 0;
+#X connect 22 0 23 0;
+#X connect 22 1 35 0;
+#X connect 22 1 46 0;
+#X connect 22 1 47 0;
+#X connect 23 0 4 1;
+#X connect 23 0 17 1;
+#X connect 23 0 52 2;
+#X connect 24 0 52 2;
+#X connect 27 0 5 0;
+#X connect 28 0 50 0;
+#X connect 28 1 3 0;
+#X connect 28 1 39 0;
+#X connect 28 2 15 0;
+#X connect 28 2 14 0;
+#X connect 28 3 51 0;
+#X connect 28 4 29 0;
+#X connect 30 0 24 0;
+#X connect 31 0 4 1;
+#X connect 34 0 32 0;
+#X connect 35 0 37 0;
+#X connect 35 1 36 0;
+#X connect 36 0 17 1;
+#X connect 37 0 36 0;
+#X connect 38 0 31 0;
+#X connect 39 0 44 0;
+#X connect 39 0 45 0;
+#X connect 41 0 40 0;
+#X connect 42 0 40 0;
+#X connect 43 0 40 0;
+#X connect 44 0 41 0;
+#X connect 45 0 42 0;
 #X connect 46 0 38 0;
-#X connect 47 0 52 0;
-#X connect 47 0 53 0;
-#X connect 49 0 48 0;
-#X connect 50 0 48 0;
-#X connect 51 0 48 0;
-#X connect 52 0 49 0;
-#X connect 53 0 50 0;
-#X connect 54 0 46 0;
-#X connect 54 1 38 0;
-#X connect 55 0 37 0;
-#X connect 55 1 29 0;
-#X connect 56 0 27 0;
-#X connect 58 0 27 0;
-#X connect 59 0 25 0;
-#X restore 27 397 pd timeline;
+#X connect 46 1 31 0;
+#X connect 47 0 30 0;
+#X connect 47 1 24 0;
+#X connect 48 0 22 0;
+#X connect 49 0 22 0;
+#X connect 50 0 20 0;
+#X connect 51 0 5 0;
+#X restore 60 397 pd timeline;
 #X obj 273 104 tgl 25 0 tgl_timeline tgl_timeline-set timeline 30 12
 1 12 -262130 -1 -1 1 1;
-#X obj 101 387 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 134 387 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 125 146 tgl 15 0 g_snap_toggle g_snap_toggle-set snapToPanoscope
 20 8 1 10 -261234 -1 -1 0 1;
-#N canvas 965 353 843 563 fog 0;
+#N canvas 89 366 843 563 fog 0;
 #X obj 236 -65 inlet;
 #X obj 285 412 s \$0-to-SPIN-TCP;
 #X msg 322 31 createStateSet toronto-Fog Fog;
 #X obj 199 227 hsl 128 15 0 0.1 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 508 1;
 #X msg 221 340 /toronto-Fog setFogDensity \$1;
-#X obj -161 207 line \$1 50;
-#X obj -87 206 line \$1 50;
-#X msg -86 187 \$1 3000;
-#X msg -160 188 \$1 3000;
-#X obj -53 268 pack 0 0 0;
-#X obj -17 206 line \$1 50;
-#X msg -16 187 \$1 3000;
+#X obj -161 257 line \$1 50;
+#X obj -87 256 line \$1 50;
+#X msg -86 237 \$1 3000;
+#X msg -160 238 \$1 3000;
+#X obj -53 318 pack 0 0 0;
+#X obj -17 256 line \$1 50;
+#X msg -16 237 \$1 3000;
 #X msg -63 52 0.005 0.75 0.75 0.75;
 #X msg -24 109 0 0 0 0.2;
-#X obj 53 206 line \$1 50;
-#X msg 54 187 \$1 3000;
-#X obj -74 143 unpack 0 0 0 0;
-#X msg -69 311 /toronto-Fog setFogColor \$1 \$2 \$3 0;
+#X obj 53 256 line \$1 50;
+#X msg 54 237 \$1 3000;
+#X obj -74 193 unpack 0 0 0 0;
+#X msg -69 361 /toronto-Fog setFogColor \$1 \$2 \$3 0;
 #X obj -21 -32 r gScene;
 #X obj -31 -2 sel 0 1 2;
 #X text 72 54 white;
@@ -212,6 +199,17 @@ count);
 #X obj 293 -28 print CREATE_FOG;
 #X obj 236 -44 t b b b;
 #X msg 191 205 0.004;
+#X msg -13 137 0.005 0.1 0.6 0.75;
+#X obj -15 454 hotpack3;
+#X obj -22 418 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-261234 -1 -1 0 256;
+#X obj 38 418 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-204786 -1 -1 0 256;
+#X obj 98 418 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-203904 -1 -1 0 256;
+#X msg 4 163 0.005 0.6 0.8 1;
+#X text 109 138 aqua;
+#X text 118 160 sky?;
 #X connect 0 0 26 0;
 #X connect 2 0 1 0;
 #X connect 3 0 4 0;
@@ -239,52 +237,67 @@ count);
 #X connect 23 0 16 0;
 #X connect 24 0 1 0;
 #X connect 26 0 27 0;
-#X connect 26 0 13 0;
+#X connect 26 0 33 0;
 #X connect 26 1 2 0;
 #X connect 26 2 25 0;
 #X connect 27 0 3 0;
-#X restore 42 346 pd fog;
+#X connect 28 0 16 0;
+#X connect 29 0 17 0;
+#X connect 30 0 29 0;
+#X connect 31 0 29 1;
+#X connect 32 0 29 2;
+#X connect 33 0 16 0;
+#X restore 56 341 pd fog;
 #X obj 125 110 tgl 15 0 g_noPointer g_noPointer-set noPointer 20 8
 1 10 -261234 -1 -1 0 1;
-#N canvas 871 77 801 634 GO-THERE 0;
-#X obj 70 465 s \$0-to-SPIN;
-#X msg 76 161 setTranslation 0 0 1.5;
-#X obj 77 425 OSCprepend /posture??;
-#X obj 76 141 r \$0-go-home;
-#X obj 176 202 r \$0-go-911;
-#X msg 176 222 setTranslation -60 4 1.5;
-#X obj 98 393 t a;
-#X obj 313 291 r \$0-go-twelveOfUs;
-#X msg 313 311 setTranslation -171 3 1.5;
-#X connect 1 0 6 0;
-#X connect 2 0 0 0;
-#X connect 3 0 1 0;
+#N canvas 32 80 571 489 GO-THERE 0;
+#X obj 86 422 s \$0-to-SPIN;
+#X msg 62 33 setTranslation 0 0 1.5;
+#X obj 62 13 r \$0-go-home;
+#X obj 162 64 r \$0-go-911;
+#X msg 162 94 setTranslation -60 4 1.5;
+#X obj 84 265 t a;
+#X obj 212 154 r \$0-go-twelveOfUs;
+#X msg 200 184 setTranslation -171 3 1.5;
+#X obj 264 246 r \$0-go-sat;
+#X msg 168 114 setTranslation 3.5 60.5 1.5;
+#X msg 210 204 setTranslation 3 171 1.5;
+#X obj 273 296 r \$0-go-paris;
+#X msg 264 266 setTranslation 0 0 -87.5;
+#X msg 271 319 setTranslation 0 0 86.5;
+#X obj 274 347 r \$0-go-beach;
+#X obj 86 401 OSCprepend /posture??;
+#X msg 272 370 setTranslation -8 16 1.9;
+#X connect 1 0 5 0;
+#X connect 2 0 1 0;
+#X connect 3 0 9 0;
 #X connect 4 0 5 0;
-#X connect 5 0 6 0;
-#X connect 6 0 2 0;
-#X connect 7 0 8 0;
-#X connect 8 0 2 0;
-#X restore 415 102 pd GO-THERE;
-#X obj 414 200 bng 20 250 50 0 \$0-debug-scene empty DEBUG 25 10 1
+#X connect 5 0 15 0;
+#X connect 6 0 10 0;
+#X connect 7 0 15 0;
+#X connect 8 0 12 0;
+#X connect 9 0 5 0;
+#X connect 10 0 15 0;
+#X connect 11 0 13 0;
+#X connect 12 0 15 0;
+#X connect 13 0 15 0;
+#X connect 14 0 16 0;
+#X connect 15 0 0 0;
+#X connect 16 0 15 0;
+#X restore 415 14 pd GO-THERE;
+#X obj 414 152 bng 20 250 50 0 \$0-debug-scene empty DEBUG 25 10 1
 10 -261234 -1 -1;
 #X obj 12 137 t b b b b b b;
-#X obj 416 152 bng 15 250 50 0 \$0-go-twelveOfUs \$0-go-twelveOfUs-set
+#X obj 416 64 bng 15 250 50 0 \$0-go-twelveOfUs \$0-go-twelveOfUs-set
 TwelveOfUs 20 9 1 10 -261682 -1 -1;
 #X obj 273 133 tgl 25 0 tgl_audiovideo tgl_audiovideo-set audio/video
 30 12 1 12 -262130 -1 -1 0 1;
-#X msg 12 466 refreshSubscribers;
-#X obj 12 486 s \$0-to-SPIN-TCP;
-#X obj 483 35 anyreg g_SCENE_BOUND 0 0 0 0 0 0;
-#X text 465 13 need this or snap2panoscope won't work:;
-#X obj 218 429 r \$0-from-SPIN;
-#X obj 218 452 route nodeList;
-#X obj 218 473 route UserNode;
-#X obj 183 371 cnv 15 150 24 empty empty callback: 4 12 1 24 -99865
--262144 0;
-#X text 134 401 (creates video billboards given a user \, for EACH
-OTHER user);
-#X obj 189 557 s \$0-to-SPIN-TCP;
-#N canvas 581 65 956 497 CAMERA_SWITCHING 0;
+#X msg 12 519 refreshSubscribers;
+#X obj 12 539 s \$0-to-SPIN-TCP;
+#X text 550 136 need this or snap2panoscope won't work:;
+#X obj 194 370 cnv 15 300 225 empty empty userCallback: 5 15 1 14 -228856
+-162280 0;
+#N canvas 274 406 956 497 CAMERA_SWITCHING 0;
 #X obj 24 16 cnv 15 150 24 empty empty callback: 4 12 1 24 -99865 -262144
 0;
 #X obj 35 159 r \$0-from-SPIN;
@@ -294,8 +307,6 @@ OTHER user);
 #X msg 90 189 north.jpg east.jpg south.jpg west.jpg;
 #X msg 503 140 north.jpg east.jpg south.jpg west.jpg;
 #X obj 280 123 inlet;
-#X msg 146 232 shvid_81443610264e63e shvid_81443610264e437 shvid_81443610264e626
-shvid_81443610264e5f4;
 #X text 154 214 streamer08's cameras:;
 #X text 555 184 streamer05's cameras:;
 #X text 571 238 posture05's cameras:;
@@ -311,63 +322,60 @@ shvid_81443610264e117;
 #X msg 544 205 shvid_81443610264df44 shvid_81443610264e5e3 shvid_81443610264df4e
 shvid_81443610264dca3;
 #X obj 448 295 4cam-user posture06;
-#X connect 1 0 14 0;
-#X connect 4 0 14 1;
-#X connect 5 0 18 1;
-#X connect 6 0 7 0;
-#X connect 6 0 17 0;
-#X connect 7 0 14 2;
-#X connect 11 0 18 2;
-#X connect 12 0 18 0;
-#X connect 14 0 3 0;
-#X connect 17 0 18 2;
-#X connect 18 0 3 0;
+#X msg 146 232 shvid_81443610264e437 shvid_81443610264e63e shvid_81443610264e626
+shvid_81443610264e5f4;
+#X connect 1 0 13 0;
+#X connect 4 0 13 1;
+#X connect 5 0 17 1;
+#X connect 6 0 18 0;
+#X connect 6 0 16 0;
+#X connect 10 0 17 2;
+#X connect 11 0 17 0;
+#X connect 13 0 3 0;
+#X connect 16 0 17 2;
+#X connect 17 0 3 0;
+#X connect 18 0 13 2;
 #X restore 124 251 pd CAMERA_SWITCHING;
-#N canvas 989 488 743 426 TextLabels 0;
+#N canvas 655 508 743 426 TextLabels 0;
 #X obj 84 23 inlet;
 #X obj 73 91 list;
 #X text 255 153 create a UserNode (just in case) and a TextNode for
 debugging:;
 #X msg 212 196 createNode \$1 UserNode \, createNode \$1-text TextNode
 ;
-#X msg -94 210 /posture05-text setContext posture08;
-#X msg -87 235 /posture08-text setContext posture05;
-#X msg 173 50 posture05 Paris \, posture08 Montreal;
 #X obj 73 114 t b a;
 #X obj 107 161 t a a;
 #X obj 95 351 s \$0-to-SPIN-TCP;
+#X msg -94 210 /posture06-text setContext posture08;
+#X msg -87 235 /posture08-text setContext posture06;
+#X msg 173 50 posture06 Paris \, posture08 Montreal;
 #X msg 215 233 /\$1-text setParent \$1 \, /\$1-text setTextValue \$2
-\, /\$1-text setTranslation 0 0 1.5 \, /\$1-text setBillboard 2 \,
+\, /\$1-text setTranslation 0 0 1.1 \, /\$1-text setBillboard 2 \,
 /\$1-text setScale 3 3 3 \, \$1-text setFont GillSans.ttf;
 #X connect 0 0 1 0;
-#X connect 1 0 7 0;
-#X connect 3 0 9 0;
-#X connect 4 0 9 0;
-#X connect 5 0 9 0;
-#X connect 6 0 1 0;
-#X connect 7 0 4 0;
-#X connect 7 0 5 0;
-#X connect 7 1 8 0;
-#X connect 8 0 10 0;
-#X connect 8 1 3 0;
-#X connect 10 0 9 0;
-#X restore 75 312 pd TextLabels;
+#X connect 1 0 4 0;
+#X connect 3 0 6 0;
+#X connect 4 0 7 0;
+#X connect 4 0 8 0;
+#X connect 4 1 5 0;
+#X connect 5 0 10 0;
+#X connect 5 1 3 0;
+#X connect 7 0 6 0;
+#X connect 8 0 6 0;
+#X connect 9 0 1 0;
+#X connect 10 0 6 0;
+#X restore 75 308 pd TextLabels;
 #X obj 94 278 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 266 51 client;
-#X msg 626 225 createNode grid GridNode;
-#X msg 645 205 deleteNode grid;
-#X obj 626 186 sel 1 0;
-#X obj 627 157 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 696 43 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 645 250 s \$0-to-SPIN-TCP;
-#X obj 197 527 createVideoBillboards posture08;
 #X obj 266 4 r \$0-to-SPIN;
 #X obj 299 27 r \$0-to-SPIN-TCP;
 #X obj 266 73 s \$0-from-SPIN;
 #X obj 7 3 cnv 15 250 40 empty empty PosturePlatform 5 14 1 18 -228856
 -86853 0;
-#X obj 512 331 widget-nodeEditor \$0;
+#X obj 525 335 widget-nodeEditor \$0;
 #X obj 49 27 cnv 15 15 15 empty empty PARIS<->MONTREAL 0 7 0 8 -233017
 -66577 0;
 #X obj 192 12 cnv 15 15 15 empty empty MASTER 0 8 1 10 -228856 -258113
@@ -376,48 +384,180 @@ debugging:;
 #X obj 12 77 delay 2500;
 #X obj 245 241 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 27 378 delay 5000;
-#X obj 12 443 delay 10000;
+#X obj 34 372 delay 5000;
 #X msg 135 196 refresh;
-#X obj 395 517 cnv 20 20 20 empty empty * 0 18 0 32 -262144 -258113
-0;
 #X obj 297 286 cnv 20 20 20 empty empty * 0 18 0 32 -262144 -258113
 0;
 #X obj 250 254 cnv 20 20 20 empty empty * 0 18 0 32 -262144 -258113
 0;
 #X msg 75 288 posture06 Paris \, posture08 Montreal;
-#X obj 184 506 createVideoBillboards posture06;
 #X obj 135 216 s \$0-to-SPIN-TCP;
-#X msg 339 472 posture06 posture08;
+#X obj 697 85 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#N canvas 0 0 321 224 gridTest-TCP 0;
+#X msg 86 125 createNode grid GridNode;
+#X msg 105 105 deleteNode grid;
+#X obj 86 86 sel 1 0;
+#X obj 105 150 s \$0-to-SPIN-TCP;
+#X obj 86 42 inlet;
+#X connect 0 0 3 0;
+#X connect 1 0 3 0;
+#X connect 2 0 0 0;
+#X connect 2 1 1 0;
+#X connect 4 0 2 0;
+#X restore 696 62 pd gridTest-TCP;
+#N canvas 0 0 322 215 gridTest-UDP 0;
+#X msg 60 103 createNode grid GridNode;
+#X msg 79 83 deleteNode grid;
+#X obj 60 64 sel 1 0;
+#X obj 79 128 s \$0-to-SPIN-TCP;
+#X obj 60 27 inlet;
+#X connect 0 0 3 0;
+#X connect 1 0 3 0;
+#X connect 2 0 0 0;
+#X connect 2 1 1 0;
+#X connect 4 0 2 0;
+#X restore 697 105 pd gridTest-UDP;
+#X obj 550 229 tgl 15 0 empty empty PARIS 19 8 0 10 -204786 -1 -1 0
+1;
+#X msg 543 276 /cities setEnabled paris-cnam.ac \$1;
+#X obj 532 297 s \$0-to-SPIN-TCP;
+#X obj 550 210 tgl 15 0 empty empty MONTREAL 19 8 0 10 -204786 -1 -1
+0 1;
+#X msg 532 255 /cities setEnabled montreal-sat.ac \$1;
+#X obj 134 412 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#N canvas 0 0 614 340 timeline_textLabels 0;
+#X obj 91 31 inlet;
+#X obj 80 143 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 72 177 360 0 0 -6 0 0 1950 1 101;
+#X msg 101 204 -261 0 0 -21 0 0 2100 50 3;
+#X obj 78 236 makeTimeline \$0;
+#X text 104 158 create TextNodes for years:;
+#X text 48 260 (x y z offsetX offsetY offsetZ startValue increment
+count);
+#X obj 191 40 print CREATE_TIMELINE_LABELS;
+#X obj 91 54 t b b b;
+#X msg 195 94 createNode timeline SwitchNode;
+#X connect 0 0 8 0;
+#X connect 1 0 3 0;
+#X connect 1 0 2 0;
+#X connect 2 0 4 0;
+#X connect 3 0 4 0;
+#X connect 8 0 1 0;
+#X connect 8 1 9 0;
+#X connect 8 2 7 0;
+#X restore 21 469 pd timeline_textLabels;
+#X obj 416 79 bng 15 250 50 0 \$0-go-sat \$0-go-sat-set SAT 20 9 1
+10 -261682 -1 -1;
+#X obj 242 441 r \$0-from-SPIN;
+#X obj 242 464 route nodeList;
+#X obj 242 485 route UserNode;
+#X obj 213 569 s \$0-to-SPIN-TCP;
+#X obj 221 539 createVideoBillboards posture08;
+#X obj 419 529 cnv 20 20 20 empty empty * 0 18 0 32 -228856 -258113
+0;
+#X obj 208 518 createVideoBillboards posture06;
+#X msg 363 484 posture06 posture08;
+#X obj 159 459 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 418 270 cities;
+#X msg 410 304 timeline;
+#N canvas 0 25 569 518 cities 0;
+#X obj 83 36 inlet;
+#X obj 88 223 list;
+#X obj 140 483 s \$0-to-SPIN-TCP;
+#X msg 115 356 createNode \$1 ModelNode;
+#X obj 89 245 t a a b;
+#X msg 73 380 createNode \$1 ModelNode \, /\$1 setOrientation 90 0
+\$5 \, /\$1 setTranslation \$2 \$3 \$4 \, /\$1 setModelFromFile ~/content/posture_sat-cnam/modeles/\$1
+\, /\$1 setParent cities \, /cities setEnabled \$1 1;
+#X msg 120 189 paris-cnam.ac -35 -24 85 0;
+#X msg 87 162 montreal-sat.ac 0 0 -85 -56.5;
+#X msg 173 277 createNode cities SwitchNode \, /cities setTranslation
+0.5 11.1 0 \, /cities setOrientation 0 0 0;
+#X connect 0 0 7 0;
+#X connect 0 0 6 0;
+#X connect 1 0 4 0;
+#X connect 3 0 2 0;
+#X connect 4 0 5 0;
+#X connect 4 1 3 0;
+#X connect 4 2 8 0;
+#X connect 5 0 2 0;
+#X connect 6 0 1 0;
+#X connect 7 0 1 0;
+#X connect 8 0 2 0;
+#X restore 66 422 pd cities;
+#X msg 424 247 cities;
+#X text 208 412 for EACH OTHER user);
+#X text 203 397 (creates video billboards given a user;
+#X obj 313 193 r g_currentPos;
+#X obj 313 215 unpack 0 0 0;
+#X floatatom 313 236 5 0 0 0 - - -;
+#X floatatom 347 236 5 0 0 0 - - -;
+#X floatatom 382 236 5 0 0 0 - - -;
+#X obj 416 94 bng 15 250 50 0 \$0-go-paris \$0-go-paris-set paris 20
+9 1 10 -261682 -1 -1;
+#X obj 416 109 bng 15 250 50 0 \$0-go-beach \$0-go-beach-set beach
+20 9 1 10 -261682 -1 -1;
+#X obj 21 448 delay 10000;
+#X obj 12 498 delay 30000;
+#X msg 408 336 OceanBeach1;
+#X obj 23 587 anyreg g_SCENE_BOUND;
+#X msg 23 608 setCubeOffset \$1 \$2 \$3 \, setCubeSize \$4 \$5 \$6
+;
+#X msg 43 633 setCubeOffset 0 0 0 \, setCubeSize 0 0 0;
+#X obj 157 577 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 568 158 anyreg g_SCENE_BOUND 0 0 0 300 300 300;
+#X obj 30 662 OSCprepend /posture??;
+#X obj 30 685 s \$0-to-SPIN-TCP;
 #X connect 0 0 15 0;
 #X connect 5 0 11 0;
 #X connect 9 0 7 0;
 #X connect 15 2 11 0;
-#X connect 15 3 54 0;
-#X connect 15 4 28 0;
-#X connect 15 5 50 0;
+#X connect 15 3 41 0;
+#X connect 15 4 22 0;
+#X connect 15 5 38 0;
 #X connect 18 0 19 0;
-#X connect 22 0 23 0;
-#X connect 23 0 24 0;
-#X connect 24 0 37 0;
-#X connect 24 0 55 0;
-#X connect 30 0 54 0;
-#X connect 31 0 40 0;
-#X connect 32 0 36 0;
-#X connect 33 0 36 0;
-#X connect 34 0 32 0;
-#X connect 34 1 33 0;
-#X connect 35 0 34 0;
-#X connect 37 0 27 0;
-#X connect 38 0 31 0;
-#X connect 39 0 31 1;
-#X connect 45 0 46 0;
-#X connect 46 0 0 0;
-#X connect 47 0 28 0;
-#X connect 48 0 7 0;
-#X connect 49 0 18 0;
-#X connect 50 0 56 0;
-#X connect 54 0 29 0;
-#X connect 55 0 27 0;
-#X connect 57 0 37 0;
-#X connect 57 0 55 0;
+#X connect 24 0 41 0;
+#X connect 25 0 29 0;
+#X connect 26 0 44 0;
+#X connect 27 0 25 0;
+#X connect 28 0 25 1;
+#X connect 34 0 35 0;
+#X connect 35 0 0 0;
+#X connect 36 0 22 0;
+#X connect 37 0 7 0;
+#X connect 37 0 65 0;
+#X connect 38 0 42 0;
+#X connect 41 0 23 0;
+#X connect 43 0 45 0;
+#X connect 46 0 47 0;
+#X connect 47 0 48 0;
+#X connect 49 0 50 0;
+#X connect 50 0 48 0;
+#X connect 51 0 65 0;
+#X connect 54 0 55 0;
+#X connect 55 0 56 0;
+#X connect 56 0 58 0;
+#X connect 56 0 60 0;
+#X connect 58 0 57 0;
+#X connect 60 0 57 0;
+#X connect 61 0 58 0;
+#X connect 61 0 60 0;
+#X connect 62 0 52 0;
+#X connect 63 0 31 0;
+#X connect 64 0 31 0;
+#X connect 69 0 70 0;
+#X connect 70 0 71 0;
+#X connect 70 1 72 0;
+#X connect 70 2 73 0;
+#X connect 76 0 52 0;
+#X connect 77 0 18 0;
+#X connect 78 0 31 0;
+#X connect 79 0 80 0;
+#X connect 80 0 84 0;
+#X connect 82 0 79 0;
+#X connect 84 0 85 0;

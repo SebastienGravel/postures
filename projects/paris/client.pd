@@ -1,4 +1,4 @@
-#N canvas 1222 314 665 633 10;
+#N canvas 735 314 665 633 10;
 #X obj 14 111 widget-spinConnect \$0;
 #X symbolatom 346 136 15 0 0 2 userID: g_userID -;
 #N canvas 297 127 450 300 SPIN_stuff 0;
