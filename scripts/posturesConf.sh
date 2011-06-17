@@ -8,6 +8,7 @@ POSTURES=~/src/postures/trunk
 PDSHEEFA=~/src/pdsheefa
 SPIN=~/src/spinframework
 SCENIC=~/src/scenic
+SCALE=~/content/nta/scale
 
 export EDITOR=vim
 export BOOST_ROOT=/usr/include
@@ -31,6 +32,7 @@ alias cdnta='cd ${NTA}'
 alias cdspin='cd ${SPIN}'
 alias cdpostures='cd ${POSTURES}'
 alias cdpds='cd ${PDSHEEFA}'
+alias cdscale='cd ${SCALE}'
 
 alias cdparis='cd ${POSTURES}/projects/paris'
 
