@@ -49,12 +49,12 @@
 #X obj 425 405 nbx 3 16 -1e+37 1e+37 0 0 empty \$1-gain-set db 40 10
 1 10 -262144 -1 -1 0 256;
 #X text 421 293 ------ 0db;
-#X floatatom 292 473 6 0 0 0 - - -;
-#X obj 298 452 unpack 0 0 0;
-#X floatatom 332 473 6 0 0 0 - - -;
-#X floatatom 372 473 7 0 0 0 - - -;
+#X floatatom 280 475 6 0 0 0 - - -;
+#X obj 286 454 unpack 0 0 0;
+#X floatatom 320 475 6 0 0 0 - - -;
+#X floatatom 360 475 7 0 0 0 - - -;
 #X obj 91 207 t b b;
-#X obj 298 434 r g_currentPos;
+#X obj 286 436 r g_currentPos;
 #X obj 219 219 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 90 186 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1

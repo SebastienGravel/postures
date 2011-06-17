@@ -11,20 +11,23 @@ spinserverAddr = PAR_posture
 DELAY = 0.5
 
 # clean-up from previous session:
-add_command("killall pdextended", host=PAR_posture, respawn=False)
-add_command("killall pdextended", host=PAR_posture, respawn=False)
-add_command("killall jack.plumbing", host=MTL_posture, respawn=False)
-add_command("killall jack.plumbing", host=PAR_posture, respawn=False)
-add_command("killall jackd", host=MTL_posture, respawn=False)
-add_command("killall jackd", host=MTL_posture, respawn=False, sleep_after=DELAY)
+add_command("killall pdextended; killall devilspie; killall jack.plumbing; killall jackd", host=PAR_posture, identifier="KillStuff", respawn=False)
+add_command("killall pdextended; killall devilspie; killall jack.plumbing; killall jackd", host=MTL_posture, identifier="KillStuff", respawn=False, sleep_after=DELAY)
+
+# devilspie
+add_command("devilspie", env={"DISPLAY":":0.0"}, host=MTL_posture, identifier="devilspie")
+add_command("devilspie", env={"DISPLAY":":0.0"}, host=PAR_posture, identifier="devilspie")
+
+# firereset might be useful for both streamers and JACK:
 add_command("firereset", host=MTL_posture,  respawn=False)
 add_command("firereset", host=PAR_posture,  respawn=False)
 add_command("firereset", host=MTL_streamer, respawn=False)
 add_command("firereset", host=PAR_streamer, respawn=False, sleep_after=DELAY)
 
-# statt jack
-add_command("jackd -rv -dfirewire -r48000 -p512 -n3", host=MTL_posture)
-add_command("jackd -rv -dfirewire -r48000 -p512 -n3", host=PAR_posture, sleep_after=DELAY)
+
+# start jack
+add_command("jackd -R -dfirewire -r48000 -p1024 -n3", host=MTL_posture, identifier="jackd_MTL")
+add_command("jackd -R -dfirewire -r48000 -p1024 -n3", host=PAR_posture, identifier="jackd_PAR", sleep_after=DELAY)
 
 # milhouse instances:
 milhouses = [
@@ -97,11 +100,11 @@ for m in milhouses:
 add_command("spinserver --disable-discovery --disable-auto-cleanup --recv-tcp-msg 54322 --send-udp-msg %s 54323 --send-udp-msg %s 54323 --send-udp-msg %s 54326 --send-udp-msg %s 54326" % (PAR_posture, MTL_posture, PAR_posture, MTL_posture), env={"LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib:/usr/local/lib64/osgPlugins-2.9.8"}, identifier="spinserver", host=spinserverAddr, sleep_after=DELAY)
 
 # PARIS viewer:
-add_command("panoViewer --send-udp-msg %s 54324 --send-tcp-msg %s 54322 --recv-udp-msg localhost 54326 --recv-tcp-msg %s 54325" % (spinserverAddr, spinserverAddr, PAR_posture), identifier="panoViewer_PAR", env={"DISPLAY":":0.0", "LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib:/usr/local/lib64/osgPlugins-2.9.8"}, host=PAR_posture, sleep_after=DELAY)
+add_command("panoViewer --fullscreen --send-udp-msg %s 54324 --send-tcp-msg %s 54322 --recv-udp-msg localhost 54326 --recv-tcp-msg %s 54325" % (spinserverAddr, spinserverAddr, PAR_posture), identifier="panoViewer_PAR", env={"DISPLAY":":0.0", "LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib:/usr/local/lib64/osgPlugins-2.9.8"}, host=PAR_posture, sleep_after=DELAY)
 
 # MONTREAL viewer:
-add_command("panoViewer --send-udp-msg %s 54324 --send-tcp-msg %s 54322 --recv-udp-msg localhost 54326 --recv-tcp-msg %s 54325" % (spinserverAddr, spinserverAddr, MTL_posture), identifier="panoViewer_MTL", env={"DISPLAY":":0.0","LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib:/usr/local/lib64/osgPlugins-2.9.8"}, host=MTL_posture, sleep_after=DELAY)
+add_command("panoViewer --fullscreen --send-udp-msg %s 54324 --send-tcp-msg %s 54322 --recv-udp-msg localhost 54326 --recv-tcp-msg %s 54325" % (spinserverAddr, spinserverAddr, MTL_posture), identifier="panoViewer_MTL", env={"DISPLAY":":0.0","LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib:/usr/local/lib64/osgPlugins-2.9.8"}, host=MTL_posture, sleep_after=DELAY)
 
 # Pure Data:
-add_command("pdextended /home/posture/src/postures/trunk/projects/paris/main.pd", host=PAR_posture, identifier="pd_PAR_master", env={"DISPLAY":":0.0"}, sleep_after=DELAY)
-add_command("pdextended /home/posture/src/postures/trunk/projects/paris/client.pd", host=MTL_posture, identifier="pd_MTL_client", env={"DISPLAY":":0.0"}, sleep_after=DELAY)
+add_command("pdextended -nrt /home/posture/src/postures/trunk/projects/paris/client.pd", host=MTL_posture, identifier="pd_MTL_client", env={"DISPLAY":":0.0"}, sleep_after=DELAY)
+add_command("pdextended -nrt /home/posture/src/postures/trunk/projects/paris/main.pd", host=PAR_posture, identifier="pd_PAR_master", env={"DISPLAY":":0.0"}, sleep_after=DELAY)

@@ -1,7 +1,8 @@
 (if
     (or
-        (matches (window_name) ".*pd")
+        (matches (window_name) ".*\.pd.*")
         (is (application_name) "Pd")
+        (is (application_name) "Pd-extended")
     )
     (begin
         (minimize)

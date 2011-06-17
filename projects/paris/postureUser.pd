@@ -1,4 +1,4 @@
-#N canvas 567 63 983 870 10;
+#N canvas 417 63 983 870 10;
 #X obj 117 28 inlet;
 #X msg 225 73 hostname -s;
 #X obj 225 53 loadbang;
@@ -8,12 +8,12 @@
 #X msg 111 340 audioInit;
 #X obj 224 391 OSCsymbol;
 #X text 484 369 Reporter (used to report hotspot enter/exit);
-#X msg 485 728 /\$1-light setParent \$1 \, /\$1-light setTranslation
+#X msg 480 746 /\$1-light setParent \$1 \, /\$1-light setTranslation
 0 0 0 \, /\$1-light setOrientation -90 0 0 \, /\$1-light setCutoff
 180 \, /\$1-light setExponent 100 \, /\$1-light setAttenuation 0.2
 \, /\$1-light setAmbient 0.75 0.75 0.75 1 \, /\$1-light setDiffuse
 0.75 0.75 0.75 1 \, /\$1-light setSpecular 1 1 1 1;
-#X text 486 712 LIGHT:;
+#X text 484 722 LIGHT:;
 #X msg 481 327 1;
 #X obj 481 346 s g_collisions;
 #X text 514 327 enable collisions;
@@ -43,16 +43,6 @@ setMaxRate 2;
 #X obj 483 573 pack s s;
 #X obj 866 557 list2symbol;
 #X obj 866 518 loadbang;
-#X msg 472 282 createNode \$1-target SwitchNode \, createNode \$1-target-cursor
-TextNode \, createNode \$1-target-instructions TextNode;
-#X msg 483 592 /\$1-target setParent \$1-pointer \, /\$1-target-instructions
-setParent \$1-target \, /\$1-target-cursor setParent \$1-target \,
-/\$1-target-cursor setTextValue + \, /\$1-target-instructions setTextValue
-\$2 \, /\$1-target setTranslation 0 0.01 0 \, /\$1-target setScale
-0.01 0.01 0.01 \, /\$1-target-* setColor 1 0 0 1 \, /\$1-target-* setDecoration
-9 \, /\$1-target-* setFont GillSans.ttf \, /\$1-target-* setBillboard
-2 \, /\$1-target-instructions setTranslation 0 0 0.1 \, /\$1-target
-setEnabled \$1-target-instructions 0;
 #X msg 866 538 Point HERE;
 #X obj 90 684 t b b;
 #X obj 161 600 OSCparse /posture??;
@@ -76,22 +66,32 @@ ReporterNode \, createNode \$1-reporter-video ReporterNode \, createNode
 #X obj 164 364 r g_userID;
 #X obj 143 411 OSCprepend /\$2;
 #X obj 117 735 OSCprepend;
-#X msg 117 709 setTranslation 0 0 1.5;
 #X text 69 5 bang for hostname as user id:;
 #X obj 161 582 r \$1-from-SPIN;
 #X obj 102 498 s \$1-to-SPIN-TCP;
 #X obj 457 179 s \$1-to-SPIN-TCP;
+#X msg 117 709 setTranslation 0 0 1.5;
+#X msg 468 269 createNode \$1-target SwitchNode \, createNode \$1-target-cursor
+TextNode \, createNode \$1-target-instructions TextNode;
+#X msg 483 592 /\$1-target setParent \$1 \, /\$1-target-instructions
+setParent \$1-target \, /\$1-target-cursor setParent \$1-pointer \,
+/\$1-target-cursor setTextValue + \, /\$1-target-instructions setTextValue
+\$2 \, /\$1-target-* setScale 0.01 0.01 0.01 \, /\$1-target-* setColor
+1 0 0 1 \, /\$1-target-* setDecoration 9 \, /\$1-target-* setFont GillSans.ttf
+\, /\$1-target-* setBillboard 2 \, /\$1-target-cursor setTranslation
+0 0.01 0 \, /\$1-target-instructions setTranslation 0 0.005 0 \, /\$1-target
+setEnabled \$1-target-instructions 0;
 #X connect 0 0 3 0;
-#X connect 1 0 43 0;
+#X connect 1 0 41 0;
 #X connect 2 0 1 0;
 #X connect 3 0 19 0;
-#X connect 5 0 51 0;
-#X connect 6 0 53 0;
-#X connect 7 0 53 1;
-#X connect 9 0 45 0;
+#X connect 5 0 49 0;
+#X connect 6 0 51 0;
+#X connect 7 0 51 1;
+#X connect 9 0 43 0;
 #X connect 11 0 12 0;
 #X connect 16 0 3 0;
-#X connect 18 0 59 0;
+#X connect 18 0 56 0;
 #X connect 19 0 6 0;
 #X connect 19 0 5 0;
 #X connect 19 1 23 0;
@@ -100,40 +100,40 @@ ReporterNode \, createNode \$1-reporter-video ReporterNode \, createNode
 #X connect 19 1 22 0;
 #X connect 19 1 24 0;
 #X connect 19 1 30 0;
-#X connect 19 2 33 0;
-#X connect 19 2 42 0;
+#X connect 19 2 58 0;
+#X connect 19 2 40 0;
 #X connect 19 3 18 0;
 #X connect 19 4 4 0;
 #X connect 21 0 3 0;
-#X connect 22 0 45 0;
-#X connect 23 0 45 0;
-#X connect 24 0 45 0;
+#X connect 22 0 43 0;
+#X connect 23 0 43 0;
+#X connect 24 0 43 0;
 #X connect 25 0 26 0;
 #X connect 26 0 27 0;
-#X connect 30 0 34 0;
+#X connect 30 0 59 0;
 #X connect 31 0 30 1;
-#X connect 32 0 35 0;
-#X connect 33 0 45 0;
-#X connect 34 0 45 0;
-#X connect 35 0 31 0;
-#X connect 36 1 55 0;
-#X connect 37 0 39 0;
-#X connect 38 0 36 0;
-#X connect 39 0 38 0;
-#X connect 39 1 40 0;
-#X connect 42 0 45 0;
-#X connect 43 0 44 0;
-#X connect 44 0 3 1;
-#X connect 44 0 15 0;
-#X connect 47 0 48 0;
-#X connect 48 0 37 1;
-#X connect 48 0 54 1;
-#X connect 49 0 50 1;
-#X connect 50 0 58 0;
-#X connect 51 0 50 0;
-#X connect 52 0 7 0;
-#X connect 52 0 49 0;
-#X connect 53 0 58 0;
-#X connect 54 0 45 0;
-#X connect 55 0 54 0;
-#X connect 57 0 37 0;
+#X connect 32 0 33 0;
+#X connect 33 0 31 0;
+#X connect 34 1 57 0;
+#X connect 35 0 37 0;
+#X connect 36 0 34 0;
+#X connect 37 0 36 0;
+#X connect 37 1 38 0;
+#X connect 40 0 43 0;
+#X connect 41 0 42 0;
+#X connect 42 0 3 1;
+#X connect 42 0 15 0;
+#X connect 45 0 46 0;
+#X connect 46 0 35 1;
+#X connect 46 0 52 1;
+#X connect 47 0 48 1;
+#X connect 48 0 55 0;
+#X connect 49 0 48 0;
+#X connect 50 0 7 0;
+#X connect 50 0 47 0;
+#X connect 51 0 55 0;
+#X connect 52 0 43 0;
+#X connect 54 0 35 0;
+#X connect 57 0 52 0;
+#X connect 58 0 43 0;
+#X connect 59 0 43 0;
