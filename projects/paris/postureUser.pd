@@ -86,8 +86,8 @@ setEnabled \$1-target-instructions 0;
 #X msg 480 746 /\$1-light setParent \$1 \, /\$1-light setTranslation
 0 0 0 \, /\$1-light setOrientation -90 0 0 \, /\$1-light setCutoff
 180 \, /\$1-light setExponent 100 \, /\$1-light setAttenuation 0.2
-\, /\$1-light setAmbient 0 0 0 1 \, /\$1-light setDiffuse 0.75 0.75
-0.75 1 \, /\$1-light setSpecular 1 1 1 1;
+\, /\$1-light setAmbient 0.25 0.25 0.25 1 \, /\$1-light setDiffuse
+0.75 0.75 0.75 1 \, /\$1-light setSpecular 1 1 1 1;
 #X connect 0 0 3 0;
 #X connect 1 0 40 0;
 #X connect 2 0 1 0;
