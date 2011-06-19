@@ -1,4 +1,4 @@
-#N canvas 142 150 882 705 10;
+#N canvas 264 172 882 705 10;
 #X obj 12 103 bng 30 250 50 0 initBang! initBang init 4 15 1 14 -261234
 -1 -1;
 #X obj 414 128 bng 20 250 50 0 \$0-stop-moving empty STOP_MOVING 25
@@ -33,7 +33,7 @@
 #X connect 14 0 15 0;
 #X connect 15 0 5 0;
 #X connect 16 0 5 0;
-#X restore 549 55 pd UTILITIES;
+#X restore 547 50 pd UTILITIES;
 #X obj 416 34 bng 15 250 50 0 \$0-go-home \$0-go-home-set home 20 9
 1 10 -261682 -1 -1;
 #X obj 416 49 bng 15 250 50 0 \$0-go-911 \$0-go-911-set 9/11 20 9 1
@@ -109,8 +109,8 @@ hotspot_debug 20 8 1 10 -261234 -1 -1 0 1;
 #X msg 622 156 createNode timelineLabels ModelNode \, /timelineLabels
 setParent timeline \, /timelineLabels setModelFromFile ~/content/nta/models/environnements/ac3d/WAY_N1/timelineLabels.osg
 ;
-#X obj 474 520 ntaPanoVideo \$0 OceanBeach1 OceanBeach1.mov OceanBeach1.aif
--5 20 0 270 -4.5 0 1.43 0 0;
+#X obj 474 520 ntaPanoVideo_multiSnap \$0 OceanBeach1 OceanBeach1.mov
+OceanBeach1.aif -5 20 0 270 -4.5 0 1.43 0 0;
 #X connect 0 0 51 0;
 #X connect 1 0 2 0;
 #X connect 2 0 27 0;
@@ -259,8 +259,8 @@ setParent timeline \, /timelineLabels setModelFromFile ~/content/nta/models/envi
 #X restore 56 341 pd fog;
 #X obj 125 110 tgl 15 0 g_noPointer g_noPointer-set noPointer 20 8
 1 10 -261234 -1 -1 0 1;
-#N canvas 186 239 590 811 GO-THERE 0;
-#X obj 86 431 s \$0-to-SPIN;
+#N canvas 514 71 462 664 GO-THERE 1;
+#X obj 76 514 s \$0-to-SPIN;
 #X obj 62 13 r \$0-go-home;
 #X obj 162 64 r \$0-go-911;
 #X obj 84 265 t a;
@@ -272,27 +272,33 @@ setParent timeline \, /timelineLabels setModelFromFile ~/content/nta/models/envi
 #X msg 200 184 -171 3 1.5;
 #X msg 168 114 3.5 60.5 1.5;
 #X msg 162 94 -60 4 1.5;
-#X obj 86 401 setPosWithOffsets posture08 0 1 posture06 0 -1;
 #X msg 210 204 3 172 1.5;
 #X msg 271 319 0 0 87.5;
 #X msg 264 266 0 0 -85.5;
 #X msg 62 33 1 0 1.5;
-#X connect 1 0 16 0;
+#X obj 53 583 setPosWithOffsets posture08 0 1 posture06 0 -1;
+#X obj 86 401 t a;
+#X obj 64 456 setPosWithOffsets g_USER01;
+#X obj 87 481 setPosWithOffsets g_USER02;
+#X connect 1 0 15 0;
 #X connect 2 0 10 0;
-#X connect 3 0 12 0;
-#X connect 4 0 13 0;
-#X connect 5 0 15 0;
-#X connect 6 0 14 0;
+#X connect 3 0 17 0;
+#X connect 4 0 12 0;
+#X connect 5 0 14 0;
+#X connect 6 0 13 0;
 #X connect 7 0 8 0;
-#X connect 8 0 12 0;
-#X connect 9 0 12 0;
+#X connect 8 0 17 0;
+#X connect 9 0 17 0;
 #X connect 10 0 3 0;
 #X connect 11 0 3 0;
-#X connect 12 0 0 0;
-#X connect 13 0 12 0;
-#X connect 14 0 12 0;
-#X connect 15 0 12 0;
-#X connect 16 0 3 0;
+#X connect 12 0 17 0;
+#X connect 13 0 17 0;
+#X connect 14 0 17 0;
+#X connect 15 0 3 0;
+#X connect 17 0 18 0;
+#X connect 17 0 19 0;
+#X connect 18 0 0 0;
+#X connect 19 0 0 0;
 #X restore 415 14 pd GO-THERE;
 #X obj 400 156 bng 16 250 50 0 \$0-debug-scene empty DEBUG_scene 20
 9 1 9 -261234 -1 -1;
@@ -300,8 +306,8 @@ setParent timeline \, /timelineLabels setModelFromFile ~/content/nta/models/envi
 #X obj 416 64 bng 15 250 50 0 \$0-go-twelveOfUs \$0-go-twelveOfUs-set
 TwelveOfUs 20 9 1 10 -261682 -1 -1;
 #X obj 273 134 tgl 25 0 tgl_audiovideo tgl_audiovideo-set audio/video
-30 12 1 12 -262130 -1 -1 1 1;
-#X text 550 136 need this or snap2panoscope won't work:;
+30 12 1 12 -262130 -1 -1 0 1;
+#X text 548 96 need this or snap2panoscope won't work:;
 #X obj 194 370 cnv 15 300 225 empty empty userCallback: 5 15 1 14 -228856
 -162280 0;
 #N canvas 274 406 956 497 CAMERA_SWITCHING 0;
@@ -375,7 +381,7 @@ debugging:;
 #X obj 94 278 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 266 51 client;
-#X obj 696 43 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 698 15 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 266 4 r \$0-to-SPIN;
 #X obj 299 27 r \$0-to-SPIN-TCP;
@@ -399,7 +405,7 @@ debugging:;
 0;
 #X msg 75 288 posture06 Paris \, posture08 Montreal;
 #X obj 135 216 s \$0-to-SPIN-TCP;
-#X obj 697 85 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 699 57 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #N canvas 0 0 321 224 gridTest-TCP 0;
 #X msg 86 125 createNode grid GridNode;
@@ -412,7 +418,7 @@ debugging:;
 #X connect 2 0 0 0;
 #X connect 2 1 1 0;
 #X connect 4 0 2 0;
-#X restore 696 62 pd gridTest-TCP;
+#X restore 698 34 pd gridTest-TCP;
 #N canvas 0 0 322 215 gridTest-UDP 0;
 #X msg 60 103 createNode grid GridNode;
 #X msg 79 83 deleteNode grid;
@@ -424,7 +430,7 @@ debugging:;
 #X connect 2 0 0 0;
 #X connect 2 1 1 0;
 #X connect 4 0 2 0;
-#X restore 697 105 pd gridTest-UDP;
+#X restore 699 77 pd gridTest-UDP;
 #X obj 550 229 tgl 15 0 empty empty PARIS 19 8 0 10 -204786 -1 -1 0
 1;
 #X msg 543 276 /cities setEnabled paris-cnam.ac \$1;
@@ -509,8 +515,10 @@ debugging:;
 -262144 -1 -1 1 1;
 #X msg 27 446 1;
 #X msg 450 312 posture08;
-#X obj 569 158 anyreg g_SCENE_BOUND 0 0 62.3 750 750 300;
+#X obj 567 118 anyreg g_SCENE_BOUND 0 0 62.3 750 750 300;
 #X msg 450 334 posture06;
+#X obj 568 138 anyreg g_USER01 posture06 0 -0.75 0;
+#X obj 568 159 anyreg g_USER02 posture08 0 0.75 0;
 #X connect 0 0 15 0;
 #X connect 5 0 11 0;
 #X connect 9 0 7 0;
