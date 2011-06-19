@@ -100,10 +100,10 @@ for m in milhouses:
 add_command("spinserver --disable-discovery --disable-auto-cleanup --recv-tcp-msg 54322 --send-udp-msg %s 54323 --send-udp-msg %s 54323 --send-udp-msg %s 54326 --send-udp-msg %s 54326" % (PAR_posture, MTL_posture, PAR_posture, MTL_posture), env={"LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib:/usr/local/lib64/osgPlugins-2.9.8"}, identifier="spinserver", host=spinserverAddr, sleep_after=DELAY)
 
 # PARIS viewer:
-add_command("panoViewer --fullscreen --send-udp-msg %s 54324 --send-tcp-msg %s 54322 --recv-udp-msg localhost 54326 --recv-tcp-msg %s 54325" % (spinserverAddr, spinserverAddr, PAR_posture), identifier="panoViewer_PAR", env={"DISPLAY":":0.0", "LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib:/usr/local/lib64/osgPlugins-2.9.8"}, host=PAR_posture, sleep_after=DELAY)
+add_command("panoViewer --fullscreen --hide-cursor --send-udp-msg %s 54324 --send-tcp-msg %s 54322 --recv-udp-msg localhost 54326 --recv-tcp-msg %s 54325" % (spinserverAddr, spinserverAddr, PAR_posture), identifier="panoViewer_PAR", env={"DISPLAY":":0.0", "LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib:/usr/local/lib64/osgPlugins-2.9.8"}, host=PAR_posture, sleep_after=DELAY)
 
 # MONTREAL viewer:
-add_command("panoViewer --fullscreen --send-udp-msg %s 54324 --send-tcp-msg %s 54322 --recv-udp-msg localhost 54326 --recv-tcp-msg %s 54325" % (spinserverAddr, spinserverAddr, MTL_posture), identifier="panoViewer_MTL", env={"DISPLAY":":0.0","LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib:/usr/local/lib64/osgPlugins-2.9.8"}, host=MTL_posture, sleep_after=DELAY)
+add_command("panoViewer --fullscreen --hide-cursor --send-udp-msg %s 54324 --send-tcp-msg %s 54322 --recv-udp-msg localhost 54326 --recv-tcp-msg %s 54325" % (spinserverAddr, spinserverAddr, MTL_posture), identifier="panoViewer_MTL", env={"DISPLAY":":0.0","LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib:/usr/local/lib64/osgPlugins-2.9.8"}, host=MTL_posture, sleep_after=DELAY)
 
 # Pure Data:
 add_command("pdextended -nrt /home/posture/src/postures/trunk/projects/paris/client.pd", host=MTL_posture, identifier="pd_MTL_client", env={"DISPLAY":":0.0"}, sleep_after=DELAY)
