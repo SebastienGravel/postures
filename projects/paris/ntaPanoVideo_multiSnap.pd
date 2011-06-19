@@ -1,0 +1,205 @@
+#N canvas 28 80 1285 820 10;
+#X obj 30 42 inlet;
+#X obj -5 62 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 957 317 r \$1-from-SPIN;
+#X obj 55 441 t a a a a;
+#X msg 628 668 setParam play \$1;
+#X obj 881 384 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 754 273 r \$1-from-SPIN;
+#X obj 754 314 route event;
+#X obj 754 335 route done;
+#X msg 754 357 1;
+#X obj 65 378 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 32 508 t a a;
+#X obj 105 78 symbol \$2;
+#X obj 107 54 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 105 118 t a a a;
+#X obj 30 62 t b b;
+#X obj 1140 72 inlet;
+#X obj 957 358 spigot 0;
+#X obj 1010 337 r g_snap_toggle;
+#X obj 1026 360 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
+0 1;
+#X obj 642 8 inlet;
+#X obj 676 43 list2symbol;
+#X obj 676 63 list prepend \$2-textLabel;
+#X msg 150 205 createNode \$1 ModelNode \, createNode \$1-textLabel
+TextNode;
+#X obj 512 163 OSCprepend /\$2-textLabel;
+#X msg 524 134 stateDump;
+#X obj 526 111 delay 500;
+#X obj 1026 479 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
+0 1;
+#X obj 957 477 spigot 1;
+#X obj 1010 438 r notTeleporting;
+#X obj 912 134 symbol \$2;
+#X msg 705 149 createNode \$1 TextNode;
+#X msg 922 163 createNode \$1 ModelNode;
+#X obj 676 102 t b a a b;
+#X obj 945 551 s \$1-to-SPIN-TCP;
+#X obj 55 422 list append \$2;
+#X text 169 119 panoID \, videofile \, x \, y \, z \, panoRot;
+#X obj 105 98 list append \$3 \$5 \$6 \$7 \$8;
+#X text 282 0 patch args: \$0 \, panoID \, videofile \, audiofile x
+\, y \, z \, panoRot \, txtX \, txtY \, txtZ txtRot;
+#X text 865 80 labelID text panoID txtX txtY txtZ txtRot;
+#X obj 676 81 list append \$2 \$9 \$10 \$11 \$12;
+#X msg 674 191 /\$1 setParent \$3 \, /\$1 setTranslation \$4 \$5 \$6
+\, /\$1 setOrientation 0 0 \$7 \, /\$1 setScale 2 2 2 \, /\$1 setText
+\$2;
+#X msg 166 182 createStateSet ~/content/nta_videos/\$2;
+#X msg 90 329 /\$1 setStateSet 0 \$2;
+#X obj 55 403 symbol \$4;
+#X obj 50 699 s \$1-to-SPIN-TCP;
+#X obj 711 773 s \$1-to-SPIN-TCP;
+#X obj 640 255 s \$1-to-SPIN-TCP;
+#X msg 170 448 createNode \$1 SoundNode;
+#X msg 177 545 createNode \$1-shp ShapeNode;
+#X msg 161 568 /\$1-shp setParent \$1 \, /\$1-shp setShape 1 \, /\$1-shp
+setScale 1 1 1;
+#X obj 628 689 OSCprepend /\$4;
+#X obj 742 688 OSCprepend /\$3;
+#X obj 754 294 OSCparse /\$4;
+#X text 155 411 soundfile panoID;
+#X msg 168 477 /\$1 setParent \$2 \, /\$1 setPlugin SFPlayStereo~ \,
+/\$1 setParam filename /home/posture/content/nta_videos/\$1 \, /\$1
+setRolloff omni \, /\$1 setSpread 0;
+#X msg 46 634 /posture??-listener connectSource \$1;
+#X msg 11 660 /\$1*.conn setRolloffEffect 0 \, /\$1*.conn setDistanceEffect
+50;
+#X obj 914 643 symbol \$3;
+#X obj 892 699 OSCprepend /\$2;
+#X msg 890 677 setStateSet 0 \$1;
+#X obj 821 425 sel 0 1;
+#X obj 957 457 spigot 0;
+#X obj 727 580 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X msg 762 460 0;
+#X msg 743 666 rewind \, setPlay \$1;
+#X msg 178 160 createStateSet ~/content/nta_videos/\$1.jpg;
+#X msg 894 619 symbol spacer.png;
+#X obj 1097 602 spigot \$13;
+#X obj 797 493 loadbang;
+#X obj 797 513 f \$13;
+#X obj 781 552 spigot;
+#X msg 790 460 1;
+#X obj 656 462 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 798 531 == 0;
+#X obj 719 622 delay 500;
+#X obj 721 644 f;
+#X obj 719 601 t b b f;
+#X obj 62 234 anyreg \$0-tmp;
+#X obj 79 166 t b a;
+#X obj 57 199 delay 1000;
+#X obj 135 375 s \$1-to-SPIN-TCP;
+#X text 281 354 NOTE: SnapToPanoscope means that pano video cannot
+be a child of any other node !!!;
+#X msg 123 264 /\$1 setParent world \, /\$1 setTranslation \$3 \$4
+\$5 \, /\$1 setOrientation 0 0 \$6 \, /\$1 setStateRegistration 1 \,
+/\$1 setModelFromFile ~/content/nta_videos/Panoscope_1-2_flipped.osg
+;
+#X obj 957 501 SnapToPanoscope 4 \$5 \$6 \$7 g_USER01;
+#X obj 969 524 SnapToPanoscope 4 \$5 \$6 \$7 g_USER02;
+#X connect 0 0 15 0;
+#X connect 1 0 15 0;
+#X connect 2 0 17 0;
+#X connect 3 0 11 0;
+#X connect 3 2 55 0;
+#X connect 3 3 48 0;
+#X connect 4 0 51 0;
+#X connect 5 0 62 1;
+#X connect 5 0 61 0;
+#X connect 6 0 53 0;
+#X connect 7 0 8 0;
+#X connect 8 0 9 0;
+#X connect 9 0 5 0;
+#X connect 9 0 63 0;
+#X connect 10 0 44 0;
+#X connect 11 0 57 0;
+#X connect 11 1 56 0;
+#X connect 12 0 37 0;
+#X connect 13 0 12 0;
+#X connect 14 0 79 0;
+#X connect 14 1 83 0;
+#X connect 14 2 23 0;
+#X connect 14 2 42 0;
+#X connect 14 2 66 0;
+#X connect 15 0 44 0;
+#X connect 15 1 12 0;
+#X connect 16 0 5 0;
+#X connect 17 0 62 0;
+#X connect 18 0 17 1;
+#X connect 19 0 17 1;
+#X connect 20 0 21 0;
+#X connect 21 0 22 0;
+#X connect 22 0 40 0;
+#X connect 23 0 81 0;
+#X connect 24 0 47 0;
+#X connect 25 0 24 0;
+#X connect 26 0 25 0;
+#X connect 27 0 28 1;
+#X connect 28 0 84 0;
+#X connect 28 0 85 0;
+#X connect 29 0 28 1;
+#X connect 30 0 32 0;
+#X connect 31 0 47 0;
+#X connect 32 0 47 0;
+#X connect 33 0 26 0;
+#X connect 33 1 41 0;
+#X connect 33 2 31 0;
+#X connect 33 3 30 0;
+#X connect 35 0 3 0;
+#X connect 37 0 14 0;
+#X connect 40 0 33 0;
+#X connect 41 0 47 0;
+#X connect 42 0 81 0;
+#X connect 43 0 81 0;
+#X connect 44 0 35 0;
+#X connect 48 0 45 0;
+#X connect 50 0 45 0;
+#X connect 51 0 46 0;
+#X connect 52 0 46 0;
+#X connect 53 0 7 0;
+#X connect 55 0 45 0;
+#X connect 56 0 45 0;
+#X connect 57 0 45 0;
+#X connect 58 0 60 0;
+#X connect 59 0 46 0;
+#X connect 60 0 59 0;
+#X connect 61 0 64 0;
+#X connect 61 0 67 0;
+#X connect 61 1 58 0;
+#X connect 61 1 72 0;
+#X connect 62 0 28 0;
+#X connect 63 0 77 0;
+#X connect 64 0 63 0;
+#X connect 65 0 52 0;
+#X connect 66 0 81 0;
+#X connect 67 0 60 0;
+#X connect 68 0 63 0;
+#X connect 69 0 70 0;
+#X connect 70 0 74 0;
+#X connect 71 0 63 0;
+#X connect 72 0 71 0;
+#X connect 73 0 70 0;
+#X connect 74 0 71 1;
+#X connect 75 0 76 0;
+#X connect 76 0 65 0;
+#X connect 76 0 4 0;
+#X connect 77 0 75 0;
+#X connect 77 1 76 0;
+#X connect 77 2 76 1;
+#X connect 78 0 43 0;
+#X connect 79 0 80 0;
+#X connect 79 1 78 0;
+#X connect 80 0 78 0;
+#X connect 83 0 81 0;
+#X connect 84 0 34 0;
+#X connect 84 2 68 0;
+#X connect 85 0 34 0;
+#X connect 85 2 68 0;
