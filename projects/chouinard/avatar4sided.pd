@@ -1,0 +1,117 @@
+#N canvas 197 103 1049 716 10;
+#X obj 556 167 rad2deg;
+#X obj 556 130 route direction;
+#X text 673 248 put in range of [0 \, 360);
+#X obj 556 230 + 45;
+#X text 588 232 add 45 degrees to straddle camera axes;
+#X obj 681 430 change;
+#X obj 556 110 OSCparse /posture??-reporter-video;
+#X obj -2 85 inlet;
+#X obj 556 50 r \$1-from-SPIN;
+#X msg 489 475 0;
+#X msg 519 475 90;
+#X msg 549 475 180;
+#X msg 579 475 270;
+#X obj 681 481 t f b;
+#X msg 752 506 setShape 0;
+#X msg 536 548 \$1 setShape 6;
+#X text 591 188 add parent node yaw value;
+#X floatatom 556 325 5 0 0 0 - - -;
+#X obj -2 108 t b b b;
+#X msg 137 237 /posture??-reporter-video addTarget avatar_\$1;
+#X obj 137 218 list prepend \$3;
+#X obj -23 85 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 941 17 inlet;
+#X obj 968 55 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 941 296 sel 1 0;
+#X obj 681 462 f;
+#X floatatom 510 254 5 0 0 0 - - -;
+#X text -26 5 Required patch args:;
+#X text -24 57 NOTE: type is an extension (png \, mov \, etc);
+#X obj 59 108 print CREATE_AVATAR::\$3;
+#X msg 135 168 createNode avatar_\$3 GroupNode \, /avatar_\$3 setTranslation
+\$5 \$6 \$7 \, /avatar_\$3 setScale 1 1 1 \, /avatar_\$3 setOrientation
+0 0 \$8;
+#X obj 107 267 s \$1-to-SPIN-TCP;
+#X obj 556 149 route avatar_\$3;
+#X obj 556 188 + \$8;
+#X obj 752 526 list prepend /avatar_\$3_*;
+#X obj 536 528 makefilename /avatar_\$3_%d;
+#X obj 675 585 s \$1-to-SPIN-TCP;
+#X obj 557 92 spigot 1;
+#X text -25 37 1__2____3____4____5_6_7_8___9;
+#X text -25 22 \$0 path name type x y z yaw vidRotate;
+#X floatatom 506 293 5 0 0 0 - - -;
+#X obj 556 209 * -1;
+#X obj 556 250 expr ($f1+360)%360;
+#X obj 556 271 expr 360 - ((int($f1/90) * 90));
+#X obj 556 292 expr $f1%360;
+#X obj -2 477 list prepend \$1 \$2 \$3 \$4 \$5 \$6 \$7 \$8 \$9;
+#X obj 135 148 list prepend \$1 \$2 \$3 \$4 \$5 \$6 \$7 \$8 \$9;
+#X obj -2 575 s \$1-to-SPIN-TCP;
+#X msg -2 297 0 \, 90 \, 180 \, 270;
+#X obj -2 401 pack 0 0;
+#X obj -2 326 t f f;
+#X obj 43 380 expr 360-$f1;
+#X text 126 382 IMPORTANT NOTE: videos are labeled with angles (0=north
+\, 90=east \, 180=south \, 270=west) \, which indicate the direction
+of the camera with respect to the viewer. The geometries thus need
+to be flipped (360-angle) to provide a properly oriented camera image
+plane.;
+#X text 101 296 camera angle;
+#X msg -3 498 createNode avatar_\$3_\$10 ShapeNode \, /avatar_\$3_\$10
+setParent avatar_\$3 \, /avatar_\$3_\$10 setShape 6 \, /avatar_\$3_\$10
+setStateSetFromFile \$2/\$3_\$10.\$4 \, /avatar_\$3_\$10 setOrientation
+0 \$9 \$11 \, /avatar_\$3_\$10 setScale 3 1 1.5 \, /\$3_\$10.\$4 setLighting
+0;
+#X connect 0 0 33 0;
+#X connect 1 0 32 0;
+#X connect 3 0 42 0;
+#X connect 5 0 25 0;
+#X connect 6 0 1 0;
+#X connect 7 0 18 0;
+#X connect 8 0 37 0;
+#X connect 9 0 35 0;
+#X connect 10 0 35 0;
+#X connect 11 0 35 0;
+#X connect 12 0 35 0;
+#X connect 13 0 35 0;
+#X connect 13 1 14 0;
+#X connect 14 0 34 0;
+#X connect 15 0 36 0;
+#X connect 18 0 48 0;
+#X connect 18 1 20 0;
+#X connect 18 2 29 0;
+#X connect 18 2 46 0;
+#X connect 19 0 31 0;
+#X connect 20 0 19 0;
+#X connect 21 0 18 0;
+#X connect 22 0 23 0;
+#X connect 22 0 24 0;
+#X connect 22 0 37 1;
+#X connect 24 0 25 0;
+#X connect 24 1 14 0;
+#X connect 25 0 13 0;
+#X connect 30 0 31 0;
+#X connect 32 0 0 0;
+#X connect 33 0 26 0;
+#X connect 33 0 41 0;
+#X connect 34 0 36 0;
+#X connect 35 0 15 0;
+#X connect 37 0 6 0;
+#X connect 41 0 3 0;
+#X connect 42 0 40 0;
+#X connect 42 0 43 0;
+#X connect 43 0 44 0;
+#X connect 44 0 5 0;
+#X connect 44 0 17 0;
+#X connect 45 0 54 0;
+#X connect 46 0 30 0;
+#X connect 48 0 50 0;
+#X connect 49 0 45 0;
+#X connect 50 0 49 0;
+#X connect 50 1 51 0;
+#X connect 51 0 49 1;
+#X connect 54 0 47 0;
