@@ -1,4 +1,4 @@
-#N canvas 270 82 1028 702 10;
+#N canvas 321 330 1028 702 10;
 #X obj 12 109 bng 30 250 50 0 initBang! initBang init 4 15 1 14 -261234
 -1 -1;
 #X obj 414 128 bng 20 250 50 0 \$0-stop-moving empty STOP_MOVING 25
@@ -39,13 +39,13 @@
 #X obj 86 432 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 125 146 tgl 15 0 g_snap_toggle g_snap_toggle-set snapToPanoscope
-20 8 1 10 -261234 -1 -1 0 1;
+20 8 1 10 -261234 -1 -1 1 1;
 #N canvas 89 366 843 563 fog 0;
 #X obj 236 -65 inlet;
 #X obj 285 412 s \$0-to-SPIN-TCP;
 #X msg 322 31 createStateSet toronto-Fog Fog;
 #X obj 199 227 hsl 128 15 0 0.1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
+-1 -1 508 1;
 #X msg 221 340 /toronto-Fog setFogDensity \$1;
 #X obj -161 257 line \$1 50;
 #X obj -87 256 line \$1 50;
@@ -107,7 +107,7 @@
 #X connect 19 2 13 0;
 #X connect 23 0 1 0;
 #X connect 25 0 26 0;
-#X connect 25 0 35 0;
+#X connect 25 0 13 0;
 #X connect 25 1 2 0;
 #X connect 25 2 24 0;
 #X connect 26 0 3 0;
@@ -166,7 +166,7 @@
 9 1 9 -261234 -1 -1;
 #X obj 12 143 t b b b b b b;
 #X text 548 96 need this or snap2panoscope won't work:;
-#X obj 698 15 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 698 15 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 7 3 cnv 15 250 40 empty empty McLuhan 5 14 1 18 -228856 -86853
 0;
@@ -246,7 +246,7 @@
 -1;
 #X obj 260 66 t b b;
 #X obj 125 128 tgl 15 0 g_inactivityToggle g_inactivityToggle-set inactivityTimer
-20 8 1 10 -261234 -1 -1 0 1;
+20 8 1 10 -261234 -1 -1 1 1;
 #N canvas 0 22 450 300 init 0;
 #X obj 104 39 inlet;
 #X obj 77 244 s g_snap_toggle-set;
@@ -265,7 +265,7 @@
 #X obj 108 349 delay 5000;
 #X obj 192 364 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#N canvas 30 151 650 602 mcluhan 0;
+#N canvas 30 151 650 602 mcluhan 1;
 #X obj 83 36 inlet;
 #X obj 88 223 list;
 #X obj 140 483 s \$0-to-SPIN-TCP;
@@ -275,8 +275,8 @@
 0.5 11.1 0 \, /mcluhan setOrientation 0 0 0;
 #X msg 120 189 mcluhan_1-2new.ac 0 0 0 0;
 #X msg 87 162 mcluhan_1-1new.ac 0 0 0 0;
-#X msg 73 380 createNode \$1 ModelNode \, /\$1 setOrientation 90 0
-\$5 \, /\$1 setTranslation \$2 \$3 \$4 \, /\$1 setModelFromFile ~/posture-nta/projects-models/mcluhan/models/low-res/\$1
+#X msg 74 380 createNode \$1 ModelNode \, /\$1 setOrientation 90 0
+\$5 \, /\$1 setTranslation \$2 \$3 \$4 \, /\$1 setModelFromFile ~/content/projects-models/mcluhan-models/models/low-res/\$1
 \, /\$1 setParent mcluhan \, /mcluhan setEnabled \$1 1;
 #X connect 0 0 7 0;
 #X connect 0 0 6 0;
