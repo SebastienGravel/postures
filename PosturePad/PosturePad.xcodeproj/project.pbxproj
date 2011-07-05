@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1C8417F41219051900DC06E9 /* liblo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8417F31219051900DC06E9 /* liblo.a */; };
+		1C24F10413AB5DDB00D3F494 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C24F10313AB5DDB00D3F494 /* Reachability.m */; };
+		1CA097D3135DFC5B00F22F17 /* liblo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA097D2135DFC5B00F22F17 /* liblo.a */; };
 		1CA0BB971295DC5A0083DA70 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA0BB961295DC5A0083DA70 /* CoreMotion.framework */; };
 		1CDDD2D112B7E81E008D90CD /* target.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CDDD2D012B7E81E008D90CD /* target.png */; };
 		1CDDD2D312B7E82D008D90CD /* compass.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CDDD2D212B7E82D008D90CD /* compass.png */; };
 		1CDDD2F312B7E9B2008D90CD /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CDDD2F212B7E9B2008D90CD /* gear.png */; };
+		1CFF7DDF13A1382700F9F4F6 /* checkbox-checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CFF7DDD13A1382700F9F4F6 /* checkbox-checked.png */; };
+		1CFF7DE013A1382700F9F4F6 /* checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CFF7DDE13A1382700F9F4F6 /* checkbox.png */; };
 		1D3623260D0F684500981E51 /* NTARemoteAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* NTARemoteAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -38,11 +41,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1C8417F31219051900DC06E9 /* liblo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblo.a; sourceTree = "<group>"; };
+		1C24F10213AB5DDB00D3F494 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = SOURCE_ROOT; };
+		1C24F10313AB5DDB00D3F494 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = SOURCE_ROOT; };
+		1CA097D2135DFC5B00F22F17 /* liblo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblo.a; sourceTree = "<group>"; };
 		1CA0BB961295DC5A0083DA70 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		1CDDD2D012B7E81E008D90CD /* target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = target.png; sourceTree = "<group>"; };
 		1CDDD2D212B7E82D008D90CD /* compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compass.png; sourceTree = "<group>"; };
 		1CDDD2F212B7E9B2008D90CD /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gear.png; sourceTree = "<group>"; };
+		1CFF7DDD13A1382700F9F4F6 /* checkbox-checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox-checked.png"; sourceTree = "<group>"; };
+		1CFF7DDE13A1382700F9F4F6 /* checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox.png; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* NTARemoteAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NTARemoteAppDelegate.h; path = Classes/NTARemoteAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* NTARemoteAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NTARemoteAppDelegate.m; path = Classes/NTARemoteAppDelegate.m; sourceTree = "<group>"; };
@@ -86,8 +93,8 @@
 				22F9C5AC1003B84100A97A19 /* CoreLocation.framework in Frameworks */,
 				22A05A18100512DB002062AC /* CFNetwork.framework in Frameworks */,
 				22A05A19100512DB002062AC /* SystemConfiguration.framework in Frameworks */,
-				1C8417F41219051900DC06E9 /* liblo.a in Frameworks */,
 				1CA0BB971295DC5A0083DA70 /* CoreMotion.framework in Frameworks */,
+				1CA097D3135DFC5B00F22F17 /* liblo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +113,7 @@
 				2239C781100E6ACD00BA5DEC /* FlipView.h */,
 				2239C782100E6ACD00BA5DEC /* FlipView.m */,
 				2239C783100E6ACD00BA5DEC /* FlipView.xib */,
+				1C24F10213AB5DDB00D3F494 /* Reachability.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -124,10 +132,9 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
-				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				29B97323FDCFA39411CA2CEA /* Frameworks and Libraries */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				224E89FC10F660380019EF30 /* Entitlements.plist */,
-				1CA0BB961295DC5A0083DA70 /* CoreMotion.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -135,12 +142,14 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				1C24F10313AB5DDB00D3F494 /* Reachability.m */,
 				1D3623240D0F684500981E51 /* NTARemoteAppDelegate.h */,
-				1C8417F31219051900DC06E9 /* liblo.a */,
 				1D3623250D0F684500981E51 /* NTARemoteAppDelegate.m */,
 				220049A710E167C200CE51FB /* info.png */,
 				220049B410E1686000CE51FB /* error.png */,
 				220049A810E167C200CE51FB /* Default.png */,
+				1CFF7DDD13A1382700F9F4F6 /* checkbox-checked.png */,
+				1CFF7DDE13A1382700F9F4F6 /* checkbox.png */,
 				22004AFD10E1829A00CE51FB /* Icon57.png */,
 				220049A910E167C200CE51FB /* settingsButton.png */,
 				220049AA10E167C200CE51FB /* calibrateButton.png */,
@@ -163,9 +172,11 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+		29B97323FDCFA39411CA2CEA /* Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				1CA0BB961295DC5A0083DA70 /* CoreMotion.framework */,
+				1CA097D2135DFC5B00F22F17 /* liblo.a */,
 				22A05A17100512DB002062AC /* SystemConfiguration.framework */,
 				22A05A16100512DB002062AC /* CFNetwork.framework */,
 				22F9C5AB1003B84100A97A19 /* CoreLocation.framework */,
@@ -173,7 +184,7 @@
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
 			);
-			name = Frameworks;
+			name = "Frameworks and Libraries";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,6 +251,8 @@
 				1CDDD2D112B7E81E008D90CD /* target.png in Resources */,
 				1CDDD2D312B7E82D008D90CD /* compass.png in Resources */,
 				1CDDD2F312B7E9B2008D90CD /* gear.png in Resources */,
+				1CFF7DDF13A1382700F9F4F6 /* checkbox-checked.png in Resources */,
+				1CFF7DE013A1382700F9F4F6 /* checkbox.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +268,7 @@
 				28D7ACF80DDB3853001CB0EB /* NTARemoteViewController.m in Sources */,
 				2239C784100E6ACD00BA5DEC /* FlipView.m in Sources */,
 				22C3A05410DC65B8002DA85E /* InfoView.m in Sources */,
+				1C24F10413AB5DDB00D3F494 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +295,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-llo",
 					"-L/usr/local/lib",
@@ -295,7 +310,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Luc Courchesne";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PosturePad_Prefix.pch;
@@ -309,9 +324,10 @@
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../../../../../Downloads\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-llo";
 				PRODUCT_NAME = PosturePadPZ;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E3F8A4DB-4153-4DA7-9F6E-469A11C7D95B";
 			};
 			name = Release;
 		};
@@ -361,6 +377,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-llo",
 					"-L/usr/local/lib",
@@ -378,8 +395,8 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Mike Wozniewski";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Mike Wozniewski";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Luc Courchesne";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Luc Courchesne";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -392,8 +409,8 @@
 				OTHER_LDFLAGS = "-llo";
 				PREBINDING = NO;
 				PRIVATE_HEADERS_FOLDER_PATH = PosturePad.app/PrivateHeaders;
-				PROVISIONING_PROFILE = "3C8FDFFC-D4C6-46F5-9D0A-A63FE1EB5E42";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3C8FDFFC-D4C6-46F5-9D0A-A63FE1EB5E42";
+				PROVISIONING_PROFILE = "C5158479-2D96-49D3-974D-08331D72B0DD";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C5158479-2D96-49D3-974D-08331D72B0DD";
 				PUBLIC_HEADERS_FOLDER_PATH = PosturePad.app/Headers;
 				SDKROOT = iphoneos;
 			};
@@ -403,8 +420,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Luc Courchesne";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Luc Courchesne";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -419,13 +436,14 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-llo",
 					"-L/usr/local/lib",
 				);
 				PRODUCT_NAME = PosturePad;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "B6C4C32E-7F86-4430-8720-53F28297CA02";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B6C4C32E-7F86-4430-8720-53F28297CA02";
 				SDKROOT = iphoneos;
 			};
 			name = "Ad Hoc";

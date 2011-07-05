@@ -8,20 +8,34 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol FlipViewDelegate;
 
-@interface FlipView : UIViewController {
-	UITextField *addressField, *portField, *clientField, *speedField;
-	UISwitch *screenModeSwitch;
-	UIButton *saveButton;
+
+@interface FlipView : UIViewController
+    <UITextFieldDelegate>
+{
+    id <FlipViewDelegate> delegate;
+
+    
+	IBOutlet UITextField *serverNameField;
+    IBOutlet UITextField *serverAddrField, *serverTcpField, *serverUdpField;
+	IBOutlet UITextField *userIdField;
+    IBOutlet UISwitch *autoDiscoverySwitch;
+    IBOutlet UIButton *calibrationButton;
+    
+    IBOutletCollection(UITextField) NSArray *allTextFields;
+	//UIButton *saveButton;
 }
 
-@property (nonatomic, retain) IBOutlet UITextField *addressField;
-@property (nonatomic, retain) IBOutlet UITextField *portField;
-@property (nonatomic, retain) IBOutlet UITextField *clientField;
-@property (nonatomic, retain) IBOutlet UITextField *speedField;
-@property (nonatomic, retain) IBOutlet UISwitch *screenModeSwitch;
-@property (nonatomic, retain) IBOutlet UIButton *saveButton;
+@property (nonatomic, assign) id <FlipViewDelegate> delegate;
 
-- (IBAction)dismissView;
+- (IBAction) didSwitch:(UISwitch*)sw;
+- (IBAction) calibrationToggle:(UIButton*)bt;
+- (IBAction) save:(id)sender;
+- (IBAction) close:(id)sender;
 
+@end
+
+@protocol FlipViewDelegate
+- (void)FlipViewDidFinish:(FlipView *)controller;
 @end
