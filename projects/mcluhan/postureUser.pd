@@ -1,0 +1,157 @@
+#N canvas 172 46 983 870 10;
+#X obj 117 28 inlet;
+#X msg 225 73 hostname -s;
+#X obj 225 53 loadbang;
+#X obj 157 166 symbol;
+#X obj 446 126 print Creating_User;
+#X obj 33 295 delay 500;
+#X msg 111 300 audioInit;
+#X obj 224 351 OSCsymbol;
+#X text 484 369 Reporter (used to report hotspot enter/exit);
+#X text 484 722 LIGHT:;
+#X msg 481 327 1;
+#X obj 481 346 s g_collisions;
+#X text 514 327 enable collisions;
+#X text 491 441 Reporter (used to report angle wrt the 4-angle video)
+;
+#X obj 241 160 s g_userID;
+#X obj 193 28 inlet;
+#X text 242 29 <-override user id;
+#X msg 457 159 userRefresh;
+#X obj 162 183 t b s s b s;
+#X text 491 496 Pointer Reporter;
+#X obj 88 89 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 485 459 /\$1-reporter-video setParent \$1 \, /\$1-reporter-video
+setReporting INCIDENCE 1 \, /\$1-reporter-video setMaxRate 10;
+#X msg 478 389 /\$1-reporter-hotspot setParent \$1 \, /\$1-reporter-hotspot
+setReporting CONTAINMENT 1 \, /\$1-reporter-hotspot setMaxRate 10;
+#X msg 488 513 /\$1-pointer setParent \$1 \, /\$1-pointer-reporter
+setParent \$1-pointer \, /\$1-pointer-reporter setReporting INCIDENCE
+1 \, /\$1-pointer-reporter setReporting DISTANCE 1 \, /\$1-pointer-reporter
+setMaxRate 2;
+#X obj 30 525 r g_currentPos;
+#X obj 30 545 t b;
+#X obj 30 566 delay 180000;
+#X text 113 566 3 min;
+#X text 29 503 inactivity timer:;
+#X obj 483 573 pack s s;
+#X obj 866 557 list2symbol;
+#X obj 866 518 loadbang;
+#X msg 866 538 Point HERE;
+#X obj 52 652 t b b;
+#X obj 186 547 OSCparse /posture??;
+#X obj 185 587 route reset;
+#X obj 185 566 route event setTranslation;
+#X obj 261 589 s g_currentPos;
+#X text 273 607 ^ NEED this!;
+#X msg 452 203 createNode \$1 UserNode \, createNode \$1-reporter-hotspot
+ReporterNode \, createNode \$1-reporter-video ReporterNode \, createNode
+\$1-light LightSource \, createNode \$1-pointer GroupNode \, createNode
+\$1-pointer-reporter ReporterNode;
+#X obj 225 93 shell;
+#X obj 224 121 symbol;
+#X obj 351 825 s \$1-to-SPIN-TCP;
+#X text 409 6 patch arg: \$0 from parent;
+#X obj 297 504 r g_userID;
+#X obj 297 525 OSCsymbol;
+#X obj 89 399 makefilename /%s-listener;
+#X obj 19 420 list prepend;
+#X msg 33 318 stateDump;
+#X obj 164 324 r g_userID;
+#X obj 143 371 OSCprepend /\$2;
+#X obj 123 751 OSCprepend;
+#X text 69 5 bang for hostname as user id:;
+#X obj 186 529 r \$1-from-SPIN;
+#X obj 102 458 s \$1-to-SPIN-TCP;
+#X obj 457 179 s \$1-to-SPIN-TCP;
+#X msg 468 269 createNode \$1-target SwitchNode \, createNode \$1-target-cursor
+TextNode \, createNode \$1-target-instructions TextNode;
+#X msg 483 592 /\$1-target setParent \$1 \, /\$1-target-instructions
+setParent \$1-target \, /\$1-target-cursor setParent \$1-pointer \,
+/\$1-target-cursor setTextValue + \, /\$1-target-instructions setTextValue
+\$2 \, /\$1-target-* setScale 0.01 0.01 0.01 \, /\$1-target-* setColor
+1 0 0 1 \, /\$1-target-* setDecoration 9 \, /\$1-target-* setFont GillSans.ttf
+\, /\$1-target-* setBillboard 2 \, /\$1-target-cursor setTranslation
+0 0.01 0 \, /\$1-target-instructions setTranslation 0 0.005 0 \, /\$1-target
+setEnabled \$1-target-instructions 0;
+#X obj 152 650 sel posture06 posture08;
+#X msg 219 673 1;
+#X msg 152 673 -1;
+#X obj 123 709 pack s 0 0 1.5;
+#X msg 52 673 setTranslation;
+#X obj 160 623 r g_userID;
+#X obj 180 731 OSCsymbol;
+#X msg 480 746 /\$1-light setParent \$1 \, /\$1-light setTranslation
+0 0 0 \, /\$1-light setOrientation -90 0 0 \, /\$1-light setCutoff
+180 \, /\$1-light setExponent 100 \, /\$1-light setAttenuation 0.2
+\, /\$1-light setAmbient 0.25 0.25 0.25 1 \, /\$1-light setDiffuse
+0.75 0.75 0.75 1 \, /\$1-light setSpecular 1 1 1 1;
+#X obj 30 615 spigot 0;
+#X obj 47 590 r g_inactivityToggle;
+#X connect 0 0 3 0;
+#X connect 1 0 40 0;
+#X connect 2 0 1 0;
+#X connect 3 0 18 0;
+#X connect 5 0 48 0;
+#X connect 6 0 50 0;
+#X connect 7 0 50 1;
+#X connect 10 0 11 0;
+#X connect 15 0 3 0;
+#X connect 17 0 55 0;
+#X connect 18 0 6 0;
+#X connect 18 0 5 0;
+#X connect 18 1 22 0;
+#X connect 18 1 10 0;
+#X connect 18 1 65 0;
+#X connect 18 1 21 0;
+#X connect 18 1 23 0;
+#X connect 18 1 29 0;
+#X connect 18 2 56 0;
+#X connect 18 2 39 0;
+#X connect 18 3 17 0;
+#X connect 18 4 4 0;
+#X connect 20 0 3 0;
+#X connect 21 0 42 0;
+#X connect 22 0 42 0;
+#X connect 23 0 42 0;
+#X connect 24 0 25 0;
+#X connect 25 0 26 0;
+#X connect 26 0 66 0;
+#X connect 29 0 57 0;
+#X connect 30 0 29 1;
+#X connect 31 0 32 0;
+#X connect 32 0 30 0;
+#X connect 33 0 62 0;
+#X connect 34 0 36 0;
+#X connect 35 0 33 0;
+#X connect 36 0 35 0;
+#X connect 36 1 37 0;
+#X connect 39 0 42 0;
+#X connect 40 0 41 0;
+#X connect 41 0 3 1;
+#X connect 41 0 14 0;
+#X connect 44 0 45 0;
+#X connect 45 0 34 1;
+#X connect 46 0 47 1;
+#X connect 47 0 54 0;
+#X connect 48 0 47 0;
+#X connect 49 0 7 0;
+#X connect 49 0 46 0;
+#X connect 50 0 54 0;
+#X connect 51 0 42 0;
+#X connect 53 0 34 0;
+#X connect 56 0 42 0;
+#X connect 57 0 42 0;
+#X connect 58 0 60 0;
+#X connect 58 1 59 0;
+#X connect 59 0 61 1;
+#X connect 60 0 61 1;
+#X connect 61 0 51 0;
+#X connect 62 0 61 0;
+#X connect 63 0 64 0;
+#X connect 63 0 58 0;
+#X connect 64 0 51 1;
+#X connect 65 0 42 0;
+#X connect 66 0 33 0;
+#X connect 67 0 66 1;
