@@ -1,4 +1,4 @@
-#N canvas 31 75 1028 702 10;
+#N canvas 270 82 1028 702 10;
 #X obj 12 109 bng 30 250 50 0 initBang! initBang init 4 15 1 14 -261234
 -1 -1;
 #X obj 414 128 bng 20 250 50 0 \$0-stop-moving empty STOP_MOVING 25
@@ -262,11 +262,40 @@
 -1;
 #X obj 260 3 widget-spinConnect \$0;
 #X text 768 118 centerX centerY centerZ sizeX sizeY sizeZ;
+#X obj 108 349 delay 5000;
+#X obj 192 364 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#N canvas 30 151 650 602 mcluhan 0;
+#X obj 83 36 inlet;
+#X obj 88 223 list;
+#X obj 140 483 s \$0-to-SPIN-TCP;
+#X msg 115 356 createNode \$1 ModelNode;
+#X obj 89 245 t a a b;
+#X msg 173 277 createNode mcluhan SwitchNode \, /mcluhan setTranslation
+0.5 11.1 0 \, /mcluhan setOrientation 0 0 0;
+#X msg 120 189 mcluhan_1-2new.ac 0 0 0 0;
+#X msg 87 162 mcluhan_1-1new.ac 0 0 0 0;
+#X msg 73 380 createNode \$1 ModelNode \, /\$1 setOrientation 90 0
+\$5 \, /\$1 setTranslation \$2 \$3 \$4 \, /\$1 setModelFromFile ~/posture-nta/projects-models/mcluhan/models/low-res/\$1
+\, /\$1 setParent mcluhan \, /mcluhan setEnabled \$1 1;
+#X connect 0 0 7 0;
+#X connect 0 0 6 0;
+#X connect 1 0 4 0;
+#X connect 3 0 2 0;
+#X connect 4 0 8 0;
+#X connect 4 1 3 0;
+#X connect 4 2 5 0;
+#X connect 5 0 2 0;
+#X connect 6 0 1 0;
+#X connect 7 0 1 0;
+#X connect 8 0 2 0;
+#X restore 124 374 pd mcluhan;
 #X connect 0 0 10 0;
 #X connect 4 0 6 0;
 #X connect 10 0 27 0;
 #X connect 10 1 42 0;
 #X connect 10 2 6 0;
+#X connect 10 3 46 0;
 #X connect 10 5 16 0;
 #X connect 12 0 20 0;
 #X connect 16 0 18 0;
@@ -277,11 +306,11 @@
 #X connect 23 2 26 0;
 #X connect 27 0 28 0;
 #X connect 29 0 28 0;
-#X connect 31 0 14 0;
-#X connect 32 0 14 0;
 #X connect 37 0 40 0;
 #X connect 39 0 38 0;
 #X connect 40 0 15 0;
 #X connect 40 1 38 0;
 #X connect 43 0 42 0;
 #X connect 44 0 37 0;
+#X connect 46 0 48 0;
+#X connect 47 0 48 0;
