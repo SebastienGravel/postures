@@ -1,4 +1,4 @@
-#N canvas 260 44 1028 702 10;
+#N canvas 341 50 1028 702 10;
 #X obj 12 109 bng 30 250 50 0 initBang! initBang init 4 15 1 14 -261234
 -1 -1;
 #X obj 414 128 bng 20 250 50 0 \$0-stop-moving empty STOP_MOVING 25
@@ -40,7 +40,7 @@
 -1;
 #X obj 125 146 tgl 15 0 g_snap_toggle g_snap_toggle-set snapToPanoscope
 20 8 1 10 -261234 -1 -1 0 1;
-#N canvas 108 302 843 563 fog 0;
+#N canvas 114 145 843 563 fog 0;
 #X obj 236 -65 inlet;
 #X obj 285 412 s \$0-to-SPIN-TCP;
 #X msg 322 31 createStateSet toronto-Fog Fog;
@@ -265,28 +265,46 @@
 #X obj 97 291 delay 5000;
 #X obj 173 323 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#N canvas 499 70 650 602 mcluhan 0;
+#N canvas 169 102 1239 630 mcluhan 0;
 #X obj 103 24 inlet;
-#X obj 78 182 list;
-#X obj 64 487 s \$0-to-SPIN-TCP;
-#X msg 168 342 createNode \$1 ModelNode;
-#X obj 79 204 t a a b;
-#X msg 79 376 createNode \$1 ModelNode \, /\$1 setOrientation 90 0
+#X obj 79 232 list;
+#X obj 64 537 s \$0-to-SPIN-TCP;
+#X msg 168 392 createNode \$1 ModelNode;
+#X obj 79 254 t a a b;
+#X msg 79 426 createNode \$1 ModelNode \, /\$1 setOrientation 90 0
 \$5 \, /\$1 setTranslation \$2 \$3 \$4 \, /\$1 setModelFromFile ~/content/projects-models/mcluhan-models/models/low-res/\$1
 \, /\$1 setParent mcluhan \, /mcluhan setEnabled \$1 1;
-#X msg 82 74 mcluhan_3-1.ac 0 0 0 0;
-#X msg 115 101 mcluhan_3-2.ac 0 0 0 0;
-#X msg 232 154 mcluhan_3-3.ac 0 0 0 0;
-#X obj 232 185 list;
-#X msg 178 273 createNode mcluhan SwitchNode \, /mcluhan setTranslation
+#X msg 79 139 mcluhan_3-1.ac 0 0 0 0;
+#X msg 113 166 mcluhan_3-2.ac 0 0 0 0;
+#X msg 232 204 mcluhan_3-3.ac 0 0 0 0;
+#X obj 232 235 list;
+#X msg 178 323 createNode mcluhan SwitchNode \, /mcluhan setTranslation
 0 0 0 \, /mcluhan setOrientation 0 0 0;
-#X obj 232 207 t a a b;
-#X msg 251 234 createNode \$1 ModelNode \, createNode andwhoareyou
+#X obj 232 257 t a a b;
+#X msg 251 284 createNode \$1 ModelNode \, createNode andwhoareyou
 ShapeNode \, /\$1 setParent andwhoareyou \, /andwhoareyou setBillboard
-;
+2;
+#X msg 815 94 mcluhan_3-0-open.ac 0 0 0 0;
+#X obj 815 116 list;
+#X obj 815 138 t a b;
+#X obj 411 115 list;
+#X obj 411 137 t a b;
+#X msg 815 203 createNode \$1 ModelNode \, /\$1 setOrientation 90 0
+\$5 \, /\$1 setTranslation \$2 \$3 \$4 \, /\$1 setModelFromFile ~/content/projects-models/mcluhan-models/models/low-res/\$1
+\, /\$1 setParent book \, /book setEnabled \$1 0;
+#X msg 411 202 createNode \$1 ModelNode \, /\$1 setOrientation 90 0
+\$5 \, /\$1 setTranslation \$2 \$3 \$4 \, /\$1 setModelFromFile ~/content/projects-models/mcluhan-models/models/low-res/\$1
+\, /\$1 setParent book \, /book setEnabled \$1 1;
+#X msg 438 163 createNode book SwitchNode \, /book setTranslation 0
+0 0 \, /book setOrientation 0 0 0;
+#X msg 842 164 createNode book SwitchNode \, /book setTranslation 0
+0 0 \, /book setOrientation 0 0 0;
+#X msg 411 93 mcluhan_3-0-close.ac 0 0 0 0;
 #X connect 0 0 6 0;
 #X connect 0 0 7 0;
 #X connect 0 0 8 0;
+#X connect 0 0 13 0;
+#X connect 0 0 22 0;
 #X connect 1 0 4 0;
 #X connect 3 0 2 0;
 #X connect 4 0 5 0;
@@ -301,7 +319,69 @@ ShapeNode \, /\$1 setParent andwhoareyou \, /andwhoareyou setBillboard
 #X connect 11 0 5 0;
 #X connect 11 1 12 0;
 #X connect 12 0 2 0;
+#X connect 13 0 14 0;
+#X connect 14 0 15 0;
+#X connect 15 0 18 0;
+#X connect 15 1 21 0;
+#X connect 16 0 17 0;
+#X connect 17 0 19 0;
+#X connect 17 1 20 0;
+#X connect 18 0 2 0;
+#X connect 19 0 2 0;
+#X connect 20 0 2 0;
+#X connect 21 0 2 0;
+#X connect 22 0 16 0;
 #X restore 105 333 pd mcluhan;
+#N canvas 19 26 1094 680 actions 0;
+#X obj -110 -288 shell;
+#X msg -110 -310 hostname -s;
+#X obj -275 -258 r \$0-from-SPIN;
+#X obj -110 -242 makefilename /%s-reporter;
+#X text -116 -201 containedBy <hotspotName> <0 or 1>;
+#X obj -275 -198 list;
+#X obj -110 -266 symbol;
+#X obj 189 -120 outlet;
+#X obj -232 109 s \$0-to-SPIN-TCP;
+#X obj -232 -96 OSCparse /posture??;
+#X obj -232 -74 route collide;
+#X msg -232 -22 \$1;
+#X obj -184 -39 p;
+#X obj -232 5 sel mcluhan_3-0-open.ac mcluhan_3-0-close.ac;
+#X msg -102 30 /book setEnabled mcluhan_3-0-close.ac 0 \, /book setEnabled
+mcluhan_3-0-open.ac 1;
+#X msg -232 68 /book setEnabled mcluhan_3-0-close.ac 1 \, /book setEnabled
+mcluhan_3-0-open.ac 0;
+#X obj 191 -167 s \$0-to-SPIN-TCP;
+#X obj 191 -264 shell;
+#X msg 191 -284 hostname -s;
+#X obj 194 -324 inlet;
+#X obj 191 -244 symbol;
+#X obj 191 -224 t a a;
+#X msg 191 -203 createNode \$1-reporter ReporterNode \, /\$1-reporter
+setParent \$1;
+#X obj -275 -218 OSCparse /posture??-pointer-reporter;
+#X obj -232 -119 r \$0-from-SPIN;
+#X connect 0 0 6 0;
+#X connect 1 0 0 0;
+#X connect 2 0 23 0;
+#X connect 3 0 23 1;
+#X connect 6 0 3 0;
+#X connect 9 0 10 0;
+#X connect 10 0 11 0;
+#X connect 10 0 12 0;
+#X connect 11 0 13 0;
+#X connect 13 0 15 0;
+#X connect 13 1 14 0;
+#X connect 14 0 8 0;
+#X connect 15 0 8 0;
+#X connect 17 0 20 0;
+#X connect 18 0 17 0;
+#X connect 20 0 21 0;
+#X connect 21 0 22 0;
+#X connect 22 0 16 0;
+#X connect 23 0 5 0;
+#X connect 24 0 9 0;
+#X restore 283 275 pd actions;
 #X connect 0 0 10 0;
 #X connect 4 0 6 0;
 #X connect 10 0 27 0;
