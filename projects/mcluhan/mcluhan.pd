@@ -380,7 +380,6 @@ setParent \$1;
 #X connect 21 0 22 0;
 #X connect 22 0 16 0;
 #X connect 23 0 5 0;
-#X connect 24 0 9 0;
 #X restore 283 275 pd actions;
 #X connect 0 0 10 0;
 #X connect 4 0 6 0;
