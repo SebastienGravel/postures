@@ -1,4 +1,4 @@
-#N canvas 341 50 1028 702 10;
+#N canvas 193 265 1028 702 10;
 #X obj 12 109 bng 30 250 50 0 initBang! initBang init 4 15 1 14 -261234
 -1 -1;
 #X obj 414 128 bng 20 250 50 0 \$0-stop-moving empty STOP_MOVING 25
@@ -39,13 +39,13 @@
 #X obj 86 432 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 125 146 tgl 15 0 g_snap_toggle g_snap_toggle-set snapToPanoscope
-20 8 1 10 -261234 -1 -1 0 1;
-#N canvas 114 145 843 563 fog 0;
+20 8 1 10 -261234 -1 -1 1 1;
+#N canvas 400 109 843 563 fog 0;
 #X obj 236 -65 inlet;
 #X obj 285 412 s \$0-to-SPIN-TCP;
 #X msg 322 31 createStateSet toronto-Fog Fog;
 #X obj 199 227 hsl 128 15 0 0.1 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
+-1 -1 508 1;
 #X msg 221 340 /toronto-Fog setFogDensity \$1;
 #X obj -161 257 line \$1 50;
 #X obj -87 256 line \$1 50;
@@ -121,7 +121,7 @@
 #X restore 42 442 pd fog;
 #X obj 125 110 tgl 15 0 g_noPointer g_noPointer-set noPointer 20 8
 1 10 -261234 -1 -1 0 1;
-#N canvas 514 71 462 664 GO-THERE 0;
+#N canvas 370 195 462 664 GO-THERE 0;
 #X obj 76 514 s \$0-to-SPIN;
 #X obj 62 13 r \$0-go-home;
 #X obj 162 64 r \$0-go-911;
@@ -137,30 +137,30 @@
 #X msg 210 204 3 172 1.5;
 #X msg 271 319 0 0 87.5;
 #X msg 264 266 0 0 -85.5;
-#X msg 62 33 1 0 1.5;
 #X obj 53 583 setPosWithOffsets posture08 0 1 posture06 0 -1;
 #X obj 86 401 t a;
 #X obj 64 456 setPosWithOffsets g_USER01;
 #X obj 87 481 setPosWithOffsets g_USER02;
-#X connect 1 0 15 0;
+#X msg 62 33 0 0 0;
+#X connect 1 0 19 0;
 #X connect 2 0 10 0;
-#X connect 3 0 17 0;
+#X connect 3 0 16 0;
 #X connect 4 0 12 0;
 #X connect 5 0 14 0;
 #X connect 6 0 13 0;
 #X connect 7 0 8 0;
-#X connect 8 0 17 0;
-#X connect 9 0 17 0;
+#X connect 8 0 16 0;
+#X connect 9 0 16 0;
 #X connect 10 0 3 0;
 #X connect 11 0 3 0;
-#X connect 12 0 17 0;
-#X connect 13 0 17 0;
-#X connect 14 0 17 0;
-#X connect 15 0 3 0;
-#X connect 17 0 18 0;
-#X connect 17 0 19 0;
+#X connect 12 0 16 0;
+#X connect 13 0 16 0;
+#X connect 14 0 16 0;
+#X connect 16 0 17 0;
+#X connect 16 0 18 0;
+#X connect 17 0 0 0;
 #X connect 18 0 0 0;
-#X connect 19 0 0 0;
+#X connect 19 0 3 0;
 #X restore 51 576 pd GO-THERE;
 #X obj 400 156 bng 16 250 50 0 \$0-debug-scene empty DEBUG_scene 20
 9 1 9 -261234 -1 -1;
@@ -246,7 +246,7 @@
 -1;
 #X obj 260 66 t b b;
 #X obj 125 128 tgl 15 0 g_inactivityToggle g_inactivityToggle-set inactivityTimer
-20 8 1 10 -261234 -1 -1 0 1;
+20 8 1 10 -261234 -1 -1 1 1;
 #N canvas 0 22 450 300 init 0;
 #X obj 104 39 inlet;
 #X obj 77 244 s g_snap_toggle-set;
@@ -265,8 +265,8 @@
 #X obj 97 291 delay 5000;
 #X obj 173 323 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#N canvas 169 102 1239 630 mcluhan 0;
-#X obj 103 24 inlet;
+#N canvas 70 146 1239 630 mcluhan 1;
+#X obj 92 -17 inlet;
 #X obj 79 232 list;
 #X obj 64 537 s \$0-to-SPIN-TCP;
 #X msg 168 392 createNode \$1 ModelNode;
@@ -274,9 +274,6 @@
 #X msg 79 426 createNode \$1 ModelNode \, /\$1 setOrientation 90 0
 \$5 \, /\$1 setTranslation \$2 \$3 \$4 \, /\$1 setModelFromFile ~/content/projects-models/mcluhan-models/models/low-res/\$1
 \, /\$1 setParent mcluhan \, /mcluhan setEnabled \$1 1;
-#X msg 79 139 mcluhan_3-1.ac 0 0 0 0;
-#X msg 113 166 mcluhan_3-2.ac 0 0 0 0;
-#X msg 232 204 mcluhan_3-3.ac 0 0 0 0;
 #X obj 232 235 list;
 #X msg 178 323 createNode mcluhan SwitchNode \, /mcluhan setTranslation
 0 0 0 \, /mcluhan setOrientation 0 0 0;
@@ -284,7 +281,6 @@
 #X msg 251 284 createNode \$1 ModelNode \, createNode andwhoareyou
 ShapeNode \, /\$1 setParent andwhoareyou \, /andwhoareyou setBillboard
 2;
-#X msg 815 94 mcluhan_3-0-open.ac 0 0 0 0;
 #X obj 815 116 list;
 #X obj 815 138 t a b;
 #X obj 411 115 list;
@@ -299,38 +295,56 @@ ShapeNode \, /\$1 setParent andwhoareyou \, /andwhoareyou setBillboard
 0 0 \, /book setOrientation 0 0 0;
 #X msg 842 164 createNode book SwitchNode \, /book setTranslation 0
 0 0 \, /book setOrientation 0 0 0;
-#X msg 411 93 mcluhan_3-0-close.ac 0 0 0 0;
-#X connect 0 0 6 0;
-#X connect 0 0 7 0;
-#X connect 0 0 8 0;
-#X connect 0 0 13 0;
+#X msg 37 26 mcluhan_3-1.ac 0 -2 -3.5 0;
+#X msg 96 101 mcluhan_3-2.ac 0 -2 -3.5 0;
+#X msg 411 93 mcluhan_3-0-close.ac 0 -2 -3.5 0;
+#X msg 815 94 mcluhan_3-0-open.ac 0 -2 -3.5 0;
+#X msg 232 204 mcluhan_3-3.ac 0 -2 -3.5 0;
+#X msg 549 494 refresh;
+#X msg 136 155 mcluhan_3-2-2r.ac 0 -2 -3.5 0;
+#X msg 119 128 mcluhan_3-2-1r.ac 0 -2 -3.5 0;
+#X msg 60 53 mcluhan_3-1-1r.ac 0 -2 -3.5 0;
+#X msg 78 78 mcluhan_3-1-2r.ac 0 -2 -3.5 0;
+#X connect 0 0 18 0;
+#X connect 0 0 19 0;
 #X connect 0 0 22 0;
+#X connect 0 0 21 0;
+#X connect 0 0 20 0;
+#X connect 0 0 26 0;
+#X connect 0 0 25 0;
+#X connect 0 0 27 0;
+#X connect 0 0 24 0;
 #X connect 1 0 4 0;
 #X connect 3 0 2 0;
 #X connect 4 0 5 0;
 #X connect 4 1 3 0;
-#X connect 4 2 10 0;
+#X connect 4 2 7 0;
 #X connect 5 0 2 0;
-#X connect 6 0 1 0;
-#X connect 7 0 1 0;
-#X connect 8 0 9 0;
-#X connect 9 0 11 0;
-#X connect 10 0 2 0;
-#X connect 11 0 5 0;
-#X connect 11 1 12 0;
-#X connect 12 0 2 0;
-#X connect 13 0 14 0;
-#X connect 14 0 15 0;
-#X connect 15 0 18 0;
-#X connect 15 1 21 0;
-#X connect 16 0 17 0;
-#X connect 17 0 19 0;
-#X connect 17 1 20 0;
-#X connect 18 0 2 0;
-#X connect 19 0 2 0;
-#X connect 20 0 2 0;
-#X connect 21 0 2 0;
-#X connect 22 0 16 0;
+#X connect 6 0 8 0;
+#X connect 7 0 2 0;
+#X connect 8 0 5 0;
+#X connect 8 1 9 0;
+#X connect 9 0 2 0;
+#X connect 10 0 11 0;
+#X connect 11 0 14 0;
+#X connect 11 1 17 0;
+#X connect 12 0 13 0;
+#X connect 13 0 15 0;
+#X connect 13 1 16 0;
+#X connect 14 0 2 0;
+#X connect 15 0 2 0;
+#X connect 16 0 2 0;
+#X connect 17 0 2 0;
+#X connect 18 0 1 0;
+#X connect 19 0 1 0;
+#X connect 20 0 12 0;
+#X connect 21 0 10 0;
+#X connect 22 0 6 0;
+#X connect 23 0 2 0;
+#X connect 24 0 1 0;
+#X connect 25 0 1 0;
+#X connect 26 0 1 0;
+#X connect 27 0 1 0;
 #X restore 105 333 pd mcluhan;
 #N canvas 19 26 1094 680 actions 0;
 #X obj -110 -288 shell;
