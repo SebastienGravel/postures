@@ -7,8 +7,9 @@
 
 # -----------------
 # variables:
-_host = "10.10.30.9"
-_controller = "localhost"
+_host = "10.10.30.9" # posture05
+_controller = "10.10.30.11" #posture
+_audioIP = "10.10.30.9" #ie, same machine as spinserver
 _user = "posture"
 _projectPath = "~/src/postures/trunk/projects/mcluhan"
 
@@ -21,10 +22,12 @@ add_command("killall pdextended", user=_user, host=_controller, respawn=False)
 #add_command("devilspie", user=_user, host=_host, identifier="devilspie")
 
 # server:
-add_command("spinserver", env={"LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib", "OSG_NOTIFY_LEVEL":"FATAL"}, user=_user, host=_host, sleep_after=2.0, identifier="spinServer") 
+add_command("spinserver --spatosc BasicTranslator %s 18032" % (_audioIP), env={"LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib", "OSG_NOTIFY_LEVEL":"FATAL"}, user=_user, host=_host, sleep_after=2.0, identifier="spinServer") 
 
 # clients:
-add_command("pdextended -jack -audiobuf 100 %s/mcluhan.pd" % (_projectPath), env={"DISPLAY":":0.0"}, user=_user, host=_controller, sleep_after=4.0, identifier="Pd")
+add_command("pdextended -noaudio -path %s mcluhan.pd" % (_projectPath), env={"DISPLAY":":0.0"}, user=_user, host=_controller, sleep_after=4.0, identifier="Pd-control")
+
+add_command("pdextended -jack -audiobuf 100 -path %s mcluhan-audio.pd" % (_projectPath), env={"DISPLAY":":0.0"}, user=_user, host=_audioIP, sleep_after=4.0, identifier="Pd-audio")
 
 # lastly:
 #add_command("panoViewer --framerate 30", env={"DISPLAY":":0.0", "LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib", "OSG_NOTIFY_LEVEL":"FATAL"}, user=_user, host=_host, identifier="panoViewer")
