@@ -1,0 +1,58 @@
+#N canvas 583 144 637 760 10;
+#X obj 25 658 gain2~;
+#X obj 2 1 cnv 15 500 30 empty empty DSP.plugin:(looper1~) 5 15 1 18
+-228856 -16662 0;
+#X obj 339 36 namecanvas \$2.plugin.patch;
+#X obj 185 37 r \$2.nodeMsg;
+#X obj 258 7 cnv 20 20 20 empty empty nodeID:(\$2) 5 10 0 12 -233017
+-66577 0;
+#X obj 78 593 symbol;
+#X obj 25 685 send~ \$2.plugout~;
+#X obj 13 37 receive~ \$2.plugin~;
+#X msg 24 413 phase 0;
+#X obj 24 394 r global_loopSync!;
+#X obj 78 571 r \$2.filename;
+#X obj 6 214 cnv 15 500 150 empty empty empty 20 12 0 14 -228856 -66577
+0;
+#X obj 18 269 vsl 14 64 -99 18 0 1 \$2.gain-put \$2.gain-set gain 24
+22 1 12 -261704 -1 -1 5131 1;
+#X floatatom 18 340 5 0 0 1 _db #2.gain-set -;
+#X obj 339 56 param-declare \$1 \$2;
+#X symbolatom 67 242 60 0 0 0 filename #2.filename-set #2.filename-put
+;
+#X obj 190 444 openpanel;
+#X obj 10 219 bng 20 250 50 0 \$0-browse! empty Browse_Soundfiles 25
+9 1 10 -262130 -1 -1;
+#X obj 190 473 s \$2.filename-set;
+#X obj 97 625 r \$2.gain;
+#X obj 190 395 r \$0-browse!;
+#X obj 339 78 param \$2 gain 0;
+#X msg 46 537 speed \$1;
+#X obj 46 489 mtof;
+#X obj 46 512 expr $f1/2.61626;
+#X floatatom 200 290 5 -48 48 0 transposition #2.transposition-set
+#2.transposition-put;
+#X obj 46 443 r \$2.transposition;
+#X obj 339 99 param \$2 transposition 0;
+#X obj 47 467 + 60;
+#X obj 25 622 loop1~;
+#X obj 339 121 param \$2 filename test.aif;
+#X msg 190 424 symbol ~/;
+#X obj 7 714 throw~ global-reverb~;
+#X connect 0 0 6 0;
+#X connect 0 0 32 0;
+#X connect 5 0 29 1;
+#X connect 8 0 29 0;
+#X connect 9 0 8 0;
+#X connect 10 0 5 0;
+#X connect 16 0 18 0;
+#X connect 19 0 0 1;
+#X connect 20 0 31 0;
+#X connect 22 0 29 0;
+#X connect 23 0 24 0;
+#X connect 24 0 22 0;
+#X connect 26 0 28 0;
+#X connect 28 0 23 0;
+#X connect 29 0 0 0;
+#X connect 31 0 16 0;
+#X coords 0 0 1 1 400 400 0;
