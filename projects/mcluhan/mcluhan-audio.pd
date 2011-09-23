@@ -1,7 +1,7 @@
-#N canvas 722 260 458 434 10;
-#N canvas 113 284 886 631 reverb 0;
+#N canvas 774 260 458 434 10;
+#N canvas 208 179 886 631 reverb 0;
 #X obj 387 376 vsl 15 128 -99 18 0 1 empty empty Output -14 -10 0 12
--260818 -1 -1 7490 1;
+-260818 -1 -1 6404 1;
 #X floatatom 387 514 5 0 0 1 db - -;
 #X obj 159 105 vsl 15 128 -99 18 0 1 empty \$0-rev-1 empty 0 -8 0 8
 -225271 -66577 -262144 10300 1;
@@ -91,11 +91,10 @@
 #X text 572 88 inlet8 : reverb time_%;
 #X text 572 98 inlet9 : wet/dry mix;
 #X text 24 584 xjimmies lib. z. settel/jm dumas 2003-2007;
-#X obj 152 456 dac~ 1 2 3 4;
 #X text 21 16 zrev1~ : reverb unit;
 #X text 549 120 2 (+2) channel output.;
 #X text 547 136 Outputs 3 and 4 are for additional complexity;
-#X text 28 536 note: while zverb is not a true multi-channel reverb
+#X text 333 570 note: while zverb is not a true multi-channel reverb
 \, it still does worthwhile things to stereo input \, and produces
 4 unique outputs.;
 #X obj 561 324 bng 15 250 50 0 empty empty clear_reverb 17 7 1 12 -262144
@@ -109,7 +108,11 @@
 #X msg 497 459 -99;
 #X obj 579 364 inlet;
 #X obj 592 190 loadbang1 1;
-#X msg 527 459 -30;
+#X msg 527 459 -40;
+#X obj 95 468 throw~ audio_outbus1;
+#X obj 105 487 throw~ audio_outbus2;
+#X obj 115 508 throw~ audio_outbus3;
+#X obj 125 528 throw~ audio_outbus4;
 #X connect 0 0 1 0;
 #X connect 1 0 25 4;
 #X connect 2 0 3 0;
@@ -123,38 +126,224 @@
 #X connect 10 0 23 0;
 #X connect 11 0 24 0;
 #X connect 12 0 22 6;
-#X connect 22 0 41 2;
-#X connect 22 1 41 3;
-#X connect 22 2 41 4;
-#X connect 22 3 41 5;
-#X connect 22 4 41 6;
-#X connect 22 5 41 7;
-#X connect 22 6 41 8;
+#X connect 22 0 40 2;
+#X connect 22 1 40 3;
+#X connect 22 2 40 4;
+#X connect 22 3 40 5;
+#X connect 22 4 40 6;
+#X connect 22 5 40 7;
+#X connect 22 6 40 8;
 #X connect 23 0 22 4;
 #X connect 24 0 22 5;
-#X connect 25 0 35 0;
-#X connect 25 1 35 1;
-#X connect 25 2 35 2;
-#X connect 25 3 35 3;
-#X connect 40 0 41 9;
-#X connect 41 0 25 0;
-#X connect 41 1 25 1;
-#X connect 41 2 25 2;
-#X connect 41 3 25 3;
-#X connect 42 0 41 0;
-#X connect 42 0 41 1;
-#X connect 43 0 41 0;
+#X connect 25 0 49 0;
+#X connect 25 1 50 0;
+#X connect 25 2 51 0;
+#X connect 25 3 52 0;
+#X connect 39 0 40 9;
+#X connect 40 0 25 0;
+#X connect 40 1 25 1;
+#X connect 40 2 25 2;
+#X connect 40 3 25 3;
+#X connect 41 0 40 0;
+#X connect 41 0 40 1;
+#X connect 42 0 40 0;
+#X connect 43 0 44 0;
 #X connect 44 0 45 0;
-#X connect 45 0 46 0;
-#X connect 45 1 49 0;
-#X connect 46 0 0 0;
-#X connect 47 0 44 0;
-#X connect 48 0 12 0;
-#X connect 48 0 44 0;
-#X connect 49 0 0 0;
+#X connect 44 1 48 0;
+#X connect 45 0 0 0;
+#X connect 46 0 43 0;
+#X connect 47 0 12 0;
+#X connect 47 0 43 0;
+#X connect 48 0 0 0;
 #X restore 263 229 pd reverb;
 #X obj 125 164 catch~ global-reverb~;
 #X obj 126 203 vu1~;
 #X obj 58 59 spatOSC-basicRenderer;
+#X obj 211 52 tgl 20 0 empty empty <-Debug 25 9 1 10 -262144 -1 -1
+0 1;
+#X obj 211 28 bng 20 250 50 0 empty empty <-ShowNodes 25 9 1 10 -262144
+-1 -1;
+#X obj 330 325 tgl 30 0 g_pdDSP g_pdDSP-set DSP 1 14 1 10 -261234 -262130
+-86277 0 1;
+#X msg 308 356 \; pd dsp \$1;
+#X obj 304 187 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 325 185 reverb on/off;
+#X obj 328 90 nbx 3 25 -1e+37 1e+37 0 0 empty g_numSoundNodes nodeCount
+0 -8 0 14 -262144 -1 -1 3 256;
+#N canvas 47 115 1168 810 ambient_audio 0;
+#X obj 115 191 symbol;
+#X msg 115 211 open \$1;
+#X obj 88 234 readsf~ 2;
+#X obj 88 131 t f b;
+#X obj 88 112 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 139 254 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 611 169 symbol;
+#X msg 611 189 open \$1;
+#X obj 584 212 readsf~ 2;
+#X obj 584 109 t f b;
+#X obj 584 91 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 635 232 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 511 763 dac~;
+#X obj 625 296 vsl 15 75 0 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 129 344 vsl 15 75 0 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 214 637 *~ 1;
+#X obj 244 637 *~ 1;
+#X obj 424 674 *~ 1;
+#X obj 454 674 *~ 1;
+#X obj 410 477 vsl 15 75 0 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 584 400 *~;
+#X obj 610 400 *~;
+#X msg 535 233 1;
+#X msg 52 271 1;
+#X obj 399 447 zscale 0 500 0 0.75;
+#X obj 302 343 sqrt;
+#X text 652 233 <- loop when done;
+#X text 155 255 <- loop when done;
+#X obj 89 441 *~;
+#X obj 114 441 *~;
+#X obj 467 292 - 10;
+#X obj 302 291 - 25;
+#X obj 328 197 r g_currentPos;
+#X obj 328 218 unpack 0 0 0;
+#X obj 369 380 sqrt;
+#X floatatom 432 389 5 0 0 0 - - -;
+#X floatatom 402 410 5 0 0 0 - - -;
+#X floatatom 496 337 5 0 0 0 - - -;
+#X obj 369 360 expr $f1 + ($f2*$f2);
+#X obj 302 315 expr ($f1*$f1) + ($f2*$f2);
+#X obj 726 357 symbol;
+#X msg 726 377 open \$1;
+#X obj 699 400 readsf~ 2;
+#X obj 699 317 t f b;
+#X obj 699 299 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 750 420 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 740 484 vsl 15 75 0 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 603 669 *~ 1;
+#X obj 633 669 *~ 1;
+#X obj 699 588 *~;
+#X obj 725 588 *~;
+#X msg 656 438 1;
+#X text 767 421 <- loop when done;
+#X msg 726 337 /home/posture/content/nta_videos/toronto/BMO-outsideMid.aif
+;
+#X obj 156 363 zscale -275 200 0 1;
+#X floatatom 800 586 5 0 0 0 - - -;
+#X floatatom 775 460 5 0 0 0 - - -;
+#X obj 798 564 expr 1-abs($f1);
+#X obj 782 622 * 0.5;
+#X obj 801 496 moses -150;
+#X obj 800 523 moses 150;
+#X obj 799 544 / 150;
+#X obj 757 266 zscale -275 200 1 0;
+#X obj 625 275 zscale -275 50 1 0;
+#X obj 129 323 zscale -50 200 0 0.75;
+#X obj 325 33 inlet;
+#X obj 325 53 t f;
+#X msg 115 151 /home/posture/content/projects-models/mcluhan-models/sound/mcluhan-st200_1_And.wav
+;
+#X msg 611 129 /home/posture/content/projects-models/mcluhan-models/sound/mcluhan-st200_2_Who
+;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 28 0;
+#X connect 2 1 29 0;
+#X connect 2 2 5 0;
+#X connect 3 0 2 0;
+#X connect 3 1 67 0;
+#X connect 4 0 3 0;
+#X connect 5 0 23 0;
+#X connect 6 0 7 0;
+#X connect 7 0 8 0;
+#X connect 8 0 20 0;
+#X connect 8 1 21 0;
+#X connect 8 2 11 0;
+#X connect 9 0 8 0;
+#X connect 9 1 68 0;
+#X connect 10 0 9 0;
+#X connect 11 0 22 0;
+#X connect 13 0 20 1;
+#X connect 13 0 21 1;
+#X connect 14 0 28 1;
+#X connect 14 0 29 1;
+#X connect 15 0 12 0;
+#X connect 16 0 12 1;
+#X connect 17 0 12 0;
+#X connect 18 0 12 1;
+#X connect 19 0 15 1;
+#X connect 19 0 16 1;
+#X connect 19 0 17 1;
+#X connect 19 0 18 1;
+#X connect 19 0 47 1;
+#X connect 19 0 48 1;
+#X connect 20 0 17 0;
+#X connect 21 0 18 0;
+#X connect 22 0 10 0;
+#X connect 23 0 4 0;
+#X connect 24 0 19 0;
+#X connect 25 0 24 0;
+#X connect 28 0 15 0;
+#X connect 29 0 16 0;
+#X connect 30 0 39 1;
+#X connect 31 0 39 0;
+#X connect 32 0 33 0;
+#X connect 33 0 31 0;
+#X connect 33 1 30 0;
+#X connect 33 2 37 0;
+#X connect 33 2 38 1;
+#X connect 33 2 56 0;
+#X connect 33 2 59 0;
+#X connect 33 2 63 0;
+#X connect 33 2 64 0;
+#X connect 34 0 36 0;
+#X connect 38 0 34 0;
+#X connect 38 0 35 0;
+#X connect 39 0 25 0;
+#X connect 39 0 38 0;
+#X connect 40 0 41 0;
+#X connect 41 0 42 0;
+#X connect 42 0 49 0;
+#X connect 42 1 50 0;
+#X connect 42 2 45 0;
+#X connect 43 0 42 0;
+#X connect 43 1 53 0;
+#X connect 44 0 43 0;
+#X connect 45 0 51 0;
+#X connect 46 0 49 1;
+#X connect 46 0 50 1;
+#X connect 47 0 12 0;
+#X connect 48 0 12 1;
+#X connect 49 0 47 0;
+#X connect 50 0 48 0;
+#X connect 51 0 44 0;
+#X connect 53 0 40 0;
+#X connect 57 0 55 0;
+#X connect 57 0 46 0;
+#X connect 59 1 60 0;
+#X connect 60 0 61 0;
+#X connect 61 0 57 0;
+#X connect 63 0 13 0;
+#X connect 64 0 14 0;
+#X connect 65 0 66 0;
+#X connect 66 0 10 0;
+#X connect 66 0 4 0;
+#X connect 66 0 44 0;
+#X connect 67 0 0 0;
+#X connect 68 0 6 0;
+#X restore 59 114 pd ambient_audio;
 #X connect 1 0 2 0;
 #X connect 1 0 0 0;
+#X connect 4 0 3 1;
+#X connect 5 0 3 1;
+#X connect 6 0 7 0;
+#X connect 8 0 0 1;
