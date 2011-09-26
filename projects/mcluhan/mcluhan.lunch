@@ -7,23 +7,25 @@
 
 # -----------------
 # variables:
-_host = "10.10.30.9" # posture05
-_controller = "10.10.30.11" #posture
-_audioIP = "10.10.30.9" #ie, same machine as spinserver
+#_host = "10.10.30.9" # posture05
+#_controller = "10.10.30.11" #posture
+#_audioIP = "10.10.30.9" #ie, same machine as spinserver
+
+_host = "localhost" # posture05
+_controller = "localhost" #posture
+_audioIP = "localhost" #ie, same machine as spinserver
+
+
 _user = "posture"
 _projectPath = "~/src/postures/trunk/projects/mcluhan"
 
-
-
 # -----------------
 # prep:
-add_command("killall pdextended", user=_user, host=_controller, respawn=False)
-add_command("killall pdextended; killall jack.plumbing; killall jackd", identifier="killstuff", user=_user, host=_audioIP, respawn=False, sleep_after=1.0)
+#add_command("killall pdextended", user=_user, host=_controller, respawn=False)
+add_command("killall pdextended; killall jack.plumbing; killall jackd; killall devilspie", identifier="killstuff", user=_user, host=_audioIP, respawn=False, sleep_after=1.0)
 
 #add_command("jack.plumbing", user=_user, host=_host, identifier="jack.plumbing")
 #add_command("devilspie", user=_user, host=_host, identifier="devilspie")
-
-#add_command("devilspie", env={"DISPLAY":":0.0"}, host=_host, identifier="devilspie")
 
 add_command("firereset", identifier="firereset", user=_user, host=_audioIP, respawn=False)
 add_command("jackd -R -dfirewire -r48000 -p1024 -n3", host=_audioIP, identifier="jackd")
@@ -34,8 +36,9 @@ add_command("spinserver --spatosc BasicTranslator osc.tcp://%s:18032" % (_audioI
 add_command("spinviewer --framerate 30 --config ~/src/spinframework/src/Resources/camconfig/four-screen-cube.xml", env={"DISPLAY":":0.0", "LD_LIBRARY_PATH":"/usr/local/lib64:/usr/local/lib", "OSG_NOTIFY_LEVEL":"FATAL"}, user=_user, host=_host, identifier="spinviewer_4_screens")
 
 # clients:
-add_command("pdextended -noaudio -path %s mcluhan.pd" % (_projectPath), env={"DISPLAY":":0.0"}, user=_user, host=_controller, sleep_after=2.0, identifier="Pd-control")
+#add_command("pdextended -noaudio -path %s mcluhan.pd" % (_projectPath), env={"DISPLAY":":0.0"}, user=_user, host=_controller, sleep_after=2.0, identifier="Pd-control")
 
-add_command("pdextended -jack -audiobuf 100 -channels 4 -path %s mcluhan-audio.pd" % (_projectPath), env={"DISPLAY":":0.0"}, user=_user, host=_audioIP, sleep_after=0.0, identifier="Pd-audio")
+#add_command("pdextended -jack -audiobuf 100 -channels 4 -path %s mcluhan.pd" % (_projectPath), env={"DISPLAY":":0.0"}, user=_user, host=_audioIP, sleep_after=0.0, identifier="Pd-audio")
+add_command("pdextended -jack -channels 4 -path %s mcluhan.pd" % (_projectPath), env={"DISPLAY":":0.0"}, user=_user, host=_audioIP, sleep_after=0.0, identifier="Pd-audio")
 
 
