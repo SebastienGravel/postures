@@ -649,7 +649,11 @@ int nodelist_handler(const char *path, const char *types, lo_arg **argv, int arg
 				
 			else {
 				
-				if (nodesListSheet) [nodesListSheet dismissWithClickedButtonIndex:-1 animated:NO];
+				if (nodesListSheet) 
+                {
+                    [nodesListSheet dismissWithClickedButtonIndex:-1 animated:NO];
+                    [nodesListSheet release];
+                }
 				
 				nodesListSheet = [[UIActionSheet alloc] 
 										 initWithTitle:@"Select the PostureBase you are about to use"  
@@ -712,7 +716,19 @@ int info_handler(const char *path, const char *types, lo_arg **argv, int argc, v
 	NTARemoteViewController *self = (NTARemoteViewController*)user_data;
 	
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	
+
+    /*
+    int i;
+    printf("debug print OSC message: <%s>\n", path);
+    for (i=0; i<argc; i++) {
+        printf("arg %d '%c' ", i, types[i]);
+        lo_arg_pp(types[i], argv[i]);
+        printf("\n");
+    }
+    printf("\n");
+    return 1;
+    */
+    
     if ((self.connected == 0) && (!self.ignoreInfoMessages)) {
 		
         // args of the INFO message is like this:
@@ -737,7 +753,7 @@ int info_handler(const char *path, const char *types, lo_arg **argv, int argc, v
 		NSLog(@"SPIN INFO: %s %s %s %s %s", tPath, ip, port, tIp, tPort);
 		
 		udpAddr = lo_address_new(ip, port);
-		tcpAddr = lo_address_new(ip, tcpPort);
+		tcpAddr = lo_address_new_with_proto(LO_TCP, ip, tcpPort);
 		NSLog(@"Discovered SPIN server at: %s:%s", ip, port);
 		
 		
@@ -748,7 +764,7 @@ int info_handler(const char *path, const char *types, lo_arg **argv, int argc, v
 		lo_server_thread_start(tServer);
 		NSLog(@"Created OSC receive server for SPIN messages at: %s", lo_server_thread_get_url(tServer));
 		
-		NSLog(@"Requesting list of UserNodes...");
+		NSLog(@"Requesting list of UserNodes from %s...", lo_address_get_url(tcpAddr));
 		lo_send(tcpAddr, [[NSString stringWithFormat:@"/SPIN/%s", tPath] UTF8String], "ss", "getNodeList", "UserNode");
 		
 		
@@ -788,6 +804,7 @@ int info_handler(const char *path, const char *types, lo_arg **argv, int argc, v
 	}
 	
 	NSLog(@"Listening for SPIN messages on: %s", lo_server_thread_get_url(infoServer));
+
 }
 
 - (IBAction)stopInfoHandler

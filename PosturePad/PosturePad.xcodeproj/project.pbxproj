@@ -113,7 +113,6 @@
 				2239C781100E6ACD00BA5DEC /* FlipView.h */,
 				2239C782100E6ACD00BA5DEC /* FlipView.m */,
 				2239C783100E6ACD00BA5DEC /* FlipView.xib */,
-				1C24F10213AB5DDB00D3F494 /* Reachability.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -142,6 +141,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				1C24F10213AB5DDB00D3F494 /* Reachability.h */,
 				1C24F10313AB5DDB00D3F494 /* Reachability.m */,
 				1D3623240D0F684500981E51 /* NTARemoteAppDelegate.h */,
 				1D3623250D0F684500981E51 /* NTARemoteAppDelegate.m */,
