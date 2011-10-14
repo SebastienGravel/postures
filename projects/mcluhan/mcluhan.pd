@@ -1,4 +1,4 @@
-#N canvas 454 143 744 583 10;
+#N canvas 184 70 744 583 10;
 #X obj 12 119 bng 30 250 50 0 initBang! initBang init 4 15 1 14 -261234
 -1 -1;
 #X obj 567 102 bng 20 250 50 0 \$0-stop-moving empty STOP_MOVING 25
@@ -42,7 +42,7 @@
 #X connect 16 0 5 0;
 #X connect 22 0 23 0;
 #X connect 23 0 5 0;
-#X restore 243 102 pd UTILITIES;
+#X restore 244 102 pd UTILITIES;
 #X obj 568 164 bng 15 250 50 0 \$0-go-home \$0-go-home-set home 20
 9 1 10 -261682 -1 -1;
 #X obj 117 188 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
@@ -160,11 +160,11 @@
 #X obj 12 87 delay 2500;
 #X obj 104 51 cnv 20 20 20 empty empty * 0 18 0 32 -262144 -258113
 0;
-#X obj 227 164 r g_currentPos;
-#X obj 227 186 unpack 0 0 0;
-#X floatatom 227 207 5 0 0 0 - - -;
-#X floatatom 261 207 5 0 0 0 - - -;
-#X floatatom 296 207 5 0 0 0 - - -;
+#X obj 227 163 r g_currentPos;
+#X obj 227 185 unpack 0 0 0;
+#X floatatom 227 206 5 0 0 0 - - -;
+#X floatatom 261 206 5 0 0 0 - - -;
+#X floatatom 296 206 5 0 0 0 - - -;
 #N canvas 0 22 450 300 force_refresh 0;
 #X obj 118 37 inlet;
 #X msg 71 204 refreshSubscribers;
@@ -197,7 +197,7 @@
 -1;
 #X obj 12 66 t b b;
 #X obj 400 154 tgl 15 0 g_inactivityToggle g_inactivityToggle-set inactivityTimer
-20 8 1 10 -261234 -1 -1 0 1;
+20 8 1 10 -261234 -1 -1 1 1;
 #X obj 112 439 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 12 3 widget-spinConnect \$0;
@@ -237,7 +237,7 @@ mcluhan_3-0-open 0;
 #X restore 100 339 pd actions;
 #X obj 106 105 postureUser \$0;
 #X msg 106 83 posture05;
-#N canvas 17 58 991 818 mcluhan-stations 0;
+#N canvas 0 111 991 818 mcluhan-stations 0;
 #X obj 372 13 inlet;
 #X obj 275 249 list;
 #X msg 558 83 createNode mcluhan SwitchNode \, /mcluhan setTranslation
@@ -293,10 +293,12 @@ st\$1 \, /\$1-txt setBillboard 2 \, /\$1-txt setTranslation 0 0 0.5
 #X obj 56 114 t b;
 #X obj 65 503 s \$0-to-SPIN-TCP;
 #X text 46 86 misc / extra;
-#X msg 43 235 /mcluhan-st3-snd setRadius 15;
 #X msg 322 482 /\$1-snd setSpread 0 \, /\$1-snd setRadius 8 \, /\$1-snd
 setParam spread 0 \, /\$1-snd setOrientation -90 0 0;
 #X msg 56 265 /mcluhan-st2-snd setRadius 10;
+#X msg 118 162;
+#X msg 43 235 /mcluhan-st3-snd setRadius 13;
+#X msg 66 295 /mcluhan-st4-snd setRadius 13;
 #X connect 0 0 41 0;
 #X connect 1 0 16 0;
 #X connect 2 0 12 0;
@@ -315,7 +317,7 @@ setParam spread 0 \, /\$1-snd setOrientation -90 0 0;
 #X connect 15 0 7 0;
 #X connect 16 0 37 0;
 #X connect 16 0 18 0;
-#X connect 16 0 46 0;
+#X connect 16 0 45 0;
 #X connect 16 0 33 0;
 #X connect 16 1 15 0;
 #X connect 16 2 19 0;
@@ -349,11 +351,13 @@ setParam spread 0 \, /\$1-snd setOrientation -90 0 0;
 #X connect 41 2 11 0;
 #X connect 41 3 2 0;
 #X connect 41 3 14 0;
-#X connect 42 0 45 0;
-#X connect 42 0 47 0;
-#X connect 45 0 43 0;
-#X connect 46 0 7 0;
-#X connect 47 0 43 0;
+#X connect 42 0 48 0;
+#X connect 42 0 46 0;
+#X connect 42 0 49 0;
+#X connect 45 0 7 0;
+#X connect 46 0 43 0;
+#X connect 48 0 43 0;
+#X connect 49 0 43 0;
 #X restore 29 302 pd mcluhan-stations;
 #X obj 400 118 tgl 15 0 g_collisions g_collisions-set collisions 20
 8 1 10 -261234 -1 -1 1 1;
@@ -392,7 +396,7 @@ setParam spread 0 \, /\$1-snd setOrientation -90 0 0;
 #X obj 444 314 tgl 30 0 g_pdDSP g_pdDSP-set DSP 1 13 1 10 -261234 -262130
 -86277 1 1;
 #X msg 444 347 \; pd dsp \$1 \;;
-#N canvas 91 51 808 706 mcluhan-models 0;
+#N canvas 91 51 808 706 mcluhan-models 1;
 #X obj 157 37 inlet;
 #X obj 116 662 s \$0-to-SPIN-TCP;
 #X obj 313 378 list;
@@ -429,6 +433,8 @@ setParam spread 0 \, /\$1-snd setOrientation -90 0 0;
 #X connect 6 0 10 0;
 #X connect 6 0 19 0;
 #X connect 6 0 20 0;
+#X connect 6 0 11 0;
+#X connect 6 0 12 0;
 #X connect 7 0 6 0;
 #X connect 8 0 13 0;
 #X connect 9 0 8 0;
@@ -497,7 +503,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X text 328 137 Grows above the letter Y (250);
 #X obj 108 211 r g_userElev;
 #X obj 165 272 vsl 15 25 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 202 1;
+-1 -1 0 1;
 #X msg 108 273 \$1 30;
 #X obj 108 253 clip 0 1;
 #X obj 744 400 clip 0 1;
@@ -505,7 +511,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X obj 89 322 *~;
 #X obj 64 322 *~;
 #X obj 757 431 vsl 15 25 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
+-1 -1 403 1;
 #X obj 331 287 r g_userElev;
 #X obj 388 348 vsl 15 25 0 1 0 0 empty empty empty 0 -9 0 10 -262144
 -1 -1 0 1;
@@ -533,7 +539,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 ;
 #X obj 126 611 r g_userElev;
 #X obj 186 661 vsl 15 25 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 529 1;
+-1 -1 1162 1;
 #X msg 126 662 \$1 30;
 #X obj 126 682 line~;
 #X obj 111 709 *~;
@@ -690,12 +696,13 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X msg 76 184 1;
 #X msg 244 180 1;
 #X obj 245 240 s g_inactivityToggle-set;
-#X obj 262 101 s \$0-go-home;
+#X obj 29 135 s \$0-go-home;
 #X obj 107 72 t b b b b b;
 #X connect 0 0 6 0;
 #X connect 2 0 1 0;
 #X connect 3 0 4 0;
-#X connect 6 4 5 0;
+#X connect 6 0 5 0;
+#X connect 6 4 3 0;
 #X restore 46 449 pd start;
 #X obj 343 495 spatOSC-basicRenderer;
 #X obj 494 499 tgl 15 0 empty empty <-Debug 20 7 1 9 -262144 -1 -1
@@ -706,7 +713,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 -72 10 0 9 -262144 -1 -1 33 256;
 #N canvas 176 238 949 633 reverb 0;
 #X obj 387 376 vsl 15 128 -99 18 0 1 empty empty Output -14 -10 0 12
--260818 -1 -1 6947 1;
+-260818 -1 -1 7707 1;
 #X floatatom 387 514 5 0 0 1 db - -;
 #X obj 159 105 vsl 15 128 -99 18 0 1 empty \$0-rev-1 empty 0 -8 0 8
 -225271 -66577 -262144 10300 1;
@@ -816,13 +823,12 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X obj 91 550 throw~ audio_outbus2;
 #X obj 101 571 throw~ audio_outbus3;
 #X obj 111 591 throw~ audio_outbus4;
-#X msg 527 459 -35;
 #X obj 695 402 sqrt;
 #X obj 695 316 r g_currentPos;
 #X obj 695 337 unpack 0 0 0;
 #X obj 695 442 clip 0 1;
 #X obj 708 473 vsl 15 25 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 2400 1;
+-1 -1 2098 1;
 #X obj 695 381 expr ($f1*$f1) + ($f2*$f2) + ($f3*$f3);
 #X floatatom 840 447 5 0 0 0 - - -;
 #X obj 697 421 zscale 0 200 1 0;
@@ -831,6 +837,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X obj 174 437 *~;
 #X obj 204 437 *~;
 #X msg 853 330 0;
+#X msg 527 459 -28;
 #X connect 0 0 1 0;
 #X connect 1 0 25 4;
 #X connect 2 0 3 0;
@@ -858,38 +865,38 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X connect 25 2 49 0;
 #X connect 25 3 50 0;
 #X connect 38 0 39 9;
-#X connect 39 0 60 0;
-#X connect 39 1 61 0;
-#X connect 39 2 62 0;
-#X connect 39 3 63 0;
+#X connect 39 0 59 0;
+#X connect 39 1 60 0;
+#X connect 39 2 61 0;
+#X connect 39 3 62 0;
 #X connect 40 0 39 0;
 #X connect 40 0 39 1;
 #X connect 41 0 39 0;
 #X connect 42 0 43 0;
 #X connect 43 0 44 0;
-#X connect 43 1 51 0;
+#X connect 43 1 64 0;
 #X connect 44 0 0 0;
 #X connect 45 0 42 0;
 #X connect 46 0 12 0;
 #X connect 46 0 42 0;
-#X connect 51 0 0 0;
-#X connect 52 0 58 0;
-#X connect 52 0 59 0;
-#X connect 53 0 54 0;
-#X connect 54 0 57 0;
-#X connect 54 1 57 1;
-#X connect 55 0 56 0;
-#X connect 55 0 63 1;
-#X connect 55 0 62 1;
-#X connect 55 0 61 1;
-#X connect 55 0 60 1;
-#X connect 57 0 52 0;
-#X connect 59 0 55 0;
-#X connect 60 0 25 0;
-#X connect 61 0 25 1;
-#X connect 62 0 25 2;
-#X connect 63 0 25 3;
-#X connect 64 0 57 2;
+#X connect 51 0 57 0;
+#X connect 51 0 58 0;
+#X connect 52 0 53 0;
+#X connect 53 0 56 0;
+#X connect 53 1 56 1;
+#X connect 54 0 55 0;
+#X connect 54 0 62 1;
+#X connect 54 0 61 1;
+#X connect 54 0 60 1;
+#X connect 54 0 59 1;
+#X connect 56 0 51 0;
+#X connect 58 0 54 0;
+#X connect 59 0 25 0;
+#X connect 60 0 25 1;
+#X connect 61 0 25 2;
+#X connect 62 0 25 3;
+#X connect 63 0 56 2;
+#X connect 64 0 0 0;
 #X restore 541 355 pd reverb;
 #X obj 542 309 catch~ global-reverb~;
 #X obj 590 332 tgl 20 0 empty empty reverb::on/off 25 10 1 10 -261234
@@ -897,7 +904,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X obj 12 153 t b b b b;
 #X obj 12 352 t b b b b;
 #X msg 63 372 1;
-#N canvas 0 0 888 516 DEBUG 0;
+#N canvas 0 21 884 651 DEBUG 0;
 #X obj 30 132 widget-nodeEditor \$0;
 #X msg 490 295 debug spatosc;
 #X obj 501 441 s \$0-to-SPIN-TCP;
@@ -941,7 +948,6 @@ setParent zDebugText \, /z\$1 setTranslation \$2 \$3 \$4 \, /z\$1 setScale
 #X connect 8 0 2 0;
 #X restore 162 383 pd NORTH_EAST_SOUTH_WEST;
 #X msg 634 403 spatosc setDefaultDistanceFactor \$1 1;
-#X msg 750 376 50;
 #X msg 744 353 100;
 #X msg 754 323 200;
 #X msg 46 68 test;
@@ -950,7 +956,26 @@ setParent zDebugText \, /z\$1 setTranslation \$2 \$3 \$4 \, /z\$1 setScale
 #X msg 477 96 /mcluhan-*-snd setRadius 8;
 #X msg 196 44 mcluhan-st33-snd;
 #X msg 205 20 mcluhan-st33-txt;
-#X msg 396 27 mcluhan-st34-snd;
+#X msg 784 343 150;
+#X msg 787 373 0;
+#X msg 750 376 80;
+#X msg 386 54 posture05-target-cursor;
+#X msg 386 74 posture05-target-instructions;
+#X msg 611 42 /\$1-target-* setScale 0.05 0.05 0.05;
+#X msg 693 75 /\$1-target-* setScale 0.01 0.01 0.01;
+#X obj 659 111 s \$0-to-SPIN-TCP;
+#X obj 282 612 s \$0-to-SPIN-TCP;
+#X msg 290 489 createNode testSound SoundNode \, createNode spinner
+GroupNode;
+#X msg 378 115 testSound;
+#X msg 295 516 /spinner setSpin 0 0 30 \, /testSound setTranslation
+0 5 0 \, /testSound setPlugin testnoise~ /testSound setParent spinner
+\, /testSound setSpread 0 \, /testSound setRadius 1 \, /testSound setParam
+spread 1 \, /testSound setOrientation -90 0 0 \, /testSound setDirectivityFlag
+1;
+#X msg 396 27 posture05-listener;
+#X msg 327 5 posture05;
+#X msg 275 467 deleteNode spinner \, deleteNode testSound;
 #X connect 1 0 2 0;
 #X connect 3 0 2 0;
 #X connect 4 0 0 0;
@@ -966,18 +991,28 @@ setParent zDebugText \, /z\$1 setTranslation \$2 \$3 \$4 \, /z\$1 setScale
 #X connect 16 0 2 0;
 #X connect 17 0 16 0;
 #X connect 18 0 16 0;
-#X connect 19 0 16 0;
-#X connect 20 0 0 0;
+#X connect 19 0 0 0;
+#X connect 20 0 2 0;
 #X connect 21 0 2 0;
-#X connect 22 0 2 0;
+#X connect 23 0 0 0;
 #X connect 24 0 0 0;
-#X connect 25 0 0 0;
-#X connect 26 0 0 0;
-#X restore 248 76 pd DEBUG;
+#X connect 26 0 16 0;
+#X connect 27 0 16 0;
+#X connect 28 0 0 0;
+#X connect 29 0 0 0;
+#X connect 30 0 32 0;
+#X connect 31 0 32 0;
+#X connect 34 0 33 0;
+#X connect 35 0 0 0;
+#X connect 36 0 33 0;
+#X connect 37 0 0 0;
+#X connect 38 0 0 0;
+#X connect 39 0 33 0;
+#X restore 249 75 pd DEBUG;
 #X obj 63 393 tgl 20 0 empty empty ambientLoops::on/off 25 10 1 10
 -261234 -1 -1 1 1;
 #X obj 346 448 r gAudioInit!;
-#N canvas 64 254 856 620 AUDIO_INIT 0;
+#N canvas 92 92 856 620 AUDIO_INIT 0;
 #X obj 180 20 inlet;
 #X obj 180 58 t b b b b;
 #X obj 272 519 outlet;
@@ -986,7 +1021,7 @@ setParent zDebugText \, /z\$1 setTranslation \$2 \$3 \$4 \, /z\$1 setScale
 #X msg 485 207 spatosc setDefaultDistanceFactor \$1 1;
 #X msg 601 180 50;
 #X msg 595 157 100;
-#X msg 605 127 200;
+#X msg 585 111 200;
 #X text 241 18 <- this bang should be sent only when spinserver is
 confirmed to be running \, and ideally after the listener is created
 ;
@@ -996,27 +1031,32 @@ confirmed to be running \, and ideally after the listener is created
 #X obj 93 186 loadbang;
 #X obj 42 259 line;
 #X msg 90 208 -99 0;
-#X msg 33 202 0 2000;
 #X msg 378 365 /fake /a.renderer /setOutputFormat quad;
 #X obj 182 370 sendset g_pdDSP-set;
 #X msg 182 349 1;
+#X text 16 131 Goes to 0db over 2sec fade;
+#X obj 29 156 cnv 20 20 20 empty empty * 0 18 0 32 -262144 -258113
+0;
+#X msg 595 134 150;
+#X msg 58 157 0 2000;
 #X connect 0 0 1 0;
-#X connect 1 0 16 0;
+#X connect 1 0 22 0;
 #X connect 1 1 11 0;
-#X connect 1 2 17 0;
-#X connect 1 3 8 0;
+#X connect 1 2 16 0;
+#X connect 1 3 7 0;
 #X connect 5 0 4 0;
 #X connect 6 0 5 0;
 #X connect 7 0 5 0;
 #X connect 8 0 5 0;
 #X connect 11 0 10 0;
-#X connect 11 0 19 0;
+#X connect 11 0 18 0;
 #X connect 13 0 15 0;
 #X connect 14 0 12 0;
 #X connect 15 0 14 0;
-#X connect 16 0 14 0;
-#X connect 17 0 2 0;
-#X connect 19 0 18 0;
+#X connect 16 0 2 0;
+#X connect 18 0 17 0;
+#X connect 21 0 5 0;
+#X connect 22 0 14 0;
 #X restore 346 472 pd AUDIO_INIT;
 #X obj 29 480 s gAudioInit!;
 #X obj 438 462 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
@@ -1025,8 +1065,8 @@ confirmed to be running \, and ideally after the listener is created
 #X obj 399 194 tgl 20 0 g_soundSpheres-tgl g_soundSpheres-tgl-set soundSpheres
 25 10 1 10 -203904 -4160 -1 0 1;
 #X obj 12 507 delay 20000;
-#X obj 29 280 delay 1000;
 #X obj 12 327 delay 10000;
+#X obj 38 275 delay 5000;
 #X connect 0 0 57 0;
 #X connect 4 0 6 0;
 #X connect 11 0 0 0;
@@ -1055,8 +1095,9 @@ confirmed to be running \, and ideally after the listener is created
 #X connect 52 0 50 1;
 #X connect 55 0 54 0;
 #X connect 56 0 54 1;
-#X connect 57 0 70 0;
-#X connect 57 1 69 0;
+#X connect 57 0 69 0;
+#X connect 57 1 70 0;
+#X connect 57 1 31 0;
 #X connect 57 2 38 0;
 #X connect 57 3 34 0;
 #X connect 57 3 6 0;
@@ -1070,5 +1111,5 @@ confirmed to be running \, and ideally after the listener is created
 #X connect 63 0 50 0;
 #X connect 65 0 63 0;
 #X connect 68 0 18 0;
-#X connect 69 0 31 0;
-#X connect 70 0 58 0;
+#X connect 69 0 58 0;
+#X connect 70 0 31 0;
