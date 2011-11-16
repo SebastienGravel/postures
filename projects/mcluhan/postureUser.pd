@@ -103,7 +103,6 @@ setParent \$1-target \, /\$1-target-cursor setParent \$1-pointer \,
 \, /\$1-target-* setBillboard 2 \, /\$1-target-cursor setTranslation
 0 0.02 0 \, /\$1-target-instructions setTranslation 0 0.02 0 \, /\$1-target
 setEnabled \$1-target-instructions 0;
-#X msg 675 324 /\$1-listener setOrientation 0 0 45;
 #X msg 863 602 /\$1-target setParent \$1-pointer \, /\$1-target-instructions
 setParent \$1-target \, /\$1-target-cursor setParent \$1-target \,
 /\$1-target-cursor setTextValue + \, /\$1-target-instructions setTextValue
@@ -112,6 +111,9 @@ setParent \$1-target \, /\$1-target-cursor setParent \$1-target \,
 9 \, /\$1-target-* setFont GillSans.ttf \, /\$1-target-* setBillboard
 2 \, /\$1-target-instructions setTranslation 0 0 0.1 \, /\$1-target
 setEnabled \$1-target-instructions 0;
+#X msg 675 324 /\$1-listener setOrientation 0 0 0;
+#X msg 864 290 /posture05-listener setOrientation 0 0 45;
+#X msg 845 250 /posture05-listener setOrientation 0 0 0;
 #X connect 0 0 3 0;
 #X connect 1 0 34 0;
 #X connect 2 0 1 0;
@@ -172,7 +174,7 @@ setEnabled \$1-target-instructions 0;
 #X connect 62 1 17 0;
 #X connect 62 1 19 0;
 #X connect 62 1 25 0;
-#X connect 62 1 80 0;
+#X connect 62 1 81 0;
 #X connect 62 2 49 0;
 #X connect 62 2 63 0;
 #X connect 62 2 27 0;
@@ -196,3 +198,5 @@ setEnabled \$1-target-instructions 0;
 #X connect 79 0 36 0;
 #X connect 80 0 36 0;
 #X connect 81 0 36 0;
+#X connect 82 0 36 0;
+#X connect 83 0 36 0;

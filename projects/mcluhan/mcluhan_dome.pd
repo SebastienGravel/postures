@@ -1,4 +1,4 @@
-#N canvas 246 63 1032 785 10;
+#N canvas 755 131 1032 785 10;
 #X obj 12 119 bng 30 250 50 0 initBang! initBang init 4 15 1 14 -261234
 -1 -1;
 #X obj 567 102 bng 20 250 50 0 \$0-stop-moving empty STOP_MOVING 25
@@ -175,8 +175,8 @@
 #X connect 1 0 2 0;
 #X connect 3 0 1 0;
 #X connect 3 2 4 0;
-#X restore 12 528 pd force_refresh;
-#X obj 117 518 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X restore 19 528 pd force_refresh;
+#X obj 124 518 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 569 144 bng 16 250 50 0 \$0-debug-context empty DEBUG_connection
 20 9 1 9 -261234 -1 -1;
@@ -197,7 +197,7 @@
 -1;
 #X obj 12 66 t b b;
 #X obj 400 154 tgl 15 0 g_inactivityToggle g_inactivityToggle-set inactivityTimer
-20 8 1 10 -261234 -1 -1 0 1;
+20 8 1 10 -261234 -1 -1 1 1;
 #X obj 112 439 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 12 3 widget-spinConnect \$0;
@@ -239,7 +239,7 @@ setParent world \, /\$1 setColor 1 0 0 0 \, /\$1 setRenderBin 111;
 #X restore 130 339 pd actions;
 #X obj 106 105 postureUser \$0;
 #X msg 106 83 posture05;
-#N canvas 39 206 991 818 mcluhan-stations 0;
+#N canvas 87 111 991 818 mcluhan-stations 0;
 #X obj 372 13 inlet;
 #X obj 463 268 list;
 #X msg 558 83 createNode mcluhan SwitchNode \, /mcluhan setTranslation
@@ -277,7 +277,6 @@ st\$1 \, /\$1-txt setBillboard 2 \, /\$1-txt setTranslation 0 0 0.5
 \, /\$1-txt setColor 0 0 1 1 \, /\$1-txt setSize 1;
 #X msg 313 228 mcluhan-st\$1 \$1 0 -2 -3.5 0;
 #X msg 490 720 \$2;
-#X obj 490 741 <= 8;
 #X msg 490 783 /\$1-snd setParam enableEvents \$2;
 #X obj 490 762 list prepend id;
 #X obj 521 690 t a a;
@@ -307,11 +306,8 @@ setParam spread 0 \, /\$1-snd setOrientation -90 0 0;
 setParent askMarshall \, /askMarshall_bg setShape 6 \, /askMarshall_bg
 setTranslation 0 0.01 0 \, /askMarshall_bg setScale 4.25 1 7.57 \,
 /askMarshall_bg setColor 0.8 0.8 0.8 1;
-#X msg -20 464 createNode askMarshall_bg ShapeNode \, /askMarshall_bg
-setParent askMarshall \, /askMarshall_bg setShape 2 \, /askMarshall_bg
-setTranslation 0 0.31 0 \, /askMarshall_bg setScale 4.25 0.6 7.57 \,
-/askMarshall_bg setColor 0.8 0.8 0.8 1;
-#X connect 0 0 41 0;
+#X obj 490 741 <= 33;
+#X connect 0 0 40 0;
 #X connect 1 0 16 0;
 #X connect 2 0 12 0;
 #X connect 3 0 4 0;
@@ -319,7 +315,7 @@ setTranslation 0 0.31 0 \, /askMarshall_bg setScale 4.25 0.6 7.57 \,
 #X connect 4 0 28 0;
 #X connect 4 0 13 0;
 #X connect 5 0 3 0;
-#X connect 5 1 36 0;
+#X connect 5 1 35 0;
 #X connect 6 0 4 1;
 #X connect 8 0 10 1;
 #X connect 9 0 8 0;
@@ -327,10 +323,10 @@ setTranslation 0 0.31 0 \, /askMarshall_bg setScale 4.25 0.6 7.57 \,
 #X connect 11 0 10 0;
 #X connect 14 0 12 0;
 #X connect 15 0 7 0;
-#X connect 16 0 37 0;
+#X connect 16 0 36 0;
 #X connect 16 0 18 0;
-#X connect 16 0 45 0;
-#X connect 16 0 33 0;
+#X connect 16 0 44 0;
+#X connect 16 0 32 0;
 #X connect 16 1 15 0;
 #X connect 16 2 19 0;
 #X connect 17 0 28 0;
@@ -345,78 +341,83 @@ setTranslation 0 0.31 0 \, /askMarshall_bg setScale 4.25 0.6 7.57 \,
 #X connect 26 0 7 0;
 #X connect 27 0 7 0;
 #X connect 28 0 1 0;
-#X connect 29 0 30 0;
-#X connect 30 0 32 0;
-#X connect 31 0 7 0;
-#X connect 32 0 31 0;
-#X connect 33 0 29 0;
-#X connect 33 1 35 0;
-#X connect 34 0 28 0;
-#X connect 35 0 32 1;
-#X connect 36 0 4 1;
-#X connect 37 0 7 0;
-#X connect 38 0 5 0;
+#X connect 29 0 52 0;
+#X connect 30 0 7 0;
+#X connect 31 0 30 0;
+#X connect 32 0 29 0;
+#X connect 32 1 34 0;
+#X connect 33 0 28 0;
+#X connect 34 0 31 1;
+#X connect 35 0 4 1;
+#X connect 36 0 7 0;
+#X connect 37 0 5 0;
+#X connect 38 0 28 0;
 #X connect 39 0 28 0;
-#X connect 40 0 28 0;
-#X connect 41 0 42 0;
-#X connect 41 1 38 0;
-#X connect 41 2 11 0;
-#X connect 41 3 2 0;
-#X connect 41 3 14 0;
-#X connect 42 0 47 0;
-#X connect 42 0 46 0;
-#X connect 42 0 48 0;
-#X connect 42 0 49 0;
-#X connect 42 0 53 0;
-#X connect 45 0 7 0;
-#X connect 46 0 43 0;
-#X connect 47 0 43 0;
-#X connect 48 0 43 0;
-#X connect 49 0 43 0;
-#X connect 51 0 43 0;
-#X connect 53 0 43 0;
+#X connect 40 0 41 0;
+#X connect 40 1 37 0;
+#X connect 40 2 11 0;
+#X connect 40 3 2 0;
+#X connect 40 3 14 0;
+#X connect 41 0 46 0;
+#X connect 41 0 45 0;
+#X connect 41 0 47 0;
+#X connect 41 0 48 0;
+#X connect 44 0 7 0;
+#X connect 45 0 42 0;
+#X connect 46 0 42 0;
+#X connect 47 0 42 0;
+#X connect 48 0 42 0;
+#X connect 50 0 42 0;
+#X connect 52 0 31 0;
 #X restore 29 302 pd mcluhan-stations;
 #X obj 400 118 tgl 15 0 g_collisions g_collisions-set collisions 20
 8 1 10 -261234 -1 -1 1 1;
 #X obj 161 292 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#N canvas 63 1 838 669 mcluhan-meta 0;
+#N canvas 39 198 851 748 mcluhan-meta 0;
 #X obj 147 27 inlet;
-#X msg 320 112 createNode mcluhan SwitchNode \, /mcluhan setTranslation
-0 0 0 \, /mcluhan setOrientation 0 0 0;
 #X obj 134 291 OSCsymbol;
 #X obj 134 270 r g_userID;
 #X obj 53 311 OSCprepend /\$2;
 #X msg 53 249 setTarget mcluhan;
-#X obj 321 508 s \$0-to-SPIN-TCP;
-#X msg 343 151 createNode book SwitchNode \, /book setTranslation 0
+#X obj 148 663 s \$0-to-SPIN-TCP;
+#X msg 343 165 createNode book SwitchNode \, /book setTranslation 0
 0 0 \, /book setOrientation 0 0 0;
 #X obj 147 78 t b b b;
 #X obj 95 38 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X text 329 83 create switch nodes:;
 #X text 88 223 target for collisions:;
-#X msg 362 217 createNode askMarshall SwitchNode \, /askMarshall setTranslation
-0.03 6.078 -1.52;
-#X connect 0 0 8 0;
-#X connect 1 0 6 0;
-#X connect 2 0 4 1;
-#X connect 3 0 2 0;
-#X connect 4 0 6 0;
-#X connect 5 0 4 0;
-#X connect 7 0 6 0;
-#X connect 8 1 5 0;
-#X connect 8 2 1 0;
-#X connect 8 2 7 0;
-#X connect 8 2 12 0;
-#X connect 9 0 8 0;
-#X connect 12 0 6 0;
+#X msg 362 217 createNode askMarshall SwitchNode \, /askMarshall setParent
+mcluhan \, /askMarshall setTranslation 0.03 6.078 -1.52;
+#X msg 385 283 createNode askMarshall_bg ShapeNode \, /askMarshall_bg
+setParent askMarshall \, /askMarshall_bg setShape 2 \, /askMarshall_bg
+setTranslation 0 0.31 0 \, /askMarshall_bg setScale 4.25 0.6 7.57 \,
+/askMarshall_bg setColor 0.8 0.8 0.8 1;
+#X msg 320 112 createNode mcluhan SwitchNode \, /mcluhan setTranslation
+0 0 0 \, /mcluhan setOrientation 0 0 0 \, /mcluhan setScale 1 1 0.6666
+;
+#X connect 0 0 7 0;
+#X connect 1 0 3 1;
+#X connect 2 0 1 0;
+#X connect 3 0 5 0;
+#X connect 4 0 3 0;
+#X connect 6 0 5 0;
+#X connect 7 0 4 0;
+#X connect 7 1 12 0;
+#X connect 7 2 13 0;
+#X connect 7 2 6 0;
+#X connect 7 2 11 0;
+#X connect 8 0 7 0;
+#X connect 11 0 5 0;
+#X connect 12 0 5 0;
+#X connect 13 0 5 0;
 #X restore 63 219 pd mcluhan-meta;
 #X obj 162 209 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 444 314 tgl 30 0 g_pdDSP g_pdDSP-set DSP 1 13 1 10 -261234 -262130
+#X obj 444 312 tgl 30 0 g_pdDSP g_pdDSP-set DSP 1 13 1 10 -261234 -262130
 -86277 1 1;
-#X msg 444 347 \; pd dsp \$1 \;;
+#X msg 444 345 \; pd dsp \$1 \;;
 #N canvas 472 137 808 706 mcluhan-models 0;
 #X obj 157 37 inlet;
 #X obj 116 662 s \$0-to-SPIN-TCP;
@@ -523,7 +524,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X text 328 137 Grows above the letter Y (250);
 #X obj 108 211 r g_userElev;
 #X obj 165 272 vsl 15 25 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 202 1;
+-1 -1 169 1;
 #X msg 108 273 \$1 30;
 #X obj 108 253 clip 0 1;
 #X obj 744 400 clip 0 1;
@@ -531,7 +532,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X obj 89 322 *~;
 #X obj 64 322 *~;
 #X obj 757 431 vsl 15 25 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 99 1;
+-1 -1 997 1;
 #X obj 331 287 r g_userElev;
 #X obj 388 348 vsl 15 25 0 1 0 0 empty empty empty 0 -9 0 10 -262144
 -1 -1 0 1;
@@ -559,7 +560,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 ;
 #X obj 126 611 r g_userElev;
 #X obj 186 661 vsl 15 25 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 529 1;
+-1 -1 602 1;
 #X msg 126 662 \$1 30;
 #X obj 126 682 line~;
 #X obj 111 709 *~;
@@ -733,7 +734,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 -72 10 0 9 -262144 -1 -1 0 256;
 #N canvas 176 238 949 633 reverb 0;
 #X obj 387 376 vsl 15 128 -99 18 0 1 empty empty Output -14 -10 0 12
--260818 -1 -1 0 1;
+-260818 -1 -1 7707 1;
 #X floatatom 387 514 5 0 0 1 db - -;
 #X obj 159 105 vsl 15 128 -99 18 0 1 empty \$0-rev-1 empty 0 -8 0 8
 -225271 -66577 -262144 10300 1;
@@ -833,7 +834,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X obj 150 378 zrev1~;
 #X obj 29 265 playsf~;
 #X obj 49 114 inlet~;
-#X obj 536 399 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 536 399 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 503 429 sel 0 1;
 #X msg 497 459 -99;
@@ -848,7 +849,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X obj 695 337 unpack 0 0 0;
 #X obj 695 442 clip 0 1;
 #X obj 708 473 vsl 15 25 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 2326 1;
+-1 -1 1652 1;
 #X obj 695 381 expr ($f1*$f1) + ($f2*$f2) + ($f3*$f3);
 #X floatatom 840 447 5 0 0 0 - - -;
 #X obj 697 421 zscale 0 200 1 0;
@@ -920,11 +921,11 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X restore 541 355 pd reverb;
 #X obj 542 309 catch~ global-reverb~;
 #X obj 590 332 tgl 20 0 empty g_reverbToggle-set reverb::on/off 25
-10 1 10 -261234 -1 -1 0 1;
+10 1 10 -261234 -1 -1 1 1;
 #X obj 12 153 t b b b b;
 #X obj 12 352 t b b b b;
 #X msg 63 372 1;
-#N canvas 0 21 884 651 DEBUG 0;
+#N canvas 299 240 884 651 DEBUG 0;
 #X obj 30 132 widget-nodeEditor \$0;
 #X msg 490 295 debug spatosc;
 #X obj 501 441 s \$0-to-SPIN-TCP;
@@ -988,14 +989,14 @@ setParent zDebugText \, /z\$1 setTranslation \$2 \$3 \$4 \, /z\$1 setScale
 #X msg 290 489 createNode testSound SoundNode \, createNode spinner
 GroupNode;
 #X msg 378 115 testSound;
-#X msg 295 516 /spinner setSpin 0 0 30 \, /testSound setTranslation
-0 5 0 \, /testSound setPlugin testnoise~ /testSound setParent spinner
-\, /testSound setSpread 0 \, /testSound setRadius 1 \, /testSound setParam
-spread 1 \, /testSound setOrientation -90 0 0 \, /testSound setDirectivityFlag
-1;
 #X msg 396 27 posture05-listener;
 #X msg 327 5 posture05;
 #X msg 275 467 deleteNode spinner \, deleteNode testSound;
+#X msg 295 516 /spinner setSpin 0 0 30 \, /testSound setTranslation
+0 5 0 \, /testSound setParam setPlugin testnoise~ \, /testSound setParent
+spinner \, /testSound setSpread 0 \, /testSound setRadius 1 \, /testSound
+setParam spread 1 \, /testSound setOrientation -90 0 0 \, /testSound
+setDirectivityFlag 1;
 #X connect 1 0 2 0;
 #X connect 3 0 2 0;
 #X connect 4 0 0 0;
@@ -1024,15 +1025,15 @@ spread 1 \, /testSound setOrientation -90 0 0 \, /testSound setDirectivityFlag
 #X connect 31 0 32 0;
 #X connect 34 0 33 0;
 #X connect 35 0 0 0;
-#X connect 36 0 33 0;
+#X connect 36 0 0 0;
 #X connect 37 0 0 0;
-#X connect 38 0 0 0;
+#X connect 38 0 33 0;
 #X connect 39 0 33 0;
 #X restore 249 75 pd DEBUG;
 #X obj 63 393 tgl 20 0 empty empty ambientLoops::on/off 25 10 1 10
 -261234 -1 -1 1 1;
 #X obj 346 448 r gAudioInit!;
-#N canvas 394 598 856 620 AUDIO_INIT 0;
+#N canvas 1015 349 856 620 AUDIO_INIT 0;
 #X obj 180 20 inlet;
 #X obj 180 58 t b b b b;
 #X obj 272 519 outlet;
@@ -1058,11 +1059,14 @@ confirmed to be running \, and ideally after the listener is created
 0;
 #X msg 595 134 150;
 #X msg 58 157 0 2000;
-#X msg 378 365 /fake /a.renderer /setOutputFormat octo;
+#X obj 355 439 s from_spatosc;
+#X msg 436 399 /spatosc/core createListener octo;
+#X msg 355 317 /a.renderer/setOutputFormat octo;
+#X msg 378 365 /a.renderer/setOutputFormat quad;
 #X connect 0 0 1 0;
 #X connect 1 0 21 0;
 #X connect 1 1 11 0;
-#X connect 1 2 22 0;
+#X connect 1 2 24 0;
 #X connect 1 3 7 0;
 #X connect 5 0 4 0;
 #X connect 6 0 5 0;
@@ -1076,14 +1080,15 @@ confirmed to be running \, and ideally after the listener is created
 #X connect 17 0 16 0;
 #X connect 20 0 5 0;
 #X connect 21 0 14 0;
-#X connect 22 0 2 0;
+#X connect 24 0 22 0;
+#X connect 25 0 22 0;
 #X restore 346 472 pd AUDIO_INIT;
 #X obj 29 480 s gAudioInit!;
 #X obj 438 462 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 399 194 tgl 20 0 g_soundSpheres-tgl g_soundSpheres-tgl-set soundSpheres
 25 10 1 10 -203904 -4160 -1 0 1;
-#X obj 12 507 delay 20000;
+#X obj 19 507 delay 20000;
 #X obj 12 327 delay 10000;
 #X obj 38 275 delay 5000;
 #X obj 163 732 s \$0-to-SPIN-TCP;
@@ -1107,14 +1112,13 @@ setTranslation 0 2 0;
 #X msg 432 644 /domeGrid setLighting \$1;
 #X obj 435 611 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X msg 789 302 /test setScale 1 1 0.6666;
 #X msg 776 272 /test setScale 1 1 1;
 #X msg 513 694 /posture05 setTranslation 0 -10 0;
 #X msg 509 719 /posture05 setTranslation -10 0 0;
 #X msg 717 223 createNode test2 ShapeNode \, /test2 setShape 2 \, /test2
 setTranslation 2 0 0;
 #X msg 793 142 deleteNode test2;
-#N canvas 0 26 1240 867 menu 1;
+#N canvas 638 184 1245 796 menu 0;
 #N canvas 141 217 900 647 MENU_FORMAT 0;
 #X obj 44 27 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144 -1
 -1 0;
@@ -1253,189 +1257,225 @@ setTranslation 2 0 0;
 #X connect 70 0 69 0;
 #X restore 42 42 pd MENU_FORMAT;
 #X obj 178 28 inlet;
-#X obj 84 489 s \$0-to-SPIN-TCP;
+#X obj 723 694 s \$0-to-SPIN-TCP;
 #X obj 232 347 s \$0-to-SPIN-TCP;
 #X obj 229 21 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 690 64 r \$0-from-SPIN;
-#X obj 690 169 change;
-#X text 688 30 activate menu only when pointing:;
-#X msg 771 408 /menu setEnabled \$1;
-#X obj 771 426 s \$0-to-SPIN-TCP;
-#X obj 394 353 r \$0-from-SPIN;
-#X obj 394 373 OSCparse /menu;
-#X obj 594 670 s \$0-to-SPIN-TCP;
-#X msg 473 486 /menu event \$1;
-#X obj 354 497 print SELECTED;
-#X obj 356 452 + 1;
-#X obj 893 197 change;
-#X obj 760 343 &&;
-#X obj 929 224 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 871 39 r \$0-from-SPIN;
+#X obj 687 166 change;
+#X text 808 11 activate menu only when pointing:;
+#X msg 807 338 /menu setEnabled \$1;
+#X obj 833 415 s \$0-to-SPIN-TCP;
+#X obj 372 378 r \$0-from-SPIN;
+#X obj 372 398 OSCparse /menu;
+#X obj 881 608 s \$0-to-SPIN-TCP;
+#X msg 753 552 /menu event \$1;
+#X obj 364 451 + 1;
+#X obj 939 200 change;
+#X obj 807 295 &&;
+#X obj 937 236 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 394 393 route selected setHighlighted addItem setEnabled;
-#X obj 665 564 == 0;
-#X obj 710 562 r g_userID;
-#X obj 665 582 pack 0 s;
-#X msg 665 603 /\$2-target setEnabled \$2-target-cursor \$1;
-#X text 673 625 disable cursor when menu visible;
+#X obj 372 418 route selected setHighlighted addItem setEnabled;
+#X obj 887 498 == 0;
+#X obj 932 496 r g_userID;
+#X obj 887 516 pack 0 s;
+#X msg 887 537 /\$2-target setEnabled \$2-target-cursor \$1;
+#X text 895 559 disable cursor when menu visible;
 #X obj 229 67 print CREATE_MENU;
 #X obj 178 48 t b b b b;
-#X obj 772 305 t b f;
-#X msg 61 390 /menu debug;
-#X obj 732 442 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
+#X obj 811 263 t b f;
+#X msg 700 595 /menu debug;
 #X msg 310 309 /menu addItem \$1;
 #X obj 320 281 list2symbol;
-#X msg 105 429 /menu highlightNext;
+#X msg 744 634 /menu highlightNext;
 #X obj 994 136 route containedBy;
 #X obj 994 117 OSCparse /posture??-reporter-hotspot;
 #X obj 994 155 route mcluhan-st1;
-#X obj 731 361 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X obj 882 292 == 0;
-#X obj 882 318 s g_reverbToggle-set;
-#X obj 694 91 OSCparse /posture??-pointer;
-#X obj 711 117 route setOrientation;
-#X obj 766 371 change;
-#X msg 867 458 deleteNode menu \, createNode menu Menu3D \, /menu setParent
-askMarshall \, /menu setBillboard 0 \, /menu setTranslation 0 0.04
--2.5 \, /menu setScale 1 1 1 \, /menu setItemOffset 0 0 0.11 \, /menu
-setHighlightColor 0 0.53725 1 1;
+#X obj 974 342 == 0;
+#X obj 974 366 s g_reverbToggle-set;
+#X obj 687 103 OSCparse /posture??-pointer;
+#X obj 687 124 route setOrientation;
+#X obj 807 316 change;
 #X obj 218 109 symbol posture05;
 #X obj 313 89 r g_userID;
-#X msg 46 166 /menu_item* setSize 0.06;
-#X msg 42 193 /menu setItemOffset 0 0 0.055;
-#X obj 655 516 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X msg 36 208 /menu_item* setSize 0.06;
+#X obj 877 450 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X msg 219 133 deleteNode menu \, createNode menu Menu3D \, createNode
-menuOffset GroupNode \, /menuOffset setParent \$1 \, /menu setParent
-menuOffset \, /menu setTranslation 0 -0.01 -0.004 \, /menu setBillboard
-2 \, /menu setScale 0.015 0.015 0.015 \, /menu setHighlightColor 1
-1 0 1;
-#X obj 743 203 expr abs($f3);
-#X floatatom 745 241 5 0 0 0 - - -;
-#X obj 687 145 expr if ((abs($f1)<50) && (180-abs($f3)<50) \, 1 \,
-0);
-#X obj 398 580 symbol;
-#X msg 398 600 open \$1;
-#X obj 366 638 readsf~ 2;
-#X obj 86 593 coll;
+#X obj 408 572 symbol;
+#X msg 408 592 open \$1;
+#X obj 364 625 readsf~ 2;
+#X obj 364 480 coll;
 #C restore;
-#X msg 73 565 read mcluhan_bits.coll;
-#X obj 69 538 loadbang;
-#X obj 256 606 vu1~;
-#X obj 365 601 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X msg 185 419 read mcluhan_bits.coll;
+#X obj 185 397 loadbang;
+#X obj 282 587 vu1~;
+#X obj 364 601 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
-#X obj 366 549 t b s;
-#X msg 361 569 1;
-#X msg 233 440 9;
-#X msg 239 470 1;
-#X msg 262 416 12;
-#X obj 515 579 vsl 20 128 -99 18 0 1 \$0-gain empty gain -7 -18 0 14
--260760 -1 -1 10746 1;
+#X obj 364 545 t b s;
+#X msg 364 569 1;
+#X obj 234 629 vsl 20 128 -99 18 0 1 \$0-gain empty gain -7 -18 0 14
+-260760 -1 -1 9661 1;
 #X obj 374 685 stgain2~;
 #X obj 359 755 dac~ 1 2 3 4 5 6 7 8;
-#X obj 405 659 r \$0-gain;
-#X obj 483 685 loadbang1 0;
-#X obj 70 723 nbx 3 30 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 20
--262144 -1 -1 0 256;
-#X symbolatom 45 811 80 0 0 0 - - -;
+#X obj 404 662 r \$0-gain;
+#X obj 34 468 nbx 3 30 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 20
+-262144 -1 -1 6 256;
+#X symbolatom 33 497 50 0 0 0 - - -;
 #X msg 319 221 One Liners \, Compression \, Grievance \, Streakers
 \, The Ball Game \, Swedish Humour \, Updating \, Jeans \, Nudity \,
 On Being Ahead \, Primitivism \, Subliminal Effects \, Television \,
 Touch \, Kinetics \, Literacy \, Replay \, Charisma;
-#X obj 1010 394 s from_spatosc;
-#X msg 1016 365 /a.renderer/setOutputDB \$1;
-#X obj 1025 266 sel 0 1;
-#X msg 1018 293 0;
-#X msg 1075 301 -30;
-#X connect 1 0 26 0;
-#X connect 4 0 26 0;
-#X connect 5 0 34 0;
-#X connect 5 0 39 0;
-#X connect 6 0 17 0;
+#X obj 1054 337 s from_spatosc;
+#X msg 1054 313 /a.renderer/setOutputDB \$1;
+#X obj 1041 254 sel 0 1;
+#X msg 1034 281 0;
+#X msg 1071 281 -30;
+#X msg 34 234 /menu setItemOffset 0 0 -0.055;
+#X msg 219 133 deleteNode menu \, createNode menu Menu3D \, createNode
+menuOffset GroupNode \, /menuOffset setParent \$1 \, /menu setParent
+menuOffset \, /menu setTranslation 0 -0.01 0.014 \, /menu setBillboard
+2 \, /menu setScale 0.015 0.015 0.015 \, /menu setHighlightColor 1
+1 0 1;
+#X obj 687 145 expr if ((abs($f1)<90) && (180-abs($f3)<90) \, 1 \,
+0);
+#X obj 364 510 makefilename /home/posture/content/projects-models/mcluhan-models/%s
+;
+#X msg 901 389 /askMarshall setAll \$1;
+#N canvas 0 0 628 611 askMarshall 0;
+#X obj 184 38 inlet;
+#X msg 260 90 Ask Marshall;
+#X obj 260 111 list2symbol;
+#X obj 264 253 list2symbol;
+#X msg 264 234 Excerpts from "McLuhan" (1975);
+#X obj 193 405 list2symbol;
+#X msg 193 386 a video by Richard Kerr;
+#X obj 76 551 s \$0-to-SPIN-TCP;
+#X msg 268 267 createNode askMarshall_excerpts TextNode \, /askMarshall_excerpts
+setParent menu \, /askMarshall_excerpts setTranslation -0.6 0 -0.8
+\, /askMarshall_excerpts setScale 0.3 0.3 0.3 \, /askMarshall_excerpts
+setOrientation 0 0 180 \, /askMarshall_excerpts setTextValue \$1;
+#X msg 197 419 createNode askMarshall_credits TextNode \, /askMarshall_credits
+setParent menu \, /askMarshall_credits setTranslation -0.6 0 -0.83
+\, /askMarshall_credits setScale 0.3 0.3 0.3 \, /askMarshall_credits
+setOrientation 0 0 180 \, /askMarshall_credits setTextValue \$1;
+#X msg 261 134 createNode askMarshall_titletext TextNode \, /askMarshall_titletext
+setParent menu \, /askMarshall_titletext setTranslation 0.7 0 -0.6
+\, /askMarshall_titletext setScale 1 1 1 \, /askMarshall_titletext
+setOrientation 0 0 180 \, /askMarshall_titletext setTextValue \$1;
+#X connect 0 0 1 0;
+#X connect 0 0 4 0;
+#X connect 0 0 6 0;
+#X connect 1 0 2 0;
+#X connect 2 0 10 0;
+#X connect 3 0 8 0;
+#X connect 4 0 3 0;
+#X connect 5 0 9 0;
+#X connect 6 0 5 0;
+#X connect 8 0 7 0;
+#X connect 9 0 7 0;
+#X connect 10 0 7 0;
+#X restore 459 64 pd askMarshall;
+#X obj 732 318 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 92 400 2;
+#X msg 181 564 0;
+#X msg 29 317 /menu setEnabled 0;
+#X obj 28 292 delay 100;
+#X obj 645 332 sel 0;
+#X msg 492 599 0;
+#X msg 114 555 -10;
+#X obj 127 610 loadbang1 -10;
+#X connect 1 0 25 0;
+#X connect 4 0 25 0;
+#X connect 5 0 32 0;
+#X connect 5 0 36 0;
+#X connect 6 0 16 0;
 #X connect 8 0 9 0;
 #X connect 10 0 11 0;
-#X connect 11 0 19 0;
+#X connect 11 0 18 0;
 #X connect 13 0 12 0;
-#X connect 15 0 13 0;
-#X connect 15 0 14 0;
-#X connect 15 0 55 0;
-#X connect 15 0 70 0;
-#X connect 16 0 18 0;
-#X connect 16 0 27 0;
-#X connect 16 0 37 0;
-#X connect 16 0 75 0;
-#X connect 17 0 41 0;
-#X connect 19 0 15 0;
-#X connect 20 0 22 0;
-#X connect 21 0 22 1;
-#X connect 22 0 23 0;
-#X connect 23 0 12 0;
-#X connect 26 0 45 0;
-#X connect 26 0 46 0;
-#X connect 26 1 72 0;
-#X connect 26 2 43 0;
-#X connect 26 3 25 0;
-#X connect 27 0 17 0;
-#X connect 27 1 17 1;
-#X connect 28 0 2 0;
-#X connect 29 0 8 0;
-#X connect 30 0 3 0;
-#X connect 31 0 30 0;
-#X connect 32 0 2 0;
-#X connect 33 0 35 0;
-#X connect 34 0 33 0;
-#X connect 35 0 16 0;
-#X connect 37 0 38 0;
-#X connect 39 0 40 0;
-#X connect 40 0 49 0;
-#X connect 40 0 51 0;
-#X connect 41 0 36 0;
-#X connect 41 0 8 0;
-#X connect 43 0 48 0;
-#X connect 44 0 43 1;
-#X connect 45 0 3 0;
-#X connect 46 0 3 0;
-#X connect 47 0 20 0;
-#X connect 48 0 3 0;
-#X connect 49 0 50 0;
-#X connect 51 0 6 0;
-#X connect 52 0 53 0;
-#X connect 53 0 54 0;
-#X connect 54 0 66 0;
-#X connect 54 1 66 1;
-#X connect 55 0 60 0;
-#X connect 55 0 71 0;
-#X connect 56 0 55 0;
-#X connect 57 0 56 0;
-#X connect 59 0 54 0;
-#X connect 60 0 61 0;
-#X connect 60 1 52 0;
-#X connect 61 0 59 0;
-#X connect 62 0 55 0;
-#X connect 63 0 55 0;
-#X connect 64 0 55 0;
-#X connect 66 0 67 0;
-#X connect 66 0 67 2;
-#X connect 66 0 67 4;
-#X connect 66 0 67 6;
-#X connect 66 0 58 0;
-#X connect 66 1 67 1;
-#X connect 66 1 67 3;
-#X connect 66 1 67 5;
-#X connect 66 1 67 7;
-#X connect 68 0 66 2;
-#X connect 69 0 65 0;
-#X connect 72 0 31 0;
-#X connect 74 0 73 0;
-#X connect 75 0 76 0;
-#X connect 75 1 77 0;
-#X connect 76 0 74 0;
-#X connect 77 0 74 0;
-#X restore 111 271 pd menu;
+#X connect 14 0 46 0;
+#X connect 14 0 57 0;
+#X connect 15 0 17 0;
+#X connect 15 0 26 0;
+#X connect 15 0 34 0;
+#X connect 15 0 62 0;
+#X connect 15 0 69 0;
+#X connect 15 0 76 0;
+#X connect 16 0 38 0;
+#X connect 18 0 14 0;
+#X connect 19 0 21 0;
+#X connect 20 0 21 1;
+#X connect 21 0 22 0;
+#X connect 22 0 12 0;
+#X connect 25 0 41 0;
+#X connect 25 0 65 0;
+#X connect 25 0 75 0;
+#X connect 25 1 59 0;
+#X connect 25 2 39 0;
+#X connect 25 2 70 0;
+#X connect 25 3 24 0;
+#X connect 26 0 16 0;
+#X connect 26 1 16 1;
+#X connect 27 0 2 0;
+#X connect 28 0 3 0;
+#X connect 29 0 28 0;
+#X connect 30 0 2 0;
+#X connect 31 0 33 0;
+#X connect 32 0 31 0;
+#X connect 33 0 15 0;
+#X connect 34 0 35 0;
+#X connect 36 0 37 0;
+#X connect 37 0 67 0;
+#X connect 38 0 8 0;
+#X connect 39 0 66 0;
+#X connect 40 0 39 1;
+#X connect 41 0 3 0;
+#X connect 42 0 19 0;
+#X connect 43 0 44 0;
+#X connect 44 0 45 0;
+#X connect 45 0 54 0;
+#X connect 45 1 54 1;
+#X connect 46 0 58 0;
+#X connect 46 0 68 0;
+#X connect 47 0 46 0;
+#X connect 48 0 47 0;
+#X connect 50 0 45 0;
+#X connect 51 0 52 0;
+#X connect 51 1 43 0;
+#X connect 52 0 50 0;
+#X connect 54 0 55 0;
+#X connect 54 0 55 2;
+#X connect 54 0 55 4;
+#X connect 54 0 55 6;
+#X connect 54 0 49 0;
+#X connect 54 1 55 1;
+#X connect 54 1 55 3;
+#X connect 54 1 55 5;
+#X connect 54 1 55 7;
+#X connect 56 0 54 2;
+#X connect 59 0 29 0;
+#X connect 61 0 60 0;
+#X connect 62 0 63 0;
+#X connect 62 1 64 0;
+#X connect 63 0 61 0;
+#X connect 64 0 61 0;
+#X connect 65 0 3 0;
+#X connect 66 0 3 0;
+#X connect 67 0 6 0;
+#X connect 68 0 51 0;
+#X connect 69 0 9 0;
+#X connect 71 0 8 0;
+#X connect 72 0 46 0;
+#X connect 73 0 53 0;
+#X connect 74 0 3 0;
+#X connect 75 0 74 0;
+#X connect 76 0 77 0;
+#X connect 77 0 45 0;
+#X connect 78 0 53 0;
+#X connect 79 0 53 0;
+#X restore 19 618 pd menu;
 #X msg 702 360 menu;
-#X msg 910 367 mcluhan-st1;
 #X msg 912 398 askMarshall_bg;
 #X msg 746 368 askMarshall;
 #X text 627 37 DOME VERSION;
@@ -1443,8 +1483,13 @@ Touch \, Kinetics \, Literacy \, Replay \, Charisma;
 #X msg 310 414 /a.renderer/setOutputDB \$1;
 #X msg 1095 321 -80;
 #X msg 592 390 menuOffset;
-#X obj 169 258 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
+#X obj 77 605 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 789 302 /mcluhan setScale 1 1 0.6666;
+#X msg 536 426 askMarshall_titletext;
+#X msg 493 451 askMarshall_excerpts;
+#X obj 9 572 delay 18000;
+#X msg 910 367 mcluhan-st2;
 #X connect 0 0 56 0;
 #X connect 4 0 6 0;
 #X connect 13 0 14 0;
@@ -1463,7 +1508,7 @@ Touch \, Kinetics \, Literacy \, Replay \, Charisma;
 #X connect 35 0 34 0;
 #X connect 36 0 37 0;
 #X connect 39 0 38 0;
-#X connect 40 0 98 0;
+#X connect 40 0 96 0;
 #X connect 40 0 41 0;
 #X connect 45 0 46 0;
 #X connect 45 0 44 1;
@@ -1475,10 +1520,10 @@ Touch \, Kinetics \, Literacy \, Replay \, Charisma;
 #X connect 56 1 68 0;
 #X connect 56 1 31 0;
 #X connect 56 2 38 0;
-#X connect 56 2 91 0;
 #X connect 56 3 34 0;
 #X connect 56 3 6 0;
 #X connect 57 0 66 0;
+#X connect 57 0 103 0;
 #X connect 57 1 63 0;
 #X connect 57 2 48 0;
 #X connect 57 3 58 0;
@@ -1504,15 +1549,18 @@ Touch \, Kinetics \, Literacy \, Replay \, Charisma;
 #X connect 83 0 69 0;
 #X connect 84 0 83 0;
 #X connect 85 0 73 0;
-#X connect 86 0 73 0;
+#X connect 86 0 69 0;
 #X connect 87 0 69 0;
-#X connect 88 0 69 0;
+#X connect 88 0 73 0;
 #X connect 89 0 73 0;
-#X connect 90 0 73 0;
+#X connect 91 0 71 0;
 #X connect 92 0 71 0;
 #X connect 93 0 71 0;
-#X connect 94 0 71 0;
-#X connect 95 0 71 0;
-#X connect 98 0 97 0;
-#X connect 100 0 71 0;
-#X connect 101 0 91 0;
+#X connect 96 0 95 0;
+#X connect 98 0 71 0;
+#X connect 99 0 90 0;
+#X connect 100 0 73 0;
+#X connect 101 0 71 0;
+#X connect 102 0 71 0;
+#X connect 103 0 90 0;
+#X connect 104 0 71 0;
