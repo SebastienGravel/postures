@@ -14,12 +14,12 @@
 #include <osgParticle/PrecipitationEffect>
 
 
-#include <spinFramework/ViewerManipulator.h>
-#include <spinFramework/spinApp.h>
-#include <spinFramework/spinClientContext.h>
-#include <spinFramework/spinUtil.h>
-#include <spinFramework/spinClientContext.h>
-#include <spinFramework/SceneManager.h>
+#include <spin/ViewerManipulator.h>
+#include <spin/spinApp.h>
+#include <spin/spinClientContext.h>
+#include <spin/spinUtil.h>
+#include <spin/spinClientContext.h>
+#include <spin/SceneManager.h>
 
 #include "panoViewer.h"
 
