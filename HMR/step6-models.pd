@@ -15,9 +15,9 @@
 #X text 211 202 <-- second symbol is current directory (folder) to
 look for .ac file;
 #X msg 144 252 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
-\$2/models/\$1.ac \, /\$1 setParent step6 \, /\$1 setOrientation 90
-0 90 \, /\$1 setScale 0.1 0.1 0.1 \, /\$1 setTranslation 2000 1100
-7.5;
+posture/Desktop/HMR_plans/models/\$1.ac \, /\$1 setParent step6 \,
+/\$1 setOrientation 90 0 90 \, /\$1 setScale 0.1 0.1 0.1 \, /\$1 setTranslation
+2000 1100 7.5;
 #X connect 1 0 6 0;
 #X connect 2 0 3 0;
 #X connect 3 0 4 0;
