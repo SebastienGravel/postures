@@ -1,0 +1,30 @@
+#N canvas 187 382 626 416 10;
+#X obj 192 388 outlet;
+#X obj 146 37 inlet creation;
+#X obj 140 103 thisdir;
+#X obj 140 129 t b s;
+#X obj 110 161 symbol \$1;
+#X obj 145 204 pack s s;
+#X obj 141 78 delay;
+#X obj 263 19 loadbang;
+#X obj 263 47 random 5000;
+#X obj 263 72 + 5000;
+#X text 363 46 Arguments: name of the planet;
+#X text 323 77 <-- to avoid loading 10 obj at the same time;
+#X text 197 164 <-- first symbol is node name;
+#X text 211 202 <-- second symbol is current directory (folder) to
+look for .ac file;
+#X msg 144 252 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
+\$2/models/\$1.ac \, /\$1 setParent experience \, /\$1 setOrientation
+90 0 90 \, /\$1 setScale 0.1 0.1 0.1;
+#X connect 1 0 6 0;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 3 1 5 1;
+#X connect 4 0 5 0;
+#X connect 5 0 14 0;
+#X connect 6 0 2 0;
+#X connect 7 0 8 0;
+#X connect 8 0 9 0;
+#X connect 9 0 6 1;
+#X connect 14 0 0 0;

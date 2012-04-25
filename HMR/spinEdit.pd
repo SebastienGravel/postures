@@ -1,0 +1,8 @@
+#N canvas 1096 31 344 436 10;
+#X obj 10 79 widget-sceneControl \$0;
+#X obj 10 143 widget-nodeCreator \$0;
+#X obj 27 7 cnv 25 25 25 empty empty .::SPIN.Editor::. 0 12 0 28 -262144
+-16662 0;
+#X obj 10 196 widget-nodeEditor \$0;
+#X obj 10 36 widget-spinConnect \$0;
+#X coords 0 0 1 1 85 60 0;

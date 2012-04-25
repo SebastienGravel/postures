@@ -1,0 +1,82 @@
+#N canvas 709 144 639 542 10;
+#X obj 38 38 widget-spinConnect \$0;
+#X obj 38 101 delay 100;
+#X obj 38 81 t b;
+#X obj 192 149 shell;
+#X msg 192 129 hostname -s;
+#X obj 192 209 t a a a a;
+#X obj 318 197 t a;
+#X obj 194 182 symbol;
+#X msg 73 361 /\$1-reporter setParent \$1 \, /\$1-reporter setReporting
+CONTAINMENT 1;
+#X obj 111 465 s \$0-to-SPIN-TCP;
+#X msg 72 399 createNode \$1-reporter ReporterNode \, createNode hotspot_tripper
+SwitchNode;
+#X obj 306 244 t a;
+#X msg 361 196 createNode hotspot_up2 ShapeNode \, /\$1-reporter addTarget
+hotspot_up2 \, /hotspot_up2 setParent hotspot_tripper;
+#X obj 572 68 shell;
+#X msg 572 46 hostname -s;
+#X obj 407 93 r \$0-from-SPIN;
+#X obj 572 112 makefilename /%s-reporter;
+#X obj 407 133 OSCparse /posture??-reporter;
+#X obj 572 90 symbol;
+#X obj 569 18 loadbang;
+#X obj 526 30 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 407 158 print;
+#X obj 461 434 spigot;
+#X obj 508 432 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 446 322 route containedBy;
+#X msg 451 405 \$2;
+#X msg 493 388 symbol \$1;
+#X obj 493 410 eqsym \$1;
+#X obj 496 460 print in-\$1;
+#X obj 447 299 list trim;
+#X obj 446 360 t a a;
+#X obj 445 342 list;
+#X msg 356 242 /hotspot_up2 setShape 2 \, /hotspot_up2 setColor 1 1
+1 1 \, /hotspot_up2 setRenderBin 9999 \, /hotspot_up2 setTranslation
+-13 66 0 \, /hotspot_up2 setScale 26 26 26;
+#X msg -3 351 0;
+#X msg 17 381 1;
+#X msg -9 439 /hotspot_tripper setEnabled hotspot_up2 \$1;
+#X connect 0 0 2 0;
+#X connect 1 0 4 0;
+#X connect 2 0 1 0;
+#X connect 3 0 7 0;
+#X connect 4 0 3 0;
+#X connect 5 0 11 0;
+#X connect 5 1 6 0;
+#X connect 5 2 8 0;
+#X connect 5 3 10 0;
+#X connect 6 0 12 0;
+#X connect 7 0 5 0;
+#X connect 8 0 9 0;
+#X connect 10 0 9 0;
+#X connect 11 0 32 0;
+#X connect 12 0 9 0;
+#X connect 13 0 18 0;
+#X connect 14 0 13 0;
+#X connect 15 0 17 0;
+#X connect 16 0 17 1;
+#X connect 17 0 21 0;
+#X connect 17 0 29 0;
+#X connect 18 0 16 0;
+#X connect 19 0 14 0;
+#X connect 20 0 14 0;
+#X connect 22 0 28 0;
+#X connect 24 0 31 0;
+#X connect 25 0 22 0;
+#X connect 26 0 27 0;
+#X connect 27 0 22 1;
+#X connect 27 0 23 0;
+#X connect 29 0 24 0;
+#X connect 30 0 25 0;
+#X connect 30 1 26 0;
+#X connect 31 0 30 0;
+#X connect 32 0 9 0;
+#X connect 33 0 35 0;
+#X connect 34 0 35 0;
+#X connect 35 0 9 0;

@@ -1,0 +1,45 @@
+#N canvas 841 104 528 420 10;
+#X obj 62 327 s \$0-to-SPIN-TCP;
+#X obj 12 76 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 51 94 anyreg room1-1 room1-1 562.52 37.5 -217.52 0 275 337 0
+0 0;
+#X obj 59 118 anyreg room1-2 room1-2 814.51 37.5 386.02 0 275 504 0
+0 90;
+#X obj 71 141 anyreg room1-3 room1-3 1255.52 37.5 -217.52 0 275 337
+0 0 180;
+#X obj 83 177 anyreg room1-4 room1-4 9.02 37.5 -49.02 0 275 693 0 0
+270;
+#X obj 114 296 print;
+#X msg 42 213 deleteNode \$1 \, createNode \$1 ShapeNode \, /\$1 setShape
+6 \, /\$1 setTranslation \$2 \$3 \$4 \, /\$1 setScale \$5 \$6 \$7 \,
+/\$1 setOrientation \$8 \$9 \$10;
+#X obj 476 326 s \$0-to-SPIN-TCP;
+#X obj 426 75 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 528 295 print;
+#X obj 465 93 anyreg room1-1;
+#X obj 473 117 anyreg room1-2;
+#X obj 485 140 anyreg room1-3;
+#X obj 497 176 anyreg room1-4;
+#X msg 456 212 deleteNode \$1 \, createNode \$1 ShapeNode \, /\$1 setShape
+6 \, /\$1 setTranslation \$2 \$3 \$4 \, /\$1 setScale \$5 \$6 \$7 \,
+/\$1 setOrientation \$8 \$9 \$10;
+#X connect 1 0 2 0;
+#X connect 1 0 3 0;
+#X connect 1 0 4 0;
+#X connect 1 0 5 0;
+#X connect 2 0 7 0;
+#X connect 3 0 7 0;
+#X connect 4 0 7 0;
+#X connect 5 0 7 0;
+#X connect 9 0 11 0;
+#X connect 9 0 12 0;
+#X connect 9 0 13 0;
+#X connect 9 0 14 0;
+#X connect 11 0 15 0;
+#X connect 12 0 15 0;
+#X connect 13 0 15 0;
+#X connect 14 0 15 0;
+#X connect 15 0 8 0;
+#X connect 15 0 10 0;

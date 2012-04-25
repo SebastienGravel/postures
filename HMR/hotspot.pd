@@ -1,0 +1,32 @@
+#N canvas 826 162 642 446 10;
+#X obj 128 394 outlet;
+#X obj 82 43 inlet creation;
+#X obj 76 109 thisdir;
+#X obj 76 135 t b s;
+#X obj 46 167 symbol \$1;
+#X obj 81 210 pack s s;
+#X obj 77 84 delay;
+#X obj 199 25 loadbang;
+#X obj 199 53 random 5000;
+#X obj 199 78 + 5000;
+#X text 259 83 <-- to avoid loading 10 obj at the same time;
+#X text 133 170 <-- first symbol is node name;
+#X text 147 208 <-- second symbol is current directory (folder) to
+look for .ac file;
+#X msg 213 342 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
+\$2/\$1.ac \, deleteNode \$1_group \, createNode \$1_group GroupNode
+\, /\$1 setParent \$1_group \, /\$1_group setParent soleil_group;
+#X text 299 52 Arguments: name of the hotspot;
+#X msg 87 266 createNode hotspot_\$1 ShapeNode \, /hotspot_\$1 setParent
+hotspot_tripper \, /hotspot_\$1 setShape 2;
+#X connect 1 0 6 0;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 3 1 5 1;
+#X connect 4 0 5 0;
+#X connect 5 0 15 0;
+#X connect 6 0 2 0;
+#X connect 7 0 8 0;
+#X connect 8 0 9 0;
+#X connect 9 0 6 1;
+#X connect 15 0 0 0;
