@@ -268,7 +268,7 @@ spinner-snd \, /testSound setTranslation 0 10 0;
 #X obj 231 128 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 388 170 tgl 15 0 g_inactivityToggle g_inactivityToggle-set inactivityTimer
-20 8 1 10 -261234 -1 -1 0 1;
+20 8 1 10 -261234 -1 -1 1 1;
 #X obj 112 459 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 12 3 widget-spinConnect \$0;
@@ -489,9 +489,9 @@ setTranslation 0 0.31 0 \, /askMarshall_bg setScale 4.25 0.6 7.57 \,
 #X obj 162 229 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 263 143 tgl 30 0 g_pdDSP g_pdDSP-set DSP 1 13 1 10 -261234 -262130
--86277 0 1;
+-86277 1 1;
 #X msg 263 176 \; pd dsp \$1 \;;
-#N canvas 472 137 808 706 mcluhan-models 0;
+#N canvas 472 137 808 706 mcluhan-models 1;
 #X obj 157 37 inlet;
 #X obj 116 662 s \$0-to-SPIN-TCP;
 #X obj 313 378 list;
@@ -547,7 +547,7 @@ setTranslation 0 0.31 0 \, /askMarshall_bg setScale 4.25 0.6 7.57 \,
 #X obj 160 257 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 331 289 vsl 30 100 -99 18 0 0 empty g_masterGain-set MASTER
--17 -12 1 12 -257985 -1 -86277 0 1;
+-17 -12 1 12 -257985 -1 -86277 8377 1;
 #X floatatom 331 392 5 0 0 0 - - -;
 #X text 322 295 -------0db;
 #X obj 528 204 bng 15 250 50 0 \$0-go-questionmark \$0-go-questionmark-set
@@ -558,7 +558,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X obj 65 165 readsf~ 2;
 #X obj 65 62 t f b;
 #X obj 68 43 tgl 15 0 empty \$0-ambientLoops-tgl-set empty 17 7 0 10
--262144 -1 -1 0 1;
+-262144 -1 -1 1 1;
 #X obj 116 185 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 314 195 symbol;
@@ -566,7 +566,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X obj 287 238 readsf~ 2;
 #X obj 287 139 t f b;
 #X obj 287 121 tgl 15 0 empty \$0-ambientLoops-tgl-set empty 17 7 0
-10 -262144 -1 -1 0 1;
+10 -262144 -1 -1 1 1;
 #X obj 338 258 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X msg 249 273 1;
@@ -595,7 +595,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X text 328 137 Grows above the letter Y (250);
 #X obj 108 211 r g_userElev;
 #X obj 165 272 vsl 15 25 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
+-1 -1 9 1;
 #X msg 108 273 \$1 30;
 #X obj 108 253 clip 0 1;
 #X obj 744 400 clip 0 1;
@@ -603,7 +603,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X obj 89 322 *~;
 #X obj 64 322 *~;
 #X obj 757 431 vsl 15 25 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
+-1 -1 476 1;
 #X obj 331 287 r g_userElev;
 #X obj 388 348 vsl 15 25 0 1 0 0 empty empty empty 0 -9 0 10 -262144
 -1 -1 0 1;
@@ -621,13 +621,13 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X obj 85 565 readsf~ 2;
 #X obj 85 466 t f b;
 #X obj 85 448 tgl 15 0 empty \$0-ambientLoops-tgl-set empty 17 7 0
-10 -262144 -1 -1 0 1;
+10 -262144 -1 -1 1 1;
 #X obj 136 585 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X msg 47 600 1;
 #X obj 126 611 r g_userElev;
 #X obj 186 661 vsl 15 25 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
+-1 -1 964 1;
 #X msg 126 662 \$1 30;
 #X obj 126 682 line~;
 #X obj 111 709 *~;
@@ -637,7 +637,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X obj 282 650 readsf~ 2;
 #X obj 282 551 t f b;
 #X obj 282 533 tgl 15 0 empty \$0-ambientLoops-tgl-set empty 17 7 0
-10 -262144 -1 -1 0 1;
+10 -262144 -1 -1 1 1;
 #X obj 333 670 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X msg 244 685 1;
@@ -658,7 +658,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X obj 86 760 throw~ ambL~;
 #X obj 307 818 throw~ ambR~;
 #X obj 282 840 throw~ ambL~;
-#X obj 582 55 tgl 25 0 empty empty empty 17 7 0 10 -262130 -1 -1 0
+#X obj 582 55 tgl 25 0 empty empty empty 17 7 0 10 -262130 -1 -1 1
 1;
 #X obj 582 84 s \$0-ambientLoops-tgl-set;
 #X obj 323 717 midpointRamp 120 300;
@@ -924,7 +924,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X obj 695 337 unpack 0 0 0;
 #X obj 695 442 clip 0 1;
 #X obj 708 473 vsl 15 25 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 0 1;
+-1 -1 2043 1;
 #X obj 695 381 expr ($f1*$f1) + ($f2*$f2) + ($f3*$f3);
 #X floatatom 840 447 5 0 0 0 - - -;
 #X obj 697 421 zscale 0 200 1 0;
@@ -996,7 +996,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X restore 374 602 pd reverb;
 #X obj 375 556 catch~ global-reverb~;
 #X obj 423 579 tgl 20 0 empty g_reverbToggle-set reverb::on/off 25
-10 1 10 -261234 -1 -1 0 1;
+10 1 10 -261234 -1 -1 1 1;
 #X obj 12 173 t b b b b;
 #X obj 12 372 t b b b b;
 #X msg 63 392 1;
@@ -1106,7 +1106,7 @@ setDirectivityFlag 1;
 #X connect 39 0 33 0;
 #X restore 461 53 pd DEBUG;
 #X obj 63 413 tgl 20 0 empty empty ambientLoops::on/off 25 10 1 10
--261234 -1 -1 0 1;
+-261234 -1 -1 1 1;
 #X obj 257 490 r gAudioInit!;
 #N canvas 35 65 933 793 AUDIO_INIT 0;
 #X obj 180 20 inlet;
@@ -1236,7 +1236,7 @@ confirmed to be running \, and ideally after the listener is created
 #X msg 637 385 test;
 #X msg 701 376 domeGrid;
 #X msg 505 345 posture05;
-#N canvas 166 134 1245 796 menu 0;
+#N canvas 431 205 1245 796 menu 0;
 #N canvas 141 217 900 647 MENU_FORMAT 0;
 #X obj 44 27 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144 -1
 -1 0;
@@ -1456,7 +1456,7 @@ menuOffset \, /menu setTranslation 0 -0.01 0.014 \, /menu setBillboard
 #X obj 687 145 expr if ((abs($f1)<90) && (180-abs($f3)<90) \, 1 \,
 0);
 #X msg 901 389 /askMarshall setAll \$1;
-#N canvas 0 22 628 611 askMarshall 0;
+#N canvas 0 22 628 611 askMarshall 1;
 #X obj 184 38 inlet;
 #X msg 260 90 Ask Marshall;
 #X obj 260 111 list2symbol;
@@ -1474,7 +1474,7 @@ setParent menu \, /askMarshall_credits setTranslation -0.6 0 -0.83
 \, /askMarshall_credits setScale 0.3 0.3 0.3 \, /askMarshall_credits
 setOrientation 0 0 180 \, /askMarshall_credits setTextValue \$1;
 #X msg 261 134 createNode askMarshall_titletext TextNode \, /askMarshall_titletext
-setParent menu \, /askMarshall_titletext setTranslation 0.7 0 -0.6
+setParent menu \, /askMarshall_titletext setTranslation 0.85 0 -0.6
 \, /askMarshall_titletext setScale 1 1 1 \, /askMarshall_titletext
 setOrientation 0 0 180 \, /askMarshall_titletext setTextValue \$1;
 #X connect 0 0 1 0;
