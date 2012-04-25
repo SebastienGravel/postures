@@ -1,9 +1,9 @@
-#N canvas 755 131 1032 785 10;
-#X obj 12 119 bng 30 250 50 0 initBang! initBang init 4 15 1 14 -261234
+#N canvas 226 248 892 695 10;
+#X obj 12 139 bng 30 250 50 0 initBang! initBang init 4 15 1 14 -261234
 -1 -1;
-#X obj 567 102 bng 20 250 50 0 \$0-stop-moving empty STOP_MOVING 25
+#X obj 527 122 bng 20 250 50 0 \$0-stop-moving empty STOP_MOVING 25
 10 1 10 -261234 -1 -1;
-#N canvas 213 213 766 580 UTILITIES 0;
+#N canvas 682 22 1238 716 UTILITIES 0;
 #X msg 388 251 refreshSubscribers;
 #X obj 388 270 s \$0-to-SPIN-TCP;
 #X msg 383 204 optimize all;
@@ -29,6 +29,50 @@
 #X obj 237 362 anyreg g_SCENE_BOUND 0 0 0 1000 1000 1000;
 #X obj 510 114 r g_soundSpheres-tgl;
 #X msg 519 154 /mcluhan-st*-snd setDirectivityFlag \$1;
+#X floatatom 184 558 5 0 0 1 - - -;
+#X msg 183 517 50;
+#X msg 191 538 0;
+#X floatatom 346 533 5 0 0 0 - - -;
+#X obj 348 509 hsl 128 15 -90 90 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X text 468 486 90;
+#X obj 346 557 hotpack2 0 0;
+#X text 657 490 180;
+#X floatatom 534 537 5 0 0 0 - - -;
+#X obj 535 512 hsl 128 15 -180 180 0 0 empty empty empty -2 -8 0 10
+-262144 -1 -1 0 1;
+#X text 592 494 0;
+#X text 624 494 90;
+#X text 551 494 -90;
+#X text 512 495 -180;
+#X text 523 473 YAW;
+#X text 331 475 ELEVATION;
+#X floatatom 583 538 5 0 0 0 - - -;
+#X msg 346 601 setOrientation \$1 0 \$2;
+#X obj 534 559 + 0;
+#X obj 103 582 hotpack3 0 0 0;
+#X msg 104 607 setSpin \$1 \$2 \$3;
+#X floatatom 142 557 5 0 0 1 - - -;
+#X msg 149 537 0;
+#X floatatom 104 558 5 0 0 1 - - -;
+#X msg 103 517 50;
+#X msg 111 538 0;
+#X text 94 500 P R Y orbit speeds;
+#X obj 104 639 OSCprepend /spinner-snd;
+#X msg 141 516 20;
+#X obj 686 256 bng 25 250 50 0 empty empty test_sound 28 12 0 12 -262144
+-1 -1;
+#X obj 678 298 t b b;
+#X obj 583 638 s \$0-to-SPIN-TCP;
+#X msg 701 331 createNode testSound SoundNode;
+#X msg 703 379 /testSound setParam setPlugin buzz~ \, /testSound setParam
+hz 23 \, /testSound setDirectivityFlag 1 \, /testSound setLength 0.1
+\, /testSound setSpread 0;
+#X msg 699 444 createNode spinner-snd GroupNode \, /testSound setParent
+spinner-snd \, /testSound setTranslation 0 10 0;
+#X text 335 489 -90;
+#X text 404 487 0;
+#X msg 878 251 deleteNode testSound \, deleteNode spinner-snd;
 #X connect 0 0 1 0;
 #X connect 2 0 3 0;
 #X connect 4 0 10 0;
@@ -42,12 +86,40 @@
 #X connect 16 0 5 0;
 #X connect 22 0 23 0;
 #X connect 23 0 5 0;
-#X restore 244 102 pd UTILITIES;
-#X obj 568 164 bng 15 250 50 0 \$0-go-home \$0-go-home-set home 20
+#X connect 24 0 43 2;
+#X connect 25 0 24 0;
+#X connect 26 0 24 0;
+#X connect 27 0 30 0;
+#X connect 28 0 27 0;
+#X connect 30 0 41 0;
+#X connect 32 0 42 0;
+#X connect 33 0 32 0;
+#X connect 40 0 42 1;
+#X connect 41 0 51 0;
+#X connect 42 0 30 1;
+#X connect 43 0 44 0;
+#X connect 44 0 51 0;
+#X connect 45 0 43 1;
+#X connect 46 0 45 0;
+#X connect 47 0 43 0;
+#X connect 48 0 47 0;
+#X connect 49 0 47 0;
+#X connect 51 0 55 0;
+#X connect 52 0 45 0;
+#X connect 53 0 54 0;
+#X connect 54 0 57 0;
+#X connect 54 0 58 0;
+#X connect 54 1 56 0;
+#X connect 56 0 55 0;
+#X connect 57 0 55 0;
+#X connect 58 0 55 0;
+#X connect 61 0 55 0;
+#X restore 457 80 pd UTILITIES;
+#X obj 528 184 bng 15 250 50 0 \$0-go-home \$0-go-home-set home 20
 9 1 10 -261682 -1 -1;
-#X obj 117 188 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 117 208 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 400 172 tgl 15 0 g_snap_toggle g_snap_toggle-set snapToPanoscope
+#X obj 388 188 tgl 15 0 g_snap_toggle g_snap_toggle-set snapToPanoscope
 20 8 1 10 -261234 -1 -1 0 1;
 #N canvas 400 109 843 563 fog 0;
 #X obj 236 -65 inlet;
@@ -129,8 +201,8 @@
 #X connect 32 0 16 0;
 #X connect 35 0 16 0;
 #X connect 36 0 16 0;
-#X restore 73 198 pd fog;
-#X obj 400 136 tgl 15 0 g_noPointer g_noPointer-set noPointer 20 8
+#X restore 73 218 pd fog;
+#X obj 388 152 tgl 15 0 g_noPointer g_noPointer-set noPointer 20 8
 1 10 -261234 -1 -1 0 1;
 #N canvas 451 169 462 664 GO-THERE 0;
 #X obj 76 514 s \$0-to-SPIN;
@@ -152,19 +224,19 @@
 #X connect 7 0 2 0;
 #X connect 8 0 9 0;
 #X connect 9 0 2 0;
-#X restore 568 204 pd GO-THERE;
-#X obj 569 126 bng 16 250 50 0 \$0-debug-scene empty DEBUG_scene 20
+#X restore 528 224 pd GO-THERE;
+#X obj 529 146 bng 16 250 50 0 \$0-debug-scene empty DEBUG_scene 20
 9 1 9 -261234 -1 -1;
 #X obj 494 7 cnv 25 25 25 empty empty McLuhan 5 14 2 40 -262144 -162280
 0;
-#X obj 12 87 delay 2500;
-#X obj 104 51 cnv 20 20 20 empty empty * 0 18 0 32 -262144 -258113
+#X obj 12 118 delay 2500;
+#X obj 104 57 cnv 20 20 20 empty empty * 0 18 0 32 -262144 -258113
 0;
-#X obj 227 163 r g_currentPos;
-#X obj 227 185 unpack 0 0 0;
-#X floatatom 227 206 5 0 0 0 - - -;
-#X floatatom 261 206 5 0 0 0 - - -;
-#X floatatom 296 206 5 0 0 0 - - -;
+#X obj 344 49 r g_currentPos;
+#X obj 344 71 unpack 0 0 0;
+#X floatatom 344 92 5 0 0 0 - - -;
+#X floatatom 378 92 5 0 0 0 - - -;
+#X floatatom 413 92 5 0 0 0 - - -;
 #N canvas 0 22 450 300 force_refresh 0;
 #X obj 118 37 inlet;
 #X msg 71 204 refreshSubscribers;
@@ -175,10 +247,10 @@
 #X connect 1 0 2 0;
 #X connect 3 0 1 0;
 #X connect 3 2 4 0;
-#X restore 19 528 pd force_refresh;
-#X obj 124 518 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X restore 19 548 pd force_refresh;
+#X obj 124 538 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 569 144 bng 16 250 50 0 \$0-debug-context empty DEBUG_connection
+#X obj 529 164 bng 16 250 50 0 \$0-debug-context empty DEBUG_connection
 20 9 1 9 -261234 -1 -1;
 #X symbolatom 344 28 15 0 0 2 userID: g_userID -;
 #N canvas 297 127 450 300 SPIN_stuff 0;
@@ -192,16 +264,15 @@
 #X connect 1 0 2 0;
 #X connect 2 0 4 0;
 #X connect 4 0 3 0;
-#X restore 12 48 pd SPIN_stuff;
-#X obj 197 90 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 12 66 t b b;
-#X obj 400 154 tgl 15 0 g_inactivityToggle g_inactivityToggle-set inactivityTimer
-20 8 1 10 -261234 -1 -1 1 1;
-#X obj 112 439 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X restore 12 54 pd SPIN_stuff;
+#X obj 231 128 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 388 170 tgl 15 0 g_inactivityToggle g_inactivityToggle-set inactivityTimer
+20 8 1 10 -261234 -1 -1 0 1;
+#X obj 112 459 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 12 3 widget-spinConnect \$0;
-#N canvas 60 254 1094 680 actions 0;
+#N canvas 216 262 1094 680 actions 0;
 #X obj -210 -301 inlet;
 #X obj 23 -309 r \$0-from-SPIN;
 #X obj 11 -258 route /posture05;
@@ -236,10 +307,10 @@ setParent world \, /\$1 setColor 1 0 0 0 \, /\$1 setRenderBin 111;
 #X connect 11 0 12 0;
 #X connect 11 0 8 0;
 #X connect 14 2 15 0;
-#X restore 130 339 pd actions;
-#X obj 106 105 postureUser \$0;
-#X msg 106 83 posture05;
-#N canvas 87 111 991 818 mcluhan-stations 0;
+#X restore 130 359 pd actions;
+#X obj 140 143 postureUser \$0;
+#X msg 140 121 posture05;
+#N canvas 650 114 991 818 mcluhan-stations 0;
 #X obj 372 13 inlet;
 #X obj 463 268 list;
 #X msg 558 83 createNode mcluhan SwitchNode \, /mcluhan setTranslation
@@ -260,9 +331,6 @@ setParent world \, /\$1 setColor 1 0 0 0 \, /\$1 setRenderBin 111;
 #X msg 531 403 /\$1-snd setParam setPlugin mcluhanLooper~;
 #X obj 463 291 t a a a;
 #X msg 264 101 2;
-#X msg 512 433 /\$1-snd setParent \$1 \, /\$1-snd setParam loopA ~/content/projects-models/mcluhan-models/sound/\$1_A.wav
-\, /\$1-snd setParam loopB ~/content/projects-models/mcluhan-models/sound/\$1_B.wav
-;
 #X msg 534 324 createNode \$1 ModelNode \, createNode \$1-snd SoundNode
 \, createNode;
 #X msg 294 101 3;
@@ -283,11 +351,7 @@ st\$1 \, /\$1-txt setBillboard 2 \, /\$1-txt setTranslation 0 0 0.5
 #X msg 197 130 11;
 #X msg 577 740 \$1;
 #X msg 477 163 1;
-#X msg 385 608 createNode \$1 ModelNode \, /\$1 setOrientation 90 0
-\$6 \, /\$1 setTranslation \$3 \$4 \$5 \, /\$1 setAttachCentroid 1
-\, /\$1 setModelFromFile ~/content/projects-models/mcluhan-models/models/low-res/\$1.ive
-\, /\$1 setParent mcluhan \, /mcluhan setEnabled \$1 1;
-#X msg 427 113 34;
+#X msg 418 114 34;
 #X msg 195 174 34;
 #X msg 379 143 29;
 #X obj 372 33 t b b b b;
@@ -307,15 +371,23 @@ setParent askMarshall \, /askMarshall_bg setShape 6 \, /askMarshall_bg
 setTranslation 0 0.01 0 \, /askMarshall_bg setScale 4.25 1 7.57 \,
 /askMarshall_bg setColor 0.8 0.8 0.8 1;
 #X obj 490 741 <= 33;
-#X connect 0 0 40 0;
+#X msg 512 433 /\$1-snd setParent \$1 \, /\$1-snd setParam loopA ~/Documents/Metalab/mcluhan/sound/\$1_A.wav
+\, /\$1-snd setParam loopB ~/Documents/Metalab/mcluhan/sound/\$1_B.wav
+;
+#X msg 385 608 createNode \$1 ModelNode \, /\$1 setOrientation 90 0
+\$6 \, /\$1 setTranslation \$3 \$4 \$5 \, /\$1 setAttachCentroid 1
+\, /\$1 setModelFromFile ~/Documents/Metalab/mcluhan/models/low-res/\$1.ive
+\, /\$1 setParent mcluhan \, /mcluhan setEnabled \$1 1;
+#X msg 459 112 34;
+#X connect 0 0 38 0;
 #X connect 1 0 16 0;
 #X connect 2 0 12 0;
 #X connect 3 0 4 0;
 #X connect 4 0 6 0;
-#X connect 4 0 28 0;
+#X connect 4 0 27 0;
 #X connect 4 0 13 0;
 #X connect 5 0 3 0;
-#X connect 5 1 35 0;
+#X connect 5 1 34 0;
 #X connect 6 0 4 1;
 #X connect 8 0 10 1;
 #X connect 9 0 8 0;
@@ -323,56 +395,57 @@ setTranslation 0 0.01 0 \, /askMarshall_bg setScale 4.25 1 7.57 \,
 #X connect 11 0 10 0;
 #X connect 14 0 12 0;
 #X connect 15 0 7 0;
-#X connect 16 0 36 0;
-#X connect 16 0 18 0;
-#X connect 16 0 44 0;
-#X connect 16 0 32 0;
+#X connect 16 0 52 0;
+#X connect 16 0 51 0;
+#X connect 16 0 42 0;
+#X connect 16 0 31 0;
 #X connect 16 1 15 0;
-#X connect 16 2 19 0;
-#X connect 17 0 28 0;
+#X connect 16 2 18 0;
+#X connect 17 0 27 0;
 #X connect 18 0 7 0;
-#X connect 19 0 7 0;
-#X connect 20 0 28 0;
-#X connect 21 0 28 0;
-#X connect 22 0 28 0;
-#X connect 23 0 28 0;
-#X connect 24 0 28 0;
-#X connect 25 0 28 0;
+#X connect 19 0 27 0;
+#X connect 20 0 27 0;
+#X connect 21 0 27 0;
+#X connect 22 0 27 0;
+#X connect 23 0 27 0;
+#X connect 24 0 27 0;
+#X connect 25 0 7 0;
 #X connect 26 0 7 0;
-#X connect 27 0 7 0;
-#X connect 28 0 1 0;
-#X connect 29 0 52 0;
-#X connect 30 0 7 0;
-#X connect 31 0 30 0;
-#X connect 32 0 29 0;
-#X connect 32 1 34 0;
-#X connect 33 0 28 0;
-#X connect 34 0 31 1;
-#X connect 35 0 4 1;
-#X connect 36 0 7 0;
-#X connect 37 0 5 0;
-#X connect 38 0 28 0;
-#X connect 39 0 28 0;
-#X connect 40 0 41 0;
-#X connect 40 1 37 0;
-#X connect 40 2 11 0;
-#X connect 40 3 2 0;
-#X connect 40 3 14 0;
-#X connect 41 0 46 0;
-#X connect 41 0 45 0;
-#X connect 41 0 47 0;
-#X connect 41 0 48 0;
-#X connect 44 0 7 0;
-#X connect 45 0 42 0;
-#X connect 46 0 42 0;
-#X connect 47 0 42 0;
-#X connect 48 0 42 0;
-#X connect 50 0 42 0;
-#X connect 52 0 31 0;
-#X restore 29 302 pd mcluhan-stations;
-#X obj 400 118 tgl 15 0 g_collisions g_collisions-set collisions 20
+#X connect 27 0 1 0;
+#X connect 28 0 50 0;
+#X connect 29 0 7 0;
+#X connect 30 0 29 0;
+#X connect 31 0 28 0;
+#X connect 31 1 33 0;
+#X connect 32 0 27 0;
+#X connect 33 0 30 1;
+#X connect 34 0 4 1;
+#X connect 35 0 5 0;
+#X connect 36 0 27 0;
+#X connect 37 0 27 0;
+#X connect 38 0 39 0;
+#X connect 38 1 53 0;
+#X connect 38 2 11 0;
+#X connect 38 3 2 0;
+#X connect 38 3 14 0;
+#X connect 39 0 44 0;
+#X connect 39 0 43 0;
+#X connect 39 0 45 0;
+#X connect 39 0 46 0;
+#X connect 42 0 7 0;
+#X connect 43 0 40 0;
+#X connect 44 0 40 0;
+#X connect 45 0 40 0;
+#X connect 46 0 40 0;
+#X connect 48 0 40 0;
+#X connect 50 0 30 0;
+#X connect 51 0 7 0;
+#X connect 52 0 7 0;
+#X connect 53 0 5 0;
+#X restore 29 322 pd mcluhan-stations;
+#X obj 388 134 tgl 15 0 g_collisions g_collisions-set collisions 20
 8 1 10 -261234 -1 -1 1 1;
-#X obj 161 292 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 161 312 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #N canvas 39 198 851 748 mcluhan-meta 0;
 #X obj 147 27 inlet;
@@ -412,12 +485,12 @@ setTranslation 0 0.31 0 \, /askMarshall_bg setScale 4.25 0.6 7.57 \,
 #X connect 11 0 5 0;
 #X connect 12 0 5 0;
 #X connect 13 0 5 0;
-#X restore 63 219 pd mcluhan-meta;
-#X obj 162 209 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X restore 63 239 pd mcluhan-meta;
+#X obj 162 229 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 444 312 tgl 30 0 g_pdDSP g_pdDSP-set DSP 1 13 1 10 -261234 -262130
--86277 1 1;
-#X msg 444 345 \; pd dsp \$1 \;;
+#X obj 263 143 tgl 30 0 g_pdDSP g_pdDSP-set DSP 1 13 1 10 -261234 -262130
+-86277 0 1;
+#X msg 263 176 \; pd dsp \$1 \;;
 #N canvas 472 137 808 706 mcluhan-models 0;
 #X obj 157 37 inlet;
 #X obj 116 662 s \$0-to-SPIN-TCP;
@@ -443,7 +516,7 @@ setTranslation 0 0.31 0 \, /askMarshall_bg setScale 4.25 0.6 7.57 \,
 #X msg 208 212 mcluhan-st0 0 -2 -3.5 0;
 #X msg 367 484 createNode \$1 ModelNode \, /\$1 setOrientation 90 0
 \$5 \, /\$1 setTranslation \$2 \$3 \$4 \, /\$1 setAttachCentroid 1
-\, /\$1 setModelFromFile ~/content/projects-models/mcluhan-models/models/low-res/\$1.ive
+\, /\$1 setModelFromFile ~/Documents/Metalab/mcluhan/models/low-res/\$1.ive
 \, /\$1 setParent book \, /book setEnabled \$1 1;
 #X connect 0 0 6 0;
 #X connect 2 0 3 0;
@@ -470,22 +543,22 @@ setTranslation 0 0.31 0 \, /askMarshall_bg setScale 4.25 0.6 7.57 \,
 #X connect 19 0 8 0;
 #X connect 20 0 8 0;
 #X connect 21 0 1 0;
-#X restore 46 247 pd mcluhan-models;
-#X obj 160 237 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X restore 46 267 pd mcluhan-models;
+#X obj 160 257 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 331 289 vsl 30 100 -99 18 0 0 empty g_masterGain-set MASTER
--17 -12 1 12 -257985 -1 -86277 8377 1;
+-17 -12 1 12 -257985 -1 -86277 0 1;
 #X floatatom 331 392 5 0 0 0 - - -;
 #X text 322 295 -------0db;
-#X obj 568 184 bng 15 250 50 0 \$0-go-questionmark \$0-go-questionmark-set
+#X obj 528 204 bng 15 250 50 0 \$0-go-questionmark \$0-go-questionmark-set
 questionmark 20 9 1 10 -261682 -1 -1;
-#N canvas 7 59 1034 885 ambient-audio 0;
+#N canvas 27 63 1034 885 ambient-audio 0;
 #X obj 92 122 symbol;
 #X msg 92 142 open \$1;
 #X obj 65 165 readsf~ 2;
 #X obj 65 62 t f b;
 #X obj 68 43 tgl 15 0 empty \$0-ambientLoops-tgl-set empty 17 7 0 10
--262144 -1 -1 1 1;
+-262144 -1 -1 0 1;
 #X obj 116 185 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 314 195 symbol;
@@ -493,7 +566,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X obj 287 238 readsf~ 2;
 #X obj 287 139 t f b;
 #X obj 287 121 tgl 15 0 empty \$0-ambientLoops-tgl-set empty 17 7 0
-10 -262144 -1 -1 1 1;
+10 -262144 -1 -1 0 1;
 #X obj 338 258 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X msg 249 273 1;
@@ -516,15 +589,13 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X text 925 452 -----0db;
 #X obj 933 38 inlet;
 #X msg 869 454 -99;
-#X msg 92 83 ~/content/projects-models/mcluhan-models/sound/mcluhan-st200_1_And.wav
-;
 #X obj 844 299 s g_userElev;
 #X text 108 65 Grows just below installation floor (-20) downwards
 ;
 #X text 328 137 Grows above the letter Y (250);
 #X obj 108 211 r g_userElev;
 #X obj 165 272 vsl 15 25 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 169 1;
+-1 -1 0 1;
 #X msg 108 273 \$1 30;
 #X obj 108 253 clip 0 1;
 #X obj 744 400 clip 0 1;
@@ -532,7 +603,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X obj 89 322 *~;
 #X obj 64 322 *~;
 #X obj 757 431 vsl 15 25 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 997 1;
+-1 -1 0 1;
 #X obj 331 287 r g_userElev;
 #X obj 388 348 vsl 15 25 0 1 0 0 empty empty empty 0 -9 0 10 -262144
 -1 -1 0 1;
@@ -545,22 +616,18 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X obj 730 587 *~;
 #X obj 705 587 *~;
 #X obj 744 550 line~;
-#X msg 314 159 ~/content/projects-models/mcluhan-models/sound/mcluhan-st200_4_You.wav
-;
 #X obj 112 522 symbol;
 #X msg 112 542 open \$1;
 #X obj 85 565 readsf~ 2;
 #X obj 85 466 t f b;
 #X obj 85 448 tgl 15 0 empty \$0-ambientLoops-tgl-set empty 17 7 0
-10 -262144 -1 -1 1 1;
+10 -262144 -1 -1 0 1;
 #X obj 136 585 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X msg 47 600 1;
-#X msg 112 486 ~/content/projects-models/mcluhan-models/sound/mcluhan-st200_2_Who.wav
-;
 #X obj 126 611 r g_userElev;
 #X obj 186 661 vsl 15 25 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 602 1;
+-1 -1 0 1;
 #X msg 126 662 \$1 30;
 #X obj 126 682 line~;
 #X obj 111 709 *~;
@@ -570,7 +637,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X obj 282 650 readsf~ 2;
 #X obj 282 551 t f b;
 #X obj 282 533 tgl 15 0 empty \$0-ambientLoops-tgl-set empty 17 7 0
-10 -262144 -1 -1 1 1;
+10 -262144 -1 -1 0 1;
 #X obj 333 670 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X msg 244 685 1;
@@ -583,8 +650,6 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X obj 283 794 *~;
 #X obj 705 220 catch~ ambL~;
 #X obj 729 240 catch~ ambR~;
-#X msg 309 571 ~/content/projects-models/mcluhan-models/sound/mcluhan-st200_3_Are.wav
-;
 #X obj 88 347 throw~ ambR~;
 #X obj 63 369 throw~ ambL~;
 #X obj 311 421 throw~ ambR~;
@@ -593,7 +658,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X obj 86 760 throw~ ambL~;
 #X obj 307 818 throw~ ambR~;
 #X obj 282 840 throw~ ambL~;
-#X obj 582 55 tgl 25 0 empty empty empty 17 7 0 10 -262130 -1 -1 1
+#X obj 582 55 tgl 25 0 empty empty empty 17 7 0 10 -262130 -1 -1 0
 1;
 #X obj 582 84 s \$0-ambientLoops-tgl-set;
 #X obj 323 717 midpointRamp 120 300;
@@ -601,33 +666,42 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X obj 126 632 midpointRamp -20 175;
 #X obj 331 308 zscale 225 400 0 1;
 #X obj 744 380 zscale 0 150 0 1;
+#X msg 112 486 ~/Documents/Metalab/mcluhan/sound/mcluhan-st200_2_Who.wav
+;
+#X msg 309 571 ~/Documents/Metalab/mcluhan/sound/mcluhan-st200_3_Are.wav
+;
+#X msg 314 159 ~/Documents/Metalab/mcluhan/sound/mcluhan-st200_4_You.wav
+;
+#X msg 92 83 ~/Documents/Metalab/mcluhan/sound/mcluhan-st200_1_And.wav
+;
+#X obj 619 692 vu1~;
 #X connect 0 0 1 0;
 #X connect 1 0 2 0;
-#X connect 2 0 42 0;
-#X connect 2 1 41 0;
+#X connect 2 0 41 0;
+#X connect 2 1 40 0;
 #X connect 2 2 5 0;
 #X connect 3 0 2 0;
-#X connect 3 1 31 0;
+#X connect 3 1 100 0;
 #X connect 4 0 3 0;
 #X connect 5 0 13 0;
 #X connect 6 0 7 0;
 #X connect 7 0 8 0;
-#X connect 8 0 51 0;
-#X connect 8 1 50 0;
+#X connect 8 0 50 0;
+#X connect 8 1 49 0;
 #X connect 8 2 11 0;
 #X connect 9 0 8 0;
-#X connect 9 1 55 0;
+#X connect 9 1 99 0;
 #X connect 10 0 9 0;
 #X connect 11 0 12 0;
 #X connect 12 0 10 0;
 #X connect 13 0 4 0;
-#X connect 14 0 100 0;
+#X connect 14 0 96 0;
 #X connect 16 0 17 0;
 #X connect 17 0 18 0;
 #X connect 17 1 18 1;
-#X connect 17 2 32 0;
+#X connect 17 2 31 0;
 #X connect 18 0 14 0;
-#X connect 19 0 94 0;
+#X connect 19 0 90 0;
 #X connect 24 0 25 0;
 #X connect 24 0 26 2;
 #X connect 26 0 20 0;
@@ -637,76 +711,77 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X connect 27 0 24 0;
 #X connect 29 0 24 0;
 #X connect 30 0 24 0;
-#X connect 31 0 0 0;
-#X connect 35 0 97 0;
-#X connect 37 0 40 0;
-#X connect 38 0 37 0;
-#X connect 38 0 36 0;
-#X connect 39 0 47 0;
-#X connect 39 0 43 0;
-#X connect 40 0 42 1;
-#X connect 40 0 41 1;
-#X connect 41 0 86 0;
-#X connect 42 0 87 0;
-#X connect 44 0 99 0;
-#X connect 46 0 49 0;
-#X connect 47 0 54 0;
-#X connect 48 0 46 0;
-#X connect 48 0 45 0;
-#X connect 49 0 51 1;
-#X connect 49 0 50 1;
-#X connect 50 0 88 0;
-#X connect 51 0 89 0;
-#X connect 52 0 26 1;
-#X connect 53 0 26 0;
-#X connect 54 0 52 1;
-#X connect 54 0 53 1;
-#X connect 55 0 6 0;
-#X connect 56 0 57 0;
-#X connect 57 0 58 0;
-#X connect 58 0 69 0;
-#X connect 58 1 68 0;
-#X connect 58 2 61 0;
-#X connect 59 0 58 0;
-#X connect 59 1 63 0;
-#X connect 60 0 59 0;
-#X connect 61 0 62 0;
-#X connect 62 0 60 0;
-#X connect 63 0 56 0;
-#X connect 64 0 98 0;
-#X connect 66 0 67 0;
-#X connect 67 0 68 1;
-#X connect 67 0 69 1;
-#X connect 68 0 90 0;
-#X connect 69 0 91 0;
-#X connect 70 0 71 0;
-#X connect 71 0 72 0;
-#X connect 72 0 82 0;
-#X connect 72 1 81 0;
-#X connect 72 2 75 0;
-#X connect 73 0 72 0;
-#X connect 73 1 85 0;
-#X connect 74 0 73 0;
-#X connect 75 0 76 0;
-#X connect 76 0 74 0;
-#X connect 77 0 96 0;
-#X connect 79 0 80 0;
-#X connect 80 0 81 1;
-#X connect 80 0 82 1;
-#X connect 81 0 92 0;
-#X connect 82 0 93 0;
-#X connect 83 0 53 0;
-#X connect 84 0 52 0;
-#X connect 85 0 70 0;
-#X connect 94 0 95 0;
-#X connect 96 0 78 0;
-#X connect 96 0 79 0;
-#X connect 97 0 38 0;
-#X connect 98 0 65 0;
-#X connect 98 0 66 0;
-#X connect 99 0 48 0;
-#X connect 100 0 39 0;
-#X restore 63 417 pd ambient-audio;
+#X connect 34 0 93 0;
+#X connect 36 0 39 0;
+#X connect 37 0 36 0;
+#X connect 37 0 35 0;
+#X connect 38 0 46 0;
+#X connect 38 0 42 0;
+#X connect 39 0 41 1;
+#X connect 39 0 40 1;
+#X connect 40 0 82 0;
+#X connect 41 0 83 0;
+#X connect 43 0 95 0;
+#X connect 45 0 48 0;
+#X connect 46 0 53 0;
+#X connect 47 0 45 0;
+#X connect 47 0 44 0;
+#X connect 48 0 50 1;
+#X connect 48 0 49 1;
+#X connect 49 0 84 0;
+#X connect 50 0 85 0;
+#X connect 51 0 26 1;
+#X connect 52 0 26 0;
+#X connect 52 0 101 0;
+#X connect 53 0 51 1;
+#X connect 53 0 52 1;
+#X connect 54 0 55 0;
+#X connect 55 0 56 0;
+#X connect 56 0 66 0;
+#X connect 56 1 65 0;
+#X connect 56 2 59 0;
+#X connect 57 0 56 0;
+#X connect 57 1 97 0;
+#X connect 58 0 57 0;
+#X connect 59 0 60 0;
+#X connect 60 0 58 0;
+#X connect 61 0 94 0;
+#X connect 63 0 64 0;
+#X connect 64 0 65 1;
+#X connect 64 0 66 1;
+#X connect 65 0 86 0;
+#X connect 66 0 87 0;
+#X connect 67 0 68 0;
+#X connect 68 0 69 0;
+#X connect 69 0 79 0;
+#X connect 69 1 78 0;
+#X connect 69 2 72 0;
+#X connect 70 0 69 0;
+#X connect 70 1 98 0;
+#X connect 71 0 70 0;
+#X connect 72 0 73 0;
+#X connect 73 0 71 0;
+#X connect 74 0 92 0;
+#X connect 76 0 77 0;
+#X connect 77 0 78 1;
+#X connect 77 0 79 1;
+#X connect 78 0 88 0;
+#X connect 79 0 89 0;
+#X connect 80 0 52 0;
+#X connect 81 0 51 0;
+#X connect 90 0 91 0;
+#X connect 92 0 75 0;
+#X connect 92 0 76 0;
+#X connect 93 0 37 0;
+#X connect 94 0 62 0;
+#X connect 94 0 63 0;
+#X connect 95 0 47 0;
+#X connect 96 0 38 0;
+#X connect 97 0 54 0;
+#X connect 98 0 67 0;
+#X connect 99 0 6 0;
+#X connect 100 0 0 0;
+#X restore 63 437 pd ambient-audio;
 #X obj 231 284 vsl 20 100 -99 18 0 1 empty empty AmbientLoops -30 -10
 0 10 -257985 -1 -1 8377 1;
 #X floatatom 231 390 5 0 0 1 db - -;
@@ -724,13 +799,13 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X connect 3 0 4 0;
 #X connect 6 0 5 0;
 #X connect 6 4 3 0;
-#X restore 46 449 pd start;
-#X obj 343 495 spatOSC-basicRenderer;
-#X obj 494 499 tgl 15 0 empty empty <-Debug 20 7 1 9 -262144 -1 -1
+#X restore 46 469 pd start;
+#X obj 134 572 spatOSC-basicRenderer;
+#X obj 284 555 tgl 15 0 empty empty <-Debug 20 7 1 9 -262144 -1 -1
 0 1;
-#X obj 494 480 bng 15 250 50 0 empty empty <-ShowNodes 20 7 1 9 -262144
+#X obj 284 536 bng 15 250 50 0 empty empty <-ShowNodes 20 7 1 9 -262144
 -1 -1;
-#X obj 419 517 nbx 3 20 -1e+37 1e+37 0 0 empty g_numSoundNodes nodeCount:
+#X obj 210 594 nbx 3 20 -1e+37 1e+37 0 0 empty g_numSoundNodes nodeCount:
 -72 10 0 9 -262144 -1 -1 0 256;
 #N canvas 176 238 949 633 reverb 0;
 #X obj 387 376 vsl 15 128 -99 18 0 1 empty empty Output -14 -10 0 12
@@ -849,7 +924,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X obj 695 337 unpack 0 0 0;
 #X obj 695 442 clip 0 1;
 #X obj 708 473 vsl 15 25 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 1652 1;
+-1 -1 0 1;
 #X obj 695 381 expr ($f1*$f1) + ($f2*$f2) + ($f3*$f3);
 #X floatatom 840 447 5 0 0 0 - - -;
 #X obj 697 421 zscale 0 200 1 0;
@@ -918,13 +993,13 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X connect 62 0 25 3;
 #X connect 63 0 56 2;
 #X connect 64 0 0 0;
-#X restore 541 355 pd reverb;
-#X obj 542 309 catch~ global-reverb~;
-#X obj 590 332 tgl 20 0 empty g_reverbToggle-set reverb::on/off 25
-10 1 10 -261234 -1 -1 1 1;
-#X obj 12 153 t b b b b;
-#X obj 12 352 t b b b b;
-#X msg 63 372 1;
+#X restore 374 602 pd reverb;
+#X obj 375 556 catch~ global-reverb~;
+#X obj 423 579 tgl 20 0 empty g_reverbToggle-set reverb::on/off 25
+10 1 10 -261234 -1 -1 0 1;
+#X obj 12 173 t b b b b;
+#X obj 12 372 t b b b b;
+#X msg 63 392 1;
 #N canvas 299 240 884 651 DEBUG 0;
 #X obj 30 132 widget-nodeEditor \$0;
 #X msg 490 295 debug spatosc;
@@ -942,7 +1017,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X msg 415 207 /book setEnabled mcluhan_3-0-open 0;
 #X msg 177 92 mcluhan_3-1-1r;
 #X msg 268 76 mcluhan-st33-1;
-#N canvas 0 0 750 456 NORTH_EAST_SOUTH_WEST 0;
+#N canvas 0 22 750 456 NORTH_EAST_SOUTH_WEST 0;
 #X obj 151 58 inlet;
 #X msg 151 156 North 0 5 1 \, East 5 0 1 \, South 0 -5 1 \, West -5
 0 1;
@@ -1029,96 +1104,139 @@ setDirectivityFlag 1;
 #X connect 37 0 0 0;
 #X connect 38 0 33 0;
 #X connect 39 0 33 0;
-#X restore 249 75 pd DEBUG;
-#X obj 63 393 tgl 20 0 empty empty ambientLoops::on/off 25 10 1 10
--261234 -1 -1 1 1;
-#X obj 346 448 r gAudioInit!;
-#N canvas 1015 349 856 620 AUDIO_INIT 0;
+#X restore 461 53 pd DEBUG;
+#X obj 63 413 tgl 20 0 empty empty ambientLoops::on/off 25 10 1 10
+-261234 -1 -1 0 1;
+#X obj 257 490 r gAudioInit!;
+#N canvas 35 65 933 793 AUDIO_INIT 0;
 #X obj 180 20 inlet;
 #X obj 180 58 t b b b b;
-#X obj 272 519 outlet;
-#X text 324 520 <- to audio renderer;
-#X obj 498 257 s \$0-to-SPIN-TCP;
-#X msg 485 207 spatosc setDefaultDistanceFactor \$1 1;
-#X msg 601 180 50;
-#X msg 595 157 100;
-#X msg 585 111 200;
+#X text 332 508 <- to audio renderer;
+#X obj 556 224 s \$0-to-SPIN-TCP;
+#X msg 543 174 spatosc setDefaultDistanceFactor \$1 1;
+#X msg 659 147 50;
+#X msg 653 124 100;
+#X msg 643 78 200;
 #X text 241 18 <- this bang should be sent only when spinserver is
 confirmed to be running \, and ideally after the listener is created
 ;
-#X obj 191 312 s renderer.toggleDsp;
-#X msg 185 266 bang;
+#X obj 170 299 s renderer.toggleDsp;
+#X msg 164 253 bang;
 #X obj 40 303 s g_masterGain-set;
 #X obj 93 186 loadbang;
 #X obj 42 259 line;
 #X msg 90 208 -99 0;
-#X obj 182 370 sendset g_pdDSP-set;
-#X msg 182 349 1;
+#X obj 161 357 sendset g_pdDSP-set;
+#X msg 161 336 1;
 #X text 16 131 Goes to 0db over 2sec fade;
 #X obj 29 156 cnv 20 20 20 empty empty * 0 18 0 32 -262144 -258113
 0;
-#X msg 595 134 150;
+#X msg 653 101 150;
 #X msg 58 157 0 2000;
-#X obj 355 439 s from_spatosc;
-#X msg 436 399 /spatosc/core createListener octo;
-#X msg 355 317 /a.renderer/setOutputFormat octo;
-#X msg 378 365 /a.renderer/setOutputFormat quad;
-#X connect 0 0 1 0;
-#X connect 1 0 21 0;
-#X connect 1 1 11 0;
-#X connect 1 2 24 0;
-#X connect 1 3 7 0;
-#X connect 5 0 4 0;
-#X connect 6 0 5 0;
-#X connect 7 0 5 0;
-#X connect 8 0 5 0;
-#X connect 11 0 10 0;
-#X connect 11 0 17 0;
-#X connect 13 0 15 0;
-#X connect 14 0 12 0;
-#X connect 15 0 14 0;
-#X connect 17 0 16 0;
-#X connect 20 0 5 0;
-#X connect 21 0 14 0;
-#X connect 24 0 22 0;
-#X connect 25 0 22 0;
-#X restore 346 472 pd AUDIO_INIT;
-#X obj 29 480 s gAudioInit!;
-#X obj 438 462 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X msg 320 210 /a.renderer/setOutputFormat octo;
+#X msg 296 154 /a.renderer/setOutputFormat dome;
+#X obj 333 259 t b;
+#X msg 439 257 vmic1.channel 18;
+#X obj 268 507 outlet;
+#X obj 342 451 list prepend /spatosc/core/listener/posture05-listener/prop
+;
+#X obj 360 238 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 399 194 tgl 20 0 g_soundSpheres-tgl g_soundSpheres-tgl-set soundSpheres
+#X msg 439 280 vmic2.channel 24;
+#X msg 439 347 vmic5.channel 25;
+#X msg 439 392 vmic7.channel 21;
+#X msg 439 416 vmic8.channel 19;
+#X msg 439 370 vmic6.channel 23;
+#X obj 508 484 t b;
+#X obj 517 676 list prepend /spatosc/core/listener/posture05-listener/prop
+;
+#X obj 472 477 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 614 482 vmic1.yaw 90;
+#X msg 614 505 vmic2.yaw 0;
+#X msg 614 527 vmic3.yaw 180;
+#X msg 614 550 vmic4.yaw -90;
+#X msg 614 572 vmic5.yaw 45;
+#X msg 614 595 vmic6.yaw -45;
+#X msg 614 617 vmic7.yaw -135;
+#X msg 614 641 vmic8.yaw 125;
+#X msg 569 302 vmic3.channel 22;
+#X msg 569 325 vmic4.channel 20;
+#X msg 439 302 vmic3.channel 20;
+#X msg 439 325 vmic4.channel 22;
+#X connect 0 0 1 0;
+#X connect 1 0 20 0;
+#X connect 1 1 10 0;
+#X connect 1 1 23 0;
+#X connect 1 2 21 0;
+#X connect 1 3 6 0;
+#X connect 4 0 3 0;
+#X connect 5 0 4 0;
+#X connect 6 0 4 0;
+#X connect 7 0 4 0;
+#X connect 10 0 9 0;
+#X connect 10 0 16 0;
+#X connect 12 0 14 0;
+#X connect 13 0 11 0;
+#X connect 14 0 13 0;
+#X connect 16 0 15 0;
+#X connect 19 0 4 0;
+#X connect 20 0 13 0;
+#X connect 21 0 25 0;
+#X connect 22 0 25 0;
+#X connect 23 0 29 0;
+#X connect 23 0 32 0;
+#X connect 23 0 24 0;
+#X connect 23 0 28 0;
+#X connect 23 0 46 0;
+#X connect 23 0 47 0;
+#X connect 23 0 30 0;
+#X connect 23 0 31 0;
+#X connect 24 0 26 0;
+#X connect 26 0 25 0;
+#X connect 27 0 23 0;
+#X connect 28 0 26 0;
+#X connect 29 0 26 0;
+#X connect 30 0 26 0;
+#X connect 31 0 26 0;
+#X connect 32 0 26 0;
+#X connect 33 0 40 0;
+#X connect 33 0 41 0;
+#X connect 33 0 36 0;
+#X connect 33 0 37 0;
+#X connect 33 0 38 0;
+#X connect 33 0 39 0;
+#X connect 33 0 42 0;
+#X connect 33 0 43 0;
+#X connect 34 0 25 0;
+#X connect 35 0 33 0;
+#X connect 36 0 34 0;
+#X connect 37 0 34 0;
+#X connect 38 0 34 0;
+#X connect 39 0 34 0;
+#X connect 40 0 34 0;
+#X connect 41 0 34 0;
+#X connect 42 0 34 0;
+#X connect 43 0 34 0;
+#X connect 46 0 26 0;
+#X connect 47 0 26 0;
+#X restore 257 514 pd AUDIO_INIT;
+#X obj 29 500 s gAudioInit!;
+#X obj 233 511 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 387 210 tgl 20 0 g_soundSpheres-tgl g_soundSpheres-tgl-set soundSpheres
 25 10 1 10 -203904 -4160 -1 0 1;
-#X obj 19 507 delay 20000;
-#X obj 12 327 delay 10000;
-#X obj 38 275 delay 5000;
-#X obj 163 732 s \$0-to-SPIN-TCP;
-#X obj 91 342 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 19 527 delay 20000;
+#X obj 12 347 delay 10000;
+#X obj 38 295 delay 5000;
+#X obj 91 362 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 667 424 widget-nodeEditor \$0;
-#X msg 320 707 debug scenegraph;
-#X obj 762 340 s \$0-to-SPIN-TCP;
-#X msg 699 388 test;
-#X msg 193 685 /posture05 setTranslation 0 0 0;
-#X msg 695 186 createNode test ShapeNode \, /test setShape 2 \, /test
-setTranslation 0 2 0;
-#X msg 755 393 domeGrid;
-#X msg 140 551 createNode domeGrid ModelNode \, /domeGrid setModelFromFile
-~/content/nta/models/debug/domeGrid.obj \, /domeGrid setTranslation
-0 -1 0 \, /domeGrid setLighting 0;
-#X msg 168 607 /domeGrid setParent posture05;
-#X msg 183 659 /domeGrid setModelFromFile NULL;
-#X msg 828 384 posture05;
-#X msg 173 632 /domeGrid setParent world;
-#X msg 432 644 /domeGrid setLighting \$1;
-#X obj 435 611 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X msg 776 272 /test setScale 1 1 1;
-#X msg 513 694 /posture05 setTranslation 0 -10 0;
-#X msg 509 719 /posture05 setTranslation -10 0 0;
-#X msg 717 223 createNode test2 ShapeNode \, /test2 setShape 2 \, /test2
-setTranslation 2 0 0;
-#X msg 793 142 deleteNode test2;
-#N canvas 638 184 1245 796 menu 0;
+#X obj 531 438 widget-nodeEditor \$0;
+#X obj 660 210 s \$0-to-SPIN-TCP;
+#X msg 637 385 test;
+#X msg 701 376 domeGrid;
+#X msg 505 345 posture05;
+#N canvas 166 134 1245 796 menu 0;
 #N canvas 141 217 900 647 MENU_FORMAT 0;
 #X obj 44 27 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144 -1
 -1 0;
@@ -1301,31 +1419,30 @@ setTranslation 2 0 0;
 #X msg 36 208 /menu_item* setSize 0.06;
 #X obj 877 450 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 408 572 symbol;
-#X msg 408 592 open \$1;
-#X obj 364 625 readsf~ 2;
+#X obj 408 592 symbol;
+#X msg 408 612 open \$1;
+#X obj 364 645 readsf~ 2;
 #X obj 364 480 coll;
 #C restore;
 #X msg 185 419 read mcluhan_bits.coll;
 #X obj 185 397 loadbang;
-#X obj 282 587 vu1~;
-#X obj 364 601 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 282 607 vu1~;
+#X obj 364 621 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 364 545 t b s;
-#X msg 364 569 1;
-#X obj 234 629 vsl 20 128 -99 18 0 1 \$0-gain empty gain -7 -18 0 14
+#X obj 364 565 t b s;
+#X msg 364 589 1;
+#X obj 234 649 vsl 20 128 -99 18 0 1 \$0-gain empty gain -7 -18 0 14
 -260760 -1 -1 9661 1;
-#X obj 374 685 stgain2~;
-#X obj 359 755 dac~ 1 2 3 4 5 6 7 8;
-#X obj 404 662 r \$0-gain;
+#X obj 374 705 stgain2~;
+#X obj 359 775 dac~ 1 2 3 4 5 6 7 8;
+#X obj 404 682 r \$0-gain;
 #X obj 34 468 nbx 3 30 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 20
--262144 -1 -1 6 256;
+-262144 -1 -1 0 256;
 #X symbolatom 33 497 50 0 0 0 - - -;
 #X msg 319 221 One Liners \, Compression \, Grievance \, Streakers
 \, The Ball Game \, Swedish Humour \, Updating \, Jeans \, Nudity \,
 On Being Ahead \, Primitivism \, Subliminal Effects \, Television \,
 Touch \, Kinetics \, Literacy \, Replay \, Charisma;
-#X obj 1054 337 s from_spatosc;
 #X msg 1054 313 /a.renderer/setOutputDB \$1;
 #X obj 1041 254 sel 0 1;
 #X msg 1034 281 0;
@@ -1338,10 +1455,8 @@ menuOffset \, /menu setTranslation 0 -0.01 0.014 \, /menu setBillboard
 1 0 1;
 #X obj 687 145 expr if ((abs($f1)<90) && (180-abs($f3)<90) \, 1 \,
 0);
-#X obj 364 510 makefilename /home/posture/content/projects-models/mcluhan-models/%s
-;
 #X msg 901 389 /askMarshall setAll \$1;
-#N canvas 0 0 628 611 askMarshall 0;
+#N canvas 0 22 628 611 askMarshall 0;
 #X obj 184 38 inlet;
 #X msg 260 90 Ask Marshall;
 #X obj 260 111 list2symbol;
@@ -1378,13 +1493,19 @@ setOrientation 0 0 180 \, /askMarshall_titletext setTextValue \$1;
 #X obj 732 318 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X msg 92 400 2;
-#X msg 181 564 0;
+#X msg 181 584 0;
 #X msg 29 317 /menu setEnabled 0;
 #X obj 28 292 delay 100;
 #X obj 645 332 sel 0;
-#X msg 492 599 0;
-#X msg 114 555 -10;
-#X obj 127 610 loadbang1 -10;
+#X msg 492 619 0;
+#X msg 114 575 -10;
+#X obj 127 630 loadbang1 -10;
+#X obj 466 477 getenv HOME;
+#X obj 364 524 list prepend HOME;
+#X obj 466 456 loadbang;
+#X obj 364 545 list2symbol /;
+#X obj 364 502 list prepend Documents/Metalab/mcluhan;
+#X obj 1054 337 s \$0-toRenderer;
 #X connect 1 0 25 0;
 #X connect 4 0 25 0;
 #X connect 5 0 32 0;
@@ -1399,9 +1520,9 @@ setOrientation 0 0 180 \, /askMarshall_titletext setTextValue \$1;
 #X connect 15 0 17 0;
 #X connect 15 0 26 0;
 #X connect 15 0 34 0;
-#X connect 15 0 62 0;
-#X connect 15 0 69 0;
-#X connect 15 0 76 0;
+#X connect 15 0 61 0;
+#X connect 15 0 67 0;
+#X connect 15 0 74 0;
 #X connect 16 0 38 0;
 #X connect 18 0 14 0;
 #X connect 19 0 21 0;
@@ -1409,11 +1530,11 @@ setOrientation 0 0 180 \, /askMarshall_titletext setTextValue \$1;
 #X connect 21 0 22 0;
 #X connect 22 0 12 0;
 #X connect 25 0 41 0;
-#X connect 25 0 65 0;
-#X connect 25 0 75 0;
+#X connect 25 0 64 0;
+#X connect 25 0 73 0;
 #X connect 25 1 59 0;
 #X connect 25 2 39 0;
-#X connect 25 2 70 0;
+#X connect 25 2 68 0;
 #X connect 25 3 24 0;
 #X connect 26 0 16 0;
 #X connect 26 1 16 1;
@@ -1426,9 +1547,9 @@ setOrientation 0 0 180 \, /askMarshall_titletext setTextValue \$1;
 #X connect 33 0 15 0;
 #X connect 34 0 35 0;
 #X connect 36 0 37 0;
-#X connect 37 0 67 0;
+#X connect 37 0 66 0;
 #X connect 38 0 8 0;
-#X connect 39 0 66 0;
+#X connect 39 0 65 0;
 #X connect 40 0 39 1;
 #X connect 41 0 3 0;
 #X connect 42 0 19 0;
@@ -1437,7 +1558,7 @@ setOrientation 0 0 180 \, /askMarshall_titletext setTextValue \$1;
 #X connect 45 0 54 0;
 #X connect 45 1 54 1;
 #X connect 46 0 58 0;
-#X connect 46 0 68 0;
+#X connect 46 0 82 0;
 #X connect 47 0 46 0;
 #X connect 48 0 47 0;
 #X connect 50 0 45 0;
@@ -1455,112 +1576,218 @@ setOrientation 0 0 180 \, /askMarshall_titletext setTextValue \$1;
 #X connect 54 1 55 7;
 #X connect 56 0 54 2;
 #X connect 59 0 29 0;
-#X connect 61 0 60 0;
-#X connect 62 0 63 0;
-#X connect 62 1 64 0;
-#X connect 63 0 61 0;
-#X connect 64 0 61 0;
+#X connect 60 0 83 0;
+#X connect 61 0 62 0;
+#X connect 61 1 63 0;
+#X connect 62 0 60 0;
+#X connect 63 0 60 0;
+#X connect 64 0 3 0;
 #X connect 65 0 3 0;
-#X connect 66 0 3 0;
-#X connect 67 0 6 0;
-#X connect 68 0 51 0;
-#X connect 69 0 9 0;
-#X connect 71 0 8 0;
-#X connect 72 0 46 0;
-#X connect 73 0 53 0;
-#X connect 74 0 3 0;
-#X connect 75 0 74 0;
-#X connect 76 0 77 0;
-#X connect 77 0 45 0;
-#X connect 78 0 53 0;
-#X connect 79 0 53 0;
-#X restore 19 618 pd menu;
-#X msg 702 360 menu;
-#X msg 912 398 askMarshall_bg;
-#X msg 746 368 askMarshall;
-#X text 627 37 DOME VERSION;
-#X obj 252 440 s from_spatosc;
+#X connect 66 0 6 0;
+#X connect 67 0 9 0;
+#X connect 69 0 8 0;
+#X connect 70 0 46 0;
+#X connect 71 0 53 0;
+#X connect 72 0 3 0;
+#X connect 73 0 72 0;
+#X connect 74 0 75 0;
+#X connect 75 0 45 0;
+#X connect 76 0 53 0;
+#X connect 77 0 53 0;
+#X connect 78 0 79 1;
+#X connect 79 0 81 0;
+#X connect 80 0 78 0;
+#X connect 81 0 51 0;
+#X connect 82 0 79 0;
+#X restore 19 638 pd menu;
+#X msg 640 357 menu;
+#X msg 459 309 askMarshall_bg;
+#X msg 539 370 askMarshall;
+#X text 581 37 DOME VERSION;
 #X msg 310 414 /a.renderer/setOutputDB \$1;
-#X msg 1095 321 -80;
-#X msg 592 390 menuOffset;
-#X obj 77 605 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X msg 660 253 menuOffset;
+#X obj 77 625 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X msg 789 302 /mcluhan setScale 1 1 0.6666;
-#X msg 536 426 askMarshall_titletext;
-#X msg 493 451 askMarshall_excerpts;
-#X obj 9 572 delay 18000;
-#X msg 910 367 mcluhan-st2;
-#X connect 0 0 56 0;
+#X msg 687 172 /mcluhan setScale 1 1 0.6666;
+#X msg 576 287 askMarshall_titletext;
+#X msg 592 317 askMarshall_excerpts;
+#X obj 9 592 delay 18000;
+#X msg 685 403 mcluhan-st2;
+#X msg 666 143 debug spatosc;
+#X msg 263 118 0;
+#X obj 12 72 t b b b b;
+#X obj 131 63 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#N canvas 161 166 520 806 LISTENER_tuning 0;
+#X obj 26 237 cnv 15 450 450 empty empty underListener_tuning 20 12
+0 14 -233017 -66577 0;
+#X msg 56 425 \; listener-ext.exp \$1;
+#X floatatom 56 400 5 0 0 0 - - -;
+#X msg 55 377 2;
+#X floatatom 57 515 5 0 0 1 _db - -;
+#X text 33 265 listener-ext is a separate vmic for at -90 pitch;
+#X msg 59 599 \; listener-ext.elev.exp-scaler 1;
+#X text 55 630 not needed;
+#X obj 59 494 hsl 128 15 -90 12 0 0 empty empty gain -2 -8 0 10 -262144
+-1 -1 0 1;
+#X msg 57 539 \; listener-ext.vmic-below.gain \$1;
+#X obj 26 -79 cnv 15 450 300 empty empty dome-vmic_tuning 20 12 0 14
+-233017 -66577 0;
+#X floatatom 45 74 5 0 0 0 - - -;
+#X obj 42 195 s \$0-toRenderer;
+#X msg 44 105 /spatosc/core/listener/listener/prop exp \$1;
+#X floatatom 119 4 5 0 0 0 - - -;
+#X text 46 -61 good pair;
+#X msg 118 30 /spatosc/core/listener/listener/prop elev.exp-scaler
+\$1;
+#X text 84 76 to set azimuth "spread";
+#X text 158 -20 to adjust (scale) elevation "spread";
+#X msg 45 48 12;
+#X msg 119 -20 0.2;
+#X text 34 286 (listener-ext is not a node-name so param messages will
+not work messages are sent directly to renderer);
+#X text 154 -3 (note: this is a function of azimuth spread);
+#X msg 74 153 /spatosc/core/listener/listener/prop offset.yaw 45;
+#X text 145 171 TEMPORARY FIX UNTIL ROTATE LISTENER IS FIXED;
+#X text 193 497 attenuation of node when below listener;
+#X text 82 378 sharpness of transition when node goes below listener
+;
+#X connect 2 0 1 0;
+#X connect 3 0 2 0;
+#X connect 4 0 9 0;
+#X connect 8 0 4 0;
+#X connect 11 0 13 0;
+#X connect 13 0 12 0;
+#X connect 14 0 16 0;
+#X connect 16 0 12 0;
+#X connect 19 0 11 0;
+#X connect 20 0 14 0;
+#X connect 23 0 12 0;
+#X restore 227 641 pd LISTENER_tuning;
+#N canvas 356 70 480 200 AUDIO-DEBUG-TOOLS 0;
+#X obj 12 -40 cnv 15 450 150 empty empty debug 20 12 0 14 -233017 -66577
+0;
+#X msg 29 -16 vis 1;
+#X obj 29 13 send listener.plugin.patch;
+#X msg 227 -15 vis 1;
+#X obj 228 8 send snd-listener.conn.plugin.patch;
+#X obj 21 83 s \$0-to-SPIN;
+#X msg 105 51 debug spatosc;
+#X msg 105 82 debug;
+#X msg 21 50 debug nodes;
+#X text 192 51 debug message prints spatosc info to console;
+#N canvas 171 22 860 879 UNUSED-TILL-FIXED 0;
+#X msg 270 172 /listener setParam setSpread \$1;
+#X floatatom 270 149 5 0 0 0 - - -;
+#X floatatom 233 163 5 0 0 0 - - -;
+#X msg 233 193 /listener setSpread \$1;
+#X text 306 142 has no effect since spin does not pass it through to
+spatOSC properly;
+#X msg 56 107 /listener setOrientation 0 0 \$1;
+#X floatatom 283 57 5 0 0 0 - - -;
+#X obj 283 81 rad2deg;
+#X obj 282 107 rad2deg;
+#X floatatom 358 112 5 0 0 0 - - -;
+#X obj 183 240 s \$0-to-SPIN;
+#X msg 152 428 /snd setParam filename /Volumes/media/sound/wood.aiff
+;
+#X text 113 398 <optional> to change the sound file played by "looper"
+plugin;
+#X msg 310 346 /snd setParam setPlugin testtone~;
+#X text 116 346 this one implemented;
+#X msg 289 492 /snd setParam setPlugin buzz~;
+#X obj 66 626 s \$0-toRenderer;
+#X msg 66 606 /spatosc/core/listener/listener/prop offset.yaw 45;
+#X text 60 577 set listenr yaw offset: sent locally to renderer (since
+spin won't echo the message through via spatOSC);
+#X text 168 629 sent locally to renderer (or could be sent to renderer
+via UDP on port 18032);
+#X msg 526 414 /snd1 setParam setPlugin looper1~;
+#X obj 98 470 s \$0-to-SPIN-TCP;
+#X connect 0 0 10 0;
+#X connect 1 0 0 0;
+#X connect 2 0 3 0;
+#X connect 3 0 10 0;
+#X connect 5 0 10 0;
+#X connect 6 0 7 0;
+#X connect 7 0 8 0;
+#X connect 8 0 9 0;
+#X connect 8 0 5 0;
+#X connect 11 0 21 0;
+#X connect 13 0 21 0;
+#X connect 15 0 21 0;
+#X connect 17 0 16 0;
+#X connect 20 0 21 0;
+#X restore 19 128 pd UNUSED-TILL-FIXED;
+#X connect 1 0 2 0;
+#X connect 3 0 4 0;
+#X connect 6 0 5 0;
+#X connect 7 0 5 0;
+#X connect 8 0 5 0;
+#X restore 226 620 pd AUDIO-DEBUG-TOOLS;
+#X obj 147 538 r \$0-toRenderer;
+#X connect 0 0 55 0;
 #X connect 4 0 6 0;
 #X connect 13 0 14 0;
 #X connect 14 0 15 0;
 #X connect 14 1 16 0;
 #X connect 14 2 17 0;
 #X connect 19 0 18 0;
-#X connect 22 0 24 0;
-#X connect 23 0 29 0;
-#X connect 24 0 11 0;
-#X connect 24 1 30 0;
-#X connect 26 0 48 0;
-#X connect 27 0 22 0;
-#X connect 30 0 29 0;
-#X connect 33 0 31 0;
-#X connect 35 0 34 0;
-#X connect 36 0 37 0;
-#X connect 39 0 38 0;
-#X connect 40 0 96 0;
-#X connect 40 0 41 0;
-#X connect 45 0 46 0;
-#X connect 45 0 44 1;
-#X connect 50 0 49 1;
-#X connect 51 0 49 1;
-#X connect 54 0 53 0;
-#X connect 55 0 53 1;
-#X connect 56 0 67 0;
-#X connect 56 1 68 0;
-#X connect 56 1 31 0;
-#X connect 56 2 38 0;
-#X connect 56 3 34 0;
-#X connect 56 3 6 0;
-#X connect 57 0 66 0;
-#X connect 57 0 103 0;
-#X connect 57 1 63 0;
-#X connect 57 2 48 0;
-#X connect 57 3 58 0;
-#X connect 58 0 60 0;
-#X connect 60 0 44 0;
-#X connect 61 0 62 0;
-#X connect 62 0 49 0;
-#X connect 64 0 62 0;
-#X connect 66 0 18 0;
-#X connect 67 0 57 0;
-#X connect 68 0 31 0;
-#X connect 70 0 57 0;
+#X connect 22 0 89 0;
+#X connect 23 0 28 0;
+#X connect 25 0 47 0;
+#X connect 26 0 22 0;
+#X connect 29 0 28 0;
+#X connect 32 0 30 0;
+#X connect 34 0 33 0;
+#X connect 35 0 36 0;
+#X connect 38 0 37 0;
+#X connect 39 0 79 0;
+#X connect 39 0 40 0;
+#X connect 44 0 45 0;
+#X connect 44 0 43 1;
+#X connect 49 0 48 1;
+#X connect 50 0 48 1;
+#X connect 53 0 52 0;
+#X connect 54 0 52 1;
+#X connect 55 0 66 0;
+#X connect 55 1 67 0;
+#X connect 55 1 30 0;
+#X connect 55 2 37 0;
+#X connect 55 3 33 0;
+#X connect 55 3 6 0;
+#X connect 56 0 65 0;
+#X connect 56 0 85 0;
+#X connect 56 1 62 0;
+#X connect 56 2 47 0;
+#X connect 56 3 57 0;
+#X connect 57 0 59 0;
+#X connect 59 0 43 0;
+#X connect 60 0 61 0;
+#X connect 61 0 48 1;
+#X connect 63 0 61 0;
+#X connect 65 0 18 0;
+#X connect 66 0 56 0;
+#X connect 67 0 30 0;
+#X connect 68 0 56 0;
+#X connect 71 0 69 0;
 #X connect 72 0 69 0;
-#X connect 74 0 71 0;
+#X connect 73 0 69 0;
 #X connect 75 0 69 0;
-#X connect 76 0 73 0;
-#X connect 77 0 71 0;
-#X connect 78 0 69 0;
-#X connect 79 0 69 0;
+#X connect 76 0 69 0;
+#X connect 77 0 69 0;
+#X connect 79 0 48 1;
 #X connect 80 0 69 0;
-#X connect 81 0 71 0;
-#X connect 82 0 69 0;
+#X connect 81 0 74 0;
+#X connect 82 0 70 0;
 #X connect 83 0 69 0;
-#X connect 84 0 83 0;
-#X connect 85 0 73 0;
+#X connect 84 0 69 0;
+#X connect 85 0 74 0;
 #X connect 86 0 69 0;
-#X connect 87 0 69 0;
-#X connect 88 0 73 0;
-#X connect 89 0 73 0;
-#X connect 91 0 71 0;
-#X connect 92 0 71 0;
-#X connect 93 0 71 0;
-#X connect 96 0 95 0;
-#X connect 98 0 71 0;
-#X connect 99 0 90 0;
-#X connect 100 0 73 0;
-#X connect 101 0 71 0;
-#X connect 102 0 71 0;
-#X connect 103 0 90 0;
-#X connect 104 0 71 0;
+#X connect 87 0 70 0;
+#X connect 88 0 35 0;
+#X connect 89 0 11 0;
+#X connect 89 1 29 0;
+#X connect 89 3 88 0;
+#X connect 90 0 22 0;
+#X connect 93 0 48 1;
