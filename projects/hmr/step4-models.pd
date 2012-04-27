@@ -1,7 +1,6 @@
 #N canvas 16 22 986 777 10;
 #X obj 132 733 outlet;
 #X obj 146 37 inlet creation;
-#X obj 140 103 thisdir;
 #X obj 140 129 t b s;
 #X obj 110 161 symbol \$1;
 #X obj 145 204 pack s s;
@@ -25,69 +24,70 @@ look for .ac file;
 \$2/models/\$1.ac \, /\$1 setParent step4 \, /\$1 setOrientation 90
 0 90 \, /\$1 setScale 0.1 0.1 0.1 \, /\$1 setTranslation 1030 3300
 0;
-#X msg 658 315 deleteNode \$1-Nucleus_w_extras \, createNode \$1-Nucleus_w_extras
-ModelNode \, /\$1-Nucleus_w_extras setModelFromFile posture/Desktop/HMR_plans/models/HMR-modeles/cell-IVE/\$1-Nucleus_w_extras.IVE
-\, /\$1-Nucleus_w_extras setParent step4 \, /\$1-Nucleus_w_extras setOrientation
-0 0 90 \, /\$1-Nucleus_w_extras setScale 0.05 0.05 0.05 \, /\$1-Nucleus_w_extras
-setTranslation 1130 3800 -150;
-#X msg 629 168 deleteNode \$1-Golgi_Apparatus2_w_microtubules \, createNode
-\$1-Golgi_Apparatus2_w_microtubules ModelNode \, /\$1-Golgi_Apparatus2_w_microtubules
-setModelFromFile posture/Desktop/HMR_plans/models/HMR-modeles/cell-IVE/\$1-Golgi_Apparatus2_w_microtubules.IVE
-\, /\$1-Golgi_Apparatus2_w_microtubules setParent step4 \, /\$1-Golgi_Apparatus2_w_microtubules
-setOrientation 0 0 0 \, /\$1-Golgi_Apparatus2_w_microtubules setScale
-0.01 0.01 0.01 \, /\$1-Golgi_Apparatus2_w_microtubules setTranslation
-984 3800 0;
+#X obj 140 103 anyreg gProjectPath;
 #X msg 195 365 deleteNode \$1-Centrioles_w_Extras \, createNode \$1-Centrioles_w_Extras
-ModelNode \, /\$1-Centrioles_w_Extras setModelFromFile posture/Desktop/HMR_plans/models/HMR-modeles/cell-IVE/\$1-Centrioles_w_Extras.IVE
+ModelNode \, /\$1-Centrioles_w_Extras setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1-Centrioles_w_Extras.IVE
 \, /\$1-Centrioles_w_Extras setParent step4 \, /\$1-Centrioles_w_Extras
 setOrientation 0 0 0 \, /\$1-Centrioles_w_Extras setScale 0.01 0.01
 0.01 \, /\$1-Centrioles_w_Extras setTranslation 1003 3800 0;
 #X msg 220 484 deleteNode \$1-CytoSkeleton_Elements \, createNode \$1-CytoSkeleton_Elements
-ModelNode \, /\$1-CytoSkeleton_Elements setModelFromFile posture/Desktop/HMR_plans/models/HMR-modeles/cell-IVE/\$1-CytoSkeleton_Elements.IVE
+ModelNode \, /\$1-CytoSkeleton_Elements setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1-CytoSkeleton_Elements.IVE
 \, /\$1-CytoSkeleton_Elements setParent step4 \, /\$1-CytoSkeleton_Elements
 setOrientation 0 0 0 \, /\$1-CytoSkeleton_Elements setScale 1 1 1 \,
 /\$1-CytoSkeleton_Elements setTranslation 1014 3562 -139;
 #X msg 247 607 deleteNode \$1-Glycan_Protein_Cell_membrane \, createNode
 \$1-Glycan_Protein_Cell_membrane ModelNode \, /\$1-Glycan_Protein_Cell_membrane
-setModelFromFile posture/Desktop/HMR_plans/models/HMR-modeles/cell-IVE/\$1-Glycan_Protein_Cell_membrane.IVE
+setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1-Glycan_Protein_Cell_membrane.IVE
 \, /\$1-Glycan_Protein_Cell_membrane setParent step4 \, /\$1-Glycan_Protein_Cell_membrane
 setOrientation 0 0 0 \, /\$1-Glycan_Protein_Cell_membrane setScale
 0.01 0.01 0.01 \, /\$1-Glycan_Protein_Cell_membrane setTranslation
 1030 3800 0;
+#X msg 629 168 deleteNode \$1-Golgi_Apparatus2_w_microtubules \, createNode
+\$1-Golgi_Apparatus2_w_microtubules ModelNode \, /\$1-Golgi_Apparatus2_w_microtubules
+setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1-Golgi_Apparatus2_w_microtubules.IVE
+\, /\$1-Golgi_Apparatus2_w_microtubules setParent step4 \, /\$1-Golgi_Apparatus2_w_microtubules
+setOrientation 0 0 0 \, /\$1-Golgi_Apparatus2_w_microtubules setScale
+0.01 0.01 0.01 \, /\$1-Golgi_Apparatus2_w_microtubules setTranslation
+984 3800 0;
+#X msg 647 314 deleteNode \$1-Nucleus_w_extras \, createNode \$1-Nucleus_w_extras
+ModelNode \, /\$1-Nucleus_w_extras setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1-Nucleus_w_extras.IVE
+\, /\$1-Nucleus_w_extras setParent step4 \, /\$1-Nucleus_w_extras setOrientation
+0 0 90 \, /\$1-Nucleus_w_extras setScale 0.05 0.05 0.05 \, /\$1-Nucleus_w_extras
+setTranslation 1130 3800 -150;
 #X msg 679 433 deleteNode \$1-Protein_molecules \, createNode \$1-Protein_molecules
-ModelNode \, /\$1-Protein_molecules setModelFromFile posture/Desktop/HMR_plans/models/HMR-modeles/cell-IVE/\$1-Protein_molecules.IVE
+ModelNode \, /\$1-Protein_molecules setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1-Protein_molecules.IVE
 \, /\$1-Protein_molecules setParent step4 \, /\$1-Protein_molecules
 setOrientation 0 0 90 \, /\$1-Protein_molecules setScale 0.01 0.01
 0.01 \, /\$1-Protein_molecules setTranslation 1030 3800 0;
 #X msg 711 552 deleteNode \$1-Scene_Action_Endoplasmic_Ret_w_ribosomes_extras
 \, createNode \$1-Scene_Action_Endoplasmic_Ret_w_ribosomes_extras ModelNode
 \, /\$1-Scene_Action_Endoplasmic_Ret_w_ribosomes_extras setModelFromFile
-posture/Desktop/HMR_plans/models/HMR-modeles/cell-IVE/\$1-Scene_Action_Endoplasmic_Ret_w_ribosomes_extras.IVE
+\$2/models/HMR-modeles/cell-IVE/\$1-Scene_Action_Endoplasmic_Ret_w_ribosomes_extras.IVE
 \, /\$1-Scene_Action_Endoplasmic_Ret_w_ribosomes_extras setParent step4
 \, /\$1-Scene_Action_Endoplasmic_Ret_w_ribosomes_extras setOrientation
 0 0 90 \, /\$1-Scene_Action_Endoplasmic_Ret_w_ribosomes_extras setScale
 0.05 0.05 0.05 \, /\$1-Scene_Action_Endoplasmic_Ret_w_ribosomes_extras
 setTranslation 1130 3800 -150;
-#X connect 1 0 6 0;
+#X connect 1 0 5 0;
 #X connect 2 0 3 0;
+#X connect 2 1 4 1;
 #X connect 3 0 4 0;
-#X connect 3 1 5 1;
-#X connect 4 0 5 0;
-#X connect 5 0 18 0;
-#X connect 6 0 2 0;
+#X connect 4 0 17 0;
+#X connect 5 0 19 0;
+#X connect 6 0 7 0;
 #X connect 7 0 8 0;
-#X connect 8 0 9 0;
-#X connect 9 0 6 1;
-#X connect 16 0 0 0;
-#X connect 17 0 18 0;
-#X connect 17 1 16 0;
-#X connect 18 0 24 0;
-#X connect 18 1 23 0;
-#X connect 18 2 22 0;
-#X connect 18 3 25 0;
-#X connect 18 4 20 0;
-#X connect 18 5 21 0;
-#X connect 18 6 26 0;
+#X connect 8 0 5 1;
+#X connect 15 0 0 0;
+#X connect 16 0 17 0;
+#X connect 16 1 15 0;
+#X connect 17 0 22 0;
+#X connect 17 1 21 0;
+#X connect 17 2 20 0;
+#X connect 17 3 25 0;
+#X connect 17 4 24 0;
+#X connect 17 5 23 0;
+#X connect 17 6 26 0;
+#X connect 19 0 2 0;
 #X connect 20 0 0 0;
 #X connect 21 0 0 0;
 #X connect 22 0 0 0;

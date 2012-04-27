@@ -1173,7 +1173,7 @@ setScale 10000 10000 10000;
 #X obj 772 252 delay 2000;
 #X obj 676 123 delay 36000;
 #X obj 676 142 t b b b;
-#N canvas 24 130 1236 721 LTC-models 1;
+#N canvas 513 150 1236 721 LTC-models 0;
 #X obj -131 54 inlet;
 #X obj -131 84 t b b b b b b b b b b b;
 #X text 409 543 <-- Scale 7 : healed;
@@ -1211,7 +1211,7 @@ setScale 10000 10000 10000;
 #X obj 246 144 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X msg 87 113 createNode experience SwitchNode;
-#N canvas 639 151 562 382 create_scale_nodes 0;
+#N canvas 900 126 562 382 create_scale_nodes 0;
 #X obj -6 50 inlet;
 #X obj 1 241 outlet;
 #X msg 64 72 createNode step1 SwitchNode \, /step1 setParent experience
@@ -1231,7 +1231,6 @@ setScale 10000 10000 10000;
 #X connect 0 0 5 0;
 #X connect 0 0 6 0;
 #X connect 0 0 7 0;
-#X connect 0 0 3 0;
 #X connect 2 0 1 0;
 #X connect 3 0 1 0;
 #X connect 4 0 1 0;
@@ -1271,7 +1270,6 @@ step6 \$6 \, /experience setEnabled step7 \$7;
 #X connect 1 5 42 0;
 #X connect 1 6 28 0;
 #X connect 1 7 39 0;
-#X connect 1 8 40 0;
 #X connect 1 9 38 0;
 #X connect 1 10 25 0;
 #X connect 1 10 26 0;
@@ -1831,7 +1829,7 @@ forth;
 #X obj 288 186 t b b;
 #X obj 288 142 route event setTranslation;
 #X obj 288 211 s reset;
-#N canvas 285 44 932 695 LTC-laboratoire 0;
+#N canvas 121 87 932 695 LTC-laboratoire 1;
 #X obj 392 -67 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 53 470 s \$0-to-SPIN-TCP;
@@ -1930,7 +1928,7 @@ createNode room12 SwitchNode \, createNode room13 SwitchNode;
 #X obj 880 117 anyreg room6-2 room6-2 179.103 3.75 -159.902 0 27.5
 54.1 90 0 90;
 #X obj 893 152 anyreg room6-3 room6-3 206.152 3.75 -137.852 0 27.5
-20.9 90 0 180;
+20.9 90 0 180 ;
 #X obj 905 188 anyreg room6-4 room6-4 179.102 3.75 -127.402 0 27.5
 54.1 90 0 270;
 #X obj 884 226 anyreg room7-1 room7-1 152.052 3.75 -184.052 0 27.5
@@ -1993,10 +1991,10 @@ createNode room12 SwitchNode \, createNode room13 SwitchNode;
 \, orientation (pitch \, roll \, yaw);
 #X obj 19 -23 t b b b b;
 #X obj 325 56 t b b b b b;
-#X obj 39 -46 loadbang;
+#X obj 49 -46 loadbang;
 #X obj 851 45 t b b b b;
 #X obj 1278 12 t b b b b;
-#X obj 19 -46 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 29 -46 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 104 536 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
@@ -2004,8 +2002,6 @@ createNode room12 SwitchNode \, createNode room13 SwitchNode;
 #X msg 119 601 her;
 #X obj 125 634 s \$0-to-SPIN-TCP;
 #X obj 14 -120 loadbang1 DD;
-#X msg 62 110 deleteNode step2 \, createNode step2 SwitchNode \, /step2
-setOrientation 0 180 -90;
 #X msg 430 670 deleteNode \$1 \, createNode \$1 TextNode \, /\$1 setParent
 step2 \, /\$1 setTranslation \$2 \$4 \$3 \, /\$1 setScale \$5 \$6 \$7
 \, /\$1 setOrientation \$8 \$9 \$10 \, /\$1 setTextValue PowerCorpOfCanada
@@ -2018,35 +2014,44 @@ step2 \, /\$1 setTranslation \$2 \$4 \$3 \, /\$1 setScale \$5 \$6 \$7
 step2 \, /\$1 setTranslation \$2 \$4 \$3 \, /\$1 setScale \$5 \$6 \$7
 \, /\$1 setOrientation \$8 \$9 \$10 \, /\$1 setTextValue PowerCorpOfCanada
 ;
+#X obj 323 34 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 849 22 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 1280 -16 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 62 110 deleteNode step2 \, createNode step2 SwitchNode \, /step2
+setOrientation 0 180 -90 \, /step2 setParent experience;
 #X connect 0 0 3 0;
 #X connect 0 0 4 0;
 #X connect 0 0 5 0;
 #X connect 0 0 6 0;
-#X connect 3 0 91 0;
-#X connect 4 0 91 0;
-#X connect 5 0 91 0;
-#X connect 6 0 91 0;
-#X connect 7 0 90 0;
+#X connect 2 0 79 0;
+#X connect 3 0 90 0;
+#X connect 4 0 90 0;
+#X connect 5 0 90 0;
+#X connect 6 0 90 0;
+#X connect 7 0 96 0;
 #X connect 8 0 30 0;
 #X connect 10 0 12 0;
 #X connect 10 0 13 0;
 #X connect 10 0 14 0;
 #X connect 10 0 15 0;
 #X connect 11 0 31 0;
-#X connect 12 0 91 0;
-#X connect 13 0 91 0;
-#X connect 14 0 91 0;
-#X connect 15 0 91 0;
-#X connect 17 0 91 0;
-#X connect 18 0 91 0;
-#X connect 19 0 91 0;
-#X connect 20 0 91 0;
-#X connect 21 0 91 0;
-#X connect 22 0 91 0;
-#X connect 23 0 91 0;
-#X connect 24 0 91 0;
-#X connect 25 0 91 0;
-#X connect 26 0 91 0;
+#X connect 12 0 90 0;
+#X connect 13 0 90 0;
+#X connect 14 0 90 0;
+#X connect 15 0 90 0;
+#X connect 17 0 90 0;
+#X connect 18 0 90 0;
+#X connect 19 0 90 0;
+#X connect 20 0 90 0;
+#X connect 21 0 90 0;
+#X connect 22 0 90 0;
+#X connect 23 0 90 0;
+#X connect 24 0 90 0;
+#X connect 25 0 90 0;
+#X connect 26 0 90 0;
 #X connect 27 0 18 0;
 #X connect 27 0 19 0;
 #X connect 27 0 20 0;
@@ -2061,8 +2066,8 @@ step2 \, /\$1 setTranslation \$2 \$4 \$3 \, /\$1 setScale \$5 \$6 \$7
 #X connect 29 0 26 0;
 #X connect 30 0 1 0;
 #X connect 31 0 1 0;
-#X connect 32 0 91 0;
-#X connect 33 0 91 0;
+#X connect 32 0 90 0;
+#X connect 33 0 90 0;
 #X connect 34 0 46 0;
 #X connect 34 0 47 0;
 #X connect 34 0 48 0;
@@ -2095,42 +2100,42 @@ step2 \, /\$1 setTranslation \$2 \$4 \$3 \, /\$1 setScale \$5 \$6 \$7
 #X connect 41 0 75 0;
 #X connect 41 0 76 0;
 #X connect 41 0 77 0;
-#X connect 46 0 92 0;
-#X connect 47 0 92 0;
-#X connect 48 0 92 0;
-#X connect 49 0 92 0;
-#X connect 50 0 92 0;
-#X connect 51 0 92 0;
-#X connect 52 0 92 0;
-#X connect 53 0 92 0;
-#X connect 54 0 92 0;
-#X connect 55 0 92 0;
-#X connect 56 0 92 0;
-#X connect 57 0 92 0;
-#X connect 58 0 92 0;
-#X connect 59 0 92 0;
-#X connect 60 0 92 0;
-#X connect 61 0 92 0;
-#X connect 62 0 93 0;
-#X connect 63 0 93 0;
-#X connect 64 0 93 0;
-#X connect 65 0 93 0;
-#X connect 66 0 93 0;
-#X connect 67 0 93 0;
-#X connect 68 0 93 0;
-#X connect 69 0 93 0;
-#X connect 70 0 93 0;
-#X connect 71 0 93 0;
-#X connect 72 0 93 0;
-#X connect 73 0 93 0;
-#X connect 74 0 93 0;
-#X connect 75 0 93 0;
-#X connect 76 0 93 0;
-#X connect 77 0 93 0;
+#X connect 46 0 91 0;
+#X connect 47 0 91 0;
+#X connect 48 0 91 0;
+#X connect 49 0 91 0;
+#X connect 50 0 91 0;
+#X connect 51 0 91 0;
+#X connect 52 0 91 0;
+#X connect 53 0 91 0;
+#X connect 54 0 91 0;
+#X connect 55 0 91 0;
+#X connect 56 0 91 0;
+#X connect 57 0 91 0;
+#X connect 58 0 91 0;
+#X connect 59 0 91 0;
+#X connect 60 0 91 0;
+#X connect 61 0 91 0;
+#X connect 62 0 92 0;
+#X connect 63 0 92 0;
+#X connect 64 0 92 0;
+#X connect 65 0 92 0;
+#X connect 66 0 92 0;
+#X connect 67 0 92 0;
+#X connect 68 0 92 0;
+#X connect 69 0 92 0;
+#X connect 70 0 92 0;
+#X connect 71 0 92 0;
+#X connect 72 0 92 0;
+#X connect 73 0 92 0;
+#X connect 74 0 92 0;
+#X connect 75 0 92 0;
+#X connect 76 0 92 0;
+#X connect 77 0 92 0;
 #X connect 79 0 80 0;
 #X connect 79 1 82 0;
 #X connect 79 2 83 0;
-#X connect 79 3 90 0;
+#X connect 79 3 96 0;
 #X connect 80 0 29 0;
 #X connect 80 1 28 0;
 #X connect 80 2 27 0;
@@ -2148,16 +2153,19 @@ step2 \, /\$1 setTranslation \$2 \$4 \$3 \, /\$1 setScale \$5 \$6 \$7
 #X connect 85 0 86 0;
 #X connect 86 0 87 0;
 #X connect 87 0 88 0;
-#X connect 90 0 1 0;
-#X connect 91 0 9 0;
-#X connect 91 0 16 0;
-#X connect 92 0 42 0;
-#X connect 92 0 43 0;
-#X connect 93 0 44 0;
-#X connect 93 0 45 0;
+#X connect 90 0 9 0;
+#X connect 90 0 16 0;
+#X connect 91 0 42 0;
+#X connect 91 0 43 0;
+#X connect 92 0 44 0;
+#X connect 92 0 45 0;
+#X connect 93 0 80 0;
+#X connect 94 0 82 0;
+#X connect 95 0 83 0;
+#X connect 96 0 1 0;
 #X restore 47 190 pd LTC-laboratoire;
 #X obj 28 8 loadbang1 DD;
-#N canvas 0 22 909 786 text-control 0;
+#N canvas 0 22 909 786 text-control 1;
 #X obj 44 106 cnv 15 24 24 empty empty 1 4 12 1 24 -99865 -262144 0
 ;
 #X obj 114 193 cnv 15 24 24 empty empty 3 4 12 1 24 -99865 -262144
@@ -2445,6 +2453,13 @@ setCubeOffset 2000 910 0;
 #X connect 22 0 7 0;
 #X restore 55 260 pd containment;
 #X obj 394 21 anyreg gProjectPath ~/Documents/Metalab/hmr;
+#X msg 673 370 /experience setEnabled step1 \$1 \, /experience setEnabled
+step2 \$2 \, /experience setEnabled step3 \$3 \, /experience setEnabled
+step4 \$4 \, /experience setEnabled step5 \$5 \, /experience setEnabled
+step6 \$6 \, /experience setEnabled step7 \$7;
+#X obj 673 323 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 673 344 list 1 1 0 0 0 0 0;
 #X connect 0 0 2 0;
 #X connect 1 0 26 0;
 #X connect 2 0 1 0;
@@ -2506,3 +2521,6 @@ setCubeOffset 2000 910 0;
 #X connect 55 0 57 0;
 #X connect 56 0 58 0;
 #X connect 57 0 54 0;
+#X connect 65 0 30 0;
+#X connect 66 0 67 0;
+#X connect 67 0 65 0;
