@@ -20,7 +20,7 @@ look for .ac file;
 #X obj 145 228 t a a;
 #X msg 222 322 deleteNode \$1-globule1 \, createNode \$1-globule1 ModelNode
 \, /\$1-globule1 setModelFromFile \$2/models/globuleBlanc.ac \, /\$1-globule1
-setParent step3 \, /\$1-globule1 setOrientation 90 0 90 \, /\$1-globule1
+setParent step3 \, /\$1-globule1 setOrientation 90 0 0 \, /\$1-globule1
 setScale 0.002 0.002 0.002 \, /\$1-globule1 setTranslation -26 2385
 7.5;
 #X connect 1 0 5 0;

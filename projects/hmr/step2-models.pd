@@ -1,4 +1,4 @@
-#N canvas 257 315 626 416 10;
+#N canvas 807 69 987 672 10;
 #X obj 188 416 outlet;
 #X obj 146 37 inlet creation;
 #X obj 140 129 t b s;
@@ -7,30 +7,36 @@
 #X obj 141 78 delay;
 #X obj 263 19 loadbang;
 #X obj 263 47 random 5000;
-#X obj 263 72 + 5000;
 #X text 363 46 Arguments: name of the planet;
 #X text 323 77 <-- to avoid loading 10 obj at the same time;
 #X text 197 164 <-- first symbol is node name;
 #X text 211 202 <-- second symbol is current directory (folder) to
 look for .ac file;
-#X obj 140 103 anyreg gProjectPath;
+#X msg 5 309 /laboratoirecloud1 debug;
+#X obj 92 79 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 322 132 anyreg gProjectPath;
+#X obj 140 103 symbol /home/posture/Documents/Metalab/hmr;
 #X msg 144 242 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
 \$2/models/\$1.ac \, /\$1 setParent step2 \, /\$1 setOrientation 90
-0 90 \, /\$1 setScale 0.1 0.1 0.1 \, /\$1 setTranslation 0 1100 0;
-#X msg 234 325 deleteNode \$1cloud1 \, createNode \$1cloud1 PointCloud
-\, /\$1cloud1 loadFile \$2/models/pcd/pcl-images1.pcd \, /\$1cloud1
-setParent step1 \, /\$1cloud1 setOrientation 0 0 0 \, /\$1cloud1 setScale
-0.1 0.1 0.1 \, /\$1cloud1 setTranslation 0 0 0;
+0 90 \, /\$1 setScale 0.1 0.1 0.1 \, /\$1 setTranslation 0 0 0;
+#X msg 234 325 deleteNode \$1-cloud1 \, createNode \$1-cloud1 PointCloud
+\, /\$1-cloud1 loadFile \$2/models/pcd/pcl-image1.pcd \, /\$1-cloud1
+setParent step1 \, /\$1-cloud1 setOrientation 0 90 0 \, /\$1-cloud1
+setScale 10 10 10 \, /\$1-cloud1 setTranslation 0 0 0;
+#X obj 263 72 + 5000;
 #X connect 1 0 5 0;
 #X connect 2 0 3 0;
 #X connect 2 1 4 1;
 #X connect 3 0 4 0;
-#X connect 4 0 14 0;
-#X connect 4 0 15 0;
-#X connect 5 0 13 0;
+#X connect 4 0 16 0;
+#X connect 4 0 17 0;
+#X connect 5 0 15 0;
 #X connect 6 0 7 0;
-#X connect 7 0 8 0;
-#X connect 8 0 5 1;
-#X connect 13 0 2 0;
-#X connect 14 0 0 0;
-#X connect 15 0 0 0;
+#X connect 7 0 18 0;
+#X connect 12 0 0 0;
+#X connect 13 0 15 0;
+#X connect 15 0 2 0;
+#X connect 16 0 0 0;
+#X connect 17 0 0 0;
+#X connect 18 0 5 1;
