@@ -1,4 +1,4 @@
-#N canvas 891 159 987 672 10;
+#N canvas 872 158 987 672 10;
 #X obj 194 533 outlet;
 #X obj 146 37 inlet creation;
 #X obj 141 129 t b s;
@@ -21,11 +21,11 @@ look for .ac file;
 0 90 \, /\$1 setScale 0.1 0.1 0.1 \, /\$1 setTranslation 0 0 0;
 #X obj 263 72 + 5000;
 #X msg 39 349 /laboratoire-cloud1 debug;
-#X msg 415 550 deleteNode \$1-cloud1 \, createNode \$1-cloud1 PointCloud
+#X msg 414 580 deleteNode \$1-cloud1 \, createNode \$1-cloud1 PointCloud
 \, /\$1-cloud1 setURI \$2/models/pcd/set1.cpc \, /\$1-cloud1 setParent
 step1 \, /\$1-cloud1 setOrientation 0 90 0 \, /\$1-cloud1 setScale
 10 10 10 \, /\$1-cloud1 setTranslation 0 0 0;
-#X obj 518 409 list;
+#X obj 516 419 list;
 #X obj 563 277 t b s;
 #X obj 605 252 anyreg gProjectPath;
 #X obj 609 220 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
@@ -35,21 +35,35 @@ step1 \, /\$1-cloud1 setOrientation 0 90 0 \, /\$1-cloud1 setScale
 #X msg 626 161 set1.cpc -7 \, set2-3.cpc -5 \, set3.cpc -3 \, set4.cpc
 -1.5 \, set5.cpc 0 \, set6.cpc 1.5 \, set7.cpc 3 \, set8.cpc 4.5 \,
 set9.cpc 7;
-#X obj 551 435 list append randomtext;
-#X msg 518 314 1-scanner.cpc -23 90 \, 2-microscope.cpc -60 60 \, 3-pipette.cpc
--85 60 \, 4-hotte.cpc -135 60 \, 5-hotte.cpc -30 160 \, 6-select-immuno.cpc
--140 155 \, 7-pipette.cpc -180 155 \, 8-microscope.cpc -100 250 \,
-9-congelation.cpc -160 250 \, 10-microscope.cpc -205 155 \, 11-scanner.cpc
--260 155 \, 12-congelation.cpc -290 155 \, 13-hotte.cpc -290 235;
-#X msg 551 459 deleteNode \$1 \, createNode \$1 PointCloud \, /\$1
-setParent step2 \, /\$1 setTranslation \$2 \$3 0 \, /\$1 setOrientation
-0 90 0 \, /\$1 setDrawMode 1 \, /\$1 setURI \$4/models/pcd/\$1 \, /\$1
-setScale 10 10 10 \, /\$1 setPointSize 3 \, /\$1 setVoxelSize 0.0001
-;
+#X obj 516 442 list append randomtext;
+#X obj 335 352 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X floatatom 213 338 5 0 0 0 - - -;
+#X obj 214 503 s \$0-to-SPIN-TCP;
+#X floatatom 362 316 5 0 0 0 - - -;
+#X msg 360 351 1-scanner cpc -23 120 \$1;
+#X msg 242 473 /cpc debug;
+#X msg 233 438 /1-scanner-pcd setTranslation -23 90 0;
+#X msg 217 407 /1-scanner setOrientation 0 90 \$1;
+#X msg 516 466 deleteNode \$1-pcd \, deleteNode \$1-group \, createNode
+\$1-group GroupNode \, createNode \$1-pcd PointCloud \, /\$1-pcd setParent
+\$1-group \, /\$1-group setParent step2 \, /\$1-group setTranslation
+\$3 \$4 -1.5 \, /\$1-pcd setTranslation 0 \$6 0 \, /\$1-group setOrientation
+0 90 \$5 \, /\$1-pcd setDrawMode 1 \, /\$1-pcd setURI \$7/models/pcd/\$1.\$2
+\, /\$1-pcd setScale 11 11 11 \, /\$1-pcd setPointSize 3.5 \, /\$1-pcd
+setVoxelSize 5e-05;
+#X msg 516 303 1-scanner cpc -23 109.5 130 -5 \, 2-microscope cpc -56
+90 17 -20 \, 3-pipette cpc -88 87 0 -20 \, 4-hotte cpc -127 97 26 -20
+\, 5-hotte cpc -52 175 26 -20 \, 6-select-immuno cpc -140 182 0 -20
+\, 7-pipette cpc -180 187 0 -20 \, 8-microscope cpc -109 271 17 -20
+\, 9-congelation cpc -156 271 0 -20 \, 10-microscope cpc -216 185 17
+-20 \, 11-scanner cpc -260 187 130 -5 \, 12-congelation cpc -303 195
+0 -20 \, 13-hotte cpc -313 241 26 -20;
 #X connect 1 0 5 0;
 #X connect 2 0 3 0;
 #X connect 2 1 4 1;
 #X connect 3 0 4 0;
+#X connect 4 0 15 0;
 #X connect 5 0 13 0;
 #X connect 6 0 7 0;
 #X connect 7 0 16 0;
@@ -61,11 +75,18 @@ setScale 10 10 10 \, /\$1 setPointSize 3 \, /\$1 setVoxelSize 0.0001
 #X connect 17 0 0 0;
 #X connect 18 0 0 0;
 #X connect 19 0 25 0;
-#X connect 20 0 26 0;
+#X connect 20 0 35 0;
 #X connect 20 1 25 1;
 #X connect 21 0 20 0;
 #X connect 22 0 21 0;
-#X connect 23 0 26 0;
-#X connect 25 0 27 0;
-#X connect 26 0 19 0;
-#X connect 27 0 0 0;
+#X connect 23 0 35 0;
+#X connect 25 0 34 0;
+#X connect 26 0 30 0;
+#X connect 27 0 33 0;
+#X connect 29 0 30 0;
+#X connect 30 0 19 0;
+#X connect 31 0 28 0;
+#X connect 32 0 28 0;
+#X connect 33 0 28 0;
+#X connect 34 0 0 0;
+#X connect 35 0 19 0;

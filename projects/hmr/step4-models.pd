@@ -1,5 +1,5 @@
-#N canvas 16 22 986 777 10;
-#X obj 132 733 outlet;
+#N canvas 586 7 1306 772 10;
+#X obj 129 845 outlet;
 #X obj 146 37 inlet creation;
 #X obj 140 129 t b s;
 #X obj 110 161 symbol \$1;
@@ -19,80 +19,158 @@ look for .ac file;
 #X text 1008 118 <-- cell models;
 #X msg 41 276 deleteNode \$1 \, createNode \$1 SwitchNode;
 #X obj 14 244 t a a;
-#X obj 120 304 t a a a a a a a;
 #X msg 639 33 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
 \$2/models/\$1.ac \, /\$1 setParent step4 \, /\$1 setOrientation 90
 0 90 \, /\$1 setScale 0.1 0.1 0.1 \, /\$1 setTranslation 1030 3300
 0;
 #X obj 140 103 anyreg gProjectPath;
-#X msg 711 552 deleteNode \$1-Scene_Action_Endoplasmic_Ret_w_ribosomes_extras
+#X text 701 292 <-- x -65 \, y +100;
+#X msg 1151 298 createStateSet voxShader Shader \, /voxShader setShader
+\$2/models/shaders/\$3 \, /\$1 setStateSet voxShader;
+#X obj 1130 192 symbol \$1;
+#X obj 1161 109 delay;
+#X obj 1283 50 loadbang;
+#X obj 1283 78 random 5000;
+#X obj 1283 103 + 5000;
+#X text 1383 77 Arguments: name of the planet;
+#X text 1343 108 <-- to avoid loading 10 obj at the same time;
+#X text 1217 195 <-- first symbol is node name;
+#X text 1231 233 <-- second symbol is current directory (folder) to
+look for .ac file;
+#X obj 1160 134 anyreg gProjectPath;
+#X obj 1163 261 t l l;
+#X obj 1165 235 pack s s s;
+#X msg 1237 165 symbol voxelize.jxs;
+#X obj 1160 160 t b s b;
+#X obj 1148 633 s \$0-to-SPIN-TCP;
+#X obj 1101 73 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 1189 343 deleteNode \$1-Centrioles_w_Extras \, createNode \$1-Centrioles_w_Extras
+ModelNode \, /\$1-Centrioles_w_Extras setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1-Centrioles_w_Extras.IVE
+\, /\$1-Centrioles_w_Extras setParent step4 \, /\$1-Centrioles_w_Extras
+setOrientation 0 0 0 \, /\$1-Centrioles_w_Extras setScale 0.01 0.01
+0.01 \, /\$1-Centrioles_w_Extras setTranslation 938 3800 100;
+#X obj 120 304 t a a a a a a a a;
+#X obj 88 70 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 679 433 deleteNode \$1-Protein_molecules \, createNode \$1-Protein_molecules
+ModelNode \, /\$1-Protein_molecules setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1-Protein_molecules.IVE
+\, /\$1-Protein_molecules setParent step4 \, /\$1-Protein_molecules
+setOrientation 0 0 90 \, /\$1-Protein_molecules setScale 0.001 0.001
+0.001 \, /\$1-Protein_molecules setTranslation 965 3800 100;
+#X msg 1120 693 deleteNode \$1-Scene_Action_Endoplasmic_Ret_w_ribosomes_extras
 \, createNode \$1-Scene_Action_Endoplasmic_Ret_w_ribosomes_extras ModelNode
 \, /\$1-Scene_Action_Endoplasmic_Ret_w_ribosomes_extras setModelFromFile
 \$2/models/HMR-modeles/cell-IVE/\$1-Scene_Action_Endoplasmic_Ret_w_ribosomes_extras.IVE
 \, /\$1-Scene_Action_Endoplasmic_Ret_w_ribosomes_extras setParent step4
 \, /\$1-Scene_Action_Endoplasmic_Ret_w_ribosomes_extras setOrientation
 0 0 90 \, /\$1-Scene_Action_Endoplasmic_Ret_w_ribosomes_extras setScale
-0.05 0.05 0.05 \, /\$1-Scene_Action_Endoplasmic_Ret_w_ribosomes_extras
-setTranslation 1065 3800 -50;
-#X msg 679 433 deleteNode \$1-Protein_molecules \, createNode \$1-Protein_molecules
-ModelNode \, /\$1-Protein_molecules setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1-Protein_molecules.IVE
-\, /\$1-Protein_molecules setParent step4 \, /\$1-Protein_molecules
-setOrientation 0 0 90 \, /\$1-Protein_molecules setScale 0.01 0.01
-0.01 \, /\$1-Protein_molecules setTranslation 965 3800 100;
-#X msg 647 314 deleteNode \$1-Nucleus_w_extras \, createNode \$1-Nucleus_w_extras
-ModelNode \, /\$1-Nucleus_w_extras setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1-Nucleus_w_extras.IVE
-\, /\$1-Nucleus_w_extras setParent step4 \, /\$1-Nucleus_w_extras setOrientation
-0 0 90 \, /\$1-Nucleus_w_extras setScale 0.05 0.05 0.05 \, /\$1-Nucleus_w_extras
-setTranslation 1065 3800 -50;
-#X text 701 292 <-- x -65 \, y +100;
-#X msg 195 365 deleteNode \$1-Centrioles_w_Extras \, createNode \$1-Centrioles_w_Extras
+0.005 0.005 0.005 \, /\$1-Scene_Action_Endoplasmic_Ret_w_ribosomes_extras
+setTranslation 992 3604 -2.5;
+#X msg 193 476 deleteNode \$1-Centrioles_w_Extras \, createNode \$1-Centrioles_w_Extras
 ModelNode \, /\$1-Centrioles_w_Extras setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1-Centrioles_w_Extras.IVE
 \, /\$1-Centrioles_w_Extras setParent step4 \, /\$1-Centrioles_w_Extras
-setOrientation 0 0 0 \, /\$1-Centrioles_w_Extras setScale 0.01 0.01
-0.01 \, /\$1-Centrioles_w_Extras setTranslation 938 3800 100;
+setOrientation 0 0 0 \, /\$1-Centrioles_w_Extras setScale 0.004 0.004
+0.004 \, /\$1-Centrioles_w_Extras setTranslation 1005 3847 8;
+#X msg 244 718 deleteNode \$1-Mitochondria \, createNode \$1-Mitochondria
+ModelNode \, /\$1-Mitochondria setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1-Mitochondria.IVE
+\, /\$1-Mitochondria setParent step4 \, /\$1-Mitochondria setOrientation
+0 0 0 \, /\$1-Mitochondria setScale 0.004 0.004 0.004 \, /\$1-Mitochondria
+setTranslation 955 3778 0;
 #X msg 629 168 deleteNode \$1-Golgi_Apparatus2_w_microtubules \, createNode
 \$1-Golgi_Apparatus2_w_microtubules ModelNode \, /\$1-Golgi_Apparatus2_w_microtubules
 setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1-Golgi_Apparatus2_w_microtubules.IVE
 \, /\$1-Golgi_Apparatus2_w_microtubules setParent step4 \, /\$1-Golgi_Apparatus2_w_microtubules
 setOrientation 0 0 0 \, /\$1-Golgi_Apparatus2_w_microtubules setScale
 0.01 0.01 0.01 \, /\$1-Golgi_Apparatus2_w_microtubules setTranslation
-919 3800 100;
-#X msg 220 484 deleteNode \$1-CytoSkeleton_Elements \, createNode \$1-CytoSkeleton_Elements
+933 3811 0;
+#X msg 647 312 deleteNode \$1-Nucleus_w_extras \, createNode \$1-Nucleus_w_extras
+ModelNode \, /\$1-Nucleus_w_extras setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1-Nucleus_w_extras.IVE
+\, /\$1-Nucleus_w_extras setParent step4 \, /\$1-Nucleus_w_extras setOrientation
+0 0 90 \, /\$1-Nucleus_w_extras setScale 0.005 0.005 0.005 \, /\$1-Nucleus_w_extras
+setTranslation 992 3804 -2.5;
+#X msg 354 857 deleteNode cell-globuleBlanc;
+#X text 123 648 970 3847 7.5;
+#X text 803 805 1115 4079 -43;
+#X text 52 622 scale 0.1 \, pos 1005 3962 0;
+#X msg 704 563 deleteNode \$1-Endoplasmic_Ret_w_ribosomesw_Smooth_endoplasmic
+\, createNode \$1-Endoplasmic_Ret_w_ribosomesw_Smooth_endoplasmic ModelNode
+\, /\$1-Endoplasmic_Ret_w_ribosomesw_Smooth_endoplasmic setModelFromFile
+\$2/models/HMR-modeles/Endoplasmic_Ret_w_ribosomesw_Smooth_endoplasmic.3ds
+\, /\$1-Endoplasmic_Ret_w_ribosomesw_Smooth_endoplasmic setParent step4
+\, /\$1-Endoplasmic_Ret_w_ribosomesw_Smooth_endoplasmic setOrientation
+0 0 90 \, /\$1-Endoplasmic_Ret_w_ribosomesw_Smooth_endoplasmic setScale
+0.17 0.17 0.17 \, /\$1-Endoplasmic_Ret_w_ribosomesw_Smooth_endoplasmic
+setTranslation 1098 3860 -22;
+#X msg 195 352 deleteNode \$1-globuleBlanc \, createNode \$1-globuleBlanc
+ModelNode \, /\$1-globuleBlanc setModelFromFile \$2/models/\$1-globuleBlanc.ac
+\, /\$1-globuleBlanc setParent step4 \, /\$1-globuleBlanc setOrientation
+0 90 0 \, /\$1-globuleBlanc setScale 6.5 6.5 6.5 \, /\$1-globuleBlanc
+setTranslation 1012 4109 25;
+#X msg 660 952 deleteNode \$1-CytoSkeleton_Elements3 \, createNode
+\$1-CytoSkeleton_Elements3 ModelNode \, /\$1-CytoSkeleton_Elements3
+setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1-CytoSkeleton_Elements.IVE
+\, /\$1-CytoSkeleton_Elements3 setParent step4 \, /\$1-CytoSkeleton_Elements3
+setOrientation 0 0 180 \, /\$1-CytoSkeleton_Elements3 setScale 0.15
+0.15 0.15 \, /\$1-CytoSkeleton_Elements3 setTranslation 1220 5083 0
+;
+#X msg 370 832 deleteNode cell-CytoSkeleton_Elements3;
+#X msg 702 821 deleteNode \$1-CytoSkeleton_Elements2 \, createNode
+\$1-CytoSkeleton_Elements2 ModelNode \, /\$1-CytoSkeleton_Elements2
+setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1-CytoSkeleton_Elements.IVE
+\, /\$1-CytoSkeleton_Elements2 setParent step4 \, /\$1-CytoSkeleton_Elements2
+setOrientation 0 0 180 \, /\$1-CytoSkeleton_Elements2 setScale 0.2
+0.2 0.2 \, /\$1-CytoSkeleton_Elements2 setTranslation 1005 5328 0;
+#X msg 217 595 deleteNode \$1-CytoSkeleton_Elements \, createNode \$1-CytoSkeleton_Elements
 ModelNode \, /\$1-CytoSkeleton_Elements setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1-CytoSkeleton_Elements.IVE
 \, /\$1-CytoSkeleton_Elements setParent step4 \, /\$1-CytoSkeleton_Elements
-setOrientation 0 0 0 \, /\$1-CytoSkeleton_Elements setScale 1 1 1 \,
-/\$1-CytoSkeleton_Elements setTranslation 949 3562 -39;
-#X msg 247 607 deleteNode \$1-Glycan_Protein_Cell_membrane \, createNode
-\$1-Glycan_Protein_Cell_membrane ModelNode \, /\$1-Glycan_Protein_Cell_membrane
-setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1-Glycan_Protein_Cell_membrane.IVE
-\, /\$1-Glycan_Protein_Cell_membrane setParent step4 \, /\$1-Glycan_Protein_Cell_membrane
-setOrientation 0 0 0 \, /\$1-Glycan_Protein_Cell_membrane setScale
-0.01 0.01 0.01 \, /\$1-Glycan_Protein_Cell_membrane setTranslation
-965 3800 100;
+setOrientation 0 0 180 \, /\$1-CytoSkeleton_Elements setScale 0.1 0.1
+0.1 \, /\$1-CytoSkeleton_Elements setTranslation 1005 3997 20;
 #X connect 1 0 5 0;
 #X connect 2 0 3 0;
 #X connect 2 1 4 1;
 #X connect 3 0 4 0;
-#X connect 4 0 17 0;
-#X connect 5 0 19 0;
+#X connect 4 0 38 0;
+#X connect 5 0 18 0;
 #X connect 6 0 7 0;
 #X connect 7 0 8 0;
 #X connect 8 0 5 1;
 #X connect 15 0 0 0;
-#X connect 16 0 17 0;
+#X connect 16 0 38 0;
 #X connect 16 1 15 0;
-#X connect 17 0 27 0;
-#X connect 17 1 26 0;
-#X connect 17 2 24 0;
-#X connect 17 3 21 0;
-#X connect 17 4 22 0;
-#X connect 17 5 25 0;
-#X connect 17 6 20 0;
-#X connect 19 0 2 0;
-#X connect 20 0 0 0;
-#X connect 21 0 0 0;
-#X connect 22 0 0 0;
-#X connect 24 0 0 0;
-#X connect 25 0 0 0;
-#X connect 26 0 0 0;
-#X connect 27 0 0 0;
+#X connect 18 0 2 0;
+#X connect 20 0 35 0;
+#X connect 21 0 32 0;
+#X connect 22 0 30 0;
+#X connect 23 0 24 0;
+#X connect 24 0 25 0;
+#X connect 25 0 22 1;
+#X connect 30 0 34 0;
+#X connect 31 0 20 0;
+#X connect 31 1 37 0;
+#X connect 32 0 31 0;
+#X connect 33 0 32 2;
+#X connect 34 0 21 0;
+#X connect 34 1 32 1;
+#X connect 34 2 33 0;
+#X connect 36 0 22 0;
+#X connect 37 0 35 0;
+#X connect 38 0 43 0;
+#X connect 38 1 55 0;
+#X connect 38 4 54 0;
+#X connect 38 5 44 0;
+#X connect 38 6 50 0;
+#X connect 38 7 51 0;
+#X connect 39 0 18 0;
+#X connect 40 0 0 0;
+#X connect 42 0 0 0;
+#X connect 43 0 0 0;
+#X connect 44 0 0 0;
+#X connect 45 0 0 0;
+#X connect 46 0 0 0;
+#X connect 50 0 0 0;
+#X connect 51 0 0 0;
+#X connect 52 0 0 0;
+#X connect 53 0 0 0;
+#X connect 54 0 0 0;
+#X connect 55 0 0 0;

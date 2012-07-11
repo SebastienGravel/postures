@@ -1,30 +1,161 @@
-#N canvas 954 244 626 416 10;
-#X obj 192 388 outlet;
+#N canvas 41 163 1126 790 10;
+#X obj 192 408 outlet;
 #X obj 146 37 inlet creation;
-#X obj 140 129 t b s;
 #X obj 110 161 symbol \$1;
-#X obj 145 204 pack s s;
 #X obj 141 78 delay;
 #X obj 263 19 loadbang;
 #X obj 263 47 random 5000;
 #X obj 263 72 + 5000;
 #X text 363 46 Arguments: name of the planet;
-#X text 323 77 <-- to avoid loading 10 obj at the same time;
-#X text 197 164 <-- first symbol is node name;
+#X text 322 71 <-- to avoid loading 10 obj at the same time;
+#X text 177 160 <-- first symbol is node name;
 #X text 211 202 <-- second symbol is current directory (folder) to
 look for .ac file;
-#X msg 144 252 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
+#X obj 141 103 anyreg gProjectPath;
+#X obj 450 519 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -258113
+-1 -1 4900 1;
+#X obj 376 425 loadbang;
+#X msg 376 472 1;
+#X obj 376 449 delay 2000;
+#X obj 468 688 s \$0-to-SPIN-TCP;
+#X obj 689 98 r \$0-shader;
+#X obj 796 29 loadbang;
+#X obj 796 78 symbol;
+#X obj 632 245 s \$0-to-SPIN-TCP;
+#X obj 800 193 s \$0-shader;
+#X msg 810 134 chromakey_brcosa.jxs;
+#X msg 730 164 INVALID;
+#X msg 795 48 anyreg gProjectPath;
+#X obj 632 199 pack s s s;
+#X msg 632 220 /\$1 setShader \$2/\$3;
+#X obj 649 125 t b s;
+#X obj 619 157 symbol \$1;
+#X obj 514 103 delay 500;
+#X obj 514 125 anyreg gProjectPath;
+#X obj 139 215 pack s s s;
+#X text 210 231 <-- third symbol is name of shader;
+#X obj 141 129 t b s b;
+#X msg 196 182 symbol voxelize.jxs;
+#X obj 105 44 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 139 331 createStateSet voxShader Shader \, /voxShader setShader
+\$2/models/shaders/\$3 \, /\$1 setStateSet voxShader;
+#X msg 252 380 /voxShader debug;
+#X obj 678 513 t b f;
+#X obj 677 537 pack f f;
+#X obj 678 453 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+-1 -1 0 1;
+#X obj 654 470 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+-1 -1 0 1;
+#X msg 677 558 /voxShader setUniform_vec2 voxels_distance \$1 \$2;
+#X obj 615 537 t b f;
+#X obj 614 561 pack f f;
+#X obj 615 477 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+-1 -1 0 1;
+#X obj 591 494 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+-1 -1 0 1;
+#X obj 553 565 t b f;
+#X obj 552 589 pack f f;
+#X obj 553 505 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+-1 -1 0 1;
+#X obj 529 522 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+-1 -1 0 1;
+#X msg 614 582 /voxShader setUniform_vec2 voxels_size \$1 \$2;
+#X msg 552 610 /voxShader setUniform_vec2 voxels_offset \$1 \$2;
+#X obj 485 489 delay;
+#X obj 521 412 loadbang;
+#X obj 521 440 random 5000;
+#X obj 521 465 + 5000;
+#X obj 471 106 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 626 653 /voxShader debug;
+#X obj 139 239 t l l l;
+#X obj 1020 143 t b s;
+#X obj 990 175 symbol \$1;
+#X obj 1025 218 pack s s;
+#X text 1077 178 <-- first symbol is node name;
+#X text 1091 216 <-- second symbol is current directory (folder) to
+look for .ac file;
+#X msg 166 262 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
 \$2/models/\$1.ac \, /\$1 setParent step1 \, /\$1 setOrientation 90
-0 90 \, /\$1 setScale 0.1 0.1 0.1;
-#X obj 140 103 anyreg gProjectPath;
-#X connect 1 0 5 0;
-#X connect 2 0 3 0;
-#X connect 2 1 4 1;
-#X connect 3 0 4 0;
-#X connect 4 0 13 0;
-#X connect 5 0 14 0;
-#X connect 6 0 7 0;
-#X connect 7 0 8 0;
-#X connect 8 0 5 1;
-#X connect 13 0 0 0;
-#X connect 14 0 2 0;
+0 90 \, /\$1 setScale 0.1 0.1 0.1 \, /\$1 setTranslation 0 0 0.1;
+#X msg 23 374 /corridor setTranslation 0 0 0.3;
+#X floatatom 44 444 5 0 0 0 - - -;
+#X msg 25 485 /corridor-group setTranslation 10 115 \$1;
+#X floatatom 755 418 5 0 0 0 - - -;
+#X msg 757 446 /corridor-pcd setPointSize \$1;
+#X msg 760 475 /corridor-pcd setVoxelSize 5e-05;
+#X msg 710 289 deleteNode \$1-pcd \, deleteNode \$1-group \, createNode
+\$1-group GroupNode \, createNode \$1-pcd PointCloud \, /\$1-pcd setParent
+\$1-group \, /\$1-group setParent step1 \, /\$1-group setTranslation
+9 163 -1.5 \, /\$1-pcd setTranslation 0 -20 0 \, /\$1-group setOrientation
+0 90 0 \, /\$1-pcd setDrawMode 1 \, /\$1-pcd setURI \$2/models/pcd/direction.cpc
+\, /\$1-pcd setScale 11 11 11 \, /\$1-pcd setPointSize 5 \, /\$1-pcd
+setVoxelSize 5e-05;
+#X connect 1 0 3 0;
+#X connect 2 0 31 0;
+#X connect 3 0 11 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 6 0 3 1;
+#X connect 11 0 33 0;
+#X connect 11 0 60 0;
+#X connect 13 0 15 0;
+#X connect 14 0 12 0;
+#X connect 15 0 14 0;
+#X connect 17 0 25 2;
+#X connect 18 0 24 0;
+#X connect 22 0 21 0;
+#X connect 23 0 21 0;
+#X connect 24 0 19 0;
+#X connect 25 0 26 0;
+#X connect 26 0 20 0;
+#X connect 27 0 28 0;
+#X connect 27 1 25 1;
+#X connect 28 0 25 0;
+#X connect 29 0 30 0;
+#X connect 30 0 28 0;
+#X connect 31 0 59 0;
+#X connect 33 0 2 0;
+#X connect 33 1 31 1;
+#X connect 33 2 34 0;
+#X connect 34 0 31 2;
+#X connect 35 0 11 0;
+#X connect 36 0 0 0;
+#X connect 37 0 0 0;
+#X connect 38 0 39 0;
+#X connect 38 1 39 1;
+#X connect 39 0 42 0;
+#X connect 40 0 38 0;
+#X connect 41 0 39 0;
+#X connect 42 0 16 0;
+#X connect 43 0 44 0;
+#X connect 43 1 44 1;
+#X connect 44 0 51 0;
+#X connect 45 0 43 0;
+#X connect 46 0 44 0;
+#X connect 47 0 48 0;
+#X connect 47 1 48 1;
+#X connect 48 0 52 0;
+#X connect 49 0 47 0;
+#X connect 50 0 48 0;
+#X connect 51 0 16 0;
+#X connect 52 0 16 0;
+#X connect 54 0 55 0;
+#X connect 55 0 56 0;
+#X connect 56 0 53 1;
+#X connect 57 0 29 0;
+#X connect 58 0 16 0;
+#X connect 59 1 65 0;
+#X connect 60 0 61 0;
+#X connect 60 1 62 1;
+#X connect 61 0 62 0;
+#X connect 62 0 72 0;
+#X connect 65 0 0 0;
+#X connect 66 0 0 0;
+#X connect 67 0 68 0;
+#X connect 68 0 0 0;
+#X connect 69 0 70 0;
+#X connect 70 0 0 0;
+#X connect 71 0 0 0;
+#X connect 72 0 0 0;

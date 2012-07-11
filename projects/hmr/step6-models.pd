@@ -1,5 +1,5 @@
-#N canvas 0 22 626 416 10;
-#X obj 192 388 outlet;
+#N canvas 0 22 1054 700 10;
+#X obj 191 432 outlet;
 #X obj 146 37 inlet creation;
 #X obj 140 129 t b s;
 #X obj 110 161 symbol \$1;
@@ -18,14 +18,34 @@ look for .ac file;
 \$2/models/\$1.ac \, /\$1 setParent step6 \, /\$1 setOrientation 90
 0 90 \, /\$1 setScale 0.1 0.1 0.1 \, /\$1 setTranslation 2000 1100
 7.5;
+#X obj 93 52 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 300 319 deleteNode \$1-pcd \, deleteNode \$1-group \, createNode
+\$1-group GroupNode \, createNode \$1-pcd PointCloud \, /\$1-pcd setParent
+\$1-group \, /\$1-group setParent step6 \, /\$1-group setTranslation
+2000 1080 5 \, /\$1-pcd setTranslation 0 -20 0 \, /\$1-group setOrientation
+0 90 0 \, /\$1-pcd setDrawMode 1 \, /\$1-pcd setURI \$2/models/pcd/patient1.cpc
+\, /\$1-pcd setScale 11 11 11 \, /\$1-pcd setPointSize 3.5 \, /\$1-pcd
+setVoxelSize 5e-05;
+#X msg 674 320 deleteNode \$1-pcd2 \, deleteNode \$1-group2 \, createNode
+\$1-group2 GroupNode \, createNode \$1-pcd2 PointCloud \, /\$1-pcd2
+setParent \$1-group2 \, /\$1-group2 setParent step6 \, /\$1-group2
+setTranslation 2025 1080 5 \, /\$1-pcd2 setTranslation 0 0 0 \, /\$1-group2
+setOrientation 0 90 125 \, /\$1-pcd2 setDrawMode 1 \, /\$1-pcd2 setURI
+\$2/models/pcd/patient2.cpc \, /\$1-pcd2 setScale 11 11 11 \, /\$1-pcd2
+setPointSize 3.5 \, /\$1-pcd2 setVoxelSize 5e-05;
 #X connect 1 0 5 0;
 #X connect 2 0 3 0;
 #X connect 2 1 4 1;
 #X connect 3 0 4 0;
-#X connect 4 0 14 0;
+#X connect 4 0 16 0;
+#X connect 4 0 17 0;
 #X connect 5 0 13 0;
 #X connect 6 0 7 0;
 #X connect 7 0 8 0;
 #X connect 8 0 5 1;
 #X connect 13 0 2 0;
 #X connect 14 0 0 0;
+#X connect 15 0 5 0;
+#X connect 16 0 0 0;
+#X connect 17 0 0 0;
