@@ -1,0 +1,345 @@
+#N canvas 1088 157 935 837 10;
+#X obj 19 76 cnv 15 24 24 empty empty 1 4 12 1 24 -99865 -262144 0
+;
+#X obj 73 140 cnv 15 24 24 empty empty 2 4 12 1 24 -99865 -262144 0
+;
+#X obj 121 195 cnv 15 24 24 empty empty 3 4 12 1 24 -99865 -262144
+0;
+#X obj 23 380 cnv 15 24 24 empty empty 4 4 12 1 24 -99865 -262144 0
+;
+#X obj 57 340 s \$0-to-SPIN;
+#X obj 156 195 bng 20 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 546 215 pack s s;
+#X obj 546 261 s \$0-to-SPIN;
+#X text 41 23 This example shows how to load GLSL shaders into a stateset
+and control uniforms interactively.;
+#X msg 57 112 createNode box ShapeNode \, /box setOrientation 45 0
+-45;
+#X text 49 73 create a box and give it a slight orientation so we can
+see a few faces;
+#X text 63 384 TRY THESE SHADERS:;
+#X msg 112 166 createStateSet vid VideoTexture \, /box setStateSet
+vid;
+#X obj 546 149 r \$0-shader;
+#X text 107 142 Create an VideoTexture stateset \, and apply it to
+the box:;
+#X text 186 197 <- set the file path for the video;
+#X msg 178 310 /vid debug;
+#X obj 147 281 cnv 15 24 24 empty empty 4 4 12 1 24 -99865 -262144
+0;
+#X text 176 285 Use this to discover uniforms:;
+#X obj 272 460 s \$0-shader;
+#X obj 273 577 s \$0-to-SPIN;
+#X msg 282 401 chromakey_brcosa.jxs;
+#X obj 477 517 pack f f f;
+#X msg 477 538 /vid setUniform_vec3 keying_color \$1 \$2 \$3;
+#X obj 477 433 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -258113
+-1 -1 0 1;
+#X obj 478 493 t b f;
+#X obj 520 492 t b f;
+#X obj 492 433 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -4034
+-1 -1 0 1;
+#X obj 507 433 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -4160
+-1 -1 0 1;
+#X obj 571 486 pack f f f;
+#X obj 571 402 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -258113
+-1 -1 0 1;
+#X obj 572 462 t b f;
+#X obj 614 461 t b f;
+#X obj 586 402 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -4034
+-1 -1 0 1;
+#X obj 601 402 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -4160
+-1 -1 0 1;
+#X msg 571 507 /vid setUniform_vec3 thresh \$1 \$2 \$3;
+#X obj 672 426 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+-1 -1 0 1;
+#X msg 670 482 /vid setUniform_float alpha_under_thresh \$1;
+#X msg 202 431 INVALID;
+#X msg 54 556 setNotifyLevel 5;
+#X msg 62 503 setNotifyLevel 2;
+#X msg 546 236 /vid setShader \$2/\$1;
+#X obj 228 781 pack f f f;
+#X obj 228 697 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -258113
+-1 -1 4900 1;
+#X obj 229 757 t b f;
+#X obj 271 756 t b f;
+#X obj 243 697 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -4034
+-1 -1 4900 1;
+#X obj 258 697 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -4160
+-1 -1 4900 1;
+#X msg 228 802 /vid setUniform_vec3 avgluma \$1 \$2 \$3;
+#X obj 318 720 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+-1 -1 4900 1;
+#X msg 316 776 /vid setUniform_float saturation \$1;
+#X obj 347 698 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+-1 -1 4900 1;
+#X msg 345 754 /vid setUniform_float contrast \$1;
+#X obj 376 677 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+-1 -1 4900 1;
+#X msg 374 733 /vid setUniform_float brightness \$1;
+#X obj 405 655 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+-1 -1 4900 1;
+#X msg 403 711 /vid setUniform_float final_alpha \$1;
+#X obj 436 634 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+-1 -1 4900 1;
+#X msg 436 692 /vid setUniform_float efficiency \$1;
+#X text 468 368 Chroma keying:;
+#X text 295 611 Brightness \, contrast \, saturation:;
+#X obj 292 918 s \$0-shader;
+#X obj 293 1035 s \$0-to-SPIN;
+#X obj 434 906 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+-1 -1 0 1;
+#X msg 222 889 INVALID;
+#X obj 248 1239 pack f f f;
+#X obj 248 1155 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -258113
+-1 -1 4900 1;
+#X obj 249 1215 t b f;
+#X obj 291 1214 t b f;
+#X obj 263 1155 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -4034
+-1 -1 4900 1;
+#X obj 277 1155 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -4160
+-1 -1 4900 1;
+#X msg 248 1260 /vid setUniform_vec3 avgluma \$1 \$2 \$3;
+#X obj 338 1178 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+-1 -1 4900 1;
+#X msg 336 1234 /vid setUniform_float saturation \$1;
+#X obj 367 1156 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+-1 -1 4900 1;
+#X msg 365 1212 /vid setUniform_float contrast \$1;
+#X obj 396 1135 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+-1 -1 4900 1;
+#X msg 394 1191 /vid setUniform_float brightness \$1;
+#X text 315 1069 Brightness \, contrast \, saturation:;
+#X text 484 854 Luma keying:;
+#X msg 302 859 lumakey_brcosa.jxs;
+#X obj 462 881 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+-1 -1 4900 1;
+#X obj 380 938 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+-1 -1 2450 1;
+#X obj 141 635 loadbang;
+#X msg 141 682 1;
+#X obj 166 930 loadbang;
+#X msg 166 980 1;
+#X msg 534 1036 /vid setUniform_int invert \$1;
+#X obj 534 1015 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
+0 1;
+#X obj 565 295 r \$0-shader;
+#X obj 625 145 loadbang;
+#X obj 489 19 r \$0-to-SPIN;
+#X obj 491 81 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 14616
+14616;
+#X msg 675 28 connect \$1;
+#X obj 674 8 tgl 15 0 empty empty empty 17 7 0 10 -258113 -1 -1 0 1
+;
+#X obj 625 194 symbol;
+#X obj 488 52 to-spin localhost 54324 /shaders;
+#X msg 288 342 createNode grid GridNode;
+#X msg 290 368 deleteNode grid;
+#X msg 85 462 debug;
+#X msg 296 319 clear;
+#X msg 157 241 /vid setPath /home/aalex/Videos/Ruine.mov;
+#X msg 460 937 /vid setUniform_float alpha_over \$1;
+#X msg 432 962 /vid setUniform_float alpha_under \$1;
+#X msg 375 994 /vid setUniform_float luma_gate \$1;
+#X msg 303 982 0.5;
+#X obj 141 659 delay 2000;
+#X msg 203 265 /vid setPath /home/aalex/Videos/chiots.mov;
+#X obj 300 1396 s \$0-shader;
+#X obj 475 1453 s \$0-to-SPIN;
+#X msg 230 1367 INVALID;
+#X obj 720 1197 loadbang;
+#X msg 310 1337 voxelize.jxs;
+#X obj 166 954 delay 2000;
+#X obj 712 1219 delay 2000;
+#X obj 497 1373 t b f;
+#X obj 479 1393 pack f f;
+#X msg 479 1413 /vid setUniform_vec2 voxels_size \$1 \$2;
+#X obj 479 1317 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+-1 -1 95 1;
+#X obj 494 1317 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+-1 -1 95 1;
+#X obj 562 1349 t b f;
+#X obj 544 1369 pack f f;
+#X obj 544 1293 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+-1 -1 0 1;
+#X obj 559 1293 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+-1 -1 0 1;
+#X obj 626 1325 t b f;
+#X obj 608 1345 pack f f;
+#X obj 608 1269 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+-1 -1 174 1;
+#X obj 623 1269 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+-1 -1 174 1;
+#X msg 544 1389 /vid setUniform_vec2 voxels_offset \$1 \$2;
+#X msg 608 1365 /vid setUniform_vec2 voxels_distance \$1 \$2;
+#X msg 624 164 /home/aalex/src/shaders;
+#X msg 569 1248 0.5;
+#X obj 75 1182 vsl 15 150 0 0.1 0 0 empty empty empty 0 -9 0 10 -191407
+-1 -1 2900 1;
+#X obj 116 1181 vsl 15 150 0 0.1 0 0 empty empty empty 0 -9 0 10 -191407
+-1 -1 5300 1;
+#X text 120 1161 distance;
+#X text 73 1154 size;
+#X obj 94 1099 line;
+#X obj 47 909 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 92 1051 / 1000;
+#X obj 91 1030 random 100;
+#X obj 24 1099 line;
+#X obj 22 1051 / 1000;
+#X obj 21 1030 random 100;
+#X obj 41 936 metro 2000;
+#X msg 92 1075 \$1 2000;
+#X msg 22 1075 \$1 2000;
+#X text 89 1343 SHADER------------------------>;
+#X connect 5 0 101 0;
+#X connect 6 0 41 0;
+#X connect 9 0 4 0;
+#X connect 12 0 4 0;
+#X connect 13 0 6 0;
+#X connect 16 0 4 0;
+#X connect 21 0 19 0;
+#X connect 22 0 23 0;
+#X connect 23 0 20 0;
+#X connect 24 0 22 0;
+#X connect 25 0 22 0;
+#X connect 25 1 22 1;
+#X connect 26 0 22 0;
+#X connect 26 1 22 2;
+#X connect 27 0 25 0;
+#X connect 28 0 26 0;
+#X connect 29 0 35 0;
+#X connect 30 0 29 0;
+#X connect 31 0 29 0;
+#X connect 31 1 29 1;
+#X connect 32 0 29 0;
+#X connect 32 1 29 2;
+#X connect 33 0 31 0;
+#X connect 34 0 32 0;
+#X connect 35 0 20 0;
+#X connect 36 0 37 0;
+#X connect 37 0 20 0;
+#X connect 38 0 19 0;
+#X connect 39 0 4 0;
+#X connect 40 0 4 0;
+#X connect 41 0 7 0;
+#X connect 42 0 48 0;
+#X connect 43 0 42 0;
+#X connect 44 0 42 0;
+#X connect 44 1 42 1;
+#X connect 45 0 42 0;
+#X connect 45 1 42 2;
+#X connect 46 0 44 0;
+#X connect 47 0 45 0;
+#X connect 48 0 20 0;
+#X connect 49 0 50 0;
+#X connect 50 0 20 0;
+#X connect 51 0 52 0;
+#X connect 52 0 20 0;
+#X connect 53 0 54 0;
+#X connect 54 0 20 0;
+#X connect 55 0 56 0;
+#X connect 56 0 20 0;
+#X connect 57 0 58 0;
+#X connect 58 0 20 0;
+#X connect 63 0 103 0;
+#X connect 64 0 61 0;
+#X connect 65 0 71 0;
+#X connect 66 0 65 0;
+#X connect 67 0 65 0;
+#X connect 67 1 65 1;
+#X connect 68 0 65 0;
+#X connect 68 1 65 2;
+#X connect 69 0 67 0;
+#X connect 70 0 68 0;
+#X connect 71 0 62 0;
+#X connect 72 0 73 0;
+#X connect 73 0 62 0;
+#X connect 74 0 75 0;
+#X connect 75 0 62 0;
+#X connect 76 0 77 0;
+#X connect 77 0 62 0;
+#X connect 80 0 61 0;
+#X connect 81 0 102 0;
+#X connect 82 0 104 0;
+#X connect 83 0 106 0;
+#X connect 84 0 43 0;
+#X connect 84 0 46 0;
+#X connect 84 0 47 0;
+#X connect 84 0 49 0;
+#X connect 84 0 51 0;
+#X connect 84 0 53 0;
+#X connect 84 0 55 0;
+#X connect 84 0 57 0;
+#X connect 85 0 113 0;
+#X connect 86 0 81 0;
+#X connect 86 0 72 0;
+#X connect 86 0 74 0;
+#X connect 86 0 76 0;
+#X connect 86 0 66 0;
+#X connect 86 0 69 0;
+#X connect 86 0 70 0;
+#X connect 86 0 105 0;
+#X connect 87 0 62 0;
+#X connect 88 0 87 0;
+#X connect 90 0 130 0;
+#X connect 91 0 96 0;
+#X connect 93 0 96 1;
+#X connect 94 0 93 0;
+#X connect 95 0 6 1;
+#X connect 96 0 92 0;
+#X connect 97 0 4 0;
+#X connect 98 0 4 0;
+#X connect 99 0 4 0;
+#X connect 100 0 4 0;
+#X connect 101 0 4 0;
+#X connect 102 0 62 0;
+#X connect 103 0 62 0;
+#X connect 104 0 62 0;
+#X connect 105 0 82 0;
+#X connect 106 0 84 0;
+#X connect 107 0 4 0;
+#X connect 110 0 108 0;
+#X connect 111 0 114 0;
+#X connect 112 0 108 0;
+#X connect 113 0 86 0;
+#X connect 114 0 131 0;
+#X connect 115 0 116 0;
+#X connect 115 1 116 1;
+#X connect 116 0 117 0;
+#X connect 117 0 109 0;
+#X connect 118 0 116 0;
+#X connect 119 0 115 0;
+#X connect 120 0 121 0;
+#X connect 120 1 121 1;
+#X connect 121 0 128 0;
+#X connect 122 0 121 0;
+#X connect 123 0 120 0;
+#X connect 124 0 125 0;
+#X connect 124 1 125 1;
+#X connect 125 0 129 0;
+#X connect 126 0 125 0;
+#X connect 127 0 124 0;
+#X connect 128 0 109 0;
+#X connect 129 0 109 0;
+#X connect 130 0 95 0;
+#X connect 131 0 118 0;
+#X connect 131 0 119 0;
+#X connect 131 0 126 0;
+#X connect 131 0 127 0;
+#X connect 132 0 118 0;
+#X connect 132 0 119 0;
+#X connect 133 0 126 0;
+#X connect 133 0 127 0;
+#X connect 136 0 133 0;
+#X connect 137 0 143 0;
+#X connect 138 0 144 0;
+#X connect 139 0 138 0;
+#X connect 140 0 132 0;
+#X connect 141 0 145 0;
+#X connect 142 0 141 0;
+#X connect 143 0 139 0;
+#X connect 143 0 142 0;
+#X connect 144 0 136 0;
+#X connect 145 0 140 0;

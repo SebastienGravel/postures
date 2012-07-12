@@ -1,0 +1,113 @@
+#N canvas 1063 143 814 748 10;
+#X obj 34 76 cnv 15 24 24 empty empty 1 4 12 1 24 -99865 -262144 0
+;
+#X obj 22 238 cnv 15 24 24 empty empty 3 4 12 1 24 -99865 -262144 0
+;
+#X obj 218 402 cnv 15 24 24 empty empty 5 4 12 1 24 -99865 -262144
+0;
+#X obj 106 698 s \$0-to-SPIN;
+#X obj 34 108 cnv 15 24 24 empty empty 2 4 12 1 24 -99865 -262144 0
+;
+#X text 71 81 start spinServer and spinViewer with default arguments
+;
+#X obj 18 18 widget-spinConnect \$0;
+#X obj 73 113 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 94 110 set view for this example;
+#X obj 102 154 spin.toCamera \$0;
+#X msg 98 177 createNode grid GridNode;
+#X obj 98 199 s \$0-to-SPIN;
+#X obj 469 553 subwidget-PAT \$0;
+#X obj 469 512 loadbang;
+#X msg 103 134 setTranslation 0 -9 5 \, setOrientation -20 0 0;
+#X obj 261 424 hsl 128 15 0 -10000 0 0 empty empty empty -2 -8 0 10
+-262144 -1 -1 0 1;
+#X floatatom 258 447 5 0 0 0 - - -;
+#X obj 332 510 vradio 11 1 0 13 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
+#X text 346 606 9) QUAD_STRIP;
+#X text 346 595 8) QUADS;
+#X text 346 584 7) TRIANGLE_FAN;
+#X text 346 573 6) TRIANGLE_STRIP;
+#X text 346 562 5) TRIANGLES;
+#X text 346 551 4) LINE_LOOP;
+#X text 346 529 2) LINES;
+#X text 346 518 1) POINTS;
+#X text 346 507 0) NONE;
+#X text 346 540 3) LINE_STRIP;
+#X text 346 639 12) BOXES;
+#X text 346 628 11) LIGHTPOINTS;
+#X text 346 617 10) POLYGON;
+#X obj 404 424 hsl 128 15 0 100 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X text 439 638 <- WARNING! currently highly unstable;
+#X floatatom 401 447 5 0 0 0 - - -;
+#X text 254 404 Play with some parameters:;
+#X text 60 240 Create a PointCloud node;
+#X msg 64 258 createNode cloud PointCloud;
+#X msg 258 463 /cloud setSpacing \$1;
+#X msg 401 463 /cloud setPointSize \$1;
+#X msg 332 660 /cloud setDrawMode \$1;
+#X msg 469 532 cloud;
+#X msg 15 621 /cloud debug;
+#X obj 104 332 cnv 15 24 24 empty empty 4 4 12 1 24 -99865 -262144
+0;
+#X text 136 326 Load a point cloud from a .pcd file:;
+#X msg 384 299 /cloud loadFile /Users/mikewoz/src/kinect/pcl/pcl-1.4.0/test/bunny.pcd
+;
+#X msg 322 226 /cloud loadFile /Users/mikewoz/src/kinect/pcl/pcl-1.4.0/test/table_scene_mug_stereo_textured.pcd
+;
+#X msg 420 332 /cloud loadFile /Users/mikewoz/src/kinect/pcl/pcl-1.4.0/test/cturtle.pcd
+;
+#X msg 335 176 /cloud loadFile /Users/mikewoz/src/kinect/pcl/pcl-1.4.0/test/pcl_logo.pcd
+;
+#X obj 571 398 thisdir;
+#X obj 570 371 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 582 474 thisdir;
+#X obj 581 447 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 571 417 /cloud loadFile \$1/resources/pcl-test_ascii.pcd;
+#X msg 582 494 /cloud loadFile \$1/resources/pcl-test_bin.pcd;
+#X msg 75 283 createNode cloud2 PointCloud;
+#X msg 91 306 createNode cloud3 PointCloud;
+#X msg 515 532 cloud2;
+#X msg 563 532 cloud3;
+#X msg 409 23 /cloud loadFile /home/posture/Documents/Metalab/hmr/models/pcd/pcl-image1.pcd
+\, /cloud setOrientation 0 90 0;
+#X msg 409 76 /cloud2 loadFile /home/posture/Documents/Metalab/hmr/models/pcd/pcl-image2.pcd
+\, /cloud2 setOrientation 0 90 120;
+#X msg 409 129 /cloud3 loadFile /home/posture/Documents/Metalab/hmr/models/pcd/pcl-image3.pcd
+\, /cloud3 setOrientation 0 90 240;
+#X connect 7 0 10 0;
+#X connect 7 0 14 0;
+#X connect 10 0 11 0;
+#X connect 13 0 40 0;
+#X connect 14 0 9 0;
+#X connect 15 0 16 0;
+#X connect 16 0 37 0;
+#X connect 17 0 39 0;
+#X connect 31 0 33 0;
+#X connect 33 0 38 0;
+#X connect 36 0 3 0;
+#X connect 37 0 3 0;
+#X connect 38 0 3 0;
+#X connect 39 0 3 0;
+#X connect 40 0 12 0;
+#X connect 41 0 3 0;
+#X connect 44 0 3 0;
+#X connect 45 0 3 0;
+#X connect 46 0 3 0;
+#X connect 47 0 3 0;
+#X connect 48 0 52 0;
+#X connect 49 0 48 0;
+#X connect 50 0 53 0;
+#X connect 51 0 50 0;
+#X connect 52 0 3 0;
+#X connect 54 0 3 0;
+#X connect 55 0 3 0;
+#X connect 56 0 12 0;
+#X connect 57 0 12 0;
+#X connect 58 0 3 0;
+#X connect 59 0 3 0;
+#X connect 60 0 3 0;

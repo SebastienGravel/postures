@@ -1,0 +1,8 @@
+#!/usr/bin/env lunch
+
+PDARGS = "-path /usr/local/lib/pd-externals/pdsheefa"
+
+add_command("pd -noaudio %s shaders-proto.pd" % (PDARGS), identifier="pd")
+add_command("spinserver --scene-id shaders", identifier="server")
+add_command("spinviewer --scene-id shaders", identifier="viewer")
+
