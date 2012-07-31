@@ -1,0 +1,185 @@
+#N canvas 403 305 1155 631 10;
+#X text 207 238 R:84 \, G:109 \, B:142;
+#X obj 88 237 p;
+#X obj -52 237 s \$1-to-SPIN-TCP;
+#X obj -52 -180 inlet;
+#X obj 573 80 anyreg gProjectPath;
+#X obj 446 -105 anyreg g_hostname;
+#X obj -52 -154 t b b b;
+#X obj -75 -153 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 280 -82 list append \$1;
+#X obj 95 -6 list append \$1;
+#X obj 468 424 outlet;
+#X obj 411 -77 inlet;
+#X obj -74 -113 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 800 64 nbx 5 14 -1e+37 1e+37 0 0 empty empty textureRepeat 0
+-8 1 12 -262130 -1 -1 0 256;
+#X obj 800 109 / 1;
+#X obj 900 -6 r \$0-ratio;
+#X obj 900 47 t b f;
+#X floatatom 955 42 5 0 0 0 - - -;
+#X obj 900 16 / 20;
+#X obj 412 236 shell;
+#X obj 439 256 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 411 18 list split 1;
+#X obj 445 40 list2symbol;
+#X obj 573 58 loadbang;
+#X obj 411 179 t a a;
+#X obj 468 283 anyreg \$0-;
+#X msg 570 308 /\$1.png reload;
+#X text 666 296 <- TODO: implement this method in SPIN;
+#X obj 456 90 length;
+#X obj 456 68 symbol2list;
+#X obj 519 48 symbol;
+#X obj 519 28 loadbang;
+#X floatatom 608 109 5 0 0 0 - - -;
+#X obj 533 11 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 411 156 pack s s 0 s;
+#X obj 640 30 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 590 147 s \$0-ratio;
+#X msg 473 -24 shp01 I want a nice juicy hamburger that is delicious
+and tasty.;
+#X obj 463 126 * 50;
+#X msg 218 -30 CERC110;
+#X msg -39 286 deleteNode \$1 \, createNode \$1 GeometryNode \, /\$1
+setParent step2 \, /\$1 setTranslation \$4 \$2 \$3 \, /\$1 setScale
+\$7 0.1 \$6 \, /\$1 setOrientation 0 0 \$10 \, /\$1 setStateSetFromFile
+\$11/models/hmr-text-tiles/\$12.png \, /\$12.png setLighting 0 \, /\$12.png
+setTextureRepeat 1 1 \, /\$12.png setTextureBlend 0 \, /\$1 setTexCoord
+0 -6 6 \, /\$1 setTexCoord 1 -6 -6 \, /\$1 setTexCoord 2 6 -6 \, /\$1
+setTexCoord 3 6 6;
+#X obj 344 319 p;
+#X obj 281 -105 anyreg gProjectPath;
+#X msg 468 348 /\$1.png setPath NULL \, /\$1.png setPath \$4/models/hmr-text-tiles/\$1.png
+;
+#X msg 446 -53 CERC110 Salle Power Corporation du Canada.;
+#N canvas 413 195 795 628 texture-repeat 0;
+#X obj 135 63 inlet;
+#X obj 141 127 expr 1-$f1;
+#X obj 301 127 expr 1-$f1;
+#X floatatom 106 127 5 0 0 0 - - -;
+#X floatatom 265 127 5 0 0 0 - - -;
+#X obj 288 56 inlet;
+#X obj 479 58 inlet;
+#X obj 97 178 hotpack3;
+#X obj 283 175 hotpack3;
+#X obj 301 233 hotpack3;
+#X obj 115 236 hotpack3;
+#X obj 77 353 s \$1-to-SPIN;
+#X obj 406 350 outlet;
+#X msg 283 206 setTexCoord 2 \$1 \$2;
+#X msg 97 208 setTexCoord 0 \$1 \$2;
+#X msg 115 257 setTexCoord 1 \$1 \$2;
+#X msg 301 254 setTexCoord 3 \$1 \$2;
+#X connect 0 0 3 0;
+#X connect 1 0 8 0;
+#X connect 1 0 9 0;
+#X connect 2 0 7 1;
+#X connect 2 0 9 1;
+#X connect 3 0 1 0;
+#X connect 3 0 7 0;
+#X connect 3 0 10 0;
+#X connect 4 0 2 0;
+#X connect 4 0 8 1;
+#X connect 4 0 10 1;
+#X connect 5 0 4 0;
+#X connect 6 0 7 2;
+#X connect 6 0 8 2;
+#X connect 6 0 10 2;
+#X connect 6 0 9 2;
+#X connect 7 0 14 0;
+#X connect 8 0 13 0;
+#X connect 9 0 16 0;
+#X connect 10 0 15 0;
+#X connect 13 0 12 0;
+#X connect 14 0 12 0;
+#X connect 15 0 12 0;
+#X connect 16 0 12 0;
+#X restore 800 132 pd texture-repeat;
+#X msg 963 108 CERC110;
+#X obj 936 62 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 927 133 symbol \$1;
+#X obj 936 86 t b b;
+#X obj 528 414 s \$1-to-SPIN-TCP;
+#X obj -52 -105 list append \$2 \$3 \$4 \$5 \$6 \$7 \$8 \$9 \$10 \$11
+\$12;
+#X msg -52 58 deleteNode \$1 \, createNode \$1 GeometryNode \, createStateSet
+\$11.png ImageTexture \, /\$1 setStateSet \$11.png \, /\$1 setParent
+step2 \, /\$1 setTranslation \$4 \$2 \$3 \, /\$1 setScale \$7 0.1 \$6
+\, /\$1 setOrientation 0 0 \$10 \, /\$11.png setLighting 0 \, /\$11.png
+setTextureRepeat 1 1 \, /\$11.png setTextureBlend 0;
+#X obj 788 196 p;
+#X obj 800 154 list prepend /\$12;
+#X obj -5 -64 p;
+#X obj 331 -48 symbol \$11;
+#X obj 331 9 pack s s;
+#X obj 9 -10 list trim;
+#X msg 411 202 \$4/text-rect -t "\$2" -f "Gill sans 72" -H 10 -o \$1.png
+;
+#X obj 487 385 p;
+#X connect 3 0 6 0;
+#X connect 4 0 34 3;
+#X connect 6 0 51 0;
+#X connect 6 2 5 0;
+#X connect 7 0 6 0;
+#X connect 11 0 21 0;
+#X connect 12 0 51 0;
+#X connect 13 0 14 0;
+#X connect 13 0 45 1;
+#X connect 14 0 45 0;
+#X connect 15 0 18 0;
+#X connect 16 0 13 0;
+#X connect 16 1 14 1;
+#X connect 18 0 16 0;
+#X connect 18 0 17 0;
+#X connect 19 1 20 0;
+#X connect 20 0 25 0;
+#X connect 21 0 34 0;
+#X connect 21 0 45 2;
+#X connect 21 1 22 0;
+#X connect 22 0 29 0;
+#X connect 22 0 34 1;
+#X connect 23 0 4 0;
+#X connect 24 0 59 0;
+#X connect 24 1 25 0;
+#X connect 25 0 26 0;
+#X connect 25 0 43 0;
+#X connect 28 0 32 0;
+#X connect 28 0 38 0;
+#X connect 29 0 28 0;
+#X connect 30 0 29 1;
+#X connect 31 0 30 0;
+#X connect 32 0 36 0;
+#X connect 33 0 30 0;
+#X connect 34 0 24 0;
+#X connect 35 0 4 0;
+#X connect 37 0 21 0;
+#X connect 38 0 34 2;
+#X connect 39 0 9 1;
+#X connect 43 0 41 0;
+#X connect 43 0 10 0;
+#X connect 43 0 60 0;
+#X connect 44 0 21 0;
+#X connect 45 0 54 0;
+#X connect 46 0 48 1;
+#X connect 47 0 49 0;
+#X connect 48 0 45 2;
+#X connect 49 0 48 0;
+#X connect 49 1 46 0;
+#X connect 51 0 55 0;
+#X connect 51 0 56 0;
+#X connect 51 0 52 0;
+#X connect 52 0 1 0;
+#X connect 52 0 10 0;
+#X connect 54 0 53 0;
+#X connect 54 0 10 0;
+#X connect 56 0 57 0;
+#X connect 58 0 52 0;
+#X connect 59 0 19 0;
+#X connect 59 0 41 0;
