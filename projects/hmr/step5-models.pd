@@ -1,49 +1,64 @@
-#N canvas 1011 111 763 613 10;
-#X obj 177 496 outlet;
+#N canvas 94 448 763 614 10;
+#X obj 181 635 outlet;
 #X obj 146 37 inlet creation;
-#X obj 140 129 t b s;
 #X obj 110 161 symbol \$1;
-#X obj 145 194 pack s s;
 #X obj 141 78 delay;
 #X obj 263 19 loadbang;
 #X obj 263 47 random 5000;
 #X obj 263 72 + 5000;
 #X text 363 46 Arguments: name of the planet;
 #X text 323 77 <-- to avoid loading 10 obj at the same time;
-#X text 197 164 <-- first symbol is node name;
+#X text 180 163 <-- first symbol is node name;
 #X text 211 192 <-- second symbol is current directory (folder) to
 look for .ac file;
 #X obj 140 103 anyreg gProjectPath;
+#X obj 102 60 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
 #X msg 145 252 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
 \$2/models/\$1.ac \, /\$1 setParent step5 \, /\$1 setOrientation 90
 0 90 \, /\$1 setScale 0.1 0.1 0.1 \, /\$1 setTranslation 2000 2200
 0;
-#X obj 102 60 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
 #X msg 232 322 deleteNode \$1-globule2 \, createNode \$1-globule2 ModelNode
-\, /\$1-globule2 setModelFromFile \$2/models/BloodCellScene.ac \, /\$1-globule2
-setParent step5 \, /\$1-globule2 setOrientation 0 0 0 \, /\$1-globule2
-setScale 0.006 0.006 0.006 \, /\$1-globule2 setTranslation 2000 2385
-7.5;
-#X obj 145 224 t a a a;
-#X msg 293 413 deleteNode \$1-cone \, createNode \$1-cone ModelNode
+\, /\$1-globule2 setModelFromFile \$2/models/BloodCellScene.3DS \,
+/\$1-globule2 setParent step5 \, /\$1-globule2 setOrientation 90 0
+0 \, /\$1-globule2 setScale 0.006 0.006 0.006 \, /\$1-globule2 setTranslation
+1998.82 2385.5 0.59;
+#X obj 575 513 p;
+#X obj 260 507 list append \$1-Endoplasmic_Ret_w_ribosomesw_Smooth_endoplasmic
+;
+#X obj 145 224 t a a a a;
+#X obj 433 163 anyreg g_hostname;
+#X obj 145 194 pack s s s;
+#X msg 323 413 deleteNode \$1-cone \, createNode \$1-cone ModelNode
 \, /\$1-cone setModelFromFile \$2/models/\$1-cone.ac \, /\$1-cone setParent
-step5 \, /\$1-cone setOrientation 90 0 90 \, /\$1-cone setScale 1 1
-1 \, /\$1-cone setTranslation 0 2400 0;
-#X connect 1 0 5 0;
-#X connect 2 0 3 0;
-#X connect 2 1 4 1;
-#X connect 3 0 4 0;
-#X connect 4 0 17 0;
-#X connect 5 0 13 0;
-#X connect 6 0 7 0;
-#X connect 7 0 8 0;
-#X connect 8 0 5 1;
-#X connect 13 0 2 0;
+step5 \, /\$1-cone setOrientation 0 0 0 \, /\$1-cone setScale 50 126
+50 \, /\$1-cone setTranslation 2000 2321.7 0 \, /\$3 setConstraintMode
+2 \, /\$3 setTarget \$1-cone;
+#X msg 261 540 deleteNode \$1-cell \, createNode \$1-cell ModelNode
+\, /\$1-cell setModelFromFile \$2/models/HMR-modeles/\$4.3ds \, /\$1-cell
+setParent step5 \, /\$1-cell setOrientation 0 0 90 \, /\$1-cell setScale
+0.0002 0.0002 0.0002 \, /\$1-cell setTranslation 2000.13 2384.2 -0.1
+\, /\$1-cell setStateSet voxShaderx;
+#X obj 140 129 t b s b;
+#X connect 1 0 3 0;
+#X connect 2 0 19 0;
+#X connect 3 0 11 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 6 0 3 1;
+#X connect 11 0 22 0;
+#X connect 12 0 11 0;
+#X connect 13 0 0 0;
 #X connect 14 0 0 0;
-#X connect 15 0 13 0;
-#X connect 16 0 0 0;
-#X connect 17 0 14 0;
-#X connect 17 1 16 0;
-#X connect 17 2 18 0;
-#X connect 18 0 0 0;
+#X connect 16 0 21 0;
+#X connect 17 0 13 0;
+#X connect 17 1 14 0;
+#X connect 17 2 20 0;
+#X connect 17 3 16 0;
+#X connect 18 0 19 2;
+#X connect 19 0 17 0;
+#X connect 20 0 0 0;
+#X connect 21 0 0 0;
+#X connect 22 0 2 0;
+#X connect 22 1 19 1;
+#X connect 22 2 18 0;

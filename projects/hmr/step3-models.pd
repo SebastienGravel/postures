@@ -1,62 +1,99 @@
-#N canvas 890 91 1027 619 10;
-#X obj 199 520 outlet;
+#N canvas 709 250 1027 619 10;
+#X obj 165 670 outlet;
 #X obj 146 37 inlet creation;
-#X obj 140 129 t b s;
-#X obj 110 161 symbol \$1;
-#X obj 145 204 pack s s;
+#X obj 100 165 symbol \$1;
 #X obj 141 78 delay;
 #X obj 263 19 loadbang;
 #X obj 263 47 random 5000;
 #X obj 263 72 + 5000;
 #X text 363 46 Arguments: name of the planet;
 #X text 323 77 <-- to avoid loading 10 obj at the same time;
-#X text 197 164 <-- first symbol is node name;
-#X text 211 202 <-- second symbol is current directory (folder) to
+#X text 167 165 <-- first symbol is node name;
+#X text 207 202 <-- second symbol is current directory (folder) to
 look for .ac file;
 #X obj 140 103 anyreg gProjectPath;
-#X msg 145 252 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
+#X msg 131 252 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
 \$2/models/\$1.ac \, /\$1 setParent step3 \, /\$1 setOrientation 90
 0 90 \, /\$1 setScale 0.1 0.1 0.1 \, /\$1 setTranslation 0 2200 0;
-#X obj -41 313 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -55 313 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X floatatom -1 297 8 0 0 0 - - -;
+#X floatatom -15 297 8 0 0 0 - - -;
 #X obj 90 69 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X msg -59 344 /sang-globule1 setScale 0.002 0.002 0.002;
-#X msg -92 376 /sang-globule1 setScale 0.004 0.004 0.004;
-#X msg -84 412 /sang-globule1 debug;
-#X obj 145 228 t a a a;
-#X msg 222 321 deleteNode \$1-globule1 \, createNode \$1-globule1 ModelNode
-\, /\$1-globule1 setModelFromFile \$2/models/BloodCellScene.ac \, /\$1-globule1
-setParent step3 \, /\$1-globule1 setOrientation 0 0 0 \, /\$1-globule1
-setScale 0.006 0.006 0.006 \, /\$1-globule1 setTranslation -27.12 2385.5
-6.82;
-#X msg 282 405 deleteNode \$1-cone \, createNode \$1-cone ModelNode
+#X msg -73 344 /sang-globule1 setScale 0.002 0.002 0.002;
+#X msg -106 376 /sang-globule1 setScale 0.004 0.004 0.004;
+#X msg -98 412 /sang-globule1 debug;
+#X obj 131 204 pack s s s;
+#X obj 140 129 t b s b;
+#X text 499 164 <-- third symbol is hostname;
+#X obj 387 166 anyreg g_hostname;
+#X msg 710 423 deleteNode \$1-cone \, createNode \$1-cone ModelNode
 \, /\$1-cone setModelFromFile \$2/models/\$1-cone.ac \, /\$1-cone setParent
 step3 \, /\$1-cone setOrientation 0 0 0 \, /\$1-cone setScale 50 126
 50 \, /\$1-cone setTranslation -26 2323 7.5 \, /\$1-cone setColor 1
-1 1 1 \, /posture??-reporter addTarget \$1-cone \, deleteNode \$1-coneBlock
+1 1 1 \, /\$3-reporter addTarget \$1-cone \, deleteNode \$1-coneBlock
 \, createNode \$1-coneBlock ConstraintsNode \, /\$1-coneBlock setConstraintMode
 2 \, /\$1-coneBlock setParent \$1-cone;
-#X connect 1 0 5 0;
-#X connect 2 0 3 0;
-#X connect 2 1 4 1;
-#X connect 3 0 4 0;
-#X connect 4 0 21 0;
-#X connect 5 0 13 0;
-#X connect 6 0 7 0;
-#X connect 7 0 8 0;
-#X connect 8 0 5 1;
-#X connect 13 0 2 0;
-#X connect 14 0 0 0;
-#X connect 15 0 18 0;
-#X connect 16 0 18 0;
-#X connect 17 0 13 0;
+#X msg 705 346 deleteNode \$1-coneBlock \, createNode \$1-coneBlock
+ConstraintsNode \, /\$1-coneBlock setConstraintMode 2 \, /\$1-coneBlock
+setParent \$3 \, /\$1-coneBlock setTarget \$1-cone \, /\$1-coneBlock
+setTranslation 0 0 0;
+#X msg 709 74 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
+\$2/models/\$1.ac \, /\$1 setParent step3 \, /\$1 setOrientation 90
+0 90 \, /\$1 setScale 0.1 0.1 0.1 \, /\$1 setTranslation 0 2200 0;
+#X msg 878 237 deleteNode \$1-cone \, createNode \$1-cone ModelNode
+\, /\$1-cone setModelFromFile \$2/models/\$1-cone.ac \, /\$1-cone setParent
+step3 \, /\$1-cone setOrientation 0 0 0 \, /\$1-cone setScale 50 126
+50 \, /\$1-cone setTranslation -26 2323 7.5 \, /\$1-cone setColor 1
+1 1 1 \, /\$3 setConstraintMode 2 \, /\$3 setTarget \$1-cone;
+#X msg 786 143 deleteNode \$1-globule1 \, createNode \$1-globule1 ModelNode
+\, /\$1-globule1 setModelFromFile \$2/models/BloodCellScene.3DS \,
+/\$1-globule1 setParent step3 \, /\$1-globule1 setOrientation 0 0 0
+\, /\$1-globule1 setScale 0.006 0.006 0.006 \, /\$1-globule1 setTranslation
+-27.12 2385.5 6.82 \, /\$1-globule1 setOrientation 90 0 0;
+#X msg 208 321 deleteNode \$1-globule1 \, createNode \$1-globule1 ModelNode
+\, /\$1-globule1 setModelFromFile \$2/models/BloodCellScene.3DS \,
+/\$1-globule1 setParent step3 \, /\$1-globule1 setOrientation 90 0
+0 \, /\$1-globule1 setScale 0.006 0.006 0.006 \, /\$1-globule1 setTranslation
+-1.18 2385.5 0.59;
+#X obj 565 503 p;
+#X obj 131 228 t a a a a;
+#X obj 250 497 list append \$1-Endoplasmic_Ret_w_ribosomesw_Smooth_endoplasmic
+;
+#X msg 251 530 deleteNode \$1-cell \, createNode \$1-cell ModelNode
+\, /\$1-cell setModelFromFile \$2/models/HMR-modeles/\$4.3ds \, /\$1-cell
+setParent step3 \, /\$1-cell setOrientation 0 0 90 \, /\$1-cell setScale
+0.0002 0.0002 0.0002 \, /\$1-cell setTranslation 0.13 2384.2 -0.1 \,
+/\$1-cell setStateSet voxShaderx;
+#X msg 300 405 deleteNode \$1-cone \, createNode \$1-cone ModelNode
+\, /\$1-cone setModelFromFile \$2/models/\$1-cone.ac \, /\$1-cone setParent
+step3 \, /\$1-cone setOrientation 0 0 0 \, /\$1-cone setScale 50 126
+50 \, /\$1-cone setTranslation 0 2321.7 0 \, /\$1-cone setColor 1 1
+1 1 \, /\$3 setTarget \$1-cone;
+#X connect 1 0 3 0;
+#X connect 2 0 19 0;
+#X connect 3 0 11 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 6 0 3 1;
+#X connect 11 0 20 0;
+#X connect 12 0 0 0;
+#X connect 13 0 16 0;
+#X connect 14 0 16 0;
+#X connect 15 0 11 0;
+#X connect 16 0 0 0;
+#X connect 17 0 0 0;
 #X connect 18 0 0 0;
-#X connect 19 0 0 0;
-#X connect 20 0 0 0;
-#X connect 21 0 14 0;
-#X connect 21 1 22 0;
-#X connect 21 2 23 0;
-#X connect 22 0 0 0;
-#X connect 23 0 0 0;
+#X connect 19 0 30 0;
+#X connect 20 0 2 0;
+#X connect 20 1 19 1;
+#X connect 20 2 22 0;
+#X connect 22 0 19 2;
+#X connect 28 0 0 0;
+#X connect 30 0 12 0;
+#X connect 30 1 28 0;
+#X connect 30 2 33 0;
+#X connect 30 3 31 0;
+#X connect 31 0 32 0;
+#X connect 32 0 0 0;
+#X connect 33 0 0 0;
