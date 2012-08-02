@@ -1,4 +1,4 @@
-#N canvas 855 322 1054 700 10;
+#N canvas 847 342 1054 700 10;
 #X obj 191 492 outlet;
 #X obj 146 37 inlet creation;
 #X obj 140 129 t b s;
@@ -34,8 +34,8 @@ setTranslation 2001.07 998.09 -0.2 \, /\$1-pcd2 setTranslation 0 -20
 ;
 #X msg 144 282 deleteNode \$1-cube \, createNode \$1-cube ModelNode
 \, /\$1-cube setModelFromFile \$2/models/\$1-cube.ac \, /\$1-cube setParent
-step6 \, /\$1-cube setOrientation 0 0 128 \, /\$1-cube setScale 0.3
-0.3 0.3 \, /\$1-cube setTranslation 2000 1000 0 \, /\$1-cube setRenderBin
+\$1-targets \, /\$1-cube setOrientation 0 0 128 \, /\$1-cube setScale
+0.3 0.3 0.3 \, /\$1-cube setTranslation 2000 1000 0 \, /\$1-cube setRenderBin
 9;
 #X connect 1 0 5 0;
 #X connect 2 0 3 0;
@@ -49,7 +49,7 @@ step6 \, /\$1-cube setOrientation 0 0 128 \, /\$1-cube setScale 0.3
 #X connect 13 0 2 0;
 #X connect 14 0 13 0;
 #X connect 15 0 18 0;
-#X connect 15 2 17 0;
+#X connect 15 1 17 0;
 #X connect 16 0 0 0;
 #X connect 17 0 0 0;
 #X connect 18 0 0 0;

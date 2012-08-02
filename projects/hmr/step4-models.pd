@@ -1,4 +1,4 @@
-#N canvas 611 98 1306 772 10;
+#N canvas 609 103 1306 772 10;
 #X obj 135 1052 outlet;
 #X obj 146 37 inlet creation;
 #X obj 248 139 t b s;
@@ -139,20 +139,20 @@ setTranslation 1005 3847 8 \, /\$1 setStateSet voxShader \, /\$1 setRenderBin
 /\$1 setOrientation 0 0 180 \, /\$1 setScale 0.2 0.2 0.2 \, /\$1 setTranslation
 1005 5328 0 \, /\$1 setStateSet voxShader \, /\$1 setRenderBin 999
 ;
-#X msg 172 833 deleteNode \$1-2 \, createNode \$1-2 ModelNode \, /\$1-2
-setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1.IVE \, /\$1-2
-setParent step4 \, /\$1-2 setOrientation 0 0 180 \, /\$1-2 setScale
-0.1 0.1 0.1 \, /\$1-2 setTranslation 1005 3997 20 \, /\$1-2 setStateSet
-voxShader \, /\$1 setRenderBin 999;
 #X msg 161 939 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1-Mitochondria
 setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1.IVE \, /\$1 setParent
 step4 \, /\$1 setOrientation 0 0 0 \, /\$1 setScale 0.004 0.004 0.004
 \, /\$1 setTranslation 955 3778 0 \, /\$1 setStateSet voxShader \,
 /\$1 setRenderBin 999;
+#X msg 172 833 deleteNode \$1-2 \, createNode \$1-2 ModelNode \, /\$1-2
+setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1.IVE \, /\$1-2
+setParent step4 \, /\$1-2 setOrientation 0 0 180 \, /\$1-2 setScale
+0.1 0.1 0.1 \, /\$1-2 setTranslation 1005 3997 20 \, /\$1-2 setStateSet
+voxShader \, /\$1-2 setRenderBin 999;
 #X msg 194 527 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
 \$2/models/HMR-modeles/\$1.3ds \, /\$1 setParent step4 \, /\$1 setOrientation
 0 0 90 \, /\$1 setScale 0.17 0.17 0.17 \, /\$1 setTranslation 1098
-3860 -22 \, /\$1 setStateSet voxShaderk \, /\$1 setRenderBin 999;
+3860 -22 \, /\$1 setStateSet voxShaderx \, /\$1 setRenderBin 999;
 #X connect 1 0 5 0;
 #X connect 2 0 3 0;
 #X connect 2 1 4 1;
@@ -205,8 +205,8 @@ step4 \, /\$1 setOrientation 0 0 0 \, /\$1 setScale 0.004 0.004 0.004
 #X connect 59 0 52 0;
 #X connect 60 0 69 0;
 #X connect 62 0 70 0;
-#X connect 63 0 73 0;
-#X connect 64 0 74 0;
+#X connect 63 0 74 0;
+#X connect 64 0 73 0;
 #X connect 65 0 71 0;
 #X connect 66 0 75 0;
 #X connect 68 0 72 0;

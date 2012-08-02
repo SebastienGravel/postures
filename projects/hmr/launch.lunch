@@ -2,7 +2,7 @@
 
 PDARGS = "-path /usr/local/lib/pd-externals/pdsheefa"
 
-add_command("pd -noaudio %s shaders-proto.pd" % (PDARGS), identifier="pd")
-add_command("spinserver --scene-id shaders", identifier="server")
-add_command("spinviewer --scene-id shaders", identifier="viewer")
+add_command("pd-extended -noaudio %s LTC-main.pd" % (PDARGS), identifier="pd")
+add_command("spinserver --scene-id HMR", identifier="server")
+add_command("spinviewer --scene-id HMR --ssao", identifier="viewer")
 
