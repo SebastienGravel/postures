@@ -1,6 +1,5 @@
-#N canvas 703 265 1027 619 10;
-#X obj 160 592 outlet;
-#X obj 146 37 inlet creation;
+#N canvas 314 321 1027 696 10;
+#X obj 170 622 outlet;
 #X obj 100 165 symbol \$1;
 #X obj 141 78 delay;
 #X obj 263 19 loadbang;
@@ -9,80 +8,85 @@
 #X text 363 46 Arguments: name of the planet;
 #X text 323 77 <-- to avoid loading 10 obj at the same time;
 #X text 167 165 <-- first symbol is node name;
-#X text 207 202 <-- second symbol is current directory (folder) to
+#X text 217 202 <-- second symbol is current directory (folder) to
 look for .ac file;
 #X obj 140 103 anyreg gProjectPath;
-#X msg 131 252 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
-\$2/models/\$1.ac \, /\$1 setParent step3 \, /\$1 setOrientation 90
-0 90 \, /\$1 setScale 0.1 0.1 0.1 \, /\$1 setTranslation 0 2200 0;
 #X obj 90 69 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 131 204 pack s s s;
-#X obj 140 129 t b s b;
 #X text 499 164 <-- third symbol is hostname;
 #X obj 387 166 anyreg g_hostname;
-#X msg 710 423 deleteNode \$1-cone \, createNode \$1-cone ModelNode
+#X msg 770 423 deleteNode \$1-cone \, createNode \$1-cone ModelNode
 \, /\$1-cone setModelFromFile \$2/models/\$1-cone.ac \, /\$1-cone setParent
 step3 \, /\$1-cone setOrientation 0 0 0 \, /\$1-cone setScale 50 126
 50 \, /\$1-cone setTranslation -26 2323 7.5 \, /\$1-cone setColor 1
 1 1 1 \, /\$3-reporter addTarget \$1-cone \, deleteNode \$1-coneBlock
 \, createNode \$1-coneBlock ConstraintsNode \, /\$1-coneBlock setConstraintMode
 2 \, /\$1-coneBlock setParent \$1-cone;
-#X msg 705 346 deleteNode \$1-coneBlock \, createNode \$1-coneBlock
+#X msg 765 346 deleteNode \$1-coneBlock \, createNode \$1-coneBlock
 ConstraintsNode \, /\$1-coneBlock setConstraintMode 2 \, /\$1-coneBlock
 setParent \$3 \, /\$1-coneBlock setTarget \$1-cone \, /\$1-coneBlock
 setTranslation 0 0 0;
-#X msg 709 74 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
+#X msg 769 74 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
 \$2/models/\$1.ac \, /\$1 setParent step3 \, /\$1 setOrientation 90
 0 90 \, /\$1 setScale 0.1 0.1 0.1 \, /\$1 setTranslation 0 2200 0;
-#X msg 878 237 deleteNode \$1-cone \, createNode \$1-cone ModelNode
+#X msg 938 237 deleteNode \$1-cone \, createNode \$1-cone ModelNode
 \, /\$1-cone setModelFromFile \$2/models/\$1-cone.ac \, /\$1-cone setParent
 step3 \, /\$1-cone setOrientation 0 0 0 \, /\$1-cone setScale 50 126
 50 \, /\$1-cone setTranslation -26 2323 7.5 \, /\$1-cone setColor 1
 1 1 1 \, /\$3 setConstraintMode 2 \, /\$3 setTarget \$1-cone;
-#X msg 786 143 deleteNode \$1-globule1 \, createNode \$1-globule1 ModelNode
+#X msg 846 143 deleteNode \$1-globule1 \, createNode \$1-globule1 ModelNode
 \, /\$1-globule1 setModelFromFile \$2/models/BloodCellScene.3DS \,
 /\$1-globule1 setParent step3 \, /\$1-globule1 setOrientation 0 0 0
 \, /\$1-globule1 setScale 0.006 0.006 0.006 \, /\$1-globule1 setTranslation
 -27.12 2385.5 6.82 \, /\$1-globule1 setOrientation 90 0 0;
-#X msg 156 321 deleteNode \$1-globule1 \, createNode \$1-globule1 ModelNode
-\, /\$1-globule1 setModelFromFile \$2/models/BloodCellScene.3DS \,
-/\$1-globule1 setParent step3 \, /\$1-globule1 setOrientation 90 0
-0 \, /\$1-globule1 setScale 0.006 0.006 0.006 \, /\$1-globule1 setTranslation
--1.18 2385.5 0.59;
-#X obj 561 495 p;
-#X obj 246 489 list append \$1-Endoplasmic_Ret_w_ribosomesw_Smooth_endoplasmic
+#X obj 683 591 p;
+#X obj 131 228 t a a a a;
+#X obj 257 529 list append Endoplasmic_Ret_w_ribosomesw_Smooth_endoplasmic
 ;
-#X msg 247 522 deleteNode \$1-cell \, createNode \$1-cell ModelNode
-\, /\$1-cell setModelFromFile \$2/models/HMR-modeles/\$4.3ds \, /\$1-cell
-setParent step3 \, /\$1-cell setOrientation 0 0 90 \, /\$1-cell setScale
-0.0002 0.0002 0.0002 \, /\$1-cell setTranslation 0.13 2384.2 -0.1 \,
-/\$1-cell setStateSet voxShaderx;
-#X msg 186 404 deleteNode \$1-cone \, createNode \$1-cone ModelNode
+#X obj 146 37 inlet;
+#X obj 131 204 pack s s s s;
+#X obj 140 129 t b s b b;
+#X obj 701 166 symbol voxShader2;
+#X msg 131 252 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
+\$2/models/\$1.ac \, /\$1 setParent step3 \, /\$1 setOrientation 90
+0 90 \, /\$1 setScale 0.1 0.1 0.1 \, /\$1 setTranslation 1000 2200
+0 \, /\$1 setStateSet \$4;
+#X msg 156 321 deleteNode \$1-globule \, createNode \$1-globule ModelNode
+\, /\$1-globule setModelFromFile \$2/models/Blood_Cell_Scene.ac \,
+/\$1-globule setParent step3 \, /\$1-globule setOrientation 180 0 0
+\, /\$1-globule setScale 0.006 0.006 0.006 \, /\$1-globule setTranslation
+1000 2384.5 0 \, /\$1-globule setStateSet \$4;
+#X msg 196 434 deleteNode \$1-cone \, createNode \$1-cone ModelNode
 \, /\$1-cone setModelFromFile \$2/models/\$1-cone.ac \, /\$1-cone setParent
 \$1-targets \, /\$1-cone setOrientation 0 0 0 \, /\$1-cone setScale
-50 126 50 \, /\$1-cone setTranslation 0 2321.7 0 \, /\$1-cone setColor
+50 126 50 \, /\$1-cone setTranslation 1000 2321 0 \, /\$1-cone setColor
 1 1 1 1;
-#X obj 131 228 t a a a a;
-#X connect 1 0 3 0;
-#X connect 2 0 14 0;
-#X connect 3 0 11 0;
+#X msg 257 572 deleteNode \$1-cell \, createNode \$1-cell ModelNode
+\, /\$1-cell setModelFromFile \$2/models/HMR-modeles/MathMO/\$5.3DS
+\, /\$1-cell setParent step3 \, /\$1-cell setOrientation 0 0 90 \,
+/\$1-cell setScale 0.0004 0.0004 0.0004 \, /\$1-cell setTranslation
+1000.18 2384.2 0 \, /\$1-cell setStateSet \$4;
+#X connect 1 0 23 0;
+#X connect 2 0 10 0;
+#X connect 3 0 4 0;
 #X connect 4 0 5 0;
-#X connect 5 0 6 0;
-#X connect 6 0 3 1;
-#X connect 11 0 15 0;
-#X connect 12 0 0 0;
-#X connect 13 0 11 0;
-#X connect 14 0 28 0;
-#X connect 15 0 2 0;
-#X connect 15 1 14 1;
-#X connect 15 2 17 0;
-#X connect 17 0 14 2;
-#X connect 23 0 0 0;
-#X connect 25 0 26 0;
+#X connect 5 0 2 1;
+#X connect 10 0 24 0;
+#X connect 11 0 10 0;
+#X connect 13 0 23 2;
+#X connect 20 0 26 0;
+#X connect 20 1 27 0;
+#X connect 20 2 28 0;
+#X connect 20 3 21 0;
+#X connect 21 0 29 0;
+#X connect 22 0 2 0;
+#X connect 23 0 20 0;
+#X connect 24 0 1 0;
+#X connect 24 1 23 1;
+#X connect 24 2 13 0;
+#X connect 24 3 25 0;
+#X connect 25 0 23 3;
 #X connect 26 0 0 0;
 #X connect 27 0 0 0;
-#X connect 28 0 12 0;
-#X connect 28 1 23 0;
-#X connect 28 2 27 0;
-#X connect 28 3 25 0;
+#X connect 28 0 0 0;
+#X connect 29 0 0 0;
