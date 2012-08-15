@@ -141,7 +141,7 @@ int main(int argc, char **argv)
         exit(1);
 	}
 	
-	spin.sceneManager->setGraphical(true);
+	spin.sceneManager_->setGraphical(true);
 	
 	
 
@@ -150,7 +150,7 @@ int main(int argc, char **argv)
 
 	if (argScene.valid()) {
 		std::cout << "Loading sample model" << std::endl;
-		spin.sceneManager->worldNode->addChild(argScene.get());
+		spin.sceneManager_->worldNode->addChild(argScene.get());
 	}
 
 
@@ -158,7 +158,7 @@ int main(int argc, char **argv)
 	// *************************************************************************
 	// set up viewer:
 
-	viewer.setSceneData(spin.sceneManager->rootNode.get());
+	viewer.setSceneData(spin.sceneManager_->rootNode.get());
 	viewer.setupViewForPanoscope(screenNum, fullscreen);
     viewer.setNearFar(0.001,1000);
 
@@ -209,8 +209,8 @@ int main(int argc, char **argv)
         //precipitationEffect->setCellSize(osg::Vec3(5,5,5));
 
 	
-        spin.sceneManager->rootNode->addChild(precipitationEffect.get());
-        spin.sceneManager->rootNode->getOrCreateStateSet()->setAttributeAndModes(precipitationEffect->getFog());
+        spin.sceneManager_->rootNode->addChild(precipitationEffect.get());
+        spin.sceneManager_->rootNode->getOrCreateStateSet()->setAttributeAndModes(precipitationEffect->getFog());
     }
 
 	if (fog)
@@ -225,7 +225,7 @@ int main(int argc, char **argv)
 	    fog->setStart(-100.f);
         fog->setDensity(fog_density);
 
-	    osg::StateSet *worldStateSet = spin.sceneManager->worldNode->getOrCreateStateSet();
+	    osg::StateSet *worldStateSet = spin.sceneManager_->worldNode->getOrCreateStateSet();
 	    worldStateSet->setMode(GL_FOG, osg::StateAttribute::ON);
         worldStateSet->setAttribute(fog,osg::StateAttribute::ON);
 	}
@@ -289,7 +289,7 @@ int main(int argc, char **argv)
                 viewer.advance();
 			    viewer.eventTraversal();
 			    pthread_mutex_lock(&sceneMutex);
-			    spin.sceneManager->update();
+			    spin.sceneManager_->update();
                 viewer.updateTraversal();
 			    viewer.renderingTraversals();
 			    pthread_mutex_unlock(&sceneMutex);
