@@ -1,151 +1,115 @@
-#N canvas 214 390 987 672 10;
-#X obj 229 772 outlet;
-#X obj 891 306 t b s;
-#X obj 860 330 symbol \$1;
-#X obj 873 363 pack s s;
-#X obj 212 19 loadbang;
-#X obj 212 47 random 5000;
-#X text 289 46 <-- to avoid loading 10 obj at the same time;
-#X text 934 329 <-- first symbol is node name;
-#X text 939 361 <-- second symbol is current directory (folder) to
+#N canvas 742 294 987 672 10;
+#X obj 1077 162 t b s;
+#X obj 1046 186 symbol \$1;
+#X obj 1059 219 pack s s;
+#X text 1120 185 <-- first symbol is node name;
+#X text 1125 217 <-- second symbol is current directory (folder) to
 look for .ac file;
-#X obj 70 59 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 891 280 anyreg gProjectPath;
-#X obj 893 570 symbol /home/posture/Documents/Metalab/hmr;
-#X msg 873 400 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
-\$2/models/\$1.ac \, /\$1 setParent step2 \, /\$1 setOrientation 90
-0 90 \, /\$1 setScale 0.1 0.1 0.1 \, /\$1 setTranslation 0 0 0;
-#X obj 212 72 + 5000;
-#X msg 414 720 deleteNode \$1-cloud1 \, createNode \$1-cloud1 PointCloud
+#X obj 1077 136 anyreg gProjectPath;
+#X msg 1059 256 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1
+setModelFromFile \$2/models/\$1.ac \, /\$1 setParent step2 \, /\$1
+setOrientation 90 0 90 \, /\$1 setScale 0.1 0.1 0.1 \, /\$1 setTranslation
+0 0 0;
+#X msg 889 654 deleteNode \$1-cloud1 \, createNode \$1-cloud1 PointCloud
 \, /\$1-cloud1 setURI \$2/models/pcd/set1.cpc \, /\$1-cloud1 setParent
 step1 \, /\$1-cloud1 setOrientation 0 90 0 \, /\$1-cloud1 setScale
 10 10 10 \, /\$1-cloud1 setTranslation 0 0 0;
-#X obj 434 391 list;
-#X obj 481 229 anyreg gProjectPath;
-#X obj 461 229 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 414 276 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
+#X obj 434 235 anyreg gProjectPath;
 #X msg 893 599 set1.cpc -7 \, set2-3.cpc -5 \, set3.cpc -3 \, set4.cpc
 -1.5 \, set5.cpc 0 \, set6.cpc 1.5 \, set7.cpc 3 \, set8.cpc 4.5 \,
 set9.cpc 7;
-#X obj 434 414 list append randomtext;
-#X obj 371 362 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X floatatom 817 620 5 0 0 0 - - -;
-#X obj 818 785 s \$0-to-SPIN-TCP;
-#X floatatom 396 339 5 0 0 0 - - -;
-#X msg 396 361 1-scanner cpc -23 120 \$1;
-#X msg 846 755 /cpc debug;
-#X msg 837 720 /1-scanner-pcd setTranslation -23 90 0;
-#X msg 821 689 /1-scanner setOrientation 0 90 \$1;
-#X obj 481 249 t b s;
-#X obj 12 393 list;
+#X floatatom 993 372 5 0 0 0 - - -;
+#X msg 1024 444 /cpc debug;
+#X msg 1009 418 /1-scanner-pcd setTranslation -23 90 0;
+#X msg 993 392 /1-scanner setOrientation 0 90 \$1;
+#X obj 434 255 t b s;
 #X obj 59 231 anyreg gProjectPath;
-#X obj -8 278 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 12 416 list append randomtext;
 #X obj 59 251 t b s;
-#X obj 24 219 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 5 150 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
 #X obj 27 148 s create_up3;
 #X text 108 147 <--To main patch/LTC-hotspots;
 #X obj 90 17 inlet;
-#X obj 342 639 p;
-#X obj 79 575 p;
-#X obj 90 38 delay;
-#X msg 21 504 deleteNode \$1-group-2 \, createNode \$1-group-2 GroupNode
+#X obj 710 637 p;
+#X obj 731 522 p;
+#X msg 363 466 deleteNode \$1-group-2 \, createNode \$1-group-2 GroupNode
 \, /\$1-group-2 setParent labo-targets \, /\$1-group-2 setTranslation
 \$3 \$4 -1.5 \, /\$1-group-2 setOrientation 0 90 \$5;
 #X obj 336 439 t a a;
-#X obj 27 125 delay 10000;
-#X msg 607 452 /7-pipette-pcd setColorMode 0;
-#X msg 399 503 deleteNode \$1-pcd \, deleteNode \$1-group \, createNode
+#X msg 1035 469 /7-pipette-pcd setColorMode 0;
+#X msg 336 529 deleteNode \$1-pcd \, deleteNode \$1-group \, createNode
 \$1-group GroupNode \, createNode \$1-pcd PointCloud \, /\$1-pcd setParent
 \$1-group \, /\$1-group setParent step2 \, /\$1-group setTranslation
 \$3 \$4 -1.5 \, /\$1-pcd setTranslation 0 \$6 0 \, /\$1-group setOrientation
 0 90 \$5 \, /\$1-pcd setDrawMode 1 \, /\$1-pcd setURI \$7/models/pcd/\$1.\$2
 \, /\$1-pcd setScale 11 11 11 \, /\$1-pcd setPointSize 2 \, /\$1-pcd
 setVoxelSize 1e-05 \, /\$1-pcd setColorMode 0;
-#X obj 663 209 list;
-#X obj 710 47 anyreg gProjectPath;
-#X obj 643 94 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 663 54 anyreg gProjectPath;
+#X obj 663 74 t b s;
+#X obj 785 44 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 663 232 list append randomtext;
-#X obj 710 67 t b s;
-#X obj 675 35 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 90 59 t b b b b;
-#X obj 59 210 delay 6000;
-#X obj 481 208 delay 3000;
-#X msg 663 94 1-scanner cpc -23 109.5 130 -5 \, 2-microscope cpc -56
-90 17 -20 \, 3-pipette cpc -88 87 0 -20 \, 4-hotte cpc -127 97 26 -20
-;
+#X obj 90 38 t b b b b;
 #X msg 12 278 9-congelation cpc -156 271 0 -20 \, 10-microscope cpc
 -216 185 17 -20 \, 11-scanner cpc -260 187 130 -5 \, 12-congelation
 cpc -303 195 0 -20 \, 13-hotte cpc -313 241 26 -20;
 #X msg 434 275 5-hotte cpc -52 175 26 -20 \, 6-select-immuno cpc -140
 182 0 -20 \, 7-pipette cpc -180 187 0 -20 \, 8-microscope cpc -109
 271 17 -20;
+#X obj 434 214 delay 5000;
+#X obj 59 210 delay 10000;
+#X obj 336 644 s \$2-to-SPIN-TCP;
+#X obj 663 207 list append path;
+#X obj 434 323 list append path;
+#X obj 556 225 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 181 221 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 111 138 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 152 28 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 995 502 s \$2-to-SPIN-TCP;
+#X msg 663 94 1-scanner cpc -23 109.5 130 -5 \, 2-microscope cpc -56
+90 17 -20 \, 3-pipette cpc -88 87 0 -20 \, 4-hotte cpc -127 97 26 -20
+;
+#X obj 12 416 list append path;
+#X connect 0 0 1 0;
+#X connect 0 1 2 1;
 #X connect 1 0 2 0;
-#X connect 1 1 3 1;
-#X connect 2 0 3 0;
-#X connect 3 0 12 0;
-#X connect 4 0 5 0;
-#X connect 5 0 13 0;
-#X connect 9 0 54 0;
-#X connect 10 0 1 0;
-#X connect 12 0 0 0;
-#X connect 13 0 42 1;
-#X connect 14 0 0 0;
-#X connect 15 0 20 0;
-#X connect 16 0 29 0;
-#X connect 17 0 16 0;
-#X connect 18 0 59 0;
-#X connect 20 0 44 0;
-#X connect 21 0 25 0;
-#X connect 22 0 28 0;
-#X connect 24 0 25 0;
-#X connect 25 0 15 0;
-#X connect 26 0 23 0;
-#X connect 27 0 23 0;
-#X connect 28 0 23 0;
-#X connect 29 0 59 0;
-#X connect 29 1 20 1;
-#X connect 30 0 33 0;
-#X connect 31 0 34 0;
-#X connect 32 0 58 0;
-#X connect 33 0 44 0;
-#X connect 34 0 58 0;
-#X connect 34 1 33 1;
-#X connect 35 0 31 0;
-#X connect 36 0 37 0;
-#X connect 39 0 42 0;
-#X connect 42 0 54 0;
-#X connect 43 0 0 0;
-#X connect 43 0 41 0;
-#X connect 44 0 43 0;
-#X connect 44 1 47 0;
-#X connect 45 0 37 0;
-#X connect 46 0 0 0;
-#X connect 47 0 0 0;
-#X connect 47 0 40 0;
-#X connect 48 0 51 0;
-#X connect 49 0 52 0;
-#X connect 50 0 57 0;
-#X connect 51 0 44 0;
-#X connect 52 0 57 0;
-#X connect 52 1 51 1;
-#X connect 53 0 49 0;
-#X connect 54 0 45 0;
-#X connect 54 1 55 0;
-#X connect 54 2 56 0;
-#X connect 54 3 49 0;
-#X connect 55 0 31 0;
-#X connect 56 0 16 0;
-#X connect 57 0 48 0;
-#X connect 58 0 30 0;
-#X connect 59 0 15 0;
+#X connect 2 0 6 0;
+#X connect 5 0 0 0;
+#X connect 8 0 14 0;
+#X connect 10 0 13 0;
+#X connect 11 0 41 0;
+#X connect 12 0 41 0;
+#X connect 13 0 41 0;
+#X connect 14 0 31 0;
+#X connect 14 1 36 1;
+#X connect 15 0 16 0;
+#X connect 16 0 30 0;
+#X connect 16 1 43 1;
+#X connect 19 0 29 0;
+#X connect 22 0 21 0;
+#X connect 22 0 34 0;
+#X connect 23 0 25 0;
+#X connect 23 1 22 0;
+#X connect 24 0 41 0;
+#X connect 25 0 20 0;
+#X connect 25 0 34 0;
+#X connect 26 0 27 0;
+#X connect 27 0 42 0;
+#X connect 27 1 35 1;
+#X connect 28 0 26 0;
+#X connect 29 1 33 0;
+#X connect 29 2 32 0;
+#X connect 29 3 26 0;
+#X connect 30 0 43 0;
+#X connect 31 0 36 0;
+#X connect 32 0 8 0;
+#X connect 33 0 15 0;
+#X connect 35 0 23 0;
+#X connect 36 0 23 0;
+#X connect 37 0 8 0;
+#X connect 38 0 15 0;
+#X connect 39 0 17 0;
+#X connect 40 0 29 0;
+#X connect 42 0 35 0;
+#X connect 43 0 23 0;

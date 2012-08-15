@@ -1,311 +1,167 @@
-#N canvas 789 122 1103 790 10;
-#X obj 192 598 outlet;
-#X obj 110 161 symbol \$1;
-#X obj 141 78 delay;
-#X obj 263 19 loadbang;
-#X obj 263 47 random 5000;
-#X obj 263 72 + 5000;
-#X text 363 46 Arguments: name of the planet;
-#X text 322 71 <-- to avoid loading 10 obj at the same time;
-#X text 177 160 <-- first symbol is node name;
-#X text 211 202 <-- second symbol is current directory (folder) to
-look for .ac file;
-#X obj 141 103 anyreg gProjectPath;
-#X obj 1108 522 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -258113
--1 -1 4900 1;
-#X obj 1034 428 loadbang;
-#X msg 1034 475 1;
-#X obj 1034 452 delay 2000;
-#X text 210 231 <-- third symbol is name of shader;
-#X obj 105 44 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X msg -30 639 /voxShader debug;
-#X obj 1336 516 t b f;
-#X obj 1335 540 pack f f;
-#X obj 1336 456 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+#N canvas 771 167 1103 790 10;
+#X obj 132 97 anyreg gProjectPath;
+#X msg 642 222 /voxShader debug;
+#X msg 656 250 /corridor setTranslation 0 0 0.3;
+#X floatatom 673 276 5 0 0 0 - - -;
+#X msg 673 295 /corridor-group setTranslation 10 115 \$1;
+#X obj 274 881 loadbang;
+#X obj 267 913 delay 2000;
+#X obj 56 1023 t b f;
+#X obj 38 1043 pack f f;
+#X obj 38 967 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
 -1 -1 0 1;
-#X obj 1312 473 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+#X obj 53 967 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
 -1 -1 0 1;
-#X msg 1335 561 /voxShader setUniform_vec2 voxels_distance \$1 \$2
-;
-#X obj 1273 540 t b f;
-#X obj 1272 564 pack f f;
-#X obj 1273 480 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+#X obj 224 1022 t b f;
+#X obj 206 1042 pack f f;
+#X obj 206 962 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
 -1 -1 0 1;
-#X obj 1249 497 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+#X obj 221 962 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
 -1 -1 0 1;
-#X obj 1211 568 t b f;
-#X obj 1210 592 pack f f;
-#X obj 1211 508 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+#X obj 343 1021 t b f;
+#X obj 325 1041 pack f f;
+#X obj 325 965 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
 -1 -1 0 1;
-#X obj 1187 525 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+#X obj 340 965 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
 -1 -1 0 1;
-#X msg 1272 585 /voxShader setUniform_vec2 voxels_size \$1 \$2;
-#X msg 1210 613 /voxShader setUniform_vec2 voxels_offset \$1 \$2;
-#X obj 1143 492 delay;
-#X obj 1179 415 loadbang;
-#X obj 1179 443 random 5000;
-#X obj 1179 468 + 5000;
-#X msg 1284 656 /voxShader debug;
-#X obj 675 168 t b s;
-#X obj 645 200 symbol \$1;
-#X obj 657 224 pack s s;
-#X text 712 200 <-- first symbol is node name;
-#X text 713 224 <-- second symbol is current directory (folder) to
-look for .ac file;
-#X msg -31 669 /corridor setTranslation 0 0 0.3;
-#X floatatom -31 700 5 0 0 0 - - -;
-#X msg -31 719 /corridor-group setTranslation 10 115 \$1;
-#X floatatom 1413 421 5 0 0 0 - - -;
-#X msg 1415 449 /corridor-pcd setPointSize \$1;
-#X obj 308 1025 loadbang;
-#X obj 301 1057 delay 2000;
-#X obj 90 1167 t b f;
-#X obj 72 1187 pack f f;
-#X obj 72 1111 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+#X msg 267 932 0.5;
+#X obj 270 699 vsl 15 150 0 0.1 0 0 empty empty Size 0 -9 0 10 -4032
 -1 -1 0 1;
-#X obj 87 1111 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+#X obj 316 698 vsl 15 150 0 1 0 0 empty empty Distance 0 -9 0 10 -4032
 -1 -1 0 1;
-#X obj 258 1166 t b f;
-#X obj 240 1186 pack f f;
-#X obj 240 1106 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
--1 -1 0 1;
-#X obj 255 1106 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
--1 -1 0 1;
-#X obj 377 1165 t b f;
-#X obj 359 1185 pack f f;
-#X obj 359 1109 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
--1 -1 0 1;
-#X obj 374 1109 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
--1 -1 0 1;
-#X msg 301 1076 0.5;
-#X obj 304 843 vsl 15 150 0 0.1 0 0 empty empty Size 0 -9 0 10 -4032
--1 -1 0 1;
-#X obj 350 842 vsl 15 150 0 1 0 0 empty empty Distance 0 -9 0 10 -4032
--1 -1 0 1;
-#X obj 364 790 line;
-#X obj 321 661 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 330 646 line;
+#X obj 287 517 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 362 742 / 1000;
-#X obj 361 721 random 100;
-#X obj 294 790 line;
-#X obj 292 742 / 1000;
-#X obj 291 721 random 100;
-#X obj 322 682 metro 2000;
-#X msg 362 766 \$1 2000;
-#X msg 292 766 \$1 2000;
-#X obj 474 955 hradio 15 1 0 6 empty empty Voxelize_method 0 -8 0 10
+#X obj 328 598 / 1000;
+#X obj 327 577 random 100;
+#X obj 260 646 line;
+#X obj 258 598 / 1000;
+#X obj 257 577 random 100;
+#X obj 288 538 metro 2000;
+#X msg 328 622 \$1 2000;
+#X msg 258 622 \$1 2000;
+#X obj 440 811 hradio 15 1 0 6 empty empty Voxelize_method 0 -8 0 10
 -4032 -1 -1 0;
-#X text 353 808 comment;
-#X obj 581 955 tgl 15 0 empty empty Activate_texture 17 7 0 10 -4032
+#X text 319 664 comment;
+#X obj 547 811 tgl 15 0 empty empty Activate_texture 17 7 0 10 -4032
 -1 -1 0 1;
-#X obj 706 953 hradio 15 1 0 2 empty empty Voxel_type 0 -8 0 10 -4032
+#X obj 672 809 hradio 15 1 0 2 empty empty Voxel_type 0 -8 0 10 -4032
 -1 -1 0;
-#X obj 826 839 vsl 15 150 0.1 2 0 0 empty empty Ratio 0 -9 0 10 -4032
+#X obj 792 695 vsl 15 150 0.1 2 0 0 empty empty Ratio 0 -9 0 10 -4032
 -1 -1 0 1;
-#X msg 72 1207 /voxShader setUniform_vec2 voxels_size \$1 \$2;
-#X msg 240 1230 /voxShader setUniform_vec2 voxels_offset \$1 \$2;
-#X msg 359 1205 /voxShader setUniform_vec2 voxels_distance \$1 \$2
+#X msg 38 1063 /voxShader setUniform_vec2 voxels_size \$1 \$2;
+#X msg 206 1086 /voxShader setUniform_vec2 voxels_offset \$1 \$2;
+#X msg 325 1061 /voxShader setUniform_vec2 voxels_distance \$1 \$2
 ;
-#X msg 581 1107 /voxShader setUniform_int vShowTexture \$1;
-#X obj 764 782 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 15319
-15319;
-#X msg 950 727 connect \$1;
-#X obj 949 707 tgl 15 0 empty empty empty 17 7 0 10 -258113 -1 -1 0
-1;
-#X obj 762 751 to-spin localhost 54324 /shaders;
-#X msg 474 1143 /voxShader setUniform_int vMethod \$1;
-#X obj 261 1306 s \$2-to-SPIN;
-#X obj 1126 691 s \$2-to-SPIN-TCP;
-#X msg 706 1139 /voxShader setUniform_int vVoxelType \$1;
-#X msg 844 1108 /voxShader setUniform_float vRatio \$1;
-#X floatatom 1417 476 10 0 0 0 - - -;
-#X msg 1418 498 /corridor-pcd setVoxelSize \$1;
-#X floatatom 168 951 10 0 0 0 - - -;
-#X floatatom 334 1001 10 0 0 0 - - -;
-#X floatatom 813 1008 10 0 0 0 - - -;
-#X msg 428 549 createStateSet voxShader Shader \, /voxShader setShader
+#X msg 547 963 /voxShader setUniform_int vShowTexture \$1;
+#X msg 440 999 /voxShader setUniform_int vMethod \$1;
+#X obj 227 1162 s \$2-to-SPIN;
+#X msg 672 995 /voxShader setUniform_int vVoxelType \$1;
+#X msg 810 964 /voxShader setUniform_float vRatio \$1;
+#X floatatom 134 807 10 0 0 0 - - -;
+#X floatatom 300 857 10 0 0 0 - - -;
+#X floatatom 779 864 10 0 0 0 - - -;
+#X msg 690 324 createStateSet voxShader Shader \, /voxShader setShader
 \$2/models/shaders/\$3s \, /\$1 setStateSet voxShader \, /voxShader
 setUniform_int vMethod 4 \, /voxShader setUniform_int vShowTexture
 1 \, /voxShader setUniform_int vVoxelType 1 \, /voxShader setUniform_float
 vRatio 1.23 \, /voxShader setUniform_int vVoxelType 1 \, /voxShader
 setUniform_vec2 voxels_size 0.017 0.017 \, /voxShader setUniform_vec2
 voxels_distance 0.181 0.181;
-#X obj -208 173 anyreg gProjectPath;
-#X obj 72 47 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X msg -208 193 /voxShader setShader \$1/models/shaders/voxelizew.jxs
-;
-#X obj 371 158 anyreg shader;
-#X obj 371 178 p;
-#X obj 365 132 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 142 129 t b s;
-#X obj 132 215 pack s s;
-#X obj 132 239 t l l;
-#X obj 1326 4 r \$0-shader;
-#X obj 1433 -65 loadbang;
-#X obj 1433 -16 symbol;
-#X obj 1437 99 s \$0-shader;
-#X msg 1447 40 chromakey_brcosa.jxs;
-#X msg 1367 70 INVALID;
-#X msg 1432 -46 anyreg gProjectPath;
-#X obj 1269 105 pack s s s;
-#X msg 1269 126 /\$1 setShader \$2/\$3;
-#X obj 1286 31 t b s;
-#X obj 1256 63 symbol \$1;
-#X obj 1151 9 delay 500;
-#X obj 1151 31 anyreg gProjectPath;
-#X obj 1108 12 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 1269 151 s \$2-to-SPIN-TCP;
-#X floatatom 215 814 10 0 0 0 - - -;
-#X floatatom 406 851 10 0 0 0 - - -;
-#X obj 146 37 inlet;
-#X msg 9 516 /corridor setStateSet voxShader;
-#X floatatom 874 790 10 0 0 0 - - -;
-#X msg 657 256 deleteNode \$1-pcd \, deleteNode \$1-group \, createNode
+#X floatatom 181 670 10 0 0 0 - - -;
+#X floatatom 372 707 10 0 0 0 - - -;
+#X obj 132 76 inlet;
+#X floatatom 840 646 10 0 0 0 - - -;
+#X msg 132 363 deleteNode \$1-pcd \, deleteNode \$1-group \, createNode
 \$1-group GroupNode \, createNode \$1-pcd PointCloud \, /\$1-pcd setParent
 \$1-group \, /\$1-group setParent step1 \, /\$1-group setTranslation
 9 163 -1.5 \, /\$1-pcd setTranslation 0 -20 0 \, /\$1-group setOrientation
 0 90 0 \, /\$1-pcd setDrawMode 1 \, /\$1-pcd setURI \$2/models/pcd/direction.cpc
 \, /\$1-pcd setScale 11 11 11 \, /\$1-pcd setPointSize 2 \, /\$1-pcd
 setVoxelSize 1e-05;
-#X msg 132 431 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
+#X obj 255 87 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 132 177 t l l l;
+#X obj 132 117 list prepend \$1;
+#X msg 171 205 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
 \$2/models/\$1.ac \, /\$1 setParent step1 \, /\$1 setOrientation 90
 0 90 \, /\$1 setScale 0.1 0.1 0.1 \, /\$1 setTranslation 0 0 0.1 \,
-/\$1 setRenderBin 9 \, /\$1 setStateSet voxShader;
-#X msg 171 312 deleteNode \$1-text \, createNode \$1-text ModelNode
+/\$1 setRenderBin 9 \, /\$1 setStateSet \$3;
+#X obj 132 157 list append voxShader2;
+#X obj 132 137 list append voxShader;
+#X msg 151 284 deleteNode \$1-text \, createNode \$1-text ModelNode
 \, /\$1-text setModelFromFile \$2/models/\$1-text.ac \, /\$1-text setParent
 step1 \, /\$1-text setOrientation 90 0 90 \, /\$1-text setScale 0.1
 0.1 0.1 \, /\$1-text setTranslation 0 0 0.1 \, /\$1-text setRenderBin
-99 \, /\$1-text setStateSet voxShader2;
-#X connect 1 0 106 0;
-#X connect 2 0 10 0;
+99 \, /\$1-text setStateSet \$4;
+#X obj 642 445 s \$2-to-SPIN-TCP;
+#X obj 132 476 s \$2-to-SPIN-TCP;
+#X obj 456 544 p;
+#X connect 0 0 56 0;
+#X connect 1 0 61 0;
+#X connect 2 0 61 0;
 #X connect 3 0 4 0;
-#X connect 4 0 5 0;
-#X connect 5 0 2 1;
-#X connect 10 0 38 0;
-#X connect 10 0 105 0;
-#X connect 12 0 14 0;
-#X connect 13 0 11 0;
-#X connect 14 0 13 0;
-#X connect 16 0 10 0;
-#X connect 17 0 0 0;
-#X connect 18 0 19 0;
-#X connect 18 1 19 1;
-#X connect 19 0 22 0;
-#X connect 20 0 18 0;
-#X connect 21 0 19 0;
-#X connect 22 0 90 0;
-#X connect 23 0 24 0;
-#X connect 23 1 24 1;
-#X connect 24 0 31 0;
-#X connect 25 0 23 0;
-#X connect 26 0 24 0;
-#X connect 27 0 28 0;
-#X connect 27 1 28 1;
-#X connect 28 0 32 0;
-#X connect 29 0 27 0;
-#X connect 30 0 28 0;
-#X connect 31 0 90 0;
-#X connect 32 0 90 0;
-#X connect 34 0 35 0;
-#X connect 35 0 36 0;
-#X connect 36 0 33 1;
-#X connect 37 0 90 0;
-#X connect 38 0 39 0;
-#X connect 38 1 40 1;
-#X connect 39 0 40 0;
-#X connect 40 0 128 0;
-#X connect 43 0 0 0;
-#X connect 44 0 45 0;
-#X connect 45 0 0 0;
-#X connect 46 0 47 0;
-#X connect 47 0 90 0;
-#X connect 49 0 62 0;
-#X connect 50 0 51 0;
-#X connect 50 1 51 1;
-#X connect 51 0 80 0;
-#X connect 52 0 51 0;
-#X connect 53 0 50 0;
-#X connect 54 0 55 0;
-#X connect 54 1 55 1;
-#X connect 55 0 81 0;
-#X connect 56 0 55 0;
-#X connect 57 0 54 0;
-#X connect 58 0 59 0;
-#X connect 58 1 59 1;
-#X connect 59 0 82 0;
-#X connect 60 0 59 0;
-#X connect 61 0 58 0;
-#X connect 62 0 52 0;
-#X connect 62 0 53 0;
-#X connect 62 0 60 0;
-#X connect 62 0 61 0;
-#X connect 63 0 52 0;
-#X connect 63 0 53 0;
-#X connect 63 0 95 0;
-#X connect 64 0 60 0;
-#X connect 64 0 61 0;
-#X connect 64 0 96 0;
-#X connect 65 0 64 0;
-#X connect 66 0 72 0;
-#X connect 67 0 73 0;
-#X connect 68 0 67 0;
-#X connect 69 0 63 0;
-#X connect 70 0 74 0;
-#X connect 71 0 70 0;
-#X connect 72 0 68 0;
-#X connect 72 0 71 0;
-#X connect 73 0 65 0;
-#X connect 74 0 69 0;
-#X connect 75 0 88 0;
-#X connect 77 0 83 0;
-#X connect 78 0 91 0;
-#X connect 79 0 92 0;
-#X connect 79 0 97 0;
-#X connect 80 0 89 0;
-#X connect 81 0 89 0;
-#X connect 82 0 89 0;
-#X connect 83 0 89 0;
-#X connect 85 0 87 1;
-#X connect 86 0 85 0;
-#X connect 87 0 84 0;
-#X connect 88 0 89 0;
-#X connect 91 0 89 0;
-#X connect 92 0 89 0;
-#X connect 93 0 94 0;
-#X connect 94 0 90 0;
-#X connect 98 0 0 0;
-#X connect 99 0 101 0;
-#X connect 100 0 99 0;
-#X connect 101 0 0 0;
-#X connect 102 0 103 0;
-#X connect 104 0 102 0;
-#X connect 105 0 1 0;
-#X connect 105 1 106 1;
-#X connect 106 0 107 0;
-#X connect 107 0 129 0;
-#X connect 107 1 130 0;
-#X connect 108 0 115 2;
-#X connect 109 0 114 0;
-#X connect 112 0 111 0;
-#X connect 113 0 111 0;
-#X connect 114 0 110 0;
-#X connect 115 0 116 0;
-#X connect 116 0 122 0;
-#X connect 117 0 118 0;
-#X connect 117 1 115 1;
-#X connect 118 0 115 0;
-#X connect 119 0 120 0;
-#X connect 120 0 118 0;
-#X connect 121 0 119 0;
-#X connect 123 0 63 0;
-#X connect 124 0 64 0;
-#X connect 125 0 2 0;
-#X connect 126 0 0 0;
-#X connect 127 0 79 0;
-#X connect 128 0 0 0;
-#X connect 129 0 0 0;
-#X connect 130 0 0 0;
+#X connect 4 0 61 0;
+#X connect 6 0 19 0;
+#X connect 7 0 8 0;
+#X connect 7 1 8 1;
+#X connect 8 0 37 0;
+#X connect 9 0 8 0;
+#X connect 10 0 7 0;
+#X connect 11 0 12 0;
+#X connect 11 1 12 1;
+#X connect 12 0 38 0;
+#X connect 13 0 12 0;
+#X connect 14 0 11 0;
+#X connect 15 0 16 0;
+#X connect 15 1 16 1;
+#X connect 16 0 39 0;
+#X connect 17 0 16 0;
+#X connect 18 0 15 0;
+#X connect 19 0 9 0;
+#X connect 19 0 10 0;
+#X connect 19 0 17 0;
+#X connect 19 0 18 0;
+#X connect 20 0 9 0;
+#X connect 20 0 10 0;
+#X connect 20 0 45 0;
+#X connect 21 0 17 0;
+#X connect 21 0 18 0;
+#X connect 21 0 46 0;
+#X connect 22 0 21 0;
+#X connect 23 0 29 0;
+#X connect 24 0 30 0;
+#X connect 25 0 24 0;
+#X connect 26 0 20 0;
+#X connect 27 0 31 0;
+#X connect 28 0 27 0;
+#X connect 29 0 25 0;
+#X connect 29 0 28 0;
+#X connect 30 0 22 0;
+#X connect 31 0 26 0;
+#X connect 32 0 41 0;
+#X connect 34 0 40 0;
+#X connect 35 0 43 0;
+#X connect 36 0 44 0;
+#X connect 36 0 47 0;
+#X connect 37 0 42 0;
+#X connect 38 0 42 0;
+#X connect 39 0 42 0;
+#X connect 40 0 42 0;
+#X connect 41 0 42 0;
+#X connect 43 0 42 0;
+#X connect 44 0 42 0;
+#X connect 49 0 20 0;
+#X connect 50 0 21 0;
+#X connect 51 0 0 0;
+#X connect 52 0 36 0;
+#X connect 53 0 62 0;
+#X connect 54 0 0 0;
+#X connect 55 0 53 0;
+#X connect 55 1 60 0;
+#X connect 55 2 57 0;
+#X connect 56 0 59 0;
+#X connect 57 0 62 0;
+#X connect 58 0 55 0;
+#X connect 59 0 58 0;
+#X connect 60 0 62 0;
