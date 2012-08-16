@@ -1,42 +1,25 @@
-#N canvas 595 289 1006 596 10;
+#N canvas 66 411 1006 596 10;
 #X obj 38 38 widget-spinConnect \$0;
 #X obj 38 18 loadbang1 HMR;
 #X obj 541 40 bng 30 250 50 0 reset empty RESET 40 17 0 35 -258113
 -1 -1;
-#N canvas 96 84 1088 995 user_setup 0;
+#N canvas 66 82 925 995 user_setup 0;
 #X obj 198 24 inlet;
 #X obj 198 77 anyreg g_hostname;
-#X obj 198 951 s \$0-to-SPIN-TCP;
+#X obj 198 1031 s \$0-to-SPIN-TCP;
 #X obj 139 26 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X msg 198 846 deleteNode mainLight2 \, createNode mainLight2 LightSource
+#X msg 198 926 deleteNode mainLight2 \, createNode mainLight2 LightSource
 \, /mainLight2 setParent \$1 \, /mainLight2 setTranslation 30 -30 12
 \, /mainLight2 setOrientation 0 0 0 \, /mainLight2 setCutoff 180 \,
 /mainLight2 setExponent 16 \, /mainLight2 setAttenuation 0.1 \, /mainLight2
 setAmbient 1 1 1 1 \, /mainLight2 setDiffuse 1 1 1 1 \, /mainLight2
 setSpecular 0 0 0 1;
-#X obj 631 415 p;
+#X obj 630 475 p;
 #X obj 198 112 pack s s s;
 #X obj 320 77 anyreg gProjectPath;
 #X obj 460 77 anyreg shader;
 #X obj 198 44 t b b b;
-#X msg 297 215 deleteNode \$1-reporter \, createNode \$1-reporter ReporterNode
-\, /\$1-reporter setParent \$1 \, /\$1-reporter setReporting CONTAINMENT
-1 \, /\$1 setcontainmentMode 1 \, /\$1 setCubeOffset 0 0 0 \, /\$1
-setCubeSize 100 100 100 \, /\$1 setTranslation 0 0 6.5 \, /\$1 setConstraintMode
-5;
-#X msg 268 442 createStateSet \$4 Shader \, /\$4 setShader \$2/models/shaders/\$3
-\, /\$4 setUniform_int vMethod 4 \, /\$4 setUniform_int vShowTexture
-1 \, /\$4 setUniform_int vVoxelType 1 \, /\$4 setUniform_float vRatio
-1.75 \, /\$4 setUniform_int vVoxelType 1 \, /\$4 setUniform_vec2 voxels_size
-1 1 \, /\$4 setUniform_vec2 voxels_distance 0 0 \, /\$4 setTransparent
-1;
-#X msg 282 320 createStateSet \$4 Shader \, /\$4 setShader \$2/models/shaders/\$3
-\, /\$4 setUniform_int vMethod 4 \, /\$4 setUniform_int vShowTexture
-1 \, /\$4 setUniform_int vVoxelType 1 \, /\$4 setUniform_float vRatio
-1.75 \, /\$4 setUniform_int vVoxelType 1 \, /\$4 setUniform_vec2 voxels_size
-0.0057 0.0057 \, /\$4 setUniform_vec2 voxels_distance 0.04 0.04 \,
-/\$4 setTransparent 1;
 #X obj 1013 416 loadbang;
 #X obj 1006 448 delay 2000;
 #X obj 795 558 t b f;
@@ -97,143 +80,168 @@ setCubeSize 100 100 100 \, /\$1 setTranslation 0 0 6.5 \, /\$1 setConstraintMode
 #X floatatom 1111 242 10 0 0 0 - - -;
 #X floatatom 1579 181 10 0 0 0 - - -;
 #X obj 966 697 s \$0-to-SPIN;
-#X obj 282 298 list append voxShader;
-#X obj 268 420 list append voxShader2;
-#X msg 254 564 createStateSet \$4 Shader \, /\$4 setShader \$2/models/shaders/\$3
-\, /\$4 setUniform_int vMethod 4 \, /\$4 setUniform_int vShowTexture
-1 \, /\$4 setUniform_int vVoxelType 1 \, /\$4 setUniform_float vRatio
-1.75 \, /\$4 setUniform_int vVoxelType 1 \, /\$4 setUniform_vec2 voxels_size
-1 1 \, /\$4 setUniform_vec2 voxels_distance 0 0 \, /\$4 setTransparent
-1;
-#X obj 254 542 list append voxShader3;
-#X obj 226 733 s \$0-to-SPIN-TCP;
-#X obj 254 662 s \$0-to-SPIN-TCP;
-#X msg 240 693 /\$1 setVelocityScalars 4 6 6 \, /\$1 setSpinScalars
+#X obj 280 358 list append voxShader;
+#X obj 266 500 list append voxShader2;
+#X obj 252 622 list append voxShader3;
+#X obj 225 813 s \$0-to-SPIN-TCP;
+#X obj 252 742 s \$0-to-SPIN-TCP;
+#X msg 239 773 /\$1 setVelocityScalars 4 6 6 \, /\$1 setSpinScalars
 0 0 0;
-#X msg 226 713 setNotifyLevel 1;
-#X obj 628 608 vradio 15 1 0 7 empty empty empty 0 -8 0 10 -262144
+#X msg 225 793 setNotifyLevel 1;
+#X obj 628 668 vradio 15 1 0 7 empty empty empty 0 -8 0 10 -262144
 -1 -1 0;
-#X text 645 622 FATAL;
-#X text 645 606 ALWAYS;
-#X text 645 638 WARN;
-#X text 645 654 NOTICE;
-#X text 645 669 INFO;
-#X text 645 685 DEBUG_INFO;
-#X text 645 701 DEBUG_FP;
-#X msg 212 760 deleteNode mainLight \, createNode mainLight LightSource
+#X text 645 682 FATAL;
+#X text 645 666 ALWAYS;
+#X text 645 698 WARN;
+#X text 645 714 NOTICE;
+#X text 645 729 INFO;
+#X text 645 745 DEBUG_INFO;
+#X text 645 761 DEBUG_FP;
+#X msg 211 840 deleteNode mainLight \, createNode mainLight LightSource
 \, /mainLight setParent \$1 \, /mainLight setTranslation -30 -30 12
 \, /mainLight setOrientation 0 0 0 \, /mainLight setCutoff 180 \, /mainLight
 setExponent 16 \, /mainLight setAttenuation 0.1 \, /mainLight setAmbient
 1 1 1 1 \, /mainLight setDiffuse 1 1 1 1 \, /mainLight setSpecular
 0 0 0 1;
-#X msg 605 836 deleteNode mainLight3 \, createNode mainLight3 LightSource
-\, /mainLight3 setParent step4 \, /mainLight3 setTranslation 1000 4000
-0 \, /mainLight3 setOrientation 0 0 0 \, /mainLight3 setCutoff 180
-\, /mainLight3 setExponent 16 \, /mainLight3 setAttenuation 0.1 \,
-/mainLight3 setAmbient 1 1 1 1 \, /mainLight3 setDiffuse 1 1 1 1 \,
-/mainLight3 setSpecular 0 0 0 1;
-#X obj 605 804 r creat_manLight3;
-#X text 720 802 <-- From model creation patch sent;
-#X text 744 815 after creationg main nodes;
-#X obj 198 151 t a a a a a a a a a;
-#X obj 391 171 s \$0-to-SPIN-TCP;
+#X obj 605 864 r creat_manLight3;
+#X text 720 862 <-- From model creation patch sent;
+#X text 744 875 after creationg main nodes;
+#X obj 347 251 s \$0-to-SPIN-TCP;
 #X obj 96 96 shell;
 #X msg 96 76 hostname -s;
 #X obj 96 116 symbol;
-#X msg 391 120 createNode \$1 UserNode \, createNode \$1-anim AnimationNode
+#X msg 625 252 /voxShader setUniform_int vNumberOfLights 3;
+#X msg 252 644 createStateSet \$4 Shader \, /\$4 setShader \$2/models/shaders/\$3
+\, /\$4 setUniform_int vMethod 4 \, /\$4 setUniform_int vShowTexture
+1 \, /\$4 setUniform_int vVoxelType 1 \, /\$4 setUniform_float vRatio
+1.75 \, /\$4 setUniform_int vVoxelType 1 \, /\$4 setUniform_vec2 voxels_size
+1 1 \, /\$4 setUniform_vec2 voxels_distance 0 0 \, /\$4 setTransparent
+1 \, /\$4 setUniform_int vNumberOfLights 3;
+#X msg 266 522 createStateSet \$4 Shader \, /\$4 setShader \$2/models/shaders/\$3
+\, /\$4 setUniform_int vMethod 4 \, /\$4 setUniform_int vShowTexture
+1 \, /\$4 setUniform_int vVoxelType 1 \, /\$4 setUniform_float vRatio
+1.75 \, /\$4 setUniform_int vVoxelType 1 \, /\$4 setUniform_vec2 voxels_size
+1 1 \, /\$4 setUniform_vec2 voxels_distance 0 0 \, /\$4 setTransparent
+1 \, /\$4 setUniform_int vNumberOfLights 2;
+#X msg 280 380 createStateSet \$4 Shader \, /\$4 setShader \$2/models/shaders/\$3
+\, /\$4 setUniform_int vMethod 4 \, /\$4 setUniform_int vShowTexture
+1 \, /\$4 setUniform_int vVoxelType 1 \, /\$4 setUniform_float vRatio
+1.75 \, /\$4 setUniform_int vVoxelType 1 \, /\$4 setUniform_vec2 voxels_size
+0.0057 0.0057 \, /\$4 setUniform_vec2 voxels_distance 0.04 0.04 \,
+/\$4 setTransparent 1 \, /\$4 setUniform_int vNumberOfLights 2;
+#X obj 149 54 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 389 149 createNode \$1 UserNode \, createNode \$1-anim AnimationNode
 \, /\$1 setParent \$1-anim \, /\$1 setSpaceNavigatorNode \$1-anim \,
 /\$1-anim setConstraintMode 5 \, /\$1-anim setComputationMode 0;
+#X msg 293 275 deleteNode \$1-reporter \, createNode \$1-reporter ReporterNode
+\, /\$1-reporter setParent \$1 \, /\$1-reporter setReporting CONTAINMENT
+1 \, /\$1 setcontainmentMode 1 \, /\$1 setCubeOffset 0 0 0 \, /\$1
+setCubeSize 100 100 100 \, /\$1 setTranslation 0 0 0 \, /\$1 setConstraintMode
+5;
+#X obj 198 151 t a a a a a a a a a a;
+#X msg 347 198 load anim.xml \, /\$1-anim setPlay 0 \, /\$1-anim setParent
+world \, /\$1 setParent \$1-anim \, /\$1 setSpaceNavigatorNode \$1-anim
+;
+#X msg 605 896 deleteNode mainLight3 \, createNode mainLight3 LightSource
+\, /mainLight3 setParent step4 \, /mainLight3 setTranslation 1000 3000
+0 \, /mainLight3 setOrientation 0 0 0 \, /mainLight3 setCutoff 180
+\, /mainLight3 setExponent 2 \, /mainLight3 setAttenuation 0.1 \, /mainLight3
+setAmbient 0 0 0 0 \, /mainLight3 setDiffuse 1 1 1 1 \, /mainLight3
+setSpecular 0 0 0 0;
 #X connect 0 0 9 0;
 #X connect 1 0 6 0;
 #X connect 3 0 9 0;
 #X connect 4 0 2 0;
-#X connect 6 0 80 0;
+#X connect 6 0 86 0;
 #X connect 7 0 6 1;
 #X connect 8 0 6 2;
-#X connect 9 0 83 0;
+#X connect 9 0 77 0;
 #X connect 9 1 7 0;
 #X connect 9 2 8 0;
-#X connect 10 0 64 0;
-#X connect 11 0 64 0;
-#X connect 12 0 5 0;
-#X connect 12 0 64 0;
-#X connect 14 0 27 0;
-#X connect 15 0 16 0;
-#X connect 15 1 16 1;
-#X connect 16 0 45 0;
-#X connect 17 0 16 0;
-#X connect 18 0 15 0;
-#X connect 19 0 20 0;
-#X connect 19 1 20 1;
-#X connect 20 0 46 0;
-#X connect 21 0 20 0;
-#X connect 22 0 19 0;
-#X connect 23 0 24 0;
-#X connect 23 1 24 1;
-#X connect 24 0 47 0;
-#X connect 25 0 24 0;
+#X connect 11 0 24 0;
+#X connect 12 0 13 0;
+#X connect 12 1 13 1;
+#X connect 13 0 42 0;
+#X connect 14 0 13 0;
+#X connect 15 0 12 0;
+#X connect 16 0 17 0;
+#X connect 16 1 17 1;
+#X connect 17 0 43 0;
+#X connect 18 0 17 0;
+#X connect 19 0 16 0;
+#X connect 20 0 21 0;
+#X connect 20 1 21 1;
+#X connect 21 0 44 0;
+#X connect 22 0 21 0;
+#X connect 23 0 20 0;
+#X connect 24 0 14 0;
+#X connect 24 0 15 0;
+#X connect 24 0 22 0;
+#X connect 24 0 23 0;
+#X connect 25 0 14 0;
+#X connect 25 0 15 0;
+#X connect 25 0 49 0;
+#X connect 26 0 22 0;
 #X connect 26 0 23 0;
-#X connect 27 0 17 0;
-#X connect 27 0 18 0;
-#X connect 27 0 25 0;
+#X connect 26 0 50 0;
 #X connect 27 0 26 0;
-#X connect 28 0 17 0;
-#X connect 28 0 18 0;
-#X connect 28 0 52 0;
-#X connect 29 0 25 0;
-#X connect 29 0 26 0;
-#X connect 29 0 53 0;
+#X connect 28 0 34 0;
+#X connect 29 0 35 0;
 #X connect 30 0 29 0;
-#X connect 31 0 37 0;
-#X connect 32 0 38 0;
+#X connect 31 0 25 0;
+#X connect 32 0 36 0;
 #X connect 33 0 32 0;
-#X connect 34 0 28 0;
-#X connect 35 0 39 0;
-#X connect 36 0 35 0;
-#X connect 37 0 33 0;
-#X connect 37 0 36 0;
-#X connect 38 0 30 0;
-#X connect 39 0 34 0;
-#X connect 40 0 49 0;
-#X connect 42 0 48 0;
-#X connect 43 0 50 0;
-#X connect 44 0 51 0;
-#X connect 44 0 54 0;
-#X connect 45 0 58 0;
-#X connect 46 0 58 0;
-#X connect 47 0 58 0;
-#X connect 48 0 58 0;
-#X connect 49 0 58 0;
-#X connect 50 0 58 0;
-#X connect 51 0 58 0;
-#X connect 55 0 28 0;
-#X connect 56 0 29 0;
-#X connect 57 0 44 0;
-#X connect 59 0 12 0;
-#X connect 60 0 11 0;
-#X connect 61 0 64 0;
-#X connect 62 0 61 0;
-#X connect 65 0 63 0;
-#X connect 66 0 63 0;
-#X connect 67 0 66 0;
-#X connect 75 0 2 0;
-#X connect 76 0 2 0;
+#X connect 34 0 30 0;
+#X connect 34 0 33 0;
+#X connect 35 0 27 0;
+#X connect 36 0 31 0;
+#X connect 37 0 46 0;
+#X connect 39 0 45 0;
+#X connect 40 0 47 0;
+#X connect 41 0 48 0;
+#X connect 41 0 51 0;
+#X connect 42 0 55 0;
+#X connect 43 0 55 0;
+#X connect 44 0 55 0;
+#X connect 45 0 55 0;
+#X connect 46 0 55 0;
+#X connect 47 0 55 0;
+#X connect 48 0 55 0;
+#X connect 52 0 25 0;
+#X connect 53 0 26 0;
+#X connect 54 0 41 0;
+#X connect 56 0 82 0;
+#X connect 57 0 81 0;
+#X connect 58 0 80 0;
+#X connect 61 0 59 0;
+#X connect 62 0 59 0;
+#X connect 63 0 62 0;
+#X connect 71 0 2 0;
+#X connect 72 0 88 0;
+#X connect 76 0 78 0;
 #X connect 77 0 76 0;
-#X connect 80 0 4 0;
-#X connect 80 1 75 0;
-#X connect 80 2 66 0;
-#X connect 80 3 65 0;
-#X connect 80 4 62 0;
-#X connect 80 5 60 0;
-#X connect 80 6 59 0;
-#X connect 80 7 10 0;
-#X connect 80 8 85 0;
-#X connect 82 0 84 0;
-#X connect 83 0 82 0;
-#X connect 84 0 6 0;
-#X connect 85 0 81 0;
-#X restore 125 202 pd user_setup;
-#N canvas 244 401 1277 678 fog 0;
+#X connect 78 0 6 0;
+#X connect 79 0 75 0;
+#X connect 80 0 60 0;
+#X connect 81 0 60 0;
+#X connect 82 0 60 0;
+#X connect 83 0 1 0;
+#X connect 84 0 75 0;
+#X connect 85 0 60 0;
+#X connect 86 0 4 0;
+#X connect 86 1 71 0;
+#X connect 86 2 62 0;
+#X connect 86 3 61 0;
+#X connect 86 4 58 0;
+#X connect 86 5 57 0;
+#X connect 86 6 56 0;
+#X connect 86 7 85 0;
+#X connect 86 8 87 0;
+#X connect 87 0 75 0;
+#X connect 88 0 2 0;
+#X restore 137 202 pd user_setup;
+#N canvas 336 367 1277 678 fog 0;
 #X obj 63 -67 inlet;
 #X obj 112 410 s \$0-to-SPIN-TCP;
 #X obj 88 76 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
@@ -260,18 +268,17 @@ setExponent 16 \, /mainLight setAttenuation 0.1 \, /mainLight setAmbient
 #X msg 236 72 deleteNode sang-Fog;
 #X msg 48 338 /sang-Fog setFogDensity \$1;
 #X msg 258 343 /sang-Fog setFogColor \$1 \$2 \$3 0;
-#X text 765 96 red;
-#X msg 641 171 0 0 0 0;
-#X text 694 170 none;
+#X msg 644 196 0 0 0 0;
+#X text 697 195 none;
 #X msg 85 55 0;
 #X msg 18 203 0;
-#X text 649 116 R:172 \, G:57 \, B:74;
+#X text 652 141 R:172 \, G:57 \, B:74;
 #X msg 327 229 \$1 0;
 #X msg 397 229 \$1 0;
 #X msg 467 229 \$1 0;
 #X msg 253 230 \$1 0;
-#X obj 641 145 r fogOFF;
-#X text 642 36 R:172 \, G:57 \, B:74;
+#X obj 644 170 r fogOFF;
+#X text 863 -42 R:172 \, G:57 \, B:74;
 #X obj 571 -10 r laboON;
 #X text 876 269 red;
 #X text 751 289 R:172 \, G:57 \, B:74;
@@ -284,14 +291,13 @@ setExponent 16 \, /mainLight setAttenuation 0.1 \, /mainLight setAmbient
 #X obj 740 244 delay 50;
 #X obj 620 216 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 643 383 line \$1;
 #X obj 727 382 line \$1 0;
 #X obj 807 382 line \$1 0;
 #X obj 887 382 line \$1 0;
 #X msg 808 363 \$1 0;
 #X msg 728 363 \$1 0;
 #X msg 888 363 \$1 0;
-#X obj 639 71 r sangfrontON;
+#X obj 642 96 r sangfrontON;
 #X text 1206 294 red;
 #X text 1090 314 R:172 \, G:57 \, B:74;
 #X obj 1070 226 r sangbackON;
@@ -307,10 +313,8 @@ setExponent 16 \, /mainLight setAttenuation 0.1 \, /mainLight setAmbient
 #X msg 1147 419 \$1 0;
 #X msg 1067 419 \$1 0;
 #X msg 1227 419 \$1 0;
-#X text 753 15 black blue;
 #X obj 1018 216 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 1070 257 delay 50;
 #X text 586 158 red;
 #X msg 501 158 0.02 1 0 0;
 #X text 1082 329 R:0.67 \, G:0.22 \, B:0.29;
@@ -323,15 +327,36 @@ setExponent 16 \, /mainLight setAttenuation 0.1 \, /mainLight setAmbient
 #X floatatom 418 378 5 0 0 0 - - -;
 #X msg 334 415 0.004 0.33 0.43 0.56;
 #X msg 661 267 1e-05 0;
-#X msg 643 364 \$1 0;
-#X msg 1078 295 0.04 1 0 0;
 #X msg 740 269 5e-05 1 0 0;
 #X msg 362 95 0.005 0.75 0.75 0.75;
 #X obj 748 -16 loadbang;
 #X obj 26 20 s laboON;
-#X text 642 50 R:46 \, G:22 \, B:79;
-#X msg 571 17 0.002 0.1803 0.0863 0.3098;
-#X msg 639 96 0.031 1 0 0;
+#X text 568 76 R:46 \, G:22 \, B:79;
+#X text 601 37 R:33 \, G:17 \, B:57;
+#X msg 571 17 0.002 0.1294 0.0667 0.2235;
+#X text 742 16 black violet;
+#X msg 569 61 0.002 0.1803 0.0863 0.3098;
+#X msg 642 121 0.029 1 0 0;
+#X msg 1078 295 0.029 1 0 0;
+#X obj 1021 20 r fogCellTransition;
+#X floatatom 808 91 5 0 0 0 - - -;
+#X floatatom 851 91 5 0 0 0 - - -;
+#X floatatom 893 91 5 0 0 0 - - -;
+#X obj 841 120 hotpack3;
+#X obj 857 67 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X floatatom 1109 160 5 0 0 0 - - -;
+#X obj 643 383 line \$1 10;
+#X msg 841 141 0.5 \$1 \$2 \$3;
+#X msg 1052 -1 0.0005 0.22 0.12 0.13;
+#X msg 1018 171 0 0 0 0;
+#X obj 1021 50 t b b b;
+#X msg 1040 118 0 1 0.5 0.5;
+#X msg 978 102 0.02;
+#X msg 1048 81 0.02 1 0.5 0.5;
+#X msg 643 364 \$1 300;
+#X obj 1018 151 delay 300;
+#X obj 1070 257 delay 350;
 #X connect 0 0 19 0;
 #X connect 2 0 11 0;
 #X connect 3 0 22 0;
@@ -341,93 +366,110 @@ setExponent 16 \, /mainLight setAttenuation 0.1 \, /mainLight setAmbient
 #X connect 7 0 6 1;
 #X connect 8 0 10 0;
 #X connect 9 0 6 2;
-#X connect 10 0 33 0;
-#X connect 10 1 30 0;
-#X connect 10 2 31 0;
-#X connect 10 3 32 0;
+#X connect 10 0 32 0;
+#X connect 10 1 29 0;
+#X connect 10 2 30 0;
+#X connect 10 3 31 0;
 #X connect 11 0 23 0;
-#X connect 13 0 88 0;
+#X connect 13 0 82 0;
 #X connect 13 1 17 0;
 #X connect 13 2 8 0;
 #X connect 17 0 10 0;
-#X connect 19 0 90 0;
+#X connect 19 0 84 0;
+#X connect 19 1 26 0;
 #X connect 19 1 27 0;
-#X connect 19 1 28 0;
 #X connect 19 2 18 0;
 #X connect 19 2 20 0;
 #X connect 20 0 1 0;
 #X connect 21 0 1 0;
 #X connect 22 0 1 0;
 #X connect 23 0 1 0;
-#X connect 25 0 10 0;
-#X connect 27 0 2 0;
-#X connect 28 0 3 0;
-#X connect 30 0 5 0;
-#X connect 31 0 7 0;
-#X connect 32 0 9 0;
-#X connect 33 0 4 0;
-#X connect 34 0 25 0;
-#X connect 36 0 92 0;
-#X connect 39 0 84 0;
-#X connect 39 0 45 0;
-#X connect 41 0 44 0;
-#X connect 42 0 85 0;
-#X connect 42 1 52 0;
-#X connect 42 2 51 0;
-#X connect 42 3 53 0;
-#X connect 43 0 40 0;
-#X connect 44 0 40 0;
-#X connect 45 0 87 0;
-#X connect 46 0 84 0;
-#X connect 46 0 45 0;
-#X connect 47 0 43 0;
-#X connect 48 0 41 0;
-#X connect 49 0 41 1;
-#X connect 50 0 41 2;
-#X connect 51 0 49 0;
-#X connect 52 0 48 0;
-#X connect 53 0 50 0;
-#X connect 54 0 93 0;
-#X connect 57 0 72 0;
-#X connect 59 0 62 0;
-#X connect 60 0 77 0;
-#X connect 60 1 68 0;
-#X connect 60 2 67 0;
-#X connect 60 3 69 0;
-#X connect 61 0 58 0;
-#X connect 62 0 58 0;
-#X connect 63 0 61 0;
-#X connect 64 0 59 0;
-#X connect 65 0 59 1;
-#X connect 66 0 59 2;
-#X connect 67 0 65 0;
-#X connect 68 0 64 0;
-#X connect 69 0 66 0;
-#X connect 71 0 72 0;
-#X connect 71 0 76 0;
-#X connect 72 0 76 0;
-#X connect 72 0 86 0;
-#X connect 74 0 10 0;
-#X connect 76 0 63 0;
-#X connect 77 0 63 0;
-#X connect 81 0 92 0;
-#X connect 82 0 83 0;
-#X connect 83 0 10 0;
-#X connect 84 0 47 0;
-#X connect 85 0 47 0;
-#X connect 86 0 60 0;
-#X connect 87 0 42 0;
-#X connect 88 0 10 0;
-#X connect 89 0 92 0;
-#X connect 92 0 10 0;
-#X connect 93 0 10 0;
-#X restore 110 253 pd fog;
-#X obj 237 345 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X connect 24 0 10 0;
+#X connect 26 0 2 0;
+#X connect 27 0 3 0;
+#X connect 29 0 5 0;
+#X connect 30 0 7 0;
+#X connect 31 0 9 0;
+#X connect 32 0 4 0;
+#X connect 33 0 24 0;
+#X connect 35 0 87 0;
+#X connect 38 0 80 0;
+#X connect 38 0 44 0;
+#X connect 40 0 43 0;
+#X connect 41 0 107 0;
+#X connect 41 1 50 0;
+#X connect 41 2 49 0;
+#X connect 41 3 51 0;
+#X connect 42 0 39 0;
+#X connect 43 0 39 0;
+#X connect 44 0 81 0;
+#X connect 45 0 80 0;
+#X connect 45 0 44 0;
+#X connect 46 0 40 0;
+#X connect 47 0 40 1;
+#X connect 48 0 40 2;
+#X connect 49 0 47 0;
+#X connect 50 0 46 0;
+#X connect 51 0 48 0;
+#X connect 52 0 90 0;
+#X connect 55 0 109 0;
+#X connect 57 0 60 0;
+#X connect 58 0 73 0;
+#X connect 58 1 66 0;
+#X connect 58 2 65 0;
+#X connect 58 3 67 0;
+#X connect 59 0 56 0;
+#X connect 60 0 56 0;
+#X connect 61 0 59 0;
+#X connect 62 0 57 0;
+#X connect 63 0 57 1;
+#X connect 64 0 57 2;
+#X connect 65 0 63 0;
+#X connect 66 0 62 0;
+#X connect 67 0 64 0;
+#X connect 70 0 10 0;
+#X connect 72 0 61 0;
+#X connect 73 0 61 0;
+#X connect 77 0 87 0;
+#X connect 78 0 79 0;
+#X connect 79 0 10 0;
+#X connect 80 0 99 0;
+#X connect 81 0 41 0;
+#X connect 82 0 10 0;
+#X connect 83 0 87 0;
+#X connect 87 0 10 0;
+#X connect 89 0 10 0;
+#X connect 90 0 10 0;
+#X connect 91 0 58 0;
+#X connect 92 0 103 0;
+#X connect 93 0 96 0;
+#X connect 94 0 96 1;
+#X connect 95 0 96 2;
+#X connect 96 0 100 0;
+#X connect 97 0 93 0;
+#X connect 97 0 94 0;
+#X connect 97 0 95 0;
+#X connect 98 0 104 0;
+#X connect 99 0 42 0;
+#X connect 100 0 10 0;
+#X connect 102 0 10 0;
+#X connect 103 0 108 0;
+#X connect 103 1 104 0;
+#X connect 103 2 106 0;
+#X connect 103 2 105 0;
+#X connect 104 0 107 0;
+#X connect 105 0 99 0;
+#X connect 106 0 10 0;
+#X connect 107 0 99 0;
+#X connect 108 0 102 0;
+#X connect 109 0 90 0;
+#X restore 122 253 pd fog;
+#X obj 250 345 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg 52 456 refreshSubscribers;
+#X msg 66 456 refreshSubscribers;
 #X obj 38 143 delay 1000;
 #X obj 38 81 t b;
-#N canvas 66 112 801 528 control_ssao 0;
+#N canvas 66 117 801 528 control_ssao 0;
 #X obj 35 282 s \$0-to-usernode;
 #X msg 35 261 setParam ssaoFocus \$1;
 #X obj 254 402 hostname;
@@ -517,104 +559,167 @@ setExponent 16 \, /mainLight setAttenuation 0.1 \, /mainLight setAmbient
 #X connect 41 4 30 0;
 #X connect 41 5 39 0;
 #X restore 541 95 pd control_ssao;
-#N canvas 991 142 879 773 animation 1;
+#N canvas 955 232 879 773 animation 0;
 #X obj 50 372 s \$0-to-SPIN;
 #X obj 69 151 hsl 128 15 0 1 0 0 empty empty scrubber -2 -8 0 10 -262144
 -1 -1 0 1;
 #X floatatom 172 166 5 0 0 0 - - -;
-#X obj 278 155 vradio 15 1 0 3 empty empty empty 0 -8 0 10 -262144
+#X obj 206 213 vradio 15 1 0 3 empty empty empty 0 -8 0 10 -262144
 -1 -1 0;
-#X text 298 153 SWING;
-#X text 298 168 LOOP;
-#X text 298 183 NO_LOOP;
-#X obj 536 285 subwidget-PAT \$0;
-#X obj 536 244 loadbang;
-#X obj 534 572 s \$0-to-SPIN;
-#X obj 536 436 tgl 25 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X text 226 211 SWING;
+#X text 226 226 LOOP;
+#X text 226 241 NO_LOOP;
+#X obj 536 335 subwidget-PAT \$0;
+#X obj 536 294 loadbang;
+#X obj 534 692 s \$0-to-SPIN;
+#X obj 536 466 tgl 25 0 empty empty empty 17 7 0 10 -258113 -1 -1 0
 1;
-#X obj 612 516 tgl 25 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
-1;
+#X obj 612 566 tgl 25 0 empty empty empty 17 7 0 10 -4034 -1 -1 1 1
+;
 #X text 304 495 <- store current pose at 5 sec;
 #X text 49 426 You can also store the current position of anim (use
 the widget above to set it up) at a particular timestamp;
-#X obj 562 20 r \$0-from-SPIN;
-#X obj 562 121 distance3D;
-#X obj 562 100 t a a;
-#X obj 562 141 > 0.0005;
-#X obj 562 202 s reset;
-#X obj 562 161 sel 1;
-#X obj 562 181 delay 60000;
-#X msg 228 291 /chantalbaron debug;
+#X obj 564 10 r \$0-from-SPIN;
+#X obj 448 79 distance3D;
+#X obj 448 58 t a a;
+#X msg 175 307 /chantalbaron debug;
 #X msg 175 330 /chantalbaron-anim clear;
-#X msg 246 272 /chantalbaron-anim debug;
-#X msg 535 264 chantalbaron-anim;
-#X msg 536 464 /chantalbaron-anim setRecord \$1;
-#X msg 612 544 /chantalbaron-anim setPlay \$1;
-#X msg 516 410 /chantalbaron-anim setPlay 0 \, /chantalbaron-anim clear
+#X msg 193 288 /chantalbaron-anim debug;
+#X msg 536 314 chantalbaron-anim;
+#X msg 536 494 /chantalbaron-anim setRecord \$1;
+#X msg 612 664 /chantalbaron-anim setPlay \$1;
+#X msg 516 440 /chantalbaron-anim setPlay 0 \, /chantalbaron-anim clear
 ;
 #X msg 43 466 /chantalbaron-anim storeCurrentPosition 0;
 #X msg 42 496 /chantalbaron-anim storeCurrentPosition 5;
 #X msg 42 526 /chantalbaron-anim storeCurrentPosition 10;
 #X msg 66 190 /chantalbaron-anim setIndex \$1;
-#X msg 278 204 /chantalbaron-anim setLoopMode \$1;
-#X obj 562 48 route /chantalbaron /chantalbaron-anim;
-#X obj 562 80 route setVelocity global6DOF setTranslation;
-#X obj 673 140 print GOT-chantalbaron;
-#X obj 653 173 route setVelocity global6DOF setTranslation;
-#X obj 676 207 print GOT-chantalbaron-anim;
+#X msg 206 262 /chantalbaron-anim setLoopMode \$1;
+#X obj 546 81 route /chantalbaron /chantalbaron-anim;
+#X obj 546 123 route setVelocity global6DOF setTranslation;
+#X obj 933 143 print GOT-chantalbaron;
+#X obj 824 165 route setVelocity global6DOF setTranslation;
+#X obj 847 199 print GOT-chantalbaron-anim;
 #X msg 41 97 /chantalbaron setTarget NULL \, /chantalbaron setConstraintMode
 0 \, /chantalbaron setTranslation 0 0 0;
-#X obj 703 108 route global6DOF;
+#X obj 824 143 route global6DOF;
 #X obj 5 561 s \$0-to-SPIN-TCP;
 #X text 37 33 Make sure that "chantalbaron" is not receiving any messages
 from somewhere else. Currently \, we need to do this to remove the
 offset \, otherwise \, we won't be able to tell when we're aligned
 with hotspots:;
-#X msg 271 616 saveNode chantalbaron-anim anim.xml;
-#X obj 234 716 s \$0-to-SPIN-TCP;
-#X text 271 585 SAVING THE ANIMATION:;
-#X msg 278 639 load anim.xml;
+#X msg 87 615 saveNode chantalbaron-anim anim.xml;
+#X obj 50 715 s \$0-to-SPIN-TCP;
+#X text 87 584 SAVING THE ANIMATION:;
+#X msg 94 638 load anim.xml;
 #X msg 176 375 /chantalbaron setParent chantalbaron-anim;
 #X msg 200 355 /chantalbaron setSpaceNavigatorNode chantalbaron;
-#X msg 327 688 /chantalbaron-anim setParent world;
-#X text 297 665 For some reason we need to do this after loading the
+#X text 113 664 For some reason we need to do this after loading the
 file:;
-#X connect 1 0 31 0;
+#X obj 639 637 s reset;
+#X obj 565 272 s play-anim;
+#X obj 612 522 r play-anim;
+#X msg 612 544 1;
+#X msg 692 544 0;
+#X obj 692 522 r stop-anim;
+#X obj 639 615 sel 1;
+#X obj 776 268 p;
+#X obj 546 195 sel 0 1;
+#X msg 520 246 1;
+#X msg 477 234 0;
+#X obj 444 202 t b b;
+#X obj 432 275 s stop-anim;
+#X obj 687 627 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 713 637 1;
+#X obj 575 635 f;
+#X obj 612 595 t b a a;
+#X obj 575 615 delay 100;
+#X obj 564 55 spigot;
+#X obj 658 10 loadbang;
+#X msg 658 34 0;
+#X msg 697 55 1;
+#X msg 143 687 /chantalbaron-anim setParent world;
+#X obj 546 155 expr sqrt(($f1*$f1) + ($f2*$f2) + ($f3*$f3));
+#X floatatom 650 186 20 0 0 0 - - -;
+#X obj 546 175 > 0.0005;
+#X obj 699 608 p;
+#X obj 645 257 p;
+#X msg 524 224 stop;
+#X obj 606 184 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 608 204 bang;
+#X obj 565 231 delay 10000;
+#X obj 697 33 r play-anim;
+#X obj 432 255 spigot 1;
+#X connect 1 0 27 0;
 #X connect 1 0 2 0;
-#X connect 3 0 32 0;
-#X connect 8 0 24 0;
-#X connect 10 0 25 0;
-#X connect 11 0 26 0;
-#X connect 14 0 33 0;
-#X connect 15 0 17 0;
+#X connect 3 0 28 0;
+#X connect 8 0 20 0;
+#X connect 10 0 21 0;
+#X connect 11 0 61 0;
+#X connect 14 0 63 0;
 #X connect 16 0 15 1;
 #X connect 16 1 15 0;
-#X connect 17 0 19 0;
-#X connect 19 0 20 0;
-#X connect 20 0 18 0;
-#X connect 21 0 0 0;
-#X connect 22 0 0 0;
-#X connect 23 0 0 0;
-#X connect 24 0 7 0;
-#X connect 25 0 9 0;
-#X connect 26 0 9 0;
-#X connect 27 0 9 0;
-#X connect 28 0 40 0;
-#X connect 29 0 40 0;
-#X connect 30 0 40 0;
-#X connect 31 0 0 0;
-#X connect 32 0 0 0;
-#X connect 34 0 16 0;
-#X connect 34 3 35 0;
-#X connect 36 3 37 0;
-#X connect 38 0 0 0;
-#X connect 39 1 35 0;
-#X connect 42 0 43 0;
-#X connect 45 0 43 0;
-#X connect 46 0 0 0;
-#X connect 48 0 43 0;
+#X connect 17 0 0 0;
+#X connect 18 0 0 0;
+#X connect 19 0 0 0;
+#X connect 20 0 7 0;
+#X connect 21 0 9 0;
+#X connect 22 0 9 0;
+#X connect 23 0 9 0;
+#X connect 24 0 36 0;
+#X connect 25 0 36 0;
+#X connect 26 0 36 0;
+#X connect 27 0 0 0;
+#X connect 28 0 0 0;
+#X connect 29 1 30 0;
+#X connect 30 0 68 0;
+#X connect 30 3 31 0;
+#X connect 32 3 33 0;
+#X connect 34 0 0 0;
+#X connect 35 1 31 0;
+#X connect 38 0 39 0;
+#X connect 41 0 39 0;
+#X connect 42 0 0 0;
+#X connect 47 0 48 0;
+#X connect 48 0 11 0;
+#X connect 49 0 11 0;
+#X connect 50 0 49 0;
+#X connect 51 0 45 0;
+#X connect 51 0 71 0;
+#X connect 53 0 76 0;
+#X connect 53 1 56 0;
+#X connect 54 0 78 1;
+#X connect 55 0 78 1;
+#X connect 56 0 55 0;
+#X connect 56 0 73 0;
+#X connect 56 1 78 0;
+#X connect 58 0 45 0;
+#X connect 59 0 22 0;
+#X connect 60 0 22 0;
+#X connect 61 0 62 0;
+#X connect 61 1 60 1;
+#X connect 61 2 51 0;
+#X connect 62 0 60 0;
+#X connect 63 0 29 0;
+#X connect 64 0 65 0;
+#X connect 65 0 63 1;
+#X connect 66 0 63 1;
+#X connect 67 0 39 0;
+#X connect 68 0 69 0;
+#X connect 68 0 70 0;
+#X connect 70 0 53 0;
+#X connect 73 0 76 0;
+#X connect 74 0 76 0;
+#X connect 75 0 76 0;
+#X connect 76 0 54 0;
+#X connect 76 0 46 0;
+#X connect 77 0 66 0;
+#X connect 78 0 52 0;
+#X connect 78 0 57 0;
 #X restore 541 115 pd animation;
-#N canvas 583 197 450 300 donateurs 0;
+#N canvas 581 202 450 300 donateurs 0;
 #X obj 44 21 inlet;
 #X obj 36 275 outlet;
 #X obj 43 133 donateurs \$0;
@@ -641,18 +746,17 @@ file:;
 #X connect 10 0 9 0;
 #X connect 11 0 7 0;
 #X restore 38 102 pd donateurs;
-#X obj 175 396 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 188 396 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 183 294 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 195 294 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 180 243 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 192 243 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 52 476 s \$0-to-SPIN-TCP;
-#X obj 38 526 s reset;
-#X obj 110 233 delay 1000;
-#X obj 211 192 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 66 476 s \$0-to-SPIN-TCP;
+#X obj 122 233 delay 1000;
+#X obj 223 192 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#N canvas 514 388 499 313 assets 0;
+#N canvas 508 403 499 323 assets 0;
 #X obj 31 147 shell;
 #X msg 31 127 hostname -s;
 #X obj 31 167 symbol;
@@ -662,38 +766,38 @@ file:;
 -1 -1;
 #X obj 168 207 p;
 #X obj 268 95 anyreg shader voxelize.jxs;
-#X obj 31 279 anyreg gProjectPath /home/metalab/Documents/Metalab/hmr
+#X obj 31 289 anyreg gProjectPath /home/metalab/Documents/Metalab/hmr
 ;
 #X text 65 16 These informations are references for all other anyreg
 in the pd patches that uses the same name. This avoids having to repeat
 them all over the place.;
 #X text 246 73 ----Voxelize SHADER NAME----;
-#X text 9 256 ----PROJECT PATH----;
+#X text 9 266 ----PROJECT PATH----;
 #X text 16 74 ----COMPUTER NAME----;
 #X text 16 86 loaded automatically at start;
 #X obj 31 190 makefilename %s-anim;
+#X symbolatom 31 243 30 0 0 0 - - -;
+#X obj 140 213 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
 #X connect 0 0 2 0;
 #X connect 1 0 0 0;
 #X connect 2 0 14 0;
+#X connect 3 0 15 0;
 #X connect 4 0 1 0;
 #X connect 5 0 1 0;
 #X connect 14 0 3 0;
 #X connect 14 0 6 0;
+#X connect 16 0 3 0;
 #X restore 541 145 pd assets;
-#X obj 137 154 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 147 154 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 118 92 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 38 164 t b b b b b b b;
-#X obj 96 284 delay 2000;
-#X obj 81 335 delay 35000;
-#X obj 67 386 delay 50000;
-#X obj 52 436 delay 55000;
-#X obj 38 506 delay 60000;
+#X obj 108 284 delay 2000;
 #X obj 544 264 nbx 4 16 0 1e+37 0 0 FloatSpeed FloatSpeed-set FloatSpeed
-57 10 1 14 -261682 -1 -1 0 256;
+57 10 1 14 -261682 -1 -1 10 256;
 #X floatatom 544 318 5 0 0 1 Number Number-set Number;
-#N canvas 437 505 680 515 CETC-models 0;
+#N canvas 397 564 680 515 CETC-models 0;
 #X obj -131 14 inlet;
 #X obj 44 54 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
@@ -709,15 +813,12 @@ them all over the place.;
 -1;
 #X obj -73 122 delay 1000;
 #X obj -88 169 delay 5000;
-#X obj -102 215 delay 20000;
-#X obj -117 262 delay 25000;
-#X obj -131 310 delay 30000;
 #X obj -73 142 step1-models corridor \$0;
 #X obj -88 189 step2-models laboratoire \$0;
 #X obj -131 331 step6-models patient \$0;
 #X obj -102 235 step3-models sang \$0;
 #X obj -117 282 step4-models cell \$0;
-#N canvas 818 331 694 597 main_nodes 0;
+#N canvas 816 336 694 597 main_nodes 0;
 #X obj -47 31 inlet;
 #X obj -47 53 anyreg g_hostname;
 #X obj 388 235 p;
@@ -773,34 +874,37 @@ step. (see;
 #X obj -59 93 s creat_manLight3;
 #X obj 53 83 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X connect 0 0 23 0;
-#X connect 1 0 17 0;
-#X connect 2 0 12 0;
-#X connect 3 0 13 0;
-#X connect 4 0 15 0;
-#X connect 5 0 16 0;
-#X connect 6 0 14 0;
-#X connect 7 0 12 0;
-#X connect 8 0 13 0;
-#X connect 9 0 15 0;
-#X connect 10 0 16 0;
-#X connect 11 0 14 0;
-#X connect 23 0 11 0;
-#X connect 23 1 10 0;
-#X connect 23 2 9 0;
-#X connect 23 3 8 0;
-#X connect 23 4 7 0;
-#X connect 23 5 24 0;
-#X connect 23 6 17 0;
-#X connect 25 0 24 0;
-#X restore 96 304 pd CETC-models;
-#N canvas 911 82 1004 997 CETC-laboratory-walls 0;
+#X obj -102 215 delay 35000;
+#X obj -117 262 delay 40000;
+#X obj -131 310 delay 45000;
+#X connect 0 0 20 0;
+#X connect 1 0 14 0;
+#X connect 2 0 9 0;
+#X connect 3 0 10 0;
+#X connect 4 0 12 0;
+#X connect 5 0 13 0;
+#X connect 6 0 11 0;
+#X connect 7 0 9 0;
+#X connect 8 0 10 0;
+#X connect 20 0 25 0;
+#X connect 20 1 24 0;
+#X connect 20 2 23 0;
+#X connect 20 3 8 0;
+#X connect 20 4 7 0;
+#X connect 20 5 21 0;
+#X connect 20 6 14 0;
+#X connect 22 0 21 0;
+#X connect 23 0 12 0;
+#X connect 24 0 13 0;
+#X connect 25 0 11 0;
+#X restore 108 304 pd CETC-models;
+#N canvas 909 82 1004 997 CETC-laboratory-walls 0;
 #X obj 45 -10 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 103 55 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 6 -21 inlet;
-#N canvas 156 772 632 380 room1 0;
+#N canvas 413 463 632 380 room1 0;
 #X text 234 286 <-- changed room1-4 x from 90.902 to 100;
 #X obj 103 285 s \$0-to-SPIN-TCP;
 #X obj 511 72 inlet;
@@ -1756,17 +1860,16 @@ They are only for testing and backups.;
 #X connect 124 0 50 0;
 #X connect 125 0 49 0;
 #X connect 126 0 48 0;
-#X restore 81 355 pd CETC-laboratory-walls;
-#N canvas 66 207 1220 823 CETC-hotspots 0;
+#X restore 94 355 pd CETC-laboratory-walls;
+#N canvas 66 237 1220 823 CETC-hotspots 0;
 #X obj 160 2 inlet;
 #X obj 492 512 s \$0-to-SPIN-TCP;
-#X obj -163 726 s \$0-to-SPIN-TCP;
+#X obj -163 728 s \$0-to-SPIN-TCP;
 #X text 317 211 <-- to step2 laboratoire;
 #X text 308 297 <-- to step4 cell;
 #X text 277 392 <-- to step6 patient;
 #X text 240 551 <-- to step3 sang;
 #X text 248 489 <-- to step2 laboratoire;
-#X text 227 610 <-- to step4 cell;
 #X text 262 439 <-- to step1 corridor;
 #X obj 160 45 anyreg g_hostname;
 #N canvas 91 146 925 634 hotspots_up3 0;
@@ -1881,8 +1984,8 @@ and they all lead to step3-sang.;
 #X connect 30 10 32 0;
 #X connect 30 11 33 0;
 #X connect 30 12 31 0;
-#X restore -52 266 pd hotspots_up3;
-#X obj -52 246 r create_up3;
+#X restore -42 266 pd hotspots_up3;
+#X obj -42 246 r create_up3;
 #X msg 587 240 createNode hotspot_up4 ShapeNode \, /\$1-reporter addTarget
 hotspot_up4 \, /hotspot_up4 setParent sang-targets;
 #X msg 574 274 createNode hotspot_up5 ShapeNode \, /\$1-reporter addTarget
@@ -1895,11 +1998,8 @@ addTarget hotspot_down1 \, /hotspot_down1 setParent labo-targets;
 hotspot_up2 \, /hotspot_up2 setParent corridor-targets;
 #X msg 533 376 createNode hotspot_down2 ShapeNode \, /\$1-reporter
 addTarget hotspot_down2 \, /hotspot_down2 setParent sang-targets;
-#X obj 201 12 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 199 12 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X msg -80 333 /hotspot_up5 setShape 2 \, /hotspot_up5 setColor 0 0
-0 0 \, /hotspot_up5 setRenderBin 9999 \, /hotspot_up5 setTranslation
-1000 3475 0 \, /hotspot_up5 setScale 1000 5 1000;
 #X obj 601 219 s create_up3;
 #X msg -122 474 /hotspot_down2 setShape 2 \, /hotspot_down2 setColor
 0 0 0 0 \, /hotspot_down2 setRenderBin 9999 \, /hotspot_down2 setTranslation
@@ -1907,12 +2007,6 @@ addTarget hotspot_down2 \, /hotspot_down2 setParent sang-targets;
 #X msg -136 534 /hotspot_down3 setShape 2 \, /hotspot_down3 setColor
 0 0 0 0 \, /hotspot_down3 setRenderBin 9999 \, /hotspot_down3 setTranslation
 1000 3475 0 \, /hotspot_down3 setScale 1000 5 1000;
-#X msg -66 286 /hotspot_up4 setShape 2 \, /hotspot_up4 setColor 0 0
-0 0 \, /hotspot_up4 setRenderBin 9999 \, /hotspot_up4 setTranslation
-1000.05 2386.8 -0.09 \, /hotspot_up4 setScale 6 6 6;
-#X msg -150 594 /hotspot_down4 setShape 2 \, /hotspot_down4 setColor
-0 0 0 0 \, /hotspot_down4 setRenderBin 9999 \, /hotspot_down4 setTranslation
-1000.05 2386.8 -0.09 \, /hotspot_down4 setScale 6 6 6;
 #X msg -94 380 /hotspot_up6 setShape 2 \, /hotspot_up6 setColor 0 0
 0 0 \, /hotspot_up6 setRenderBin 9999 \, /hotspot_up6 setTranslation
 1000 2300 0 \, /hotspot_up6 setScale 600 6 600;
@@ -1925,18 +2019,13 @@ addTarget hotspot_down4 \, /hotspot_down4 setParent sang-targets;
 #X obj 160 22 t b b;
 #X msg 492 478 createNode hotspot_down5 ModelNode \, /hotspot_down5
 setParent patient-targets;
-#X msg -163 654 /hotspot_down5 setModelFromFile \$2/models/patient-cube.ac
-\, /hotspot_down5 setColor 1 0 0 1 \, /hotspot_down5 setRenderBin 9
-\, /hotspot_down5 setTranslation 2000 1000 0 \, /hotspot_down5 setOrientation
-0 0 128 \, /hotspot_down5 setScale 0.3 0.3 0.3;
 #X obj 492 159 t a a a a a a a a a a;
 #X obj 160 88 t a a;
 #X obj -163 178 t a a a a a a a a a;
-#X obj 47 256 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 57 256 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X text 312 254 <-- to step3 sang;
-#X text 292 344 <-- to step3 sang;
-#X text 206 677 <-- to step3 sang;
+#X text 206 678 <-- to step3 sang;
 #X text 83 157 hotspot_up = leads further 1 step;
 #X text 83 171 hotspot_down = leads backward 1 step;
 #X text 487 622 NOTE: Hotspots are basically trigger zones (invisible
@@ -1951,55 +2040,76 @@ overview.;
 #X msg -108 427 /hotspot_down1 setShape 2 \, /hotspot_down1 setColor
 0 0 0 0 \, /hotspot_down1 setRenderBin 9999 \, /hotspot_down1 setTranslation
 -22 43 5 \, /hotspot_down1 setScale 600 6 600;
-#X connect 0 0 31 0;
-#X connect 10 0 30 0;
-#X connect 12 0 11 0;
+#X text 492 136 hotspot creation and parenting first;
+#X text -163 155 hotspot setup last;
+#X msg -150 594 /hotspot_down4 setShape 2 \, /hotspot_down4 setColor
+0 0 0 0 \, /hotspot_down4 setRenderBin 9999 \, /hotspot_down4 setTranslation
+1000.05 2386.6 -0.09 \, /hotspot_down4 setScale 0 0 0;
+#X msg -66 286 /hotspot_up4 setShape 2 \, /hotspot_up4 setColor 0 0
+0 0 \, /hotspot_up4 setRenderBin 9999 \, /hotspot_up4 setTranslation
+1000.05 2386.6 -0.09 \, /hotspot_up4 setScale 6 6 6;
+#X msg -80 333 /hotspot_up5 setShape 2 \, /hotspot_up5 setColor 0 0
+0 0 \, /hotspot_up5 setRenderBin 9999 \, /hotspot_up5 setTranslation
+1000 3475 0 \, /hotspot_up5 setScale 0 0 0;
+#X msg -163 656 /hotspot_down5 setModelFromFile \$2/models/patient-cube.ac
+\, /hotspot_down5 setColor 1 0 0 1 \, /hotspot_down5 setRenderBin 9
+\, /hotspot_down5 setTranslation 2000 1000 0 \, /hotspot_down5 setOrientation
+0 0 128 \, /hotspot_down5 setScale 0.3 0.3 0.3;
+#X text 293 344 <-- NOT USED ANYMORE;
+#X text 227 610 <-- NOT USED ANYMORE;
+#X msg -41 733 /hotspot_switch setShape 2 \, /hotspot_switch setColor
+0 0 0 0 \, /hotspot_switch setRenderBin 9999 \, /hotspot_switch setTranslation
+1000 4000 0 \, /hotspot_switch setScale 1500 1500 1500;
+#X msg 510 545 deleteNode hotspot_switch ShapeNode \, /\$1-reporter
+addTarget hotspot_switch \, /hotspot_switch setParent cell-targets
+;
+#X connect 0 0 27 0;
+#X connect 9 0 26 0;
+#X connect 11 0 10 0;
+#X connect 12 0 1 0;
 #X connect 13 0 1 0;
 #X connect 14 0 1 0;
 #X connect 15 0 1 0;
 #X connect 16 0 1 0;
 #X connect 17 0 1 0;
-#X connect 18 0 1 0;
-#X connect 19 0 31 0;
+#X connect 18 0 27 0;
 #X connect 20 0 2 0;
+#X connect 21 0 2 0;
 #X connect 22 0 2 0;
-#X connect 23 0 2 0;
-#X connect 24 0 2 0;
-#X connect 25 0 2 0;
-#X connect 26 0 2 0;
-#X connect 27 0 1 0;
+#X connect 23 0 1 0;
+#X connect 24 0 1 0;
+#X connect 25 0 26 1;
+#X connect 26 0 30 0;
+#X connect 27 0 9 0;
+#X connect 27 1 25 0;
 #X connect 28 0 1 0;
-#X connect 29 0 30 1;
-#X connect 30 0 35 0;
-#X connect 31 0 10 0;
-#X connect 31 1 29 0;
-#X connect 32 0 1 0;
-#X connect 33 0 2 0;
-#X connect 34 0 32 0;
-#X connect 34 1 28 0;
-#X connect 34 2 15 0;
-#X connect 34 3 18 0;
-#X connect 34 4 16 0;
-#X connect 34 5 27 0;
-#X connect 34 6 14 0;
-#X connect 34 7 13 0;
-#X connect 34 8 21 0;
-#X connect 34 9 17 0;
-#X connect 35 0 36 0;
-#X connect 35 1 34 0;
-#X connect 36 0 33 0;
-#X connect 36 1 25 0;
-#X connect 36 2 23 0;
-#X connect 36 3 22 0;
-#X connect 36 4 47 0;
-#X connect 36 5 26 0;
-#X connect 36 6 20 0;
-#X connect 36 7 24 0;
-#X connect 36 8 46 0;
-#X connect 37 0 11 0;
+#X connect 29 0 28 0;
+#X connect 29 2 14 0;
+#X connect 29 3 17 0;
+#X connect 29 4 15 0;
+#X connect 29 5 23 0;
+#X connect 29 7 12 0;
+#X connect 29 8 19 0;
+#X connect 29 9 16 0;
+#X connect 30 0 31 0;
+#X connect 30 1 29 0;
+#X connect 31 0 47 0;
+#X connect 31 2 21 0;
+#X connect 31 3 20 0;
+#X connect 31 4 41 0;
+#X connect 31 5 22 0;
+#X connect 31 7 45 0;
+#X connect 31 8 40 0;
+#X connect 32 0 10 0;
+#X connect 40 0 2 0;
+#X connect 41 0 2 0;
+#X connect 44 0 2 0;
+#X connect 45 0 2 0;
 #X connect 46 0 2 0;
 #X connect 47 0 2 0;
-#X restore 67 406 pd CETC-hotspots;
+#X connect 50 0 2 0;
+#X connect 51 0 1 0;
+#X restore 80 406 pd CETC-hotspots;
 #X text 541 338 NOTE:this number must be a multiple of 4 to obtain
 an equal number of the 4 different floating objects (2 types of mitochondria
 and 2 types of lisosomes);
@@ -2009,7 +2119,7 @@ and 2 types of lisosomes);
 #X text 118 100 <-- This updates web database at start. Shell is unstable
 and may cause pd to crash in this case. But once it works it stays
 stable. This is why it is banged first.;
-#N canvas 600 394 1089 391 hotspot_triggers 0;
+#N canvas 331 481 1089 391 hotspot_triggers 0;
 #X obj -132 354 s \$0-to-SPIN-TCP;
 #X obj 575 53 r gotoPos;
 #X obj 575 195 s \$0-to-SPIN-TCP;
@@ -2026,7 +2136,7 @@ stable. This is why it is banged first.;
 #X text 114 203 4: setEnable hotspots;
 #X text 114 183 3: setEnabled steps;
 #X msg 367 326 /chantalbaron setCubeSize 10000 10000 10000;
-#N canvas 359 416 776 604 into_up2 0;
+#N canvas 357 421 776 604 into_up2 0;
 #X obj 76 196 list 0 1 0 0 0 0;
 #X obj 6 248 s laboON;
 #X obj -17 90 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
@@ -2092,7 +2202,7 @@ stable. This is why it is banged first.;
 #X connect 29 0 15 0;
 #X connect 30 0 17 0;
 #X restore -128 42 pd into_up2;
-#N canvas 1176 280 541 563 into_up3 0;
+#N canvas 1164 310 541 563 into_up3 0;
 #X obj 1 -477 s gotoPos;
 #X obj -32 -451 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
@@ -2137,7 +2247,6 @@ stable. This is why it is banged first.;
 #X connect 5 0 4 0;
 #X connect 6 0 14 0;
 #X connect 8 0 7 0;
-#X connect 14 0 25 0;
 #X connect 14 1 26 0;
 #X connect 14 2 8 0;
 #X connect 14 3 23 0;
@@ -2154,32 +2263,31 @@ stable. This is why it is banged first.;
 #X connect 25 0 22 0;
 #X connect 26 0 22 0;
 #X restore -128 110 pd into_up3;
-#N canvas 1047 199 734 583 into_up4 0;
-#X text 319 -282 1: set CubeSize and CubeOffset;
-#X text 319 -261 2: set user position;
-#X text 319 -201 5: set others (fog \, etc.);
-#X text 319 -221 4: setEnable hotspots;
-#X text 319 -241 3: setEnabled steps;
-#X obj -44 -307 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#N canvas 196 221 734 583 into_up4 0;
+#X text 302 -366 1: set CubeSize and CubeOffset;
+#X text 302 -345 2: set user position;
+#X text 302 -285 5: set others (fog \, etc.);
+#X text 302 -305 4: setEnable hotspots;
+#X text 302 -325 3: setEnabled steps;
+#X obj -51 -306 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -18 -376 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -18 -366 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 0 -336 s gotoPos;
-#X msg 0 -356 \$1 \$2 \$3;
-#X obj 77 -290 s enable_step;
+#X obj 0 -326 s gotoPos;
+#X msg 0 -346 \$1 \$2 \$3;
+#X obj 70 -289 s enable_step;
 #X obj 15 -403 s \$0-to-SPIN-TCP;
 #X obj 155 -405 p;
 #X obj 15 -477 anyreg g_hostname;
-#X obj -142 -215 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -142 -145 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj -126 -517 t b b b b b b b b;
-#X obj -120 -175 s \$0-to-SPIN-TCP;
-#X obj 0 -376 list 1000 3479 0;
+#X obj -120 -105 s \$0-to-SPIN-TCP;
+#X obj 0 -366 list 1000 3479 0;
 #X obj -154 -517 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -219 -109 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 28 -502 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -201 -109 s fogOFF;
 #X obj -126 -578 route /chantalbaron;
 #X obj 25 -618 anyreg g_hostname;
 #X obj 25 -638 loadbang;
@@ -2190,56 +2298,99 @@ stable. This is why it is banged first.;
 #X obj -126 -608 t a b;
 #X obj -126 -635 r \$0-from-SPIN;
 #X obj -126 -538 route hotspot_up4;
-#X obj -26 -307 list 0 0 0 1 0 0;
+#X obj -33 -306 list 0 0 0 1 0 0;
 #X msg 48 -451 /\$1 setTarget cell-targets \, /\$1 setConstraintMode
 4;
-#X obj 17 -502 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -4 -476 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
+#X obj -184 -78 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -165 -78 s start-motion;
+#X msg -70 -211 /mainLight setExponent 10 \, /mainLight2 setExponent
+10;
 #X msg 15 -426 /\$1 setCubeOffset 980 3500 -40 \, /\$1 setCubeSize
-190 1150 360;
-#X obj -184 -138 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+190 1300 360;
+#X obj 46 -503 s fogCellTransition;
+#X obj -225 -52 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -165 -138 s start-motion;
-#X msg -120 -215 /hotspot_down3 setScale 0 0 0 \, /hotspot_up5 setScale
+#X obj -207 -52 s fogOFF;
+#X obj -119 -272 tgl 30 0 empty empty LABO/PATIENT_SWITCH 35 16 0 20
+-4034 -1 -1 1 1;
+#X obj -119 -236 sel 0 1;
+#X obj -111 -183 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -103 -302 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg -90 -184 /hotspot_down2 setScale 0 0 0 \, /hotspot_up6 setScale
 1000 5 1000;
-#X msg -70 -251 /mainLight setExponent 8 \, /mainLight2 setExponent
-8;
-#X connect 5 0 29 0;
+#X msg -120 -145 /hotspot_down2 setScale 1000 5 1000 \, /hotspot_up6
+setScale 0 0 0;
+#X obj 137 -99 p;
+#X obj 16 -103 p;
+#X obj -192 -323 r reset;
+#X text 242 -141 <-- vers LABO;
+#X text 279 -180 <-- vers PATIENT;
+#X msg -192 -303 0;
+#X obj -112 -372 spigot 1;
+#X msg -23 -395 0;
+#X obj -67 -415 delay 1000;
+#X msg -67 -395 1;
+#X obj -67 -435 t b b;
+#X connect 5 0 28 0;
 #X connect 6 0 16 0;
 #X connect 8 0 7 0;
-#X connect 12 0 32 0;
-#X connect 12 0 30 0;
-#X connect 13 0 35 0;
-#X connect 14 0 19 0;
-#X connect 14 1 34 0;
-#X connect 14 3 35 0;
-#X connect 14 4 36 0;
-#X connect 14 5 29 0;
+#X connect 12 0 34 0;
+#X connect 12 0 29 0;
+#X connect 13 0 43 0;
+#X connect 14 1 32 0;
+#X connect 14 2 50 0;
+#X connect 14 4 33 0;
+#X connect 14 5 28 0;
 #X connect 14 6 16 0;
 #X connect 14 7 12 0;
+#X connect 14 7 35 0;
 #X connect 16 0 8 0;
 #X connect 17 0 14 0;
-#X connect 18 0 19 0;
+#X connect 18 0 35 0;
+#X connect 19 0 23 0;
 #X connect 20 0 24 0;
-#X connect 21 0 25 0;
-#X connect 22 0 21 0;
-#X connect 23 0 21 0;
-#X connect 24 0 28 0;
-#X connect 25 0 20 1;
-#X connect 26 0 20 0;
-#X connect 26 1 21 0;
-#X connect 27 0 26 0;
-#X connect 28 0 14 0;
-#X connect 29 0 9 0;
-#X connect 30 0 10 0;
-#X connect 31 0 12 0;
-#X connect 32 0 10 0;
-#X connect 32 0 11 0;
-#X connect 33 0 34 0;
-#X connect 35 0 15 0;
-#X connect 36 0 15 0;
+#X connect 21 0 20 0;
+#X connect 22 0 20 0;
+#X connect 23 0 27 0;
+#X connect 24 0 19 1;
+#X connect 25 0 19 0;
+#X connect 25 1 20 0;
+#X connect 26 0 25 0;
+#X connect 27 0 14 0;
+#X connect 28 0 9 0;
+#X connect 29 0 10 0;
+#X connect 30 0 12 0;
+#X connect 31 0 32 0;
+#X connect 33 0 15 0;
+#X connect 34 0 10 0;
+#X connect 34 0 11 0;
+#X connect 36 0 37 0;
+#X connect 38 0 39 0;
+#X connect 39 0 43 0;
+#X connect 39 0 54 0;
+#X connect 39 1 42 0;
+#X connect 39 1 54 0;
+#X connect 40 0 42 0;
+#X connect 41 0 38 0;
+#X connect 42 0 15 0;
+#X connect 42 0 44 0;
+#X connect 43 0 15 0;
+#X connect 43 0 45 0;
+#X connect 46 0 49 0;
+#X connect 49 0 38 0;
+#X connect 50 0 38 0;
+#X connect 51 0 50 1;
+#X connect 52 0 53 0;
+#X connect 53 0 50 1;
+#X connect 54 0 52 0;
+#X connect 54 1 51 0;
 #X restore -128 179 pd into_up4;
-#N canvas 982 141 734 580 into_up5 0;
+#N canvas 962 191 734 580 into_up5 0;
 #X text 239 -312 1: set CubeSize and CubeOffset;
 #X text 239 -291 2: set user position;
 #X text 239 -231 5: set others (fog \, etc.);
@@ -2257,8 +2408,7 @@ stable. This is why it is banged first.;
 #X obj -30 -25 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 100 -10 s enable_step;
-#X obj 58 -235 s sangbackON;
-#X obj 40 -235 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 71 -240 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj -83 -296 t b b b b b b b;
 #X obj 68 -397 anyreg g_hostname;
@@ -2269,17 +2419,16 @@ stable. This is why it is banged first.;
 #X obj -83 -387 t a b;
 #X obj -83 -414 r \$0-from-SPIN;
 #X obj -83 -317 route hotspot_up5;
-#X obj -196 142 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -196 162 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -177 142 s stop-motion;
-#X obj -126 47 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -177 162 s stop-motion;
+#X obj -126 67 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -104 107 s \$0-to-SPIN-TCP;
+#X obj -104 127 s \$0-to-SPIN-TCP;
 #X obj -11 -27 list 0 0 1 0 0 0;
-#X obj 22 -97 list 1000 2383 -0.07;
 #X msg 43 -155 /\$1 setCubeOffset 1000 2330 0 \, /\$1 setCubeSize 48
 120 48;
-#X msg -104 47 /hotspot_down2 setScale 0 0 0 \, /hotspot_up4 setScale
+#X msg -104 67 /hotspot_down2 setScale 0 0 0 \, /hotspot_up4 setScale
 0 0 0 \, /hotspot_up6 setScale 600 6 600 \, /hotspot_down4 setScale
 6 6 6;
 #X msg 62 -181 /\$1 setTarget sang-targets \, /\$1 setConstraintMode
@@ -2288,39 +2437,42 @@ stable. This is why it is banged first.;
 3.5;
 #X obj 68 -377 makefilename /%s;
 #X obj -83 -357 route /chantalbaron;
+#X obj 78 -269 s fogCellTransition;
+#X obj 89 -240 s sangbackON;
+#X obj 22 -97 list 1000 2383.35 -0.0298;
+#X connect 7 0 28 0;
 #X connect 7 0 30 0;
-#X connect 7 0 32 0;
-#X connect 8 0 29 0;
-#X connect 9 0 16 0;
+#X connect 8 0 36 0;
+#X connect 9 0 15 0;
 #X connect 11 0 10 0;
-#X connect 12 0 28 0;
-#X connect 15 0 14 0;
-#X connect 16 0 25 0;
-#X connect 16 1 31 0;
-#X connect 16 2 33 0;
-#X connect 16 3 28 0;
-#X connect 16 4 29 0;
-#X connect 16 5 7 0;
-#X connect 16 6 14 0;
-#X connect 17 0 34 0;
-#X connect 18 0 17 0;
-#X connect 19 0 17 0;
-#X connect 20 0 23 0;
-#X connect 21 0 35 0;
-#X connect 21 1 17 0;
-#X connect 22 0 21 0;
-#X connect 23 0 16 0;
-#X connect 24 0 25 0;
-#X connect 26 0 31 0;
-#X connect 28 0 13 0;
-#X connect 29 0 11 0;
+#X connect 12 0 27 0;
+#X connect 14 0 35 0;
+#X connect 15 0 24 0;
+#X connect 15 2 31 0;
+#X connect 15 3 27 0;
+#X connect 15 4 36 0;
+#X connect 15 5 7 0;
+#X connect 15 6 34 0;
+#X connect 15 6 35 0;
+#X connect 16 0 32 0;
+#X connect 17 0 16 0;
+#X connect 18 0 16 0;
+#X connect 19 0 22 0;
+#X connect 20 0 33 0;
+#X connect 20 1 16 0;
+#X connect 21 0 20 0;
+#X connect 22 0 15 0;
+#X connect 23 0 24 0;
+#X connect 25 0 29 0;
+#X connect 27 0 13 0;
+#X connect 28 0 5 0;
+#X connect 28 0 6 0;
+#X connect 29 0 26 0;
 #X connect 30 0 5 0;
-#X connect 30 0 6 0;
-#X connect 31 0 27 0;
-#X connect 32 0 5 0;
-#X connect 33 0 27 0;
-#X connect 34 0 35 1;
-#X connect 35 0 20 0;
+#X connect 31 0 26 0;
+#X connect 32 0 33 1;
+#X connect 33 0 19 0;
+#X connect 36 0 11 0;
 #X restore -19 42 pd into_up5;
 #N canvas 574 397 734 580 into_up6 0;
 #X text 239 -312 1: set CubeSize and CubeOffset;
@@ -2470,7 +2622,7 @@ stable. This is why it is banged first.;
 #X connect 32 0 14 0;
 #X connect 33 0 20 0;
 #X restore -128 131 pd into_down1;
-#N canvas 553 322 734 580 into_down3 0;
+#N canvas 209 290 734 580 into_down3 0;
 #X text 259 -312 1: set CubeSize and CubeOffset;
 #X text 259 -291 2: set user position;
 #X text 259 -231 5: set others (fog \, etc.);
@@ -2478,7 +2630,7 @@ stable. This is why it is banged first.;
 #X text 259 -271 3: setEnabled steps;
 #X obj -145 -516 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -41 -463 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 127 -514 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj -108 -294 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
@@ -2491,7 +2643,6 @@ stable. This is why it is banged first.;
 #X obj 91 -392 p;
 #X obj -49 -434 anyreg g_hostname;
 #X obj -90 -294 list 0 0 1 0 0 0;
-#X obj -21 -464 s sangbackON;
 #X obj 99 -445 s \$0-to-SPIN-TCP;
 #X obj 99 -488 anyreg g_hostname;
 #X obj -126 -517 t b b b b b b b;
@@ -2507,56 +2658,58 @@ stable. This is why it is banged first.;
 #X obj -126 -539 route hotspot_down3;
 #X msg 99 -467 /\$1 setTarget sang-targets \, /\$1 setConstraintMode
 2;
-#X obj -203 -137 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -203 -117 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -184 -137 s stop-motion;
-#X obj -154 -220 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -184 -117 s stop-motion;
+#X obj -154 -200 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -132 -160 s \$0-to-SPIN-TCP;
+#X obj -132 -150 s \$0-to-SPIN-TCP;
 #X msg -49 -413 /\$1 setCubeOffset 1000 2330 0 \, /\$1 setCubeSize
 48 120 48;
-#X obj -64 -363 list 1000 2383 -0.07;
-#X msg -132 -220 /hotspot_down2 setScale 600 6 600 \, /hotspot_up4
+#X msg -132 -200 /hotspot_down2 setScale 600 6 600 \, /hotspot_up4
 setScale 6 6 6 \, /hotspot_up6 setScale 0 0 0 \, /hotspot_down4 setScale
 0 0 0;
 #X msg -112 -248 /mainLight setExponent 3.5 \, /mainLight2 setExponent
 3.5;
-#X connect 5 0 19 0;
-#X connect 6 0 16 0;
+#X obj 132 -540 s fogCellTransition;
+#X obj 147 -515 s sangbackON;
+#X obj -64 -363 list 1000 2383.35 -0.0298;
+#X connect 5 0 18 0;
+#X connect 6 0 37 0;
 #X connect 7 0 15 0;
-#X connect 8 0 35 0;
+#X connect 8 0 38 0;
 #X connect 10 0 9 0;
-#X connect 14 0 34 0;
+#X connect 14 0 33 0;
 #X connect 15 0 11 0;
-#X connect 18 0 29 0;
-#X connect 19 0 31 0;
-#X connect 19 1 36 0;
-#X connect 19 1 37 0;
-#X connect 19 2 15 0;
-#X connect 19 3 35 0;
-#X connect 19 4 14 0;
-#X connect 19 5 16 0;
-#X connect 19 6 18 0;
+#X connect 17 0 28 0;
+#X connect 18 0 30 0;
+#X connect 18 1 35 0;
+#X connect 18 2 15 0;
+#X connect 18 3 38 0;
+#X connect 18 4 14 0;
+#X connect 18 5 17 0;
+#X connect 18 6 36 0;
+#X connect 18 6 37 0;
+#X connect 19 0 23 0;
 #X connect 20 0 24 0;
-#X connect 21 0 25 0;
-#X connect 22 0 21 0;
-#X connect 23 0 21 0;
-#X connect 24 0 28 0;
-#X connect 25 0 20 1;
-#X connect 26 0 20 0;
-#X connect 26 1 21 0;
-#X connect 27 0 26 0;
-#X connect 28 0 19 0;
-#X connect 29 0 17 0;
-#X connect 30 0 31 0;
-#X connect 32 0 36 0;
-#X connect 34 0 12 0;
-#X connect 34 0 13 0;
-#X connect 35 0 10 0;
-#X connect 36 0 33 0;
-#X connect 37 0 33 0;
+#X connect 21 0 20 0;
+#X connect 22 0 20 0;
+#X connect 23 0 27 0;
+#X connect 24 0 19 1;
+#X connect 25 0 19 0;
+#X connect 25 1 20 0;
+#X connect 26 0 25 0;
+#X connect 27 0 18 0;
+#X connect 28 0 16 0;
+#X connect 29 0 30 0;
+#X connect 31 0 34 0;
+#X connect 33 0 12 0;
+#X connect 33 0 13 0;
+#X connect 34 0 32 0;
+#X connect 35 0 32 0;
+#X connect 38 0 10 0;
 #X restore -19 62 pd into_down3;
-#N canvas 959 304 734 580 into_down4 0;
+#N canvas 306 346 734 580 into_down4 0;
 #X text 239 -342 1: set CubeSize and CubeOffset;
 #X text 239 -321 2: set user position;
 #X text 239 -261 5: set others (fog \, etc.);
@@ -2565,25 +2718,22 @@ setScale 6 6 6 \, /hotspot_up6 setScale 0 0 0 \, /hotspot_down4 setScale
 #X obj 43 -164 s \$0-to-SPIN-TCP;
 #X obj 183 -165 p;
 #X obj 43 -236 anyreg g_hostname;
-#X obj 4 -126 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 22 -88 s gotoPos;
-#X msg 22 -108 \$1 \$2 \$3;
-#X obj -24 -56 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -45 -86 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 106 -41 s enable_step;
-#X obj -182 113 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -27 -48 s gotoPos;
+#X msg -27 -68 \$1 \$2 \$3;
+#X obj -7 -114 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -96 17 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 123 -99 s enable_step;
+#X obj 54 -259 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -96 47 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj -75 57 s \$0-to-SPIN-TCP;
+#X obj -75 87 s \$0-to-SPIN-TCP;
 #X obj -83 -296 t b b b b b b b b;
-#X obj 22 -127 list 1000 3479 0;
+#X obj -27 -87 list 1000 3479 0;
 #X obj -107 -294 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg 43 -185 /\$1 setCubeOffset 980 3500 -40 \, /\$1 setCubeSize
-190 2000 360;
-#X obj -164 113 s fogOFF;
 #X obj -83 -359 route /chantalbaron;
 #X obj 68 -399 anyreg g_hostname;
 #X obj 68 -419 loadbang;
@@ -2594,51 +2744,57 @@ setScale 6 6 6 \, /hotspot_up6 setScale 0 0 0 \, /hotspot_down4 setScale
 #X obj -83 -389 t a b;
 #X obj -83 -416 r \$0-from-SPIN;
 #X obj -83 -319 route hotspot_down4;
-#X obj -5 -58 list 0 0 0 1 0 0;
+#X obj 12 -116 list 0 0 0 1 0 0;
 #X msg 62 -210 /\$1 setTarget cell-targets \, /\$1 setConstraintMode
 5;
-#X obj -140 81 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -140 111 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -121 81 s start-motion;
-#X msg -75 17 /hotspot_down3 setScale 1000 5 1000 \, /hotspot_up5 setScale
+#X obj -121 111 s start-motion;
+#X msg -75 47 /hotspot_down3 setScale 1000 5 1000 \, /hotspot_up5 setScale
 0 0 0;
-#X msg -38 -11 /mainLight setExponent 8 \, /mainLight2 setExponent
-8;
-#X connect 7 0 19 0;
-#X connect 7 0 31 0;
+#X msg -38 -11 /mainLight setExponent 10 \, /mainLight2 setExponent
+10;
+#X msg 43 -185 /\$1 setCubeOffset 980 3500 -40 \, /\$1 setCubeSize
+190 1200 360;
+#X obj -177 136 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -159 136 s fogOFF;
+#X obj 72 -260 s fogCellTransition;
+#X connect 7 0 34 0;
+#X connect 7 0 29 0;
 #X connect 8 0 17 0;
 #X connect 10 0 9 0;
-#X connect 11 0 30 0;
-#X connect 13 0 20 0;
-#X connect 14 0 34 0;
-#X connect 16 0 20 0;
-#X connect 16 1 33 0;
-#X connect 16 3 34 0;
-#X connect 16 4 35 0;
-#X connect 16 5 30 0;
+#X connect 11 0 28 0;
+#X connect 13 0 37 0;
+#X connect 14 0 32 0;
+#X connect 16 1 31 0;
+#X connect 16 3 32 0;
+#X connect 16 4 33 0;
+#X connect 16 5 28 0;
 #X connect 16 6 17 0;
 #X connect 16 7 7 0;
+#X connect 16 7 37 0;
 #X connect 17 0 10 0;
 #X connect 18 0 16 0;
-#X connect 19 0 5 0;
-#X connect 19 0 6 0;
-#X connect 21 0 25 0;
-#X connect 22 0 26 0;
-#X connect 23 0 22 0;
-#X connect 24 0 22 0;
-#X connect 25 0 29 0;
-#X connect 26 0 21 1;
-#X connect 27 0 21 0;
-#X connect 27 1 22 0;
-#X connect 28 0 27 0;
-#X connect 29 0 16 0;
-#X connect 30 0 12 0;
-#X connect 31 0 5 0;
-#X connect 32 0 33 0;
-#X connect 34 0 15 0;
-#X connect 35 0 15 0;
+#X connect 19 0 23 0;
+#X connect 20 0 24 0;
+#X connect 21 0 20 0;
+#X connect 22 0 20 0;
+#X connect 23 0 27 0;
+#X connect 24 0 19 1;
+#X connect 25 0 19 0;
+#X connect 25 1 20 0;
+#X connect 27 0 16 0;
+#X connect 28 0 12 0;
+#X connect 29 0 5 0;
+#X connect 30 0 31 0;
+#X connect 32 0 15 0;
+#X connect 33 0 15 0;
+#X connect 34 0 5 0;
+#X connect 34 0 6 0;
+#X connect 35 0 36 0;
 #X restore -19 131 pd into_down4;
-#N canvas 388 499 734 580 into_down5 0;
+#N canvas 386 499 734 580 into_down5 0;
 #X text 239 -352 1: set CubeSize and CubeOffset;
 #X text 239 -331 2: set user position;
 #X text 239 -271 5: set others (fog \, etc.);
@@ -2688,7 +2844,6 @@ setScale 6 6 6 \, /hotspot_up6 setScale 0 0 0 \, /hotspot_down4 setScale
 #X connect 10 0 9 0;
 #X connect 11 0 27 0;
 #X connect 13 0 15 0;
-#X connect 14 1 30 0;
 #X connect 14 2 32 0;
 #X connect 14 3 27 0;
 #X connect 14 4 29 0;
@@ -2789,10 +2944,8 @@ setScale 6 6 6 \, /hotspot_up6 setScale 0 0 0 \, /hotspot_down4 setScale
 \$3 \, /step4 setAll \$4 \, /step5 setAll \$5 \, /step6 setAll \$6
 ;
 #X msg 337 305 /experience setAll 1;
-#X obj 745 100 anyreg g_hostname;
-#X obj 745 60 loadbang;
-#X obj 745 80 delay 100;
-#X obj 575 140 OSCprepend /chantalbaron;
+#X obj 746 100 anyreg g_hostname;
+#X obj 746 60 loadbang;
 #X text -131 22 STEP 1;
 #X text -131 92 STEP 2;
 #X text -21 22 STEP 4;
@@ -2810,26 +2963,27 @@ but from step3. Therefore activating a different set of action.)***
 #X text 334 275 This is for quick testing;
 #X text -133 265 Sets active step and disable inactive steps. This
 is controlled by reset and triggered hotspots.;
+#X obj 575 140 OSCprepend /chantalbaron-anim;
+#X obj 746 80 delay 1000;
 #X connect 1 0 3 0;
-#X connect 3 0 30 0;
+#X connect 3 0 40 0;
 #X connect 4 0 5 0;
 #X connect 8 0 25 0;
-#X connect 14 0 37 0;
+#X connect 14 0 35 0;
 #X connect 25 0 0 0;
 #X connect 25 0 7 0;
-#X connect 26 0 37 0;
-#X connect 27 0 30 1;
-#X connect 28 0 29 0;
-#X connect 29 0 27 0;
-#X connect 30 0 2 0;
-#X connect 30 0 6 0;
+#X connect 26 0 35 0;
+#X connect 27 0 40 1;
+#X connect 28 0 41 0;
+#X connect 40 0 2 0;
+#X connect 40 0 6 0;
+#X connect 41 0 27 0;
 #X restore 541 75 pd hotspot_triggers;
 #X text 603 193 <-- Use this for tests and debug;
-#N canvas 382 262 1310 817 debug 0;
+#N canvas 465 262 1310 817 debug 0;
 #X obj -6113 -2089 s \$0-to-SPIN-TCP;
 #X msg -6043 -2494 /experience debug;
 #X msg -6100 -2566 /chantalbaron setCubeSize 10000 10000 10000;
-#X msg -6063 -2518 /chantalbaron debug;
 #X msg -6124 -2592 createNode grid GridNode;
 #X obj -6070 -1896 s \$0-to-SPIN-TCP;
 #X floatatom -6103 -1967 5 0 0 0 - - -;
@@ -2861,7 +3015,6 @@ is controlled by reset and triggered hotspots.;
 -1 -1;
 #X msg -6014 -2471 /voxShader debug;
 #X msg -5940 -2338 /corridor debug;
-#X msg -5954 -2384 deleteNode cell-CytoSkeleton_Elements-8;
 #X msg -5155 -2414 setFrustum -0.3333 0.3333 -0.2222 0.2222 0.001 1000
 ;
 #X obj -5163 -2581 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8
@@ -2874,27 +3027,17 @@ is controlled by reset and triggered hotspots.;
 #X msg -5971 -2404 /7-pipette-group-2 debug;
 #X msg -6070 -1917 /7-pipette-pcd setTranslation \$1 \$2 \$3;
 #X msg -5923 -2293 /box debug;
-#X msg -5933 -2316 deleteNode con*;
 #X msg -5884 -2186 /corridor debug;
 #X msg -5916 -2268 /CERC112-img debug;
-#X msg -5889 -2217 /sang2-targets debug;
 #X msg -5993 -2447 /step4 debug;
 #X obj -5656 -2131 widget-nodeEditor \$0;
-#X msg -5556 -2496 chantalbaron;
-#X msg -5574 -2545 hotspot_down2;
 #X msg -5493 -2295 cell-CytoSkeleton_Elements;
 #X msg -5474 -2248 sang-globule;
 #X msg -5482 -2272 cell-CytoSkeleton_Elements-2;
-#X msg -5539 -2421 corridor-pcd;
-#X msg -5566 -2519 box;
-#X msg -5521 -2396 7-pipette-pcd;
-#X msg -5546 -2446 con0;
-#X msg -5509 -2446 sh20;
+#X msg -5543 -2446 corridor-pcd;
+#X msg -5525 -2421 7-pipette-pcd;
 #X msg -5511 -2371 cell-lisosome;
-#X msg -5606 -2595 hotspot_up6;
-#X msg -5596 -2568 hotspot_down5;
 #X msg -5505 -2346 patient-cube;
-#X msg -5552 -2471 anim;
 #X msg -5459 -2204 mainLight;
 #X msg -5455 -2181 mainLight2;
 #X msg -5873 -2158 /mainLight debug;
@@ -2902,7 +3045,6 @@ is controlled by reset and triggered hotspots.;
 #X obj -5881 -2009 r \$0-from-SPIN;
 #X msg -5500 -2320 cell-globuleBlanc;
 #X msg -5465 -2226 sang-cell;
-#X msg -6079 -2543 /sang-globule debug;
 #X msg -5861 -2090 /sang-globule setParent step4;
 #X text -5213 -2058 sang = 3;
 #X text -5213 -2027 cell = 7;
@@ -2918,88 +3060,104 @@ is controlled by reset and triggered hotspots.;
 \, /mainLight3 setExponent 16 \, /mainLight3 setAttenuation 0.1 \,
 /mainLight3 setAmbient 1 1 1 1 \, /mainLight3 setDiffuse 1 1 1 1 \,
 /mainLight3 setSpecular 0 0 0 1;
-#X msg -5906 -2244 /step4 debug;
 #X msg -5239 -2055 3.5;
 #X msg -5450 -2159 mainLight3;
 #X msg -5859 -2113 /mainLight3 debug;
-#X msg -5239 -2026 9;
+#X msg -5556 -2496 chantalbaron-anim;
+#X msg -6079 -2543 /chantalbaron debug;
+#X msg -6063 -2518 /chantalbaron-anim debug;
+#X msg -5566 -2519 chantalbaron;
+#X msg -5520 -2396 cell-Mitochondria;
+#X msg -5239 -2026 10;
+#X msg -5550 -2471 sh0;
+#X msg -5520 -2471 sh1;
+#X msg -5488 -2471 sh2;
+#X msg -5458 -2471 sh3;
+#X msg -5933 -2316 /sh3 debug;
+#X msg -5596 -2568 hotspot_down4;
+#X msg -5606 -2595 hotspot_up4;
+#X msg -5574 -2545 hotspot_down5;
+#X msg -5954 -2384 /hotspot_down5 debug;
+#X msg -5906 -2244 /step6 debug;
+#X msg -5889 -2217 /patient-targets debug;
 #X connect 1 0 0 0;
 #X connect 2 0 0 0;
 #X connect 3 0 0 0;
-#X connect 4 0 0 0;
-#X connect 6 0 10 0;
-#X connect 8 0 10 1;
-#X connect 9 0 10 2;
-#X connect 10 0 36 0;
-#X connect 11 0 0 0;
-#X connect 13 0 14 0;
-#X connect 15 0 21 0;
-#X connect 16 0 21 1;
-#X connect 17 0 21 2;
-#X connect 18 0 21 3;
-#X connect 19 0 21 4;
-#X connect 20 0 21 5;
+#X connect 5 0 9 0;
+#X connect 7 0 9 1;
+#X connect 8 0 9 2;
+#X connect 9 0 34 0;
+#X connect 10 0 0 0;
+#X connect 12 0 13 0;
+#X connect 14 0 20 0;
+#X connect 15 0 20 1;
+#X connect 16 0 20 2;
+#X connect 17 0 20 3;
+#X connect 18 0 20 4;
+#X connect 19 0 20 5;
+#X connect 20 0 21 0;
 #X connect 21 0 22 0;
-#X connect 22 0 23 0;
-#X connect 24 0 13 1;
-#X connect 25 0 24 0;
+#X connect 23 0 12 1;
+#X connect 24 0 23 0;
+#X connect 25 0 0 0;
 #X connect 26 0 0 0;
-#X connect 27 0 0 0;
-#X connect 28 0 0 0;
+#X connect 28 0 29 0;
+#X connect 28 0 15 0;
+#X connect 29 0 14 0;
 #X connect 30 0 31 0;
-#X connect 30 0 16 0;
-#X connect 31 0 15 0;
-#X connect 32 0 33 0;
-#X connect 32 0 18 0;
-#X connect 33 0 17 0;
-#X connect 34 0 0 0;
+#X connect 30 0 17 0;
+#X connect 31 0 16 0;
+#X connect 32 0 0 0;
+#X connect 33 0 0 0;
+#X connect 34 0 4 0;
 #X connect 35 0 0 0;
-#X connect 36 0 5 0;
+#X connect 36 0 0 0;
 #X connect 37 0 0 0;
 #X connect 38 0 0 0;
-#X connect 39 0 0 0;
-#X connect 40 0 0 0;
-#X connect 41 0 0 0;
-#X connect 42 0 0 0;
-#X connect 44 0 43 0;
-#X connect 45 0 43 0;
-#X connect 46 0 43 0;
-#X connect 47 0 43 0;
-#X connect 48 0 43 0;
-#X connect 49 0 43 0;
-#X connect 50 0 43 0;
-#X connect 51 0 43 0;
-#X connect 52 0 43 0;
-#X connect 53 0 43 0;
-#X connect 54 0 43 0;
-#X connect 55 0 43 0;
-#X connect 56 0 43 0;
-#X connect 57 0 43 0;
-#X connect 58 0 43 0;
-#X connect 59 0 43 0;
-#X connect 60 0 43 0;
-#X connect 61 0 0 0;
-#X connect 62 0 0 0;
-#X connect 64 0 43 0;
-#X connect 65 0 43 0;
-#X connect 66 0 0 0;
+#X connect 40 0 39 0;
+#X connect 41 0 39 0;
+#X connect 42 0 39 0;
+#X connect 43 0 39 0;
+#X connect 44 0 39 0;
+#X connect 45 0 39 0;
+#X connect 46 0 39 0;
+#X connect 47 0 39 0;
+#X connect 48 0 39 0;
+#X connect 49 0 0 0;
+#X connect 50 0 0 0;
+#X connect 52 0 39 0;
+#X connect 53 0 39 0;
+#X connect 54 0 0 0;
+#X connect 59 0 61 0;
+#X connect 60 0 59 0;
+#X connect 62 0 61 0;
+#X connect 63 0 59 0;
+#X connect 64 0 39 0;
+#X connect 65 0 0 0;
+#X connect 66 0 39 0;
 #X connect 67 0 0 0;
-#X connect 72 0 74 0;
-#X connect 73 0 72 0;
-#X connect 75 0 74 0;
+#X connect 68 0 0 0;
+#X connect 69 0 39 0;
+#X connect 70 0 39 0;
+#X connect 71 0 59 0;
+#X connect 72 0 39 0;
+#X connect 73 0 39 0;
+#X connect 74 0 39 0;
+#X connect 75 0 39 0;
 #X connect 76 0 0 0;
-#X connect 77 0 72 0;
-#X connect 78 0 43 0;
-#X connect 79 0 0 0;
-#X connect 80 0 72 0;
+#X connect 77 0 39 0;
+#X connect 78 0 39 0;
+#X connect 79 0 39 0;
+#X connect 80 0 0 0;
+#X connect 81 0 0 0;
+#X connect 82 0 0 0;
 #X restore 541 195 pd debug;
 #X text 604 144 <-- Main assets are stored here (Reset \, hostname
 \, project path and shader name);
-#X text 643 93 <-- Controls for occlusion shader;
 #X text 691 46 <-- Brings you back to corridor (step1);
-#X text 173 454 <-- This makes sure the viewer receives every messages
+#X text 187 454 <-- This makes sure the viewer receives every messages
 that were sent;
-#N canvas 73 538 795 541 reset 0;
+#N canvas 67 538 795 541 reset 0;
 #X obj 37 -507 s gotoPos;
 #X obj -5 -481 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
@@ -3009,11 +3167,11 @@ that were sent;
 #X obj -91 -395 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 13 -460 s enable_step;
-#X text 197 -493 1: set CubeSize and CubeOffset;
-#X text 197 -472 2: set user position;
-#X text 197 -412 5: set others (fog \, etc.);
-#X text 197 -432 4: setEnable hotspots;
-#X text 197 -452 3: setEnabled steps;
+#X text 439 -688 1: set CubeSize and CubeOffset;
+#X text 439 -667 2: set user position;
+#X text 439 -607 5: set others (fog \, etc.);
+#X text 439 -627 4: setEnable hotspots;
+#X text 439 -647 3: setEnabled steps;
 #X obj -44 -683 t b b b b b b;
 #X obj 52 -644 anyreg g_hostname;
 #X obj 158 -579 p;
@@ -3022,7 +3180,7 @@ that were sent;
 #X obj 13 -481 list 1 1 0 0 0 0;
 #X obj -73 -395 s laboON;
 #X obj 37 -548 list 0 0 6.5;
-#X text -30 -295 <-- moves side wall forward + scale hotspot_down1
+#X text -27 -297 <-- moves side wall forward + scale hotspot_down1
 to 0;
 #X obj -138 -296 s \$0-to-SPIN-TCP;
 #X obj 162 -659 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
@@ -3058,6 +3216,8 @@ to 0;
 #X text 400 -531 both SpaceNavigator side buttons;
 #X msg -116 -365 /mainLight setExponent 16 \, /mainLight2 setExponent
 16;
+#X text 100 -509 <--managed in pd hotspot_triggers;
+#X obj -123 -683 print RESET;
 #X connect 1 0 16 0;
 #X connect 2 0 18 0;
 #X connect 3 0 0 0;
@@ -3072,6 +3232,7 @@ to 0;
 #X connect 12 0 22 0;
 #X connect 12 0 24 0;
 #X connect 15 0 11 0;
+#X connect 15 0 48 0;
 #X connect 16 0 5 0;
 #X connect 18 0 3 0;
 #X connect 21 0 12 0;
@@ -3099,41 +3260,54 @@ to 0;
 #X connect 46 0 20 0;
 #X restore 541 175 pd reset;
 #X text 603 173 <-- Receives reset messages;
-#X text 173 406 <-- Trigger zones (hotspots) are created here;
-#X text 233 354 <-- Laboratory walls with donator;
-#X text 257 366 names are created here;
-#X text 193 304 <-- Main nodes and models are created here;
-#X text 213 202 <-- User stuff \, lights \, shaders and other;
-#X text 237 215 basic setups are created here;
+#X text 186 406 <-- Trigger zones (hotspots) are created here;
+#X text 246 354 <-- Laboratory walls with donator;
+#X text 270 366 names are created here;
+#X text 205 304 <-- Main nodes and models are created here;
+#X text 225 202 <-- User stuff \, lights \, shaders and other;
+#X text 249 215 basic setups are created here;
 #X text 632 113 <-- Controls automatic animation path and reset functionnality
 ;
-#X obj 112 516 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 112 569 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X text 663 73 <-- This is where the experience flow is managed;
+#X text 119 578 <-- Sets ON the animation and still timer;
+#X text 141 591 (to "pd animation");
+#X obj 38 579 s play-anim;
+#X obj 52 527 s create-moving-objects;
+#X obj 94 335 delay 50000;
+#X obj 80 386 delay 65000;
+#X obj 66 436 delay 70000;
+#X obj 52 507 delay 73000;
+#X obj 38 559 delay 85000;
+#X obj 38 164 t b b b b b b b b;
+#X text 643 93 <-- Controls for occlusion shader (NOT USED);
 #X connect 0 0 8 0;
 #X connect 1 0 0 0;
-#X connect 5 0 31 0;
+#X connect 5 0 25 0;
 #X connect 6 0 15 0;
-#X connect 7 0 22 0;
+#X connect 7 0 57 0;
 #X connect 8 0 11 0;
 #X connect 11 0 7 0;
-#X connect 12 0 32 0;
-#X connect 13 0 30 0;
+#X connect 12 0 26 0;
+#X connect 13 0 24 0;
 #X connect 14 0 4 0;
-#X connect 17 0 4 0;
-#X connect 18 0 3 0;
-#X connect 20 0 22 0;
-#X connect 21 0 11 0;
-#X connect 22 0 27 0;
-#X connect 22 1 26 0;
-#X connect 22 2 25 0;
-#X connect 22 3 24 0;
-#X connect 22 4 23 0;
-#X connect 22 5 17 0;
-#X connect 22 6 3 0;
-#X connect 23 0 30 0;
-#X connect 24 0 31 0;
-#X connect 25 0 32 0;
-#X connect 26 0 6 0;
-#X connect 27 0 16 0;
-#X connect 53 0 16 0;
+#X connect 16 0 4 0;
+#X connect 17 0 3 0;
+#X connect 19 0 57 0;
+#X connect 20 0 11 0;
+#X connect 21 0 24 0;
+#X connect 46 0 50 0;
+#X connect 52 0 25 0;
+#X connect 53 0 26 0;
+#X connect 54 0 6 0;
+#X connect 55 0 51 0;
+#X connect 56 0 50 0;
+#X connect 57 0 56 0;
+#X connect 57 1 55 0;
+#X connect 57 2 54 0;
+#X connect 57 3 53 0;
+#X connect 57 4 52 0;
+#X connect 57 5 21 0;
+#X connect 57 6 16 0;
+#X connect 57 7 3 0;
