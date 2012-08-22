@@ -1,4 +1,4 @@
-#N canvas 328 248 1006 687 10;
+#N canvas 368 237 1006 687 10;
 #X obj 38 38 widget-spinConnect \$0;
 #X obj 38 18 loadbang1 HMR;
 #X obj 541 40 bng 30 250 50 0 reset empty RESET 40 17 0 35 -258113
@@ -241,7 +241,7 @@ world \, /\$1 setParent \$1-anim \, /\$1 setSpaceNavigatorNode \$1-anim
 #X connect 87 0 2 0;
 #X connect 88 0 75 0;
 #X restore 137 202 pd user_setup;
-#N canvas 336 367 1277 678 fog 0;
+#N canvas 86 375 1277 678 fog 0;
 #X obj 63 -67 inlet;
 #X obj 112 410 s \$0-to-SPIN-TCP;
 #X obj 88 76 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
@@ -355,7 +355,7 @@ world \, /\$1 setParent \$1-anim \, /\$1 setSpaceNavigatorNode \$1-anim
 #X msg 978 102 0.02;
 #X msg 1048 81 0.02 1 0.5 0.5;
 #X msg 643 364 \$1 300;
-#X obj 1018 151 delay 300;
+#X obj 1019 152 delay 300;
 #X obj 1070 257 delay 350;
 #X connect 0 0 19 0;
 #X connect 2 0 11 0;
@@ -559,7 +559,7 @@ world \, /\$1 setParent \$1-anim \, /\$1 setSpaceNavigatorNode \$1-anim
 #X connect 41 4 30 0;
 #X connect 41 5 39 0;
 #X restore 541 95 pd control_ssao;
-#N canvas 904 178 956 773 animation 0;
+#N canvas 659 158 956 773 animation 0;
 #X obj 50 372 s \$0-to-SPIN;
 #X obj 69 151 hsl 128 15 0 1 0 0 empty empty scrubber -2 -8 0 10 -262144
 -1 -1 0 1;
@@ -573,7 +573,7 @@ world \, /\$1 setParent \$1-anim \, /\$1 setSpaceNavigatorNode \$1-anim
 #X obj 610 312 loadbang;
 #X obj 536 466 tgl 25 0 empty empty empty 17 7 0 10 -258113 -1 -1 0
 1;
-#X obj 612 566 tgl 25 0 empty empty empty 17 7 0 10 -4034 -1 -1 1 1
+#X obj 612 566 tgl 25 0 empty empty empty 17 7 0 10 -4034 -1 -1 0 1
 ;
 #X text 304 495 <- store current pose at 5 sec;
 #X text 49 426 You can also store the current position of anim (use
@@ -620,30 +620,20 @@ file:;
 #X msg 609 539 1;
 #X msg 744 517 0;
 #X obj 652 625 sel 1;
-#X obj 776 268 p;
 #X obj 546 195 sel 0 1;
-#X msg 520 246 1;
-#X msg 477 234 0;
-#X obj 444 202 t b b;
 #X obj 446 283 s stop-anim;
 #X obj 700 637 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 575 645 f;
 #X obj 576 625 delay 100;
-#X obj 564 55 spigot;
-#X obj 658 10 loadbang;
-#X msg 658 34 0;
-#X msg 697 55 1;
 #X msg 143 687 /chantalbaron-anim setParent world;
 #X obj 546 155 expr sqrt(($f1*$f1) + ($f2*$f2) + ($f3*$f3));
 #X floatatom 650 186 20 0 0 0 - - -;
 #X obj 546 175 > 0.0005;
-#X msg 524 224 stop;
-#X obj 606 184 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X msg 465 259 stop;
+#X obj 642 221 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X msg 608 204 bang;
-#X obj 697 33 r play-anim;
-#X obj 432 255 spigot 1;
 #X msg 470 459 1;
 #X msg 470 439 0;
 #X msg 820 520 stop;
@@ -671,29 +661,32 @@ file:;
 #X obj 547 737 s \$0-to-SPIN_fake;
 #X obj 397 229 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
+#X obj 462 228 t b;
+#X obj 661 243 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
 #X connect 1 0 26 0;
 #X connect 1 0 2 0;
 #X connect 3 0 27 0;
 #X connect 8 0 19 0;
 #X connect 9 0 20 0;
-#X connect 10 0 84 0;
-#X connect 13 0 58 0;
+#X connect 10 0 74 0;
+#X connect 13 0 28 0;
 #X connect 15 0 14 1;
 #X connect 15 1 14 0;
 #X connect 16 0 0 0;
 #X connect 17 0 0 0;
 #X connect 18 0 0 0;
 #X connect 19 0 7 0;
-#X connect 20 0 93 0;
-#X connect 21 0 93 0;
-#X connect 22 0 93 0;
+#X connect 20 0 83 0;
+#X connect 21 0 83 0;
+#X connect 22 0 83 0;
 #X connect 23 0 35 0;
 #X connect 24 0 35 0;
 #X connect 25 0 35 0;
 #X connect 26 0 0 0;
 #X connect 27 0 0 0;
 #X connect 28 1 29 0;
-#X connect 29 0 63 0;
+#X connect 29 0 55 0;
 #X connect 29 3 30 0;
 #X connect 31 3 32 0;
 #X connect 33 0 0 0;
@@ -703,59 +696,49 @@ file:;
 #X connect 41 0 0 0;
 #X connect 45 0 46 0;
 #X connect 46 0 10 0;
-#X connect 46 0 78 0;
+#X connect 46 0 68 0;
 #X connect 47 0 10 0;
 #X connect 47 0 21 0;
 #X connect 48 0 44 0;
-#X connect 50 0 82 0;
-#X connect 50 1 53 0;
-#X connect 51 0 70 1;
-#X connect 52 0 70 1;
+#X connect 49 0 72 0;
+#X connect 49 1 85 0;
+#X connect 51 0 44 0;
+#X connect 52 0 21 0;
 #X connect 53 0 52 0;
-#X connect 53 0 66 0;
-#X connect 53 1 70 0;
-#X connect 55 0 44 0;
-#X connect 56 0 21 0;
-#X connect 57 0 56 0;
-#X connect 58 0 28 0;
-#X connect 59 0 60 0;
-#X connect 60 0 58 1;
-#X connect 61 0 58 1;
-#X connect 62 0 38 0;
-#X connect 63 0 64 0;
-#X connect 63 0 65 0;
-#X connect 65 0 50 0;
-#X connect 66 0 82 0;
-#X connect 67 0 82 0;
-#X connect 68 0 82 0;
-#X connect 69 0 61 0;
+#X connect 54 0 38 0;
+#X connect 55 0 56 0;
+#X connect 55 0 57 0;
+#X connect 57 0 49 0;
+#X connect 57 0 86 0;
+#X connect 58 0 72 0;
+#X connect 59 0 72 0;
+#X connect 60 0 72 0;
+#X connect 61 0 9 0;
+#X connect 62 0 9 0;
+#X connect 63 0 71 0;
+#X connect 64 0 46 0;
+#X connect 64 1 47 0;
+#X connect 65 0 66 0;
+#X connect 66 0 67 0;
+#X connect 68 0 71 0;
+#X connect 69 0 49 0;
 #X connect 70 0 49 0;
-#X connect 70 0 91 0;
-#X connect 71 0 9 0;
-#X connect 72 0 9 0;
-#X connect 73 0 81 0;
-#X connect 74 0 46 0;
-#X connect 74 1 47 0;
-#X connect 75 0 76 0;
-#X connect 76 0 77 0;
-#X connect 78 0 81 0;
-#X connect 79 0 50 0;
-#X connect 80 0 50 0;
-#X connect 81 0 77 0;
-#X connect 82 0 51 0;
-#X connect 82 0 87 0;
-#X connect 83 0 7 0;
-#X connect 84 0 57 0;
-#X connect 84 1 56 1;
-#X connect 84 2 48 0;
-#X connect 84 3 85 0;
-#X connect 85 0 21 0;
-#X connect 88 0 21 0;
-#X connect 89 0 88 0;
-#X connect 90 0 47 0;
-#X connect 90 0 73 0;
-#X connect 91 0 92 0;
-#X connect 94 0 91 0;
+#X connect 71 0 67 0;
+#X connect 72 0 77 0;
+#X connect 73 0 7 0;
+#X connect 74 0 53 0;
+#X connect 74 1 52 1;
+#X connect 74 2 48 0;
+#X connect 74 3 75 0;
+#X connect 75 0 21 0;
+#X connect 78 0 21 0;
+#X connect 79 0 78 0;
+#X connect 80 0 47 0;
+#X connect 80 0 63 0;
+#X connect 81 0 82 0;
+#X connect 84 0 81 0;
+#X connect 85 0 58 0;
+#X connect 85 0 81 0;
 #X restore 541 115 pd animation;
 #N canvas 581 202 450 300 donateurs 0;
 #X obj 44 21 inlet;
@@ -794,7 +777,7 @@ file:;
 #X obj 122 233 delay 1000;
 #X obj 223 192 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#N canvas 508 403 499 323 assets 0;
+#N canvas 502 418 499 323 assets 0;
 #X obj 31 147 shell;
 #X msg 31 127 hostname -s;
 #X obj 31 167 symbol;
@@ -832,10 +815,10 @@ them all over the place.;
 #X obj 118 92 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 108 284 delay 2000;
-#X obj 544 263 nbx 4 16 0 1e+37 0 0 FloatSpeed FloatSpeed-set FloatSpeed
+#X obj 544 260 nbx 4 16 0 1e+37 0 0 FloatSpeed FloatSpeed-set FloatSpeed
 57 10 1 14 -261682 -1 -1 10 256;
 #X floatatom 544 318 5 0 0 1 Number Number-set Number;
-#N canvas 385 564 680 515 CETC-models 0;
+#N canvas 1186 520 680 515 CETC-models 1;
 #X obj -131 14 inlet;
 #X obj 44 54 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
@@ -912,9 +895,9 @@ step. (see;
 #X obj -59 93 s creat_manLight3;
 #X obj 53 83 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj -102 215 delay 35000;
-#X obj -117 262 delay 40000;
-#X obj -131 310 delay 45000;
+#X obj -102 215 delay 60000;
+#X obj -118 262 delay 65000;
+#X obj -131 310 delay 70000;
 #X connect 0 0 20 0;
 #X connect 1 0 14 0;
 #X connect 2 0 9 0;
@@ -2152,12 +2135,12 @@ addTarget hotspot_switch \, /hotspot_switch setParent cell-targets
 an equal number of the 4 different floating objects (2 types of mitochondria
 and 2 types of lisosomes);
 #X text 541 298 This sets NUMBER of floating objects in the cell;
-#X text 541 240 This sets the SPEED of floating objects in the cell
+#X text 541 238 This sets the SPEED of floating objects in the cell
 ;
 #X text 118 100 <-- This updates web database at start. Shell is unstable
 and may cause pd to crash in this case. But once it works it stays
 stable. This is why it is banged first.;
-#N canvas 66 589 1089 391 hotspot_triggers 0;
+#N canvas 444 603 1089 391 hotspot_triggers 0;
 #X obj -132 354 s \$0-to-SPIN-TCP;
 #X obj 575 53 r gotoPos;
 #X obj 575 195 s \$0-to-SPIN-TCP;
@@ -2174,116 +2157,130 @@ stable. This is why it is banged first.;
 #X text 114 203 4: setEnable hotspots;
 #X text 114 183 3: setEnabled steps;
 #X msg 367 326 /chantalbaron setCubeSize 10000 10000 10000;
-#N canvas 357 421 776 604 into_up2 0;
-#X obj 76 196 list 0 1 0 0 0 0;
-#X obj 6 248 s laboON;
-#X obj -17 90 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj -12 249 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#N canvas 347 446 776 604 into_up2 0;
+#X obj 76 266 list 0 1 0 0 0 0;
+#X obj 6 318 s laboON;
+#X obj -17 160 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 76 217 s enable_step;
-#X text 66 339 <-- moves side wall forward + scale hotspot_down1 to
+#X obj -12 319 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 76 287 s enable_step;
+#X text 66 409 <-- moves side wall forward + scale hotspot_down1 to
 0;
-#X obj 58 197 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 58 267 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X text 329 26 1: set CubeSize and CubeOffset;
 #X text 329 47 2: set user position;
 #X text 329 107 5: set others (fog \, etc.);
 #X text 329 87 4: setEnable hotspots;
 #X text 329 67 3: setEnabled steps;
-#X obj -42 338 s \$0-to-SPIN-TCP;
-#X obj 5 88 t b b b b b;
-#X obj 93 167 s \$0-to-SPIN-TCP;
-#X obj 208 166 p;
-#X obj 93 93 anyreg g_hostname;
-#X msg -42 304 /hotspot_down1 setScale 600 6 600 \, /room1-4 setTranslation
+#X obj -42 408 s \$0-to-SPIN-TCP;
+#X obj 5 158 t b b b b b;
+#X obj 93 237 s \$0-to-SPIN-TCP;
+#X obj 208 236 p;
+#X obj 93 163 anyreg g_hostname;
+#X msg -42 374 /hotspot_down1 setScale 600 6 600 \, /room1-4 setTranslation
 -4.902 90.902 3.75;
-#X msg 108 119 /\$1 setTarget labo-targets;
-#X obj 5 28 route /chantalbaron;
-#X obj 156 -12 anyreg g_hostname;
-#X obj 156 -32 loadbang;
-#X obj 139 -32 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 5 48 route collide;
-#X obj 156 8 makefilename /%s;
-#X obj 5 -2 t a b;
-#X obj 5 68 route hotspot_up2;
-#X obj 5 -29 r \$0-from-SPIN;
-#X obj 97 -88 p;
-#X msg 93 144 /\$1 setCubeOffset -164 178 14 \, /\$1 setCubeSize 350
+#X msg 108 189 /\$1 setTarget labo-targets;
+#X obj 5 -32 route /chantalbaron;
+#X obj 156 -72 anyreg g_hostname;
+#X obj 5 -12 route collide;
+#X obj 156 -52 makefilename /%s;
+#X obj 5 -62 t a b;
+#X obj 5 8 route hotspot_up2;
+#X obj 5 -89 r \$0-from-SPIN;
+#X msg 93 214 /\$1 setCubeOffset -164 178 14 \, /\$1 setCubeSize 350
 270 50;
-#X obj -42 283 delay 100;
+#X obj -42 353 delay 100;
+#X msg 61 92 1;
+#X obj 5 35 t b a;
+#X msg 32 92 0;
+#X obj 5 127 spigot 1;
+#X obj 60 71 delay 100;
+#X text 53 43 ignore multiple collide messages;
+#X obj 179 131 p;
 #X connect 0 0 4 0;
 #X connect 2 0 13 0;
 #X connect 3 0 1 0;
 #X connect 6 0 0 0;
-#X connect 13 0 30 0;
+#X connect 13 0 27 0;
 #X connect 13 1 1 0;
 #X connect 13 3 0 0;
 #X connect 13 4 16 0;
-#X connect 16 0 29 0;
+#X connect 16 0 26 0;
 #X connect 16 0 18 0;
 #X connect 17 0 12 0;
 #X connect 18 0 14 0;
-#X connect 19 0 23 0;
-#X connect 20 0 24 0;
-#X connect 21 0 20 0;
-#X connect 22 0 20 0;
-#X connect 23 0 26 0;
-#X connect 24 0 19 1;
-#X connect 25 0 19 0;
-#X connect 25 1 20 0;
-#X connect 26 0 28 0;
-#X connect 26 0 13 0;
-#X connect 27 0 25 0;
-#X connect 29 0 14 0;
-#X connect 29 0 15 0;
-#X connect 30 0 17 0;
+#X connect 19 0 21 0;
+#X connect 20 0 22 0;
+#X connect 21 0 24 0;
+#X connect 22 0 19 1;
+#X connect 23 0 19 0;
+#X connect 23 1 20 0;
+#X connect 24 0 29 0;
+#X connect 25 0 23 0;
+#X connect 26 0 14 0;
+#X connect 26 0 15 0;
+#X connect 27 0 17 0;
+#X connect 28 0 31 1;
+#X connect 29 0 30 0;
+#X connect 29 0 32 0;
+#X connect 29 1 31 0;
+#X connect 30 0 31 1;
+#X connect 31 0 13 0;
+#X connect 31 0 34 0;
+#X connect 32 0 28 0;
 #X restore -128 42 pd into_up2;
-#N canvas 1164 310 541 563 into_up3 0;
-#X obj 1 -477 s gotoPos;
-#X obj -32 -451 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#N canvas 1154 335 541 563 into_up3 0;
+#X obj 1 -337 s gotoPos;
+#X obj -32 -311 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -18 -518 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -18 -378 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg 1 -497 \$1 \$2 \$3;
-#X obj 31 -649 s sangfrontON;
-#X obj 13 -649 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X msg 1 -357 \$1 \$2 \$3;
+#X obj 31 -509 s sangfrontON;
+#X obj 13 -509 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj -44 -704 r up3;
-#X obj -14 -430 s enable_step;
-#X obj -14 -451 list 0 0 1 0 0 0;
-#X text 196 -513 1: set CubeSize and CubeOffset;
-#X text 196 -492 2: set user position;
-#X text 196 -432 5: set others (fog \, etc.);
-#X text 196 -452 4: setEnable hotspots;
-#X text 196 -472 3: setEnabled steps;
-#X obj -44 -683 t b b b b b b;
-#X obj 16 -619 anyreg g_hostname;
-#X obj 122 -549 p;
-#X obj 16 -547 s \$0-to-SPIN-TCP;
+#X obj -14 -290 s enable_step;
+#X obj -14 -311 list 0 0 1 0 0 0;
+#X text 196 -373 1: set CubeSize and CubeOffset;
+#X text 196 -352 2: set user position;
+#X text 196 -292 5: set others (fog \, etc.);
+#X text 196 -312 4: setEnable hotspots;
+#X text 196 -332 3: setEnabled steps;
+#X obj -44 -543 t b b b b b b;
+#X obj 16 -479 anyreg g_hostname;
+#X obj 122 -409 p;
+#X obj 16 -407 s \$0-to-SPIN-TCP;
 #X text -1 -705 <--detection comes from "pd hotspots_up3" in main patch
 ;
-#X obj -2 -619 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -2 -479 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg 36 -594 /\$1 setTarget sang-targets \, /\$1 setConstraintMode
+#X msg 36 -454 /\$1 setTarget sang-targets \, /\$1 setConstraintMode
 2;
-#X obj -66 -347 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -66 -207 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -44 -287 s \$0-to-SPIN-TCP;
-#X obj 1 -518 list 1000 2305.5 0;
-#X msg 16 -568 /\$1 setCubeOffset 1000 2330 0 \, /\$1 setCubeSize 48
+#X obj -44 -147 s \$0-to-SPIN-TCP;
+#X obj 1 -378 list 1000 2305.5 0;
+#X msg 16 -428 /\$1 setCubeOffset 1000 2330 0 \, /\$1 setCubeSize 48
 120 48;
-#X msg -44 -347 /hotspot_down2 setScale 600 6 600 \, /hotspot_up4 setScale
+#X msg -44 -207 /hotspot_down2 setScale 600 6 600 \, /hotspot_up4 setScale
 6 6 6 \, /hotspot_up6 setScale 0 0 0 \, /hotspot_down4 setScale 0 0
 0;
-#X msg -29 -387 /mainLight setExponent 3.5 \, /mainLight2 setExponent
+#X msg -29 -247 /mainLight setExponent 3.5 \, /mainLight2 setExponent
 3.5;
+#X msg 12 -605 1;
+#X obj -44 -672 t b a;
+#X msg -16 -606 0;
+#X obj -44 -580 spigot 1;
+#X obj 11 -636 delay 100;
+#X text 4 -664 ignore multiple collide messages;
 #X connect 1 0 8 0;
 #X connect 2 0 23 0;
 #X connect 3 0 0 0;
 #X connect 5 0 4 0;
-#X connect 6 0 14 0;
+#X connect 6 0 28 0;
 #X connect 8 0 7 0;
 #X connect 14 1 26 0;
 #X connect 14 2 8 0;
@@ -2300,263 +2297,291 @@ stable. This is why it is banged first.;
 #X connect 24 0 17 0;
 #X connect 25 0 22 0;
 #X connect 26 0 22 0;
+#X connect 27 0 30 1;
+#X connect 28 0 29 0;
+#X connect 28 0 31 0;
+#X connect 28 1 30 0;
+#X connect 29 0 30 1;
+#X connect 30 0 14 0;
+#X connect 31 0 27 0;
 #X restore -128 110 pd into_up3;
-#N canvas 395 342 734 583 into_up4 0;
-#X text 302 -366 1: set CubeSize and CubeOffset;
-#X text 302 -345 2: set user position;
-#X text 302 -285 5: set others (fog \, etc.);
-#X text 302 -305 4: setEnable hotspots;
-#X text 302 -325 3: setEnabled steps;
-#X obj -51 -306 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#N canvas 387 197 881 879 into_up4 0;
+#X text 302 -246 1: set CubeSize and CubeOffset;
+#X text 302 -225 2: set user position;
+#X text 302 -165 5: set others (fog \, etc.);
+#X text 302 -185 4: setEnable hotspots;
+#X text 302 -205 3: setEnabled steps;
+#X obj -51 -186 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -18 -366 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -18 -246 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 0 -326 s gotoPos;
-#X msg 0 -346 \$1 \$2 \$3;
-#X obj 70 -289 s enable_step;
-#X obj 15 -403 s \$0-to-SPIN-TCP;
-#X obj 155 -405 p;
-#X obj 15 -477 anyreg g_hostname;
-#X obj -142 -145 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 0 -206 s gotoPos;
+#X msg 0 -226 \$1 \$2 \$3;
+#X obj 70 -169 s enable_step;
+#X obj 15 -283 s \$0-to-SPIN-TCP;
+#X obj 155 -285 p;
+#X obj 15 -357 anyreg g_hostname;
+#X obj -142 -25 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -126 -517 t b b b b b b b b;
-#X obj -120 -105 s \$0-to-SPIN-TCP;
-#X obj 0 -366 list 1000 3479 0;
-#X obj -154 -517 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -126 -397 t b b b b b b b b;
+#X obj -120 15 s \$0-to-SPIN-TCP;
+#X obj 0 -246 list 1000 3479 0;
+#X obj -154 -397 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 28 -502 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 28 -382 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj -126 -578 route /chantalbaron;
 #X obj 25 -618 anyreg g_hostname;
-#X obj 25 -638 loadbang;
-#X obj 8 -638 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
 #X obj -126 -558 route collide;
 #X obj 25 -598 makefilename /%s;
 #X obj -126 -608 t a b;
 #X obj -126 -635 r \$0-from-SPIN;
 #X obj -126 -538 route hotspot_up4;
-#X obj -33 -306 list 0 0 0 1 0 0;
-#X msg 48 -451 /\$1 setTarget cell-targets \, /\$1 setConstraintMode
+#X obj -33 -186 list 0 0 0 1 0 0;
+#X msg 48 -331 /\$1 setTarget cell-targets \, /\$1 setConstraintMode
 4;
-#X obj -4 -476 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -4 -356 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -184 -78 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -208 37 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -165 -78 s start-motion;
-#X msg -70 -211 /mainLight setExponent 10 \, /mainLight2 setExponent
+#X obj -189 37 s start-motion;
+#X msg -70 -91 /mainLight setExponent 10 \, /mainLight2 setExponent
 10;
-#X msg 15 -426 /\$1 setCubeOffset 980 3500 -40 \, /\$1 setCubeSize
+#X msg 15 -306 /\$1 setCubeOffset 980 3500 -40 \, /\$1 setCubeSize
 190 1300 360;
-#X obj 46 -503 s fogCellTransition;
-#X obj -225 -52 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 46 -383 s fogCellTransition;
+#X obj -225 68 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -207 -52 s fogOFF;
-#X obj -119 -272 tgl 30 0 empty empty LABO/PATIENT_SWITCH 35 16 0 20
+#X obj -207 68 s fogOFF;
+#X obj -119 -152 tgl 30 0 empty empty LABO/PATIENT_SWITCH 35 16 0 20
 -4034 -1 -1 0 1;
-#X obj -119 -236 sel 0 1;
-#X obj -111 -183 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -119 -116 sel 0 1;
+#X obj -111 -63 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -103 -302 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -103 -182 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg -90 -184 /hotspot_down2 setScale 0 0 0 \, /hotspot_up6 setScale
+#X msg -90 -64 /hotspot_down2 setScale 0 0 0 \, /hotspot_up6 setScale
 1000 5 1000;
-#X msg -120 -145 /hotspot_down2 setScale 1000 5 1000 \, /hotspot_up6
+#X msg -120 -25 /hotspot_down2 setScale 1000 5 1000 \, /hotspot_up6
 setScale 0 0 0;
-#X obj 137 -99 p;
-#X obj 16 -103 p;
-#X obj -192 -323 r reset;
-#X text 242 -141 <-- vers LABO;
-#X text 279 -180 <-- vers PATIENT;
-#X msg -192 -303 0;
-#X obj -112 -372 spigot 1;
-#X msg -23 -395 0;
-#X obj -67 -415 delay 1000;
-#X msg -67 -395 1;
-#X obj -67 -435 t b b;
-#X connect 5 0 28 0;
+#X obj 137 21 p;
+#X obj 16 17 p;
+#X obj -192 -203 r reset;
+#X text 242 -21 <-- vers LABO;
+#X text 279 -60 <-- vers PATIENT;
+#X msg -192 -183 0;
+#X obj -112 -252 spigot 1;
+#X msg -23 -275 0;
+#X obj -67 -295 delay 1000;
+#X msg -67 -275 1;
+#X obj -67 -315 t b b;
+#X obj -189 10 delay 400;
+#X msg -70 -445 1;
+#X obj -126 -512 t b a;
+#X msg -98 -446 0;
+#X obj -126 -420 spigot 1;
+#X obj -71 -476 delay 100;
+#X text -78 -504 ignore multiple collide messages;
+#X connect 5 0 26 0;
 #X connect 6 0 16 0;
 #X connect 8 0 7 0;
-#X connect 12 0 34 0;
-#X connect 12 0 29 0;
-#X connect 13 0 43 0;
-#X connect 14 1 32 0;
-#X connect 14 2 50 0;
-#X connect 14 4 33 0;
-#X connect 14 5 28 0;
+#X connect 12 0 32 0;
+#X connect 12 0 27 0;
+#X connect 13 0 41 0;
+#X connect 14 1 53 0;
+#X connect 14 2 48 0;
+#X connect 14 4 31 0;
+#X connect 14 5 26 0;
 #X connect 14 6 16 0;
 #X connect 14 7 12 0;
-#X connect 14 7 35 0;
+#X connect 14 7 33 0;
 #X connect 16 0 8 0;
 #X connect 17 0 14 0;
-#X connect 18 0 35 0;
-#X connect 19 0 23 0;
-#X connect 20 0 24 0;
-#X connect 21 0 20 0;
-#X connect 22 0 20 0;
-#X connect 23 0 27 0;
-#X connect 24 0 19 1;
-#X connect 25 0 19 0;
-#X connect 25 1 20 0;
-#X connect 26 0 25 0;
-#X connect 27 0 14 0;
-#X connect 28 0 9 0;
-#X connect 29 0 10 0;
-#X connect 30 0 12 0;
-#X connect 31 0 32 0;
-#X connect 33 0 15 0;
-#X connect 34 0 10 0;
-#X connect 34 0 11 0;
+#X connect 18 0 33 0;
+#X connect 19 0 21 0;
+#X connect 20 0 22 0;
+#X connect 21 0 25 0;
+#X connect 22 0 19 1;
+#X connect 23 0 19 0;
+#X connect 23 1 20 0;
+#X connect 24 0 23 0;
+#X connect 25 0 55 0;
+#X connect 26 0 9 0;
+#X connect 27 0 10 0;
+#X connect 28 0 12 0;
+#X connect 29 0 30 0;
+#X connect 31 0 15 0;
+#X connect 32 0 10 0;
+#X connect 32 0 11 0;
+#X connect 34 0 35 0;
 #X connect 36 0 37 0;
-#X connect 38 0 39 0;
-#X connect 39 0 43 0;
-#X connect 39 0 54 0;
-#X connect 39 1 42 0;
-#X connect 39 1 54 0;
+#X connect 37 0 41 0;
+#X connect 37 0 52 0;
+#X connect 37 1 40 0;
+#X connect 37 1 52 0;
+#X connect 38 0 40 0;
+#X connect 39 0 36 0;
+#X connect 40 0 15 0;
 #X connect 40 0 42 0;
-#X connect 41 0 38 0;
-#X connect 42 0 15 0;
-#X connect 42 0 44 0;
-#X connect 43 0 15 0;
-#X connect 43 0 45 0;
-#X connect 46 0 49 0;
-#X connect 49 0 38 0;
-#X connect 50 0 38 0;
-#X connect 51 0 50 1;
-#X connect 52 0 53 0;
-#X connect 53 0 50 1;
-#X connect 54 0 52 0;
-#X connect 54 1 51 0;
+#X connect 41 0 15 0;
+#X connect 41 0 43 0;
+#X connect 44 0 47 0;
+#X connect 47 0 36 0;
+#X connect 48 0 36 0;
+#X connect 49 0 48 1;
+#X connect 50 0 51 0;
+#X connect 51 0 48 1;
+#X connect 52 0 50 0;
+#X connect 52 1 49 0;
+#X connect 53 0 30 0;
+#X connect 54 0 57 1;
+#X connect 55 0 56 0;
+#X connect 55 0 58 0;
+#X connect 55 1 57 0;
+#X connect 56 0 57 1;
+#X connect 57 0 14 0;
+#X connect 58 0 54 0;
 #X restore -128 179 pd into_up4;
-#N canvas 962 191 734 580 into_up5 0;
-#X text 239 -312 1: set CubeSize and CubeOffset;
-#X text 239 -291 2: set user position;
-#X text 239 -231 5: set others (fog \, etc.);
-#X text 239 -251 4: setEnable hotspots;
-#X text 239 -271 3: setEnabled steps;
-#X obj 43 -134 s \$0-to-SPIN-TCP;
-#X obj 183 -135 p;
-#X obj 43 -206 anyreg g_hostname;
-#X obj 4 -96 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#N canvas 952 216 734 667 into_up5 0;
+#X text 238 -152 1: set CubeSize and CubeOffset;
+#X text 238 -131 2: set user position;
+#X text 238 -71 5: set others (fog \, etc.);
+#X text 238 -91 4: setEnable hotspots;
+#X text 238 -111 3: setEnabled steps;
+#X obj 42 26 s \$0-to-SPIN-TCP;
+#X obj 182 25 p;
+#X obj 42 -46 anyreg g_hostname;
+#X obj 3 64 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj -104 -295 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -105 -135 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 22 -58 s gotoPos;
-#X msg 22 -78 \$1 \$2 \$3;
-#X obj -30 -25 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 21 102 s gotoPos;
+#X msg 21 82 \$1 \$2 \$3;
+#X obj -31 135 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 100 -10 s enable_step;
-#X obj 71 -240 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 99 150 s enable_step;
+#X obj 70 -80 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj -84 -136 t b b b b b b b;
+#X obj 67 -397 anyreg g_hostname;
+#X obj -84 -337 route collide;
+#X obj -84 -387 t a b;
+#X obj -84 -414 r \$0-from-SPIN;
+#X obj -84 -317 route hotspot_up5;
+#X obj -197 322 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -83 -296 t b b b b b b b;
-#X obj 68 -397 anyreg g_hostname;
-#X obj 68 -417 loadbang;
-#X obj 51 -417 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -178 322 s stop-motion;
+#X obj -127 227 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -83 -337 route collide;
-#X obj -83 -387 t a b;
-#X obj -83 -414 r \$0-from-SPIN;
-#X obj -83 -317 route hotspot_up5;
-#X obj -196 162 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj -177 162 s stop-motion;
-#X obj -126 67 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj -104 127 s \$0-to-SPIN-TCP;
-#X obj -11 -27 list 0 0 1 0 0 0;
-#X msg 43 -155 /\$1 setCubeOffset 1000 2330 0 \, /\$1 setCubeSize 48
-120 48;
-#X msg -104 67 /hotspot_down2 setScale 0 0 0 \, /hotspot_up4 setScale
+#X obj -105 287 s \$0-to-SPIN-TCP;
+#X obj -12 133 list 0 0 1 0 0 0;
+#X msg 42 5 /\$1 setCubeOffset 1000 2330 0 \, /\$1 setCubeSize 48 120
+48;
+#X msg -105 227 /hotspot_down2 setScale 0 0 0 \, /hotspot_up4 setScale
 0 0 0 \, /hotspot_up6 setScale 600 6 600 \, /hotspot_down4 setScale
 6 6 6;
-#X msg 62 -181 /\$1 setTarget sang-targets \, /\$1 setConstraintMode
+#X msg 61 -21 /\$1 setTarget sang-targets \, /\$1 setConstraintMode
 2;
-#X msg -62 16 /mainLight setExponent 3.5 \, /mainLight2 setExponent
+#X msg -63 176 /mainLight setExponent 3.5 \, /mainLight2 setExponent
 3.5;
-#X obj 68 -377 makefilename /%s;
-#X obj -83 -357 route /chantalbaron;
-#X obj 78 -269 s fogCellTransition;
-#X obj 89 -240 s sangbackON;
-#X obj 22 -97 list 1000 2383.35 -0.0298;
+#X obj 67 -377 makefilename /%s;
+#X obj -84 -357 route /chantalbaron;
+#X obj 77 -109 s fogCellTransition;
+#X obj 88 -80 s sangbackON;
+#X obj 21 63 list 1000 2383.35 -0.0298;
+#X msg -31 -205 1;
+#X obj -87 -272 t b a;
+#X msg -59 -206 0;
+#X obj -87 -180 spigot 1;
+#X obj -32 -236 delay 100;
+#X text -39 -264 ignore multiple collide messages;
+#X connect 7 0 26 0;
 #X connect 7 0 28 0;
-#X connect 7 0 30 0;
-#X connect 8 0 36 0;
+#X connect 8 0 34 0;
 #X connect 9 0 15 0;
 #X connect 11 0 10 0;
-#X connect 12 0 27 0;
-#X connect 14 0 35 0;
-#X connect 15 0 24 0;
-#X connect 15 2 31 0;
-#X connect 15 3 27 0;
-#X connect 15 4 36 0;
+#X connect 12 0 25 0;
+#X connect 14 0 33 0;
+#X connect 15 0 22 0;
+#X connect 15 2 29 0;
+#X connect 15 3 25 0;
+#X connect 15 4 34 0;
 #X connect 15 5 7 0;
-#X connect 15 6 34 0;
-#X connect 15 6 35 0;
-#X connect 16 0 32 0;
-#X connect 17 0 16 0;
-#X connect 18 0 16 0;
-#X connect 19 0 22 0;
-#X connect 20 0 33 0;
-#X connect 20 1 16 0;
-#X connect 21 0 20 0;
-#X connect 22 0 15 0;
-#X connect 23 0 24 0;
-#X connect 25 0 29 0;
-#X connect 27 0 13 0;
+#X connect 15 6 32 0;
+#X connect 15 6 33 0;
+#X connect 16 0 30 0;
+#X connect 17 0 20 0;
+#X connect 18 0 31 0;
+#X connect 18 1 16 0;
+#X connect 19 0 18 0;
+#X connect 20 0 36 0;
+#X connect 21 0 22 0;
+#X connect 23 0 27 0;
+#X connect 25 0 13 0;
+#X connect 26 0 5 0;
+#X connect 26 0 6 0;
+#X connect 27 0 24 0;
 #X connect 28 0 5 0;
-#X connect 28 0 6 0;
-#X connect 29 0 26 0;
-#X connect 30 0 5 0;
-#X connect 31 0 26 0;
-#X connect 32 0 33 1;
-#X connect 33 0 19 0;
-#X connect 36 0 11 0;
+#X connect 29 0 24 0;
+#X connect 30 0 31 1;
+#X connect 31 0 17 0;
+#X connect 34 0 11 0;
+#X connect 35 0 38 1;
+#X connect 36 0 37 0;
+#X connect 36 0 39 0;
+#X connect 36 1 38 0;
+#X connect 37 0 38 1;
+#X connect 38 0 15 0;
+#X connect 39 0 35 0;
 #X restore -19 42 pd into_up5;
-#N canvas 385 377 734 580 into_up6 0;
-#X text 239 -312 1: set CubeSize and CubeOffset;
-#X text 239 -291 2: set user position;
-#X text 239 -231 5: set others (fog \, etc.);
-#X text 239 -251 4: setEnable hotspots;
-#X text 239 -271 3: setEnabled steps;
-#X obj 43 -134 s \$0-to-SPIN-TCP;
-#X obj 183 -135 p;
-#X obj 43 -206 anyreg g_hostname;
-#X obj 4 -96 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#N canvas 379 391 734 688 into_up6 0;
+#X text 240 -192 1: set CubeSize and CubeOffset;
+#X text 240 -171 2: set user position;
+#X text 240 -111 5: set others (fog \, etc.);
+#X text 240 -131 4: setEnable hotspots;
+#X text 240 -151 3: setEnabled steps;
+#X obj 44 -14 s \$0-to-SPIN-TCP;
+#X obj 184 -15 p;
+#X obj 44 -86 anyreg g_hostname;
+#X obj 5 24 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj -103 -295 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -102 -175 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 22 -58 s gotoPos;
-#X msg 22 -78 \$1 \$2 \$3;
-#X obj -30 -25 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 23 62 s gotoPos;
+#X msg 23 42 \$1 \$2 \$3;
+#X obj -29 95 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 101 110 s enable_step;
+#X obj -128 138 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 100 -10 s enable_step;
-#X obj -129 18 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -169 209 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -169 49 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj -83 -296 t b b b b b b b;
-#X obj -111 18 s fogOFF;
-#X obj -151 49 s laboON;
-#X obj -11 -27 list 0 0 0 0 0 1;
-#X obj 22 -97 list 2000 999.4 0;
-#X obj 47 -236 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -82 -176 t b b b b b b b;
+#X obj -110 138 s fogOFF;
+#X obj -150 169 s laboON;
+#X obj -10 93 list 0 0 0 0 0 1;
+#X obj 23 23 list 2000 999.4 0;
+#X obj 48 -116 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj -83 -357 route /chantalbaron;
 #X obj 68 -397 anyreg g_hostname;
-#X obj 68 -417 loadbang;
-#X obj 51 -417 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
 #X obj -83 -337 route collide;
 #X obj 68 -377 makefilename /%s;
 #X obj -83 -387 t a b;
 #X obj -83 -414 r \$0-from-SPIN;
 #X obj -83 -317 route hotspot_up6;
-#X msg 62 -181 /\$1 setTarget patient-targets \, /\$1 setConstraintMode
+#X msg 63 -61 /\$1 setTarget patient-targets \, /\$1 setConstraintMode
 5;
-#X msg 43 -155 /\$1 setCubeOffset 2000 955 0 \, /\$1 setCubeSize 120
+#X msg 44 -35 /\$1 setCubeOffset 2000 955 0 \, /\$1 setCubeSize 120
 110 40;
-#X connect 7 0 32 0;
-#X connect 7 0 31 0;
+#X msg -27 -225 1;
+#X obj -83 -292 t b a;
+#X msg -55 -226 0;
+#X obj -83 -200 spigot 1;
+#X obj -28 -256 delay 100;
+#X text -35 -284 ignore multiple collide messages;
+#X connect 7 0 30 0;
+#X connect 7 0 29 0;
 #X connect 8 0 20 0;
 #X connect 9 0 16 0;
 #X connect 11 0 10 0;
@@ -2571,64 +2596,72 @@ setScale 0 0 0;
 #X connect 19 0 13 0;
 #X connect 20 0 11 0;
 #X connect 21 0 7 0;
-#X connect 22 0 26 0;
-#X connect 23 0 27 0;
-#X connect 24 0 23 0;
-#X connect 25 0 23 0;
-#X connect 26 0 30 0;
-#X connect 27 0 22 1;
-#X connect 28 0 22 0;
-#X connect 28 1 23 0;
-#X connect 29 0 28 0;
-#X connect 30 0 16 0;
-#X connect 31 0 5 0;
-#X connect 32 0 5 0;
-#X connect 32 0 6 0;
+#X connect 22 0 24 0;
+#X connect 23 0 25 0;
+#X connect 24 0 28 0;
+#X connect 25 0 22 1;
+#X connect 26 0 22 0;
+#X connect 26 1 23 0;
+#X connect 27 0 26 0;
+#X connect 28 0 32 0;
+#X connect 29 0 5 0;
+#X connect 30 0 5 0;
+#X connect 30 0 6 0;
+#X connect 31 0 34 1;
+#X connect 32 0 33 0;
+#X connect 32 0 35 0;
+#X connect 32 1 34 0;
+#X connect 33 0 34 1;
+#X connect 34 0 16 0;
+#X connect 35 0 31 0;
 #X restore -19 110 pd into_up6;
-#N canvas 666 539 618 397 into_down1 0;
-#X obj 12 315 s laboON;
-#X obj -13 89 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj -6 316 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 94 305 s enable_step;
-#X obj 76 285 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X text 329 26 1: set CubeSize and CubeOffset;
-#X text 329 47 2: set user position;
-#X text 329 107 5: set others (fog \, etc.);
-#X text 329 87 4: setEnable hotspots;
-#X text 329 67 3: setEnabled steps;
-#X obj 159 182 s \$0-to-SPIN-TCP;
-#X obj 274 181 p;
-#X obj 159 108 anyreg g_hostname;
-#X obj 94 284 list 1 1 0 0 0 0;
-#X obj 5 88 t b b b b b b b b;
-#X obj 130 250 s gotoPos;
-#X obj 111 209 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#N canvas 663 241 701 719 into_down1 0;
+#X obj 12 495 s laboON;
+#X obj -13 269 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg 130 230 \$1 \$2 \$3;
-#X obj 130 209 list -14 43 6.5;
-#X text 58 413 <-- moves side wall forward + scale hotspot_down1 to
+#X obj -6 496 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 94 485 s enable_step;
+#X obj 76 465 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 329 206 1: set CubeSize and CubeOffset;
+#X text 329 227 2: set user position;
+#X text 329 287 5: set others (fog \, etc.);
+#X text 329 267 4: setEnable hotspots;
+#X text 329 247 3: setEnabled steps;
+#X obj 159 362 s \$0-to-SPIN-TCP;
+#X obj 274 361 p;
+#X obj 159 288 anyreg g_hostname;
+#X obj 94 464 list 1 1 0 0 0 0;
+#X obj 5 268 t b b b b b b b b;
+#X obj 130 430 s gotoPos;
+#X obj 111 389 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 130 410 \$1 \$2 \$3;
+#X obj 130 389 list -14 43 6.5;
+#X text 58 593 <-- moves side wall forward + scale hotspot_down1 to
 0;
-#X obj -50 412 s \$0-to-SPIN-TCP;
-#X msg -50 370 /hotspot_down1 setScale 0 0 0 \, /room1-4 setTranslation
+#X obj -50 592 s \$0-to-SPIN-TCP;
+#X msg -50 550 /hotspot_down1 setScale 0 0 0 \, /room1-4 setTranslation
 -4.902 100 3.75;
-#X msg 159 159 /\$1 setCubeOffset -150 40 33 \, /\$1 setCubeSize 400
+#X msg 159 339 /\$1 setCubeOffset -150 40 33 \, /\$1 setCubeSize 400
 490 83;
-#X msg 173 133 /\$1 setTarget corridor-targets;
+#X msg 173 313 /\$1 setTarget corridor-targets;
 #X obj 5 27 route /chantalbaron;
 #X obj 156 -13 anyreg g_hostname;
-#X obj 156 -33 loadbang;
-#X obj 139 -33 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
 #X obj 5 47 route collide;
 #X obj 156 7 makefilename /%s;
 #X obj 5 -3 t a b;
 #X obj 5 -30 r \$0-from-SPIN;
 #X obj 5 67 route hotspot_down1;
-#X msg -22 343 /mainLight setExponent 16 \, /mainLight2 setExponent
+#X msg -22 523 /mainLight setExponent 16 \, /mainLight2 setExponent
 16;
+#X msg 61 175 1;
+#X obj 5 108 t b a;
+#X msg 33 174 0;
+#X obj 5 200 spigot 1;
+#X obj 60 144 delay 100;
+#X text 53 116 ignore multiple collide messages;
 #X connect 1 0 14 0;
 #X connect 2 0 0 0;
 #X connect 4 0 13 0;
@@ -2636,7 +2669,7 @@ setScale 0 0 0;
 #X connect 12 0 23 0;
 #X connect 13 0 3 0;
 #X connect 14 0 21 0;
-#X connect 14 1 33 0;
+#X connect 14 1 31 0;
 #X connect 14 2 0 0;
 #X connect 14 5 13 0;
 #X connect 14 6 18 0;
@@ -2648,338 +2681,377 @@ setScale 0 0 0;
 #X connect 22 0 10 0;
 #X connect 22 0 11 0;
 #X connect 23 0 10 0;
-#X connect 24 0 28 0;
-#X connect 25 0 29 0;
-#X connect 26 0 25 0;
-#X connect 27 0 25 0;
-#X connect 28 0 32 0;
-#X connect 29 0 24 1;
-#X connect 30 0 24 0;
-#X connect 30 1 25 0;
-#X connect 31 0 30 0;
-#X connect 32 0 14 0;
-#X connect 33 0 20 0;
+#X connect 24 0 26 0;
+#X connect 25 0 27 0;
+#X connect 26 0 30 0;
+#X connect 27 0 24 1;
+#X connect 28 0 24 0;
+#X connect 28 1 25 0;
+#X connect 29 0 28 0;
+#X connect 30 0 33 0;
+#X connect 31 0 20 0;
+#X connect 32 0 35 1;
+#X connect 33 0 34 0;
+#X connect 33 0 36 0;
+#X connect 33 1 35 0;
+#X connect 34 0 35 1;
+#X connect 35 0 14 0;
+#X connect 36 0 32 0;
 #X restore -128 131 pd into_down1;
-#N canvas 85 332 734 580 into_down3 0;
-#X text 259 -312 1: set CubeSize and CubeOffset;
-#X text 259 -291 2: set user position;
-#X text 259 -231 5: set others (fog \, etc.);
-#X text 259 -251 4: setEnable hotspots;
-#X text 259 -271 3: setEnabled steps;
-#X obj -145 -516 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#N canvas 1133 114 734 914 into_down3 0;
+#X text 259 -172 1: set CubeSize and CubeOffset;
+#X text 259 -151 2: set user position;
+#X text 259 -91 5: set others (fog \, etc.);
+#X text 259 -111 4: setEnable hotspots;
+#X text 259 -131 3: setEnabled steps;
+#X obj -145 -376 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 127 -514 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 127 -374 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -108 -294 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -108 -154 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -82 -363 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -82 -223 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -64 -323 s gotoPos;
-#X msg -64 -343 \$1 \$2 \$3;
-#X obj 13 -277 s enable_step;
-#X obj -49 -390 s \$0-to-SPIN-TCP;
-#X obj 91 -392 p;
-#X obj -49 -434 anyreg g_hostname;
-#X obj -90 -294 list 0 0 1 0 0 0;
-#X obj 99 -445 s \$0-to-SPIN-TCP;
-#X obj 99 -488 anyreg g_hostname;
-#X obj -126 -517 t b b b b b b b;
+#X obj -64 -183 s gotoPos;
+#X msg -64 -203 \$1 \$2 \$3;
+#X obj 13 -137 s enable_step;
+#X obj -49 -250 s \$0-to-SPIN-TCP;
+#X obj 91 -252 p;
+#X obj -49 -294 anyreg g_hostname;
+#X obj -90 -154 list 0 0 1 0 0 0;
+#X obj 99 -305 s \$0-to-SPIN-TCP;
+#X obj 99 -348 anyreg g_hostname;
 #X obj -126 -579 route /chantalbaron;
 #X obj 25 -619 anyreg g_hostname;
-#X obj 25 -639 loadbang;
-#X obj 8 -639 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
 #X obj -126 -559 route collide;
 #X obj 25 -599 makefilename /%s;
 #X obj -126 -609 t a b;
 #X obj -126 -636 r \$0-from-SPIN;
 #X obj -126 -539 route hotspot_down3;
-#X msg 99 -467 /\$1 setTarget sang-targets \, /\$1 setConstraintMode
+#X msg 99 -327 /\$1 setTarget sang-targets \, /\$1 setConstraintMode
 2;
-#X obj -203 -117 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -203 23 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -184 -117 s stop-motion;
-#X obj -154 -200 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -184 23 s stop-motion;
+#X obj -154 -60 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -132 -150 s \$0-to-SPIN-TCP;
-#X msg -49 -413 /\$1 setCubeOffset 1000 2330 0 \, /\$1 setCubeSize
+#X obj -132 -10 s \$0-to-SPIN-TCP;
+#X msg -49 -273 /\$1 setCubeOffset 1000 2330 0 \, /\$1 setCubeSize
 48 120 48;
-#X msg -132 -200 /hotspot_down2 setScale 600 6 600 \, /hotspot_up4
-setScale 6 6 6 \, /hotspot_up6 setScale 0 0 0 \, /hotspot_down4 setScale
-0 0 0;
-#X msg -112 -248 /mainLight setExponent 3.5 \, /mainLight2 setExponent
+#X msg -132 -60 /hotspot_down2 setScale 600 6 600 \, /hotspot_up4 setScale
+6 6 6 \, /hotspot_up6 setScale 0 0 0 \, /hotspot_down4 setScale 0 0
+0;
+#X msg -112 -108 /mainLight setExponent 3.5 \, /mainLight2 setExponent
 3.5;
-#X obj 132 -540 s fogCellTransition;
-#X obj 147 -515 s sangbackON;
-#X obj -64 -363 list 1000 2383.35 -0.0298;
-#X connect 5 0 18 0;
-#X connect 6 0 37 0;
+#X obj 109 -427 s fogCellTransition;
+#X obj 147 -375 s sangbackON;
+#X obj -64 -223 list 1000 2383.35 -0.0298;
+#X obj -187 -106 delay 400;
+#X msg -70 -455 1;
+#X obj -126 -512 t b a;
+#X msg -99 -455 0;
+#X obj -126 -420 spigot 1;
+#X obj -71 -476 delay 100;
+#X text -78 -504 ignore multiple collide messages;
+#X obj -126 -377 t b b b b b b b b;
+#X connect 5 0 43 0;
+#X connect 6 0 34 0;
 #X connect 7 0 15 0;
-#X connect 8 0 38 0;
+#X connect 8 0 35 0;
 #X connect 10 0 9 0;
-#X connect 14 0 33 0;
+#X connect 14 0 30 0;
 #X connect 15 0 11 0;
-#X connect 17 0 28 0;
-#X connect 18 0 30 0;
-#X connect 18 1 35 0;
-#X connect 18 2 15 0;
-#X connect 18 3 38 0;
-#X connect 18 4 14 0;
-#X connect 18 5 17 0;
-#X connect 18 6 36 0;
-#X connect 18 6 37 0;
-#X connect 19 0 23 0;
+#X connect 17 0 25 0;
+#X connect 18 0 20 0;
+#X connect 19 0 21 0;
 #X connect 20 0 24 0;
-#X connect 21 0 20 0;
-#X connect 22 0 20 0;
-#X connect 23 0 27 0;
-#X connect 24 0 19 1;
-#X connect 25 0 19 0;
-#X connect 25 1 20 0;
-#X connect 26 0 25 0;
-#X connect 27 0 18 0;
-#X connect 28 0 16 0;
-#X connect 29 0 30 0;
-#X connect 31 0 34 0;
-#X connect 33 0 12 0;
-#X connect 33 0 13 0;
-#X connect 34 0 32 0;
-#X connect 35 0 32 0;
-#X connect 38 0 10 0;
+#X connect 21 0 18 1;
+#X connect 22 0 18 0;
+#X connect 22 1 19 0;
+#X connect 23 0 22 0;
+#X connect 24 0 38 0;
+#X connect 25 0 16 0;
+#X connect 26 0 27 0;
+#X connect 28 0 31 0;
+#X connect 30 0 12 0;
+#X connect 30 0 13 0;
+#X connect 31 0 29 0;
+#X connect 32 0 29 0;
+#X connect 35 0 10 0;
+#X connect 36 0 27 0;
+#X connect 37 0 40 1;
+#X connect 38 0 39 0;
+#X connect 38 0 41 0;
+#X connect 38 1 40 0;
+#X connect 39 0 40 1;
+#X connect 40 0 43 0;
+#X connect 41 0 37 0;
+#X connect 43 0 36 0;
+#X connect 43 1 32 0;
+#X connect 43 2 15 0;
+#X connect 43 3 35 0;
+#X connect 43 4 14 0;
+#X connect 43 5 17 0;
+#X connect 43 6 34 0;
+#X connect 43 7 33 0;
 #X restore -19 62 pd into_down3;
-#N canvas 306 346 734 580 into_down4 0;
-#X text 239 -342 1: set CubeSize and CubeOffset;
-#X text 239 -321 2: set user position;
-#X text 239 -261 5: set others (fog \, etc.);
-#X text 239 -281 4: setEnable hotspots;
-#X text 239 -301 3: setEnabled steps;
-#X obj 43 -164 s \$0-to-SPIN-TCP;
-#X obj 183 -165 p;
-#X obj 43 -236 anyreg g_hostname;
-#X obj -45 -86 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj -27 -48 s gotoPos;
-#X msg -27 -68 \$1 \$2 \$3;
-#X obj -7 -114 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 123 -99 s enable_step;
-#X obj 54 -259 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj -96 47 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#N canvas 330 174 734 755 into_down4 0;
+#X text 239 -222 1: set CubeSize and CubeOffset;
+#X text 239 -201 2: set user position;
+#X text 239 -141 5: set others (fog \, etc.);
+#X text 239 -161 4: setEnable hotspots;
+#X text 239 -181 3: setEnabled steps;
+#X obj 43 -44 s \$0-to-SPIN-TCP;
+#X obj 183 -45 p;
+#X obj 43 -116 anyreg g_hostname;
+#X obj -45 34 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj -75 87 s \$0-to-SPIN-TCP;
-#X obj -83 -296 t b b b b b b b b;
-#X obj -27 -87 list 1000 3479 0;
-#X obj -107 -294 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -27 72 s gotoPos;
+#X msg -27 52 \$1 \$2 \$3;
+#X obj -7 6 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 123 21 s enable_step;
+#X obj 54 -139 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -96 167 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -75 207 s \$0-to-SPIN-TCP;
+#X obj -83 -176 t b b b b b b b b;
+#X obj -27 33 list 1000 3479 0;
+#X obj -107 -174 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj -83 -359 route /chantalbaron;
 #X obj 68 -399 anyreg g_hostname;
-#X obj 68 -419 loadbang;
-#X obj 51 -419 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
 #X obj -83 -339 route collide;
 #X obj 68 -379 makefilename /%s;
 #X obj -83 -389 t a b;
 #X obj -83 -416 r \$0-from-SPIN;
 #X obj -83 -319 route hotspot_down4;
-#X obj 12 -116 list 0 0 0 1 0 0;
-#X msg 62 -210 /\$1 setTarget cell-targets \, /\$1 setConstraintMode
+#X obj 12 4 list 0 0 0 1 0 0;
+#X msg 62 -90 /\$1 setTarget cell-targets \, /\$1 setConstraintMode
 5;
-#X obj -140 111 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -140 231 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -121 111 s start-motion;
-#X msg -75 47 /hotspot_down3 setScale 1000 5 1000 \, /hotspot_up5 setScale
-0 0 0;
-#X msg -38 -11 /mainLight setExponent 10 \, /mainLight2 setExponent
+#X obj -121 231 s start-motion;
+#X msg -75 167 /hotspot_down3 setScale 1000 5 1000 \, /hotspot_up5
+setScale 0 0 0;
+#X msg -38 109 /mainLight setExponent 10 \, /mainLight2 setExponent
 10;
-#X msg 43 -185 /\$1 setCubeOffset 980 3500 -40 \, /\$1 setCubeSize
-190 1200 360;
-#X obj -177 136 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X msg 43 -65 /\$1 setCubeOffset 980 3500 -40 \, /\$1 setCubeSize 190
+1200 360;
+#X obj -177 256 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -159 136 s fogOFF;
-#X obj 72 -260 s fogCellTransition;
-#X connect 7 0 34 0;
-#X connect 7 0 29 0;
+#X obj -159 256 s fogOFF;
+#X obj 72 -140 s fogCellTransition;
+#X msg -28 -225 1;
+#X obj -84 -292 t b a;
+#X msg -56 -226 0;
+#X obj -84 -200 spigot 1;
+#X obj -29 -256 delay 100;
+#X text -36 -284 ignore multiple collide messages;
+#X connect 7 0 32 0;
+#X connect 7 0 27 0;
 #X connect 8 0 17 0;
 #X connect 10 0 9 0;
-#X connect 11 0 28 0;
-#X connect 13 0 37 0;
-#X connect 14 0 32 0;
-#X connect 16 1 31 0;
-#X connect 16 3 32 0;
-#X connect 16 4 33 0;
-#X connect 16 5 28 0;
+#X connect 11 0 26 0;
+#X connect 13 0 35 0;
+#X connect 14 0 30 0;
+#X connect 16 1 29 0;
+#X connect 16 3 30 0;
+#X connect 16 4 31 0;
+#X connect 16 5 26 0;
 #X connect 16 6 17 0;
 #X connect 16 7 7 0;
-#X connect 16 7 37 0;
+#X connect 16 7 35 0;
 #X connect 17 0 10 0;
 #X connect 18 0 16 0;
-#X connect 19 0 23 0;
-#X connect 20 0 24 0;
-#X connect 21 0 20 0;
-#X connect 22 0 20 0;
-#X connect 23 0 27 0;
-#X connect 24 0 19 1;
-#X connect 25 0 19 0;
-#X connect 25 1 20 0;
-#X connect 27 0 16 0;
-#X connect 28 0 12 0;
-#X connect 29 0 5 0;
-#X connect 30 0 31 0;
-#X connect 32 0 15 0;
-#X connect 33 0 15 0;
-#X connect 34 0 5 0;
-#X connect 34 0 6 0;
-#X connect 35 0 36 0;
+#X connect 19 0 21 0;
+#X connect 20 0 22 0;
+#X connect 21 0 25 0;
+#X connect 22 0 19 1;
+#X connect 23 0 19 0;
+#X connect 23 1 20 0;
+#X connect 25 0 37 0;
+#X connect 26 0 12 0;
+#X connect 27 0 5 0;
+#X connect 28 0 29 0;
+#X connect 30 0 15 0;
+#X connect 31 0 15 0;
+#X connect 32 0 5 0;
+#X connect 32 0 6 0;
+#X connect 33 0 34 0;
+#X connect 36 0 39 1;
+#X connect 37 0 38 0;
+#X connect 37 0 40 0;
+#X connect 37 1 39 0;
+#X connect 38 0 39 1;
+#X connect 39 0 16 0;
+#X connect 40 0 36 0;
 #X restore -19 131 pd into_down4;
-#N canvas 358 199 734 580 into_down5 0;
-#X text 239 -352 1: set CubeSize and CubeOffset;
-#X text 239 -331 2: set user position;
-#X text 239 -271 5: set others (fog \, etc.);
-#X text 239 -291 4: setEnable hotspots;
-#X text 239 -311 3: setEnabled steps;
-#X obj 43 -164 s \$0-to-SPIN-TCP;
-#X obj 183 -165 p;
-#X obj 43 -236 anyreg g_hostname;
-#X obj 4 -126 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#N canvas 352 214 734 673 into_down5 0;
+#X text 239 -222 1: set CubeSize and CubeOffset;
+#X text 239 -201 2: set user position;
+#X text 239 -141 5: set others (fog \, etc.);
+#X text 239 -161 4: setEnable hotspots;
+#X text 239 -181 3: setEnabled steps;
+#X obj 43 -34 s \$0-to-SPIN-TCP;
+#X obj 183 -35 p;
+#X obj 43 -106 anyreg g_hostname;
+#X obj 4 4 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1 -1
+;
+#X obj 22 42 s gotoPos;
+#X msg 22 22 \$1 \$2 \$3;
+#X obj -30 75 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 22 -88 s gotoPos;
-#X msg 22 -108 \$1 \$2 \$3;
-#X obj -30 -55 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 100 90 s enable_step;
+#X obj 53 -132 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 100 -40 s enable_step;
-#X obj 53 -262 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj -83 -296 t b b b b b b b;
-#X obj 71 -262 s sangfrontON;
+#X obj -83 -166 t b b b b b b b;
+#X obj 71 -132 s sangfrontON;
 #X obj -83 -358 route /chantalbaron;
 #X obj 68 -398 anyreg g_hostname;
-#X obj 68 -418 loadbang;
-#X obj 51 -418 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
 #X obj -83 -338 route collide;
 #X obj 68 -378 makefilename /%s;
 #X obj -83 -388 t a b;
 #X obj -83 -415 r \$0-from-SPIN;
 #X obj -83 -318 route hotspot_down5;
-#X obj -115 29 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -115 159 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -93 89 s \$0-to-SPIN-TCP;
-#X obj -11 -57 list 0 0 1 0 0 0;
-#X msg 43 -185 /\$1 setCubeOffset 1000 2330 0 \, /\$1 setCubeSize 48
+#X obj -93 219 s \$0-to-SPIN-TCP;
+#X obj -11 73 list 0 0 1 0 0 0;
+#X msg 43 -55 /\$1 setCubeOffset 1000 2330 0 \, /\$1 setCubeSize 48
 120 48;
-#X obj 22 -127 list 1000 2305.5 0;
-#X msg -93 29 /hotspot_down2 setScale 0 0 0 \, /hotspot_up4 setScale
+#X obj 22 3 list 1000 2305.5 0;
+#X msg -93 159 /hotspot_down2 setScale 0 0 0 \, /hotspot_up4 setScale
 0 0 0 \, /hotspot_up6 setScale 600 6 600 \, /hotspot_down4 setScale
 6 6 6;
-#X msg 57 -210 /\$1 setTarget sang-targets \, /\$1 setConstraintMode
+#X msg 57 -80 /\$1 setTarget sang-targets \, /\$1 setConstraintMode
 2;
-#X msg -54 -7 /mainLight setExponent 3.5 \, /mainLight2 setExponent
+#X msg -54 123 /mainLight setExponent 3.5 \, /mainLight2 setExponent
 3.5;
 #X obj 47 -318 route patient-cube;
-#X connect 7 0 28 0;
-#X connect 7 0 31 0;
-#X connect 8 0 29 0;
+#X msg -27 -215 1;
+#X obj -83 -282 t b a;
+#X msg -55 -216 0;
+#X obj -83 -190 spigot 1;
+#X obj -28 -246 delay 100;
+#X text -35 -274 ignore multiple collide messages;
+#X connect 7 0 26 0;
+#X connect 7 0 29 0;
+#X connect 8 0 27 0;
 #X connect 10 0 9 0;
-#X connect 11 0 27 0;
+#X connect 11 0 25 0;
 #X connect 13 0 15 0;
-#X connect 14 2 32 0;
-#X connect 14 3 27 0;
-#X connect 14 4 29 0;
+#X connect 14 2 30 0;
+#X connect 14 3 25 0;
+#X connect 14 4 27 0;
 #X connect 14 5 7 0;
 #X connect 14 6 15 0;
-#X connect 16 0 20 0;
-#X connect 17 0 21 0;
-#X connect 18 0 17 0;
-#X connect 19 0 17 0;
-#X connect 20 0 24 0;
-#X connect 20 0 33 0;
-#X connect 21 0 16 1;
-#X connect 22 0 16 0;
-#X connect 22 1 17 0;
-#X connect 23 0 22 0;
-#X connect 24 0 14 0;
-#X connect 25 0 30 0;
-#X connect 27 0 12 0;
-#X connect 28 0 5 0;
-#X connect 28 0 6 0;
-#X connect 29 0 10 0;
-#X connect 30 0 26 0;
-#X connect 31 0 5 0;
-#X connect 32 0 26 0;
-#X connect 33 0 14 0;
+#X connect 16 0 18 0;
+#X connect 17 0 19 0;
+#X connect 18 0 22 0;
+#X connect 18 0 31 0;
+#X connect 19 0 16 1;
+#X connect 20 0 16 0;
+#X connect 20 1 17 0;
+#X connect 21 0 20 0;
+#X connect 22 0 33 0;
+#X connect 23 0 28 0;
+#X connect 25 0 12 0;
+#X connect 26 0 5 0;
+#X connect 26 0 6 0;
+#X connect 27 0 10 0;
+#X connect 28 0 24 0;
+#X connect 29 0 5 0;
+#X connect 30 0 24 0;
+#X connect 31 0 33 0;
+#X connect 32 0 35 1;
+#X connect 33 0 34 0;
+#X connect 33 0 36 0;
+#X connect 33 1 35 0;
+#X connect 34 0 35 1;
+#X connect 35 0 14 0;
+#X connect 36 0 32 0;
 #X restore -18 179 pd into_down5;
-#N canvas 259 545 618 444 into_down2 0;
-#X obj 9 365 s laboON;
-#X obj -16 89 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#N canvas 438 149 696 666 into_down2 0;
+#X obj 9 305 s laboON;
+#X obj -16 29 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj -9 366 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj -9 306 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 85 287 s enable_step;
-#X obj 67 267 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 85 227 s enable_step;
+#X obj 67 207 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X text 329 -4 1: set CubeSize and CubeOffset;
-#X text 329 17 2: set user position;
-#X text 329 77 5: set others (fog \, etc.);
-#X text 329 57 4: setEnable hotspots;
-#X text 329 37 3: setEnabled steps;
-#X obj 159 182 s \$0-to-SPIN-TCP;
-#X obj 274 181 p;
-#X obj 159 108 anyreg g_hostname;
-#X obj 5 88 t b b b b b b b b;
-#X obj 113 244 s gotoPos;
-#X obj 94 203 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X text 329 -224 1: set CubeSize and CubeOffset;
+#X text 329 -203 2: set user position;
+#X text 329 -143 5: set others (fog \, etc.);
+#X text 329 -163 4: setEnable hotspots;
+#X text 329 -183 3: setEnabled steps;
+#X obj 159 122 s \$0-to-SPIN-TCP;
+#X obj 274 121 p;
+#X obj 159 48 anyreg g_hostname;
+#X obj 5 28 t b b b b b b b b;
+#X obj 113 184 s gotoPos;
+#X obj 94 143 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X msg 113 224 \$1 \$2 \$3;
-#X obj 85 266 list 0 1 0 0 0 0;
-#X obj 5 27 route /chantalbaron;
-#X obj 156 -13 anyreg g_hostname;
-#X obj 156 -33 loadbang;
-#X obj 139 -33 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 5 47 route collide;
-#X obj 156 7 makefilename /%s;
-#X obj 5 -3 t a b;
-#X obj 5 -30 r \$0-from-SPIN;
-#X obj 5 67 route hotspot_down2;
-#X obj 167 54 p;
-#X msg 174 132 /\$1 setTarget labo-targets \, /\$1 setConstraintMode
+#X msg 113 164 \$1 \$2 \$3;
+#X obj 85 206 list 0 1 0 0 0 0;
+#X obj 5 -193 route /chantalbaron;
+#X obj 156 -233 anyreg g_hostname;
+#X obj 5 -173 route collide;
+#X obj 156 -213 makefilename /%s;
+#X obj 5 -223 t a b;
+#X obj 5 -250 r \$0-from-SPIN;
+#X obj 5 -153 route hotspot_down2;
+#X obj 167 -166 p;
+#X msg 174 72 /\$1 setTarget labo-targets \, /\$1 setConstraintMode
 4;
-#X obj 113 203 list -19.86 108.93 3.965;
-#X msg 159 159 /\$1 setCubeOffset -164 178 14 \, /\$1 setCubeSize 350
+#X obj 113 143 list -19.86 108.93 3.965;
+#X msg 159 99 /\$1 setCubeOffset -164 178 14 \, /\$1 setCubeSize 350
 270 50;
-#X obj 46 334 s \$0-to-SPIN-TCP;
-#X msg 46 314 /mainLight setExponent 16 \, /mainLight2 setExponent
+#X obj 46 274 s \$0-to-SPIN-TCP;
+#X msg 46 254 /mainLight setExponent 16 \, /mainLight2 setExponent
 16;
+#X msg 62 -55 1;
+#X obj 6 -122 t b a;
+#X msg 34 -56 0;
+#X obj 6 -30 spigot 1;
+#X obj 61 -86 delay 100;
+#X text 54 -114 ignore multiple collide messages;
 #X connect 1 0 13 0;
 #X connect 2 0 0 0;
 #X connect 4 0 17 0;
-#X connect 12 0 30 0;
 #X connect 12 0 28 0;
+#X connect 12 0 26 0;
 #X connect 13 1 0 0;
-#X connect 13 2 32 0;
+#X connect 13 2 30 0;
 #X connect 13 3 17 0;
-#X connect 13 4 29 0;
+#X connect 13 4 27 0;
 #X connect 13 7 12 0;
-#X connect 15 0 29 0;
+#X connect 15 0 27 0;
 #X connect 16 0 14 0;
 #X connect 17 0 3 0;
-#X connect 18 0 22 0;
-#X connect 19 0 23 0;
-#X connect 20 0 19 0;
-#X connect 21 0 19 0;
-#X connect 22 0 26 0;
-#X connect 23 0 18 1;
-#X connect 24 0 18 0;
-#X connect 24 1 19 0;
-#X connect 25 0 24 0;
-#X connect 26 0 13 0;
-#X connect 26 0 27 0;
+#X connect 18 0 20 0;
+#X connect 19 0 21 0;
+#X connect 20 0 24 0;
+#X connect 21 0 18 1;
+#X connect 22 0 18 0;
+#X connect 22 1 19 0;
+#X connect 23 0 22 0;
+#X connect 24 0 25 0;
+#X connect 24 0 32 0;
+#X connect 26 0 10 0;
+#X connect 27 0 16 0;
 #X connect 28 0 10 0;
-#X connect 29 0 16 0;
-#X connect 30 0 10 0;
-#X connect 30 0 11 0;
-#X connect 32 0 31 0;
+#X connect 28 0 11 0;
+#X connect 30 0 29 0;
+#X connect 31 0 34 1;
+#X connect 32 0 33 0;
+#X connect 32 0 35 0;
+#X connect 32 1 34 0;
+#X connect 33 0 34 1;
+#X connect 34 0 13 0;
+#X connect 35 0 31 0;
 #X restore -128 200 pd into_down2;
 #X msg -132 317 /step1 setAll \$1 \, /step2 setAll \$2 \, /step3 setAll
 \$3 \, /step4 setAll \$4 \, /step5 setAll \$5 \, /step6 setAll \$6
@@ -3021,7 +3093,7 @@ is controlled by reset and triggered hotspots.;
 #X connect 41 0 27 0;
 #X restore 541 75 pd hotspot_triggers;
 #X text 603 193 <-- Use this for tests and debug;
-#N canvas 598 111 1310 817 debug 0;
+#N canvas 132 221 1310 817 debug 0;
 #X obj -6113 -2089 s \$0-to-SPIN-TCP;
 #X msg -6043 -2494 /experience debug;
 #X msg -6100 -2566 /chantalbaron setCubeSize 10000 10000 10000;
@@ -3202,37 +3274,37 @@ is controlled by reset and triggered hotspots.;
 #X text 691 46 <-- Brings you back to corridor (step1);
 #X text 187 454 <-- This makes sure the viewer receives every messages
 that were sent;
-#N canvas 133 227 997 687 reset 0;
-#X obj 37 -497 s gotoPos;
-#X obj -5 -471 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#N canvas 481 211 997 687 reset 0;
+#X obj 37 -457 s gotoPos;
+#X obj -5 -431 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 18 -538 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 18 -498 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg 37 -517 \$1 \$2 \$3;
-#X obj -91 -385 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X msg 37 -477 \$1 \$2 \$3;
+#X obj -103 -344 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 13 -450 s enable_step;
+#X obj 13 -410 s enable_step;
 #X text 439 -688 1: set CubeSize and CubeOffset;
 #X text 439 -667 2: set user position;
 #X text 439 -607 5: set others (fog \, etc.);
 #X text 439 -627 4: setEnable hotspots;
 #X text 439 -647 3: setEnabled steps;
 #X obj -44 -683 t b b b b b b;
-#X obj 52 -644 anyreg g_hostname;
-#X obj 158 -569 p;
-#X obj 52 -567 s \$0-to-SPIN-TCP;
+#X obj 52 -604 anyreg g_hostname;
+#X obj 158 -529 p;
+#X obj 52 -527 s \$0-to-SPIN-TCP;
 #X obj -44 -704 r reset;
-#X obj 13 -471 list 1 1 0 0 0 0;
-#X obj -73 -385 s laboON;
-#X obj 37 -538 list 0 0 6.5;
-#X obj -138 -286 s \$0-to-SPIN-TCP;
-#X obj 162 -659 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 13 -431 list 1 1 0 0 0 0;
+#X obj -85 -344 s laboON;
+#X obj 37 -498 list 0 0 6.5;
+#X obj -138 -246 s \$0-to-SPIN-TCP;
+#X obj 162 -619 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg 52 -589 /\$1 setCubeOffset -150 40 33 \, /\$1 setCubeSize 400
+#X msg 52 -549 /\$1 setCubeOffset -150 40 33 \, /\$1 setCubeSize 400
 490 83;
-#X obj -40 -423 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj -68 -367 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj -21 -423 s stop-motion;
+#X obj -49 -367 s stop-motion;
 #X text 48 -706 <--detection comes from "pd hotspots_up3" in "pd CETC-hotspots"
 ;
 #X obj 416 -511 r \$0-from-SPIN;
@@ -3253,9 +3325,9 @@ that were sent;
 #X obj 417 -235 anyreg posturePos;
 #X text 400 -545 Link this to activate reset by pressing;
 #X text 400 -531 both SpaceNavigator side buttons;
-#X msg -116 -355 /mainLight setExponent 16 \, /mainLight2 setExponent
+#X msg -116 -315 /mainLight setExponent 16 \, /mainLight2 setExponent
 16;
-#X text 100 -499 <--managed in pd hotspot_triggers;
+#X text 100 -459 <--managed in pd hotspot_triggers;
 #X obj -123 -683 print RESET;
 #X obj 340 -97 s MITOCHONDRIA-RESET!;
 #X obj 340 -143 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
@@ -3264,29 +3336,36 @@ that were sent;
 #X obj 340 -123 metro 3.6e+06;
 #X obj 288 -146 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg -138 -328 /hotspot_down1 setScale 0 0 0 \, /room1-4 setTranslation
+#X msg -138 -288 /hotspot_down1 setScale 0 0 0 \, /room1-4 setTranslation
 -4.902 100 3.75;
-#X msg 74 -622 /\$1 setTarget corridor-targets \, /\$1 setConstraintMode
-4 \, /\$1 setTranslation 0 0 0 \, /\$1 setPlay 0 \, /\$1 setIndex 0
-;
-#X obj -132 -226 anyreg g_hostname;
-#X obj -111 -173 s \$0-to-SPIN-TCP;
-#X msg -110 -204 /\$1 setPlay 1;
-#X obj -130 -251 delay 100;
+#X obj -132 -186 anyreg g_hostname;
+#X obj -111 -133 s \$0-to-SPIN-TCP;
+#X msg -110 -164 /\$1 setPlay 1;
+#X obj -130 -211 delay 100;
+#X obj 227 -650 shell;
+#X msg 227 -670 hostname -s;
+#X obj 227 -630 symbol;
+#X obj 308 -680 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 74 -582 /\$1 setTarget corridor-targets \, /\$1 setConstraintMode
+4 \, /\$1 setPlay 0 \, /\$1 setIndex 0;
+#X msg 227 -610 /\$1 setTranslation 0 0 0;
+#X obj -49 -387 delay 300;
 #X connect 1 0 16 0;
 #X connect 2 0 18 0;
 #X connect 3 0 0 0;
 #X connect 4 0 17 0;
 #X connect 11 0 51 0;
 #X connect 11 0 43 0;
-#X connect 11 0 56 0;
+#X connect 11 0 55 0;
 #X connect 11 1 17 0;
-#X connect 11 2 23 0;
+#X connect 11 2 62 0;
 #X connect 11 3 16 0;
 #X connect 11 4 18 0;
 #X connect 11 5 12 0;
+#X connect 11 5 57 0;
 #X connect 12 0 21 0;
-#X connect 12 0 52 0;
+#X connect 12 0 60 0;
 #X connect 15 0 11 0;
 #X connect 15 0 45 0;
 #X connect 16 0 5 0;
@@ -3317,10 +3396,16 @@ that were sent;
 #X connect 49 0 46 0;
 #X connect 50 0 46 0;
 #X connect 51 0 19 0;
-#X connect 52 0 14 0;
-#X connect 53 0 55 0;
-#X connect 55 0 54 0;
-#X connect 56 0 53 0;
+#X connect 52 0 54 0;
+#X connect 54 0 53 0;
+#X connect 55 0 52 0;
+#X connect 56 0 58 0;
+#X connect 57 0 56 0;
+#X connect 58 0 61 0;
+#X connect 59 0 57 0;
+#X connect 60 0 14 0;
+#X connect 61 0 14 0;
+#X connect 62 0 23 0;
 #X restore 541 175 pd reset;
 #X text 603 173 <-- Receives reset messages;
 #X text 186 406 <-- Trigger zones (hotspots) are created here;
@@ -3331,28 +3416,28 @@ that were sent;
 #X text 249 215 basic setups are created here;
 #X text 632 113 <-- Controls automatic animation path and reset functionnality
 ;
-#X obj 112 569 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 139 567 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X text 663 73 <-- This is where the experience flow is managed;
-#X text 119 578 <-- Sets ON the animation and still timer;
+#X text 139 578 <-- Sets ON the animation and still timer;
 #X text 141 591 (to "pd animation");
-#X obj 38 579 s play-anim;
-#X obj 52 527 s create-moving-objects;
-#X obj 94 335 delay 50000;
-#X obj 80 386 delay 65000;
-#X obj 66 436 delay 70000;
-#X obj 52 507 delay 73000;
-#X obj 38 559 delay 85000;
+#X obj 51 527 s create-moving-objects;
 #X obj 38 164 t b b b b b b b b;
 #X text 643 93 <-- Controls for occlusion shader (NOT USED);
 #X obj 19 604 anyreg g_hostname;
 #X msg 19 629 /\$1 setLoopMode 1;
 #X obj 19 651 s \$0-to-SPIN-TCP;
+#X obj 38 579 s reset;
+#X obj 79 386 delay 90000;
+#X obj 66 436 delay 95000;
+#X obj 50 507 delay 100000;
+#X obj 94 335 delay 75000;
+#X obj 38 559 delay 110000;
 #X connect 0 0 8 0;
 #X connect 1 0 0 0;
 #X connect 5 0 25 0;
 #X connect 6 0 15 0;
-#X connect 7 0 57 0;
+#X connect 7 0 51 0;
 #X connect 8 0 11 0;
 #X connect 11 0 7 0;
 #X connect 12 0 26 0;
@@ -3360,23 +3445,23 @@ that were sent;
 #X connect 14 0 4 0;
 #X connect 16 0 4 0;
 #X connect 17 0 3 0;
-#X connect 19 0 57 0;
+#X connect 19 0 51 0;
 #X connect 20 0 11 0;
 #X connect 21 0 24 0;
-#X connect 46 0 50 0;
-#X connect 52 0 25 0;
-#X connect 53 0 26 0;
-#X connect 54 0 6 0;
-#X connect 55 0 51 0;
-#X connect 56 0 50 0;
-#X connect 56 0 59 0;
-#X connect 57 0 56 0;
-#X connect 57 1 55 0;
-#X connect 57 2 54 0;
-#X connect 57 3 53 0;
-#X connect 57 4 52 0;
-#X connect 57 5 21 0;
-#X connect 57 6 16 0;
-#X connect 57 7 3 0;
-#X connect 59 0 60 0;
-#X connect 60 0 61 0;
+#X connect 46 0 56 0;
+#X connect 51 0 61 0;
+#X connect 51 1 59 0;
+#X connect 51 2 58 0;
+#X connect 51 3 57 0;
+#X connect 51 4 60 0;
+#X connect 51 5 21 0;
+#X connect 51 6 16 0;
+#X connect 51 7 3 0;
+#X connect 53 0 54 0;
+#X connect 54 0 55 0;
+#X connect 57 0 26 0;
+#X connect 58 0 6 0;
+#X connect 59 0 50 0;
+#X connect 60 0 25 0;
+#X connect 61 0 53 0;
+#X connect 61 0 56 0;

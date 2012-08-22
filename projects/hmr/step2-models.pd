@@ -1,9 +1,9 @@
-#N canvas 738 304 987 672 10;
+#N canvas 66 363 987 672 10;
 #X msg 897 465 deleteNode \$1-cloud1 \, createNode \$1-cloud1 PointCloud
 \, /\$1-cloud1 setURI \$2/models/pcd/set1.cpc \, /\$1-cloud1 setParent
 step1 \, /\$1-cloud1 setOrientation 0 90 0 \, /\$1-cloud1 setScale
 10 10 10 \, /\$1-cloud1 setTranslation 0 0 0;
-#X obj 434 235 anyreg gProjectPath;
+#X obj 416 213 anyreg gProjectPath;
 #X msg 901 410 set1.cpc -7 \, set2-3.cpc -5 \, set3.cpc -3 \, set4.cpc
 -1.5 \, set5.cpc 0 \, set6.cpc 1.5 \, set7.cpc 3 \, set8.cpc 4.5 \,
 set9.cpc 7;
@@ -11,7 +11,7 @@ set9.cpc 7;
 #X msg 1032 255 /cpc debug;
 #X msg 1017 229 /1-scanner-pcd setTranslation -23 90 0;
 #X msg 1001 203 /1-scanner setOrientation 0 90 \$1;
-#X obj 434 255 t b s;
+#X obj 416 233 t b s;
 #X obj 59 231 anyreg gProjectPath;
 #X obj 59 251 t b s;
 #X obj 27 148 s create_up3;
@@ -39,13 +39,13 @@ setVoxelSize 1e-05 \, /\$1-pcd setColorMode 0;
 #X msg 12 278 9-congelation cpc -156 271 0 -20 \, 10-microscope cpc
 -216 185 17 -20 \, 11-scanner cpc -260 187 130 -5 \, 12-congelation
 cpc -303 195 0 -20 \, 13-hotte cpc -313 241 26 -20;
-#X msg 434 275 5-hotte cpc -52 175 26 -20 \, 6-select-immuno cpc -140
+#X msg 416 253 5-hotte cpc -52 175 26 -20 \, 6-select-immuno cpc -140
 182 0 -20 \, 7-pipette cpc -180 187 0 -20 \, 8-microscope cpc -109
 271 17 -20;
 #X obj 336 644 s \$2-to-SPIN-TCP;
 #X obj 663 207 list append path;
-#X obj 434 323 list append path;
-#X obj 556 225 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 416 301 list append path;
+#X obj 538 203 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 181 221 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
@@ -58,8 +58,10 @@ cpc -303 195 0 -20 \, 13-hotte cpc -313 241 26 -20;
 90 17 -20 \, 3-pipette cpc -88 87 0 -20 \, 4-hotte cpc -127 97 26 -20
 ;
 #X obj 12 416 list append path;
-#X obj 434 214 delay 10000;
-#X obj 59 210 delay 20000;
+#X obj 407 146 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 416 192 delay 20000;
+#X obj 59 210 delay 40000;
 #X connect 1 0 7 0;
 #X connect 3 0 6 0;
 #X connect 4 0 32 0;
@@ -82,8 +84,8 @@ cpc -303 195 0 -20 \, 13-hotte cpc -313 241 26 -20;
 #X connect 20 0 33 0;
 #X connect 20 1 26 1;
 #X connect 21 0 19 0;
-#X connect 22 1 36 0;
-#X connect 22 2 35 0;
+#X connect 22 1 37 0;
+#X connect 22 2 36 0;
 #X connect 22 3 19 0;
 #X connect 23 0 34 0;
 #X connect 24 0 27 0;
@@ -95,5 +97,6 @@ cpc -303 195 0 -20 \, 13-hotte cpc -313 241 26 -20;
 #X connect 31 0 22 0;
 #X connect 33 0 26 0;
 #X connect 34 0 16 0;
-#X connect 35 0 1 0;
-#X connect 36 0 8 0;
+#X connect 35 0 36 0;
+#X connect 36 0 1 0;
+#X connect 37 0 8 0;
