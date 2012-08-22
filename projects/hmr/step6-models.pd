@@ -1,4 +1,4 @@
-#N canvas 829 387 430 298 10;
+#N canvas 1047 361 807 571 10;
 #X obj 43 61 t b s;
 #X obj 43 83 symbol \$1;
 #X obj 43 105 pack s s;
@@ -21,12 +21,23 @@ setTranslation 2001.07 998.09 -0.2 \, /\$1-pcd2 setTranslation 0 -20
 /\$1-pcd2 setURI \$2/models/pcd/\$1-2.cpc \, /\$1-pcd2 setScale 11
 11 11 \, /\$1-pcd2 setPointSize 2.5 \, /\$1-pcd2 setVoxelSize 5e-05
 ;
-#X obj 43 242 s \$2-to-SPIN-TCP;
+#X obj 43 372 s \$2-to-SPIN-TCP;
+#X msg 434 341 /patient-cube setColor 0 0 0 0;
+#X msg 435 367 deleteNode patient-cube;
+#X msg 68 249 deleteNode \$1-cube \, createNode \$1-cube ShapeNode
+\, /\$1-cube setParent patient-targets \, /\$1-cube setShape 2 \, /\$1-cube
+setColor 0 0 0 0 \, /\$1-cube setRenderBin 9999 \, /\$1-cube setTranslation
+2000 1010 0 \, /\$1-cube setOrientation 0 0 0 \, /\$1-cube setScale
+20 10 20;
 #X connect 0 0 1 0;
 #X connect 0 1 2 1;
 #X connect 1 0 2 0;
 #X connect 2 0 7 0;
+#X connect 2 0 11 0;
 #X connect 3 0 0 0;
 #X connect 4 0 3 0;
 #X connect 5 0 3 0;
 #X connect 7 0 8 0;
+#X connect 9 0 8 0;
+#X connect 10 0 8 0;
+#X connect 11 0 8 0;
