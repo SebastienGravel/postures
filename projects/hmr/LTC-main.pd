@@ -662,7 +662,7 @@ file:;
 #X obj 397 229 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 462 228 t b;
-#X obj 661 243 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 661 243 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X connect 1 0 26 0;
 #X connect 1 0 2 0;
@@ -767,7 +767,7 @@ file:;
 #X connect 10 0 9 0;
 #X connect 11 0 7 0;
 #X restore 38 102 pd donateurs;
-#X obj 188 396 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 189 396 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 195 294 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
@@ -2130,7 +2130,7 @@ addTarget hotspot_switch \, /hotspot_switch setParent cell-targets
 #X connect 47 0 2 0;
 #X connect 50 0 2 0;
 #X connect 51 0 1 0;
-#X restore 80 406 pd CETC-hotspots;
+#X restore 81 406 pd CETC-hotspots;
 #X text 541 338 NOTE:this number must be a multiple of 4 to obtain
 an equal number of the 4 different floating objects (2 types of mitochondria
 and 2 types of lisosomes);
@@ -2354,7 +2354,7 @@ stable. This is why it is banged first.;
 -1 -1;
 #X obj -207 68 s fogOFF;
 #X obj -119 -152 tgl 30 0 empty empty LABO/PATIENT_SWITCH 35 16 0 20
--4034 -1 -1 0 1;
+-4034 -1 -1 1 1;
 #X obj -119 -116 sel 0 1;
 #X obj -111 -63 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
@@ -3408,7 +3408,7 @@ that were sent;
 #X connect 62 0 23 0;
 #X restore 541 175 pd reset;
 #X text 603 173 <-- Receives reset messages;
-#X text 186 406 <-- Trigger zones (hotspots) are created here;
+#X text 187 406 <-- Trigger zones (hotspots) are created here;
 #X text 246 354 <-- Laboratory walls with donator;
 #X text 270 366 names are created here;
 #X text 205 304 <-- Main nodes and models are created here;
@@ -3416,21 +3416,21 @@ that were sent;
 #X text 249 215 basic setups are created here;
 #X text 632 113 <-- Controls automatic animation path and reset functionnality
 ;
-#X obj 139 567 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 118 569 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X text 663 73 <-- This is where the experience flow is managed;
 #X text 139 578 <-- Sets ON the animation and still timer;
 #X text 141 591 (to "pd animation");
-#X obj 51 527 s create-moving-objects;
+#X obj 52 527 s create-moving-objects;
 #X obj 38 164 t b b b b b b b b;
 #X text 643 93 <-- Controls for occlusion shader (NOT USED);
 #X obj 19 604 anyreg g_hostname;
 #X msg 19 629 /\$1 setLoopMode 1;
 #X obj 19 651 s \$0-to-SPIN-TCP;
 #X obj 38 579 s reset;
-#X obj 79 386 delay 90000;
+#X obj 80 386 delay 90000;
 #X obj 66 436 delay 95000;
-#X obj 50 507 delay 100000;
+#X obj 52 507 delay 100000;
 #X obj 94 335 delay 75000;
 #X obj 38 559 delay 110000;
 #X connect 0 0 8 0;
