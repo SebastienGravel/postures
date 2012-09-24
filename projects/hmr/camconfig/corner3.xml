@@ -2,7 +2,7 @@
 <!DOCTYPE soundEngine SYSTEM>
 <camConfig>
     <window id="window01">
-       <screen>3</screen>
+       <screen>2</screen>
         <windowPosition>0 0</windowPosition>
         <windowSize>100% 100%</windowSize>
         <windowDecoration>false</windowDecoration>
@@ -18,7 +18,7 @@
         </camera>
     </window>
     <window id="window02">
-        <screen>1</screen>
+        <screen>3</screen>
         <fullscreen>false</fullscreen>
         <windowPosition>0% 0%</windowPosition>
         <windowSize>100% 100%</windowSize>
@@ -35,7 +35,7 @@
         </camera>
     </window>
     <window id="window03">
-        <screen>2</screen>
+        <screen>1</screen>
         <fullscreen>false</fullscreen>
         <windowPosition>0% 0%</windowPosition>
         <windowSize>100% 100%</windowSize>
