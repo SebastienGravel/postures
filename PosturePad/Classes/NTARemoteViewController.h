@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 #import <CoreMotion/CoreMotion.h>
+//#import <CoreAudio/CoreAudioTypes.h>
 #import "FlipView.h"
 #import "InfoView.h"
 
@@ -53,13 +55,23 @@ typedef enum { DISABLED, LOCATION_MANAGER, MOTION_MANAGER } MotionMode;
 	BOOL menuEnabled;
 	
 	
-	
+    
 	CGPoint startTouch;
 	
 	MotionMode motionMode;
 	
 	CMMotionManager *motionManager;
 	CMAttitude *zeroAttitude;
+    
+    // audio level:
+    AVAudioRecorder *audioMonitor;
+	NSTimer *audioLevelTimer;
+	double lowpassResults;
+    float lowpassAlpha;
+    IBOutlet UIImageView *VUMeter;
+    IBOutlet UIView *VUMeterCover;
+    IBOutlet UISlider *VUAlphaSlider;
+    IBOutlet UIButton *lowpassSwitchButton;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *incLabel;
@@ -102,6 +114,9 @@ typedef enum { DISABLED, LOCATION_MANAGER, MOTION_MANAGER } MotionMode;
 - (void) setMotionRate:(int)hz;
 - (BOOL) setMotionEnabled:(BOOL)enable;
 - (void) setMotionZero:(id)sender;
+
+- (void)audioLevelCallback:(NSTimer *)timer;
+- (IBAction)lowpassSwitch:(id)sender;
 
 @end
 
