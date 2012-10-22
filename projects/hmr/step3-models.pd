@@ -1,62 +1,60 @@
-#N canvas 890 91 1027 619 10;
-#X obj 199 520 outlet;
-#X obj 146 37 inlet creation;
-#X obj 140 129 t b s;
-#X obj 110 161 symbol \$1;
-#X obj 145 204 pack s s;
-#X obj 141 78 delay;
-#X obj 263 19 loadbang;
-#X obj 263 47 random 5000;
-#X obj 263 72 + 5000;
-#X text 363 46 Arguments: name of the planet;
-#X text 323 77 <-- to avoid loading 10 obj at the same time;
-#X text 197 164 <-- first symbol is node name;
-#X text 211 202 <-- second symbol is current directory (folder) to
-look for .ac file;
-#X obj 140 103 anyreg gProjectPath;
-#X msg 145 252 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
-\$2/models/\$1.ac \, /\$1 setParent step3 \, /\$1 setOrientation 90
-0 90 \, /\$1 setScale 0.1 0.1 0.1 \, /\$1 setTranslation 0 2200 0;
-#X obj -41 313 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X floatatom -1 297 8 0 0 0 - - -;
-#X obj 90 69 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#N canvas 290 310 527 603 10;
+#X obj 51 88 symbol \$1;
+#X obj 51 46 anyreg gProjectPath;
+#X obj 175 36 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X msg -59 344 /sang-globule1 setScale 0.002 0.002 0.002;
-#X msg -92 376 /sang-globule1 setScale 0.004 0.004 0.004;
-#X msg -84 412 /sang-globule1 debug;
-#X obj 145 228 t a a a;
-#X msg 222 321 deleteNode \$1-globule1 \, createNode \$1-globule1 ModelNode
-\, /\$1-globule1 setModelFromFile \$2/models/BloodCellScene.ac \, /\$1-globule1
-setParent step3 \, /\$1-globule1 setOrientation 0 0 0 \, /\$1-globule1
-setScale 0.006 0.006 0.006 \, /\$1-globule1 setTranslation -27.12 2385.5
-6.82;
-#X msg 282 405 deleteNode \$1-cone \, createNode \$1-cone ModelNode
+#X obj 97 110 anyreg g_hostname;
+#X obj 51 178 t a a a a;
+#X obj 51 25 inlet;
+#X obj 51 154 pack s s s s;
+#X msg 51 462 deleteNode \$1-cone \, createNode \$1-cone ModelNode
 \, /\$1-cone setModelFromFile \$2/models/\$1-cone.ac \, /\$1-cone setParent
-step3 \, /\$1-cone setOrientation 0 0 0 \, /\$1-cone setScale 50 126
-50 \, /\$1-cone setTranslation -26 2323 7.5 \, /\$1-cone setColor 1
-1 1 1 \, /posture??-reporter addTarget \$1-cone \, deleteNode \$1-coneBlock
-\, createNode \$1-coneBlock ConstraintsNode \, /\$1-coneBlock setConstraintMode
-2 \, /\$1-coneBlock setParent \$1-cone;
-#X connect 1 0 5 0;
-#X connect 2 0 3 0;
-#X connect 2 1 4 1;
-#X connect 3 0 4 0;
-#X connect 4 0 21 0;
-#X connect 5 0 13 0;
-#X connect 6 0 7 0;
+\$1-targets \, /\$1-cone setOrientation 0 0 0 \, /\$1-cone setScale
+50 126 50 \, /\$1-cone setTranslation 1000 2321 0 \, /\$1-cone setColor
+1 1 1 1;
+#X obj 51 540 s \$2-to-SPIN-TCP;
+#X obj 51 67 t b s b b;
+#X msg 485 265 deleteNode \$1-globule \, createNode \$1-globule ModelNode
+\, /\$1-globule setModelFromFile \$2/models/Blood_Cell_Scene.ac \,
+/\$1-globule setParent step3 \, /\$1-globule setOrientation 180 0 0
+\, /\$1-globule setScale 0.006 0.006 0.006 \, /\$1-globule setTranslation
+1000 2384.5 0 \, /\$1-globule setStateSet \$4;
+#X obj 68 341 list append \$1-Endoplasmic_Ret_w_ribosomesw_Smooth_endoplasmic
+;
+#X msg 309 146 deleteNode sang;
+#X obj 120 132 symbol voxShader2;
+#X msg 102 202 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
+\$2/models/\$1.ac \, /\$1 setParent step3 \, /\$1 setOrientation 90
+0 90 \, /\$1 setScale 0.1 0.1 0.1 \, /\$1 setTranslation 1000 2200
+0 \, /\$1 setStateSet \$4none;
+#X msg 68 376 deleteNode \$1-cell \, createNode \$1-cell ModelNode
+\, /\$1-cell setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$5.ac
+\, /\$1-cell setParent step3 \, /\$1-cell setOrientation 90 0 90 \,
+/\$1-cell setScale 0.0004 0.0004 0.0004 \, /\$1-cell setTranslation
+1000.14 2384.41 -0.07 \, /\$1-cell setStateSet \$4none;
+#X msg 85 265 deleteNode \$1-globule \, createNode \$1-globule ModelNode
+\, /\$1-globule setModelFromFile \$2/models/Blood_Cell_Scene.ac \,
+/\$1-globule setParent step3 \, /\$1-globule setOrientation 180 0 0
+\, /\$1-globule setScale 1 1 1 \, /\$1-globule setTranslation 1000.03
+2384.5 0-0.05 \, /\$1-globule setStateSet \$4;
+#X connect 0 0 6 0;
+#X connect 1 0 9 0;
+#X connect 2 0 1 0;
+#X connect 3 0 6 2;
+#X connect 4 0 7 0;
+#X connect 4 1 11 0;
+#X connect 4 2 16 0;
+#X connect 4 3 14 0;
+#X connect 5 0 1 0;
+#X connect 6 0 4 0;
 #X connect 7 0 8 0;
-#X connect 8 0 5 1;
-#X connect 13 0 2 0;
-#X connect 14 0 0 0;
-#X connect 15 0 18 0;
-#X connect 16 0 18 0;
-#X connect 17 0 13 0;
-#X connect 18 0 0 0;
-#X connect 19 0 0 0;
-#X connect 20 0 0 0;
-#X connect 21 0 14 0;
-#X connect 21 1 22 0;
-#X connect 21 2 23 0;
-#X connect 22 0 0 0;
-#X connect 23 0 0 0;
+#X connect 9 0 0 0;
+#X connect 9 1 6 1;
+#X connect 9 2 3 0;
+#X connect 9 3 13 0;
+#X connect 11 0 15 0;
+#X connect 12 0 8 0;
+#X connect 13 0 6 3;
+#X connect 14 0 8 0;
+#X connect 15 0 8 0;
+#X connect 16 0 8 0;

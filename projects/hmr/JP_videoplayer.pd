@@ -1,0 +1,430 @@
+#N canvas 212 22 1328 1126 10;
+#X obj -142 28 widget-spinConnect \$0;
+#X obj -85 772 vradio 15 1 0 2 empty empty empty 0 -8 0 10 -262144
+-1 -1 1;
+#X text -66 770 SERVER_SIDE;
+#X text -66 786 CLIENT_SIDE;
+#X obj -145 830 s \$0-to-SPIN;
+#X obj -142 243 hid-dev \$0;
+#X obj -142 322 route rel;
+#X obj -142 346 route rel_rz;
+#X msg -145 724 /screen setSpin 0 \$1 0;
+#X msg -131 750 /screen setSpin 0 0 0;
+#X msg -85 807 /screen setComputationMode \$1;
+#X obj -132 73 widget-sendSpinClient \$0;
+#X obj -135 178 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -157 528 * -20;
+#X obj -52 348 route rel_z;
+#X obj -52 401 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 47 335 p;
+#X obj -52 376 moses -0.4665;
+#X obj 608 569 hsl 128 12 0 1 0 0 empty empty SEEK: -35 6 1 9 -99865
+-4034 -1 0 1;
+#X obj 317 33 bng 20 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 459 565 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 483 565 play / pause;
+#X msg 459 584 /JP1 setPlay \$1;
+#X msg 344 108 createNode screen ShapeNode \, /screen setShape 6 \,
+/screen setTranslation 0 -3.12 0.5;
+#X msg 605 585 /JP1 setIndex \$1;
+#X msg 245 709 / debug;
+#X obj 350 614 s \$0-to-SPIN-TCP;
+#X obj 346 35 inlet;
+#X obj 905 375 symbol;
+#X msg 905 395 open \$1;
+#X obj 878 418 readsf~ 2;
+#X obj 878 191 t f b;
+#X obj 878 172 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 929 438 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 919 528 vsl 15 75 0.01 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 7400 1;
+#X msg 842 455 1;
+#X text 945 439 <- loop when done;
+#X obj 879 625 *~;
+#X obj 904 625 *~;
+#X obj 879 654 dac~;
+#X msg 905 311 \$2/\$1.aif;
+#X obj 950 262 anyreg JP_folder;
+#X obj 905 288 pack s s;
+#X obj 905 216 t b b;
+#X obj 486 343 coll;
+#C restore;
+#X obj 449 319 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X symbolatom 513 399 20 0 0 0 - - -;
+#X msg 486 268 1 1-Kujukurihama1_SA \, 2 2-Kujukurihama3_SA \, 3 3-SantaBarbara2_SA
+\, 4 4-SantaBarbara3_SA \, 5 5-Barbados_1_SA \, 6 6-Oleron1_SA \, 7
+7-Oleron2_SA \, 8 8-Kemio1_SA \, 9 9-Kemio2_SA;
+#X obj 486 371 t b a;
+#X obj 905 239 symbol x;
+#X msg 486 441 1;
+#X obj 317 162 anyreg JP_folder;
+#X obj 317 66 t b b b b b;
+#X msg 919 497 1;
+#X obj 357 265 p;
+#X obj 295 162 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 13 720 1;
+#N canvas 0 22 450 300 compute_audio 0;
+#X obj 96 30 inlet;
+#X msg 99 76 \; pd dsp 1 \;;
+#X msg 185 80 \; pd dsp 0 \;;
+#X connect 0 0 1 0;
+#X restore -103 174 pd compute_audio;
+#X obj -142 153 t b b b;
+#X obj 260 106 delay 5000;
+#X obj 537 500 symbol;
+#X obj 537 479 delay 2000;
+#X obj 583 501 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 986 411 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 611 455 p;
+#N canvas 724 391 761 732 videos 0;
+#X obj 346 383 hsl 128 12 0 1 0 0 empty empty SEEK: -35 6 1 9 -99865
+-4034 -1 0 1;
+#X obj 55 -153 bng 20 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 104 358 /screen setTranslation \$1 \$2 \$3;
+#X floatatom 107 295 5 0 0 0 - - -;
+#X floatatom 148 295 5 0 0 0 - - -;
+#X floatatom 189 295 5 0 0 0 - - -;
+#X obj 186 380 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 210 380 play / pause;
+#X msg 186 399 /JP1 setPlay \$1;
+#X obj 110 330 hotpack3 x y z;
+#X msg 82 -78 createNode screen ShapeNode \, /screen setShape 6 \,
+/screen setTranslation 0 -3.12 0.5;
+#X msg 343 399 /JP1 setIndex \$1;
+#X msg -14 383 / debug;
+#X obj 302 319 readsf~;
+#X obj 88 428 s \$0-to-SPIN-TCP;
+#X obj 84 -151 inlet;
+#X obj 496 -106 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 505 -84 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 511 -63 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 520 -41 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 643 189 symbol;
+#X msg 643 209 open \$1;
+#X obj 616 232 readsf~ 2;
+#X obj 616 29 t f b;
+#X obj 616 10 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 667 252 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 657 342 vsl 15 75 0.01 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X msg 580 269 1;
+#X text 683 253 <- loop when done;
+#X obj 617 439 *~;
+#X obj 642 439 *~;
+#X obj 617 468 dac~;
+#X msg 643 149 \$2/\$1.aif;
+#X obj 688 100 anyreg JP_folder;
+#X obj 643 126 pack s s;
+#X obj 643 54 t b b;
+#X obj 224 157 coll;
+#C restore;
+#X obj 187 133 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X symbolatom 251 213 20 0 0 0 - - -;
+#X msg 224 82 1 1-Kujukurihama1_SA \, 2 2-Kujukurihama3_SA \, 3 3-SantaBarbara2_SA
+\, 4 4-SantaBarbara3_SA \, 5 5-Barbados_1_SA \, 6 6-Oleron1_SA \, 7
+7-Oleron2_SA \, 8 8-Kemio1_SA \, 9 9-Kemio2_SA;
+#X obj 224 185 t b a;
+#X obj 643 77 symbol x;
+#X msg 294 261 /JP_videoloop setPath \$2/\$1.mov;
+#X msg 229 232 1;
+#X obj 516 -106 JP_videos \$0 1-Kujukurihama1_SA;
+#X obj 525 -84 JP_videos \$0 2-Kujukurihama3_SA;
+#X obj 531 -63 JP_videos \$0 3-SantaBarbara2_SA;
+#X obj 540 -41 JP_videos \$0 4-SantaBarbara3_SA;
+#X obj 55 -24 anyreg JP_folder;
+#X obj 55 -120 t b b b b b;
+#X msg 657 311 1;
+#X obj 95 79 p;
+#X obj 33 -24 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 55 -1 createStateSet JP_videoloop VideoTexture \, /JP_videoloop
+setPath \$1/9-Kemio2_SA.mov \, /screen setStateSet JP_videoloop \,
+/JP_videoloop setPlay 1;
+#X connect 0 0 11 0;
+#X connect 1 0 49 0;
+#X connect 2 0 14 0;
+#X connect 3 0 9 0;
+#X connect 4 0 9 1;
+#X connect 5 0 9 2;
+#X connect 6 0 8 0;
+#X connect 8 0 14 0;
+#X connect 9 0 2 0;
+#X connect 10 0 14 0;
+#X connect 11 0 14 0;
+#X connect 12 0 14 0;
+#X connect 15 0 49 0;
+#X connect 16 0 44 0;
+#X connect 17 0 45 0;
+#X connect 18 0 46 0;
+#X connect 19 0 47 0;
+#X connect 20 0 21 0;
+#X connect 21 0 22 0;
+#X connect 22 0 29 0;
+#X connect 22 1 30 0;
+#X connect 22 2 25 0;
+#X connect 23 0 22 0;
+#X connect 23 1 35 0;
+#X connect 24 0 23 0;
+#X connect 25 0 27 0;
+#X connect 26 0 29 1;
+#X connect 26 0 30 1;
+#X connect 27 0 37 0;
+#X connect 29 0 31 0;
+#X connect 30 0 31 1;
+#X connect 32 0 20 0;
+#X connect 33 0 34 1;
+#X connect 34 0 32 0;
+#X connect 34 0 42 0;
+#X connect 35 0 41 0;
+#X connect 35 1 33 0;
+#X connect 36 0 40 0;
+#X connect 37 0 36 0;
+#X connect 38 0 41 1;
+#X connect 39 0 36 0;
+#X connect 40 0 43 0;
+#X connect 40 1 38 0;
+#X connect 41 0 34 0;
+#X connect 42 0 14 0;
+#X connect 43 0 24 0;
+#X connect 48 0 53 0;
+#X connect 49 0 37 0;
+#X connect 49 1 39 0;
+#X connect 49 2 48 0;
+#X connect 49 3 10 0;
+#X connect 49 4 50 0;
+#X connect 50 0 26 0;
+#X connect 52 0 48 0;
+#X connect 53 0 14 0;
+#X connect 53 0 51 0;
+#X restore 27 178 pd videos;
+#X obj 8 179 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 972 374 symbol;
+#X obj 972 353 delay 2000;
+#X obj 1018 375 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 972 332 t b s;
+#X msg 729 66 /JP_videoloop setPath \$2/\$1.mov;
+#X obj 929 469 p;
+#X msg 564 427 \$2/\$1.mov;
+#X obj 537 458 t b s;
+#X msg 423 541 /JP_videoloop setPath \$2/\$1.mov;
+#X obj 222 289 line;
+#X floatatom 222 313 5 0 0 0 - - -;
+#X obj 220 229 t b b;
+#X obj 221 207 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 258 258 5000;
+#X obj 201 234 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 183 259 \$1 5000;
+#X floatatom -116 700 20 0 0 0 - - -;
+#X obj -142 220 list2symbol;
+#X msg -142 200 SpaceNavigator for Notebooks;
+#X obj 106 717 f 0;
+#X obj 138 716 + 1;
+#X msg 81 645 0;
+#X obj 136 759 pack;
+#X obj 132 461 p;
+#X obj 110 690 metro 50;
+#X obj 113 672 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 200 653 t b f;
+#X msg 199 682 1;
+#X msg 32 686 stop;
+#X obj -131 621 t b b b;
+#X obj 140 787 expr $f2/5 * pow($f1 \, 1.3);
+#X obj 229 387 line 0 100;
+#X msg -46 628 100 1000;
+#X msg 41 767 \$1 \, 0 1000;
+#X obj 35 658 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 78 742 f 0;
+#X msg -286 348 1;
+#X obj -157 449 f 0;
+#X obj -286 327 loadbang;
+#X obj -116 679 line 0 50;
+#X floatatom -117 444 5 0 0 0 - - -;
+#X obj -202 494 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg -90 486 0;
+#X obj -181 391 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X floatatom -117 545 5 0 0 0 - - -;
+#X msg -277 368 0;
+#X obj 113 584 * 25;
+#X msg -95 653 \$1 10000;
+#X obj -35 595 * 2;
+#X floatatom -114 393 5 0 0 0 - - -;
+#X obj -286 388 metro 50;
+#X obj -41 566 * 30;
+#X msg -144 653 0 1000;
+#X obj -10 479 spigot;
+#X obj -256 426 spigot;
+#X msg -217 402 1;
+#X msg -208 422 0;
+#X obj -131 595 moses 30;
+#X obj -157 569 moses -30;
+#X obj -142 6 loadbang1 Luc;
+#X obj 8 154 anyreg JP_folder ~/Documents/JP_videos/Resources;
+#X msg 317 185 createStateSet JP_videoloop VideoTexture \, /JP_videoloop
+setPath \$1/9-Kemio2_SA.mov \, /screen setStateSet JP_videoloop \,
+/JP_videoloop setPlay 1 \, /screen setComputationMode 1;
+#X connect 0 0 11 0;
+#X connect 0 0 58 0;
+#X connect 1 0 10 0;
+#X connect 5 0 6 0;
+#X connect 6 0 7 0;
+#X connect 6 0 14 0;
+#X connect 7 0 116 0;
+#X connect 7 0 104 1;
+#X connect 7 0 122 0;
+#X connect 8 0 4 0;
+#X connect 9 0 4 0;
+#X connect 10 0 4 0;
+#X connect 12 0 85 0;
+#X connect 13 0 111 0;
+#X connect 13 0 90 0;
+#X connect 13 0 125 0;
+#X connect 14 0 17 0;
+#X connect 15 0 45 0;
+#X connect 17 0 15 0;
+#X connect 18 0 24 0;
+#X connect 19 0 52 0;
+#X connect 20 0 22 0;
+#X connect 22 0 26 0;
+#X connect 23 0 26 0;
+#X connect 24 0 26 0;
+#X connect 25 0 26 0;
+#X connect 27 0 52 0;
+#X connect 28 0 29 0;
+#X connect 29 0 30 0;
+#X connect 29 0 63 0;
+#X connect 29 0 72 0;
+#X connect 30 0 37 0;
+#X connect 30 1 38 0;
+#X connect 30 2 33 0;
+#X connect 31 0 30 0;
+#X connect 31 1 43 0;
+#X connect 32 0 31 0;
+#X connect 33 0 35 0;
+#X connect 34 0 37 1;
+#X connect 34 0 38 1;
+#X connect 35 0 45 0;
+#X connect 37 0 39 0;
+#X connect 38 0 39 1;
+#X connect 40 0 28 0;
+#X connect 41 0 42 1;
+#X connect 42 0 40 0;
+#X connect 42 0 75 0;
+#X connect 43 0 49 0;
+#X connect 43 1 41 0;
+#X connect 44 0 48 0;
+#X connect 45 0 44 0;
+#X connect 46 0 49 1;
+#X connect 47 0 44 0;
+#X connect 48 0 50 0;
+#X connect 48 1 46 0;
+#X connect 49 0 42 0;
+#X connect 50 0 32 0;
+#X connect 51 0 128 0;
+#X connect 52 0 59 0;
+#X connect 52 1 47 0;
+#X connect 52 2 51 0;
+#X connect 52 3 23 0;
+#X connect 52 4 53 0;
+#X connect 53 0 34 0;
+#X connect 55 0 51 0;
+#X connect 56 0 1 0;
+#X connect 58 0 85 0;
+#X connect 58 1 19 0;
+#X connect 58 2 57 0;
+#X connect 59 0 45 0;
+#X connect 60 0 75 0;
+#X connect 61 0 60 0;
+#X connect 61 0 62 0;
+#X connect 66 0 65 0;
+#X connect 68 0 67 0;
+#X connect 68 0 69 0;
+#X connect 70 0 68 0;
+#X connect 70 1 67 1;
+#X connect 73 0 74 0;
+#X connect 73 0 64 0;
+#X connect 74 0 61 0;
+#X connect 74 1 60 1;
+#X connect 75 0 26 0;
+#X connect 76 0 77 0;
+#X connect 78 0 82 0;
+#X connect 78 1 80 0;
+#X connect 79 0 78 0;
+#X connect 80 0 76 1;
+#X connect 81 0 82 0;
+#X connect 82 0 76 0;
+#X connect 83 0 8 0;
+#X connect 84 0 5 0;
+#X connect 85 0 84 0;
+#X connect 86 0 87 0;
+#X connect 86 0 89 0;
+#X connect 87 0 86 1;
+#X connect 88 0 92 0;
+#X connect 88 0 86 0;
+#X connect 89 0 97 0;
+#X connect 91 0 86 0;
+#X connect 92 0 91 0;
+#X connect 93 0 94 0;
+#X connect 93 1 89 1;
+#X connect 94 0 92 0;
+#X connect 95 0 106 0;
+#X connect 96 0 119 0;
+#X connect 96 1 95 0;
+#X connect 96 2 88 0;
+#X connect 97 0 102 1;
+#X connect 99 0 106 0;
+#X connect 100 0 106 0;
+#X connect 102 0 100 0;
+#X connect 103 0 117 0;
+#X connect 104 0 107 0;
+#X connect 104 0 13 0;
+#X connect 105 0 103 0;
+#X connect 106 0 83 0;
+#X connect 109 0 104 1;
+#X connect 109 0 123 0;
+#X connect 110 0 104 0;
+#X connect 112 0 117 0;
+#X connect 114 0 106 0;
+#X connect 117 0 108 0;
+#X connect 117 0 121 0;
+#X connect 118 0 115 0;
+#X connect 118 0 114 0;
+#X connect 119 0 106 0;
+#X connect 121 0 104 0;
+#X connect 122 0 121 1;
+#X connect 123 0 121 1;
+#X connect 124 0 101 0;
+#X connect 124 0 119 0;
+#X connect 124 0 109 0;
+#X connect 124 1 118 0;
+#X connect 125 0 118 0;
+#X connect 125 1 124 0;
+#X connect 126 0 0 0;
+#X connect 128 0 26 0;
+#X connect 128 0 54 0;

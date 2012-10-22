@@ -1,0 +1,137 @@
+#N canvas 610 481 1155 631 10;
+#X text 207 238 R:84 \, G:109 \, B:142;
+#X obj -52 237 s \$1-to-SPIN-TCP;
+#X obj -52 -180 inlet;
+#X obj 446 -105 anyreg g_hostname;
+#X obj -52 -154 t b b b;
+#X obj -75 -153 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 280 -82 list append \$1;
+#X obj 468 364 outlet;
+#X obj -74 -113 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 429 148 nbx 5 14 -1e+37 1e+37 0 0 empty empty textureRepeat
+0 -8 1 12 -262130 -1 -1 0 256;
+#X obj 468 207 / 1;
+#X obj 839 103 r \$0-ratio;
+#X floatatom 484 87 5 0 0 0 - - -;
+#X msg -39 286 deleteNode \$1 \, createNode \$1 GeometryNode \, /\$1
+setParent step2 \, /\$1 setTranslation \$4 \$2 \$3 \, /\$1 setScale
+\$7 0.1 \$6 \, /\$1 setOrientation 0 0 \$10 \, /\$1 setStateSetFromFile
+\$11/models/hmr-text-tiles/\$12.png \, /\$12.png setLighting 0 \, /\$12.png
+setTextureRepeat 1 1 \, /\$12.png setTextureBlend 0 \, /\$1 setTexCoord
+0 -6 6 \, /\$1 setTexCoord 1 -6 -6 \, /\$1 setTexCoord 2 6 -6 \, /\$1
+setTexCoord 3 6 6;
+#X obj 281 -105 anyreg gProjectPath;
+#N canvas 399 230 795 628 texture-repeat 0;
+#X obj 135 63 inlet;
+#X obj 141 127 expr 1-$f1;
+#X obj 301 127 expr 1-$f1;
+#X floatatom 106 127 5 0 0 0 - - -;
+#X floatatom 265 127 5 0 0 0 - - -;
+#X obj 288 56 inlet;
+#X obj 77 353 s \$1-to-SPIN;
+#X obj 406 350 outlet;
+#X msg 283 206 setTexCoord 2 \$1 \$2;
+#X msg 97 208 setTexCoord 0 \$1 \$2;
+#X msg 115 257 setTexCoord 1 \$1 \$2;
+#X msg 301 254 setTexCoord 3 \$1 \$2;
+#X obj 97 178 hotpack2;
+#X obj 115 236 hotpack2;
+#X obj 283 175 hotpack2;
+#X obj 301 233 hotpack2;
+#X connect 0 0 3 0;
+#X connect 1 0 14 0;
+#X connect 1 0 15 0;
+#X connect 2 0 12 1;
+#X connect 2 0 15 1;
+#X connect 3 0 1 0;
+#X connect 3 0 12 0;
+#X connect 3 0 13 0;
+#X connect 4 0 2 0;
+#X connect 4 0 13 1;
+#X connect 4 0 14 1;
+#X connect 5 0 4 0;
+#X connect 8 0 7 0;
+#X connect 9 0 7 0;
+#X connect 10 0 7 0;
+#X connect 11 0 7 0;
+#X connect 12 0 9 0;
+#X connect 13 0 10 0;
+#X connect 14 0 8 0;
+#X connect 15 0 11 0;
+#X restore 468 230 pd texture-repeat;
+#X obj -52 -105 list append \$2 \$3 \$4 \$5 \$6 \$7 \$8 \$9 \$10 \$11
+\$12;
+#X obj 569 86 / 2;
+#X obj 568 -58 inlet;
+#X obj 761 -1 anyreg gProjectPath;
+#X obj 761 -23 loadbang;
+#X obj 820 -22 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 595 -5 symbol \$2;
+#X obj 665 -5 symbol \$12;
+#X obj 595 24 pack s s s;
+#X obj 568 -30 t a b b b;
+#X msg 705 175 debug;
+#X obj 623 270 list prepend /\$2-img;
+#X floatatom 471 40 5 0 0 0 - - -;
+#X obj 629 101 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X floatatom 633 157 5 0 0 0 - - -;
+#X obj 570 118 / \$8;
+#X obj 568 145 t b f;
+#X obj 521 126 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 485 168 f -2.06;
+#X obj 468 252 list prepend /\$2;
+#X msg 595 55 /\$2-img setPath NULL \, /\$2-img setPath \$3/text-rect/\$2.png
+;
+#X msg -21 -44 deleteNode \$1 \, createNode \$1 GeometryNode \, createStateSet
+\$11-img ImageTexture \, /\$1 setStateSet \$11-img \, /\$1 setParent
+step2 \, /\$1 setTranslation \$4 \$2 \$3 \, /\$1 setScale \$7 0.1 \$6
+\, /\$1 setOrientation 0 0 \$10 \, /\$11-img setLighting 0 \, /\$11-img
+setTextureBlend 0 \, /\$11-img setTextureRepeat 1 1 \, /\$1 setSingleSided
+1;
+#X msg -52 58 createNode \$1 GeometryNode \, createStateSet \$11-img
+ImageTexture \, /\$1 setStateSet \$11-img \, /\$1 setParent step2 \,
+/\$1 setTranslation \$4 \$2 \$3 \, /\$1 setScale \$7 0.1 \$6 \, /\$1
+setOrientation 0 0 \$10 \, /\$11-img setLighting 0 \, /\$11-img setTextureBlend
+0 \, /\$11-img setTextureRepeat 1 1 \, /\$1 setSingleSided 1;
+#X connect 2 0 4 0;
+#X connect 4 0 16 0;
+#X connect 4 2 3 0;
+#X connect 5 0 4 0;
+#X connect 8 0 16 0;
+#X connect 9 0 10 0;
+#X connect 9 0 15 1;
+#X connect 10 0 15 0;
+#X connect 15 0 35 0;
+#X connect 16 0 38 0;
+#X connect 17 0 12 0;
+#X connect 17 0 31 0;
+#X connect 18 0 25 0;
+#X connect 19 0 24 2;
+#X connect 20 0 19 0;
+#X connect 21 0 19 0;
+#X connect 22 0 24 0;
+#X connect 23 0 24 1;
+#X connect 24 0 36 0;
+#X connect 25 0 17 0;
+#X connect 25 0 28 0;
+#X connect 25 1 22 0;
+#X connect 25 2 23 0;
+#X connect 25 3 19 0;
+#X connect 26 0 27 0;
+#X connect 27 0 7 0;
+#X connect 29 0 32 0;
+#X connect 31 0 30 0;
+#X connect 31 0 32 0;
+#X connect 32 0 34 0;
+#X connect 32 1 10 1;
+#X connect 33 0 34 0;
+#X connect 34 0 10 0;
+#X connect 34 0 15 1;
+#X connect 35 0 7 0;
+#X connect 36 0 7 0;
+#X connect 38 0 7 0;

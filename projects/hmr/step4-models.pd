@@ -1,176 +1,534 @@
-#N canvas 586 7 1306 772 10;
-#X obj 129 845 outlet;
-#X obj 146 37 inlet creation;
-#X obj 140 129 t b s;
-#X obj 110 161 symbol \$1;
-#X obj 145 204 pack s s;
-#X obj 141 78 delay;
-#X obj 263 19 loadbang;
-#X obj 263 47 random 5000;
-#X obj 263 72 + 5000;
-#X text 363 46 Arguments: name of the planet;
-#X text 323 77 <-- to avoid loading 10 obj at the same time;
-#X text 197 164 <-- first symbol is node name;
-#X text 211 202 <-- second symbol is current directory (folder) to
-look for .ac file;
-#X msg 631 106 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
-\$2/models/\$1.ac \, /\$1 setParent step4 \, /\$1 setOrientation 90
-0 90 \, /\$1 setScale 0.1 0.1 0.1;
-#X text 1008 118 <-- cell models;
-#X msg 41 276 deleteNode \$1 \, createNode \$1 SwitchNode;
-#X obj 14 244 t a a;
-#X msg 639 33 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
-\$2/models/\$1.ac \, /\$1 setParent step4 \, /\$1 setOrientation 90
-0 90 \, /\$1 setScale 0.1 0.1 0.1 \, /\$1 setTranslation 1030 3300
-0;
-#X obj 140 103 anyreg gProjectPath;
-#X text 701 292 <-- x -65 \, y +100;
-#X msg 1151 298 createStateSet voxShader Shader \, /voxShader setShader
-\$2/models/shaders/\$3 \, /\$1 setStateSet voxShader;
-#X obj 1130 192 symbol \$1;
-#X obj 1161 109 delay;
-#X obj 1283 50 loadbang;
-#X obj 1283 78 random 5000;
-#X obj 1283 103 + 5000;
-#X text 1383 77 Arguments: name of the planet;
-#X text 1343 108 <-- to avoid loading 10 obj at the same time;
-#X text 1217 195 <-- first symbol is node name;
-#X text 1231 233 <-- second symbol is current directory (folder) to
-look for .ac file;
-#X obj 1160 134 anyreg gProjectPath;
-#X obj 1163 261 t l l;
-#X obj 1165 235 pack s s s;
-#X msg 1237 165 symbol voxelize.jxs;
-#X obj 1160 160 t b s b;
-#X obj 1148 633 s \$0-to-SPIN-TCP;
-#X obj 1101 73 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X msg 1189 343 deleteNode \$1-Centrioles_w_Extras \, createNode \$1-Centrioles_w_Extras
-ModelNode \, /\$1-Centrioles_w_Extras setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1-Centrioles_w_Extras.IVE
-\, /\$1-Centrioles_w_Extras setParent step4 \, /\$1-Centrioles_w_Extras
-setOrientation 0 0 0 \, /\$1-Centrioles_w_Extras setScale 0.01 0.01
-0.01 \, /\$1-Centrioles_w_Extras setTranslation 938 3800 100;
-#X obj 120 304 t a a a a a a a a;
-#X obj 88 70 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X msg 679 433 deleteNode \$1-Protein_molecules \, createNode \$1-Protein_molecules
-ModelNode \, /\$1-Protein_molecules setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1-Protein_molecules.IVE
-\, /\$1-Protein_molecules setParent step4 \, /\$1-Protein_molecules
-setOrientation 0 0 90 \, /\$1-Protein_molecules setScale 0.001 0.001
-0.001 \, /\$1-Protein_molecules setTranslation 965 3800 100;
-#X msg 1120 693 deleteNode \$1-Scene_Action_Endoplasmic_Ret_w_ribosomes_extras
-\, createNode \$1-Scene_Action_Endoplasmic_Ret_w_ribosomes_extras ModelNode
-\, /\$1-Scene_Action_Endoplasmic_Ret_w_ribosomes_extras setModelFromFile
-\$2/models/HMR-modeles/cell-IVE/\$1-Scene_Action_Endoplasmic_Ret_w_ribosomes_extras.IVE
-\, /\$1-Scene_Action_Endoplasmic_Ret_w_ribosomes_extras setParent step4
-\, /\$1-Scene_Action_Endoplasmic_Ret_w_ribosomes_extras setOrientation
-0 0 90 \, /\$1-Scene_Action_Endoplasmic_Ret_w_ribosomes_extras setScale
-0.005 0.005 0.005 \, /\$1-Scene_Action_Endoplasmic_Ret_w_ribosomes_extras
-setTranslation 992 3604 -2.5;
-#X msg 193 476 deleteNode \$1-Centrioles_w_Extras \, createNode \$1-Centrioles_w_Extras
-ModelNode \, /\$1-Centrioles_w_Extras setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1-Centrioles_w_Extras.IVE
-\, /\$1-Centrioles_w_Extras setParent step4 \, /\$1-Centrioles_w_Extras
-setOrientation 0 0 0 \, /\$1-Centrioles_w_Extras setScale 0.004 0.004
-0.004 \, /\$1-Centrioles_w_Extras setTranslation 1005 3847 8;
-#X msg 244 718 deleteNode \$1-Mitochondria \, createNode \$1-Mitochondria
-ModelNode \, /\$1-Mitochondria setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1-Mitochondria.IVE
-\, /\$1-Mitochondria setParent step4 \, /\$1-Mitochondria setOrientation
-0 0 0 \, /\$1-Mitochondria setScale 0.004 0.004 0.004 \, /\$1-Mitochondria
-setTranslation 955 3778 0;
-#X msg 629 168 deleteNode \$1-Golgi_Apparatus2_w_microtubules \, createNode
-\$1-Golgi_Apparatus2_w_microtubules ModelNode \, /\$1-Golgi_Apparatus2_w_microtubules
-setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1-Golgi_Apparatus2_w_microtubules.IVE
-\, /\$1-Golgi_Apparatus2_w_microtubules setParent step4 \, /\$1-Golgi_Apparatus2_w_microtubules
-setOrientation 0 0 0 \, /\$1-Golgi_Apparatus2_w_microtubules setScale
-0.01 0.01 0.01 \, /\$1-Golgi_Apparatus2_w_microtubules setTranslation
-933 3811 0;
-#X msg 647 312 deleteNode \$1-Nucleus_w_extras \, createNode \$1-Nucleus_w_extras
-ModelNode \, /\$1-Nucleus_w_extras setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1-Nucleus_w_extras.IVE
-\, /\$1-Nucleus_w_extras setParent step4 \, /\$1-Nucleus_w_extras setOrientation
-0 0 90 \, /\$1-Nucleus_w_extras setScale 0.005 0.005 0.005 \, /\$1-Nucleus_w_extras
-setTranslation 992 3804 -2.5;
-#X msg 354 857 deleteNode cell-globuleBlanc;
-#X text 123 648 970 3847 7.5;
-#X text 803 805 1115 4079 -43;
-#X text 52 622 scale 0.1 \, pos 1005 3962 0;
-#X msg 704 563 deleteNode \$1-Endoplasmic_Ret_w_ribosomesw_Smooth_endoplasmic
-\, createNode \$1-Endoplasmic_Ret_w_ribosomesw_Smooth_endoplasmic ModelNode
-\, /\$1-Endoplasmic_Ret_w_ribosomesw_Smooth_endoplasmic setModelFromFile
-\$2/models/HMR-modeles/Endoplasmic_Ret_w_ribosomesw_Smooth_endoplasmic.3ds
-\, /\$1-Endoplasmic_Ret_w_ribosomesw_Smooth_endoplasmic setParent step4
-\, /\$1-Endoplasmic_Ret_w_ribosomesw_Smooth_endoplasmic setOrientation
-0 0 90 \, /\$1-Endoplasmic_Ret_w_ribosomesw_Smooth_endoplasmic setScale
-0.17 0.17 0.17 \, /\$1-Endoplasmic_Ret_w_ribosomesw_Smooth_endoplasmic
-setTranslation 1098 3860 -22;
-#X msg 195 352 deleteNode \$1-globuleBlanc \, createNode \$1-globuleBlanc
-ModelNode \, /\$1-globuleBlanc setModelFromFile \$2/models/\$1-globuleBlanc.ac
-\, /\$1-globuleBlanc setParent step4 \, /\$1-globuleBlanc setOrientation
-0 90 0 \, /\$1-globuleBlanc setScale 6.5 6.5 6.5 \, /\$1-globuleBlanc
-setTranslation 1012 4109 25;
-#X msg 660 952 deleteNode \$1-CytoSkeleton_Elements3 \, createNode
-\$1-CytoSkeleton_Elements3 ModelNode \, /\$1-CytoSkeleton_Elements3
-setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1-CytoSkeleton_Elements.IVE
-\, /\$1-CytoSkeleton_Elements3 setParent step4 \, /\$1-CytoSkeleton_Elements3
-setOrientation 0 0 180 \, /\$1-CytoSkeleton_Elements3 setScale 0.15
-0.15 0.15 \, /\$1-CytoSkeleton_Elements3 setTranslation 1220 5083 0
+#N canvas 93 236 588 872 10;
+#X obj 9 94 symbol \$1;
+#X obj 110 37 anyreg gProjectPath;
+#X obj 194 183 list prepend \$1-globuleBlanc;
+#X obj 124 702 list prepend \$1-CytoSkeleton_Elements;
+#X obj 138 598 list prepend \$1-CytoSkeleton_Elements;
+#X obj 110 15 inlet;
+#X obj 180 283 list prepend \$1-lisosome;
+#X obj 152 496 list prepend \$1-Golgi_Apparatus;
+#X obj 166 383 list prepend \$1-Endoplasmic_Ret_w_ribosomesw_Smooth_endoplasmic
 ;
-#X msg 370 832 deleteNode cell-CytoSkeleton_Elements3;
-#X msg 702 821 deleteNode \$1-CytoSkeleton_Elements2 \, createNode
-\$1-CytoSkeleton_Elements2 ModelNode \, /\$1-CytoSkeleton_Elements2
-setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1-CytoSkeleton_Elements.IVE
-\, /\$1-CytoSkeleton_Elements2 setParent step4 \, /\$1-CytoSkeleton_Elements2
-setOrientation 0 0 180 \, /\$1-CytoSkeleton_Elements2 setScale 0.2
-0.2 0.2 \, /\$1-CytoSkeleton_Elements2 setTranslation 1005 5328 0;
-#X msg 217 595 deleteNode \$1-CytoSkeleton_Elements \, createNode \$1-CytoSkeleton_Elements
-ModelNode \, /\$1-CytoSkeleton_Elements setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1-CytoSkeleton_Elements.IVE
-\, /\$1-CytoSkeleton_Elements setParent step4 \, /\$1-CytoSkeleton_Elements
-setOrientation 0 0 180 \, /\$1-CytoSkeleton_Elements setScale 0.1 0.1
-0.1 \, /\$1-CytoSkeleton_Elements setTranslation 1005 3997 20;
+#X msg 166 417 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
+\$2/models/HMR-modeles/cell-IVE/\$1.ac \, /\$1 setParent step4 \, /\$1
+setOrientation 90 0 90 \, /\$1 setScale 0.17 0.17 0.17 \, /\$1 setTranslation
+1060 3860 -22 \, /\$1 setRenderBin 999 \, /\$1 setStateSet \$3;
+#X msg 138 623 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
+\$2/models/HMR-modeles/cell-IVE/\$1.ac \, /\$1 setParent step4 \, /\$1
+setOrientation 270 0 180 \, /\$1 setScale 0.5 0.5 0.5 \, /\$1 setTranslation
+1005 2967 20 \, /\$1 setRenderBin 999 \, /\$1 setStateSet \$3;
+#N canvas 753 246 450 300 mitochondrias 1;
+#X obj -432 -307 tgl 20 0 empty g_motionToggle MOTION 25 10 1 10 -4034
+-1 -1 1 1;
+#X obj -415 -397 bng 20 250 50 0 empty empty empty 17 7 0 10 -4034
+-1 -1;
+#X obj -432 -549 inlet;
+#X obj -328 -349 r stop-motion;
+#X obj -422 -349 r start-motion;
+#X msg -328 -328 0;
+#X msg -432 -328 1;
+#X msg -398 -442 10;
+#X floatatom -330 -441 5 0 0 0 - - -;
+#X floatatom -337 -486 5 0 0 0 - - -;
+#X obj -381 -467 s Number-set;
+#X obj -398 -422 s FloatSpeed-set;
+#X obj -370 -537 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -432 -527 t b b b b;
+#N canvas 469 143 742 830 motion 0;
+#X obj 166 6 inlet;
+#X obj 166 29 tgl 20 0 empty g_motionToggle MOTION 25 10 1 10 -4034
+-1 -1 1 1;
+#X obj 439 109 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 319 332 pack 0 0;
+#X obj 269 380 print;
+#X obj 380 325 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 436 384 pack 0 0;
+#X obj 390 430 print;
+#X obj 497 377 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 319 285 sel 1;
+#X obj 436 337 sel 2;
+#X obj 429 41 r Number;
+#X floatatom 483 58 5 0 0 0 - - -;
+#X obj 319 308 random 10;
+#X obj 436 360 random 10;
+#X msg 392 405 /con\$1 rotate \$2 \$3 \$4;
+#X msg 270 353 /con\$1 rotate \$2 \$3 \$4;
+#X obj 378 92 random 10;
+#X obj 378 186 pack 0 0 0;
+#X obj 378 117 t f b;
+#X msg 378 206 /con\$1 rotate \$2 0 \$3;
+#X obj 424 151 random 60;
+#X obj 491 151 random 60;
+#X obj 378 68 metro 50;
+#X obj 377 228 s \$2-to-SPIN;
+#X obj 75 239 until;
+#X msg 58 168 400;
+#X obj 75 272 f;
+#X obj 105 272 + 1;
+#X obj 72 199 t f b;
+#X msg 139 227 0;
+#X obj 75 336 pack 0 0;
+#X obj 177 73 r FloatSpeed;
+#X floatatom 189 294 5 0 0 0 - - -;
+#X obj 84 141 t b f;
+#X obj 172 314 * 10;
+#X obj 76 421 s \$2-to-SPIN-TCP;
+#X msg 54 378 /con\$1 setVelocity 0 \$2 0;
+#X obj 188 575 until;
+#X msg 171 504 400;
+#X obj 185 608 f;
+#X obj 215 608 + 1;
+#X obj 185 535 t f b;
+#X msg 252 563 0;
+#X obj 169 740 s \$2-to-SPIN-TCP;
+#X obj 172 474 r MITOCHONDRIA-RESET!;
+#X msg 167 714 /con\$1 setTranslation 1000 4000 0;
+#X obj 177 95 t b f;
+#X obj 84 117 f 0;
+#X connect 0 0 1 0;
+#X connect 1 0 23 0;
+#X connect 1 0 48 0;
+#X connect 3 0 16 0;
+#X connect 6 0 15 0;
+#X connect 9 0 13 0;
+#X connect 10 0 14 0;
+#X connect 11 0 12 0;
+#X connect 11 0 17 1;
+#X connect 13 0 5 0;
+#X connect 13 0 3 0;
+#X connect 14 0 8 0;
+#X connect 14 0 6 0;
+#X connect 17 0 2 0;
+#X connect 17 0 19 0;
+#X connect 18 0 20 0;
+#X connect 19 0 18 0;
+#X connect 19 1 21 0;
+#X connect 19 1 22 0;
+#X connect 20 0 24 0;
+#X connect 21 0 18 1;
+#X connect 22 0 18 2;
+#X connect 23 0 17 0;
+#X connect 25 0 27 0;
+#X connect 26 0 29 0;
+#X connect 27 0 28 0;
+#X connect 27 0 31 0;
+#X connect 28 0 27 1;
+#X connect 29 0 25 0;
+#X connect 29 1 30 0;
+#X connect 30 0 27 1;
+#X connect 31 0 37 0;
+#X connect 32 0 47 0;
+#X connect 33 0 35 1;
+#X connect 34 0 26 0;
+#X connect 34 1 35 0;
+#X connect 35 0 31 1;
+#X connect 37 0 36 0;
+#X connect 38 0 40 0;
+#X connect 39 0 42 0;
+#X connect 40 0 41 0;
+#X connect 40 0 46 0;
+#X connect 41 0 40 1;
+#X connect 42 0 38 0;
+#X connect 42 1 43 0;
+#X connect 43 0 40 1;
+#X connect 45 0 39 0;
+#X connect 46 0 44 0;
+#X connect 47 0 48 0;
+#X connect 47 1 33 0;
+#X connect 48 0 34 0;
+#X restore -432 -285 pd motion;
+#N canvas 66 183 500 755 objects 0;
+#X obj 17 11 inlet;
+#X obj 105 21 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 16 747 createNode con\$1 ConstraintsNode \, createNode sh\$1
+ModelNode \, /con\$1 setParent step4 \, /sh\$1 setParent con\$1 \,
+/sh\$1 setModelFromFile \$5/models/HMR-modeles/cell-IVE/\$6 \, /sh\$1
+setTranslation 0 0 0 \, /sh\$1 setScale 0.05 0.05 0.05 \, /con\$1 setTranslation
+1000 4000 0 \, /con\$1 setTarget box \, /con\$1 setConstraintMode 3
+\, /con\$1 setOrientation \$2 0 \$3 \, /sh\$1 setOrientation 0 0 0
+\, /con\$1 setComputationMode 1 \, /con\$1 setVelocityMode 1 \, /con\$1
+setVelocity 0 10 0 \, /sh\$1 setStateSet voxShader;
+#X msg 122 178 symbol cell-Mitochondria.ac;
+#N canvas 464 82 577 485 create-instances 0;
+#X obj 17 94 until;
+#X obj 17 122 f;
+#X obj 56 121 + 1;
+#X obj 35 263 random 360;
+#X obj 54 243 random 360;
+#X obj 72 223 r FloatSpeed;
+#X text 162 19 change the translation and scale to fit your scene;
+#X msg 71 93 0;
+#X obj 65 28 r Number;
+#X floatatom 65 50 5 0 0 0 - - -;
+#X obj 17 72 f 1;
+#X obj 91 203 anyreg gProjectPath;
+#X obj 17 151 t f b b f;
+#X obj -3 123 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 123 436 p;
+#X obj 17 437 s \$2-to-SPIN-TCP;
+#X obj 17 28 inlet;
+#X obj 17 50 t b b;
+#X obj 17 297 pack 0 0 0 0 s 0;
+#X obj 110 183 % 4;
+#X msg 17 338 deleteNode con\$1 \, createNode con\$1 ConstraintsNode
+\, /con\$1 setParent step4 \, /sh\$6 attachTo con\$1 \, /con\$1 setTranslation
+1000 4000 0 \, /con\$1 setTarget box \, /con\$1 setConstraintMode 3
+\, /con\$1 setOrientation \$2 0 \$3 \, /con\$1 setComputationMode 1
+\, /con\$1 setVelocityMode 1 \, /con\$1 setVelocity 0 10 0;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 1 0 12 0;
+#X connect 2 0 1 1;
+#X connect 3 0 18 1;
+#X connect 4 0 18 2;
+#X connect 5 0 18 3;
+#X connect 7 0 1 1;
+#X connect 8 0 9 0;
+#X connect 9 0 10 1;
+#X connect 10 0 0 0;
+#X connect 11 0 18 4;
+#X connect 12 0 18 0;
+#X connect 12 1 4 0;
+#X connect 12 1 3 0;
+#X connect 12 2 11 0;
+#X connect 12 3 19 0;
+#X connect 13 0 1 0;
+#X connect 16 0 17 0;
+#X connect 17 0 10 0;
+#X connect 17 1 7 0;
+#X connect 18 0 20 0;
+#X connect 19 0 18 5;
+#X connect 20 0 15 0;
+#X connect 20 0 14 0;
+#X restore 17 711 pd create-instances;
+#X obj 17 31 t b b b b b b;
+#X obj 17 690 delay 2000;
+#X obj 152 602 p;
+#X obj 323 371 list append \$3;
+#X obj 77 158 t b b;
+#X obj 77 198 pack 0 s;
+#X obj 167 459 anyreg gProjectPath;
+#X obj 62 228 t b b;
+#X obj 62 268 pack 0 s;
+#X obj 47 298 t b b;
+#X obj 47 338 pack 0 s;
+#X obj 32 368 t b b;
+#X obj 32 408 pack 0 s;
+#X obj 32 449 t a b;
+#X msg 107 248 symbol cell-Mitochondria-2.ac;
+#X msg 92 318 symbol cell-lisosome.ac;
+#X msg 77 388 symbol cell-lisosome-2.ac;
+#X msg 77 178 0;
+#X msg 62 248 1;
+#X msg 47 318 2;
+#X msg 32 388 3;
+#X obj 32 603 s \$2-to-SPIN-TCP;
+#X obj 92 112 s \$2-to-SPIN-TCP;
+#X obj 117 148 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 99 218 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 84 288 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 71 358 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 32 479 list append path;
+#X obj 32 499 list append voxShader;
+#X msg 32 530 deleteNode sh\$1 \, createNode sh\$1 ModelNode \, /sh\$1
+detachFrom * \, /sh\$1 setTranslation 0 0 0 \, /sh\$1 setModelFromFile
+\$3/models/HMR-modeles/cell-IVE/\$2 \, /sh\$1 setOrientation 0 0 0
+\, /sh\$1 setScale 0.05 0.05 0.05 \, /sh\$1 setStateSet \$4;
+#X msg 92 52 createNode box ShapeNode \, /box setShape 2 \, /box setTranslation
+1000 4000 0 \, /box setScale 600 400 400 \, /box setColor 0 0 0 0 \,
+/box setParent step4 \, /box setRenderBin 999;
+#X connect 0 0 5 0;
 #X connect 1 0 5 0;
-#X connect 2 0 3 0;
-#X connect 2 1 4 1;
-#X connect 3 0 4 0;
-#X connect 4 0 38 0;
-#X connect 5 0 18 0;
+#X connect 3 0 10 1;
+#X connect 5 0 6 0;
+#X connect 5 1 16 0;
+#X connect 5 2 14 0;
+#X connect 5 3 12 0;
+#X connect 5 4 9 0;
+#X connect 5 5 35 0;
+#X connect 6 0 4 0;
+#X connect 8 0 34 0;
+#X connect 9 0 22 0;
+#X connect 9 1 3 0;
+#X connect 10 0 18 0;
+#X connect 11 0 32 1;
+#X connect 12 0 23 0;
+#X connect 12 1 19 0;
+#X connect 13 0 18 0;
+#X connect 14 0 24 0;
+#X connect 14 1 20 0;
+#X connect 15 0 18 0;
+#X connect 16 0 25 0;
+#X connect 16 1 21 0;
+#X connect 17 0 18 0;
+#X connect 18 0 32 0;
+#X connect 18 1 11 0;
+#X connect 19 0 13 1;
+#X connect 20 0 15 1;
+#X connect 21 0 17 1;
+#X connect 22 0 10 0;
+#X connect 23 0 13 0;
+#X connect 24 0 15 0;
+#X connect 25 0 17 0;
+#X connect 28 0 9 0;
+#X connect 29 0 12 0;
+#X connect 30 0 14 0;
+#X connect 31 0 16 0;
+#X connect 32 0 33 0;
+#X connect 33 0 34 0;
+#X connect 34 0 26 0;
+#X connect 34 0 7 0;
+#X connect 35 0 27 0;
+#X restore -415 -373 pd objects;
+#X msg -381 -486 400;
+#X connect 0 0 14 0;
+#X connect 1 0 15 0;
+#X connect 2 0 13 0;
+#X connect 3 0 5 0;
+#X connect 4 0 6 0;
+#X connect 5 0 0 0;
+#X connect 6 0 0 0;
+#X connect 7 0 11 0;
+#X connect 8 0 11 0;
+#X connect 9 0 10 0;
+#X connect 12 0 13 0;
+#X connect 13 0 6 0;
+#X connect 13 1 1 0;
+#X connect 13 2 7 0;
+#X connect 13 3 16 0;
+#X connect 16 0 10 0;
+#X restore 386 126 pd mitochondrias;
+#X msg 152 519 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
+\$2/models/HMR-modeles/cell-IVE/\$1.ac \, /\$1 setParent step4 \, /\$1
+setOrientation 90 0 40 \, /\$1 setScale 0.2 0.2 0.2 \, /\$1 setTranslation
+860 3870 115 \, /\$1 setRenderBin 999 \, /\$1 setStateSet \$3;
+#X msg 180 304 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
+\$2/models/HMR-modeles/cell-IVE/\$1.ac \, /\$1 setParent step4 \, /\$1
+setOrientation 90 0 0 \, /\$1 setScale 0.15 0.15 0.15 \, /\$1 setTranslation
+1005 3847 8 \, /\$1 setRenderBin 999 \, /\$1 setStateSet \$3;
+#N canvas 433 235 450 300 mitochondrias-bkp 0;
+#N canvas 1000 192 726 958 mitochondria 0;
+#X obj 17 121 until;
+#X obj 17 165 f;
+#X obj 57 166 + 1;
+#X obj 28 215 random 360;
+#X obj 95 215 random 360;
+#X obj 119 246 r FloatSpeed;
+#X obj 17 11 inlet;
+#X obj 17 55 t b b;
+#X text 168 53 change the translation and scale to fit your scene;
+#X text 395 298 change the translation to be the center;
+#X text 393 312 of your screen rather than the world origin;
+#X text 397 327 replace shapenodes with appropriate models;
+#X obj 133 470 inlet;
+#X obj 93 513 sel 0;
+#X obj 133 493 tgl 20 0 empty g_motionToggle MOTION? 25 7 1 10 -4034
+-1 -1 0 1;
+#X msg 93 534 /con* setVelocity 0 0 0;
+#X obj 247 517 r FloatSpeed;
+#X floatatom 323 534 5 0 0 0 - - -;
+#X obj 219 819 print;
+#X msg 71 133 0;
+#X obj 56 25 r Number;
+#X floatatom 113 42 5 0 0 0 - - -;
+#X obj 61 90 f 1;
+#X obj 17 79 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 267 563 0;
+#X obj 429 702 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 368 614 random 3;
+#X obj 363 883 pack 0 0;
+#X obj 313 931 print;
+#X obj 516 782 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 453 951 pack 0 0;
+#X obj 407 997 print;
+#X obj 611 850 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 368 652 sel 0;
+#X obj 439 653 sel 1;
+#X obj 494 654 sel 2;
+#X obj 495 565 drunk;
+#X obj 368 580 metro 100;
+#X obj 548 709 r Number;
+#X floatatom 602 726 5 0 0 0 - - -;
+#X obj 167 214 anyreg gProjectPath;
+#X obj 368 685 random 10;
+#X obj 455 765 random 10;
+#X obj 550 833 random 10;
+#X obj 17 950 outlet;
+#X msg 101 72 createNode box ShapeNode \, /box setShape 2 \, /box setTranslation
+1000 4000 0 \, /box setScale 400 400 400 \, /box setColor 0 0 0 0 \,
+/box setParent step4 \, /box setRenderBin 999;
+#X msg 314 904 /con\$1 setVelocity \$2 0 0;
+#X msg 219 788 /con\$1 setVelocity 0 \$2 0;
+#X obj 278 763 pack 0 0;
+#X msg 409 972 /con\$1 setVelocity 0 0 \$2;
+#X msg 81 724 /con30 debug;
+#X obj 314 208 % 2;
+#X obj 17 191 t f b b f;
+#X obj 314 233 sel 0 1;
+#X obj 17 247 pack 0 0 0 0 s s;
+#X msg 21 324 createNode con\$1 ConstraintsNode \, createNode sh\$1
+ModelNode \, /con\$1 setParent step4 \, /sh\$1 setParent con\$1 \,
+/sh\$1 setModelFromFile \$5/models/HMR-modeles/cell-IVE/\$6 \, /sh\$1
+setTranslation 0 0 0 \, /sh\$1 setScale 0.05 0.05 0.05 \, /con\$1 setTranslation
+1000 4000 0 \, /con\$1 setTarget box \, /con\$1 setConstraintMode 3
+\, /sh\$1 setOrientation \$2 0 \$3 \, /con\$1 setOrientation 0 0 0
+\, /con\$1 setComputationMode 1 \, /con\$1 setVelocityMode 0 \, /con\$1
+setVelocity 0 1 0 \, /sh\$1 setStateSet voxShader;
+#X obj -7 30 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 304 259 symbol cell-Mitochondria.ac;
+#X msg 320 282 symbol cell-Mitochondria-2.ac;
+#X obj -27 145 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 1 0 52 0;
+#X connect 2 0 1 1;
+#X connect 3 0 54 1;
+#X connect 4 0 54 2;
+#X connect 5 0 54 3;
 #X connect 6 0 7 0;
-#X connect 7 0 8 0;
-#X connect 8 0 5 1;
-#X connect 15 0 0 0;
-#X connect 16 0 38 0;
-#X connect 16 1 15 0;
-#X connect 18 0 2 0;
-#X connect 20 0 35 0;
-#X connect 21 0 32 0;
-#X connect 22 0 30 0;
-#X connect 23 0 24 0;
-#X connect 24 0 25 0;
-#X connect 25 0 22 1;
-#X connect 30 0 34 0;
-#X connect 31 0 20 0;
-#X connect 31 1 37 0;
-#X connect 32 0 31 0;
-#X connect 33 0 32 2;
-#X connect 34 0 21 0;
-#X connect 34 1 32 1;
-#X connect 34 2 33 0;
-#X connect 36 0 22 0;
-#X connect 37 0 35 0;
-#X connect 38 0 43 0;
-#X connect 38 1 55 0;
-#X connect 38 4 54 0;
-#X connect 38 5 44 0;
-#X connect 38 6 50 0;
-#X connect 38 7 51 0;
-#X connect 39 0 18 0;
-#X connect 40 0 0 0;
-#X connect 42 0 0 0;
-#X connect 43 0 0 0;
-#X connect 44 0 0 0;
-#X connect 45 0 0 0;
-#X connect 46 0 0 0;
-#X connect 50 0 0 0;
-#X connect 51 0 0 0;
-#X connect 52 0 0 0;
-#X connect 53 0 0 0;
-#X connect 54 0 0 0;
-#X connect 55 0 0 0;
+#X connect 7 0 23 0;
+#X connect 7 1 45 0;
+#X connect 7 1 19 0;
+#X connect 12 0 14 0;
+#X connect 13 0 15 0;
+#X connect 14 0 13 0;
+#X connect 14 0 37 0;
+#X connect 15 0 24 0;
+#X connect 15 0 44 0;
+#X connect 16 0 17 0;
+#X connect 17 0 27 1;
+#X connect 17 0 30 1;
+#X connect 17 0 48 1;
+#X connect 19 0 1 1;
+#X connect 20 0 21 0;
+#X connect 21 0 22 0;
+#X connect 22 0 0 0;
+#X connect 23 0 22 0;
+#X connect 24 0 37 0;
+#X connect 26 0 33 0;
+#X connect 26 0 34 0;
+#X connect 26 0 35 0;
+#X connect 27 0 46 0;
+#X connect 30 0 49 0;
+#X connect 33 0 41 0;
+#X connect 34 0 42 0;
+#X connect 35 0 43 0;
+#X connect 37 0 26 0;
+#X connect 38 0 39 0;
+#X connect 38 0 41 1;
+#X connect 38 0 42 1;
+#X connect 38 0 43 1;
+#X connect 40 0 54 4;
+#X connect 41 0 25 0;
+#X connect 41 0 48 0;
+#X connect 42 0 29 0;
+#X connect 42 0 27 0;
+#X connect 43 0 32 0;
+#X connect 43 0 30 0;
+#X connect 45 0 44 0;
+#X connect 46 0 44 0;
+#X connect 47 0 44 0;
+#X connect 48 0 47 0;
+#X connect 49 0 44 0;
+#X connect 50 0 44 0;
+#X connect 51 0 53 0;
+#X connect 52 0 54 0;
+#X connect 52 1 4 0;
+#X connect 52 1 3 0;
+#X connect 52 2 40 0;
+#X connect 52 3 51 0;
+#X connect 53 0 57 0;
+#X connect 53 1 58 0;
+#X connect 54 0 55 0;
+#X connect 55 0 44 0;
+#X connect 56 0 7 0;
+#X connect 57 0 54 5;
+#X connect 58 0 54 5;
+#X connect 59 0 1 0;
+#X restore -432 -431 pd mitochondria;
+#X obj -345 -455 tgl 20 0 empty g_motionToggle MOTION? 25 7 1 10 -4034
+-1 -1 0 1;
+#X obj -432 -455 bng 20 250 50 0 empty empty empty 17 7 0 10 -4034
+-1 -1;
+#X obj -242 -449 nbx 4 16 0 1e+37 0 0 FloatSpeed textSpeed-set FloatSpeed
+57 10 1 14 -261682 -1 -1 0 256;
+#X floatatom -243 -422 5 0 0 1 Number - Number;
+#X obj -380 -535 inlet;
+#X obj -375 -494 t b b b;
+#X obj -432 -409 outlet;
+#X connect 0 0 7 0;
+#X connect 1 0 0 1;
+#X connect 2 0 0 0;
+#X connect 2 0 1 0;
+#X restore 343 158 pd mitochondrias-bkp;
+#X obj 110 135 t b a a a a a a a;
+#X obj 489 116 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 233 27 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 138 84 symbol voxShader;
+#X obj 124 799 s \$2-to-SPIN-TCP;
+#X obj 110 58 t a b b;
+#X obj 110 114 pack s s s;
+#X msg 255 802 /cell-globuleBlanc setStateSet null;
+#X msg 259 824 /cell-globuleBlanc setStateSet voxShader2;
+#X msg 194 204 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
+\$2/models/\$1.ac \, /\$1 setParent step4 \, /\$1 setOrientation 0
+90 0 \, /\$1 setScale 6.5 6.5 6.5 \, /\$1 setTranslation 1012 4109
+25 \, /\$1 setRenderBin 999 \, /\$1 setStateSet \$4;
+#X msg 259 844 deleteNode cell-lisosome;
+#X obj 258 84 symbol voxShader3;
+#X msg 124 726 deleteNode \$1-2 \, createNode \$1-2 ModelNode \, /\$1-2
+setModelFromFile \$2/models/HMR-modeles/cell-IVE/\$1.ac \, /\$1-2 setParent
+step4 \, /\$1-2 setOrientation 90 0 180 \, /\$1-2 setScale 1 1 1 \,
+/\$1-2 setTranslation 1005 6150 20 \, /\$1-2 setRenderBin 999 \, /\$1-2
+setStateSet \$3;
+#X obj 386 96 r create-moving-objects;
+#X connect 0 0 21 0;
+#X connect 1 0 20 0;
+#X connect 2 0 24 0;
+#X connect 3 0 27 0;
+#X connect 4 0 10 0;
+#X connect 5 0 1 0;
+#X connect 6 0 13 0;
+#X connect 7 0 12 0;
+#X connect 8 0 9 0;
+#X connect 9 0 19 0;
+#X connect 10 0 19 0;
+#X connect 12 0 19 0;
+#X connect 13 0 19 0;
+#X connect 15 1 3 0;
+#X connect 15 2 4 0;
+#X connect 15 3 7 0;
+#X connect 15 4 8 0;
+#X connect 15 6 2 0;
+#X connect 16 0 11 0;
+#X connect 17 0 1 0;
+#X connect 18 0 21 1;
+#X connect 20 0 21 0;
+#X connect 20 1 18 0;
+#X connect 20 2 26 0;
+#X connect 21 0 15 0;
+#X connect 22 0 19 0;
+#X connect 23 0 19 0;
+#X connect 24 0 19 0;
+#X connect 25 0 19 0;
+#X connect 26 0 21 2;
+#X connect 27 0 19 0;
+#X connect 28 0 11 0;

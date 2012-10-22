@@ -1,8 +1,14 @@
 #!/usr/bin/env lunch
 
-PDARGS = "-path /usr/local/lib/pd-externals/pdsheefa"
+_user = "chantalbaron"
+_projectPath = "~/src/postures/projects/hmr"
 
-add_command("pd -noaudio %s shaders-proto.pd" % (PDARGS), identifier="pd")
-add_command("spinserver --scene-id shaders", identifier="server")
-add_command("spinviewer --scene-id shaders", identifier="viewer")
+# disable screensaver:
+add_command("xset s off; xset s noblank; xset -dpms;", identifier="screenBlankOFF", user=_user, respawn=False, sleep_after=1.0)
 
+add_command("spinserver --scene-id HMR", identifier="server", sleep_after=1.0)
+add_command("spinviewer --scene-id HMR --config /home/metalab/src/postures/projects/hmr/camconfig/corner3.xml --hide-cursor", identifier="viewer")
+#add_command("spinviewer --scene-id HMR", identifier="viewer")
+
+PDARGS = "-path /usr/local/lib/pd-externals/pdsheefa -path %s" % (_projectPath)
+add_command("pd-extended -noaudio %s LTC-main.pd" % (PDARGS), identifier="pd")

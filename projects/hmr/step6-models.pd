@@ -1,51 +1,43 @@
-#N canvas 0 22 1054 700 10;
-#X obj 191 432 outlet;
-#X obj 146 37 inlet creation;
-#X obj 140 129 t b s;
-#X obj 110 161 symbol \$1;
-#X obj 145 204 pack s s;
-#X obj 141 78 delay;
-#X obj 263 19 loadbang;
-#X obj 263 47 random 5000;
-#X obj 263 72 + 5000;
-#X text 363 46 Arguments: name of the planet;
-#X text 323 77 <-- to avoid loading 10 obj at the same time;
-#X text 197 164 <-- first symbol is node name;
-#X text 211 202 <-- second symbol is current directory (folder) to
-look for .ac file;
-#X obj 140 103 anyreg gProjectPath;
-#X msg 144 252 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
-\$2/models/\$1.ac \, /\$1 setParent step6 \, /\$1 setOrientation 90
-0 90 \, /\$1 setScale 0.1 0.1 0.1 \, /\$1 setTranslation 2000 1100
-7.5;
-#X obj 93 52 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#N canvas 1047 361 807 571 10;
+#X obj 43 61 t b s;
+#X obj 43 83 symbol \$1;
+#X obj 43 105 pack s s;
+#X obj 43 40 anyreg gProjectPath;
+#X obj 168 30 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X msg 300 319 deleteNode \$1-pcd \, deleteNode \$1-group \, createNode
+#X obj 43 18 inlet;
+#X msg 437 135 deleteNode \$1-pcd \, deleteNode \$1-group \, createNode
 \$1-group GroupNode \, createNode \$1-pcd PointCloud \, /\$1-pcd setParent
 \$1-group \, /\$1-group setParent step6 \, /\$1-group setTranslation
 2000 1080 5 \, /\$1-pcd setTranslation 0 -20 0 \, /\$1-group setOrientation
-0 90 0 \, /\$1-pcd setDrawMode 1 \, /\$1-pcd setURI \$2/models/pcd/patient1.cpc
-\, /\$1-pcd setScale 11 11 11 \, /\$1-pcd setPointSize 3.5 \, /\$1-pcd
+0 90 0 \, /\$1-pcd setDrawMode 1 \, /\$1-pcd setURI \$2/models/pcd/\$1-1.cpc
+\, /\$1-pcd setScale 11 11 11 \, /\$1-pcd setPointSize 2.5 \, /\$1-pcd
 setVoxelSize 5e-05;
-#X msg 674 320 deleteNode \$1-pcd2 \, deleteNode \$1-group2 \, createNode
+#X msg 43 128 deleteNode \$1-pcd2 \, deleteNode \$1-group2 \, createNode
 \$1-group2 GroupNode \, createNode \$1-pcd2 PointCloud \, /\$1-pcd2
 setParent \$1-group2 \, /\$1-group2 setParent step6 \, /\$1-group2
-setTranslation 2025 1080 5 \, /\$1-pcd2 setTranslation 0 0 0 \, /\$1-group2
-setOrientation 0 90 125 \, /\$1-pcd2 setDrawMode 1 \, /\$1-pcd2 setURI
-\$2/models/pcd/patient2.cpc \, /\$1-pcd2 setScale 11 11 11 \, /\$1-pcd2
-setPointSize 3.5 \, /\$1-pcd2 setVoxelSize 5e-05;
-#X connect 1 0 5 0;
-#X connect 2 0 3 0;
-#X connect 2 1 4 1;
-#X connect 3 0 4 0;
-#X connect 4 0 16 0;
-#X connect 4 0 17 0;
-#X connect 5 0 13 0;
-#X connect 6 0 7 0;
+setTranslation 2001.07 998.09 -0.2 \, /\$1-pcd2 setTranslation 0 -20
+0 \, /\$1-group2 setOrientation 0 90 0 \, /\$1-pcd2 setDrawMode 1 \,
+/\$1-pcd2 setURI \$2/models/pcd/\$1-2.cpc \, /\$1-pcd2 setScale 11
+11 11 \, /\$1-pcd2 setPointSize 2.5 \, /\$1-pcd2 setVoxelSize 5e-05
+;
+#X obj 43 372 s \$2-to-SPIN-TCP;
+#X msg 434 341 /patient-cube setColor 0 0 0 0;
+#X msg 435 367 deleteNode patient-cube;
+#X msg 68 249 deleteNode \$1-cube \, createNode \$1-cube ShapeNode
+\, /\$1-cube setParent patient-targets \, /\$1-cube setShape 2 \, /\$1-cube
+setColor 0 0 0 0 \, /\$1-cube setRenderBin 9999 \, /\$1-cube setTranslation
+2000 1010 0 \, /\$1-cube setOrientation 0 0 0 \, /\$1-cube setScale
+20 10 20;
+#X connect 0 0 1 0;
+#X connect 0 1 2 1;
+#X connect 1 0 2 0;
+#X connect 2 0 7 0;
+#X connect 2 0 11 0;
+#X connect 3 0 0 0;
+#X connect 4 0 3 0;
+#X connect 5 0 3 0;
 #X connect 7 0 8 0;
-#X connect 8 0 5 1;
-#X connect 13 0 2 0;
-#X connect 14 0 0 0;
-#X connect 15 0 5 0;
-#X connect 16 0 0 0;
-#X connect 17 0 0 0;
+#X connect 9 0 8 0;
+#X connect 10 0 8 0;
+#X connect 11 0 8 0;

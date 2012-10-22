@@ -1,4 +1,4 @@
-#N canvas 226 248 892 695 10;
+#N canvas 696 193 892 695 10;
 #X obj 12 139 bng 30 250 50 0 initBang! initBang init 4 15 1 14 -261234
 -1 -1;
 #X obj 527 122 bng 20 250 50 0 \$0-stop-moving empty STOP_MOVING 25
@@ -489,9 +489,9 @@ setTranslation 0 0.31 0 \, /askMarshall_bg setScale 4.25 0.6 7.57 \,
 #X obj 162 229 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 263 143 tgl 30 0 g_pdDSP g_pdDSP-set DSP 1 13 1 10 -261234 -262130
--86277 1 1;
+-86277 0 1;
 #X msg 263 176 \; pd dsp \$1 \;;
-#N canvas 472 137 808 706 mcluhan-models 1;
+#N canvas 470 142 808 706 mcluhan-models 0;
 #X obj 157 37 inlet;
 #X obj 116 662 s \$0-to-SPIN-TCP;
 #X obj 313 378 list;
@@ -595,7 +595,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X text 328 137 Grows above the letter Y (250);
 #X obj 108 211 r g_userElev;
 #X obj 165 272 vsl 15 25 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 9 1;
+-1 -1 202 1;
 #X msg 108 273 \$1 30;
 #X obj 108 253 clip 0 1;
 #X obj 744 400 clip 0 1;
@@ -603,7 +603,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X obj 89 322 *~;
 #X obj 64 322 *~;
 #X obj 757 431 vsl 15 25 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 476 1;
+-1 -1 0 1;
 #X obj 331 287 r g_userElev;
 #X obj 388 348 vsl 15 25 0 1 0 0 empty empty empty 0 -9 0 10 -262144
 -1 -1 0 1;
@@ -627,7 +627,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X msg 47 600 1;
 #X obj 126 611 r g_userElev;
 #X obj 186 661 vsl 15 25 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 964 1;
+-1 -1 529 1;
 #X msg 126 662 \$1 30;
 #X obj 126 682 line~;
 #X obj 111 709 *~;
@@ -924,7 +924,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X obj 695 337 unpack 0 0 0;
 #X obj 695 442 clip 0 1;
 #X obj 708 473 vsl 15 25 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 2043 1;
+-1 -1 2400 1;
 #X obj 695 381 expr ($f1*$f1) + ($f2*$f2) + ($f3*$f3);
 #X floatatom 840 447 5 0 0 0 - - -;
 #X obj 697 421 zscale 0 200 1 0;
@@ -996,7 +996,7 @@ questionmark 20 9 1 10 -261682 -1 -1;
 #X restore 374 602 pd reverb;
 #X obj 375 556 catch~ global-reverb~;
 #X obj 423 579 tgl 20 0 empty g_reverbToggle-set reverb::on/off 25
-10 1 10 -261234 -1 -1 1 1;
+10 1 10 -261234 -1 -1 0 1;
 #X obj 12 173 t b b b b;
 #X obj 12 372 t b b b b;
 #X msg 63 392 1;
@@ -1108,7 +1108,7 @@ setDirectivityFlag 1;
 #X obj 63 413 tgl 20 0 empty empty ambientLoops::on/off 25 10 1 10
 -261234 -1 -1 1 1;
 #X obj 257 490 r gAudioInit!;
-#N canvas 35 65 933 793 AUDIO_INIT 0;
+#N canvas 444 160 933 793 AUDIO_INIT 1;
 #X obj 180 20 inlet;
 #X obj 180 58 t b b b b;
 #X text 332 508 <- to audio renderer;
@@ -1136,17 +1136,11 @@ confirmed to be running \, and ideally after the listener is created
 #X msg 320 210 /a.renderer/setOutputFormat octo;
 #X msg 296 154 /a.renderer/setOutputFormat dome;
 #X obj 333 259 t b;
-#X msg 439 257 vmic1.channel 18;
 #X obj 268 507 outlet;
 #X obj 342 451 list prepend /spatosc/core/listener/posture05-listener/prop
 ;
 #X obj 360 238 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg 439 280 vmic2.channel 24;
-#X msg 439 347 vmic5.channel 25;
-#X msg 439 392 vmic7.channel 21;
-#X msg 439 416 vmic8.channel 19;
-#X msg 439 370 vmic6.channel 23;
 #X obj 508 484 t b;
 #X obj 517 676 list prepend /spatosc/core/listener/posture05-listener/prop
 ;
@@ -1160,10 +1154,25 @@ confirmed to be running \, and ideally after the listener is created
 #X msg 614 595 vmic6.yaw -45;
 #X msg 614 617 vmic7.yaw -135;
 #X msg 614 641 vmic8.yaw 125;
-#X msg 569 302 vmic3.channel 22;
-#X msg 569 325 vmic4.channel 20;
-#X msg 439 302 vmic3.channel 20;
-#X msg 439 325 vmic4.channel 22;
+#X obj 722 276 t b;
+#X msg 828 274 vmic1.channel 18;
+#X obj 731 468 list prepend /spatosc/core/listener/posture05-listener/prop
+;
+#X msg 828 297 vmic2.channel 24;
+#X msg 828 364 vmic5.channel 25;
+#X msg 828 409 vmic7.channel 21;
+#X msg 828 433 vmic8.channel 19;
+#X msg 828 387 vmic6.channel 23;
+#X msg 828 319 vmic3.channel 20;
+#X msg 828 342 vmic4.channel 22;
+#X msg 439 257 vmic1.channel 1;
+#X msg 439 280 vmic2.channel 2;
+#X msg 439 302 vmic3.channel 3;
+#X msg 439 325 vmic4.channel 4;
+#X msg 439 347 vmic5.channel 5;
+#X msg 439 370 vmic6.channel 6;
+#X msg 439 392 vmic7.channel 7;
+#X msg 439 416 vmic8.channel 8;
 #X connect 0 0 1 0;
 #X connect 1 0 20 0;
 #X connect 1 1 10 0;
@@ -1182,44 +1191,60 @@ confirmed to be running \, and ideally after the listener is created
 #X connect 16 0 15 0;
 #X connect 19 0 4 0;
 #X connect 20 0 13 0;
-#X connect 21 0 25 0;
-#X connect 22 0 25 0;
-#X connect 23 0 29 0;
-#X connect 23 0 32 0;
-#X connect 23 0 24 0;
-#X connect 23 0 28 0;
-#X connect 23 0 46 0;
-#X connect 23 0 47 0;
-#X connect 23 0 30 0;
-#X connect 23 0 31 0;
-#X connect 24 0 26 0;
-#X connect 26 0 25 0;
-#X connect 27 0 23 0;
-#X connect 28 0 26 0;
-#X connect 29 0 26 0;
-#X connect 30 0 26 0;
-#X connect 31 0 26 0;
-#X connect 32 0 26 0;
-#X connect 33 0 40 0;
-#X connect 33 0 41 0;
-#X connect 33 0 36 0;
-#X connect 33 0 37 0;
-#X connect 33 0 38 0;
-#X connect 33 0 39 0;
-#X connect 33 0 42 0;
-#X connect 33 0 43 0;
-#X connect 34 0 25 0;
-#X connect 35 0 33 0;
-#X connect 36 0 34 0;
-#X connect 37 0 34 0;
-#X connect 38 0 34 0;
-#X connect 39 0 34 0;
-#X connect 40 0 34 0;
-#X connect 41 0 34 0;
-#X connect 42 0 34 0;
-#X connect 43 0 34 0;
-#X connect 46 0 26 0;
-#X connect 47 0 26 0;
+#X connect 21 0 24 0;
+#X connect 22 0 24 0;
+#X connect 23 0 52 0;
+#X connect 23 0 53 0;
+#X connect 23 0 48 0;
+#X connect 23 0 49 0;
+#X connect 23 0 50 0;
+#X connect 23 0 51 0;
+#X connect 23 0 54 0;
+#X connect 23 0 55 0;
+#X connect 25 0 24 0;
+#X connect 26 0 23 0;
+#X connect 27 0 34 0;
+#X connect 27 0 35 0;
+#X connect 27 0 30 0;
+#X connect 27 0 31 0;
+#X connect 27 0 32 0;
+#X connect 27 0 33 0;
+#X connect 27 0 36 0;
+#X connect 27 0 37 0;
+#X connect 28 0 24 0;
+#X connect 29 0 27 0;
+#X connect 30 0 28 0;
+#X connect 31 0 28 0;
+#X connect 32 0 28 0;
+#X connect 33 0 28 0;
+#X connect 34 0 28 0;
+#X connect 35 0 28 0;
+#X connect 36 0 28 0;
+#X connect 37 0 28 0;
+#X connect 38 0 42 0;
+#X connect 38 0 45 0;
+#X connect 38 0 39 0;
+#X connect 38 0 41 0;
+#X connect 38 0 46 0;
+#X connect 38 0 47 0;
+#X connect 38 0 43 0;
+#X connect 38 0 44 0;
+#X connect 39 0 40 0;
+#X connect 41 0 40 0;
+#X connect 42 0 40 0;
+#X connect 43 0 40 0;
+#X connect 44 0 40 0;
+#X connect 45 0 40 0;
+#X connect 46 0 40 0;
+#X connect 47 0 40 0;
+#X connect 48 0 25 0;
+#X connect 49 0 25 0;
+#X connect 50 0 25 0;
+#X connect 51 0 25 0;
+#X connect 52 0 25 0;
+#X connect 53 0 25 0;
+#X connect 54 0 25 0;
+#X connect 55 0 25 0;
 #X restore 257 514 pd AUDIO_INIT;
 #X obj 29 500 s gAudioInit!;
 #X obj 233 511 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
@@ -1456,7 +1481,7 @@ menuOffset \, /menu setTranslation 0 -0.01 0.014 \, /menu setBillboard
 #X obj 687 145 expr if ((abs($f1)<90) && (180-abs($f3)<90) \, 1 \,
 0);
 #X msg 901 389 /askMarshall setAll \$1;
-#N canvas 0 22 628 611 askMarshall 1;
+#N canvas 66 82 628 611 askMarshall 0;
 #X obj 184 38 inlet;
 #X msg 260 90 Ask Marshall;
 #X obj 260 111 list2symbol;
@@ -1616,7 +1641,7 @@ setOrientation 0 0 180 \, /askMarshall_titletext setTextValue \$1;
 #X msg 666 143 debug spatosc;
 #X msg 263 118 0;
 #X obj 12 72 t b b b b;
-#X obj 131 63 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 132 63 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #N canvas 161 166 520 806 LISTENER_tuning 0;
 #X obj 26 237 cnv 15 450 450 empty empty underListener_tuning 20 12

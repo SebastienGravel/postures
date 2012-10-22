@@ -1,9 +1,9 @@
-#N canvas 957 465 573 366 10;
-#X obj 45 32 inlet;
-#X obj 64 252 outlet;
-#X obj 45 74 sel 0 1;
-#X obj 103 311 s \$0-to-SPIN-TCP;
-#X msg 285 236 -29 293 -4;
+#N canvas 226 259 450 300 10;
+#X obj 55 42 inlet;
+#X obj 74 262 outlet;
+#X obj 55 84 sel 0 1;
+#X obj 113 321 s \$0-to-SPIN-TCP;
+#X msg 295 246 -29 293 -4;
 #N canvas 535 151 454 386 start_4_planets_sounds 0;
 #N canvas 501 161 825 588 SOUND_9N 0;
 #X obj 233 446 dac~;
@@ -292,18 +292,16 @@
 #X connect 20 0 13 0;
 #X connect 21 0 5 0;
 #X connect 22 0 21 0;
-#X restore 83 228 pd start_4_planets_sounds;
-#X msg 103 188 /posture?? setTranslation \, /posture?? setCubeSize
+#X restore 93 238 pd start_4_planets_sounds;
+#X msg 113 198 /posture?? setTranslation \, /posture?? setCubeSize
 0 0 0;
-#X obj 45 53 hotspot_trigger \$1;
-#X obj 64 125 t b b b;
-#X obj 41 110 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 55 63 hotspot_trigger \$1;
+#X obj 74 135 t b b b;
+#X obj 51 120 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 64 151 delay 100;
 #X connect 0 0 7 0;
 #X connect 2 1 8 0;
 #X connect 6 0 3 0;
 #X connect 7 0 2 0;
-#X connect 8 0 10 0;
+#X connect 8 0 1 0;
 #X connect 9 0 8 0;
-#X connect 10 0 1 0;
