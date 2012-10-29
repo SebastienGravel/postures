@@ -7,8 +7,8 @@ _projectPath = "~/src/postures/projects/hmr"
 add_command("xset s off; xset s noblank; xset -dpms;", identifier="screenBlankOFF", user=_user, respawn=False, sleep_after=1.0)
 
 add_command("spinserver --scene-id HMR", identifier="server", sleep_after=1.0)
-add_command("spinviewer --scene-id HMR --config /home/administrator/src/postures/projects/hmr/camconfig/corner3.xml --hide-cursor", identifier="viewer")
-#add_command("spinviewer --scene-id HMR", identifier="viewer")
+#add_command("spinviewer --scene-id HMR --config /home/administrator/src/postures/projects/hmr/camconfig/corner3.xml --hide-cursor", identifier="viewer")
+add_command("spinviewer --scene-id HMR", identifier="viewer")
 
 PDARGS = "-path /usr/local/lib/pd-externals/pdsheefa -path %s" % (_projectPath)
 add_command("pd-extended -noaudio %s LTC-main.pd" % (PDARGS), identifier="pd")
