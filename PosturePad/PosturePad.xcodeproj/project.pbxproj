@@ -8,6 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		1C24F10413AB5DDB00D3F494 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C24F10313AB5DDB00D3F494 /* Reachability.m */; };
+		1C3BDC9B1635CD0500E65E8D /* icon_114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C3BDC9A1635CD0500E65E8D /* icon_114x114.png */; };
+		1C3BDCA01635D5AC00E65E8D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C3BDC9F1635D5AC00E65E8D /* Default-568h@2x.png */; };
+		1C3BDCA11635D5CB00E65E8D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C3BDC9D1635D59E00E65E8D /* Default@2x.png */; };
+		1C48956C161B964A0069EC79 /* vumeter.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C48956B161B964A0069EC79 /* vumeter.png */; };
+		1C489570161BB25E0069EC79 /* lowpassMid.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C48956D161BB25E0069EC79 /* lowpassMid.png */; };
+		1C489571161BB25E0069EC79 /* lowpassOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C48956E161BB25E0069EC79 /* lowpassOff.png */; };
+		1C489572161BB25E0069EC79 /* lowpassOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C48956F161BB25E0069EC79 /* lowpassOn.png */; };
+		1C489576161BD5A90069EC79 /* icon_compass.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C489573161BD5A90069EC79 /* icon_compass.png */; };
+		1C489577161BD5A90069EC79 /* icon_elev.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C489574161BD5A90069EC79 /* icon_elev.png */; };
+		1C489578161BD5A90069EC79 /* icon_speed.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C489575161BD5A90069EC79 /* icon_speed.png */; };
+		1C74C39F161B2A530048EF3A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C74C39E161B2A530048EF3A /* AVFoundation.framework */; };
 		1CA097D3135DFC5B00F22F17 /* liblo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA097D2135DFC5B00F22F17 /* liblo.a */; };
 		1CA0BB971295DC5A0083DA70 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA0BB961295DC5A0083DA70 /* CoreMotion.framework */; };
 		1CDDD2D112B7E81E008D90CD /* target.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CDDD2D012B7E81E008D90CD /* target.png */; };
@@ -43,6 +54,17 @@
 /* Begin PBXFileReference section */
 		1C24F10213AB5DDB00D3F494 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = SOURCE_ROOT; };
 		1C24F10313AB5DDB00D3F494 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = SOURCE_ROOT; };
+		1C3BDC9A1635CD0500E65E8D /* icon_114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_114x114.png; sourceTree = "<group>"; };
+		1C3BDC9D1635D59E00E65E8D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		1C3BDC9F1635D5AC00E65E8D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		1C48956B161B964A0069EC79 /* vumeter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vumeter.png; sourceTree = "<group>"; };
+		1C48956D161BB25E0069EC79 /* lowpassMid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lowpassMid.png; sourceTree = "<group>"; };
+		1C48956E161BB25E0069EC79 /* lowpassOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lowpassOff.png; sourceTree = "<group>"; };
+		1C48956F161BB25E0069EC79 /* lowpassOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lowpassOn.png; sourceTree = "<group>"; };
+		1C489573161BD5A90069EC79 /* icon_compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_compass.png; sourceTree = "<group>"; };
+		1C489574161BD5A90069EC79 /* icon_elev.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_elev.png; sourceTree = "<group>"; };
+		1C489575161BD5A90069EC79 /* icon_speed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_speed.png; sourceTree = "<group>"; };
+		1C74C39E161B2A530048EF3A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		1CA097D2135DFC5B00F22F17 /* liblo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblo.a; sourceTree = "<group>"; };
 		1CA0BB961295DC5A0083DA70 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		1CDDD2D012B7E81E008D90CD /* target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = target.png; sourceTree = "<group>"; };
@@ -87,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C74C39F161B2A530048EF3A /* AVFoundation.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -128,6 +151,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				1C3BDC9F1635D5AC00E65E8D /* Default-568h@2x.png */,
+				1C3BDC9D1635D59E00E65E8D /* Default@2x.png */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -151,6 +176,10 @@
 				1CFF7DDD13A1382700F9F4F6 /* checkbox-checked.png */,
 				1CFF7DDE13A1382700F9F4F6 /* checkbox.png */,
 				22004AFD10E1829A00CE51FB /* Icon57.png */,
+				1C3BDC9A1635CD0500E65E8D /* icon_114x114.png */,
+				1C489573161BD5A90069EC79 /* icon_compass.png */,
+				1C489574161BD5A90069EC79 /* icon_elev.png */,
+				1C489575161BD5A90069EC79 /* icon_speed.png */,
 				220049A910E167C200CE51FB /* settingsButton.png */,
 				220049AA10E167C200CE51FB /* calibrateButton.png */,
 				1CDDD2D212B7E82D008D90CD /* compass.png */,
@@ -158,6 +187,10 @@
 				1CDDD2D012B7E81E008D90CD /* target.png */,
 				220049AB10E167C200CE51FB /* infoButton.png */,
 				32CA4F630368D1EE00C91783 /* PosturePad_Prefix.pch */,
+				1C48956B161B964A0069EC79 /* vumeter.png */,
+				1C48956D161BB25E0069EC79 /* lowpassMid.png */,
+				1C48956E161BB25E0069EC79 /* lowpassOff.png */,
+				1C48956F161BB25E0069EC79 /* lowpassOn.png */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
@@ -175,6 +208,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				1C74C39E161B2A530048EF3A /* AVFoundation.framework */,
 				1CA0BB961295DC5A0083DA70 /* CoreMotion.framework */,
 				1CA097D2135DFC5B00F22F17 /* liblo.a */,
 				22A05A17100512DB002062AC /* SystemConfiguration.framework */,
@@ -253,6 +287,16 @@
 				1CDDD2F312B7E9B2008D90CD /* gear.png in Resources */,
 				1CFF7DDF13A1382700F9F4F6 /* checkbox-checked.png in Resources */,
 				1CFF7DE013A1382700F9F4F6 /* checkbox.png in Resources */,
+				1C48956C161B964A0069EC79 /* vumeter.png in Resources */,
+				1C489570161BB25E0069EC79 /* lowpassMid.png in Resources */,
+				1C489571161BB25E0069EC79 /* lowpassOff.png in Resources */,
+				1C489572161BB25E0069EC79 /* lowpassOn.png in Resources */,
+				1C489576161BD5A90069EC79 /* icon_compass.png in Resources */,
+				1C489577161BD5A90069EC79 /* icon_elev.png in Resources */,
+				1C489578161BD5A90069EC79 /* icon_speed.png in Resources */,
+				1C3BDC9B1635CD0500E65E8D /* icon_114x114.png in Resources */,
+				1C3BDCA01635D5AC00E65E8D /* Default-568h@2x.png in Resources */,
+				1C3BDCA11635D5CB00E65E8D /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,7 +339,6 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-llo",
 					"-L/usr/local/lib",
@@ -310,7 +353,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Luc Courchesne";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Luc Courchesne";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PosturePad_Prefix.pch;
@@ -324,10 +367,9 @@
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../../../../../Downloads\"",
 				);
-				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-llo";
-				PRODUCT_NAME = PosturePadPZ;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E3F8A4DB-4153-4DA7-9F6E-469A11C7D95B";
+				PRODUCT_NAME = PosturePad;
+				PROVISIONING_PROFILE = "32AD73DB-2FA1-4B86-9156-E7B4611E463B";
 			};
 			name = Release;
 		};
@@ -335,17 +377,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Luc Courchesne";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Luc Courchesne";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
 					/opt/local/include,
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-llo";
 				PREBINDING = NO;
 				PRIVATE_HEADERS_FOLDER_PATH = PosturePad.app/PrivateHeaders;
@@ -361,7 +405,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Luc Courchesne";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Luc Courchesne";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -372,19 +415,16 @@
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = "PosturePad-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-llo",
 					"-L/usr/local/lib",
 				);
 				PRODUCT_NAME = PosturePad;
-				PROVISIONING_PROFILE = "E3F8A4DB-4153-4DA7-9F6E-469A11C7D95B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E3F8A4DB-4153-4DA7-9F6E-469A11C7D95B";
+				PROVISIONING_PROFILE = "32AD73DB-2FA1-4B86-9156-E7B4611E463B";
 				SDKROOT = iphoneos;
 			};
 			name = Distribution;
@@ -393,19 +433,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Luc Courchesne";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Luc Courchesne";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
 					/opt/local/include,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-llo";
 				PREBINDING = NO;
 				PRIVATE_HEADERS_FOLDER_PATH = PosturePad.app/PrivateHeaders;
@@ -421,7 +462,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Luc Courchesne";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Luc Courchesne";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -436,14 +476,12 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-llo",
 					"-L/usr/local/lib",
 				);
 				PRODUCT_NAME = PosturePad;
 				PROVISIONING_PROFILE = "B6C4C32E-7F86-4430-8720-53F28297CA02";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B6C4C32E-7F86-4430-8720-53F28297CA02";
 				SDKROOT = iphoneos;
 			};
 			name = "Ad Hoc";
@@ -452,18 +490,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
 					/opt/local/include,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-llo";
 				PREBINDING = NO;
 				PRIVATE_HEADERS_FOLDER_PATH = PosturePad.app/PrivateHeaders;
@@ -478,17 +517,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Luc Courchesne";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Luc Courchesne";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
 					/opt/local/include,
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-llo";
 				PREBINDING = NO;
 				PRIVATE_HEADERS_FOLDER_PATH = PosturePad.app/PrivateHeaders;
