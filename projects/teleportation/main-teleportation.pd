@@ -3,7 +3,7 @@
 can be rendered with several different draw modes. The default is POINTS
 \, which are the lightest. Be careful of using LIGHTPOINTS \, BOXES
 \, and especially CUSTOM drawing. These modes are expensive.;
-#N canvas 0 22 748 834 models 0;
+#N canvas 1 22 748 834 models 0;
 #X obj 88 710 s \$0-to-SPIN-TCP;
 #X obj 92 112 list append;
 #X obj 155 87 anyreg gProjectPath;
@@ -45,7 +45,7 @@ SwitchNode \, /step1 setParent step_collider \, /step2 setParent step_collider
 ;
 #X msg 92 645 createNode doors ModelNode \, /doors setModelFromFile
 \$1/main/doors.ac \, /doors setOrientation 90 0 0 \, /doors setParent
-step4-no_collision \, step4-no_collision setEnabled doors 0;
+step4-no_collision \, /step4-no_collision setEnabled doors 0;
 #X connect 1 0 16 0;
 #X connect 2 0 1 1;
 #X connect 3 0 1 0;
@@ -95,7 +95,7 @@ step4-no_collision \, step4-no_collision setEnabled doors 0;
 #X connect 10 0 1 0;
 #X connect 11 0 9 0;
 #X restore 641 121 pd assets;
-#N canvas 130 22 1310 817 debug 0;
+#N canvas 650 22 1310 817 debug 0;
 #X obj 25 551 s \$0-to-SPIN-TCP;
 #X msg 95 146 /experience debug;
 #X msg 38 74 /chantalbaron setCubeSize 10000 10000 10000;
@@ -428,18 +428,19 @@ to rgba in the FIELDS \, and set the TYPE to F F F U;
 #X obj 145 165 r load_scene3;
 #X obj 185 245 r load_scene4;
 #X obj 55 359 s \$0-to-SPIN-TCP;
-#X msg 55 46 /step1 setEnabled bigwall 0 \, /step1 setEnabled letters
-0 \, /step2 setAll 0 \, /step3 setAll 0 \, /step4 setAll 0;
-#X msg 145 186 /step1 setAll 0 \, /step2 setAll 1 \, /step3 setAll
-1 \, /step4 setAll 0;
 #X msg 185 266 /step1 setAll 0 \, /step2 setAll 0 \, /step3 setAll
-1 \, /step4 setAll 1;
+1 \, /step4 setAll 1 \, /step4-no_collision setAll 1;
+#X msg 55 46 /step1 setEnabled bigwall 0 \, /step1 setEnabled letters
+0 \, /step2 setAll 0 \, /step3 setAll 0 \, /step4 setAll 0 \, /step4-no_collision
+setAll 0;
 #X msg 95 116 /step1 setAll 0 \, /step2 setAll 1 \, /step3 setAll 0
-\, /step4 setAll 0;
-#X connect 0 0 5 0;
-#X connect 1 0 8 0;
-#X connect 2 0 6 0;
-#X connect 3 0 7 0;
+\, /step4 setAll 0 \, /step4-no_collision setAll 0;
+#X msg 145 186 /step1 setAll 0 \, /step2 setAll 1 \, /step3 setAll
+1 \, /step4 setAll 0 \, /step4-no_collision setAll 0;
+#X connect 0 0 6 0;
+#X connect 1 0 7 0;
+#X connect 2 0 8 0;
+#X connect 3 0 5 0;
 #X connect 5 0 4 0;
 #X connect 6 0 4 0;
 #X connect 7 0 4 0;
@@ -631,12 +632,12 @@ setCubeSize 200 200 5 \, \, /\$2 setConstraintMode 5 \, /\$2 setComputationMode
 #X restore 641 191 pd users_setup;
 #X obj 107 148 bng 20 250 50 0 setup_users empty setup_users 25 10
 0 17 -260097 -1 -1;
-#X obj 18 8 loadbang1 teleportation;
 #X text 707 119 <--project path and users name;
 #X text 682 304 These are for backup NOT USED;
+#X obj 18 8 loadbang1 teleportation;
 #X connect 5 0 23 0;
 #X connect 21 0 20 0;
 #X connect 22 0 19 0;
 #X connect 23 1 25 0;
 #X connect 23 2 7 0;
-#X connect 26 0 5 0;
+#X connect 28 0 5 0;
