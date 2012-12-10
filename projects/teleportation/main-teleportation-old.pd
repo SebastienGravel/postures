@@ -1,0 +1,453 @@
+#N canvas 891 260 903 790 10;
+#X text 385 11 This example shows how to load a "point cloud" \, which
+can be rendered with several different draw modes. The default is POINTS
+\, which are the lightest. Be careful of using LIGHTPOINTS \, BOXES
+\, and especially CUSTOM drawing. These modes are expensive.;
+#X obj 80 187 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#N canvas 66 82 450 300 models 0;
+#X obj 92 40 inlet;
+#X obj 92 218 s \$0-to-SPIN-TCP;
+#X obj 92 112 list append;
+#X obj 155 87 anyreg gProjectPath;
+#X obj 92 62 t b b;
+#X msg 92 140 createNode basic ModelNode \, /basic setModelFromFile
+\$1/basic.ac \, /basic setOrientation 90 0 0;
+#X connect 0 0 4 0;
+#X connect 2 0 5 0;
+#X connect 3 0 2 1;
+#X connect 4 0 2 0;
+#X connect 4 1 3 0;
+#X connect 5 0 1 0;
+#X restore 18 197 pd models;
+#N canvas 66 87 703 577 assets 0;
+#X obj 22 49 anyreg gProjectPath ~/Documents/Metalab/teleportation
+;
+#X text 21 25 Project Path must be applied here only once;
+#X symbolatom 22 318 10 0 0 0 - - -;
+#X obj 22 167 shell;
+#X msg 22 147 hostname -s;
+#X obj 22 187 symbol;
+#X obj 22 127 loadbang;
+#X obj 103 137 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 169 227 p;
+#X obj 22 210 makefilename %s-anim;
+#X symbolatom 322 318 10 0 0 0 - - -;
+#X obj 22 294 anyreg user1 posture101;
+#X obj 322 294 anyreg user2 posture102;
+#X text 172 293 <--User1 name;
+#X text 472 293 <--User2 name;
+#X connect 3 0 5 0;
+#X connect 4 0 3 0;
+#X connect 5 0 9 0;
+#X connect 6 0 4 0;
+#X connect 7 0 4 0;
+#X connect 9 0 8 0;
+#X connect 11 0 2 0;
+#X connect 12 0 10 0;
+#X restore 641 122 pd assets;
+#N canvas 181 311 1310 817 debug 0;
+#X obj 25 551 s \$0-to-SPIN-TCP;
+#X msg 95 146 /experience debug;
+#X msg 38 74 /chantalbaron setCubeSize 10000 10000 10000;
+#X msg 14 48 createNode grid GridNode;
+#X obj 68 744 s \$0-to-SPIN-TCP;
+#X floatatom 35 673 5 0 0 0 - - -;
+#X obj 257 653 p;
+#X floatatom 78 673 5 0 0 0 - - -;
+#X floatatom 120 673 5 0 0 0 - - -;
+#X obj 68 702 hotpack3;
+#X msg 195 278 /chantalbaron setTarget labo-targets;
+#X obj 984 281 r \$0-toCamera;
+#X obj 984 305 OSCprepend /nodeID;
+#X obj 984 331 s \$0-to-SPIN;
+#X obj 973 132 nbx 4 16 -1e+37 1e+37 0 0 empty empty left 0 -8 0 11
+-262144 -1 -1 0 256;
+#X obj 1024 132 nbx 4 16 -1e+37 1e+37 0 0 empty empty right 0 -8 0
+11 -262144 -1 -1 0 256;
+#X obj 1075 132 nbx 4 16 -1e+37 1e+37 0 0 empty empty bottom 0 -8 0
+11 -262144 -1 -1 0 256;
+#X obj 1126 132 nbx 4 16 -1e+37 1e+37 0 0 empty empty top 0 -8 0 11
+-262144 -1 -1 0 256;
+#X obj 1177 132 nbx 4 16 0 1e+37 0 0 empty empty near 0 -8 0 11 -262144
+-1 -1 0 256;
+#X obj 1228 132 nbx 4 16 0 1e+37 0 0 empty empty far 0 -8 0 11 -262144
+-1 -1 0 256;
+#X obj 1008 157 hotpack7 -0.01 0.01 -0.01 0.01 0.01 1000;
+#X msg 1008 176 setFrustum \$1 \$2 \$3 \$4 \$5 \$6;
+#X obj 1008 197 s \$0-toCamera;
+#X obj 1089 275 anyreg g_hostname;
+#X obj 1089 253 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 124 169 /voxShader debug;
+#X msg 198 302 /corridor debug;
+#X msg 983 226 setFrustum -0.3333 0.3333 -0.2222 0.2222 0.001 1000
+;
+#X obj 975 59 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 1106 76 * -1;
+#X obj 1128 48 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 1259 65 * -1;
+#X msg 154 213 /cell-globuleBlanc debug;
+#X msg 167 236 /7-pipette-group-2 debug;
+#X msg 215 347 /box debug;
+#X msg 254 454 /corridor debug;
+#X msg 222 372 /CERC112-img debug;
+#X msg 145 193 /step4 debug;
+#X obj 482 509 widget-nodeEditor \$0;
+#X msg 645 345 cell-CytoSkeleton_Elements;
+#X msg 664 392 sang-globule;
+#X msg 656 368 cell-CytoSkeleton_Elements-2;
+#X msg 595 194 corridor-pcd;
+#X msg 613 219 7-pipette-pcd;
+#X msg 627 269 cell-lisosome;
+#X msg 633 294 patient-cube;
+#X msg 679 436 mainLight;
+#X msg 683 459 mainLight2;
+#X msg 265 482 /mainLight debug;
+#X msg 269 505 /mainLight2 debug;
+#X obj 257 631 r \$0-from-SPIN;
+#X msg 638 320 cell-globuleBlanc;
+#X msg 673 414 sang-cell;
+#X msg 277 550 /sang-globule setParent step4;
+#X text 925 582 sang = 3;
+#X text 925 613 cell = 7;
+#X text 925 552 corridor+others = 16;
+#X text 855 522 EXPONENT (reacts only on models with shader);
+#X msg 871 660 /mainLight setExponent \$1 \, /mainLight2 setExponent
+\$1;
+#X msg 900 554 16;
+#X obj 871 684 s \$0-to-SPIN-TCP;
+#X msg 858 416 deleteNode mainLight3 \, createNode mainLight3 LightSource
+\, /mainLight3 setParent step4 \, /mainLight3 setTranslation 1000 4000
+0 \, /mainLight3 setOrientation 0 0 0 \, /mainLight3 setCutoff 180
+\, /mainLight3 setExponent 16 \, /mainLight3 setAttenuation 0.1 \,
+/mainLight3 setAmbient 1 1 1 1 \, /mainLight3 setDiffuse 1 1 1 1 \,
+/mainLight3 setSpecular 0 0 0 1;
+#X msg 899 585 3.5;
+#X msg 688 481 mainLight3;
+#X msg 279 527 /mainLight3 debug;
+#X msg 582 144 chantalbaron-anim;
+#X msg 59 97 /chantalbaron debug;
+#X msg 75 122 /chantalbaron-anim debug;
+#X msg 572 121 chantalbaron;
+#X msg 618 244 cell-Mitochondria;
+#X msg 899 614 10;
+#X msg 588 169 sh0;
+#X msg 618 169 sh1;
+#X msg 650 169 sh2;
+#X msg 680 169 sh3;
+#X msg 205 324 /sh3 debug;
+#X msg 542 72 hotspot_down4;
+#X msg 532 45 hotspot_up4;
+#X msg 564 95 hotspot_down5;
+#X msg 184 256 /hotspot_down5 debug;
+#X msg 232 396 /step6 debug;
+#X msg 249 423 /patient-targets debug;
+#X msg 68 723 /posture101-avatar setTranslation \$1 \$2 \$3;
+#X obj 371 777 s \$0-to-SPIN-TCP;
+#X floatatom 338 706 5 0 0 0 - - -;
+#X floatatom 381 706 5 0 0 0 - - -;
+#X floatatom 423 706 5 0 0 0 - - -;
+#X obj 371 735 hotpack3;
+#X msg 371 756 /posture101-avatar setOrientation \$1 \$2 \$3;
+#X connect 1 0 0 0;
+#X connect 2 0 0 0;
+#X connect 3 0 0 0;
+#X connect 5 0 9 0;
+#X connect 7 0 9 1;
+#X connect 8 0 9 2;
+#X connect 9 0 82 0;
+#X connect 10 0 0 0;
+#X connect 12 0 13 0;
+#X connect 14 0 20 0;
+#X connect 15 0 20 1;
+#X connect 16 0 20 2;
+#X connect 17 0 20 3;
+#X connect 18 0 20 4;
+#X connect 19 0 20 5;
+#X connect 20 0 21 0;
+#X connect 21 0 22 0;
+#X connect 23 0 12 1;
+#X connect 24 0 23 0;
+#X connect 25 0 0 0;
+#X connect 26 0 0 0;
+#X connect 28 0 29 0;
+#X connect 28 0 15 0;
+#X connect 29 0 14 0;
+#X connect 30 0 31 0;
+#X connect 30 0 17 0;
+#X connect 31 0 16 0;
+#X connect 32 0 0 0;
+#X connect 33 0 0 0;
+#X connect 34 0 0 0;
+#X connect 35 0 0 0;
+#X connect 36 0 0 0;
+#X connect 37 0 0 0;
+#X connect 39 0 38 0;
+#X connect 40 0 38 0;
+#X connect 41 0 38 0;
+#X connect 42 0 38 0;
+#X connect 43 0 38 0;
+#X connect 44 0 38 0;
+#X connect 45 0 38 0;
+#X connect 46 0 38 0;
+#X connect 47 0 38 0;
+#X connect 48 0 0 0;
+#X connect 49 0 0 0;
+#X connect 51 0 38 0;
+#X connect 52 0 38 0;
+#X connect 53 0 0 0;
+#X connect 58 0 60 0;
+#X connect 59 0 58 0;
+#X connect 61 0 60 0;
+#X connect 62 0 58 0;
+#X connect 63 0 38 0;
+#X connect 64 0 0 0;
+#X connect 65 0 38 0;
+#X connect 66 0 0 0;
+#X connect 67 0 0 0;
+#X connect 68 0 38 0;
+#X connect 69 0 38 0;
+#X connect 70 0 58 0;
+#X connect 71 0 38 0;
+#X connect 72 0 38 0;
+#X connect 73 0 38 0;
+#X connect 74 0 38 0;
+#X connect 75 0 0 0;
+#X connect 76 0 38 0;
+#X connect 77 0 38 0;
+#X connect 78 0 38 0;
+#X connect 79 0 0 0;
+#X connect 80 0 0 0;
+#X connect 81 0 0 0;
+#X connect 82 0 4 0;
+#X connect 84 0 87 0;
+#X connect 85 0 87 1;
+#X connect 86 0 87 2;
+#X connect 87 0 88 0;
+#X connect 88 0 83 0;
+#X restore 641 101 pd debug;
+#N canvas 113 118 916 795 pointcloud 0;
+#X obj 18 71 cnv 15 24 24 empty empty 1 4 12 1 24 -99865 -262144 0
+;
+#X obj 72 232 cnv 15 24 24 empty empty 3 4 12 1 24 -99865 -262144 0
+;
+#X obj 55 533 s \$0-to-SPIN;
+#X obj 18 192 cnv 15 24 24 empty empty 2 4 12 1 24 -99865 -262144 0
+;
+#X obj 52 74 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 73 71 set view for this example;
+#X obj 82 119 spin.toCamera \$0;
+#X msg 79 147 createNode grid GridNode;
+#X obj 79 169 s \$0-to-SPIN;
+#X obj 524 346 subwidget-PAT \$0;
+#X obj 524 305 loadbang;
+#X obj 394 542 vradio 11 1 0 14 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
+#X text 408 637 9) QUAD_STRIP;
+#X text 408 626 8) QUADS;
+#X text 408 615 7) TRIANGLE_FAN;
+#X text 408 604 6) TRIANGLE_STRIP;
+#X text 408 593 5) TRIANGLES;
+#X text 408 582 4) LINE_LOOP;
+#X text 408 560 2) LINES;
+#X text 408 549 1) POINTS;
+#X text 408 538 0) NONE;
+#X text 408 571 3) LINE_STRIP;
+#X text 408 670 12) BOXES;
+#X text 408 659 11) LIGHTPOINTS;
+#X text 408 648 10) POLYGON;
+#X obj 126 418 hsl 128 15 0 100 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X floatatom 123 436 5 0 0 0 - - -;
+#X text 158 391 Play with some parameters:;
+#X text 53 187 Create a PointCloud node;
+#X msg 57 205 createNode cloud PointCloud;
+#X msg 394 699 /cloud setDrawMode \$1;
+#X msg 524 325 cloud;
+#X obj 129 387 cnv 15 24 24 empty empty 4 4 12 1 24 -99865 -262144
+0;
+#X text 105 232 Load a point cloud from a .pcd file:;
+#X obj 107 278 thisdir;
+#X obj 107 250 bng 20 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 408 681 13) CUSTOM;
+#X msg 82 95 setTranslation 0 -1 0.15;
+#X obj 528 238 s \$0-to-SPIN;
+#X text 518 281 You can move the entire cloud around like this:;
+#X obj 45 563 cnv 15 24 24 empty empty 5 4 12 1 24 -99865 -262144 0
+;
+#X obj 346 519 cnv 15 24 24 empty empty 6 4 12 1 24 -99865 -262144
+0;
+#X text 375 522 Try different draw modes:;
+#X text 533 97 Set the draw mode to CUSTOM (above) \, and then replace
+the points of the PointCloud with any SPIN node!;
+#X msg 528 136 createNode shp ShapeNode \, /shp setTranslation 10 0
+0 \, /shp setStateSetFromFile http://spinframework.org/images/logo_SPIN.jpg
+\, /shp setSpin 20 0 45 \, /cloud setCustomNode shp;
+#X text 547 199 CAREFUL of the mesh size! Try to only use low-poly
+models like cubes and planes.;
+#X msg 634 561 /cloud setVoxelSize \$1;
+#X obj 637 519 hsl 128 15 0.0005 0.1 1 0 empty empty empty -2 -8 0
+10 -262144 -1 -1 0 1;
+#X floatatom 634 538 5 0 0 0 - - -;
+#X obj 642 673 s \$0-to-SPIN;
+#X msg 654 648 /cloud setDistCrop 0 \$1;
+#X obj 657 609 hsl 128 15 0 10 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X floatatom 654 628 5 0 0 0 - - -;
+#X msg 107 297 /cloud setURI \$1/Resources/bunny.pcd \, /cloud setOrientation
+180 0 0;
+#X msg 197 504 /cloud debug;
+#X msg 542 482 /cloud setDrawMode 11 \, /cloud setURI kinect://1;
+#X obj 503 101 cnv 15 24 24 empty empty 7 4 12 1 24 -99865 -262144
+0;
+#X text 523 433 Read points in real time from the Kinect \, but DON'T
+use CUSTOM drawMode. The Kinect produces way too many points way too
+fast.;
+#X text 135 251 .pcd files can be generated using PCL: www.pointclouds.org
+;
+#X obj 343 439 hsl 128 15 0 0.1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X floatatom 340 456 5 0 0 0 - - -;
+#X msg 340 472 /cloud setRandomCoeff \$1;
+#X text 120 334 NOTE: If you get the error: "Failed to find a field
+named: 'rgba'" \, you need to upgrade your .pcd file. Set change rgb
+to rgba in the FIELDS \, and set the TYPE to F F F U;
+#X obj 81 585 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 81 604 /cloud setColorMode \$1;
+#X obj 394 719 s \$0-to-SPIN;
+#X obj 81 687 s \$0-to-SPIN;
+#X obj 492 437 cnv 15 24 24 empty empty 8 4 12 1 24 -99865 -262144
+0;
+#X text 73 558 Override color:;
+#X obj 94 632 rgbaPicker 1 1 1 1;
+#X msg 94 666 /cloud setColor \$1 \$2 \$3 \$4;
+#X text 101 584 override color;
+#X msg 123 452 /posture101-avatar setPointSize \$1;
+#X connect 4 0 7 0;
+#X connect 4 0 37 0;
+#X connect 7 0 8 0;
+#X connect 10 0 31 0;
+#X connect 11 0 30 0;
+#X connect 25 0 26 0;
+#X connect 26 0 72 0;
+#X connect 29 0 2 0;
+#X connect 30 0 65 0;
+#X connect 31 0 9 0;
+#X connect 34 0 53 0;
+#X connect 35 0 34 0;
+#X connect 37 0 6 0;
+#X connect 44 0 38 0;
+#X connect 46 0 49 0;
+#X connect 47 0 48 0;
+#X connect 48 0 46 0;
+#X connect 50 0 49 0;
+#X connect 51 0 52 0;
+#X connect 52 0 50 0;
+#X connect 53 0 2 0;
+#X connect 54 0 2 0;
+#X connect 55 0 49 0;
+#X connect 59 0 60 0;
+#X connect 60 0 61 0;
+#X connect 61 0 2 0;
+#X connect 63 0 64 0;
+#X connect 64 0 66 0;
+#X connect 69 0 70 0;
+#X connect 70 0 66 0;
+#X connect 72 0 2 0;
+#X restore 641 143 pd pointcloud control;
+#X obj 18 28 widget-spinConnect \$0;
+#N canvas 874 245 580 592 user2 1;
+#X text 8 12 On the sender machine (the one with the Kinect):;
+#X text 57 55 ./posture-capture -v -s /tmp/pcd_to_read;
+#X text 48 122 Then send it;
+#X text 8 182 On the receiver machine (the one with spinviewer):;
+#X text 8 252 On the receiver machine (the one with spinviewer):;
+#X text 48 42 Capture kinect and right to shared memory:;
+#X text 48 82 Or \, test with random noise of 10 \, 0 points (ie \,
+100x100):;
+#X text 57 205 ./posture-rtpreceive -v -s /tmp/pcd_to_read -r <sender
+IP>;
+#X text 57 96 ./posture-capture -v -s /tmp/pcd_to_write -n 100;
+#X text 58 135 ./posture-rtpsend -v -s /tmp/pcd_to_write -r <receiver
+IP>;
+#X obj 42 538 s \$0-to-SPIN-TCP;
+#X obj 42 295 inlet;
+#X obj 121 308 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 42 323 anyreg user2;
+#X obj 106 449 p;
+#X msg 42 355 createNode \$1-avatar PointCloud \, /\$1-avatar setURI
+shm:///tmp/posture102-readsm \, /\$1-avatar setOrientation 0 90 90
+\, /\$1-avatar setTranslation 0.05 0 -1.3 \, /\$1-avatar setParent
+\$1 \, /\$1-avatar setPointSize 2 \, /\$1 setTranslation 0 2 0;
+#X obj 160 482 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 75 492 anyreg user2;
+#X msg 75 514 /\$1 setURI shm:///tmp/posture102-readsm;
+#X connect 11 0 13 0;
+#X connect 12 0 13 0;
+#X connect 13 0 15 0;
+#X connect 15 0 10 0;
+#X connect 15 0 14 0;
+#X connect 16 0 17 0;
+#X connect 17 0 18 0;
+#X connect 18 0 10 0;
+#X restore 48 157 pd user2;
+#N canvas 390 439 580 592 user1 1;
+#X text 8 12 On the sender machine (the one with the Kinect):;
+#X text 57 55 ./posture-capture -v -s /tmp/pcd_to_read;
+#X text 48 122 Then send it;
+#X text 8 182 On the receiver machine (the one with spinviewer):;
+#X text 8 252 On the receiver machine (the one with spinviewer):;
+#X text 48 42 Capture kinect and right to shared memory:;
+#X text 48 82 Or \, test with random noise of 10 \, 0 points (ie \,
+100x100):;
+#X text 57 205 ./posture-rtpreceive -v -s /tmp/pcd_to_read -r <sender
+IP>;
+#X text 57 96 ./posture-capture -v -s /tmp/pcd_to_write -n 100;
+#X text 58 135 ./posture-rtpsend -v -s /tmp/pcd_to_write -r <receiver
+IP>;
+#X obj 42 528 s \$0-to-SPIN-TCP;
+#X obj 42 295 inlet;
+#X obj 121 313 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 106 439 p;
+#X obj 42 323 anyreg user1;
+#X obj 65 482 anyreg user1;
+#X obj 150 472 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 65 504 /\$1 setURI shm:///tmp/posture101-readsm;
+#X msg 42 355 createNode \$1-avatar PointCloud \, /\$1-avatar setURI
+shm:///tmp/posture101-readsm \, /\$1-avatar setOrientation 0 90 90
+\, /\$1-avatar setTranslation 0.05 0 -1.3 \, /\$1-avatar setParent
+\$1 \, /\$1-avatar setPointSize 2 \, /\$1 setTranslation 0 2 0;
+#X connect 11 0 14 0;
+#X connect 12 0 14 0;
+#X connect 14 0 18 0;
+#X connect 15 0 17 0;
+#X connect 16 0 15 0;
+#X connect 17 0 10 0;
+#X connect 18 0 10 0;
+#X connect 18 0 13 0;
+#X restore 68 117 pd user1;
+#X obj 125 107 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 105 147 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 18 8 loadbang1 teleportation;
+#X obj 18 71 t b b b;
+#X connect 1 0 2 0;
+#X connect 6 0 12 0;
+#X connect 9 0 8 0;
+#X connect 10 0 7 0;
+#X connect 11 0 6 0;
+#X connect 12 0 7 0;
+#X connect 12 1 8 0;
+#X connect 12 2 2 0;
