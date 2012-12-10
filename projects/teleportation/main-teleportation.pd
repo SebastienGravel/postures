@@ -4,62 +4,67 @@ can be rendered with several different draw modes. The default is POINTS
 \, which are the lightest. Be careful of using LIGHTPOINTS \, BOXES
 \, and especially CUSTOM drawing. These modes are expensive.;
 #N canvas 0 22 724 684 models 0;
-#X obj 84 580 s \$0-to-SPIN-TCP;
+#X obj 88 650 s \$0-to-SPIN-TCP;
 #X obj 92 112 list append;
 #X obj 155 87 anyreg gProjectPath;
 #X obj 92 62 t b b;
 #X obj 92 40 r load_main-scene;
-#X msg 218 225 createNode forest ModelNode \, /forest setModelFromFile
+#X msg 238 225 createNode forest ModelNode \, /forest setModelFromFile
 \$1/main/forest.ac \, /forest setOrientation 90 0 0;
-#X msg 238 175 createNode step1 SwitchNode \, createNode step2 SwitchNode
+#X msg 258 175 createNode step1 SwitchNode \, createNode step2 SwitchNode
 \, createNode step3 SwitchNode \, createNode step4 SwitchNode \, createNode
 step5 SwitchNode;
-#X text 522 326 <--set collision ON;
+#X text 542 326 <--set collision ON;
 #X text 542 276 <--set collision ON;
-#X text 492 426 <--set collision ON;
-#X text 482 376 <--set collision ON;
-#X text 472 476 <--set collision ON;
-#X text 452 526 <--set collision OFF;
-#X obj 92 138 t a a a a a a a a;
-#X msg 196 265 createNode letters ModelNode \, /letters setModelFromFile
+#X text 492 486 <--set collision ON;
+#X text 502 376 <--set collision ON;
+#X text 472 546 <--set collision ON;
+#X text 452 596 <--set collision OFF;
+#X msg 216 265 createNode letters ModelNode \, /letters setModelFromFile
 \$1/main/letters.ac \, /letters setOrientation 90 0 0 \, /letters setParent
 step1 \, /step1 setEnabled letters 1;
-#X msg 156 365 createNode cube ModelNode \, /cube setModelFromFile
+#X msg 176 365 createNode cube ModelNode \, /cube setModelFromFile
 \$1/main/cube.ac \, /cube setOrientation 90 0 0 \, /cube setParent
 step2 \, /step2 setEnabled cube 0;
-#X msg 116 465 createNode house ModelNode \, /house setModelFromFile
+#X msg 116 535 createNode house ModelNode \, /house setModelFromFile
 \$1/main/house.ac \, /house setOrientation 90 0 0 \, /house setParent
 step4 \, /step4 setEnabled house 0;
-#X msg 92 515 createNode doors ModelNode \, /doors setModelFromFile
+#X msg 92 585 createNode doors ModelNode \, /doors setModelFromFile
 \$1/main/doors.ac \, /doors setOrientation 90 0 0 \, /doors setParent
 step4 \, /step4 setEnabled doors 0;
-#X msg 176 315 createNode bigwall ModelNode \, /bigwall setModelFromFile
+#X msg 196 315 createNode bigwall ModelNode \, /bigwall setModelFromFile
 \$1/main/bigwall.ac \, /bigwall setOrientation 90 0 0 \, /bigwall setParent
 step1 \, /step1 setEnabled bigwall 1;
-#X msg 136 415 createNode sculpture ModelNode \, /sculpture setModelFromFile
+#X obj 92 138 t a a a a a a a a a;
+#X text 522 426 <--set collision ON;
+#X msg 156 415 createNode sculpture ModelNode \, /sculpture setModelFromFile
 \$1/main/sculpture.ac \, /sculpture setOrientation 90 0 0 \, /sculpture
 setParent step3 \, /step3 setEnabled sculpture 0;
-#X connect 1 0 13 0;
+#X msg 136 465 createNode instructions ModelNode \, /instructions setModelFromFile
+\$1/main/instructions.ac \, /instructions setOrientation 90 0 0 \,
+/instructions setParent step4 \, /step4 setEnabled instructions 0;
+#X connect 1 0 18 0;
 #X connect 2 0 1 1;
 #X connect 3 0 1 0;
 #X connect 3 1 2 0;
 #X connect 4 0 3 0;
 #X connect 5 0 0 0;
 #X connect 6 0 0 0;
-#X connect 13 0 17 0;
-#X connect 13 1 16 0;
-#X connect 13 2 19 0;
-#X connect 13 3 15 0;
-#X connect 13 4 18 0;
-#X connect 13 5 14 0;
-#X connect 13 6 5 0;
-#X connect 13 7 6 0;
+#X connect 13 0 0 0;
 #X connect 14 0 0 0;
 #X connect 15 0 0 0;
 #X connect 16 0 0 0;
 #X connect 17 0 0 0;
-#X connect 18 0 0 0;
-#X connect 19 0 0 0;
+#X connect 18 0 16 0;
+#X connect 18 1 15 0;
+#X connect 18 2 21 0;
+#X connect 18 3 20 0;
+#X connect 18 4 14 0;
+#X connect 18 5 17 0;
+#X connect 18 6 13 0;
+#X connect 18 7 5 0;
+#X connect 18 8 6 0;
+#X connect 21 0 0 0;
 #X restore 641 211 pd models;
 #N canvas 0 22 703 577 assets 0;
 #X text 21 25 Project Path must be applied here only once;
@@ -67,7 +72,7 @@ setParent step3 \, /step3 setEnabled sculpture 0;
 #X obj 22 167 shell;
 #X msg 22 147 hostname -s;
 #X obj 22 187 symbol;
-#X obj 22 127 loadbang;
+#X obj 22 117 loadbang;
 #X obj 103 137 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 169 227 p;
@@ -82,7 +87,6 @@ setParent step3 \, /step3 setEnabled sculpture 0;
 #X connect 2 0 4 0;
 #X connect 3 0 2 0;
 #X connect 4 0 8 0;
-#X connect 5 0 3 0;
 #X connect 6 0 3 0;
 #X connect 8 0 7 0;
 #X connect 10 0 1 0;
@@ -398,7 +402,6 @@ to rgba in the FIELDS \, and set the TYPE to F F F U;
 #X connect 71 0 67 0;
 #X restore 641 141 pd pointcloud control;
 #X obj 18 28 widget-spinConnect \$0;
-#X obj 18 8 loadbang1 DD;
 #X obj 107 188 bng 20 250 50 0 load_scene1 empty STEP_1 25 10 0 17
 -260097 -1 -1;
 #X obj 107 158 bng 20 250 50 0 load_main-scene empty load_main-scene
@@ -416,24 +419,24 @@ to rgba in the FIELDS \, and set the TYPE to F F F U;
 #X text 297 159 <--setup whole scene;
 #X text 207 219 <--cube appears + letters disappear;
 #X text 207 309 <--???;
-#N canvas 419 288 892 486 step_logic 1;
+#N canvas 419 288 892 486 step_logic 0;
 #X obj 55 25 r load_scene1;
 #X obj 95 95 r load_scene2;
 #X obj 145 165 r load_scene3;
-#X obj 185 235 r load_scene4;
+#X obj 185 245 r load_scene4;
 #X obj 55 359 s \$0-to-SPIN-TCP;
 #X msg 55 46 /step1 setEnabled bigwall 0 \, /step1 setEnabled letters
-1 \, /step2 setAll 0 \, /step3 setAll 0 \, /step4 setAll 0;
-#X msg 95 116 /step1 setAll 0 \, /step2 setEnabled cube 1 \, /step3
-setAll 0 \, /step4 setAll 0;
-#X msg 145 186 /step1 setAll 0 \, /step2 setAll 0 \, /step3 setEnabled
-statue 1 \, /step4 setAll 0;
-#X msg 185 256 /step1 setAll 0 \, /step2 setAll 0 \, /step3 setAll
-0 \, /step4 setAll 1;
+0 \, /step2 setAll 0 \, /step3 setAll 0 \, /step4 setAll 0;
+#X msg 145 186 /step1 setAll 0 \, /step2 setAll 1 \, /step3 setAll
+1 \, /step4 setAll 0;
+#X msg 185 266 /step1 setAll 0 \, /step2 setAll 0 \, /step3 setAll
+1 \, /step4 setAll 1;
+#X msg 95 116 /step1 setAll 0 \, /step2 setAll 1 \, /step3 setAll 0
+\, /step4 setAll 0;
 #X connect 0 0 5 0;
-#X connect 1 0 6 0;
-#X connect 2 0 7 0;
-#X connect 3 0 8 0;
+#X connect 1 0 8 0;
+#X connect 2 0 6 0;
+#X connect 3 0 7 0;
 #X connect 5 0 4 0;
 #X connect 6 0 4 0;
 #X connect 7 0 4 0;
@@ -513,8 +516,8 @@ shm:///tmp/posture101-readsm \, /\$1-avatar setOrientation 0 90 90
 #X connect 17 0 10 0;
 #X connect 17 0 13 0;
 #X connect 18 0 10 0;
-#X restore 704 323 pd user1;
-#X obj 761 313 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X restore 684 343 pd user1;
+#X obj 741 333 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 741 353 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
@@ -621,19 +624,19 @@ setCubeOffset 0 0 1.5 \, /\$2 setCubeSize 200 200 5 \, /\$2 setTranslation
 #X connect 29 0 27 0;
 #X connect 30 0 27 1;
 #X connect 35 0 32 0;
-#X connect 35 0 34 0;
 #X connect 36 0 31 0;
-#X connect 36 0 33 0;
 #X connect 37 0 31 0;
-#X connect 37 0 33 0;
 #X connect 38 0 32 0;
-#X connect 38 0 34 0;
 #X connect 39 0 2 0;
 #X restore 641 191 pd users_setup;
 #X obj 107 128 bng 20 250 50 0 setup_users empty setup_users 25 10
 0 17 -260097 -1 -1;
-#X connect 6 0 5 0;
-#X connect 22 0 21 0;
-#X connect 23 0 20 0;
-#X connect 24 1 8 0;
-#X connect 24 2 26 0;
+#X obj 18 8 loadbang1 teleportation;
+#X text 707 119 <--project path and users name;
+#X text 682 304 These are for backup NOT USED;
+#X connect 5 0 23 0;
+#X connect 21 0 20 0;
+#X connect 22 0 19 0;
+#X connect 23 1 7 0;
+#X connect 23 2 25 0;
+#X connect 26 0 5 0;
