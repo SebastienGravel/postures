@@ -17,9 +17,12 @@ apps: panoViewer.app
 
 
 
-DEPS = cppintrospection-3.0 spin-0.3 openscenegraph
-CPPFLAGS += -g -I/usr/include/boost $(shell python-config --cflags) `pkg-config --cflags $(DEPS)`
-LDFLAGS += -llo -lboost_python $(shell python-config --libs) `pkg-config --libs $(DEPS)`
+DEPS = liblo cppintrospection-3.0 spinframework-0.3 openscenegraph
+CPPFLAGS += -g `pkg-config --cflags $(DEPS)`
+LDFLAGS += `pkg-config --libs $(DEPS)`
+
+#CPPFLAGS += -g -I/usr/include/boost $(shell python-config --cflags) `pkg-config --cflags $(DEPS)`
+#LDFLAGS += -llo -lboost_python $(shell python-config --libs) `pkg-config --libs $(DEPS)`
 
 ifeq ($(shell uname -s),Darwin)
   #export MACOSX_DEPLOYMENT_TARGET=10.5

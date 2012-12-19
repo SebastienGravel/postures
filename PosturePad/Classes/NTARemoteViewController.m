@@ -57,12 +57,10 @@ UIActionSheet *nodesListSheet, *setNorthSheet;
 	postureName = [[NSString alloc] init];
     serverName = @"default";
 	
-	
 	// SETUP MOTION MANAGER:
 	
 	motionManager = [[CMMotionManager alloc] init];
 	locationManager.delegate = self;
-	
 	
 	if (motionManager.deviceMotionAvailable)
 	{
@@ -75,8 +73,6 @@ UIActionSheet *nodesListSheet, *setNorthSheet;
 		motionManager.deviceMotionUpdateInterval = updateRate;
 		
 		NSLog(@"motionManager rate: %f sec", motionManager.deviceMotionUpdateInterval);
-		
-		
 	}
 	else if ([CLLocationManager headingAvailable])
 	{
@@ -94,6 +90,41 @@ UIActionSheet *nodesListSheet, *setNorthSheet;
 	maxAccel = 0;
 	userHolding = YES;
 	[self checkAccumAccel];
+    
+    // start audio level monitor:
+    	NSURL *audioUrl = [NSURL fileURLWithPath:@"/dev/null"];
+	NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
+							  [NSNumber numberWithFloat: 44100.0],                 AVSampleRateKey,
+							  [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
+							  [NSNumber numberWithInt: 1],                         AVNumberOfChannelsKey,
+							  [NSNumber numberWithInt: AVAudioQualityMax],         AVEncoderAudioQualityKey,
+							  nil];
+    
+	NSError *error;
+	audioMonitor = [[AVAudioRecorder alloc] initWithURL:audioUrl settings:settings error:&error];
+	if (audioMonitor)
+    {
+		[audioMonitor prepareToRecord];
+		audioMonitor.meteringEnabled = YES;
+		[audioMonitor record];
+		audioLevelTimer = [NSTimer scheduledTimerWithTimeInterval:0.03 target:self selector: @selector(audioLevelCallback:) userInfo:nil repeats:YES];
+	} else
+		NSLog(@"Audio monitor error: %@", [error localizedDescription]);
+    lowpassAlpha = 0;
+
+    [VUMeterCover setFrame:VUMeter.frame];
+
+    /*
+    NSMutableArray *VUMeterImages = [[NSMutableArray alloc] initWithCapacity:51];
+    for (int i=0; i<=50; i++)
+    {
+        [VUMeterImages addObject:[UIImage imageNamed:[NSString stringWithFormat:@"%02d.png", i]]];
+    }
+    VUMeter.animationImages = VUMeterImages;
+    VUMeter.animationDuration = 1.75;
+    VUMeter.animationRepeatCount = 0;
+    [VUMeter startAnimating];
+    */
     
 }
 /*
@@ -424,12 +455,12 @@ UIActionSheet *nodesListSheet, *setNorthSheet;
 	{
 		UITouch *touch = [[touches allObjects] lastObject];
 		CGPoint fPosition = [touch locationInView:self.view];
-		
-		//float posY = ((-240+fPosition.y)/-2.40)/100;
-		currentTouchY = ((-237.5+fPosition.y+5.5)/-2.375)/100; // weird coords from touch; range=[-5.5,469.5]
-		currentSpeed = pow(currentTouchY,3) * [defaults floatForKey:@"Speed"];
-
-
+        
+        // normalize currentTouchY to range [-1,1]:
+        float height = [[UIScreen mainScreen] bounds].size.height;
+        // note the offset of 5.5px so that we get to the top and bottom of the screen evenly
+        currentTouchY  = (height - 2.0*(fPosition.y+5.5)) / (height);
+        currentSpeed = pow(currentTouchY,3) * [defaults floatForKey:@"Speed"];
         
 		//NSLog(@"fPosition=%f, posY=%f, currentSpeed=%f, speedScaleValue=%f", fPosition.y, currentTouchY, currentSpeed, speedScaleValue);
 	}
@@ -871,7 +902,14 @@ int info_handler(const char *path, const char *types, lo_arg **argv, int argc, v
 	if (self.ignoreInfoMessages == 0)
 		[self performSelector:@selector(sendData) withObject:nil afterDelay:updateRate];
      */
-	
+    if (udpAddr && (lowpassAlpha>0))
+	{
+        lo_send(udpAddr, [[NSString stringWithFormat:@"/SPIN/%@/%@", serverName, postureName] UTF8String], "sf",
+					"audioLevel",
+					lowpassResults
+					);
+    }
+    
 }
 
 
@@ -932,6 +970,46 @@ int info_handler(const char *path, const char *types, lo_arg **argv, int argc, v
 	[zeroAttitude release];
 	zeroAttitude = [motionManager.deviceMotion.attitude copy];
 	//[[NSUserDefaults standardUserDefaults] setObject:zeroAttitude forKey:@"zeroAttitude"];
+}
+
+- (void)audioLevelCallback:(NSTimer *)timer
+{
+    if (lowpassAlpha > 0)
+    {
+        [audioMonitor updateMeters];
+
+        //double ALPHA = VUAlphaSlider.value;
+        double averagePowerForChannel = pow(10, (0.05 * [audioMonitor averagePowerForChannel:0]));
+        lowpassResults = lowpassAlpha * averagePowerForChannel + (1.0 - lowpassAlpha) * lowpassResults;
+        
+        [VUMeterCover setFrame:CGRectMake(VUMeter.frame.origin.x, VUMeter.frame.origin.y, VUMeter.frame.size.width, (1-lowpassResults)*VUMeter.frame.size.height)];
+    }
+    
+    /*
+	if (lowpassResults < 0.95)
+		NSLog(@"Mic blow detected");
+    */
+}
+
+- (IBAction)lowpassSwitch:(id)sender
+{
+    if ([lowpassSwitchButton imageForState:UIControlStateNormal] == [UIImage imageNamed:@"lowpassOff.png"])
+    {
+        [lowpassSwitchButton setImage:[UIImage imageNamed:@"lowpassMid.png"] forState:UIControlStateNormal];
+        lowpassAlpha = 0.3;
+    }
+    else if ([lowpassSwitchButton imageForState:UIControlStateNormal] == [UIImage imageNamed:@"lowpassMid.png"])
+    {
+        [lowpassSwitchButton setImage:[UIImage imageNamed:@"lowpassOn.png"] forState:UIControlStateNormal];
+        lowpassAlpha = 0.05;
+    }
+    else
+    {
+        [lowpassSwitchButton setImage:[UIImage imageNamed:@"lowpassOff.png"] forState:UIControlStateNormal];
+        lowpassAlpha = 0;
+        lowpassResults = 0;
+        [VUMeterCover setFrame:CGRectMake(VUMeter.frame.origin.x, VUMeter.frame.origin.y, VUMeter.frame.size.width, (1-lowpassResults)*VUMeter.frame.size.height)];
+    }
 }
 
 @end
