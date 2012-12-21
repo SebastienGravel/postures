@@ -1,4 +1,4 @@
-#N canvas 527 102 903 790 10;
+#N canvas 521 117 903 790 10;
 #X text 385 11 This example shows how to load a "point cloud" \, which
 can be rendered with several different draw modes. The default is POINTS
 \, which are the lightest. Be careful of using LIGHTPOINTS \, BOXES
@@ -428,7 +428,7 @@ to rgba in the FIELDS \, and set the TYPE to F F F U;
 #X text 207 339 <--house and doors appear;
 #X text 297 119 <--setup whole scene;
 #X text 207 279 <--cube appears + letters disappear;
-#N canvas 400 681 892 486 step_logic 1;
+#N canvas 394 696 892 486 step_logic 1;
 #X obj 55 25 r load_scene1;
 #X obj 95 95 r load_scene2;
 #X obj 145 165 r load_scene3;
@@ -478,7 +478,7 @@ setAll 0;
 #X connect 18 0 4 0;
 #X restore 641 231 pd step_logic;
 #X text 207 249 <--the bigwall disappears;
-#N canvas 860 245 580 592 user2 0;
+#N canvas 1118 291 580 592 user2 0;
 #X text 8 12 On the sender machine (the one with the Kinect):;
 #X text 57 55 ./posture-capture -v -s /tmp/pcd_to_read;
 #X text 48 122 Then send it;
@@ -501,21 +501,28 @@ IP>;
 #X obj 160 482 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 75 492 anyreg user2;
-#X msg 42 355 createNode \$1-avatar PointCloud \, /\$1-avatar setURI
-shm:///tmp/posture102-readsm \, /\$1-avatar setOrientation 0 90 90
-\, /\$1-avatar setTranslation 0.05 0 -1.3 \, /\$1-avatar setParent
-\$1 \, /\$1-avatar setPointSize 2 \, /\$1 setTranslation 0 5 0;
 #X msg 75 514 /\$1-avatar setURI shm:///tmp/posture102-readsm;
+#X msg 245 473 /posture102-avatar setOrientation 0 90 0;
+#X msg 42 355 createNode \$1-avatar PointCloud \, /\$1-avatar setURI
+shm:///tmp/posture102-readsm \, /\$1 setOrientation 0 0 0 \, /\$1-avatar
+setOrientation 0 90 0 \, /\$1-avatar setTranslation 0.05 0 -1.3 \,
+/\$1-avatar setParent \$1 \, /\$1-avatar setPointSize 2 \, /\$1 setTranslation
+0 -1 0 \, /\$1 setComputationMode 1;
+#X floatatom 428 394 5 0 0 0 - - -;
+#X msg 245 442 /posture101-avatar setOrientation 0 90 \$1;
 #X connect 11 0 13 0;
 #X connect 12 0 13 0;
-#X connect 13 0 17 0;
+#X connect 13 0 19 0;
 #X connect 15 0 16 0;
-#X connect 16 0 18 0;
+#X connect 16 0 17 0;
 #X connect 17 0 10 0;
-#X connect 17 0 14 0;
 #X connect 18 0 10 0;
+#X connect 19 0 10 0;
+#X connect 19 0 14 0;
+#X connect 20 0 21 0;
+#X connect 21 0 10 0;
 #X restore 684 363 pd user2;
-#N canvas 755 146 580 592 user1 0;
+#N canvas 519 243 580 592 user1 0;
 #X text 8 12 On the sender machine (the one with the Kinect):;
 #X text 57 55 ./posture-capture -v -s /tmp/pcd_to_read;
 #X text 48 122 Then send it;
@@ -538,19 +545,26 @@ IP>;
 #X obj 65 482 anyreg user1;
 #X obj 150 472 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg 42 355 createNode \$1-avatar PointCloud \, /\$1-avatar setURI
-shm:///tmp/posture101-readsm \, /\$1-avatar setOrientation 0 90 90
-\, /\$1-avatar setTranslation 0.05 0 -1.3 \, /\$1-avatar setParent
-\$1 \, /\$1-avatar setPointSize 2 \, /\$1 setTranslation 0 -5 0;
 #X msg 65 504 /\$1-avatar setURI shm:///tmp/posture101-readsm;
+#X msg 42 355 createNode \$1-avatar PointCloud \, /\$1-avatar setURI
+shm:///tmp/posture101-readsm \, /\$1 setOrientation 0 0 0 \, /\$1-avatar
+setOrientation 0 90 90 \, /\$1-avatar setTranslation 0.05 0 -1.3 \,
+/\$1-avatar setParent \$1 \, /\$1-avatar setPointSize 2 \, /\$1 setTranslation
+0 1 0 \, /\$1 setComputationMode 1;
+#X msg 255 483 /posture102-avatar setOrientation 0 90 0;
+#X floatatom 418 384 5 0 0 0 - - -;
+#X msg 255 452 /posture101-avatar setOrientation 0 90 \$1;
 #X connect 11 0 14 0;
 #X connect 12 0 14 0;
-#X connect 14 0 17 0;
-#X connect 15 0 18 0;
+#X connect 14 0 18 0;
+#X connect 15 0 17 0;
 #X connect 16 0 15 0;
 #X connect 17 0 10 0;
-#X connect 17 0 13 0;
 #X connect 18 0 10 0;
+#X connect 18 0 13 0;
+#X connect 19 0 10 0;
+#X connect 20 0 21 0;
+#X connect 21 0 10 0;
 #X restore 684 343 pd user1;
 #X obj 741 333 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
