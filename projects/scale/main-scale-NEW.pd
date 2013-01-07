@@ -1,73 +1,6 @@
 #N canvas 288 54 1053 777 10;
 #X obj 18 18 widget-spinConnect \$0;
-#X obj 426 662 nbx 4 14 -1e+37 1e+37 0 0 empty empty scale 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 402 580 nbx 4 14 -1e+37 1e+37 0 0 empty empty pitch 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 425 601 hotpack3;
-#X obj 452 580 nbx 4 14 -1e+37 1e+37 0 0 empty empty roll 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 502 580 nbx 4 14 -1e+37 1e+37 0 0 empty empty yaw 0 -8 1 11
--262144 -1 -1 0 256;
-#X msg 426 682 /soleil setScale \$1 \$1 \$1;
-#X obj 119 195 bng 20 250 50 0 empty empty empty 17 7 0 10 -258113
--1 -1;
-#X msg 425 622 /terre setOrientation \$1 \$2 \$3;
-#X obj 717 608 nbx 5 14 -1e+37 1e+37 0 0 empty empty X 0 -8 1 11 -262144
--1 -1 0 256;
-#X obj 717 632 hotpack3;
-#X obj 774 608 nbx 5 14 -1e+37 1e+37 0 0 empty empty Y 0 -8 1 11 -262144
--1 -1 0 256;
-#X obj 830 608 nbx 5 14 -1e+37 1e+37 0 0 empty empty Z 0 -8 1 11 -262144
--1 -1 0 256;
-#X text 888 607 MOVE the viewer:;
-#X text 783 632 (has to match hostname);
-#X obj 743 568 unpack f f f;
-#N canvas 0 22 648 620 rotate 0;
-#X obj 401 314 nbx 4 14 -1e+37 1e+37 0 0 empty empty X 0 -8 1 11 -262144
--1 -1 0 256;
-#X obj 424 335 hotpack3;
-#X obj 451 314 nbx 4 14 -1e+37 1e+37 0 0 empty empty Y 0 -8 1 11 -262144
--1 -1 0 256;
-#X obj 501 314 nbx 4 14 -1e+37 1e+37 0 0 empty empty Z 0 -8 1 11 -262144
--1 -1 0 256;
-#X obj 401 218 line;
-#X obj 400 249 cos;
-#X obj 437 252 sin;
-#X obj 442 275 * 1;
-#X obj 405 274 * 1;
-#X floatatom 486 245 5 0 0 0 - - -;
-#X msg 424 354 /terre setTranslation \$1 \$2 \$3;
-#X msg 405 177 0 \, 6.28 10000;
-#X obj 405 140 metro 10000;
-#X obj 406 120 tgl 15 0 empty empty empty 17 7 0 10 -258113 -1 -1 0
-1;
-#X obj 427 158 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 432 453 outlet;
-#X connect 0 0 1 0;
-#X connect 1 0 10 0;
-#X connect 2 0 1 1;
-#X connect 3 0 1 2;
-#X connect 4 0 5 0;
-#X connect 4 0 6 0;
-#X connect 5 0 8 0;
-#X connect 6 0 7 0;
-#X connect 7 0 2 0;
-#X connect 8 0 0 0;
-#X connect 9 0 7 1;
-#X connect 9 0 8 1;
-#X connect 10 0 15 0;
-#X connect 11 0 4 0;
-#X connect 12 0 11 0;
-#X connect 12 0 14 0;
-#X connect 13 0 12 0;
-#X restore 19 402 pd rotate;
-#X text 16 382 TODO:;
-#X obj 403 524 nbx 4 14 -1e+37 1e+37 0 0 empty empty scale 0 -8 1 11
--262144 -1 -1 0 256;
-#X msg 403 544 /solar_system setScale \$1 \$1 \$1;
-#X obj 459 205 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 189 161 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #N canvas 702 280 487 526 iphone_setup 0;
 #X obj 49 180 pack s s;
@@ -109,15 +42,12 @@ TextNode;
 #X connect 14 0 8 0;
 #X connect 14 1 9 0;
 #X connect 14 2 13 0;
-#X restore 335 251 pd iphone_setup;
-#X obj 84 595 s \$0-to-SPIN-TCP;
-#X obj 584 98 t b;
-#X obj 312 293 delay 12000;
-#X obj 646 230 cnv 15 120 60 empty empty empty 20 12 0 14 -258113 -66577
+#X restore 100 201 pd iphone_setup;
+#X obj 430 98 cnv 15 120 60 empty empty empty 20 12 0 14 -4034 -66577
 0;
-#X obj 121 406 cnv 15 100 60 empty empty empty 20 12 0 14 -258113 -66577
+#X obj 558 98 cnv 15 100 60 empty empty empty 20 12 0 14 -4034 -66577
 0;
-#N canvas 265 126 1425 846 MENU_and_HUD 0;
+#N canvas 15 54 1425 846 MENU_and_HUD 0;
 #X obj -7 71 s \$0-to-SPIN-TCP;
 #X obj 65 255 hradio 15 1 0 9 empty empty empty 0 -8 0 10 -260097 -1
 -1 0;
@@ -4048,8 +3978,8 @@ setEnabled start_world0 0;
 #X restore 111 428 pd saturne_route;
 #X obj -5 -78 r reset_limits_start;
 #X obj 32 -9 r reset_limits_space;
-#N canvas 242 399 924 506 reset 0;
-#X obj 157 456 s \$0-to-SPIN-TCP;
+#N canvas 265 120 916 719 reset 0;
+#X obj 267 486 s \$0-to-SPIN-TCP;
 #N canvas 440 329 1000 418 menu_start 0;
 #X obj 189 -237 inlet;
 #X obj 100 90 outlet;
@@ -4088,43 +4018,38 @@ setEnabled start_world0 0;
 #X connect 11 10 10 0;
 #X connect 12 0 1 0;
 #X connect 14 0 13 0;
-#X restore 339 274 pd menu_start;
-#X obj 324 69 s reset;
-#X obj 148 7 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X restore 355 543 pd menu_start;
+#X obj 348 34 s reset;
+#X obj 361 1 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 213 -9 inlet;
-#X obj 491 456 outlet;
-#X msg 155 327 /menu setEnabled \$1;
-#X msg 206 288 bang;
-#X msg 155 288 bang;
-#X obj 118 289 tgl 25 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 307 295 outlet;
+#X msg 240 624 /menu setEnabled \$1;
+#X msg 291 585 bang;
+#X msg 240 585 bang;
+#X obj 203 586 tgl 25 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X msg 155 307 0;
-#X msg 206 307 1;
-#X obj 155 347 print ***********GOT_IT_GOT_IT;
-#X obj 339 319 list trim;
-#X obj 364 342 print;
-#X obj 339 296 list prepend /menu;
-#X msg 404 186 0;
-#X obj 213 28 t b b b b b b b b b;
-#X msg 404 208 /hotspot_start setScale \$1 \$1 \$1;
-#X obj 437 229 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X msg 437 186 0.1;
-#X msg 437 247 /hotspot_terre setRenderBin 9999;
-#X msg 404 128 /pointer_start setScale 1 1 1 \, /pointer_terre setScale
+#X msg 240 604 0;
+#X msg 291 604 1;
+#X obj 240 644 print ***********GOT_IT_GOT_IT;
+#X obj 355 588 list trim;
+#X obj 355 565 list prepend /menu;
+#X msg 280 406 0;
+#X msg 280 427 /hotspot_start setScale \$1 \$1 \$1;
+#X msg 676 541 0.1;
+#X msg 280 347 /pointer_start setScale 1 1 1 \, /pointer_terre setScale
 0 0 0 \, /pointer_jupiter setScale 0 0 0 \, /pointer_pluton setScale
 0 0 0 \, /pointer_saturne setScale 0 0 0 \, /pointer_mars setScale
 0 0 0;
-#X obj 226 51 delay 1000;
-#X obj 694 211 r \$0-from-SPIN;
-#X obj 694 324 route reset;
-#X obj 694 377 s reset;
-#X obj 694 302 route event;
-#X obj 694 346 t b;
-#X msg 404 104 /menu setTranslation 0 0.1 -0.02 \, /menu setScale 0.4
+#X obj 226 531 delay 1000;
+#X obj 737 336 r \$0-from-SPIN;
+#X obj 737 449 route reset;
+#X obj 737 502 s reset;
+#X obj 737 427 route event;
+#X obj 737 471 t b;
+#X msg 294 327 /menu setTranslation 0 0.1 -0.02 \, /menu setScale 0.4
 0.4 0.4;
-#X msg 78 213 /start_group setEnabled start_world 0 \, /start_group
+#X msg 267 453 /start_group setEnabled start_world 0 \, /start_group
 setEnabled start_world0 1;
 #N canvas 0 22 729 740 orbits 0;
 #X obj 74 537 s \$0-to-SPIN-TCP;
@@ -4178,17 +4103,17 @@ setEnabled start_world0 1;
 #X connect 14 0 0 0;
 #X connect 15 0 0 0;
 #X connect 16 0 0 0;
-#X restore 522 358 pd orbits;
-#X obj 552 307 delay 950;
-#X obj 491 383 delay 960;
-#X msg 587 405 0;
-#X msg 554 405 1;
-#X obj 554 383 delay 1000;
-#X obj 554 456 outlet;
-#X obj 618 456 outlet;
-#X obj 491 407 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+#X restore 322 217 pd orbits;
+#X obj 352 166 delay 950;
+#X obj 307 242 delay 960;
+#X msg 403 264 0;
+#X msg 370 264 1;
+#X obj 370 242 delay 1000;
+#X obj 370 295 outlet;
+#X obj 434 295 outlet;
+#X obj 307 266 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
 -262144 -1 -1 0 256;
-#N canvas 641 268 825 588 SOUND_back-forest-start 0;
+#N canvas 615 268 825 588 SOUND_back-forest-start 0;
 #X obj 233 478 dac~;
 #X obj 265 220 symbol;
 #X msg 265 240 open \$1;
@@ -4250,9 +4175,9 @@ setEnabled start_world0 1;
 #X connect 24 0 1 0;
 #X connect 25 0 26 0;
 #X connect 26 0 1 0;
-#X restore 235 128 pd SOUND_back-forest-start;
-#X obj 28 123 r reset;
-#X obj 507 286 t b b b b b b;
+#X restore 253 508 pd SOUND_back-forest-start;
+#X obj 83 597 r reset;
+#X obj 307 145 t b b b b b b;
 #N canvas 423 25 738 740 planets_rotation 0;
 #X obj 74 537 s \$0-to-SPIN-TCP;
 #X msg 504 543 /venus setSpin 0 0 -50;
@@ -4302,91 +4227,104 @@ setEnabled start_world0 1;
 #X connect 13 0 0 0;
 #X connect 14 0 0 0;
 #X connect 15 0 0 0;
-#X restore 537 333 pd planets_rotation;
-#X msg 275 421 /hotspot_terre setScale \$1 \$1 \$1;
-#X msg 275 402 0;
-#X obj 226 72 t b b b;
-#X obj 275 383 r reset;
-#X obj 92 83 s activateMenu;
-#X msg 363 24 /\$1 setTranslation \$1 \$2 \$3;
-#X obj 403 60 anyreg g_hostname;
-#X msg 403 82 /\$1-reporter setReporting CONTAINMENT 0;
-#X obj 28 147 anyreg g_hostname;
-#X msg 28 172 /\$1 setCubeOffset -32 -39 0.4 \, /\$1 setTranslation
+#X restore 337 192 pd planets_rotation;
+#X msg 636 68 0;
+#X obj 226 552 t b b b;
+#X obj 609 28 r reset;
+#X obj 334 54 s activateMenu;
+#X obj 321 79 anyreg g_hostname;
+#X msg 321 99 /\$1-reporter setReporting CONTAINMENT 0;
+#X obj 83 617 anyreg g_hostname;
+#X msg 213 667 /\$1 setCubeOffset -32 -39 0.4 \, /\$1 setTranslation
 -32 -39 0.4 \, /\$1 setCubeSize 0 0 1e-06;
-#X obj 799 239 anyreg g_hostname;
-#X obj 694 233 t a b;
-#X obj 694 281 OSCparse /hostname;
-#X obj 386 253 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 842 364 anyreg g_hostname;
+#X obj 737 358 t a b;
+#X obj 737 406 OSCparse /hostname;
+#X obj 444 533 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 786 342 p;
-#X obj 799 259 makefilename /%s;
-#X text 744 377 <--Already in MENU_and_HUD;
-#X connect 1 0 15 0;
-#X connect 3 0 17 0;
-#X connect 4 0 17 0;
+#X obj 829 467 p;
+#X obj 842 384 makefilename /%s;
+#X text 787 502 <--Already in MENU_and_HUD;
+#X obj 380 612 p;
+#X obj 213 11 t b b b b b b b b b b b;
+#X obj 321 119 s \$0-to-SPIN-TCP;
+#X obj 213 700 s \$0-to-SPIN-TCP;
+#X obj 609 128 s \$0-to-SPIN-TCP;
+#X msg 676 561 /hotspot_terre setRenderBin 9999 \, /hotspot_start setScale
+\$1 \$1 \$1;
+#X obj 676 594 s \$0-to-SPIN-TCP;
+#X msg 609 108 refreshSubscribers;
+#X obj 609 48 t b b;
+#X obj 661 38 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 636 88 /hotspot_terre setScale \$1 \$1 \$1;
+#X connect 1 0 14 0;
+#X connect 3 0 56 0;
+#X connect 4 0 56 0;
 #X connect 6 0 12 0;
-#X connect 6 0 0 0;
+#X connect 6 0 58 0;
 #X connect 7 0 11 0;
 #X connect 8 0 10 0;
 #X connect 9 0 6 0;
 #X connect 10 0 6 0;
 #X connect 11 0 6 0;
-#X connect 13 0 14 0;
-#X connect 13 0 0 0;
-#X connect 15 0 13 0;
-#X connect 16 0 18 0;
-#X connect 17 0 53 0;
-#X connect 17 1 23 0;
-#X connect 17 2 8 0;
-#X connect 17 3 40 0;
-#X connect 17 4 30 0;
-#X connect 17 5 22 0;
-#X connect 17 6 29 0;
-#X connect 17 7 42 0;
-#X connect 17 8 2 0;
-#X connect 17 8 48 0;
-#X connect 17 8 50 0;
+#X connect 13 0 55 0;
+#X connect 13 0 58 0;
+#X connect 14 0 13 0;
+#X connect 15 0 16 0;
+#X connect 16 0 0 0;
+#X connect 17 0 60 0;
 #X connect 18 0 0 0;
-#X connect 19 0 21 0;
-#X connect 20 0 18 0;
-#X connect 20 0 19 0;
-#X connect 21 0 0 0;
-#X connect 22 0 0 0;
-#X connect 23 0 46 0;
-#X connect 24 0 55 0;
-#X connect 25 0 28 0;
-#X connect 27 0 25 0;
-#X connect 29 0 0 0;
-#X connect 30 0 0 0;
-#X connect 32 0 38 0;
-#X connect 33 0 39 0;
-#X connect 34 0 37 0;
-#X connect 35 0 37 0;
-#X connect 36 0 35 0;
-#X connect 39 0 5 0;
-#X connect 41 0 52 0;
-#X connect 42 0 33 0;
-#X connect 42 1 31 0;
-#X connect 42 3 32 0;
-#X connect 42 4 36 0;
-#X connect 42 5 34 0;
-#X connect 44 0 0 0;
-#X connect 45 0 44 0;
-#X connect 46 0 7 0;
-#X connect 46 1 1 0;
-#X connect 46 2 53 0;
-#X connect 47 0 45 0;
-#X connect 50 0 51 0;
-#X connect 51 0 0 0;
-#X connect 52 0 53 0;
-#X connect 53 0 0 0;
-#X connect 54 0 59 0;
-#X connect 55 0 56 0;
-#X connect 55 1 54 0;
-#X connect 56 0 27 0;
-#X connect 57 0 1 0;
-#X connect 59 0 56 1;
+#X connect 19 0 41 0;
+#X connect 20 0 49 0;
+#X connect 21 0 24 0;
+#X connect 23 0 21 0;
+#X connect 25 0 0 0;
+#X connect 26 0 0 0;
+#X connect 28 0 34 0;
+#X connect 29 0 35 0;
+#X connect 30 0 33 0;
+#X connect 31 0 33 0;
+#X connect 32 0 31 0;
+#X connect 35 0 5 0;
+#X connect 37 0 46 0;
+#X connect 38 0 29 0;
+#X connect 38 1 27 0;
+#X connect 38 3 28 0;
+#X connect 38 4 32 0;
+#X connect 38 5 30 0;
+#X connect 40 0 65 0;
+#X connect 41 0 7 0;
+#X connect 41 1 1 0;
+#X connect 41 2 47 0;
+#X connect 42 0 63 0;
+#X connect 44 0 45 0;
+#X connect 45 0 57 0;
+#X connect 46 0 47 0;
+#X connect 47 0 58 0;
+#X connect 48 0 53 0;
+#X connect 49 0 50 0;
+#X connect 49 1 48 0;
+#X connect 50 0 23 0;
+#X connect 51 0 1 0;
+#X connect 53 0 50 1;
+#X connect 56 0 47 0;
+#X connect 56 1 19 0;
+#X connect 56 2 8 0;
+#X connect 56 3 36 0;
+#X connect 56 4 26 0;
+#X connect 56 5 18 0;
+#X connect 56 6 25 0;
+#X connect 56 7 38 0;
+#X connect 56 8 44 0;
+#X connect 56 9 43 0;
+#X connect 56 10 2 0;
+#X connect 60 0 61 0;
+#X connect 62 0 59 0;
+#X connect 63 0 62 0;
+#X connect 63 1 40 0;
+#X connect 64 0 63 0;
+#X connect 65 0 59 0;
 #X restore 190 221 pd reset;
 #N canvas 483 87 710 422 start_route 0;
 #X obj -389 42 inlet;
@@ -7050,7 +6988,7 @@ menuOffset \, /menu setTranslation 0 0.1 -0.02 \, /menu setBillboard
 #X connect 165 0 164 0;
 #X connect 166 0 154 0;
 #X connect 167 0 0 0;
-#X restore 658 251 pd MENU_and_HUD;
+#X restore 442 119 pd MENU_and_HUD;
 #N canvas 50 122 937 735 hotspot 0;
 #X obj 137 674 s \$0-to-SPIN-TCP;
 #X obj 64 33 shell;
@@ -7156,766 +7094,20 @@ CONTAINMENT 0;
 #X connect 29 0 0 0;
 #X connect 30 0 0 0;
 #X connect 31 0 0 0;
-#X restore 390 215 pd hotspot;
-#X obj 392 184 s test;
-#X msg 312 354 /solar_system setTranslation 0 0 0 \, /solar_system
-setScale 10000 10000 10000;
-#X msg 81 290 createNode solar_system GroupNode;
-#N canvas 50 154 427 481 texts 0;
-#X obj 140 46 inlet;
-#X obj 159 432 outlet;
-#N canvas 437 44 863 595 jete 0;
-#X obj 140 46 inlet;
-#X obj 168 527 outlet;
-#X obj 264 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 314 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 364 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 414 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 317 310 hotpack7;
-#X msg 317 330 /jete setBgColor \$1 \$2 \$3 \$4;
-#X obj 64 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11 -262144
--1 -1 0 256;
-#X obj 114 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 164 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 214 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 117 438 hotpack7;
-#X msg 117 458 /jete setColor \$1 \$2 \$3 \$4;
-#X obj 498 351 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
--1 -1 0;
-#X text 518 351 no background;
-#X text 518 366 filled;
-#X text 518 382 wireframe;
-#X text 518 397 all;
-#X msg 498 414 /jete setBackground \$1;
-#X obj 144 87 t b b b b b;
-#X msg 125 316 0;
-#X msg 164 316 1;
-#X msg 242 151 createNode jete TextNode \, /jete setTextValue Jete
-\, /jete setTranslation -254 293 16 \, /jete setScale 50 50 50 \, /jete
-setBillboard 2 \, /jete setParent jupiter_group;
-#X obj 328 97 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X restore 120 171 pd hotspot;
+#X obj 92 307 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X connect 0 0 20 0;
-#X connect 2 0 6 0;
-#X connect 3 0 6 1;
-#X connect 4 0 6 2;
-#X connect 5 0 6 3;
-#X connect 6 0 7 0;
-#X connect 7 0 1 0;
-#X connect 8 0 12 0;
-#X connect 9 0 12 1;
-#X connect 10 0 12 2;
-#X connect 11 0 12 3;
-#X connect 12 0 13 0;
-#X connect 13 0 1 0;
-#X connect 14 0 19 0;
-#X connect 19 0 1 0;
-#X connect 20 2 21 0;
-#X connect 20 2 22 0;
-#X connect 20 4 23 0;
-#X connect 21 0 9 0;
-#X connect 21 0 10 0;
-#X connect 22 0 8 0;
-#X connect 22 0 11 0;
-#X connect 23 0 1 0;
-#X connect 24 0 23 0;
-#X restore 153 163 pd jete;
-#N canvas 0 55 863 595 planete 0;
-#X obj 140 46 inlet;
-#X obj 168 527 outlet;
-#X obj 264 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 314 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 364 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 414 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 317 310 hotpack7;
-#X obj 64 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11 -262144
--1 -1 0 256;
-#X obj 114 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 164 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 214 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 117 438 hotpack7;
-#X obj 498 351 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
--1 -1 0;
-#X text 518 351 no background;
-#X text 518 366 filled;
-#X text 518 382 wireframe;
-#X text 518 397 all;
-#X obj 144 87 t b b b b b;
-#X msg 116 457 /planete setColor \$1 \$2 \$3 \$4;
-#X msg 316 329 /planete setBgColor \$1 \$2 \$3 \$4;
-#X msg 498 414 /planete setBackground \$1;
-#X msg 125 316 0;
-#X msg 164 316 1;
-#X msg 239 149 createNode planete TextNode \, /planete setTextValue
-Planete \, /planete setTranslation -700 -3 4.5 \, /planete setScale
-25 25 25 \, /planete setBillboard 2 \, /planete setParent pluton_group
-\, /planete setOrientation 30 0 0;
-#X connect 0 0 17 0;
-#X connect 2 0 6 0;
-#X connect 3 0 6 1;
-#X connect 4 0 6 2;
-#X connect 5 0 6 3;
-#X connect 6 0 19 0;
-#X connect 7 0 11 0;
-#X connect 8 0 11 1;
-#X connect 9 0 11 2;
-#X connect 10 0 11 3;
-#X connect 11 0 18 0;
-#X connect 12 0 20 0;
-#X connect 17 2 21 0;
-#X connect 17 2 22 0;
-#X connect 17 4 23 0;
-#X connect 18 0 1 0;
-#X connect 19 0 1 0;
-#X connect 20 0 1 0;
-#X connect 21 0 8 0;
-#X connect 21 0 9 0;
-#X connect 22 0 7 0;
-#X connect 22 0 10 0;
-#X connect 23 0 1 0;
-#X restore 167 184 pd planete;
-#N canvas 514 82 863 595 sur 0;
-#X obj 140 46 inlet;
-#X obj 168 527 outlet;
-#X obj 264 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 314 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 364 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 414 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 317 310 hotpack7;
-#X obj 64 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11 -262144
--1 -1 0 256;
-#X obj 114 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 164 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 214 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 117 438 hotpack7;
-#X obj 498 351 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
--1 -1 0;
-#X text 518 351 no background;
-#X text 518 366 filled;
-#X text 518 382 wireframe;
-#X text 518 397 all;
-#X obj 144 87 t b b b b b;
-#X msg 117 457 /sur setColor \$1 \$2 \$3 \$4;
-#X msg 316 329 /sur setBgColor \$1 \$2 \$3 \$4;
-#X msg 498 414 /sur setBackground \$1;
-#X msg 125 316 0;
-#X msg 164 316 1;
-#X msg 238 150 createNode sur TextNode \, /sur setTextValue Sur \,
-/sur setTranslation -235 -411 14 \, /sur setScale 50 50 50 \, /sur
-setBillboard 2 \, /sur setParent saturne_group;
-#X connect 0 0 17 0;
-#X connect 2 0 6 0;
-#X connect 3 0 6 1;
-#X connect 4 0 6 2;
-#X connect 5 0 6 3;
-#X connect 6 0 19 0;
-#X connect 7 0 11 0;
-#X connect 8 0 11 1;
-#X connect 9 0 11 2;
-#X connect 10 0 11 3;
-#X connect 11 0 18 0;
-#X connect 12 0 20 0;
-#X connect 17 2 21 0;
-#X connect 17 2 22 0;
-#X connect 17 4 23 0;
-#X connect 18 0 1 0;
-#X connect 19 0 1 0;
-#X connect 20 0 1 0;
-#X connect 21 0 8 0;
-#X connect 21 0 9 0;
-#X connect 22 0 10 0;
-#X connect 22 0 7 0;
-#X connect 23 0 1 0;
-#X restore 182 206 pd sur;
-#N canvas 0 147 863 595 m'as 0;
-#X obj 140 46 inlet;
-#X obj 168 527 outlet;
-#X obj 264 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 314 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 364 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 414 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 317 310 hotpack7;
-#X obj 64 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11 -262144
--1 -1 0 256;
-#X obj 114 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 164 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 214 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 117 438 hotpack7;
-#X obj 498 351 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
--1 -1 0;
-#X text 518 351 no background;
-#X text 518 366 filled;
-#X text 518 382 wireframe;
-#X text 518 397 all;
-#X obj 144 87 t b b b b b;
-#X msg 316 329 /m'as setBgColor \$1 \$2 \$3 \$4;
-#X msg 498 414 /m'as setBackground \$1;
-#X msg 116 457 /m'as setColor \$1 \$2 \$3 \$4;
-#X msg 125 316 0;
-#X msg 164 316 1;
-#X msg 241 150 createNode m'as TextNode \, /m'as setTextValue M'as
-\, /m'as setTranslation 274 19 4 \, /m'as setScale 50 50 50 \, /m'as
-setBillboard 2 \, /m'as setParent mars_group;
-#X connect 0 0 17 0;
-#X connect 2 0 6 0;
-#X connect 3 0 6 1;
-#X connect 4 0 6 2;
-#X connect 5 0 6 3;
-#X connect 6 0 18 0;
-#X connect 7 0 11 0;
-#X connect 8 0 11 1;
-#X connect 9 0 11 2;
-#X connect 10 0 11 3;
-#X connect 11 0 20 0;
-#X connect 12 0 19 0;
-#X connect 17 2 21 0;
-#X connect 17 2 22 0;
-#X connect 17 4 23 0;
-#X connect 18 0 1 0;
-#X connect 19 0 1 0;
-#X connect 20 0 1 0;
-#X connect 21 0 8 0;
-#X connect 21 0 9 0;
-#X connect 22 0 7 0;
-#X connect 22 0 10 0;
-#X connect 23 0 1 0;
-#X restore 196 227 pd m'as;
-#N canvas 67 132 558 436 tu 0;
-#X obj 140 46 inlet;
-#X obj 147 375 outlet;
-#X obj 266 220 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 316 220 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 366 220 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 416 220 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 319 251 hotpack7;
-#X obj 43 255 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11 -262144
--1 -1 0 256;
-#X obj 93 255 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 143 255 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 193 255 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 96 286 hotpack7;
-#X obj 283 335 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
--1 -1 0;
-#X text 303 335 no background;
-#X text 303 350 filled;
-#X text 303 366 wireframe;
-#X text 303 381 all;
-#X obj 144 87 t b b b b b;
-#X msg 318 270 /tu setBgColor \$1 \$2 \$3 \$4;
-#X msg 95 305 /tu setColor \$1 \$2 \$3 \$4;
-#X msg 283 398 /tu setBackground \$1;
-#X msg 110 192 0;
-#X msg 149 192 1;
-#X msg 240 150 createNode tu TextNode \, /tu setTextValue Tu \, /tu
-setTranslation -3 3 1 \, /tu setScale 0 0 0 \, /tu setBillboard 2 \,
-/tu setParent terre_group;
-#X connect 0 0 17 0;
-#X connect 2 0 6 0;
-#X connect 3 0 6 1;
-#X connect 4 0 6 2;
-#X connect 5 0 6 3;
-#X connect 6 0 18 0;
-#X connect 7 0 11 0;
-#X connect 8 0 11 1;
-#X connect 9 0 11 2;
-#X connect 10 0 11 3;
-#X connect 11 0 19 0;
-#X connect 12 0 20 0;
-#X connect 17 2 21 0;
-#X connect 17 2 22 0;
-#X connect 17 4 23 0;
-#X connect 18 0 1 0;
-#X connect 19 0 1 0;
-#X connect 20 0 1 0;
-#X connect 21 0 8 0;
-#X connect 21 0 9 0;
-#X connect 22 0 10 0;
-#X connect 22 0 7 0;
-#X connect 23 0 1 0;
-#X restore 212 249 pd tu;
-#N canvas 514 25 863 595 une 0;
-#X obj 140 46 inlet;
-#X obj 168 527 outlet;
-#X obj 264 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 314 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 364 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 414 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 317 310 hotpack7;
-#X obj 64 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11 -262144
--1 -1 0 256;
-#X obj 114 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 164 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 214 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 117 438 hotpack7;
-#X obj 498 351 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
--1 -1 0;
-#X text 518 351 no background;
-#X text 518 366 filled;
-#X text 518 382 wireframe;
-#X text 518 397 all;
-#X obj 144 87 t b b b b b;
-#X msg 125 316 0;
-#X msg 164 316 1;
-#X msg 316 329 /une setBgColor \$1 \$2 \$3 \$4;
-#X msg 498 414 /une setBackground \$1;
-#X msg 116 457 /une setColor \$1 \$2 \$3 \$4;
-#X msg 243 150 createNode une TextNode \, /une setTextValue Uranus
-\, /une setTranslation -25 544 19 \, /une setScale 50 50 50 \, /une
-setBillboard 2 \, /une setParent uranus_group;
-#X connect 0 0 17 0;
-#X connect 2 0 6 0;
-#X connect 3 0 6 1;
-#X connect 4 0 6 2;
-#X connect 5 0 6 3;
-#X connect 6 0 20 0;
-#X connect 7 0 11 0;
-#X connect 8 0 11 1;
-#X connect 9 0 11 2;
-#X connect 10 0 11 3;
-#X connect 11 0 22 0;
-#X connect 12 0 21 0;
-#X connect 17 2 18 0;
-#X connect 17 2 19 0;
-#X connect 17 4 23 0;
-#X connect 18 0 9 0;
-#X connect 18 0 7 0;
-#X connect 19 0 10 0;
-#X connect 19 0 8 0;
-#X connect 20 0 1 0;
-#X connect 21 0 1 0;
-#X connect 22 0 1 0;
-#X connect 23 0 1 0;
-#X restore 233 271 pd une;
-#N canvas 485 25 863 595 mon 0;
-#X obj 140 46 inlet;
-#X obj 168 527 outlet;
-#X obj 264 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 314 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 364 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 414 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 317 310 hotpack7;
-#X obj 64 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11 -262144
--1 -1 0 256;
-#X obj 114 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 164 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 214 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 117 438 hotpack7;
-#X obj 498 351 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
--1 -1 0;
-#X text 518 351 no background;
-#X text 518 366 filled;
-#X text 518 382 wireframe;
-#X text 518 397 all;
-#X obj 144 87 t b b b b b;
-#X msg 125 316 0;
-#X msg 164 316 1;
-#X msg 316 329 /mon setBgColor \$1 \$2 \$3 \$4;
-#X msg 498 414 /mon setBackground \$1;
-#X msg 116 457 /mon setColor \$1 \$2 \$3 \$4;
-#X msg 238 150 createNode mon TextNode \, /mon setTextValue Mercure
-\, /mon setTranslation -85 91 8 \, /mon setScale 50 50 50 \, /mon setBillboard
-2 \, /mon setParent mercure_group;
-#X connect 0 0 17 0;
-#X connect 2 0 6 0;
-#X connect 3 0 6 1;
-#X connect 4 0 6 2;
-#X connect 5 0 6 3;
-#X connect 6 0 20 0;
-#X connect 7 0 11 0;
-#X connect 8 0 11 1;
-#X connect 9 0 11 2;
-#X connect 10 0 11 3;
-#X connect 11 0 22 0;
-#X connect 12 0 21 0;
-#X connect 17 2 18 0;
-#X connect 17 2 19 0;
-#X connect 17 4 23 0;
-#X connect 18 0 9 0;
-#X connect 18 0 7 0;
-#X connect 19 0 10 0;
-#X connect 19 0 8 0;
-#X connect 20 0 1 0;
-#X connect 21 0 1 0;
-#X connect 22 0 1 0;
-#X connect 23 0 1 0;
-#X restore 247 292 pd mon;
-#N canvas 451 63 863 595 vieux 0;
-#X obj 140 46 inlet;
-#X obj 168 527 outlet;
-#X obj 264 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 314 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 364 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 414 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 317 310 hotpack7;
-#X obj 64 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11 -262144
--1 -1 0 256;
-#X obj 114 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 164 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 214 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 117 438 hotpack7;
-#X obj 498 351 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
--1 -1 0;
-#X text 518 351 no background;
-#X text 518 366 filled;
-#X text 518 382 wireframe;
-#X text 518 397 all;
-#X obj 144 87 t b b b b b;
-#X msg 125 316 0;
-#X msg 164 316 1;
-#X msg 317 329 /vieux setBgColor \$1 \$2 \$3 \$4;
-#X msg 498 414 /vieux setBackground \$1;
-#X msg 117 457 /vieux setColor \$1 \$2 \$3 \$4;
-#X msg 241 150 createNode vieux TextNode \, /vieux setTextValue Venus
-\, /vieux setTranslation 45 -170 8 \, /vieux setScale 50 50 50 \, /vieux
-setBillboard 2 \, /vieux setParent venus_group;
-#X connect 0 0 17 0;
-#X connect 2 0 6 0;
-#X connect 3 0 6 1;
-#X connect 4 0 6 2;
-#X connect 5 0 6 3;
-#X connect 6 0 20 0;
-#X connect 7 0 11 0;
-#X connect 8 0 11 1;
-#X connect 9 0 11 2;
-#X connect 10 0 11 3;
-#X connect 11 0 22 0;
-#X connect 12 0 21 0;
-#X connect 17 2 18 0;
-#X connect 17 2 19 0;
-#X connect 17 4 23 0;
-#X connect 18 0 9 0;
-#X connect 18 0 7 0;
-#X connect 19 0 10 0;
-#X connect 19 0 8 0;
-#X connect 20 0 1 0;
-#X connect 21 0 1 0;
-#X connect 22 0 1 0;
-#X connect 23 0 1 0;
-#X restore 262 314 pd vieux;
-#N canvas 514 25 863 595 nouvelle 0;
-#X obj 140 46 inlet;
-#X obj 168 527 outlet;
-#X obj 264 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 314 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 364 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 414 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 317 310 hotpack7;
-#X obj 64 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11 -262144
--1 -1 0 256;
-#X obj 114 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 164 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 214 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 117 438 hotpack7;
-#X obj 498 351 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
--1 -1 0;
-#X text 518 351 no background;
-#X text 518 366 filled;
-#X text 518 382 wireframe;
-#X text 518 397 all;
-#X obj 144 87 t b b b b b;
-#X msg 125 316 0;
-#X msg 164 316 1;
-#X msg 316 329 /nouvelle setBgColor \$1 \$2 \$3 \$4;
-#X msg 498 414 /nouvelle setBackground \$1;
-#X msg 117 457 /nouvelle setColor \$1 \$2 \$3 \$4;
-#X msg 240 150 createNode nouvelle TextNode \, /nouvelle setTextValue
-Neptune \, /nouvelle setTranslation 412 -445 8 \, /nouvelle setScale
-50 50 50 \, /nouvelle setBillboard 2 \, /nouvelle setParent neptune_group
-;
-#X connect 0 0 17 0;
-#X connect 2 0 6 0;
-#X connect 3 0 6 1;
-#X connect 4 0 6 2;
-#X connect 5 0 6 3;
-#X connect 6 0 20 0;
-#X connect 7 0 11 0;
-#X connect 8 0 11 1;
-#X connect 9 0 11 2;
-#X connect 10 0 11 3;
-#X connect 11 0 22 0;
-#X connect 12 0 21 0;
-#X connect 17 2 18 0;
-#X connect 17 2 19 0;
-#X connect 17 4 23 0;
-#X connect 18 0 9 0;
-#X connect 18 0 7 0;
-#X connect 19 0 10 0;
-#X connect 19 0 8 0;
-#X connect 20 0 1 0;
-#X connect 21 0 1 0;
-#X connect 22 0 1 0;
-#X connect 23 0 1 0;
-#X restore 276 335 pd nouvelle;
-#N canvas 0 22 863 595 lune 0;
-#X obj 140 46 inlet;
-#X obj 168 527 outlet;
-#X obj 264 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 314 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 364 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 414 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 317 310 hotpack7;
-#X obj 64 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11 -262144
--1 -1 0 256;
-#X obj 114 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 164 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 214 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 117 438 hotpack7;
-#X obj 498 351 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
--1 -1 0;
-#X text 518 351 no background;
-#X text 518 366 filled;
-#X text 518 382 wireframe;
-#X text 518 397 all;
-#X obj 144 87 t b b b b b;
-#X msg 125 316 0;
-#X msg 164 316 1;
-#X msg 117 457 /lune setColor \$1 \$2 \$3 \$4;
-#X msg 316 329 /lune setBgColor \$1 \$2 \$3 \$4;
-#X msg 498 414 /lunesetBackground \$1;
-#X msg 239 150 createNode lune TextNode \, /lune setTextValue Lune
-\, /lune setTranslation 8 -8 0 \, /lune setScale 25 25 25 \, /lune
-setBillboard 2 \, /lune setParent moon_group;
-#X connect 0 0 17 0;
-#X connect 2 0 6 0;
-#X connect 3 0 6 1;
-#X connect 4 0 6 2;
-#X connect 5 0 6 3;
-#X connect 6 0 21 0;
-#X connect 7 0 11 0;
-#X connect 8 0 11 1;
-#X connect 9 0 11 2;
-#X connect 10 0 11 3;
-#X connect 11 0 20 0;
-#X connect 12 0 22 0;
-#X connect 17 2 18 0;
-#X connect 17 2 19 0;
-#X connect 17 4 23 0;
-#X connect 18 0 9 0;
-#X connect 18 0 7 0;
-#X connect 19 0 10 0;
-#X connect 19 0 8 0;
-#X connect 20 0 1 0;
-#X connect 21 0 1 0;
-#X connect 22 0 1 0;
-#X connect 23 0 1 0;
-#X restore 291 358 pd lune;
-#X obj 162 107 t b b b b b b b b b b b;
-#N canvas 0 22 863 595 soleil 0;
-#X obj 140 46 inlet;
-#X obj 168 527 outlet;
-#X obj 264 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 314 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 364 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 414 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 317 310 hotpack7;
-#X obj 64 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11 -262144
--1 -1 0 256;
-#X obj 114 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 164 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 214 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
--262144 -1 -1 0 256;
-#X obj 117 438 hotpack7;
-#X obj 498 351 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
--1 -1 0;
-#X text 518 351 no background;
-#X text 518 366 filled;
-#X text 518 382 wireframe;
-#X text 518 397 all;
-#X obj 144 87 t b b b b b;
-#X msg 125 316 0;
-#X msg 164 316 1;
-#X msg 117 457 /soleil_text setColor \$1 \$2 \$3 \$4;
-#X msg 317 329 /soleil_text setBgColor \$1 \$2 \$3 \$4;
-#X msg 498 414 /soleil_text setBackground \$1;
-#X msg 237 150 createNode soleil_text TextNode \, /soleil_text setTextValue
-Soleil \, /soleil_text setTranslation 0 0 70 \, /soleil_text setScale
-100 100 100 \, /soleil_text setBillboard 2 \, /soleil_text setParent
-soleil_group;
-#X connect 0 0 17 0;
-#X connect 2 0 6 0;
-#X connect 3 0 6 1;
-#X connect 4 0 6 2;
-#X connect 5 0 6 3;
-#X connect 6 0 21 0;
-#X connect 7 0 11 0;
-#X connect 8 0 11 1;
-#X connect 9 0 11 2;
-#X connect 10 0 11 3;
-#X connect 11 0 20 0;
-#X connect 12 0 22 0;
-#X connect 17 2 18 0;
-#X connect 17 2 19 0;
-#X connect 17 4 23 0;
-#X connect 18 0 9 0;
-#X connect 18 0 7 0;
-#X connect 19 0 10 0;
-#X connect 19 0 8 0;
-#X connect 20 0 1 0;
-#X connect 21 0 1 0;
-#X connect 22 0 1 0;
-#X connect 23 0 1 0;
-#X restore 302 381 pd soleil;
-#X obj 248 44 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X connect 0 0 12 0;
-#X connect 2 0 1 0;
-#X connect 3 0 1 0;
-#X connect 4 0 1 0;
-#X connect 5 0 1 0;
-#X connect 6 0 1 0;
-#X connect 7 0 1 0;
-#X connect 8 0 1 0;
-#X connect 9 0 1 0;
-#X connect 10 0 1 0;
-#X connect 11 0 1 0;
-#X connect 12 0 2 0;
-#X connect 12 1 3 0;
-#X connect 12 2 4 0;
-#X connect 12 3 5 0;
-#X connect 12 4 6 0;
-#X connect 12 5 7 0;
-#X connect 12 6 8 0;
-#X connect 12 7 9 0;
-#X connect 12 8 10 0;
-#X connect 12 9 11 0;
-#X connect 12 10 13 0;
-#X connect 13 0 1 0;
-#X connect 14 0 12 0;
-#X restore 100 357 pd texts;
-#X obj 80 335 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#N canvas 499 166 825 588 SOUND 0;
-#X obj 233 436 dac~;
-#X obj 265 178 symbol;
-#X msg 265 198 open \$1;
-#X obj 238 221 readsf~ 2;
-#X obj 238 108 t f b;
-#X obj 177 74 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X obj 289 244 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 225 401 gain2~;
-#X obj 275 401 gain2~;
-#X obj 317 306 vsl 14 64 -99 18 0 1 empty empty gain 24 22 1 12 -261704
--1 -1 5000 1;
-#X floatatom 359 382 5 0 0 1 _db - -;
-#X obj 67 66 tgl 25 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
-;
-#X msg 59 101 \; pd dsp \$1;
-#X text 306 245 <- bang when done;
-#X msg 238 85 1;
-#X obj 289 266 outlet;
-#X obj 238 62 inlet;
-#X msg 265 158 \$1/voices/1.wav;
-#X obj 265 128 anyreg gProjectPath;
-#X connect 1 0 2 0;
-#X connect 2 0 3 0;
-#X connect 3 0 7 0;
-#X connect 3 1 8 0;
-#X connect 3 2 6 0;
-#X connect 4 0 3 0;
-#X connect 4 1 18 0;
-#X connect 5 0 4 0;
-#X connect 6 0 15 0;
-#X connect 7 0 0 0;
-#X connect 8 0 0 1;
-#X connect 9 0 10 0;
-#X connect 9 0 7 1;
-#X connect 9 0 8 1;
-#X connect 11 0 12 0;
-#X connect 14 0 4 0;
-#X connect 16 0 14 0;
-#X connect 17 0 1 0;
-#X connect 18 0 17 0;
-#X restore 705 113 pd SOUND;
 #N canvas 129 87 1095 757 scale 0;
-#X obj 30 647 outlet;
 #X obj 734 335 line 1 16.6667;
 #X obj 351 342 line 1000 16.6667;
-#X obj 120 679 hotpack3;
-#X floatatom 107 659 5 0 0 0 - - -;
-#X floatatom 142 659 5 0 0 0 - - -;
-#X floatatom 177 659 5 0 0 0 - - -;
+#X obj 210 699 hotpack3;
+#X floatatom 197 679 5 0 0 0 - - -;
+#X floatatom 232 679 5 0 0 0 - - -;
+#X floatatom 267 679 5 0 0 0 - - -;
 #X obj 452 100 tgl 30 0 empty empty empty 17 7 0 10 -258113 -1 -1 0
 1;
 #X obj 452 138 select 0 1;
-#X msg 120 699 /start_world setTranslation \$1 \$2 \$3;
+#X msg 210 719 /start_world setTranslation \$1 \$2 \$3;
 #X obj 542 84 f 100;
 #X text 587 84 <-- max size of the solar system;
 #X floatatom 542 60 5 0 0 0 - - -;
@@ -8404,366 +7596,147 @@ soleil_group;
 #X msg 736 481 /\$1 setTranslation 0 0 0.4 \, /\$1 setCubeOffset 0
 0 0.4 \, /\$1 setCubeSize 0 0 1e-06;
 #X obj 736 461 anyreg g_hostname;
+#X obj 30 647 s \$0-to-SPIN-TCP;
+#X connect 0 0 25 0;
 #X connect 1 0 26 0;
-#X connect 2 0 27 0;
-#X connect 3 0 9 0;
-#X connect 4 0 3 0;
-#X connect 5 0 3 1;
-#X connect 6 0 3 2;
-#X connect 7 0 8 0;
-#X connect 8 0 72 0;
-#X connect 8 1 73 0;
-#X connect 9 0 0 0;
-#X connect 12 0 10 0;
-#X connect 17 0 75 0;
-#X connect 18 0 7 0;
+#X connect 2 0 8 0;
+#X connect 3 0 2 0;
+#X connect 4 0 2 1;
+#X connect 5 0 2 2;
+#X connect 6 0 7 0;
+#X connect 7 0 71 0;
+#X connect 7 1 72 0;
+#X connect 8 0 110 0;
+#X connect 11 0 9 0;
+#X connect 16 0 74 0;
+#X connect 17 0 6 0;
+#X connect 19 0 18 0;
 #X connect 20 0 19 0;
-#X connect 21 0 20 0;
+#X connect 22 0 21 0;
 #X connect 23 0 22 0;
-#X connect 24 0 23 0;
-#X connect 25 0 88 0;
-#X connect 25 0 15 0;
-#X connect 26 0 25 0;
-#X connect 27 0 28 0;
-#X connect 28 0 50 0;
-#X connect 28 0 16 0;
-#X connect 29 0 32 0;
-#X connect 32 0 0 0;
-#X connect 33 0 29 0;
-#X connect 33 0 42 0;
-#X connect 33 0 51 0;
-#X connect 33 0 87 0;
-#X connect 34 0 33 0;
-#X connect 34 0 64 0;
-#X connect 35 0 38 0;
-#X connect 35 1 34 1;
-#X connect 36 0 0 0;
-#X connect 37 0 106 0;
-#X connect 38 0 34 0;
-#X connect 39 0 91 0;
-#X connect 39 0 93 0;
-#X connect 39 0 103 0;
-#X connect 40 0 43 0;
-#X connect 41 0 0 0;
-#X connect 42 0 36 0;
-#X connect 43 0 7 0;
-#X connect 43 0 98 0;
-#X connect 44 0 36 0;
-#X connect 44 0 52 0;
-#X connect 44 0 32 0;
-#X connect 44 0 89 0;
-#X connect 45 0 44 0;
-#X connect 45 0 24 0;
-#X connect 45 0 56 0;
-#X connect 45 0 76 0;
-#X connect 46 0 48 0;
-#X connect 47 0 43 0;
-#X connect 48 0 35 0;
-#X connect 48 0 7 0;
-#X connect 49 0 41 0;
-#X connect 50 0 0 0;
-#X connect 51 0 70 0;
-#X connect 52 0 66 0;
-#X connect 56 0 61 0;
-#X connect 57 0 1 0;
+#X connect 24 0 87 0;
+#X connect 24 0 14 0;
+#X connect 25 0 24 0;
+#X connect 26 0 27 0;
+#X connect 27 0 49 0;
+#X connect 27 0 15 0;
+#X connect 28 0 31 0;
+#X connect 31 0 110 0;
+#X connect 32 0 28 0;
+#X connect 32 0 41 0;
+#X connect 32 0 50 0;
+#X connect 32 0 86 0;
+#X connect 33 0 32 0;
+#X connect 33 0 63 0;
+#X connect 34 0 37 0;
+#X connect 34 1 33 1;
+#X connect 35 0 110 0;
+#X connect 36 0 105 0;
+#X connect 37 0 33 0;
+#X connect 38 0 90 0;
+#X connect 38 0 92 0;
+#X connect 38 0 102 0;
+#X connect 39 0 42 0;
+#X connect 40 0 110 0;
+#X connect 41 0 35 0;
+#X connect 42 0 6 0;
+#X connect 42 0 97 0;
+#X connect 43 0 35 0;
+#X connect 43 0 51 0;
+#X connect 43 0 31 0;
+#X connect 43 0 88 0;
+#X connect 44 0 43 0;
+#X connect 44 0 23 0;
+#X connect 44 0 55 0;
+#X connect 44 0 75 0;
+#X connect 45 0 47 0;
+#X connect 46 0 42 0;
+#X connect 47 0 34 0;
+#X connect 47 0 6 0;
+#X connect 48 0 40 0;
+#X connect 49 0 110 0;
+#X connect 50 0 69 0;
+#X connect 51 0 65 0;
+#X connect 55 0 60 0;
+#X connect 56 0 0 0;
+#X connect 57 0 0 0;
 #X connect 58 0 1 0;
-#X connect 59 0 2 0;
-#X connect 60 0 2 0;
-#X connect 61 1 63 0;
-#X connect 61 2 62 0;
+#X connect 59 0 1 0;
+#X connect 60 1 62 0;
+#X connect 60 2 61 0;
+#X connect 61 0 0 0;
 #X connect 62 0 1 0;
-#X connect 63 0 2 0;
-#X connect 64 0 77 0;
-#X connect 65 0 0 0;
-#X connect 66 0 0 0;
-#X connect 66 0 53 0;
-#X connect 67 0 0 0;
-#X connect 68 0 0 0;
-#X connect 69 0 0 0;
-#X connect 70 0 71 0;
-#X connect 70 1 85 0;
-#X connect 70 1 83 0;
-#X connect 70 1 84 0;
-#X connect 71 0 82 0;
-#X connect 71 0 67 0;
-#X connect 71 0 68 0;
-#X connect 71 0 69 0;
-#X connect 72 0 60 0;
-#X connect 72 1 58 0;
-#X connect 72 2 102 0;
-#X connect 72 3 21 0;
-#X connect 72 4 39 0;
-#X connect 72 5 107 0;
-#X connect 73 0 59 0;
-#X connect 73 1 57 0;
-#X connect 73 2 37 0;
-#X connect 73 3 24 0;
-#X connect 73 4 96 0;
-#X connect 73 4 105 0;
-#X connect 73 5 110 0;
-#X connect 74 0 44 0;
-#X connect 74 0 76 0;
-#X connect 75 0 74 0;
-#X connect 76 0 65 0;
-#X connect 77 0 78 0;
-#X connect 77 1 76 0;
-#X connect 78 0 65 0;
-#X connect 79 0 80 0;
-#X connect 81 0 80 0;
-#X connect 82 0 0 0;
-#X connect 83 0 67 0;
-#X connect 84 0 69 0;
-#X connect 85 0 82 0;
-#X connect 85 0 68 0;
-#X connect 87 0 89 0;
-#X connect 88 0 0 0;
-#X connect 89 0 0 0;
-#X connect 90 0 94 0;
+#X connect 63 0 76 0;
+#X connect 64 0 110 0;
+#X connect 65 0 52 0;
+#X connect 65 0 110 0;
+#X connect 66 0 110 0;
+#X connect 67 0 110 0;
+#X connect 68 0 110 0;
+#X connect 69 0 70 0;
+#X connect 69 1 84 0;
+#X connect 69 1 82 0;
+#X connect 69 1 83 0;
+#X connect 70 0 81 0;
+#X connect 70 0 66 0;
+#X connect 70 0 67 0;
+#X connect 70 0 68 0;
+#X connect 71 0 59 0;
+#X connect 71 1 57 0;
+#X connect 71 2 101 0;
+#X connect 71 3 20 0;
+#X connect 71 4 38 0;
+#X connect 71 5 106 0;
+#X connect 72 0 58 0;
+#X connect 72 1 56 0;
+#X connect 72 2 36 0;
+#X connect 72 3 23 0;
+#X connect 72 4 95 0;
+#X connect 72 4 104 0;
+#X connect 72 5 109 0;
+#X connect 73 0 43 0;
+#X connect 73 0 75 0;
+#X connect 74 0 73 0;
+#X connect 75 0 64 0;
+#X connect 76 0 77 0;
+#X connect 76 1 75 0;
+#X connect 77 0 64 0;
+#X connect 78 0 79 0;
+#X connect 80 0 79 0;
+#X connect 81 0 110 0;
+#X connect 82 0 66 0;
+#X connect 83 0 68 0;
+#X connect 84 0 81 0;
+#X connect 84 0 67 0;
+#X connect 86 0 88 0;
+#X connect 87 0 110 0;
+#X connect 88 0 110 0;
+#X connect 89 0 93 0;
+#X connect 90 0 93 0;
 #X connect 91 0 94 0;
-#X connect 92 0 95 0;
-#X connect 93 0 95 0;
-#X connect 94 0 0 0;
-#X connect 95 0 0 0;
-#X connect 96 0 90 0;
-#X connect 96 0 93 0;
-#X connect 97 0 33 0;
-#X connect 97 0 64 0;
-#X connect 98 0 99 0;
-#X connect 98 1 97 1;
-#X connect 99 0 97 0;
-#X connect 102 0 100 0;
-#X connect 105 0 104 0;
-#X connect 106 0 86 0;
-#X connect 107 0 108 0;
-#X connect 108 0 0 0;
-#X connect 109 0 0 0;
-#X connect 110 0 109 0;
-#X restore 144 450 pd scale;
-#X msg 122 698 refreshSubscribers;
+#X connect 92 0 94 0;
+#X connect 93 0 110 0;
+#X connect 94 0 110 0;
+#X connect 95 0 89 0;
+#X connect 95 0 92 0;
+#X connect 96 0 32 0;
+#X connect 96 0 63 0;
+#X connect 97 0 98 0;
+#X connect 97 1 96 1;
+#X connect 98 0 96 0;
+#X connect 101 0 99 0;
+#X connect 104 0 103 0;
+#X connect 105 0 85 0;
+#X connect 106 0 107 0;
+#X connect 107 0 110 0;
+#X connect 108 0 110 0;
+#X connect 109 0 108 0;
+#X restore 581 119 pd scale;
 #X obj 18 81 delay 100;
 #X obj 18 61 t b;
-#X msg 743 546 0 -12 1.5;
-#N canvas 0 60 739 754 pointers 1;
-#X obj 171 -150 inlet;
-#X obj 171 -118 delay 25000;
-#X obj 171 -96 t b b;
-#X obj 423 -31 t b b b b b b;
-#X obj -10 -9 t b b b b b b;
-#X obj -10 -30 delay 10000;
-#X msg 50 220 /pointer_terre setParent solar_system \, /pointer_terre
-setOrientation 90 0 0 \, /pointer_terre setTranslation 0 0 4.4 \, /pointer_terre
-setScale 0 0 0;
-#X msg -10 20 /pointer_jupiter setParent solar_system \, /pointer_jupiter
-setOrientation 90 0 0 \, /pointer_jupiter setTranslation -29 293 16
-\, /pointer_jupiter setScale 15 15 15;
-#X msg 20 120 /pointer_saturne setParent solar_system \, /pointer_saturne
-setOrientation 90 0 0 \, /pointer_saturne setTranslation -10 -411 14
-\, /pointer_saturne setScale 15 15 15;
-#X msg 5 70 /pointer_pluton setParent solar_system \, /pointer_pluton
-setOrientation 90 0 0 \, /pointer_pluton setTranslation -475 0 5 \,
-/pointer_pluton setScale 15 15 15;
-#X msg 35 170 /pointer_mars setParent solar_system \, /pointer_mars
-setOrientation 90 0 0 \, /pointer_mars setTranslation 499 19 6.5 \,
-/pointer_mars setScale 15 15 15;
-#X msg 65 270 /pointer_start setParent start_world0 \, /pointer_start
-setOrientation 0 0 0 \, /pointer_start setTranslation -0.2 0.4 0 \,
-/pointer_start setScale 1 1 1;
-#X obj 498 99 scale.model pointer_start pointers;
-#X obj 423 -1 scale.model pointer_jupiter pointers;
-#X obj 438 19 scale.model pointer_pluton pointers;
-#X obj 453 39 scale.model pointer_saturne pointers;
-#X obj 468 59 scale.model pointer_mars pointers;
-#X obj 483 79 scale.model pointer_terre pointers;
-#X obj -10 355 s \$0-to-SPIN-TCP;
-#X obj 438 154 s \$0-to-SPIN-TCP;
-#X connect 0 0 1 0;
-#X connect 1 0 2 0;
-#X connect 2 0 5 0;
-#X connect 2 1 3 0;
-#X connect 3 0 13 0;
-#X connect 3 1 14 0;
-#X connect 3 2 15 0;
-#X connect 3 3 16 0;
-#X connect 3 4 17 0;
-#X connect 3 5 12 0;
-#X connect 4 0 7 0;
-#X connect 4 1 9 0;
-#X connect 4 2 8 0;
-#X connect 4 3 10 0;
-#X connect 4 4 6 0;
-#X connect 4 5 11 0;
-#X connect 5 0 4 0;
-#X connect 6 0 18 0;
-#X connect 7 0 18 0;
-#X connect 8 0 18 0;
-#X connect 9 0 18 0;
-#X connect 10 0 18 0;
-#X connect 11 0 18 0;
-#X connect 12 0 19 0;
-#X connect 13 0 19 0;
-#X connect 14 0 19 0;
-#X connect 15 0 19 0;
-#X connect 16 0 19 0;
-#X connect 17 0 19 0;
-#X restore 136 428 pd pointers;
-#X obj 189 161 t b b b b b;
-#X obj 312 312 t b b;
-#X obj 100 335 r reset_texts;
-#N canvas 50 92 869 869 planets 0;
-#X obj 46 762 outlet;
-#X msg 321 645 /stars setOrientation 90 0 0;
-#X obj 154 6 inlet;
-#X msg 360 747 /solar_system setTranslation 0 0 0 \, /solar_system
-setScale 10000 10000 10000;
-#X msg 218 298 /jupiter setTranslation -254 293 0 \, /jupiter setOrientation
-90 3 0;
-#X msg 231 336 /saturne setTranslation -235 -411 0 \, /saturne setOrientation
-90 27 0;
-#X msg 244 375 /uranus setTranslation -25 544 0 \, /uranus setOrientation
-90 98 0;
-#X msg 257 415 /neptune setTranslation 412 -445 0 \, /neptune setOrientation
-90 30 0;
-#X msg 269 453 /pluton_group setOrientation -30 0 0 \, /pluton setTranslation
--700 0 0 \, /pluton setOrientation 90 118 0;
-#X msg 334 668 /start_world setOrientation 90 0 0 \, /start_world setScale
-1 1 1 \, /start_group setEnabled start_world 0;
-#X msg 347 707 /start_world0 setOrientation 90 0 0 \, /start_world0
-setScale 1 1 1 \, /start_group setEnabled start_world0 1;
-#X msg 154 103 /soleil_group setTranslation 225 0 -4 \, /soleil setTranslation
-0 0 0 \, /soleil setOrientation 90 0 0;
-#X msg 205 270 /mars setTranslation 274 19 -4 \, /mars setOrientation
-90 25 0;
-#X msg 166 139 /mercure setTranslation -85 91 0 \, /mercure setOrientation
-90 0 0;
-#X msg 179 182 /venus setTranslation 45 -170 0 \, /venus setOrientation
-90 177 0;
-#X msg 307 611 /anneaux setTranslation 0 0 -4 \, /anneaux setOrientation
-45 0 0;
-#X msg 295 563 /moon setParent moon_group \, /moon_group setParent
-terre_group \, /moon setTranslation 8 -8 -4 \, /moon setOrientation
-90 0 0 \, /moon_group setOrientation 0 0 0;
-#X msg 192 220 /terre_group setParent solar_system \, /terre_group
-setTranslation 0 0 0 \, /terre setTranslation 0 0 -4 \, /terre setOrientation
-90 23.5 0 \, /terre_group setOrientation 0 0 0;
-#X obj 154 33 anyreg g_hostname;
-#X obj 154 68 t b b b b b b b b b b a b b b b b b b;
-#X msg 283 489 createNode spacecraft_tripper SwitchNode \, /spacecraft_tripper
-setParent \$1 \, /spacecraft setParent spacecraft_tripper \, /spacecraft
-setTranslation 0 0 0.08 \, /spacecraft setOrientation 90 0 0 \, /spacecraft
-setRenderBin 100 \, /spacecraft setScale 0.1 0.1 0.1;
-#X connect 1 0 0 0;
-#X connect 2 0 18 0;
-#X connect 3 0 0 0;
-#X connect 4 0 0 0;
-#X connect 5 0 0 0;
-#X connect 6 0 0 0;
-#X connect 7 0 0 0;
-#X connect 8 0 0 0;
-#X connect 9 0 0 0;
-#X connect 10 0 0 0;
-#X connect 11 0 0 0;
-#X connect 12 0 0 0;
-#X connect 13 0 0 0;
-#X connect 14 0 0 0;
-#X connect 15 0 0 0;
-#X connect 16 0 0 0;
-#X connect 17 0 0 0;
-#X connect 18 0 19 0;
-#X connect 19 0 11 0;
-#X connect 19 1 13 0;
-#X connect 19 2 14 0;
-#X connect 19 3 17 0;
-#X connect 19 4 12 0;
-#X connect 19 5 4 0;
-#X connect 19 6 5 0;
-#X connect 19 7 6 0;
-#X connect 19 8 7 0;
-#X connect 19 9 8 0;
-#X connect 19 11 16 0;
-#X connect 19 13 1 0;
-#X connect 19 14 9 0;
-#X connect 19 15 10 0;
-#X connect 19 16 3 0;
-#X connect 20 0 0 0;
-#X restore 339 333 pd planets positions;
-#N canvas 688 136 869 775 planets 0;
-#X obj 157 709 outlet;
-#X msg 327 585 /stars setOrientation 90 0 0;
-#X obj 157 -31 inlet;
-#X msg 222 238 /jupiter setTranslation -29 293 -4 \, /jupiter setOrientation
-90 3 0;
-#X msg 234 276 /saturne setTranslation -10 -411 -4 \, /saturne setOrientation
-90 27 0;
-#X msg 248 315 /uranus setTranslation 200 544 -4 \, /uranus setOrientation
-90 98 0;
-#X msg 260 355 /neptune setTranslation 637 -445 -4 \, /neptune setOrientation
-90 30 0;
-#X msg 273 393 /pluton setTranslation -475 0 -4 \, /pluton setOrientation
-90 118 0;
-#X msg 313 551 /anneaux setTranslation 0 0 -4 \, /anneaux setOrientation
-90 0 0;
-#X msg 338 608 /start_world setOrientation 90 0 0 \, /start_world setScale
-1 1 1;
-#X msg 195 162 /terre setTranslation 0 0 -4 \, /terre setOrientation
-90 23.5 0;
-#X msg 351 646 /solar_system setTranslation 0 0 0 \, /solar_system
-setScale 10000 10000 10000;
-#X msg 299 505 /moon setTranslation 8 -8 1 \, /moon setOrientation
-90 0 0 \, /moon setParent terre_group;
-#X msg 157 43 /soleil setTranslation 225 0 -4 \, /soleil setOrientation
-90 0 0;
-#X msg 169 79 /mercure setTranslation 140 91 -4 \, /mercure setOrientation
-90 0 0;
-#X msg 182 122 /venus setTranslation 265 -170 -4 \, /venus setOrientation
-90 177 0;
-#X msg 208 200 /mars setTranslation 499 19 -4 \, /mars setOrientation
-90 25 0;
-#X obj 157 -10 anyreg g_hostname;
-#X obj 157 15 t b b b b b b b b b b a b b b b b b;
-#X msg 286 429 createNode spacecraft_tripper SwitchNode \, /spacecraft_tripper
-setParent \$1 \, /spacecraft setParent spacecraft_tripper \, /spacecraft
-setTranslation 0 0 0.08 \, /spacecraft setOrientation 90 0 0 \, /spacecraft
-setRenderBin 100 \, /spacecraft setScale 0.1 0.1 0.1;
-#X connect 1 0 0 0;
-#X connect 2 0 17 0;
-#X connect 3 0 0 0;
-#X connect 4 0 0 0;
-#X connect 5 0 0 0;
-#X connect 6 0 0 0;
-#X connect 7 0 0 0;
-#X connect 8 0 0 0;
-#X connect 9 0 0 0;
-#X connect 10 0 0 0;
-#X connect 11 0 0 0;
-#X connect 12 0 0 0;
-#X connect 13 0 0 0;
-#X connect 14 0 0 0;
-#X connect 15 0 0 0;
-#X connect 16 0 0 0;
-#X connect 17 0 18 0;
-#X connect 18 0 13 0;
-#X connect 18 1 14 0;
-#X connect 18 2 15 0;
-#X connect 18 3 10 0;
-#X connect 18 4 16 0;
-#X connect 18 5 3 0;
-#X connect 18 6 4 0;
-#X connect 18 7 5 0;
-#X connect 18 8 6 0;
-#X connect 18 9 7 0;
-#X connect 18 10 19 0;
-#X connect 18 11 12 0;
-#X connect 18 13 1 0;
-#X connect 18 14 9 0;
-#X connect 18 15 11 0;
-#X connect 19 0 0 0;
-#X restore 470 333 pd planets positions 2;
-#X obj 390 293 r reset;
-#X obj 390 313 delay 2000;
-#X obj 122 678 r reset;
-#X obj 294 184 delay 36000;
-#X obj 584 118 delay 32000;
-#X obj 294 203 t b b b;
+#X obj 18 101 t b b b b b;
+#X obj 81 121 delay 36000;
+#X obj 81 141 t b b b;
 #N canvas 488 453 499 323 assets 0;
 #X obj 31 147 shell;
 #X msg 31 127 hostname -s;
@@ -8800,22 +7773,13 @@ them all over the place.;
 #X connect 15 0 3 0;
 #X connect 17 0 18 0;
 #X connect 18 0 16 0;
-#X restore 705 73 pd assets;
-#X obj 434 241 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X restore 665 99 pd assets;
+#X obj 199 191 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 18 -2 loadbang1 DD;
-#X obj 780 676 anyreg g_hostname;
-#X obj 717 698 list append;
-#X msg 717 719 /\$4 setTranslation \$1 \$2 \$3;
-#X obj 717 652 t a b;
-#X obj 264 151 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 81 71 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 93 91 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X msg 392 465 createNode cube ShapeNode \, /cube setShape 2;
-#X obj 359 316 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 476 52 bng 25 250 50 0 reset-main empty RESET 30 13 0 25 -258113
+#X obj 431 175 bng 30 250 50 0 reset-main empty RESET 35 15 0 30 -258113
 -1 -1;
 #N canvas 67 59 1325 790 debug 0;
 #X obj -6113 -2089 s \$0-to-SPIN-TCP;
@@ -9253,23 +8217,27 @@ them all over the place.;
 #X connect 86 0 88 0;
 #X connect 87 0 86 0;
 #X connect 88 0 0 0;
-#X restore 705 93 pd debug;
+#X restore 665 119 pd debug;
 #N canvas 0 22 529 372 main_nodes 0;
 #X obj 43 21 inlet;
-#X obj 43 298 s \$0-to-SPIN-TCP;
-#X msg 43 121 /stars setScale \$1 \$1 \$1;
-#X msg 43 101 0.006;
-#X msg 58 141 createNode solar_tripper SwitchNode \, /solar_system
+#X obj 43 328 s \$0-to-SPIN-TCP;
+#X msg 43 151 /stars setScale \$1 \$1 \$1;
+#X msg 43 131 0.006;
+#X msg 58 171 createNode solar_tripper SwitchNode \, /solar_system
 setParent solar_tripper;
-#X msg 90 207 /soleil_group setParent solar_system \, /soleil_group
+#X msg 90 237 /soleil_group setParent solar_system \, /soleil_group
 setOrientation 0 0 0;
-#X msg 106 240 createNode terre_tripper SwitchNode \, /terre_group
+#X msg 106 270 createNode terre_tripper SwitchNode \, /terre_group
 setParent terre_tripper;
-#X obj 43 61 anyreg g_hostname;
-#X obj 43 81 t b b a b b;
-#X msg 74 174 createNode stars_tripper SwitchNode \, /stars_tripper
+#X obj 43 91 anyreg g_hostname;
+#X obj 43 111 t b b a b b;
+#X msg 74 204 createNode stars_tripper SwitchNode \, /stars_tripper
 setParent \$1 \, /stars setParent stars_tripper;
-#X connect 0 0 7 0;
+#X msg 201 80 createNode solar_system GroupNode;
+#X obj 43 41 t b b;
+#X obj 201 100 s \$0-to-SPIN-TCP;
+#X obj 43 71 delay 32000;
+#X connect 0 0 11 0;
 #X connect 2 0 1 0;
 #X connect 3 0 2 0;
 #X connect 4 0 1 0;
@@ -9282,7 +8250,76 @@ setParent \$1 \, /stars setParent stars_tripper;
 #X connect 8 3 5 0;
 #X connect 8 4 6 0;
 #X connect 9 0 1 0;
-#X restore 584 138 pd main_nodes;
+#X connect 10 0 12 0;
+#X connect 11 0 13 0;
+#X connect 11 1 10 0;
+#X connect 13 0 7 0;
+#X restore 65 237 pd main_nodes;
+#N canvas 0 22 450 300 models 1;
+#X obj 55 26 inlet;
+#N canvas 0 60 739 754 pointers 0;
+#X obj 171 -150 inlet;
+#X obj 171 -118 delay 25000;
+#X obj 171 -96 t b b;
+#X obj 423 -31 t b b b b b b;
+#X obj -10 -9 t b b b b b b;
+#X obj -10 -30 delay 10000;
+#X msg 50 220 /pointer_terre setParent solar_system \, /pointer_terre
+setOrientation 90 0 0 \, /pointer_terre setTranslation 0 0 4.4 \, /pointer_terre
+setScale 0 0 0;
+#X msg -10 20 /pointer_jupiter setParent solar_system \, /pointer_jupiter
+setOrientation 90 0 0 \, /pointer_jupiter setTranslation -29 293 16
+\, /pointer_jupiter setScale 15 15 15;
+#X msg 20 120 /pointer_saturne setParent solar_system \, /pointer_saturne
+setOrientation 90 0 0 \, /pointer_saturne setTranslation -10 -411 14
+\, /pointer_saturne setScale 15 15 15;
+#X msg 5 70 /pointer_pluton setParent solar_system \, /pointer_pluton
+setOrientation 90 0 0 \, /pointer_pluton setTranslation -475 0 5 \,
+/pointer_pluton setScale 15 15 15;
+#X msg 35 170 /pointer_mars setParent solar_system \, /pointer_mars
+setOrientation 90 0 0 \, /pointer_mars setTranslation 499 19 6.5 \,
+/pointer_mars setScale 15 15 15;
+#X msg 65 270 /pointer_start setParent start_world0 \, /pointer_start
+setOrientation 0 0 0 \, /pointer_start setTranslation -0.2 0.4 0 \,
+/pointer_start setScale 1 1 1;
+#X obj 498 99 scale.model pointer_start pointers;
+#X obj 423 -1 scale.model pointer_jupiter pointers;
+#X obj 438 19 scale.model pointer_pluton pointers;
+#X obj 453 39 scale.model pointer_saturne pointers;
+#X obj 468 59 scale.model pointer_mars pointers;
+#X obj 483 79 scale.model pointer_terre pointers;
+#X obj -10 355 s \$0-to-SPIN-TCP;
+#X obj 438 154 s \$0-to-SPIN-TCP;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 5 0;
+#X connect 2 1 3 0;
+#X connect 3 0 13 0;
+#X connect 3 1 14 0;
+#X connect 3 2 15 0;
+#X connect 3 3 16 0;
+#X connect 3 4 17 0;
+#X connect 3 5 12 0;
+#X connect 4 0 7 0;
+#X connect 4 1 9 0;
+#X connect 4 2 8 0;
+#X connect 4 3 10 0;
+#X connect 4 4 6 0;
+#X connect 4 5 11 0;
+#X connect 5 0 4 0;
+#X connect 6 0 18 0;
+#X connect 7 0 18 0;
+#X connect 8 0 18 0;
+#X connect 9 0 18 0;
+#X connect 10 0 18 0;
+#X connect 11 0 18 0;
+#X connect 12 0 19 0;
+#X connect 13 0 19 0;
+#X connect 14 0 19 0;
+#X connect 15 0 19 0;
+#X connect 16 0 19 0;
+#X connect 17 0 19 0;
+#X restore 74 105 pd pointers;
 #N canvas 131 170 1001 600 planetes 0;
 #X obj -1 -127 planete mercure;
 #X obj 185 -236 inlet;
@@ -9396,68 +8433,1044 @@ setParent \$1 \, /stars setParent stars_tripper;
 #X connect 45 0 34 0;
 #X connect 46 0 34 0;
 #X connect 47 0 34 0;
-#X restore 531 215 pd planetes;
-#N canvas 0 22 450 300 models 1;
-#X obj 56 26 inlet;
-#X obj 55 52 t b b;
-#X restore 580 177 pd models;
-#X connect 0 0 38 0;
-#X connect 1 0 6 0;
-#X connect 2 0 3 0;
-#X connect 3 0 8 0;
-#X connect 4 0 3 1;
-#X connect 5 0 3 2;
-#X connect 6 0 22 0;
-#X connect 8 0 22 0;
-#X connect 9 0 10 0;
-#X connect 10 0 58 0;
-#X connect 11 0 10 1;
-#X connect 12 0 10 2;
-#X connect 15 0 9 0;
-#X connect 15 1 11 0;
-#X connect 15 2 12 0;
-#X connect 16 0 22 0;
+#X restore 94 75 pd planetes;
+#X obj 55 133 delay 12000;
+#X msg 55 205 /solar_system setTranslation 0 0 0 \, /solar_system setScale
+10000 10000 10000;
+#X obj 55 153 t b b;
+#X obj 55 238 s \$0-to-SPIN-TCP;
+#X obj 55 52 t b b b;
+#N canvas 50 92 869 869 planets 0;
+#X obj 46 762 outlet;
+#X msg 321 645 /stars setOrientation 90 0 0;
+#X obj 154 6 inlet;
+#X msg 360 747 /solar_system setTranslation 0 0 0 \, /solar_system
+setScale 10000 10000 10000;
+#X msg 218 298 /jupiter setTranslation -254 293 0 \, /jupiter setOrientation
+90 3 0;
+#X msg 231 336 /saturne setTranslation -235 -411 0 \, /saturne setOrientation
+90 27 0;
+#X msg 244 375 /uranus setTranslation -25 544 0 \, /uranus setOrientation
+90 98 0;
+#X msg 257 415 /neptune setTranslation 412 -445 0 \, /neptune setOrientation
+90 30 0;
+#X msg 269 453 /pluton_group setOrientation -30 0 0 \, /pluton setTranslation
+-700 0 0 \, /pluton setOrientation 90 118 0;
+#X msg 334 668 /start_world setOrientation 90 0 0 \, /start_world setScale
+1 1 1 \, /start_group setEnabled start_world 0;
+#X msg 347 707 /start_world0 setOrientation 90 0 0 \, /start_world0
+setScale 1 1 1 \, /start_group setEnabled start_world0 1;
+#X msg 154 103 /soleil_group setTranslation 225 0 -4 \, /soleil setTranslation
+0 0 0 \, /soleil setOrientation 90 0 0;
+#X msg 205 270 /mars setTranslation 274 19 -4 \, /mars setOrientation
+90 25 0;
+#X msg 166 139 /mercure setTranslation -85 91 0 \, /mercure setOrientation
+90 0 0;
+#X msg 179 182 /venus setTranslation 45 -170 0 \, /venus setOrientation
+90 177 0;
+#X msg 307 611 /anneaux setTranslation 0 0 -4 \, /anneaux setOrientation
+45 0 0;
+#X msg 295 563 /moon setParent moon_group \, /moon_group setParent
+terre_group \, /moon setTranslation 8 -8 -4 \, /moon setOrientation
+90 0 0 \, /moon_group setOrientation 0 0 0;
+#X msg 192 220 /terre_group setParent solar_system \, /terre_group
+setTranslation 0 0 0 \, /terre setTranslation 0 0 -4 \, /terre setOrientation
+90 23.5 0 \, /terre_group setOrientation 0 0 0;
+#X obj 154 33 anyreg g_hostname;
+#X obj 154 68 t b b b b b b b b b b a b b b b b b b;
+#X msg 283 489 createNode spacecraft_tripper SwitchNode \, /spacecraft_tripper
+setParent \$1 \, /spacecraft setParent spacecraft_tripper \, /spacecraft
+setTranslation 0 0 0.08 \, /spacecraft setOrientation 90 0 0 \, /spacecraft
+setRenderBin 100 \, /spacecraft setScale 0.1 0.1 0.1;
+#X connect 1 0 0 0;
+#X connect 2 0 18 0;
+#X connect 3 0 0 0;
+#X connect 4 0 0 0;
+#X connect 5 0 0 0;
+#X connect 6 0 0 0;
+#X connect 7 0 0 0;
+#X connect 8 0 0 0;
+#X connect 9 0 0 0;
+#X connect 10 0 0 0;
+#X connect 11 0 0 0;
+#X connect 12 0 0 0;
+#X connect 13 0 0 0;
+#X connect 14 0 0 0;
+#X connect 15 0 0 0;
+#X connect 16 0 0 0;
+#X connect 17 0 0 0;
 #X connect 18 0 19 0;
-#X connect 19 0 22 0;
-#X connect 20 0 28 0;
-#X connect 23 0 50 0;
-#X connect 24 0 42 0;
-#X connect 30 0 22 0;
-#X connect 31 0 22 0;
-#X connect 32 0 22 0;
-#X connect 33 0 32 0;
-#X connect 35 0 22 0;
-#X connect 36 0 22 0;
-#X connect 37 0 23 0;
-#X connect 37 0 41 0;
-#X connect 38 0 37 0;
-#X connect 39 0 15 0;
-#X connect 41 0 7 0;
-#X connect 41 0 31 0;
-#X connect 41 2 40 0;
-#X connect 41 3 24 0;
-#X connect 41 4 49 0;
-#X connect 42 0 30 0;
-#X connect 42 1 44 0;
-#X connect 43 0 32 0;
-#X connect 44 0 22 0;
-#X connect 45 0 22 0;
-#X connect 46 0 47 0;
-#X connect 47 0 44 0;
-#X connect 48 0 36 0;
-#X connect 49 0 51 0;
-#X connect 50 0 65 0;
-#X connect 51 0 32 0;
-#X connect 51 1 21 0;
-#X connect 51 2 28 0;
-#X connect 53 0 21 0;
-#X connect 54 0 0 0;
-#X connect 55 0 56 1;
-#X connect 56 0 57 0;
-#X connect 57 0 22 0;
-#X connect 58 0 56 0;
-#X connect 58 1 55 0;
-#X connect 59 0 41 0;
-#X connect 60 0 37 0;
-#X connect 61 0 22 0;
-#X connect 62 0 44 0;
+#X connect 19 0 11 0;
+#X connect 19 1 13 0;
+#X connect 19 2 14 0;
+#X connect 19 3 17 0;
+#X connect 19 4 12 0;
+#X connect 19 5 4 0;
+#X connect 19 6 5 0;
+#X connect 19 7 6 0;
+#X connect 19 8 7 0;
+#X connect 19 9 8 0;
+#X connect 19 11 16 0;
+#X connect 19 13 1 0;
+#X connect 19 14 9 0;
+#X connect 19 15 10 0;
+#X connect 19 16 3 0;
+#X connect 20 0 0 0;
+#X restore 82 183 pd planets positions;
+#N canvas 688 136 869 775 planets 0;
+#X obj 157 709 outlet;
+#X msg 327 585 /stars setOrientation 90 0 0;
+#X obj 157 -31 inlet;
+#X msg 222 238 /jupiter setTranslation -29 293 -4 \, /jupiter setOrientation
+90 3 0;
+#X msg 234 276 /saturne setTranslation -10 -411 -4 \, /saturne setOrientation
+90 27 0;
+#X msg 248 315 /uranus setTranslation 200 544 -4 \, /uranus setOrientation
+90 98 0;
+#X msg 260 355 /neptune setTranslation 637 -445 -4 \, /neptune setOrientation
+90 30 0;
+#X msg 273 393 /pluton setTranslation -475 0 -4 \, /pluton setOrientation
+90 118 0;
+#X msg 313 551 /anneaux setTranslation 0 0 -4 \, /anneaux setOrientation
+90 0 0;
+#X msg 338 608 /start_world setOrientation 90 0 0 \, /start_world setScale
+1 1 1;
+#X msg 195 162 /terre setTranslation 0 0 -4 \, /terre setOrientation
+90 23.5 0;
+#X msg 351 646 /solar_system setTranslation 0 0 0 \, /solar_system
+setScale 10000 10000 10000;
+#X msg 299 505 /moon setTranslation 8 -8 1 \, /moon setOrientation
+90 0 0 \, /moon setParent terre_group;
+#X msg 157 43 /soleil setTranslation 225 0 -4 \, /soleil setOrientation
+90 0 0;
+#X msg 169 79 /mercure setTranslation 140 91 -4 \, /mercure setOrientation
+90 0 0;
+#X msg 182 122 /venus setTranslation 265 -170 -4 \, /venus setOrientation
+90 177 0;
+#X msg 208 200 /mars setTranslation 499 19 -4 \, /mars setOrientation
+90 25 0;
+#X obj 157 -10 anyreg g_hostname;
+#X obj 157 15 t b b b b b b b b b b a b b b b b b;
+#X msg 286 429 createNode spacecraft_tripper SwitchNode \, /spacecraft_tripper
+setParent \$1 \, /spacecraft setParent spacecraft_tripper \, /spacecraft
+setTranslation 0 0 0.08 \, /spacecraft setOrientation 90 0 0 \, /spacecraft
+setRenderBin 100 \, /spacecraft setScale 0.1 0.1 0.1;
+#X connect 1 0 0 0;
+#X connect 2 0 17 0;
+#X connect 3 0 0 0;
+#X connect 4 0 0 0;
+#X connect 5 0 0 0;
+#X connect 6 0 0 0;
+#X connect 7 0 0 0;
+#X connect 8 0 0 0;
+#X connect 9 0 0 0;
+#X connect 10 0 0 0;
+#X connect 11 0 0 0;
+#X connect 12 0 0 0;
+#X connect 13 0 0 0;
+#X connect 14 0 0 0;
+#X connect 15 0 0 0;
+#X connect 16 0 0 0;
+#X connect 17 0 18 0;
+#X connect 18 0 13 0;
+#X connect 18 1 14 0;
+#X connect 18 2 15 0;
+#X connect 18 3 10 0;
+#X connect 18 4 16 0;
+#X connect 18 5 3 0;
+#X connect 18 6 4 0;
+#X connect 18 7 5 0;
+#X connect 18 8 6 0;
+#X connect 18 9 7 0;
+#X connect 18 10 19 0;
+#X connect 18 11 12 0;
+#X connect 18 13 1 0;
+#X connect 18 14 9 0;
+#X connect 18 15 11 0;
+#X connect 19 0 0 0;
+#X restore 253 183 pd planets positions 2;
+#X obj 133 143 r reset;
+#X obj 133 163 delay 2000;
+#X obj 212 173 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X connect 0 0 7 0;
+#X connect 3 0 5 0;
+#X connect 4 0 6 0;
+#X connect 5 0 4 0;
+#X connect 5 1 8 0;
+#X connect 7 0 3 0;
+#X connect 7 1 1 0;
+#X connect 7 2 2 0;
+#X connect 8 0 6 0;
+#X connect 10 0 11 0;
+#X connect 11 0 8 0;
+#X connect 12 0 8 0;
+#X restore 49 277 pd models;
+#X text 459 99 Scene controls;
+#X text 587 99 Scene logic;
+#X obj 18 351 bng 20 250 50 0 empty empty loading_DONE 25 10 0 20 -4034
+-1 -1;
+#N canvas 50 154 427 481 texts 0;
+#X obj 140 60 inlet;
+#N canvas 437 44 863 595 jete 0;
+#X obj 140 46 inlet;
+#X obj 168 527 outlet;
+#X obj 264 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 314 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 364 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 414 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 317 310 hotpack7;
+#X msg 317 330 /jete setBgColor \$1 \$2 \$3 \$4;
+#X obj 64 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11 -262144
+-1 -1 0 256;
+#X obj 114 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 164 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 214 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 117 438 hotpack7;
+#X msg 117 458 /jete setColor \$1 \$2 \$3 \$4;
+#X obj 498 351 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
+#X text 518 351 no background;
+#X text 518 366 filled;
+#X text 518 382 wireframe;
+#X text 518 397 all;
+#X msg 498 414 /jete setBackground \$1;
+#X obj 144 87 t b b b b b;
+#X msg 125 316 0;
+#X msg 164 316 1;
+#X msg 242 151 createNode jete TextNode \, /jete setTextValue Jete
+\, /jete setTranslation -254 293 16 \, /jete setScale 50 50 50 \, /jete
+setBillboard 2 \, /jete setParent jupiter_group;
+#X obj 328 97 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X connect 0 0 20 0;
+#X connect 2 0 6 0;
+#X connect 3 0 6 1;
+#X connect 4 0 6 2;
+#X connect 5 0 6 3;
+#X connect 6 0 7 0;
+#X connect 7 0 1 0;
+#X connect 8 0 12 0;
+#X connect 9 0 12 1;
+#X connect 10 0 12 2;
+#X connect 11 0 12 3;
+#X connect 12 0 13 0;
+#X connect 13 0 1 0;
+#X connect 14 0 19 0;
+#X connect 19 0 1 0;
+#X connect 20 2 21 0;
+#X connect 20 2 22 0;
+#X connect 20 4 23 0;
+#X connect 21 0 9 0;
+#X connect 21 0 10 0;
+#X connect 22 0 8 0;
+#X connect 22 0 11 0;
+#X connect 23 0 1 0;
+#X connect 24 0 23 0;
+#X restore 140 143 pd jete;
+#N canvas 0 55 863 595 planete 0;
+#X obj 140 46 inlet;
+#X obj 168 527 outlet;
+#X obj 264 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 314 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 364 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 414 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 317 310 hotpack7;
+#X obj 64 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11 -262144
+-1 -1 0 256;
+#X obj 114 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 164 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 214 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 117 438 hotpack7;
+#X obj 498 351 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
+#X text 518 351 no background;
+#X text 518 366 filled;
+#X text 518 382 wireframe;
+#X text 518 397 all;
+#X obj 144 87 t b b b b b;
+#X msg 116 457 /planete setColor \$1 \$2 \$3 \$4;
+#X msg 316 329 /planete setBgColor \$1 \$2 \$3 \$4;
+#X msg 498 414 /planete setBackground \$1;
+#X msg 125 316 0;
+#X msg 164 316 1;
+#X msg 239 149 createNode planete TextNode \, /planete setTextValue
+Planete \, /planete setTranslation -700 -3 4.5 \, /planete setScale
+25 25 25 \, /planete setBillboard 2 \, /planete setParent pluton_group
+\, /planete setOrientation 30 0 0;
+#X connect 0 0 17 0;
+#X connect 2 0 6 0;
+#X connect 3 0 6 1;
+#X connect 4 0 6 2;
+#X connect 5 0 6 3;
+#X connect 6 0 19 0;
+#X connect 7 0 11 0;
+#X connect 8 0 11 1;
+#X connect 9 0 11 2;
+#X connect 10 0 11 3;
+#X connect 11 0 18 0;
+#X connect 12 0 20 0;
+#X connect 17 2 21 0;
+#X connect 17 2 22 0;
+#X connect 17 4 23 0;
+#X connect 18 0 1 0;
+#X connect 19 0 1 0;
+#X connect 20 0 1 0;
+#X connect 21 0 8 0;
+#X connect 21 0 9 0;
+#X connect 22 0 7 0;
+#X connect 22 0 10 0;
+#X connect 23 0 1 0;
+#X restore 153 164 pd planete;
+#N canvas 514 82 863 595 sur 0;
+#X obj 140 46 inlet;
+#X obj 168 527 outlet;
+#X obj 264 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 314 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 364 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 414 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 317 310 hotpack7;
+#X obj 64 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11 -262144
+-1 -1 0 256;
+#X obj 114 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 164 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 214 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 117 438 hotpack7;
+#X obj 498 351 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
+#X text 518 351 no background;
+#X text 518 366 filled;
+#X text 518 382 wireframe;
+#X text 518 397 all;
+#X obj 144 87 t b b b b b;
+#X msg 117 457 /sur setColor \$1 \$2 \$3 \$4;
+#X msg 316 329 /sur setBgColor \$1 \$2 \$3 \$4;
+#X msg 498 414 /sur setBackground \$1;
+#X msg 125 316 0;
+#X msg 164 316 1;
+#X msg 238 150 createNode sur TextNode \, /sur setTextValue Sur \,
+/sur setTranslation -235 -411 14 \, /sur setScale 50 50 50 \, /sur
+setBillboard 2 \, /sur setParent saturne_group;
+#X connect 0 0 17 0;
+#X connect 2 0 6 0;
+#X connect 3 0 6 1;
+#X connect 4 0 6 2;
+#X connect 5 0 6 3;
+#X connect 6 0 19 0;
+#X connect 7 0 11 0;
+#X connect 8 0 11 1;
+#X connect 9 0 11 2;
+#X connect 10 0 11 3;
+#X connect 11 0 18 0;
+#X connect 12 0 20 0;
+#X connect 17 2 21 0;
+#X connect 17 2 22 0;
+#X connect 17 4 23 0;
+#X connect 18 0 1 0;
+#X connect 19 0 1 0;
+#X connect 20 0 1 0;
+#X connect 21 0 8 0;
+#X connect 21 0 9 0;
+#X connect 22 0 10 0;
+#X connect 22 0 7 0;
+#X connect 23 0 1 0;
+#X restore 167 186 pd sur;
+#N canvas 0 147 863 595 m'as 0;
+#X obj 140 46 inlet;
+#X obj 168 527 outlet;
+#X obj 264 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 314 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 364 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 414 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 317 310 hotpack7;
+#X obj 64 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11 -262144
+-1 -1 0 256;
+#X obj 114 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 164 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 214 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 117 438 hotpack7;
+#X obj 498 351 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
+#X text 518 351 no background;
+#X text 518 366 filled;
+#X text 518 382 wireframe;
+#X text 518 397 all;
+#X obj 144 87 t b b b b b;
+#X msg 316 329 /m'as setBgColor \$1 \$2 \$3 \$4;
+#X msg 498 414 /m'as setBackground \$1;
+#X msg 116 457 /m'as setColor \$1 \$2 \$3 \$4;
+#X msg 125 316 0;
+#X msg 164 316 1;
+#X msg 241 150 createNode m'as TextNode \, /m'as setTextValue M'as
+\, /m'as setTranslation 274 19 4 \, /m'as setScale 50 50 50 \, /m'as
+setBillboard 2 \, /m'as setParent mars_group;
+#X connect 0 0 17 0;
+#X connect 2 0 6 0;
+#X connect 3 0 6 1;
+#X connect 4 0 6 2;
+#X connect 5 0 6 3;
+#X connect 6 0 18 0;
+#X connect 7 0 11 0;
+#X connect 8 0 11 1;
+#X connect 9 0 11 2;
+#X connect 10 0 11 3;
+#X connect 11 0 20 0;
+#X connect 12 0 19 0;
+#X connect 17 2 21 0;
+#X connect 17 2 22 0;
+#X connect 17 4 23 0;
+#X connect 18 0 1 0;
+#X connect 19 0 1 0;
+#X connect 20 0 1 0;
+#X connect 21 0 8 0;
+#X connect 21 0 9 0;
+#X connect 22 0 7 0;
+#X connect 22 0 10 0;
+#X connect 23 0 1 0;
+#X restore 180 207 pd m'as;
+#N canvas 67 132 558 436 tu 0;
+#X obj 140 46 inlet;
+#X obj 147 375 outlet;
+#X obj 266 220 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 316 220 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 366 220 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 416 220 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 319 251 hotpack7;
+#X obj 43 255 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11 -262144
+-1 -1 0 256;
+#X obj 93 255 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 143 255 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 193 255 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 96 286 hotpack7;
+#X obj 283 335 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
+#X text 303 335 no background;
+#X text 303 350 filled;
+#X text 303 366 wireframe;
+#X text 303 381 all;
+#X obj 144 87 t b b b b b;
+#X msg 318 270 /tu setBgColor \$1 \$2 \$3 \$4;
+#X msg 95 305 /tu setColor \$1 \$2 \$3 \$4;
+#X msg 283 398 /tu setBackground \$1;
+#X msg 110 192 0;
+#X msg 149 192 1;
+#X msg 240 150 createNode tu TextNode \, /tu setTextValue Tu \, /tu
+setTranslation -3 3 1 \, /tu setScale 0 0 0 \, /tu setBillboard 2 \,
+/tu setParent terre_group;
+#X connect 0 0 17 0;
+#X connect 2 0 6 0;
+#X connect 3 0 6 1;
+#X connect 4 0 6 2;
+#X connect 5 0 6 3;
+#X connect 6 0 18 0;
+#X connect 7 0 11 0;
+#X connect 8 0 11 1;
+#X connect 9 0 11 2;
+#X connect 10 0 11 3;
+#X connect 11 0 19 0;
+#X connect 12 0 20 0;
+#X connect 17 2 21 0;
+#X connect 17 2 22 0;
+#X connect 17 4 23 0;
+#X connect 18 0 1 0;
+#X connect 19 0 1 0;
+#X connect 20 0 1 0;
+#X connect 21 0 8 0;
+#X connect 21 0 9 0;
+#X connect 22 0 10 0;
+#X connect 22 0 7 0;
+#X connect 23 0 1 0;
+#X restore 194 229 pd tu;
+#N canvas 514 25 863 595 une 0;
+#X obj 140 46 inlet;
+#X obj 168 527 outlet;
+#X obj 264 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 314 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 364 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 414 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 317 310 hotpack7;
+#X obj 64 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11 -262144
+-1 -1 0 256;
+#X obj 114 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 164 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 214 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 117 438 hotpack7;
+#X obj 498 351 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
+#X text 518 351 no background;
+#X text 518 366 filled;
+#X text 518 382 wireframe;
+#X text 518 397 all;
+#X obj 144 87 t b b b b b;
+#X msg 125 316 0;
+#X msg 164 316 1;
+#X msg 316 329 /une setBgColor \$1 \$2 \$3 \$4;
+#X msg 498 414 /une setBackground \$1;
+#X msg 116 457 /une setColor \$1 \$2 \$3 \$4;
+#X msg 243 150 createNode une TextNode \, /une setTextValue Uranus
+\, /une setTranslation -25 544 19 \, /une setScale 50 50 50 \, /une
+setBillboard 2 \, /une setParent uranus_group;
+#X connect 0 0 17 0;
+#X connect 2 0 6 0;
+#X connect 3 0 6 1;
+#X connect 4 0 6 2;
+#X connect 5 0 6 3;
+#X connect 6 0 20 0;
+#X connect 7 0 11 0;
+#X connect 8 0 11 1;
+#X connect 9 0 11 2;
+#X connect 10 0 11 3;
+#X connect 11 0 22 0;
+#X connect 12 0 21 0;
+#X connect 17 2 18 0;
+#X connect 17 2 19 0;
+#X connect 17 4 23 0;
+#X connect 18 0 9 0;
+#X connect 18 0 7 0;
+#X connect 19 0 10 0;
+#X connect 19 0 8 0;
+#X connect 20 0 1 0;
+#X connect 21 0 1 0;
+#X connect 22 0 1 0;
+#X connect 23 0 1 0;
+#X restore 207 251 pd une;
+#N canvas 485 25 863 595 mon 0;
+#X obj 140 46 inlet;
+#X obj 168 527 outlet;
+#X obj 264 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 314 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 364 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 414 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 317 310 hotpack7;
+#X obj 64 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11 -262144
+-1 -1 0 256;
+#X obj 114 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 164 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 214 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 117 438 hotpack7;
+#X obj 498 351 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
+#X text 518 351 no background;
+#X text 518 366 filled;
+#X text 518 382 wireframe;
+#X text 518 397 all;
+#X obj 144 87 t b b b b b;
+#X msg 125 316 0;
+#X msg 164 316 1;
+#X msg 316 329 /mon setBgColor \$1 \$2 \$3 \$4;
+#X msg 498 414 /mon setBackground \$1;
+#X msg 116 457 /mon setColor \$1 \$2 \$3 \$4;
+#X msg 238 150 createNode mon TextNode \, /mon setTextValue Mercure
+\, /mon setTranslation -85 91 8 \, /mon setScale 50 50 50 \, /mon setBillboard
+2 \, /mon setParent mercure_group;
+#X connect 0 0 17 0;
+#X connect 2 0 6 0;
+#X connect 3 0 6 1;
+#X connect 4 0 6 2;
+#X connect 5 0 6 3;
+#X connect 6 0 20 0;
+#X connect 7 0 11 0;
+#X connect 8 0 11 1;
+#X connect 9 0 11 2;
+#X connect 10 0 11 3;
+#X connect 11 0 22 0;
+#X connect 12 0 21 0;
+#X connect 17 2 18 0;
+#X connect 17 2 19 0;
+#X connect 17 4 23 0;
+#X connect 18 0 9 0;
+#X connect 18 0 7 0;
+#X connect 19 0 10 0;
+#X connect 19 0 8 0;
+#X connect 20 0 1 0;
+#X connect 21 0 1 0;
+#X connect 22 0 1 0;
+#X connect 23 0 1 0;
+#X restore 221 272 pd mon;
+#N canvas 451 63 863 595 vieux 0;
+#X obj 140 46 inlet;
+#X obj 168 527 outlet;
+#X obj 264 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 314 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 364 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 414 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 317 310 hotpack7;
+#X obj 64 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11 -262144
+-1 -1 0 256;
+#X obj 114 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 164 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 214 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 117 438 hotpack7;
+#X obj 498 351 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
+#X text 518 351 no background;
+#X text 518 366 filled;
+#X text 518 382 wireframe;
+#X text 518 397 all;
+#X obj 144 87 t b b b b b;
+#X msg 125 316 0;
+#X msg 164 316 1;
+#X msg 317 329 /vieux setBgColor \$1 \$2 \$3 \$4;
+#X msg 498 414 /vieux setBackground \$1;
+#X msg 117 457 /vieux setColor \$1 \$2 \$3 \$4;
+#X msg 241 150 createNode vieux TextNode \, /vieux setTextValue Venus
+\, /vieux setTranslation 45 -170 8 \, /vieux setScale 50 50 50 \, /vieux
+setBillboard 2 \, /vieux setParent venus_group;
+#X connect 0 0 17 0;
+#X connect 2 0 6 0;
+#X connect 3 0 6 1;
+#X connect 4 0 6 2;
+#X connect 5 0 6 3;
+#X connect 6 0 20 0;
+#X connect 7 0 11 0;
+#X connect 8 0 11 1;
+#X connect 9 0 11 2;
+#X connect 10 0 11 3;
+#X connect 11 0 22 0;
+#X connect 12 0 21 0;
+#X connect 17 2 18 0;
+#X connect 17 2 19 0;
+#X connect 17 4 23 0;
+#X connect 18 0 9 0;
+#X connect 18 0 7 0;
+#X connect 19 0 10 0;
+#X connect 19 0 8 0;
+#X connect 20 0 1 0;
+#X connect 21 0 1 0;
+#X connect 22 0 1 0;
+#X connect 23 0 1 0;
+#X restore 234 294 pd vieux;
+#N canvas 514 25 863 595 nouvelle 0;
+#X obj 140 46 inlet;
+#X obj 168 527 outlet;
+#X obj 264 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 314 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 364 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 414 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 317 310 hotpack7;
+#X obj 64 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11 -262144
+-1 -1 0 256;
+#X obj 114 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 164 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 214 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 117 438 hotpack7;
+#X obj 498 351 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
+#X text 518 351 no background;
+#X text 518 366 filled;
+#X text 518 382 wireframe;
+#X text 518 397 all;
+#X obj 144 87 t b b b b b;
+#X msg 125 316 0;
+#X msg 164 316 1;
+#X msg 316 329 /nouvelle setBgColor \$1 \$2 \$3 \$4;
+#X msg 498 414 /nouvelle setBackground \$1;
+#X msg 117 457 /nouvelle setColor \$1 \$2 \$3 \$4;
+#X msg 240 150 createNode nouvelle TextNode \, /nouvelle setTextValue
+Neptune \, /nouvelle setTranslation 412 -445 8 \, /nouvelle setScale
+50 50 50 \, /nouvelle setBillboard 2 \, /nouvelle setParent neptune_group
+;
+#X connect 0 0 17 0;
+#X connect 2 0 6 0;
+#X connect 3 0 6 1;
+#X connect 4 0 6 2;
+#X connect 5 0 6 3;
+#X connect 6 0 20 0;
+#X connect 7 0 11 0;
+#X connect 8 0 11 1;
+#X connect 9 0 11 2;
+#X connect 10 0 11 3;
+#X connect 11 0 22 0;
+#X connect 12 0 21 0;
+#X connect 17 2 18 0;
+#X connect 17 2 19 0;
+#X connect 17 4 23 0;
+#X connect 18 0 9 0;
+#X connect 18 0 7 0;
+#X connect 19 0 10 0;
+#X connect 19 0 8 0;
+#X connect 20 0 1 0;
+#X connect 21 0 1 0;
+#X connect 22 0 1 0;
+#X connect 23 0 1 0;
+#X restore 248 315 pd nouvelle;
+#N canvas 0 22 863 595 lune 0;
+#X obj 140 46 inlet;
+#X obj 168 527 outlet;
+#X obj 264 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 314 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 364 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 414 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 317 310 hotpack7;
+#X obj 64 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11 -262144
+-1 -1 0 256;
+#X obj 114 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 164 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 214 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 117 438 hotpack7;
+#X obj 498 351 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
+#X text 518 351 no background;
+#X text 518 366 filled;
+#X text 518 382 wireframe;
+#X text 518 397 all;
+#X obj 144 87 t b b b b b;
+#X msg 125 316 0;
+#X msg 164 316 1;
+#X msg 117 457 /lune setColor \$1 \$2 \$3 \$4;
+#X msg 316 329 /lune setBgColor \$1 \$2 \$3 \$4;
+#X msg 498 414 /lunesetBackground \$1;
+#X msg 239 150 createNode lune TextNode \, /lune setTextValue Lune
+\, /lune setTranslation 8 -8 0 \, /lune setScale 25 25 25 \, /lune
+setBillboard 2 \, /lune setParent moon_group;
+#X connect 0 0 17 0;
+#X connect 2 0 6 0;
+#X connect 3 0 6 1;
+#X connect 4 0 6 2;
+#X connect 5 0 6 3;
+#X connect 6 0 21 0;
+#X connect 7 0 11 0;
+#X connect 8 0 11 1;
+#X connect 9 0 11 2;
+#X connect 10 0 11 3;
+#X connect 11 0 20 0;
+#X connect 12 0 22 0;
+#X connect 17 2 18 0;
+#X connect 17 2 19 0;
+#X connect 17 4 23 0;
+#X connect 18 0 9 0;
+#X connect 18 0 7 0;
+#X connect 19 0 10 0;
+#X connect 19 0 8 0;
+#X connect 20 0 1 0;
+#X connect 21 0 1 0;
+#X connect 22 0 1 0;
+#X connect 23 0 1 0;
+#X restore 261 338 pd lune;
+#X obj 140 92 t b b b b b b b b b b b;
+#N canvas 0 22 863 595 soleil 0;
+#X obj 140 46 inlet;
+#X obj 168 527 outlet;
+#X obj 264 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 314 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 364 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 414 279 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 317 310 hotpack7;
+#X obj 64 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Red 0 -8 1 11 -262144
+-1 -1 0 256;
+#X obj 114 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Green 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 164 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Blue 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 214 407 nbx 4 14 -1e+37 1e+37 0 0 empty empty Alpha 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 117 438 hotpack7;
+#X obj 498 351 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
+#X text 518 351 no background;
+#X text 518 366 filled;
+#X text 518 382 wireframe;
+#X text 518 397 all;
+#X obj 144 87 t b b b b b;
+#X msg 125 316 0;
+#X msg 164 316 1;
+#X msg 117 457 /soleil_text setColor \$1 \$2 \$3 \$4;
+#X msg 317 329 /soleil_text setBgColor \$1 \$2 \$3 \$4;
+#X msg 498 414 /soleil_text setBackground \$1;
+#X msg 237 150 createNode soleil_text TextNode \, /soleil_text setTextValue
+Soleil \, /soleil_text setTranslation 0 0 70 \, /soleil_text setScale
+100 100 100 \, /soleil_text setBillboard 2 \, /soleil_text setParent
+soleil_group;
+#X connect 0 0 17 0;
+#X connect 2 0 6 0;
+#X connect 3 0 6 1;
+#X connect 4 0 6 2;
+#X connect 5 0 6 3;
+#X connect 6 0 21 0;
+#X connect 7 0 11 0;
+#X connect 8 0 11 1;
+#X connect 9 0 11 2;
+#X connect 10 0 11 3;
+#X connect 11 0 20 0;
+#X connect 12 0 22 0;
+#X connect 17 2 18 0;
+#X connect 17 2 19 0;
+#X connect 17 4 23 0;
+#X connect 18 0 9 0;
+#X connect 18 0 7 0;
+#X connect 19 0 10 0;
+#X connect 19 0 8 0;
+#X connect 20 0 1 0;
+#X connect 21 0 1 0;
+#X connect 22 0 1 0;
+#X connect 23 0 1 0;
+#X restore 275 361 pd soleil;
+#X obj 291 82 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 140 422 s \$0-to-SPIN-TCP;
+#X obj 198 60 r reset_texts;
+#X connect 0 0 11 0;
+#X connect 1 0 14 0;
+#X connect 2 0 14 0;
+#X connect 3 0 14 0;
+#X connect 4 0 14 0;
+#X connect 5 0 14 0;
+#X connect 6 0 14 0;
+#X connect 7 0 14 0;
+#X connect 8 0 14 0;
+#X connect 9 0 14 0;
+#X connect 10 0 14 0;
+#X connect 11 0 1 0;
+#X connect 11 1 2 0;
+#X connect 11 2 3 0;
+#X connect 11 3 4 0;
+#X connect 11 4 5 0;
+#X connect 11 5 6 0;
+#X connect 11 6 7 0;
+#X connect 11 7 8 0;
+#X connect 11 8 9 0;
+#X connect 11 9 10 0;
+#X connect 11 10 12 0;
+#X connect 12 0 14 0;
+#X connect 13 0 11 0;
+#X connect 15 0 11 0;
+#X restore 33 317 pd texts;
+#X obj 116 267 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 155 227 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#N canvas 0 22 916 412 tests_and_stuff 0;
+#X obj 175 283 nbx 4 14 -1e+37 1e+37 0 0 empty empty scale 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 151 201 nbx 4 14 -1e+37 1e+37 0 0 empty empty pitch 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 174 222 hotpack3;
+#X obj 201 201 nbx 4 14 -1e+37 1e+37 0 0 empty empty roll 0 -8 1 11
+-262144 -1 -1 0 256;
+#X obj 251 201 nbx 4 14 -1e+37 1e+37 0 0 empty empty yaw 0 -8 1 11
+-262144 -1 -1 0 256;
+#X msg 175 303 /soleil setScale \$1 \$1 \$1;
+#X msg 174 243 /terre setOrientation \$1 \$2 \$3;
+#X obj 466 229 nbx 5 14 -1e+37 1e+37 0 0 empty empty X 0 -8 1 11 -262144
+-1 -1 0 256;
+#X obj 466 253 hotpack3;
+#X obj 523 229 nbx 5 14 -1e+37 1e+37 0 0 empty empty Y 0 -8 1 11 -262144
+-1 -1 0 256;
+#X obj 579 229 nbx 5 14 -1e+37 1e+37 0 0 empty empty Z 0 -8 1 11 -262144
+-1 -1 0 256;
+#X text 637 228 MOVE the viewer:;
+#X text 532 253 (has to match hostname);
+#X obj 492 189 unpack f f f;
+#N canvas 0 22 648 620 rotate 0;
+#X obj 401 314 nbx 4 14 -1e+37 1e+37 0 0 empty empty X 0 -8 1 11 -262144
+-1 -1 0 256;
+#X obj 424 335 hotpack3;
+#X obj 451 314 nbx 4 14 -1e+37 1e+37 0 0 empty empty Y 0 -8 1 11 -262144
+-1 -1 0 256;
+#X obj 501 314 nbx 4 14 -1e+37 1e+37 0 0 empty empty Z 0 -8 1 11 -262144
+-1 -1 0 256;
+#X obj 401 218 line;
+#X obj 400 249 cos;
+#X obj 437 252 sin;
+#X obj 442 275 * 1;
+#X obj 405 274 * 1;
+#X floatatom 486 245 5 0 0 0 - - -;
+#X msg 424 354 /terre setTranslation \$1 \$2 \$3;
+#X msg 405 177 0 \, 6.28 10000;
+#X obj 405 140 metro 10000;
+#X obj 406 120 tgl 15 0 empty empty empty 17 7 0 10 -258113 -1 -1 0
+1;
+#X obj 427 158 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 432 453 outlet;
+#X connect 0 0 1 0;
+#X connect 1 0 10 0;
+#X connect 2 0 1 1;
+#X connect 3 0 1 2;
+#X connect 4 0 5 0;
+#X connect 4 0 6 0;
+#X connect 5 0 8 0;
+#X connect 6 0 7 0;
+#X connect 7 0 2 0;
+#X connect 8 0 0 0;
+#X connect 9 0 7 1;
+#X connect 9 0 8 1;
+#X connect 10 0 15 0;
+#X connect 11 0 4 0;
+#X connect 12 0 11 0;
+#X connect 12 0 14 0;
+#X connect 13 0 12 0;
+#X restore 147 48 pd rotate;
+#X text 195 117 TODO:;
+#X obj 152 145 nbx 4 14 -1e+37 1e+37 0 0 empty empty scale 0 -8 1 11
+-262144 -1 -1 0 256;
+#X msg 152 165 /solar_system setScale \$1 \$1 \$1;
+#X obj 47 366 s \$0-to-SPIN-TCP;
+#X msg 492 167 0 -12 1.5;
+#X obj 529 297 anyreg g_hostname;
+#X obj 466 319 list append;
+#X msg 466 340 /\$4 setTranslation \$1 \$2 \$3;
+#X obj 466 273 t a b;
+#X msg 141 86 createNode cube ShapeNode \, /cube setShape 2;
+#X text 214 47 <--TO DO;
+#N canvas 499 166 825 588 SOUND 0;
+#X obj 233 436 dac~;
+#X obj 265 178 symbol;
+#X msg 265 198 open \$1;
+#X obj 238 221 readsf~ 2;
+#X obj 238 108 t f b;
+#X obj 177 74 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 289 244 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 225 401 gain2~;
+#X obj 275 401 gain2~;
+#X obj 317 306 vsl 14 64 -99 18 0 1 empty empty gain 24 22 1 12 -261704
+-1 -1 5000 1;
+#X floatatom 359 382 5 0 0 1 _db - -;
+#X obj 67 66 tgl 25 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X msg 59 101 \; pd dsp \$1;
+#X text 306 245 <- bang when done;
+#X msg 238 85 1;
+#X obj 289 266 outlet;
+#X obj 238 62 inlet;
+#X msg 265 158 \$1/voices/1.wav;
+#X obj 265 128 anyreg gProjectPath;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 7 0;
+#X connect 3 1 8 0;
+#X connect 3 2 6 0;
+#X connect 4 0 3 0;
+#X connect 4 1 18 0;
+#X connect 5 0 4 0;
+#X connect 6 0 15 0;
+#X connect 7 0 0 0;
+#X connect 8 0 0 1;
+#X connect 9 0 10 0;
+#X connect 9 0 7 1;
+#X connect 9 0 8 1;
+#X connect 11 0 12 0;
+#X connect 14 0 4 0;
+#X connect 16 0 14 0;
+#X connect 17 0 1 0;
+#X connect 18 0 17 0;
+#X restore 148 21 pd SOUND;
+#X connect 0 0 5 0;
+#X connect 1 0 2 0;
+#X connect 2 0 6 0;
+#X connect 3 0 2 1;
+#X connect 4 0 2 2;
+#X connect 5 0 18 0;
+#X connect 6 0 18 0;
+#X connect 7 0 8 0;
+#X connect 8 0 23 0;
+#X connect 9 0 8 1;
+#X connect 10 0 8 2;
+#X connect 13 0 7 0;
+#X connect 13 1 9 0;
+#X connect 13 2 10 0;
+#X connect 14 0 18 0;
+#X connect 16 0 17 0;
+#X connect 17 0 18 0;
+#X connect 19 0 13 0;
+#X connect 20 0 21 1;
+#X connect 21 0 22 0;
+#X connect 22 0 18 0;
+#X connect 23 0 21 0;
+#X connect 23 1 20 0;
+#X connect 24 0 18 0;
+#X restore 665 139 pd tests_and_stuff;
+#X connect 0 0 10 0;
+#X connect 1 0 6 0;
+#X connect 7 0 25 0;
+#X connect 9 0 11 0;
+#X connect 10 0 9 0;
+#X connect 11 0 24 0;
+#X connect 11 1 25 0;
+#X connect 11 2 21 0;
+#X connect 11 3 20 0;
+#X connect 11 4 12 0;
+#X connect 12 0 13 0;
+#X connect 13 1 2 0;
+#X connect 13 2 6 0;
+#X connect 15 0 2 0;
+#X connect 16 0 0 0;
+#X connect 17 0 11 0;
+#X connect 26 0 21 0;
+#X connect 27 0 20 0;
