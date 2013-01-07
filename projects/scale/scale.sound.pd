@@ -1,0 +1,45 @@
+#N canvas 171 265 466 451 10;
+#X obj 222 409 dac~;
+#X obj 254 151 symbol;
+#X msg 254 171 open \$1;
+#X obj 227 194 readsf~ 2;
+#X obj 227 66 t f b;
+#X obj 166 32 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 278 217 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 214 374 gain2~;
+#X obj 264 374 gain2~;
+#X obj 306 279 vsl 14 64 -99 18 0 1 empty empty gain 24 22 1 12 -261704
+-1 -1 5000 1;
+#X floatatom 348 355 5 0 0 1 _db - -;
+#X obj 56 24 tgl 25 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X msg 48 59 \; pd dsp \$1;
+#X text 295 218 <- bang when done;
+#X msg 227 43 1;
+#X obj 278 239 outlet;
+#X obj 227 20 inlet;
+#X obj 254 91 anyreg gProjectPath;
+#X obj 254 111 list append \$1;
+#X msg 254 131 \$1/voices/\$2.wav;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 7 0;
+#X connect 3 1 8 0;
+#X connect 3 2 6 0;
+#X connect 4 0 3 0;
+#X connect 4 1 17 0;
+#X connect 5 0 4 0;
+#X connect 6 0 15 0;
+#X connect 7 0 0 0;
+#X connect 8 0 0 1;
+#X connect 9 0 10 0;
+#X connect 9 0 7 1;
+#X connect 9 0 8 1;
+#X connect 11 0 12 0;
+#X connect 14 0 4 0;
+#X connect 16 0 14 0;
+#X connect 17 0 18 0;
+#X connect 18 0 19 0;
+#X connect 19 0 1 0;
