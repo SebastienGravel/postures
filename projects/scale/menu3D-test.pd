@@ -1,0 +1,248 @@
+#N canvas 414 92 590 542 10;
+#X obj -11 299 s \$0-to-SPIN-TCP;
+#X obj -10 78 loadbang;
+#X obj -10 98 delay 12000;
+#X obj 102 108 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -9 14 widget-spinConnect \$0;
+#X obj -10 118 anyreg g_hostname;
+#X msg 144 391 deleteNode menu \, createNode menu Menu3D \, createNode
+menuOffset GroupNode \, /menuOffset setParent \$1 \, /menu setParent
+menuOffset \, /menu setTranslation 0 0.1 -0.02 \, /menu setBillboard
+2 \, /menu setScale 0.2 0.2 0.2 \, /menu setItemOffset 0 0 -0.11 \,
+/menu setHighlightColor 0 0.53725 1 1 \, /menu setRenderBin 98;
+#N canvas 488 453 499 323 assets 0;
+#X obj 31 147 shell;
+#X msg 31 127 hostname -s;
+#X obj 31 167 symbol;
+#X obj 31 223 anyreg g_hostname;
+#X obj 31 107 loadbang;
+#X obj 112 117 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 94 190 p;
+#X obj 268 95 anyreg shader voxelize.jxs;
+#X text 65 16 These informations are references for all other anyreg
+in the pd patches that uses the same name. This avoids having to repeat
+them all over the place.;
+#X text 246 73 ----Voxelize SHADER NAME----;
+#X text 9 266 ----PROJECT PATH----;
+#X text 16 74 ----COMPUTER NAME----;
+#X text 16 86 loaded automatically at start;
+#X obj 121 150 makefilename %s-anim;
+#X symbolatom 31 243 30 0 0 0 - - -;
+#X obj 140 213 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X symbolatom 31 309 30 0 0 0 - - -;
+#X obj 311 279 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 31 289 anyreg gProjectPath ~/Documents/Metalab/scale;
+#X connect 0 0 2 0;
+#X connect 1 0 0 0;
+#X connect 2 0 3 0;
+#X connect 2 0 6 0;
+#X connect 3 0 14 0;
+#X connect 4 0 1 0;
+#X connect 5 0 1 0;
+#X connect 13 0 3 0;
+#X connect 15 0 3 0;
+#X connect 17 0 18 0;
+#X connect 18 0 16 0;
+#X restore 413 82 pd assets;
+#N canvas 72 132 1325 790 debug 0;
+#X obj -6113 -2089 s \$0-to-SPIN-TCP;
+#X msg -6043 -2494 /experience debug;
+#X msg -6100 -2566 /chantalbaron setCubeSize 10000 10000 10000;
+#X msg -6124 -2592 createNode grid GridNode;
+#X obj -6070 -1896 s \$0-to-SPIN-TCP;
+#X floatatom -6103 -1967 5 0 0 0 - - -;
+#X obj -5881 -1957 p;
+#X floatatom -6060 -1967 5 0 0 0 - - -;
+#X floatatom -6018 -1967 5 0 0 0 - - -;
+#X obj -6070 -1938 hotpack3;
+#X msg -5943 -2362 /chantalbaron setTarget labo-targets;
+#X obj -5154 -2359 r \$0-toCamera;
+#X obj -5154 -2335 OSCprepend /nodeID;
+#X obj -5154 -2309 s \$0-to-SPIN;
+#X obj -5165 -2508 nbx 4 16 -1e+37 1e+37 0 0 empty empty left 0 -8
+0 11 -262144 -1 -1 0 256;
+#X obj -5114 -2508 nbx 4 16 -1e+37 1e+37 0 0 empty empty right 0 -8
+0 11 -262144 -1 -1 0 256;
+#X obj -5063 -2508 nbx 4 16 -1e+37 1e+37 0 0 empty empty bottom 0 -8
+0 11 -262144 -1 -1 0 256;
+#X obj -5012 -2508 nbx 4 16 -1e+37 1e+37 0 0 empty empty top 0 -8 0
+11 -262144 -1 -1 0 256;
+#X obj -4961 -2508 nbx 4 16 0 1e+37 0 0 empty empty near 0 -8 0 11
+-262144 -1 -1 0 256;
+#X obj -4910 -2508 nbx 4 16 0 1e+37 0 0 empty empty far 0 -8 0 11 -262144
+-1 -1 0 256;
+#X obj -5130 -2483 hotpack7 -0.01 0.01 -0.01 0.01 0.01 1000;
+#X msg -5130 -2464 setFrustum \$1 \$2 \$3 \$4 \$5 \$6;
+#X obj -5130 -2443 s \$0-toCamera;
+#X obj -5049 -2365 anyreg g_hostname;
+#X obj -5049 -2387 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg -6014 -2471 /voxShader debug;
+#X msg -5940 -2338 /corridor debug;
+#X msg -5155 -2414 setFrustum -0.3333 0.3333 -0.2222 0.2222 0.001 1000
+;
+#X obj -5163 -2581 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8
+0 10 -262144 -1 -1 0 256;
+#X obj -5032 -2564 * -1;
+#X obj -5010 -2592 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8
+0 10 -262144 -1 -1 0 256;
+#X obj -4879 -2575 * -1;
+#X msg -5984 -2427 /cell-globuleBlanc debug;
+#X msg -5971 -2404 /7-pipette-group-2 debug;
+#X msg -6070 -1917 /7-pipette-pcd setTranslation \$1 \$2 \$3;
+#X msg -5923 -2293 /box debug;
+#X msg -5881 -2176 /corridor debug;
+#X msg -5916 -2268 /CERC112-img debug;
+#X msg -5993 -2447 /step4 debug;
+#X obj -5656 -2131 widget-nodeEditor \$0;
+#X msg -5493 -2295 cell-CytoSkeleton_Elements;
+#X msg -5474 -2248 sang-globule;
+#X msg -5482 -2272 cell-CytoSkeleton_Elements-2;
+#X msg -5543 -2446 corridor-pcd;
+#X msg -5525 -2421 7-pipette-pcd;
+#X msg -5511 -2371 cell-lisosome;
+#X msg -5505 -2346 patient-cube;
+#X msg -5459 -2204 mainLight;
+#X msg -5455 -2181 mainLight2;
+#X msg -5870 -2148 /mainLight debug;
+#X msg -5866 -2125 /mainLight2 debug;
+#X obj -5881 -2009 r \$0-from-SPIN;
+#X msg -5500 -2320 cell-globuleBlanc;
+#X msg -5465 -2226 sang-cell;
+#X msg -5858 -2080 /sang-globule setParent step4;
+#X text -5213 -2058 sang = 3;
+#X text -5213 -2027 cell = 7;
+#X text -5213 -2088 corridor+others = 16;
+#X text -5283 -2118 EXPONENT (reacts only on models with shader);
+#X msg -5267 -1980 /mainLight setExponent \$1 \, /mainLight2 setExponent
+\$1;
+#X msg -5238 -2086 16;
+#X obj -5267 -1956 s \$0-to-SPIN-TCP;
+#X msg -5280 -2224 deleteNode mainLight3 \, createNode mainLight3 LightSource
+\, /mainLight3 setParent step4 \, /mainLight3 setTranslation 1000 4000
+0 \, /mainLight3 setOrientation 0 0 0 \, /mainLight3 setCutoff 180
+\, /mainLight3 setExponent 16 \, /mainLight3 setAttenuation 0.1 \,
+/mainLight3 setAmbient 1 1 1 1 \, /mainLight3 setDiffuse 1 1 1 1 \,
+/mainLight3 setSpecular 0 0 0 1;
+#X msg -5239 -2055 3.5;
+#X msg -5450 -2159 mainLight3;
+#X msg -5856 -2103 /mainLight3 debug;
+#X msg -5556 -2496 chantalbaron-anim;
+#X msg -6079 -2543 /chantalbaron debug;
+#X msg -6063 -2518 /chantalbaron-anim debug;
+#X msg -5520 -2396 cell-Mitochondria;
+#X msg -5239 -2026 10;
+#X msg -5550 -2471 sh0;
+#X msg -5520 -2471 sh1;
+#X msg -5488 -2471 sh2;
+#X msg -5458 -2471 sh3;
+#X msg -5933 -2316 /sh3 debug;
+#X msg -5596 -2568 hotspot_down4;
+#X msg -5606 -2595 hotspot_up4;
+#X msg -5574 -2545 hotspot_down5;
+#X msg -5954 -2384 /hotspot_down5 debug;
+#X msg -5889 -2217 /patient-targets debug;
+#X msg -5885 -2196 /patient-cube debug;
+#X msg -5405 -2464 con198;
+#X msg -5906 -2244 /menu debug;
+#X msg -5564 -2519 hostname;
+#X obj -5881 -1983 route /hostname;
+#X connect 1 0 0 0;
+#X connect 2 0 0 0;
+#X connect 3 0 0 0;
+#X connect 5 0 9 0;
+#X connect 7 0 9 1;
+#X connect 8 0 9 2;
+#X connect 9 0 34 0;
+#X connect 10 0 0 0;
+#X connect 12 0 13 0;
+#X connect 14 0 20 0;
+#X connect 15 0 20 1;
+#X connect 16 0 20 2;
+#X connect 17 0 20 3;
+#X connect 18 0 20 4;
+#X connect 19 0 20 5;
+#X connect 20 0 21 0;
+#X connect 21 0 22 0;
+#X connect 23 0 12 1;
+#X connect 24 0 23 0;
+#X connect 25 0 0 0;
+#X connect 26 0 0 0;
+#X connect 28 0 29 0;
+#X connect 28 0 15 0;
+#X connect 29 0 14 0;
+#X connect 30 0 31 0;
+#X connect 30 0 17 0;
+#X connect 31 0 16 0;
+#X connect 32 0 0 0;
+#X connect 33 0 0 0;
+#X connect 34 0 4 0;
+#X connect 35 0 0 0;
+#X connect 36 0 0 0;
+#X connect 37 0 0 0;
+#X connect 38 0 0 0;
+#X connect 40 0 39 0;
+#X connect 41 0 39 0;
+#X connect 42 0 39 0;
+#X connect 43 0 39 0;
+#X connect 44 0 39 0;
+#X connect 45 0 39 0;
+#X connect 46 0 39 0;
+#X connect 47 0 39 0;
+#X connect 48 0 39 0;
+#X connect 49 0 0 0;
+#X connect 50 0 0 0;
+#X connect 51 0 85 0;
+#X connect 52 0 39 0;
+#X connect 53 0 39 0;
+#X connect 54 0 0 0;
+#X connect 59 0 61 0;
+#X connect 60 0 59 0;
+#X connect 62 0 61 0;
+#X connect 63 0 59 0;
+#X connect 64 0 39 0;
+#X connect 65 0 0 0;
+#X connect 66 0 39 0;
+#X connect 67 0 0 0;
+#X connect 68 0 0 0;
+#X connect 69 0 39 0;
+#X connect 70 0 59 0;
+#X connect 71 0 39 0;
+#X connect 72 0 39 0;
+#X connect 73 0 39 0;
+#X connect 74 0 39 0;
+#X connect 75 0 0 0;
+#X connect 76 0 39 0;
+#X connect 77 0 39 0;
+#X connect 78 0 39 0;
+#X connect 79 0 0 0;
+#X connect 80 0 0 0;
+#X connect 81 0 0 0;
+#X connect 82 0 39 0;
+#X connect 83 0 0 0;
+#X connect 84 0 39 0;
+#X restore 413 102 pd debug;
+#X msg 110 250 /menu addItem patate;
+#X msg -10 138 deleteNode menu \, createNode menu Menu3D \, createNode
+menuOffset GroupNode \, /menuOffset setParent \$1 \, /menu setParent
+menuOffset \, /menu setTranslation 0 0.1 -0.02 \, /menu setBillboard
+2 \, /menu setScale 0.2 0.2 0.2 \, /menu setItemOffset 0 0 -0.11 \,
+/menu setHighlightColor 0 0.53725 1 1 \, /menu setLightingMode 1;
+#X msg 127 276 /menu setLighting 1;
+#X msg 143 307 createNode light LightSource \, /light setAmbient 1
+1 1 1 \, /light setExponent 1 \, /light setDiffuse 1 1 1 1;
+#X msg 68 227 /menu setRenderBin 100;
+#X msg 126 346 createNode cube ShapeNode;
+#X connect 2 0 5 0;
+#X connect 3 0 5 0;
+#X connect 5 0 10 0;
+#X connect 9 0 0 0;
+#X connect 10 0 0 0;
+#X connect 11 0 0 0;
+#X connect 12 0 0 0;
+#X connect 13 0 0 0;
+#X connect 14 0 0 0;
