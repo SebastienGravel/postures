@@ -43,10 +43,10 @@ TextNode;
 #X connect 14 1 9 0;
 #X connect 14 2 13 0;
 #X restore 100 201 pd iphone_setup;
-#X obj 433 98 cnv 15 120 60 empty empty empty 20 12 0 14 -4034 -66577
-0;
-#X obj 558 98 cnv 15 100 60 empty empty empty 20 12 0 14 -4034 -66577
-0;
+#X obj 563 98 cnv 15 120 60 empty empty Scene_controls 5 10 0 14 -4034
+-66577 0;
+#X obj 563 168 cnv 15 120 60 empty empty Scene_logic 5 10 0 14 -4034
+-66577 0;
 #N canvas 0 22 1425 846 MENU_and_HUD 1;
 #X obj -7 71 s \$0-to-SPIN-TCP;
 #X obj 65 255 hradio 15 1 0 9 empty empty empty 0 -8 0 10 -260097 -1
@@ -4377,7 +4377,26 @@ setEnabled start_world0 0;
 #X obj 790 650 s reset-main;
 #X obj 165 1 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#N canvas 777 117 605 553 context 1;
+#X obj 172 523 s 8-context;
+#X obj 141 483 s 6-context;
+#X obj 318 255 hradio 15 1 0 9 empty empty empty 0 -8 0 10 -260097
+-1 -1 0;
+#X text 457 253 <--Context;
+#X obj 133 213 r reset-choice;
+#X obj 65 210 t a b;
+#X text 31 363 0-->;
+#X text 46 383 1-->;
+#X text 61 403 2-->;
+#X text 77 424 3-->;
+#X text 91 443 4-->;
+#X text 96 463 5-6-->;
+#X text 131 503 7-8-->;
+#X msg 133 233 0;
+#X obj 65 235 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 146 285 r choice_failsafe;
+#X text 204 253 <--Menu choice;
+#N canvas 583 88 576 544 triggers 1;
 #X obj 177 -92 r \$0-from-SPIN;
 #X obj 336 -43 makefilename /%s-reporter;
 #X obj 38 282 hradio 15 1 0 9 empty empty empty 0 -8 0 10 -260097 -1
@@ -6258,7 +6277,7 @@ setEnabled start_world0 0;
 #X obj 347 228 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X msg 347 251 8;
-#X text 434 71 HOTSPOTS 0 : change scale 1 : jupiter 2 : pluton 3 :
+#X text 31 327 HOTSPOTS 0 : change scale 1 : jupiter 2 : pluton 3 :
 saturne 4 : mars 5 : terre 6 : mon vieux 7 : START 8 : ...;
 #X connect 0 0 29 0;
 #X connect 1 0 30 1;
@@ -6301,26 +6320,7 @@ saturne 4 : mars 5 : terre 6 : mon vieux 7 : START 8 : ...;
 #X connect 36 0 20 0;
 #X connect 37 0 19 0;
 #X connect 38 0 39 0;
-#X restore 318 235 pd context;
-#X obj 172 523 s 8-context;
-#X obj 141 483 s 6-context;
-#X obj 318 255 hradio 15 1 0 9 empty empty empty 0 -8 0 10 -260097
--1 -1 0;
-#X text 457 253 <--Context;
-#X obj 133 213 r reset-choice;
-#X obj 65 210 t a b;
-#X text 31 363 0-->;
-#X text 46 383 1-->;
-#X text 61 403 2-->;
-#X text 77 424 3-->;
-#X text 91 443 4-->;
-#X text 96 463 5-6-->;
-#X text 131 503 7-8-->;
-#X msg 133 233 0;
-#X obj 65 235 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 0 256;
-#X obj 146 285 r choice_failsafe;
-#X text 204 253 <--Menu choice;
+#X restore 318 235 pd triggers;
 #X connect 1 0 12 0;
 #X connect 2 0 5 0;
 #X connect 3 0 38 0;
@@ -6336,10 +6336,10 @@ saturne 4 : mars 5 : terre 6 : mon vieux 7 : START 8 : ...;
 #X connect 11 0 6 0;
 #X connect 12 0 59 0;
 #X connect 20 0 38 0;
-#X connect 24 0 82 0;
+#X connect 24 0 81 0;
 #X connect 27 0 74 0;
 #X connect 28 0 76 0;
-#X connect 29 0 81 0;
+#X connect 29 0 80 0;
 #X connect 30 0 38 0;
 #X connect 31 0 30 0;
 #X connect 32 0 38 0;
@@ -6376,7 +6376,7 @@ saturne 4 : mars 5 : terre 6 : mon vieux 7 : START 8 : ...;
 #X connect 58 8 29 1;
 #X connect 59 0 58 0;
 #X connect 59 0 68 0;
-#X connect 60 0 86 0;
+#X connect 60 0 85 0;
 #X connect 61 0 60 1;
 #X connect 62 0 60 1;
 #X connect 63 0 62 0;
@@ -6393,120 +6393,127 @@ saturne 4 : mars 5 : terre 6 : mon vieux 7 : START 8 : ...;
 #X connect 76 0 77 0;
 #X connect 77 0 0 0;
 #X connect 79 0 76 0;
-#X connect 80 0 83 0;
-#X connect 83 0 12 1;
+#X connect 82 0 12 1;
+#X connect 84 0 93 0;
 #X connect 85 0 94 0;
-#X connect 86 0 95 0;
-#X connect 86 1 61 0;
+#X connect 85 1 61 0;
+#X connect 93 0 1 0;
 #X connect 94 0 1 0;
-#X connect 95 0 1 0;
-#X connect 96 0 59 1;
-#X restore 445 119 pd MENU_and_HUD;
-#N canvas 50 122 937 735 hotspot 0;
-#X obj 137 674 s \$0-to-SPIN-TCP;
-#X obj 64 33 shell;
-#X msg 64 13 hostname -s;
-#X obj 160 24 inlet;
-#X text 336 -12 TODO: make hotspot correct size \, transparent \, etc.
+#X connect 95 0 59 1;
+#X connect 97 0 82 0;
+#X restore 575 119 pd MENU_and_HUD;
+#N canvas 69 22 993 852 hotspot 1;
+#X obj 40 877 s \$0-to-SPIN-TCP;
+#X obj -56 43 shell;
+#X msg -56 23 hostname -s;
+#X obj 40 24 inlet;
+#X text 554 88 TODO: make hotspot correct size \, transparent \, etc.
 ;
-#X obj 160 74 t a a a a;
-#X msg 315 42 createNode hotspot_start ShapeNode \, /\$1-reporter addTarget
-hotspot_start \, /hotspot_start setParent start_group;
-#X msg 336 110 createNode hotspot_jupiter ShapeNode \, /\$1-reporter
+#X msg 146 195 createNode hotspot_start ShapeNode \, /\$1-reporter
+addTarget hotspot_start \, /hotspot_start setParent start_group;
+#X msg 117 250 createNode hotspot_jupiter ShapeNode \, /\$1-reporter
 addTarget hotspot_jupiter \, /hotspot_saturne setParent hotspot_group
 ;
-#X msg 362 193 createNode hotspot_saturne ShapeNode \, /\$1-reporter
+#X msg 88 331 createNode hotspot_saturne ShapeNode \, /\$1-reporter
 addTarget hotspot_saturne \, /hotspot_saturne setParent hotspot_group
 ;
-#X msg 350 157 createNode hotspot_pluton ShapeNode \, /\$1-reporter
+#X msg 102 297 createNode hotspot_pluton ShapeNode \, /\$1-reporter
 addTarget hotspot_pluton \, /hotspot_pluton setParent hotspot_group
 ;
-#X msg 383 239 createNode hotspot_mars ShapeNode \, /\$1-reporter addTarget
+#X msg 73 378 createNode hotspot_mars ShapeNode \, /\$1-reporter addTarget
 hotspot_mars \, /hotspot_mars setParent hotspot_group;
-#X obj 475 316 t a;
-#X obj 357 20 t a;
-#X msg 400 273 createNode hotspot_terre ShapeNode \, /\$1-reporter
-addTarget hotspot_terre \, /hotspot_terre setParent hotspot_return
-;
-#X text 897 310 hz;
-#X msg 690 111 /hotspot* setShape 2;
-#X msg 401 344 /hotspot_start setShape 2 \, /hotspot_start setColor
+#X msg 59 412 createNode hotspot_terre ShapeNode \, /\$1-reporter addTarget
+hotspot_terre \, /hotspot_terre setParent hotspot_return;
+#X text 813 244 hz;
+#X msg 641 183 /hotspot* setShape 2;
+#X msg 127 523 /hotspot_start setShape 2 \, /hotspot_start setColor
 0 0 0 0 \, /hotspot_start setRenderBin 9999 \, /hotspot_start setTranslation
 0 -12 0 \, /hotspot_start setScale 0.1 0.1 0.1;
-#X msg 445 494 /hotspot_pluton setShape 2 \, /hotspot_pluton setColor
+#X msg 83 677 /hotspot_pluton setShape 2 \, /hotspot_pluton setColor
 0 0 0 0 \, /hotspot_pluton setRenderBin 9999 \, /hotspot_pluton setTranslation
 -475 0 -4 \, /hotspot_pluton setScale 15 15 15;
-#X msg 427 437 /hotspot_jupiter setShape 2 \, /hotspot_jupiter setColor
+#X msg 98 617 /hotspot_jupiter setShape 2 \, /hotspot_jupiter setColor
 0 0 0 0 \, /hotspot_jupiter setRenderBin 9999 \, /hotspot_jupiter setTranslation
 -29 293 -4 \, /hotspot_jupiter setScale 35 35 35;
-#X msg 459 541 /hotspot_saturne setShape 2 \, /hotspot_saturne setColor
+#X msg 69 724 /hotspot_saturne setShape 2 \, /hotspot_saturne setColor
 0 0 0 0 \, /hotspot_saturne setRenderBin 9999 \, /hotspot_saturne setTranslation
 -10 -411 -4 \, /hotspot_saturne setScale 35 35 35;
-#X msg 486 650 /hotspot_terre setShape 2 \, /hotspot_terre setColor
+#X msg 40 831 /hotspot_terre setShape 2 \, /hotspot_terre setColor
 0 0 0 0 \, /hotspot_terre setRenderBin 9999 \, /hotspot_terre setTranslation
 0 0 0 \, /hotspot_terre setScale 11 11 11;
-#X msg 470 602 /hotspot_mars setShape 2 \, /hotspot_mars setColor 0
+#X msg 54 784 /hotspot_mars setShape 2 \, /hotspot_mars setColor 0
 0 0 0 \, /hotspot_mars setRenderBin 9999 \, /hotspot_mars setTranslation
 499 19 -2 \, /hotspot_mars setScale 20 20 20;
-#X msg 326 76 createNode hotspot ShapeNode \, /\$1-reporter addTarget
+#X msg 131 229 createNode hotspot ShapeNode \, /\$1-reporter addTarget
 hotspot;
-#X msg 413 390 /hotspot setShape 2 \, /hotspot setColor 0 0 0 0 \,
+#X msg 112 570 /hotspot setShape 2 \, /hotspot setColor 0 0 0 0 \,
 /hotspot setRenderBin 9999 \, /hotspot setTranslation 0 0 -1.59 \,
 /hotspot setScale 4 4 4;
-#X msg 26 314 createNode \$1-reporter ReporterNode \, createNode hotspot_group
-SwitchNode \, createNode hotspot_return SwitchNode;
-#X msg 27 276 /\$1-reporter setParent \$1 \, /\$1-reporter setReporting
-CONTAINMENT 0;
-#X obj 64 53 symbol;
-#X obj 160 44 anyreg g_hostname;
-#X msg 762 274 /\$1-reporter debug;
-#X msg 693 311 /\$1-reporter setMaxRate 20;
-#X msg 600 4 /\$1-reporter setReporting CONTAINMENT 1;
-#X msg 642 23 /\$1-reporter setReporting DISTANCE 0;
-#X connect 1 0 26 0;
+#X obj -56 63 symbol;
+#X obj 40 44 anyreg g_hostname;
+#X msg 644 214 /\$1-reporter debug;
+#X msg 645 244 /\$1-reporter setMaxRate 20;
+#X msg 628 120 /\$1-reporter setReporting CONTAINMENT 1;
+#X msg 634 150 /\$1-reporter setReporting DISTANCE 0;
+#X obj 59 173 t a a a a a a a;
+#X msg 79 84 createNode \$1-reporter ReporterNode \, createNode hotspot_group
+SwitchNode \, createNode hotspot_return SwitchNode \, /\$1-reporter
+setParent \$1 \, /\$1-reporter setReporting CONTAINMENT 0;
+#X obj 40 64 t a a a;
+#X obj 59 445 s \$0-to-SPIN-TCP;
+#X obj 79 143 s \$0-to-SPIN-TCP;
+#X obj 590 278 s \$0-to-SPIN-TCP;
+#X obj 40 495 t b b b b b b b;
+#X obj 40 475 delay 1000;
+#X obj 155 34 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 141 485 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X connect 1 0 21 0;
 #X connect 2 0 1 0;
-#X connect 3 0 27 0;
-#X connect 5 0 11 0;
-#X connect 5 1 12 0;
-#X connect 5 2 25 0;
-#X connect 5 3 24 0;
-#X connect 6 0 0 0;
-#X connect 7 0 0 0;
-#X connect 8 0 0 0;
-#X connect 9 0 0 0;
-#X connect 10 0 0 0;
-#X connect 11 0 16 0;
-#X connect 11 0 23 0;
-#X connect 11 0 18 0;
-#X connect 11 0 19 0;
-#X connect 11 0 17 0;
-#X connect 11 0 21 0;
-#X connect 11 0 20 0;
-#X connect 12 0 6 0;
-#X connect 12 0 22 0;
-#X connect 12 0 7 0;
-#X connect 12 0 8 0;
-#X connect 12 0 9 0;
-#X connect 12 0 10 0;
-#X connect 12 0 13 0;
+#X connect 3 0 22 0;
+#X connect 5 0 30 0;
+#X connect 6 0 30 0;
+#X connect 7 0 30 0;
+#X connect 8 0 30 0;
+#X connect 9 0 30 0;
+#X connect 10 0 30 0;
+#X connect 12 0 32 0;
 #X connect 13 0 0 0;
+#X connect 14 0 0 0;
 #X connect 15 0 0 0;
 #X connect 16 0 0 0;
 #X connect 17 0 0 0;
 #X connect 18 0 0 0;
-#X connect 19 0 0 0;
+#X connect 19 0 30 0;
 #X connect 20 0 0 0;
-#X connect 21 0 0 0;
-#X connect 22 0 0 0;
-#X connect 23 0 0 0;
-#X connect 24 0 0 0;
-#X connect 25 0 0 0;
-#X connect 26 0 5 0;
-#X connect 27 0 5 0;
-#X connect 28 0 0 0;
-#X connect 29 0 0 0;
-#X connect 30 0 0 0;
-#X connect 31 0 0 0;
+#X connect 21 0 29 0;
+#X connect 22 0 29 0;
+#X connect 23 0 32 0;
+#X connect 24 0 32 0;
+#X connect 25 0 32 0;
+#X connect 26 0 32 0;
+#X connect 27 0 10 0;
+#X connect 27 1 9 0;
+#X connect 27 2 7 0;
+#X connect 27 3 8 0;
+#X connect 27 4 6 0;
+#X connect 27 5 19 0;
+#X connect 27 6 5 0;
+#X connect 28 0 31 0;
+#X connect 29 0 34 0;
+#X connect 29 1 27 0;
+#X connect 29 2 28 0;
+#X connect 33 0 17 0;
+#X connect 33 1 18 0;
+#X connect 33 2 16 0;
+#X connect 33 3 14 0;
+#X connect 33 4 15 0;
+#X connect 33 5 20 0;
+#X connect 33 6 13 0;
+#X connect 34 0 33 0;
+#X connect 35 0 22 0;
+#X connect 36 0 33 0;
 #X restore 120 171 pd hotspot;
 #X obj 92 357 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
@@ -7144,7 +7151,7 @@ CONTAINMENT 0;
 #X connect 107 0 110 0;
 #X connect 108 0 110 0;
 #X connect 109 0 108 0;
-#X restore 581 119 pd scale;
+#X restore 575 189 pd scale;
 #X obj 18 81 delay 100;
 #X obj 18 61 t b;
 #X obj 18 101 t b b b b b;
@@ -7186,13 +7193,13 @@ them all over the place.;
 #X connect 15 0 3 0;
 #X connect 17 0 18 0;
 #X connect 18 0 16 0;
-#X restore 665 99 pd assets;
+#X restore 694 98 pd assets;
 #X obj 199 191 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 18 -2 loadbang1 DD;
 #X obj 93 91 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 431 175 bng 30 250 50 0 reset-main empty RESET 35 15 0 30 -258113
+#X obj 563 238 bng 30 250 50 0 reset-main empty RESET 35 15 0 30 -258113
 -1 -1;
 #N canvas 67 59 1325 790 debug 0;
 #X obj -6113 -2089 s \$0-to-SPIN-TCP;
@@ -7630,7 +7637,7 @@ them all over the place.;
 #X connect 86 0 88 0;
 #X connect 87 0 86 0;
 #X connect 88 0 0 0;
-#X restore 665 119 pd debug;
+#X restore 694 118 pd debug;
 #N canvas 0 22 507 593 main_nodes 0;
 #X obj 43 21 inlet;
 #X obj 43 538 s \$0-to-SPIN-TCP;
@@ -8034,8 +8041,6 @@ setRenderBin 100 \, /spacecraft setScale 0.1 0.1 0.1;
 #X connect 12 0 4 0;
 #X connect 12 1 7 0;
 #X restore 49 327 pd models;
-#X text 462 99 Scene controls;
-#X text 587 99 Scene logic;
 #X obj 18 401 bng 20 250 50 0 empty empty loading_DONE 25 10 0 20 -4034
 -1 -1;
 #N canvas 50 154 427 481 texts 0;
@@ -8841,8 +8846,8 @@ soleil_group;
 #X connect 22 0 20 0;
 #X connect 22 1 19 0;
 #X connect 23 0 17 0;
-#X restore 665 139 pd tests_and_stuff;
-#X text 729 97 <--project path and hostname;
+#X restore 694 138 pd tests_and_stuff;
+#X text 758 96 <--project path and hostname;
 #N canvas 400 197 450 300 sound 1;
 #X obj 34 25 inlet;
 #X msg 49 92 dsp 0;
@@ -9116,9 +9121,9 @@ soleil_group;
 #X connect 20 0 4 0;
 #X connect 21 0 5 0;
 #X connect 21 0 22 0;
-#X restore 685 174 pd TODO_stuff;
-#N canvas 288 22 1080 844 reset 0;
-#X obj 267 536 s \$0-to-SPIN-TCP;
+#X restore 694 158 pd TODO_stuff;
+#N canvas 288 22 1080 844 reset-BKP 0;
+#X obj 267 556 s \$0-to-SPIN-TCP;
 #N canvas 440 329 1000 418 menu_start 0;
 #X obj 189 -237 inlet;
 #X obj 100 90 outlet;
@@ -9157,35 +9162,35 @@ soleil_group;
 #X connect 11 10 10 0;
 #X connect 12 0 1 0;
 #X connect 14 0 13 0;
-#X restore 355 598 pd menu_start;
-#X obj 348 34 s reset;
-#X obj 361 1 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X restore 355 618 pd menu_start;
+#X obj 348 54 s reset;
+#X obj 361 21 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X msg 240 674 /menu setEnabled \$1;
-#X msg 291 634 bang;
-#X msg 240 634 bang;
-#X obj 203 636 tgl 25 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X msg 240 694 /menu setEnabled \$1;
+#X msg 291 654 bang;
+#X msg 240 654 bang;
+#X obj 203 656 tgl 25 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X msg 240 654 0;
-#X msg 291 654 1;
-#X obj 355 638 list trim;
-#X obj 355 618 list prepend /menu;
-#X msg 673 623 0;
-#X msg 673 643 /hotspot_start setScale \$1 \$1 \$1;
-#X msg 676 541 0.1;
-#X msg 280 437 /pointer_start setScale 1 1 1 \, /pointer_terre setScale
+#X msg 240 674 0;
+#X msg 291 674 1;
+#X obj 355 658 list trim;
+#X obj 355 638 list prepend /menu;
+#X msg 673 643 0;
+#X msg 673 663 /hotspot_start setScale \$1 \$1 \$1;
+#X msg 676 561 0.1;
+#X msg 280 457 /pointer_start setScale 1 1 1 \, /pointer_terre setScale
 0 0 0 \, /pointer_jupiter setScale 0 0 0 \, /pointer_pluton setScale
 0 0 0 \, /pointer_saturne setScale 0 0 0 \, /pointer_mars setScale
 0 0 0;
-#X obj 226 582 delay 1000;
-#X obj 737 326 r \$0-from-SPIN;
-#X obj 737 449 route reset;
-#X obj 737 502 s reset;
-#X obj 737 427 route event;
-#X obj 737 471 t b;
-#X msg 294 417 /menu setTranslation 0 0.1 -0.02 \, /menu setScale 0.4
+#X obj 226 602 delay 1000;
+#X obj 737 346 r \$0-from-SPIN;
+#X obj 737 469 route reset;
+#X obj 737 522 s reset;
+#X obj 737 447 route event;
+#X obj 737 491 t b;
+#X msg 294 437 /menu setTranslation 0 0.1 -0.02 \, /menu setScale 0.4
 0.4 0.4;
-#X msg 267 503 /start_group setEnabled start_world 0 \, /start_group
+#X msg 267 523 /start_group setEnabled start_world 0 \, /start_group
 setEnabled start_world0 1;
 #N canvas 0 22 729 740 orbits 0;
 #X obj 74 537 s \$0-to-SPIN-TCP;
@@ -9239,12 +9244,12 @@ setEnabled start_world0 1;
 #X connect 14 0 0 0;
 #X connect 15 0 0 0;
 #X connect 16 0 0 0;
-#X restore 322 312 pd orbits;
-#X obj 352 235 delay 950;
-#X obj 307 342 delay 960;
-#X msg 400 192 0;
-#X msg 367 192 1;
-#X obj 367 172 delay 1000;
+#X restore 322 332 pd orbits;
+#X obj 352 255 delay 950;
+#X obj 307 362 delay 960;
+#X msg 400 212 0;
+#X msg 367 212 1;
+#X obj 367 192 delay 1000;
 #N canvas 615 268 825 588 SOUND_back-forest-start 0;
 #X obj 233 478 dac~;
 #X obj 265 220 symbol;
@@ -9307,9 +9312,9 @@ setEnabled start_world0 1;
 #X connect 24 0 1 0;
 #X connect 25 0 26 0;
 #X connect 26 0 1 0;
-#X restore 253 558 pd SOUND_back-forest-start;
-#X obj 83 647 r reset;
-#X obj 307 145 t b b b b b b;
+#X restore 253 578 pd SOUND_back-forest-start;
+#X obj 83 667 r reset;
+#X obj 307 165 t b b b b b b;
 #N canvas 423 25 738 740 planets_rotation 0;
 #X obj 74 537 s \$0-to-SPIN-TCP;
 #X msg 504 543 /venus setSpin 0 0 -50;
@@ -9359,45 +9364,45 @@ setEnabled start_world0 1;
 #X connect 13 0 0 0;
 #X connect 14 0 0 0;
 #X connect 15 0 0 0;
-#X restore 337 282 pd planets_rotation;
-#X msg 636 68 0;
-#X obj 226 602 t b b b;
-#X obj 609 28 r reset;
-#X obj 334 54 s activateMenu;
-#X obj 321 79 anyreg g_hostname;
-#X msg 321 99 /\$1-reporter setReporting CONTAINMENT 0;
-#X obj 213 717 anyreg g_hostname;
-#X msg 213 737 /\$1 setCubeOffset -32 -39 0.4 \, /\$1 setTranslation
+#X restore 337 302 pd planets_rotation;
+#X msg 636 88 0;
+#X obj 226 622 t b b b;
+#X obj 609 48 r reset;
+#X obj 334 74 s activateMenu;
+#X obj 321 99 anyreg g_hostname;
+#X msg 321 119 /\$1-reporter setReporting CONTAINMENT 0;
+#X obj 213 737 anyreg g_hostname;
+#X msg 213 757 /\$1 setCubeOffset -32 -39 0.4 \, /\$1 setTranslation
 -32 -39 0.4 \, /\$1 setCubeSize 0 0 1e-06;
-#X obj 842 364 anyreg g_hostname;
-#X obj 737 358 t a b;
-#X obj 737 406 OSCparse /hostname;
-#X obj 444 588 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 842 384 anyreg g_hostname;
+#X obj 737 378 t a b;
+#X obj 737 426 OSCparse /hostname;
+#X obj 444 608 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 829 467 p;
-#X obj 842 384 makefilename /%s;
-#X text 787 502 <--Already in MENU_and_HUD;
-#X obj 380 662 p;
-#X obj 213 11 t b b b b b b b b b b b;
-#X obj 321 119 s \$0-to-SPIN-TCP;
-#X obj 213 770 s \$0-to-SPIN-TCP;
-#X obj 609 138 s \$0-to-SPIN-TCP;
-#X msg 676 561 /hotspot_terre setRenderBin 9999 \, /hotspot_start setScale
+#X obj 829 487 p;
+#X obj 842 404 makefilename /%s;
+#X text 787 522 <--Already in MENU_and_HUD;
+#X obj 380 682 p;
+#X obj 213 31 t b b b b b b b b b b b;
+#X obj 321 139 s \$0-to-SPIN-TCP;
+#X obj 213 790 s \$0-to-SPIN-TCP;
+#X obj 609 158 s \$0-to-SPIN-TCP;
+#X msg 676 581 /hotspot_terre setRenderBin 9999 \, /hotspot_start setScale
 \$1 \$1 \$1;
-#X obj 676 594 s \$0-to-SPIN-TCP;
-#X msg 609 108 refreshSubscribers;
-#X obj 609 48 t b b;
-#X obj 661 38 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 676 614 s \$0-to-SPIN-TCP;
+#X msg 609 128 refreshSubscribers;
+#X obj 609 68 t b b;
+#X obj 661 58 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X msg 636 88 /hotspot_terre setScale \$1 \$1 \$1;
-#X obj 352 255 s 7-context;
-#X obj 307 382 s reset-choice;
-#X msg 307 362 0;
-#X obj 367 212 s open_choice;
+#X msg 636 108 /hotspot_terre setScale \$1 \$1 \$1;
+#X obj 352 275 s 7-context;
+#X obj 307 402 s reset-choice;
+#X msg 307 382 0;
+#X obj 367 232 s open_choice;
 #X obj 213 -9 r reset-main;
-#X obj 673 663 s \$0-to-SPIN-TCP;
-#X msg 468 193 /hotspot_terre setScale 0 0 0;
-#X obj 240 694 print ***********GOT_IT_GOT_IT;
+#X obj 673 683 s \$0-to-SPIN-TCP;
+#X msg 468 213 /hotspot_terre setScale 0 0 0;
+#X obj 240 714 print ***********GOT_IT_GOT_IT;
 #X connect 1 0 11 0;
 #X connect 3 0 50 0;
 #X connect 4 0 52 0;
@@ -9464,10 +9469,9 @@ setEnabled start_world0 1;
 #X connect 58 0 57 0;
 #X connect 59 0 53 0;
 #X connect 62 0 61 0;
-#X connect 64 0 50 0;
-#X restore 445 139 pd reset;
-#N canvas 400 22 1080 844 reset-NEW 1;
-#X obj 267 426 s \$0-to-SPIN-TCP;
+#X restore 694 179 pd reset-BKP;
+#N canvas 360 22 1080 844 reset 0;
+#X obj 213 664 s \$0-to-SPIN-TCP;
 #N canvas 290 318 1000 418 menu_start 0;
 #X obj 189 -237 inlet;
 #X msg 408 -23 removeItem 1;
@@ -9512,21 +9516,21 @@ setEnabled start_world0 1;
 #X connect 14 0 15 0;
 #X connect 15 0 16 0;
 #X connect 15 0 17 0;
-#X restore 355 518 pd menu_start;
-#X obj 348 34 s reset;
+#X restore 298 300 pd menu_start;
+#X obj 334 41 s reset;
 #X obj 361 1 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X msg 240 564 /menu setEnabled \$1;
-#X msg 291 524 bang;
-#X msg 240 524 bang;
-#X obj 203 526 tgl 25 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X msg 240 420 /menu setEnabled \$1;
+#X msg 280 380 bang;
+#X msg 240 380 bang;
+#X obj 203 382 tgl 25 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X msg 240 544 0;
-#X msg 291 544 1;
-#X msg 673 623 0;
-#X msg 673 643 /hotspot_start setScale \$1 \$1 \$1;
-#X msg 676 541 0.1;
-#X obj 226 472 delay 1000;
+#X msg 240 400 0;
+#X msg 280 400 1;
+#X msg 713 633 0;
+#X msg 713 653 /hotspot_start setScale \$1 \$1 \$1;
+#X msg 716 551 0.1;
+#X obj 253 195 delay 1000;
 #X obj 737 326 r \$0-from-SPIN;
 #X obj 737 449 route reset;
 #X obj 737 502 s reset;
@@ -9584,11 +9588,9 @@ setEnabled start_world0 1;
 #X connect 14 0 0 0;
 #X connect 15 0 0 0;
 #X connect 16 0 0 0;
-#X restore 322 248 pd orbits;
-#X obj 352 171 delay 950;
-#X msg 400 121 0;
-#X msg 367 121 1;
-#X obj 367 101 delay 1000;
+#X restore 294 131 pd orbits;
+#X msg 316 330 0;
+#X msg 283 330 1;
 #N canvas 615 268 825 588 SOUND_back-forest-start 0;
 #X obj 233 478 dac~;
 #X obj 265 220 symbol;
@@ -9651,8 +9653,7 @@ setEnabled start_world0 1;
 #X connect 24 0 1 0;
 #X connect 25 0 26 0;
 #X connect 26 0 1 0;
-#X restore 253 448 pd SOUND_back-forest-start;
-#X obj 307 74 t b b b b b b;
+#X restore 280 161 pd SOUND_back-forest-start;
 #N canvas 423 25 738 740 planets_rotation 0;
 #X obj 74 537 s \$0-to-SPIN-TCP;
 #X msg 504 543 /venus setSpin 0 0 -50;
@@ -9702,132 +9703,130 @@ setEnabled start_world0 1;
 #X connect 13 0 0 0;
 #X connect 14 0 0 0;
 #X connect 15 0 0 0;
-#X restore 337 218 pd planets_rotation;
+#X restore 307 101 pd planets_rotation;
 #X msg 766 68 0;
-#X obj 226 492 t b b b;
 #X obj 739 28 r reset;
-#X obj 334 54 s activateMenu;
-#X obj 213 607 anyreg g_hostname;
+#X obj 321 71 s activateMenu;
+#X obj 226 470 anyreg g_hostname;
 #X obj 842 364 anyreg g_hostname;
 #X obj 737 358 t a b;
 #X obj 737 406 OSCparse /hostname;
-#X obj 444 508 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 387 290 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 829 467 p;
 #X obj 842 384 makefilename /%s;
 #X text 787 502 <--Already in MENU_and_HUD;
 #X obj 213 11 t b b b b b b b b b b b;
-#X obj 213 673 s \$0-to-SPIN-TCP;
+#X obj 226 536 s \$0-to-SPIN-TCP;
 #X obj 739 138 s \$0-to-SPIN-TCP;
-#X msg 676 561 /hotspot_terre setRenderBin 9999 \, /hotspot_start setScale
+#X msg 716 571 /hotspot_terre setRenderBin 9999 \, /hotspot_start setScale
 \$1 \$1 \$1;
-#X obj 676 594 s \$0-to-SPIN-TCP;
+#X obj 716 604 s \$0-to-SPIN-TCP;
 #X msg 739 108 refreshSubscribers;
 #X obj 739 48 t b b;
 #X obj 791 38 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X msg 766 88 /hotspot_terre setScale \$1 \$1 \$1;
-#X obj 352 191 s 7-context;
-#X obj 307 298 s reset-choice;
+#X obj 328 240 s 7-context;
 #X obj 213 -9 r reset-main;
-#X obj 673 663 s \$0-to-SPIN-TCP;
-#X obj 240 584 print ***********GOT_IT_GOT_IT;
-#X text 398 33 <--To various sub patches;
-#X text 428 53 <--Reactivates Menu;
-#X msg 267 328 /hotspot_terre setScale 0 0 0 \, /menu setTranslation
+#X obj 713 673 s \$0-to-SPIN-TCP;
+#X obj 240 440 print ***********GOT_IT_GOT_IT;
+#X text 386 40 <--To various sub patches;
+#X text 417 70 <--Reactivates Menu;
+#X msg 213 566 /hotspot_terre setScale 0 0 0 \, /menu setTranslation
 0 0.1 -0.02 \, /menu setScale 0.4 0.4 0.4 \, /pointer_start setScale
 1 1 1 \, /pointer_terre setScale 0 0 0 \, /pointer_jupiter setScale
 0 0 0 \, /pointer_pluton setScale 0 0 0 \, /pointer_saturne setScale
 0 0 0 \, /pointer_mars setScale 0 0 0 \, /start_group setEnabled start_world
 0 \, /start_group setEnabled start_world0 1;
-#X obj 83 530 r reset;
-#X msg 213 627 /\$1 setCubeOffset -32 -39 0.4 \, /\$1 setTranslation
+#X msg 226 490 /\$1 setCubeOffset -32 -39 0.4 \, /\$1 setTranslation
 -32 -39 0.4 \, /\$1 setCubeSize 0 0 1e-06 \, /\$1-reporter setReporting
 CONTAINMENT 0;
-#X obj 307 278 delay 1000;
-#X text 479 140 <--Makes sure choice passes only once;
-#X obj 367 141 s choice_failsafe;
-#X text 427 190 <--Switch to context 7;
-#X text 387 247 <--Resets planets spin;
-#X text 404 297 <--Reset choice cursor to 0 (first choice);
-#X text 421 447 <--Resets background music;
-#X text 441 517 <--Resets Menu items (START);
-#X text 365 555 <--Disable and enable menu to avoid input while reset
+#X text 395 349 <--Makes sure choice passes only once;
+#X obj 283 350 s choice_failsafe;
+#X text 403 239 <--Switch to context 7;
+#X text 359 130 <--Resets planets spin;
+#X text 448 160 <--Resets background music;
+#X text 384 299 <--Resets Menu items (START);
+#X text 365 418 <--Disable and enable menu to avoid input while reset
 ;
-#X text 464 217 <--Backup of orbits???;
-#X connect 3 0 39 0;
-#X connect 4 0 40 0;
-#X connect 4 0 52 0;
+#X text 432 100 <--Backup of orbits???;
+#X obj 313 270 s reset-choice;
+#X text 410 269 <--Reset choice cursor to 0 (first choice);
+#X obj 408 260 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 253 215 t b b b b b b;
+#X text 335 468 <--Resets User settings;
+#X text 315 664 <--Resets world and menu settings;
+#X connect 3 0 35 0;
+#X connect 4 0 36 0;
+#X connect 4 0 47 0;
 #X connect 5 0 9 0;
 #X connect 6 0 8 0;
 #X connect 7 0 4 0;
 #X connect 8 0 4 0;
 #X connect 9 0 4 0;
 #X connect 10 0 11 0;
-#X connect 11 0 51 0;
-#X connect 12 0 42 0;
-#X connect 13 0 28 0;
-#X connect 14 0 33 0;
+#X connect 11 0 46 0;
+#X connect 12 0 38 0;
+#X connect 13 0 63 0;
+#X connect 14 0 29 0;
 #X connect 15 0 18 0;
 #X connect 17 0 15 0;
-#X connect 20 0 48 0;
-#X connect 21 0 60 0;
-#X connect 22 0 60 0;
-#X connect 23 0 22 0;
-#X connect 25 0 58 0;
-#X connect 25 1 19 0;
-#X connect 25 3 20 0;
-#X connect 25 4 23 0;
-#X connect 25 5 21 0;
-#X connect 27 0 47 0;
-#X connect 28 0 5 0;
-#X connect 28 1 1 0;
-#X connect 28 2 31 0;
-#X connect 29 0 45 0;
-#X connect 31 0 57 0;
-#X connect 32 0 37 0;
-#X connect 33 0 34 0;
-#X connect 33 1 32 0;
-#X connect 34 0 17 0;
-#X connect 35 0 1 0;
-#X connect 37 0 34 1;
-#X connect 39 0 31 0;
-#X connect 39 1 13 0;
-#X connect 39 2 6 0;
-#X connect 39 3 24 0;
-#X connect 39 4 55 0;
-#X connect 39 7 25 0;
-#X connect 39 9 30 0;
-#X connect 39 10 2 0;
-#X connect 42 0 43 0;
-#X connect 44 0 41 0;
-#X connect 45 0 44 0;
-#X connect 45 1 27 0;
-#X connect 46 0 45 0;
-#X connect 47 0 41 0;
-#X connect 50 0 39 0;
-#X connect 55 0 0 0;
-#X connect 57 0 40 0;
-#X connect 58 0 49 0;
-#X restore 455 269 pd reset-NEW;
-#X connect 0 0 10 0;
+#X connect 20 0 53 0;
+#X connect 21 0 53 0;
+#X connect 24 0 43 0;
+#X connect 25 0 41 0;
+#X connect 27 0 51 0;
+#X connect 28 0 33 0;
+#X connect 29 0 30 0;
+#X connect 29 1 28 0;
+#X connect 30 0 17 0;
+#X connect 31 0 1 0;
+#X connect 33 0 30 1;
+#X connect 35 0 50 0;
+#X connect 35 1 27 0;
+#X connect 35 2 6 0;
+#X connect 35 3 13 0;
+#X connect 35 4 20 0;
+#X connect 35 5 22 0;
+#X connect 35 6 19 0;
+#X connect 35 8 26 0;
+#X connect 35 9 2 0;
+#X connect 38 0 39 0;
+#X connect 40 0 37 0;
+#X connect 41 0 40 0;
+#X connect 41 1 24 0;
+#X connect 42 0 41 0;
+#X connect 43 0 37 0;
+#X connect 45 0 35 0;
+#X connect 50 0 0 0;
+#X connect 51 0 36 0;
+#X connect 62 0 60 0;
+#X connect 63 0 27 0;
+#X connect 63 1 5 0;
+#X connect 63 2 21 0;
+#X connect 63 3 1 0;
+#X connect 63 4 60 0;
+#X connect 63 5 44 0;
+#X restore 575 139 pd reset;
 #X connect 1 0 6 0;
-#X connect 7 0 25 0;
+#X connect 7 0 23 0;
 #X connect 9 0 11 0;
 #X connect 10 0 9 0;
-#X connect 11 0 24 0;
-#X connect 11 1 25 0;
+#X connect 11 0 22 0;
+#X connect 11 1 23 0;
 #X connect 11 2 21 0;
 #X connect 11 3 20 0;
 #X connect 11 4 12 0;
 #X connect 12 0 13 0;
-#X connect 13 0 31 0;
+#X connect 13 0 29 0;
 #X connect 13 1 2 0;
 #X connect 13 2 6 0;
 #X connect 15 0 2 0;
 #X connect 16 0 0 0;
 #X connect 17 0 11 0;
-#X connect 26 0 21 0;
-#X connect 27 0 20 0;
-#X connect 31 0 30 0;
-#X connect 32 0 30 0;
+#X connect 24 0 21 0;
+#X connect 25 0 20 0;
+#X connect 29 0 28 0;
+#X connect 30 0 28 0;
