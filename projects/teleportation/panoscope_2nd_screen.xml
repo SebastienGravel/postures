@@ -6,7 +6,7 @@
         <fullscreen>true</fullscreen>
         <windowPosition>0 0</windowPosition>
         <windowSize>100% 100%</windowSize>
-        <windowDecoration>true</windowDecoration>
+        <windowDecoration>false</windowDecoration>
         <useCursor>true</useCursor>
         <supportsResize>true</supportsResize>
         <camera id="panoCamera">
