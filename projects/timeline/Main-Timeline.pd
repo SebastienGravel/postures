@@ -1,0 +1,304 @@
+#N canvas 12 73 700 461 10;
+#X obj 21 11 widget-spinConnect \$0;
+#N canvas 348 174 608 440 models 0;
+#X obj 33 -18 inlet;
+#X obj 33 277 s \$0-to-SPIN-TCP;
+#X obj 33 4 anyreg gProjectPath;
+#X msg 33 241 deleteNode \$2 \, createNode \$2 ModelNode \, /\$2 setModelFromFile
+\$1/\$2.ac;
+#X obj 103 95 list append LUC_art;
+#X obj 89 117 list append LUC_design;
+#X obj 75 139 list append LUC_lieux;
+#X obj 61 161 list append LUC_marqueurs_mondiaux;
+#X obj 47 183 list append LUC_media_history;
+#X obj 33 205 list append LUC_pano_alley;
+#X obj 117 73 list append LUC_timeline;
+#X obj 33 26 t a a a a a a a a;
+#X obj 132 51 list append LUC_timeline-0;
+#X text 301 50 <--Timeline + numbers \, maybe not necessary. Numbers
+could be hardcoded in PD;
+#X connect 0 0 2 0;
+#X connect 2 0 11 0;
+#X connect 3 0 1 0;
+#X connect 4 0 3 0;
+#X connect 5 0 3 0;
+#X connect 6 0 3 0;
+#X connect 7 0 3 0;
+#X connect 8 0 3 0;
+#X connect 9 0 3 0;
+#X connect 10 0 3 0;
+#X connect 11 0 9 0;
+#X connect 11 1 8 0;
+#X connect 11 2 7 0;
+#X connect 11 3 6 0;
+#X connect 11 4 5 0;
+#X connect 11 5 4 0;
+#X connect 11 6 10 0;
+#X connect 11 7 12 0;
+#X connect 12 0 3 0;
+#X restore 69 217 pd models;
+#N canvas 603 180 487 526 iphone_setup 0;
+#X obj 49 180 pack s s;
+#X obj 204 127 list2symbol;
+#X obj 15 99 shell;
+#X msg 16 81 hostname -s;
+#X msg 204 108 Pointer ici;
+#X obj 22 32 inlet;
+#X obj 51 199 t a a;
+#X obj 207 77 loadbang;
+#X obj 100 460 s \$0-to-SPIN-TCP;
+#X msg 31 266 /\$1-pointer setParent \$1 \, /\$1-target setParent \$1-pointer
+\, /\$1-target-instructions setParent \$1-target \, /\$1-target-cursor
+setParent \$1-target \, /\$1-target-cursor setTextValue + \, /\$1-target-instructions
+setTextValue \$2 \, /\$1-target setTranslation 0 0.01 0 \, /\$1-target
+setScale 0.01 0.01 0.01 \, /\$1-target-* setColor 1 0 0 1 \, /\$1-target-*
+setDecoration 9 \, /\$1-target-* setFont GillSans.ttf \, /\$1-target-*
+setBillboard 2 \, /\$1-target-instructions setTranslation 0 0 0.1 \,
+/\$1-target setEnabled \$1-target-instructions 0;
+#X msg 157 176 createNode \$1-pointer GroupNode \, createNode \$1-target
+SwitchNode \, createNode \$1-target-cursor TextNode \, createNode \$1-target-instructions
+TextNode;
+#X connect 0 0 6 0;
+#X connect 1 0 0 1;
+#X connect 2 0 0 0;
+#X connect 3 0 2 0;
+#X connect 4 0 1 0;
+#X connect 5 0 3 0;
+#X connect 6 0 9 0;
+#X connect 6 1 10 0;
+#X connect 7 0 4 0;
+#X connect 9 0 8 0;
+#X connect 10 0 8 0;
+#X restore 86 181 pd iphone_setup;
+#N canvas 689 207 450 300 assets 1;
+#X text 26 34 ----PROJECT PATH----;
+#X obj 41 157 shell;
+#X msg 41 137 hostname -s;
+#X obj 41 177 symbol;
+#X obj 41 233 anyreg g_hostname;
+#X obj 41 117 loadbang;
+#X obj 122 127 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 178 217 p;
+#X text 26 84 ----COMPUTER NAME----;
+#X text 26 96 loaded automatically at start;
+#X obj 41 200 makefilename %s-anim;
+#X symbolatom 41 253 30 0 0 0 - - -;
+#X obj 150 223 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 39 53 anyreg gProjectPath ~/Documents/Metalab/timeline;
+#X connect 1 0 3 0;
+#X connect 2 0 1 0;
+#X connect 3 0 10 0;
+#X connect 4 0 11 0;
+#X connect 5 0 2 0;
+#X connect 6 0 2 0;
+#X connect 10 0 4 0;
+#X connect 10 0 7 0;
+#X restore 273 98 pd assets;
+#X obj 21 76 delay 2000;
+#X obj 21 55 t b;
+#X obj 46 272 s \$0-to-SPIN-TCP;
+#X msg 46 251 refreshSubscribers;
+#X text 336 98 <--Important assets are stored here (project path \,
+computer name \, etc.);
+#N canvas 172 22 1310 817 debug 0;
+#X obj 25 551 s \$0-to-SPIN-TCP;
+#X msg 95 146 /experience debug;
+#X msg 38 74 /chantalbaron setCubeSize 10000 10000 10000;
+#X msg 14 48 createNode grid GridNode;
+#X obj 68 744 s \$0-to-SPIN-TCP;
+#X floatatom 35 673 5 0 0 0 - - -;
+#X obj 257 653 p;
+#X floatatom 78 673 5 0 0 0 - - -;
+#X floatatom 120 673 5 0 0 0 - - -;
+#X obj 68 702 hotpack3;
+#X msg 195 278 /chantalbaron setTarget labo-targets;
+#X obj 984 281 r \$0-toCamera;
+#X obj 984 305 OSCprepend /nodeID;
+#X obj 984 331 s \$0-to-SPIN;
+#X obj 973 132 nbx 4 16 -1e+37 1e+37 0 0 empty empty left 0 -8 0 11
+-262144 -1 -1 0 256;
+#X obj 1024 132 nbx 4 16 -1e+37 1e+37 0 0 empty empty right 0 -8 0
+11 -262144 -1 -1 0 256;
+#X obj 1075 132 nbx 4 16 -1e+37 1e+37 0 0 empty empty bottom 0 -8 0
+11 -262144 -1 -1 0 256;
+#X obj 1126 132 nbx 4 16 -1e+37 1e+37 0 0 empty empty top 0 -8 0 11
+-262144 -1 -1 0 256;
+#X obj 1177 132 nbx 4 16 0 1e+37 0 0 empty empty near 0 -8 0 11 -262144
+-1 -1 0 256;
+#X obj 1228 132 nbx 4 16 0 1e+37 0 0 empty empty far 0 -8 0 11 -262144
+-1 -1 0 256;
+#X obj 1008 157 hotpack7 -0.01 0.01 -0.01 0.01 0.01 1000;
+#X msg 1008 176 setFrustum \$1 \$2 \$3 \$4 \$5 \$6;
+#X obj 1008 197 s \$0-toCamera;
+#X obj 1089 275 anyreg g_hostname;
+#X obj 1089 253 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 124 169 /voxShader debug;
+#X msg 198 302 /corridor debug;
+#X msg 983 226 setFrustum -0.3333 0.3333 -0.2222 0.2222 0.001 1000
+;
+#X obj 975 59 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 1106 76 * -1;
+#X obj 1128 48 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 1259 65 * -1;
+#X msg 154 213 /cell-globuleBlanc debug;
+#X msg 167 236 /7-pipette-group-2 debug;
+#X msg 68 723 /7-pipette-pcd setTranslation \$1 \$2 \$3;
+#X msg 215 347 /box debug;
+#X msg 254 454 /corridor debug;
+#X msg 222 372 /CERC112-img debug;
+#X msg 145 193 /step4 debug;
+#X obj 482 509 widget-nodeEditor \$0;
+#X msg 645 345 cell-CytoSkeleton_Elements;
+#X msg 664 392 sang-globule;
+#X msg 656 368 cell-CytoSkeleton_Elements-2;
+#X msg 595 194 corridor-pcd;
+#X msg 613 219 7-pipette-pcd;
+#X msg 627 269 cell-lisosome;
+#X msg 633 294 patient-cube;
+#X msg 679 436 mainLight;
+#X msg 683 459 mainLight2;
+#X msg 265 482 /mainLight debug;
+#X msg 269 505 /mainLight2 debug;
+#X obj 257 631 r \$0-from-SPIN;
+#X msg 638 320 cell-globuleBlanc;
+#X msg 673 414 sang-cell;
+#X msg 277 550 /sang-globule setParent step4;
+#X text 925 582 sang = 3;
+#X text 925 613 cell = 7;
+#X text 925 552 corridor+others = 16;
+#X text 855 522 EXPONENT (reacts only on models with shader);
+#X msg 871 660 /mainLight setExponent \$1 \, /mainLight2 setExponent
+\$1;
+#X msg 900 554 16;
+#X obj 871 684 s \$0-to-SPIN-TCP;
+#X msg 858 416 deleteNode mainLight3 \, createNode mainLight3 LightSource
+\, /mainLight3 setParent step4 \, /mainLight3 setTranslation 1000 4000
+0 \, /mainLight3 setOrientation 0 0 0 \, /mainLight3 setCutoff 180
+\, /mainLight3 setExponent 16 \, /mainLight3 setAttenuation 0.1 \,
+/mainLight3 setAmbient 1 1 1 1 \, /mainLight3 setDiffuse 1 1 1 1 \,
+/mainLight3 setSpecular 0 0 0 1;
+#X msg 899 585 3.5;
+#X msg 688 481 mainLight3;
+#X msg 279 527 /mainLight3 debug;
+#X msg 582 144 chantalbaron-anim;
+#X msg 59 97 /chantalbaron debug;
+#X msg 75 122 /chantalbaron-anim debug;
+#X msg 572 121 chantalbaron;
+#X msg 618 244 cell-Mitochondria;
+#X msg 899 614 10;
+#X msg 588 169 sh0;
+#X msg 618 169 sh1;
+#X msg 650 169 sh2;
+#X msg 680 169 sh3;
+#X msg 205 324 /sh3 debug;
+#X msg 542 72 hotspot_down4;
+#X msg 532 45 hotspot_up4;
+#X msg 564 95 hotspot_down5;
+#X msg 184 256 /hotspot_down5 debug;
+#X msg 232 396 /step6 debug;
+#X msg 249 423 /patient-targets debug;
+#X connect 1 0 0 0;
+#X connect 2 0 0 0;
+#X connect 3 0 0 0;
+#X connect 5 0 9 0;
+#X connect 7 0 9 1;
+#X connect 8 0 9 2;
+#X connect 9 0 34 0;
+#X connect 10 0 0 0;
+#X connect 12 0 13 0;
+#X connect 14 0 20 0;
+#X connect 15 0 20 1;
+#X connect 16 0 20 2;
+#X connect 17 0 20 3;
+#X connect 18 0 20 4;
+#X connect 19 0 20 5;
+#X connect 20 0 21 0;
+#X connect 21 0 22 0;
+#X connect 23 0 12 1;
+#X connect 24 0 23 0;
+#X connect 25 0 0 0;
+#X connect 26 0 0 0;
+#X connect 28 0 29 0;
+#X connect 28 0 15 0;
+#X connect 29 0 14 0;
+#X connect 30 0 31 0;
+#X connect 30 0 17 0;
+#X connect 31 0 16 0;
+#X connect 32 0 0 0;
+#X connect 33 0 0 0;
+#X connect 34 0 4 0;
+#X connect 35 0 0 0;
+#X connect 36 0 0 0;
+#X connect 37 0 0 0;
+#X connect 38 0 0 0;
+#X connect 40 0 39 0;
+#X connect 41 0 39 0;
+#X connect 42 0 39 0;
+#X connect 43 0 39 0;
+#X connect 44 0 39 0;
+#X connect 45 0 39 0;
+#X connect 46 0 39 0;
+#X connect 47 0 39 0;
+#X connect 48 0 39 0;
+#X connect 49 0 0 0;
+#X connect 50 0 0 0;
+#X connect 52 0 39 0;
+#X connect 53 0 39 0;
+#X connect 54 0 0 0;
+#X connect 59 0 61 0;
+#X connect 60 0 59 0;
+#X connect 62 0 61 0;
+#X connect 63 0 59 0;
+#X connect 64 0 39 0;
+#X connect 65 0 0 0;
+#X connect 66 0 39 0;
+#X connect 67 0 0 0;
+#X connect 68 0 0 0;
+#X connect 69 0 39 0;
+#X connect 70 0 39 0;
+#X connect 71 0 59 0;
+#X connect 72 0 39 0;
+#X connect 73 0 39 0;
+#X connect 74 0 39 0;
+#X connect 75 0 39 0;
+#X connect 76 0 0 0;
+#X connect 77 0 39 0;
+#X connect 78 0 39 0;
+#X connect 79 0 39 0;
+#X connect 80 0 0 0;
+#X connect 81 0 0 0;
+#X connect 82 0 0 0;
+#X restore 273 77 pd debug;
+#N canvas 0 22 450 300 user_setup 0;
+#X obj 35 199 s \$0-to-SPIN-TCP;
+#X msg 35 179 setNotifyLevel 1;
+#X obj 104 60 vradio 15 1 0 7 empty empty empty 0 -8 0 10 -262144 -1
+-1 0;
+#X text 121 74 FATAL;
+#X text 121 58 ALWAYS;
+#X text 121 90 WARN;
+#X text 121 106 NOTICE;
+#X text 121 121 INFO;
+#X text 121 137 DEBUG_INFO;
+#X text 121 153 DEBUG_FP;
+#X obj 32 0 inlet;
+#X obj 35 39 t b b b b;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X connect 10 0 11 0;
+#X connect 11 0 1 0;
+#X restore 103 149 pd user_setup;
+#X obj 21 99 t b b b b b;
+#X connect 0 0 5 0;
+#X connect 4 0 11 0;
+#X connect 5 0 4 0;
+#X connect 7 0 6 0;
+#X connect 11 1 7 0;
+#X connect 11 2 1 0;
+#X connect 11 3 2 0;
+#X connect 11 4 10 0;
