@@ -1,42 +1,5 @@
-#N canvas 12 73 700 461 10;
-#X obj 21 11 widget-spinConnect \$0;
-#N canvas 348 174 608 440 models 0;
-#X obj 33 -18 inlet;
-#X obj 33 277 s \$0-to-SPIN-TCP;
-#X obj 33 4 anyreg gProjectPath;
-#X msg 33 241 deleteNode \$2 \, createNode \$2 ModelNode \, /\$2 setModelFromFile
-\$1/\$2.ac;
-#X obj 103 95 list append LUC_art;
-#X obj 89 117 list append LUC_design;
-#X obj 75 139 list append LUC_lieux;
-#X obj 61 161 list append LUC_marqueurs_mondiaux;
-#X obj 47 183 list append LUC_media_history;
-#X obj 33 205 list append LUC_pano_alley;
-#X obj 117 73 list append LUC_timeline;
-#X obj 33 26 t a a a a a a a a;
-#X obj 132 51 list append LUC_timeline-0;
-#X text 301 50 <--Timeline + numbers \, maybe not necessary. Numbers
-could be hardcoded in PD;
-#X connect 0 0 2 0;
-#X connect 2 0 11 0;
-#X connect 3 0 1 0;
-#X connect 4 0 3 0;
-#X connect 5 0 3 0;
-#X connect 6 0 3 0;
-#X connect 7 0 3 0;
-#X connect 8 0 3 0;
-#X connect 9 0 3 0;
-#X connect 10 0 3 0;
-#X connect 11 0 9 0;
-#X connect 11 1 8 0;
-#X connect 11 2 7 0;
-#X connect 11 3 6 0;
-#X connect 11 4 5 0;
-#X connect 11 5 4 0;
-#X connect 11 6 10 0;
-#X connect 11 7 12 0;
-#X connect 12 0 3 0;
-#X restore 69 217 pd models;
+#N canvas 106 135 700 461 10;
+#X obj 21 41 widget-spinConnect \$0;
 #N canvas 603 180 487 526 iphone_setup 0;
 #X obj 49 180 pack s s;
 #X obj 204 127 list2symbol;
@@ -69,8 +32,8 @@ TextNode;
 #X connect 7 0 4 0;
 #X connect 9 0 8 0;
 #X connect 10 0 8 0;
-#X restore 86 181 pd iphone_setup;
-#N canvas 689 207 450 300 assets 1;
+#X restore 68 219 pd iphone_setup;
+#N canvas 689 207 450 300 assets 0;
 #X text 26 34 ----PROJECT PATH----;
 #X obj 41 157 shell;
 #X msg 41 137 hostname -s;
@@ -82,25 +45,26 @@ TextNode;
 #X obj 178 217 p;
 #X text 26 84 ----COMPUTER NAME----;
 #X text 26 96 loaded automatically at start;
-#X obj 41 200 makefilename %s-anim;
+#X obj 135 166 makefilename %s-anim;
 #X symbolatom 41 253 30 0 0 0 - - -;
 #X obj 150 223 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 39 53 anyreg gProjectPath ~/Documents/Metalab/timeline;
+#X obj 39 53 anyreg gProjectPath ~/Documents/Metalab/timeline/luccourchesne
+;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
-#X connect 3 0 10 0;
+#X connect 3 0 4 0;
+#X connect 3 0 7 0;
 #X connect 4 0 11 0;
 #X connect 5 0 2 0;
 #X connect 6 0 2 0;
 #X connect 10 0 4 0;
-#X connect 10 0 7 0;
-#X restore 273 98 pd assets;
-#X obj 21 76 delay 2000;
-#X obj 21 55 t b;
-#X obj 46 272 s \$0-to-SPIN-TCP;
-#X msg 46 251 refreshSubscribers;
-#X text 336 98 <--Important assets are stored here (project path \,
+#X restore 273 128 pd assets;
+#X obj 21 109 delay 2000;
+#X obj 21 89 t b;
+#X obj 21 340 s \$0-to-SPIN-TCP;
+#X msg 21 319 refreshSubscribers;
+#X text 336 128 <--Important assets are stored here (project path \,
 computer name \, etc.);
 #N canvas 172 22 1310 817 debug 0;
 #X obj 25 551 s \$0-to-SPIN-TCP;
@@ -273,7 +237,7 @@ computer name \, etc.);
 #X connect 80 0 0 0;
 #X connect 81 0 0 0;
 #X connect 82 0 0 0;
-#X restore 273 77 pd debug;
+#X restore 273 107 pd debug;
 #N canvas 0 22 450 300 user_setup 0;
 #X obj 35 199 s \$0-to-SPIN-TCP;
 #X msg 35 179 setNotifyLevel 1;
@@ -292,13 +256,180 @@ computer name \, etc.);
 #X connect 2 0 1 0;
 #X connect 10 0 11 0;
 #X connect 11 0 1 0;
-#X restore 103 149 pd user_setup;
-#X obj 21 99 t b b b b b;
-#X connect 0 0 5 0;
-#X connect 4 0 11 0;
-#X connect 5 0 4 0;
-#X connect 7 0 6 0;
-#X connect 11 1 7 0;
-#X connect 11 2 1 0;
-#X connect 11 3 2 0;
-#X connect 11 4 10 0;
+#X restore 84 179 pd user_setup;
+#X obj 21 129 t b b b b b;
+#N canvas 348 174 672 412 models-full 0;
+#X obj 33 -18 inlet;
+#X obj 33 277 s \$0-to-SPIN-TCP;
+#X obj 33 4 anyreg gProjectPath;
+#X msg 33 241 deleteNode \$2 \, createNode \$2 ModelNode \, /\$2 setModelFromFile
+\$1/\$2.ac;
+#X obj 103 95 list append LUC_art;
+#X obj 89 117 list append LUC_design;
+#X obj 75 139 list append LUC_lieux;
+#X obj 61 161 list append LUC_marqueurs_mondiaux;
+#X obj 47 183 list append LUC_media_history;
+#X obj 33 205 list append LUC_pano_alley;
+#X obj 117 73 list append LUC_timeline;
+#X obj 33 26 t a a a a a a a a;
+#X obj 132 51 list append LUC_timeline-0;
+#X text 301 50 <--Timeline + numbers \, maybe not necessary. Numbers
+could be hardcoded in PD;
+#X connect 0 0 2 0;
+#X connect 2 0 11 0;
+#X connect 3 0 1 0;
+#X connect 4 0 3 0;
+#X connect 5 0 3 0;
+#X connect 6 0 3 0;
+#X connect 7 0 3 0;
+#X connect 8 0 3 0;
+#X connect 9 0 3 0;
+#X connect 10 0 3 0;
+#X connect 11 0 9 0;
+#X connect 11 1 8 0;
+#X connect 11 2 7 0;
+#X connect 11 3 6 0;
+#X connect 11 4 5 0;
+#X connect 11 5 4 0;
+#X connect 11 6 10 0;
+#X connect 11 7 12 0;
+#X connect 12 0 3 0;
+#X restore 310 203 pd models-full;
+#N canvas 140 276 672 412 models-lod 0;
+#X obj 33 -16 inlet;
+#X obj 33 117 s \$0-to-SPIN-TCP;
+#X obj 33 4 anyreg gProjectPath;
+#X text 301 50 <--Timeline + numbers \, maybe not necessary. Numbers
+could be hardcoded in PD;
+#X obj 33 24 t a;
+#X obj 33 54 list append timeline_luc-lod;
+#X obj 155 -6 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 33 84 deleteNode \$2 \, createNode \$2 ModelNode \, /\$2 setModelFromFile
+\$1/lodtest2/\$2.osgb;
+#X connect 0 0 2 0;
+#X connect 2 0 4 0;
+#X connect 4 0 5 0;
+#X connect 5 0 7 0;
+#X connect 6 0 2 0;
+#X connect 7 0 1 0;
+#X restore 52 259 pd models-lod;
+#X obj 141 249 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 170 209 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 174 169 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 97 119 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 21 11 loadbang1 DD;
+#N canvas 454 22 952 776 point_cloud 1;
+#X obj 539 123 subwidget-PAT \$0;
+#X obj 539 82 loadbang;
+#X obj 338 381 vradio 11 1 0 14 empty empty empty 0 -8 0 10 -262144
+-1 -1 0;
+#X text 352 476 9) QUAD_STRIP;
+#X text 352 465 8) QUADS;
+#X text 352 454 7) TRIANGLE_FAN;
+#X text 352 443 6) TRIANGLE_STRIP;
+#X text 352 432 5) TRIANGLES;
+#X text 352 421 4) LINE_LOOP;
+#X text 352 399 2) LINES;
+#X text 352 388 1) POINTS;
+#X text 352 377 0) NONE;
+#X text 352 410 3) LINE_STRIP;
+#X text 352 509 12) BOXES;
+#X text 352 498 11) LIGHTPOINTS;
+#X text 352 487 10) POLYGON;
+#X obj 128 169 hsl 128 15 0 100 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X floatatom 125 187 5 0 0 0 - - -;
+#X text 352 520 13) CUSTOM;
+#X text 533 58 You can move the entire cloud around like this:;
+#X obj 65 362 cnv 15 24 24 empty empty 5 4 12 1 24 -99865 -262144 0
+;
+#X obj 290 358 cnv 15 24 24 empty empty 6 4 12 1 24 -99865 -262144
+0;
+#X text 319 361 Try different draw modes:;
+#X obj 685 550 hsl 128 15 0.0005 0.1 1 0 empty empty empty -2 -8 0
+10 -262144 -1 -1 0 1;
+#X floatatom 682 569 5 0 0 0 - - -;
+#X obj 690 704 s \$0-to-SPIN;
+#X obj 705 640 hsl 128 15 0 10 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X floatatom 702 659 5 0 0 0 - - -;
+#X msg 263 253 /cloud debug;
+#X msg 590 513 /cloud setDrawMode 11 \, /cloud setURI kinect://1;
+#X text 571 464 Read points in real time from the Kinect \, but DON'T
+use CUSTOM drawMode. The Kinect produces way too many points way too
+fast.;
+#X obj 295 170 hsl 128 15 0 0.1 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X floatatom 292 187 5 0 0 0 - - -;
+#X obj 102 390 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 338 558 s \$0-to-SPIN;
+#X obj 87 501 s \$0-to-SPIN;
+#X obj 540 468 cnv 15 24 24 empty empty 8 4 12 1 24 -99865 -262144
+0;
+#X text 94 363 Override color:;
+#X obj 115 437 rgbaPicker 1 1 1 1;
+#X text 122 389 override color;
+#X obj 99 50 anyreg gProjectPath;
+#X obj 99 291 s \$0-to-SPIN-TCP;
+#X obj 99 27 inlet;
+#X msg 125 203 /luc setPointSize \$1;
+#X msg 292 203 /luc setRandomCoeff \$1;
+#X msg 539 102 luc;
+#X msg 102 409 /luc setColorMode \$1;
+#X msg 115 471 /luc setColor \$1 \$2 \$3 \$4;
+#X msg 338 538 /luc setDrawMode \$1;
+#X msg 702 679 /luc setDistCrop 0 \$1;
+#X msg 682 592 /luc setVoxelSize \$1;
+#X obj 99 88 list prepend luc;
+#X obj 362 270 p;
+#X msg 99 123 createNode \$1 PointCloud \, /\$1 setURI \$2/\$1.pcd
+\, /\$1 setOrientation 180 0 0;
+#X obj 223 40 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X connect 1 0 45 0;
+#X connect 2 0 48 0;
+#X connect 16 0 17 0;
+#X connect 17 0 43 0;
+#X connect 23 0 24 0;
+#X connect 24 0 50 0;
+#X connect 26 0 27 0;
+#X connect 27 0 49 0;
+#X connect 28 0 41 0;
+#X connect 29 0 25 0;
+#X connect 31 0 32 0;
+#X connect 32 0 44 0;
+#X connect 33 0 46 0;
+#X connect 38 0 47 0;
+#X connect 40 0 51 0;
+#X connect 42 0 40 0;
+#X connect 43 0 41 0;
+#X connect 44 0 41 0;
+#X connect 45 0 0 0;
+#X connect 46 0 35 0;
+#X connect 47 0 35 0;
+#X connect 48 0 34 0;
+#X connect 49 0 25 0;
+#X connect 50 0 25 0;
+#X connect 51 0 53 0;
+#X connect 53 0 41 0;
+#X connect 54 0 40 0;
+#X restore 36 290 pd point_cloud;
+#X connect 3 0 10 0;
+#X connect 4 0 3 0;
+#X connect 6 0 5 0;
+#X connect 10 0 6 0;
+#X connect 10 1 18 0;
+#X connect 10 2 12 0;
+#X connect 10 3 1 0;
+#X connect 10 4 9 0;
+#X connect 13 0 12 0;
+#X connect 14 0 1 0;
+#X connect 15 0 9 0;
+#X connect 16 0 10 0;
+#X connect 17 0 0 0;
