@@ -1,0 +1,177 @@
+#N canvas 24 370 1083 719 10;
+#X declare -lib moocow;
+#X declare -lib zexy;
+#X declare -lib mrpeach;
+#X obj 8 10 widget-spinConnect \$0;
+#X obj 65 240 csvfile;
+#X obj 84 299 print info;
+#X obj 126 264 print end;
+#X obj 104 265 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 192 264 bangs at end of file;
+#X text 157 299 outputs paramaters from the info message;
+#X msg 135 132 info;
+#X msg 146 157 bang;
+#X msg 154 181 rewind;
+#X text 202 181 rewind to the beginning of the file;
+#X text 186 156 send out one line;
+#X obj 65 326 list;
+#X floatatom 65 621 5 0 0 1 _FID - -;
+#X symbolatom 84 592 75 0 0 0 - - -;
+#X floatatom 101 571 10 0 0 1 _lat - -;
+#X floatatom 120 552 10 0 0 1 _lon - -;
+#X floatatom 138 521 10 0 0 1 _lat2 - -;
+#X floatatom 156 502 10 0 0 1 _lon2 - -;
+#X floatatom 175 461 10 0 0 1 _x2 - -;
+#X floatatom 193 442 10 0 0 1 _y2 - -;
+#X text 178 129 send out info on the binary file;
+#X obj 356 497 s \$0-to-SPIN-TCP;
+#N canvas 478 127 883 618 SETUP_SCENE 0;
+#X obj 170 15 inlet;
+#X obj 22 262 shell;
+#X msg 22 240 hostname -s;
+#X obj 141 34 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 293 622 s \$0-to-SPIN-TCP;
+#X obj 22 282 symbol;
+#X obj 466 291 thisdir;
+#X obj 466 261 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 518 482 expr $f1*($f2/$f3) \; 0 \; $f1;
+#X obj 518 539 pack 0 0 0;
+#X msg 518 561 /map setScale \$1 \$2 \$3;
+#X obj 518 460 pack 100 2658 1693;
+#X text 637 459 <- image resolution is 2658x1693;
+#X obj 518 436 r mapScale;
+#X msg 466 316 createNode map ShapeNode \, /map setParent offset \,
+/map setShape 6 \, /map setOrientation -90 0 0 \, /map setStateSetFromFile
+\$1/Turcot_GoogleEarthScreenshot.png \, /Turcot_GoogleEarthScreenshot.png
+setLighting 0;
+#X obj 170 58 anyreg g_ORIGIN 569 554 0;
+#X msg 443 147 createNode offset GroupNode \, /offset setTranslation
+\$1 \$2 \$3;
+#X msg 22 312 /\$1 setComputationMode 1 \, /\$1 setOrientationMode
+1 \, /\$1 setOrientationTarget offset;
+#X msg 29 141 \; mapScale-set 970 \; cameraPreset 1 \;;
+#X obj 170 81 t b b b a;
+#X connect 0 0 15 0;
+#X connect 1 0 5 0;
+#X connect 2 0 1 0;
+#X connect 3 0 15 0;
+#X connect 5 0 17 0;
+#X connect 6 0 14 0;
+#X connect 7 0 6 0;
+#X connect 8 0 9 0;
+#X connect 8 1 9 1;
+#X connect 8 2 9 2;
+#X connect 9 0 10 0;
+#X connect 10 0 4 0;
+#X connect 11 0 8 0;
+#X connect 13 0 11 0;
+#X connect 14 0 4 0;
+#X connect 15 0 19 0;
+#X connect 16 0 4 0;
+#X connect 17 0 4 0;
+#X connect 19 0 18 0;
+#X connect 19 1 2 0;
+#X connect 19 2 6 0;
+#X connect 19 3 16 0;
+#X restore 302 95 pd SETUP_SCENE;
+#X obj 142 217 until;
+#X obj 17 65 bng 20 250 50 0 empty empty LOAD_CSV 25 11 1 14 -260097
+-1 -1;
+#X obj 18 91 t b b;
+#X msg 67 109 read PhotosCoord.csv \, rewind;
+#X obj 484 124 widget-nodeEditor \$0;
+#X obj 302 69 bng 20 250 50 0 empty empty empty 25 11 1 14 -260097
+-1 -1;
+#X msg 502 52 falcon;
+#X msg 525 80 map;
+#X obj 674 59 nbx 5 18 -1e+37 1e+37 0 0 mapScale mapScale-set aspect-correct-image-scale
+0 -8 1 14 -262130 -1 -1 970 256;
+#X obj 389 446 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X msg 389 464 /FID* setScale \$1 \$1 \$1;
+#X msg 485 24 offset;
+#N canvas 750 356 601 434 MOVE_CAMERA 0;
+#X obj 42 36 sel 0 1 2 3 4 5 6 7;
+#X obj 72 343 shell;
+#X msg 72 321 hostname -s;
+#X obj 72 363 symbol;
+#X obj 72 390 list append;
+#X obj 87 280 t b a;
+#X obj 81 448 s \$0-to-SPIN-TCP;
+#X msg 72 414 /\$1 translateTo \$2 \$3 \$4 1 \, /\$1 setOrientationTarget
+\$5;
+#X msg 47 101 600 0 1200 offset;
+#X msg 145 186 1200 500 500 FID_9;
+#X msg 73 128 500 0 1200 FID_9;
+#X msg 170 255 500 -1000 1500 FID_9;
+#X obj 41 11 inlet;
+#X msg 168 217 -250 250 500 FID_9;
+#X msg 118 157 525 250 150 FID_9;
+#X connect 0 0 8 0;
+#X connect 0 1 10 0;
+#X connect 0 2 14 0;
+#X connect 0 3 9 0;
+#X connect 0 4 13 0;
+#X connect 0 5 11 0;
+#X connect 1 0 3 0;
+#X connect 2 0 1 0;
+#X connect 3 0 4 0;
+#X connect 4 0 7 0;
+#X connect 5 0 2 0;
+#X connect 5 1 4 1;
+#X connect 7 0 6 0;
+#X connect 8 0 5 0;
+#X connect 9 0 5 0;
+#X connect 10 0 5 0;
+#X connect 11 0 5 0;
+#X connect 12 0 0 0;
+#X connect 13 0 5 0;
+#X connect 14 0 5 0;
+#X restore 658 558 pd MOVE_CAMERA;
+#X obj 658 463 vradio 15 1 0 6 empty cameraPreset empty 0 -8 0 10 -262144
+-1 -1 2;
+#X obj 65 388 packel 1 4 5 6 7 8 9 10 2;
+#X floatatom 212 412 6 0 0 1 _orientation - -;
+#X msg 356 379 createNode FID_\$1 ShapeNode \, /FID_\$1 setShape 6
+\, /FID_\$1 setTranslation \$9 \$10 0 \, /FID_\$1 setOrientation 0
+0 \$2 \, /FID_\$1 setScale 10 10 10 \, /FID_\$1 setLighting 0 \, /FID_\$1
+setColor 1 0 0 1;
+#X obj 285 336 t a a;
+#X msg 415 531 /FID* rotate 0 0 90;
+#X connect 1 0 12 0;
+#X connect 1 1 2 0;
+#X connect 1 2 4 0;
+#X connect 1 2 3 0;
+#X connect 1 2 24 1;
+#X connect 7 0 1 0;
+#X connect 8 0 1 0;
+#X connect 9 0 1 0;
+#X connect 12 0 38 0;
+#X connect 12 0 41 0;
+#X connect 24 0 1 0;
+#X connect 25 0 26 0;
+#X connect 26 0 24 0;
+#X connect 26 1 27 0;
+#X connect 27 0 1 0;
+#X connect 29 0 23 0;
+#X connect 30 0 28 0;
+#X connect 31 0 28 0;
+#X connect 33 0 34 0;
+#X connect 34 0 22 0;
+#X connect 35 0 28 0;
+#X connect 37 0 36 0;
+#X connect 38 0 13 0;
+#X connect 38 1 14 0;
+#X connect 38 2 15 0;
+#X connect 38 3 16 0;
+#X connect 38 4 17 0;
+#X connect 38 5 18 0;
+#X connect 38 6 19 0;
+#X connect 38 7 20 0;
+#X connect 38 8 39 0;
+#X connect 40 0 22 0;
+#X connect 41 1 40 0;
+#X connect 42 0 22 0;
