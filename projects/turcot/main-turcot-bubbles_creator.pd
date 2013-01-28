@@ -1,4 +1,4 @@
-#N canvas 2311 265 862 734 10;
+#N canvas 578 166 862 734 10;
 #X declare -lib moocow;
 #X declare -lib zexy;
 #X declare -lib mrpeach;
@@ -11,7 +11,7 @@
 #X msg 502 102 falcon;
 #X msg 525 130 map;
 #X obj 674 109 nbx 5 18 -1e+37 1e+37 0 0 mapScale mapScale-set aspect-correct-image-scale
-0 -8 1 14 -262130 -1 -1 970 256;
+0 -8 1 14 -262130 -1 -1 0 256;
 #N canvas 506 82 721 473 exporter 0;
 #X obj 40 68 cnv 15 350 250 empty empty Export_Scene_As_OSG: 5 12 1
 14 -204786 -66577 0;
@@ -70,7 +70,7 @@ spinConnect);
 #X connect 10 0 7 0;
 #X connect 12 0 4 0;
 #X restore 274 192 pd assets;
-#N canvas 2244 254 1173 773 load_csv 1;
+#N canvas 267 127 1173 773 load_csv 1;
 #X obj 984 585 p;
 #X obj 65 250 csvfile;
 #X obj 84 329 print info;
@@ -189,7 +189,7 @@ setColor 1 0 0 1 \, /FID_6046 setStateSetFromFile \$1/bubbles/bubble8/DSC_6046.p
 #X obj 1096 208 t b b b;
 #X obj 1096 228 delay 100;
 #X obj 1096 168 == \$1;
-#N canvas 2701 454 686 488 TxBx_counter 1;
+#N canvas 754 412 686 488 TxBx_counter 1;
 #X obj 204 11 inlet;
 #X obj 251 375 outlet;
 #X obj 234 221 + 1;
@@ -272,7 +272,7 @@ setColor 1 0 0 1 \, /FID_6046 setStateSetFromFile \$1/bubbles/bubble8/DSC_6046.p
 #X msg 460 227 0;
 #X msg 490 237 1;
 #X obj 490 216 r reset;
-#N canvas 2519 430 681 526 bubble_snap 1;
+#N canvas 759 374 681 526 bubble_snap 1;
 #X obj 88 220 coll;
 #C restore;
 #X msg 30 176 store \$11 \$6 \$7;
@@ -662,6 +662,7 @@ setLighting 0;
 #X obj 227 313 s \$0-to-SPIN-TCP;
 #X msg 485 73 athena;
 #X msg 213 282 /athena setCameraOrientation 0 0 -90;
+#X msg 423 19 blablabla;
 #X connect 4 0 2 0;
 #X connect 5 0 2 0;
 #X connect 15 0 19 0;
