@@ -1,4 +1,4 @@
-#N canvas 625 307 700 461 10;
+#N canvas 896 303 700 461 10;
 #X obj 21 41 widget-spinConnect \$0;
 #N canvas 599 190 487 526 iphone_setup 0;
 #X obj 49 180 pack s s;
@@ -72,7 +72,7 @@ TextNode;
 #X msg 21 339 refreshSubscribers;
 #X text 336 128 <--Important assets are stored here (project path \,
 computer name \, etc.);
-#N canvas 168 87 1310 817 debug 0;
+#N canvas 164 97 1310 817 debug 0;
 #X obj 25 551 s \$0-to-SPIN-TCP;
 #X msg 95 146 /experience debug;
 #X msg 38 74 /chantalbaron setCubeSize 10000 10000 10000;
@@ -122,7 +122,7 @@ computer name \, etc.);
 #X msg 254 454 /corridor debug;
 #X msg 222 372 /CERC112-img debug;
 #X msg 145 193 /step4 debug;
-#X obj 482 509 widget-nodeEditor \$0;
+#X obj 507 516 widget-nodeEditor \$0;
 #X msg 645 345 cell-CytoSkeleton_Elements;
 #X msg 664 392 sang-globule;
 #X msg 656 368 cell-CytoSkeleton_Elements-2;
@@ -337,11 +337,11 @@ could be hardcoded in PD;
 #X obj 97 119 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 21 11 loadbang1 timeline;
-#N canvas 967 181 952 776 pcl-image 0;
+#N canvas 961 196 952 776 pcl-image 1;
 #X obj 539 123 subwidget-PAT \$0;
 #X obj 539 82 loadbang;
 #X obj 338 381 vradio 11 1 0 14 empty empty empty 0 -8 0 10 -262144
--1 -1 0;
+-1 -1 11;
 #X text 352 476 9) QUAD_STRIP;
 #X text 352 465 8) QUADS;
 #X text 352 454 7) TRIANGLE_FAN;
@@ -355,9 +355,9 @@ could be hardcoded in PD;
 #X text 352 509 12) BOXES;
 #X text 352 498 11) LIGHTPOINTS;
 #X text 352 487 10) POLYGON;
-#X obj 128 169 hsl 128 15 0 100 0 0 empty empty empty -2 -8 0 10 -262144
+#X obj 128 179 hsl 128 15 0 100 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 0 1;
-#X floatatom 125 187 5 0 0 0 - - -;
+#X floatatom 125 197 5 0 0 0 - - -;
 #X text 352 520 13) CUSTOM;
 #X text 533 58 You can move the entire cloud around like this:;
 #X obj 65 362 cnv 15 24 24 empty empty 5 4 12 1 24 -99865 -262144 0
@@ -376,9 +376,9 @@ could be hardcoded in PD;
 #X text 571 464 Read points in real time from the Kinect \, but DON'T
 use CUSTOM drawMode. The Kinect produces way too many points way too
 fast.;
-#X obj 295 170 hsl 128 15 0 0.1 0 0 empty empty empty -2 -8 0 10 -262144
+#X obj 295 180 hsl 128 15 0 0.1 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 0 1;
-#X floatatom 292 187 5 0 0 0 - - -;
+#X floatatom 292 197 5 0 0 0 - - -;
 #X obj 102 390 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 338 558 s \$0-to-SPIN;
@@ -391,8 +391,8 @@ fast.;
 #X obj 99 50 anyreg gProjectPath;
 #X obj 99 321 s \$0-to-SPIN-TCP;
 #X obj 99 27 inlet;
-#X msg 125 203 /luc setPointSize \$1;
-#X msg 292 203 /luc setRandomCoeff \$1;
+#X msg 125 213 /luc setPointSize \$1;
+#X msg 292 213 /luc setRandomCoeff \$1;
 #X msg 102 409 /luc setColorMode \$1;
 #X msg 115 471 /luc setColor \$1 \$2 \$3 \$4;
 #X msg 338 538 /luc setDrawMode \$1;
@@ -402,15 +402,16 @@ fast.;
 #X obj 223 40 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X msg 263 253 /merge_1358285296497 debug;
-#X msg 276 292 deleteNode merge_1358285296497;
 #X obj 267 16 list prepend merge_1358285283097;
 #X obj 264 47 list prepend merge_1358285283106;
 #X msg 539 102 merge_1358285283097;
-#X obj 99 80 list prepend merge_1358285333111;
 #X msg 99 110 createNode \$1 PointCloud \, /\$1 setURI \$2/luc_pcl/\$1.pcd
-\, /\$1 setTranslation 0 19 -1.25 \, /\$1 setScale 2.43 2.43 2.43 \,
-/\$1 setComputationMode 1 \, /\$1 setPointSize 4;
-#X connect 1 0 55 0;
+\, /\$1 setOrientation 0 90 79 \, /\$1 setTranslation 0 19 -1.25 \,
+/\$1 setScale 2.43 2.43 2.43 \, /\$1 setComputationMode 1 \, /\$1 setPointSize
+4 \, /\$1 setDrawMode 11;
+#X obj 99 80 list prepend merge_1358285293675;
+#X msg 276 292 deleteNode merge_1358285293675;
+#X connect 1 0 54 0;
 #X connect 2 0 46 0;
 #X connect 16 0 17 0;
 #X connect 17 0 42 0;
@@ -434,14 +435,14 @@ fast.;
 #X connect 48 0 25 0;
 #X connect 50 0 39 0;
 #X connect 51 0 40 0;
-#X connect 52 0 40 0;
-#X connect 55 0 0 0;
-#X connect 56 0 57 0;
+#X connect 54 0 0 0;
+#X connect 55 0 40 0;
+#X connect 56 0 55 0;
 #X connect 57 0 40 0;
 #X restore 36 299 pd pcl-image;
 #X obj 219 288 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#N canvas 349 212 580 592 pcl-video 0;
+#N canvas 341 232 580 592 pcl-video 0;
 #X text 8 12 On the sender machine (the one with the Kinect):;
 #X text 57 55 ./posture-capture -v -s /tmp/pcd_to_read;
 #X text 48 122 Then send it;
