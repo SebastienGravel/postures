@@ -1,4 +1,4 @@
-#N canvas 896 303 700 461 10;
+#N canvas 894 308 700 461 10;
 #X obj 21 41 widget-spinConnect \$0;
 #N canvas 599 190 487 526 iphone_setup 0;
 #X obj 49 180 pack s s;
@@ -337,11 +337,11 @@ could be hardcoded in PD;
 #X obj 97 119 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 21 11 loadbang1 timeline;
-#N canvas 961 196 952 776 pcl-image 1;
+#N canvas 959 201 952 776 pcl-image 0;
 #X obj 539 123 subwidget-PAT \$0;
 #X obj 539 82 loadbang;
 #X obj 338 381 vradio 11 1 0 14 empty empty empty 0 -8 0 10 -262144
--1 -1 11;
+-1 -1 0;
 #X text 352 476 9) QUAD_STRIP;
 #X text 352 465 8) QUADS;
 #X text 352 454 7) TRIANGLE_FAN;
@@ -370,7 +370,7 @@ could be hardcoded in PD;
 #X floatatom 682 569 5 0 0 0 - - -;
 #X obj 690 704 s \$0-to-SPIN;
 #X obj 705 640 hsl 128 15 0 10 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
+-1 -1 10600 1;
 #X floatatom 702 659 5 0 0 0 - - -;
 #X msg 590 513 /cloud setDrawMode 11 \, /cloud setURI kinect://1;
 #X text 571 464 Read points in real time from the Kinect \, but DON'T
@@ -396,7 +396,6 @@ fast.;
 #X msg 102 409 /luc setColorMode \$1;
 #X msg 115 471 /luc setColor \$1 \$2 \$3 \$4;
 #X msg 338 538 /luc setDrawMode \$1;
-#X msg 702 679 /luc setDistCrop 0 \$1;
 #X msg 682 592 /luc setVoxelSize \$1;
 #X obj 500 294 p;
 #X obj 223 40 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
@@ -405,26 +404,27 @@ fast.;
 #X obj 267 16 list prepend merge_1358285283097;
 #X obj 264 47 list prepend merge_1358285283106;
 #X msg 539 102 merge_1358285283097;
-#X msg 99 110 createNode \$1 PointCloud \, /\$1 setURI \$2/luc_pcl/\$1.pcd
-\, /\$1 setOrientation 0 90 79 \, /\$1 setTranslation 0 19 -1.25 \,
-/\$1 setScale 2.43 2.43 2.43 \, /\$1 setComputationMode 1 \, /\$1 setPointSize
-4 \, /\$1 setDrawMode 11;
 #X obj 99 80 list prepend merge_1358285293675;
 #X msg 276 292 deleteNode merge_1358285293675;
-#X connect 1 0 54 0;
+#X msg 702 679 /merge_1358285293675 setDistCrop -10 \$1;
+#X msg 99 110 createNode \$1 PointCloud \, /\$1 setURI \$2/luc_pcl/\$1.pcd
+\, /\$1 setOrientation 0 90 79 \, /\$1 setTranslation 30 19 -200 \,
+/\$1 setScale 400 400 400 \, /\$1 setComputationMode 1 \, /\$1 setPointSize
+4 \, /\$1 setDrawMode 11 \, /\$1 setDistCrop -10 10;
+#X connect 1 0 53 0;
 #X connect 2 0 46 0;
 #X connect 16 0 17 0;
 #X connect 17 0 42 0;
 #X connect 23 0 24 0;
-#X connect 24 0 48 0;
+#X connect 24 0 47 0;
 #X connect 26 0 27 0;
-#X connect 27 0 47 0;
+#X connect 27 0 56 0;
 #X connect 28 0 25 0;
 #X connect 30 0 31 0;
 #X connect 31 0 43 0;
 #X connect 32 0 44 0;
 #X connect 37 0 45 0;
-#X connect 39 0 56 0;
+#X connect 39 0 54 0;
 #X connect 41 0 39 0;
 #X connect 42 0 40 0;
 #X connect 43 0 40 0;
@@ -432,17 +432,17 @@ fast.;
 #X connect 45 0 34 0;
 #X connect 46 0 33 0;
 #X connect 47 0 25 0;
-#X connect 48 0 25 0;
-#X connect 50 0 39 0;
-#X connect 51 0 40 0;
-#X connect 54 0 0 0;
+#X connect 49 0 39 0;
+#X connect 50 0 40 0;
+#X connect 53 0 0 0;
+#X connect 54 0 57 0;
 #X connect 55 0 40 0;
-#X connect 56 0 55 0;
+#X connect 56 0 25 0;
 #X connect 57 0 40 0;
 #X restore 36 299 pd pcl-image;
 #X obj 219 288 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#N canvas 341 232 580 592 pcl-video 0;
+#N canvas 337 242 580 592 pcl-video 0;
 #X text 8 12 On the sender machine (the one with the Kinect):;
 #X text 57 55 ./posture-capture -v -s /tmp/pcd_to_read;
 #X text 48 122 Then send it;
@@ -485,7 +485,7 @@ IP>;
 #X msg 42 364 createNode \$1 PointCloud \, /\$1 setURI shm:///tmp/\$2-sm
 \, /\$1 setOrientation 0 90 79 \, /\$1 setTranslation 30 19 -200 \,
 /\$1 setScale 400 400 400 \, /\$1 setComputationMode 1 \, /\$1 setPointSize
-4;
+4 \, /\$1 setDistCrop -10 10;
 #X connect 11 0 20 0;
 #X connect 12 0 20 0;
 #X connect 14 0 16 0;
