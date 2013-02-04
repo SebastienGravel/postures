@@ -1,4 +1,4 @@
-#N canvas 578 166 862 734 10;
+#N canvas 554 132 862 734 10;
 #X declare -lib moocow;
 #X declare -lib zexy;
 #X declare -lib mrpeach;
@@ -30,20 +30,25 @@ spinConnect);
 #X obj 112 345 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 292 298 p;
-#X obj 112 365 anyreg gExportPath /Users/davidduguay/Documents/Metalab/Turcot/export-test/bubble8.osg
+#X obj 112 365 anyreg gExportPath /Users/davidduguay/Documents/Metalab/Turcot-assets/export-test/bubble8.osg
 ;
-#X msg 171 266 exportScene world \$2;
+#X obj 417 243 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 273 239 thisdir;
+#X msg 171 266 exportScene world \$1/T03.fbx;
 #X connect 1 0 5 0;
 #X connect 2 0 5 2;
 #X connect 3 0 2 0;
 #X connect 4 0 3 0;
-#X connect 5 0 13 0;
+#X connect 5 0 15 0;
 #X connect 10 0 12 0;
 #X connect 12 0 2 0;
-#X connect 13 0 9 0;
-#X connect 13 0 11 0;
+#X connect 13 0 14 0;
+#X connect 14 0 15 0;
+#X connect 15 0 9 0;
+#X connect 15 0 11 0;
 #X restore 274 152 pd exporter;
-#N canvas 2281 564 450 300 assets 0;
+#N canvas 867 516 450 300 assets 0;
 #X text 26 34 ----PROJECT PATH----;
 #X obj 41 157 shell;
 #X msg 41 137 hostname -s;
@@ -59,7 +64,8 @@ spinConnect);
 #X symbolatom 41 253 30 0 0 0 - - -;
 #X obj 150 223 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 39 53 anyreg gProjectPath ~/Documents/Metalab/Turcot;
+#X obj 39 53 anyreg gProjectPath ~/Documents/Metalab/Turcot-assets
+;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
 #X connect 3 0 4 0;
@@ -70,7 +76,7 @@ spinConnect);
 #X connect 10 0 7 0;
 #X connect 12 0 4 0;
 #X restore 274 192 pd assets;
-#N canvas 134 22 1173 773 load_csv 1;
+#N canvas 260 36 1173 773 load_csv 1;
 #X obj 984 585 p;
 #X obj 65 250 csvfile;
 #X obj 84 329 print info;
@@ -189,7 +195,7 @@ setColor 1 0 0 1 \, /FID_6046 setStateSetFromFile \$1/bubbles/bubble8/DSC_6046.p
 #X obj 1096 208 t b b b;
 #X obj 1096 228 delay 100;
 #X obj 1096 168 == \$1;
-#N canvas 754 412 686 488 TxBx_counter 1;
+#N canvas 724 280 686 488 TxBx_counter 0;
 #X obj 204 11 inlet;
 #X obj 251 375 outlet;
 #X obj 234 221 + 1;
@@ -210,7 +216,6 @@ setColor 1 0 0 1 \, /FID_6046 setStateSetFromFile \$1/bubbles/bubble8/DSC_6046.p
 #X obj 179 97 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 219 162 r reset;
-#X obj 357 368 bubble-count 5 28 18 9;
 #X obj 369 61 r next_trajectory;
 #X obj 369 84 t b b;
 #X msg 339 106 0;
@@ -224,44 +229,45 @@ setColor 1 0 0 1 \, /FID_6046 setStateSetFromFile \$1/bubbles/bubble8/DSC_6046.p
 #X obj 279 32 r reset;
 #X obj 249 11 r ALL_BUBBLES_LOADED;
 #X text 502 368 <-- put # of bubble per trajectory here = list;
-#X obj 204 221 f 1;
 #X obj 324 220 f 1;
 #X obj 294 129 spigot 0;
-#X connect 0 0 24 0;
-#X connect 2 0 22 0;
-#X connect 2 0 30 1;
-#X connect 4 0 30 0;
-#X connect 5 0 31 1;
-#X connect 6 0 31 0;
+#X obj 204 221 f 3;
+#X obj 357 368 bubble-count 18 28 18 9;
+#X connect 0 0 23 0;
+#X connect 2 0 21 0;
+#X connect 2 0 31 1;
+#X connect 4 0 31 0;
+#X connect 5 0 29 1;
+#X connect 6 0 29 0;
 #X connect 7 0 3 0;
 #X connect 7 0 1 0;
 #X connect 8 0 7 0;
-#X connect 9 0 30 1;
-#X connect 10 0 31 1;
-#X connect 13 0 30 0;
-#X connect 13 1 21 0;
-#X connect 13 1 31 0;
+#X connect 9 0 31 1;
+#X connect 10 0 29 1;
+#X connect 13 0 31 0;
+#X connect 13 1 20 0;
+#X connect 13 1 29 0;
 #X connect 14 0 13 0;
 #X connect 15 0 9 0;
 #X connect 15 0 10 0;
-#X connect 17 0 18 0;
-#X connect 18 0 20 0;
-#X connect 18 1 10 0;
-#X connect 19 0 32 1;
-#X connect 20 0 32 1;
-#X connect 23 0 19 0;
-#X connect 23 1 2 0;
-#X connect 24 0 13 0;
-#X connect 25 0 24 1;
-#X connect 26 0 24 1;
-#X connect 27 0 26 0;
-#X connect 28 0 25 0;
-#X connect 30 0 7 0;
-#X connect 30 0 32 0;
-#X connect 31 0 5 0;
-#X connect 31 0 7 1;
-#X connect 31 0 16 0;
-#X connect 32 0 23 0;
+#X connect 16 0 17 0;
+#X connect 17 0 19 0;
+#X connect 17 1 10 0;
+#X connect 18 0 30 1;
+#X connect 19 0 30 1;
+#X connect 22 0 18 0;
+#X connect 22 1 2 0;
+#X connect 23 0 13 0;
+#X connect 24 0 23 1;
+#X connect 25 0 23 1;
+#X connect 26 0 25 0;
+#X connect 27 0 24 0;
+#X connect 29 0 5 0;
+#X connect 29 0 7 1;
+#X connect 29 0 32 0;
+#X connect 30 0 22 0;
+#X connect 31 0 7 0;
+#X connect 31 0 30 0;
 #X restore 67 87 pd TxBx_counter;
 #X obj 297 696 change1;
 #X obj 88 31 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
@@ -504,63 +510,65 @@ setScale 3.78 2.5 2.5 \, /FID_\$5 setColor 1 1 1 1 \, /FID_\$5 setStateSetFromFi
 #X connect 99 0 40 0;
 #X restore 274 172 pd load_csv;
 #N canvas 250 149 883 618 setup_scene 0;
-#X obj 22 262 shell;
-#X msg 22 240 hostname -s;
-#X obj 141 34 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 57 226 shell;
+#X msg 57 204 hostname -s;
+#X obj 337 48 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 293 622 s \$0-to-SPIN-TCP;
-#X obj 22 282 symbol;
-#X obj 466 291 thisdir;
-#X obj 466 261 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 187 332 s \$0-to-SPIN-TCP;
+#X obj 57 246 symbol;
+#X obj 334 151 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 518 482 expr $f1*($f2/$f3) \; 0 \; $f1;
-#X obj 518 539 pack 0 0 0;
-#X msg 518 561 /map setScale \$1 \$2 \$3;
-#X obj 518 460 pack 100 2658 1693;
-#X text 637 459 <- image resolution is 2658x1693;
-#X obj 518 436 r mapScale;
-#X msg 466 316 createNode map ShapeNode \, /map setParent offset \,
+#X obj 424 315 expr $f1*($f2/$f3) \; 0 \; $f1;
+#X obj 424 372 pack 0 0 0;
+#X msg 424 394 /map setScale \$1 \$2 \$3;
+#X obj 424 293 pack 100 2658 1693;
+#X text 543 292 <- image resolution is 2658x1693;
+#X obj 424 269 r mapScale;
+#X msg 204 186 createNode map ShapeNode \, /map setParent offset \,
 /map setShape 6 \, /map setOrientation -90 0 0 \, /map setStateSetFromFile
 \$1/Turcot_GoogleEarthScreenshot.png \, /Turcot_GoogleEarthScreenshot.png
 setLighting 0;
 #X obj 170 58 anyreg g_ORIGIN 569 554 0;
-#X msg 443 147 createNode offset GroupNode \, /offset setTranslation
+#X msg 221 111 createNode offset GroupNode \, /offset setTranslation
 \$1 \$2 \$3;
 #X obj 170 81 t b b b a;
 #X obj 170 15 r setup_scene;
-#X msg -37 470 /\$1 setComputationMode 1 \, /\$1 setOrientationMode
+#X msg 174 481 /\$1 setComputationMode 1 \, /\$1 setOrientationMode
 1 \, /\$1 setOrientationTarget offset;
-#X msg 22 312 /\$1 setComputationMode 1;
-#X msg 150 181 \; mapScale-set 970 \; cameraPreset 1 \;;
-#X msg 29 141 \; mapScale-set 970 \;;
+#X msg 187 292 /\$1 setComputationMode 1;
+#X msg 165 432 \; mapScale-set 970 \; cameraPreset 1 \;;
+#X msg 170 371 \; mapScale-set 970 \;;
+#X obj 187 272 anyreg g_hostname;
+#X obj 204 161 anyreg gProjectPath;
 #X connect 0 0 4 0;
 #X connect 1 0 0 0;
-#X connect 2 0 14 0;
-#X connect 4 0 19 0;
-#X connect 5 0 13 0;
-#X connect 6 0 5 0;
+#X connect 2 0 13 0;
+#X connect 4 0 18 0;
+#X connect 5 0 22 0;
+#X connect 6 0 7 0;
+#X connect 6 1 7 1;
+#X connect 6 2 7 2;
 #X connect 7 0 8 0;
-#X connect 7 1 8 1;
-#X connect 7 2 8 2;
-#X connect 8 0 9 0;
-#X connect 9 0 3 0;
-#X connect 10 0 7 0;
-#X connect 12 0 10 0;
-#X connect 13 0 3 0;
-#X connect 14 0 16 0;
-#X connect 15 0 3 0;
-#X connect 16 0 21 0;
-#X connect 16 1 1 0;
-#X connect 16 2 5 0;
-#X connect 16 3 15 0;
-#X connect 17 0 14 0;
-#X connect 19 0 3 0;
+#X connect 8 0 3 0;
+#X connect 9 0 6 0;
+#X connect 11 0 9 0;
+#X connect 12 0 3 0;
+#X connect 13 0 15 0;
+#X connect 14 0 3 0;
+#X connect 15 0 20 0;
+#X connect 15 1 21 0;
+#X connect 15 2 22 0;
+#X connect 15 3 14 0;
+#X connect 16 0 13 0;
+#X connect 18 0 3 0;
+#X connect 21 0 18 0;
+#X connect 22 0 12 0;
 #X restore 274 112 pd setup_scene;
 #X obj 112 130 bng 20 250 50 0 setup_user setup_user SETUP_USER 25
 11 1 14 -260097 -1 -1;
 #X obj 52 227 bng 20 250 50 0 reset empty RESET 25 11 1 14 -260097
 -1 -1;
-#N canvas 2476 139 450 300 setup_user 0;
+#N canvas 990 139 450 300 setup_user 0;
 #X obj 35 179 s \$0-to-SPIN-TCP;
 #X msg 86 69 setNotifyLevel 1;
 #X obj 155 -50 vradio 15 1 0 7 empty empty empty 0 -8 0 10 -262144
@@ -585,7 +593,7 @@ setLighting 0;
 #X connect 12 0 13 0;
 #X connect 13 0 0 0;
 #X restore 274 92 pd setup_user;
-#N canvas 2869 517 550 377 user_controls 0;
+#N canvas 715 229 550 377 user_controls 0;
 #N canvas 2823 279 301 198 osc 0;
 #X obj 25 22 OSCrx 3333;
 #X obj 25 66 routeNodeMsg;
@@ -662,6 +670,10 @@ setLighting 0;
 #X obj 227 313 s \$0-to-SPIN-TCP;
 #X msg 485 73 athena;
 #X msg 213 282 /athena setCameraOrientation 0 0 -90;
+#X msg 423 19 blablabla;
+#X text 333 191 <-- Main assets :;
+#X text 356 201 project path \,;
+#X text 356 211 user name \, etc.;
 #X connect 4 0 2 0;
 #X connect 5 0 2 0;
 #X connect 15 0 19 0;
