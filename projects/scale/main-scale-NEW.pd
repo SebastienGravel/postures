@@ -1,6 +1,6 @@
 #N canvas 284 87 1053 777 10;
 #X obj 18 18 widget-spinConnect \$0;
-#X obj 181 201 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 181 211 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #N canvas 702 280 487 526 iphone_setup 0;
 #X obj 49 180 pack s s;
@@ -42,12 +42,12 @@ TextNode;
 #X connect 14 0 8 0;
 #X connect 14 1 9 0;
 #X connect 14 2 13 0;
-#X restore 95 241 pd iphone_setup;
+#X restore 95 251 pd iphone_setup;
 #X obj 563 98 cnv 15 120 60 empty empty Scene_controls 5 10 0 14 -4034
 -66577 0;
 #X obj 563 168 cnv 15 120 60 empty empty Scene_logic 5 10 0 14 -4034
 -66577 0;
-#N canvas 443 97 1425 846 MENU_and_HUD 1;
+#N canvas 15 54 1425 846 MENU_and_HUD 1;
 #X obj -7 71 s \$0-to-SPIN-TCP;
 #X obj 65 255 hradio 15 1 0 9 empty empty empty 0 -8 0 10 -260097 -1
 -1 0;
@@ -4380,7 +4380,7 @@ setEnabled start_world0 0;
 #X obj 172 523 s 8-context;
 #X obj 141 483 s 6-context;
 #X obj 318 255 hradio 15 1 0 9 empty empty empty 0 -8 0 10 -260097
--1 -1 8;
+-1 -1 7;
 #X text 457 253 <--Context;
 #X obj 133 213 r reset-choice;
 #X obj 65 210 t a b;
@@ -4400,7 +4400,7 @@ setEnabled start_world0 0;
 #X obj 177 -92 r \$0-from-SPIN;
 #X obj 336 -43 makefilename /%s-reporter;
 #X obj 38 282 hradio 15 1 0 9 empty empty empty 0 -8 0 10 -260097 -1
--1 8;
+-1 7;
 #X msg 38 251 0;
 #X msg 79 251 1;
 #X msg 118 251 2;
@@ -6515,8 +6515,8 @@ setParent \$1 \, /\$1-reporter setReporting CONTAINMENT 0;
 #X connect 34 0 33 0;
 #X connect 35 0 22 0;
 #X connect 36 0 33 0;
-#X restore 112 211 pd hotspot;
-#X obj 92 397 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X restore 112 221 pd hotspot;
+#X obj 92 407 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #N canvas 125 97 1095 757 scale 0;
 #X obj 734 335 line 1 16.6667;
@@ -7153,9 +7153,9 @@ setParent \$1 \, /\$1-reporter setReporting CONTAINMENT 0;
 #X connect 108 0 110 0;
 #X connect 109 0 108 0;
 #X restore 575 189 pd scale;
-#X obj 18 81 delay 100;
-#X obj 18 61 t b;
-#X obj 78 131 delay 36000;
+#X obj 18 91 delay 100;
+#X obj 18 71 t b;
+#X obj 78 141 delay 36000;
 #N canvas 488 453 499 323 assets 0;
 #X obj 31 147 shell;
 #X msg 31 127 hostname -s;
@@ -7193,14 +7193,14 @@ them all over the place.;
 #X connect 17 0 18 0;
 #X connect 18 0 16 0;
 #X restore 694 98 pd assets;
-#X obj 194 231 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 194 241 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 18 -2 loadbang1 DD;
-#X obj 113 91 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
+#X obj 113 101 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
 #X obj 563 238 bng 30 250 50 0 reset-main empty RESET 35 15 0 30 -258113
 -1 -1;
-#N canvas 61 92 1325 790 debug 0;
+#N canvas 97 22 1325 790 debug 1;
 #X obj -6113 -2089 s \$0-to-SPIN-TCP;
 #X msg -6100 -2566 /chantalbaron setCubeSize 10000 10000 10000;
 #X msg -6124 -2592 createNode grid GridNode;
@@ -7291,12 +7291,10 @@ them all over the place.;
 #X msg -5606 -2595 hotspot_up4;
 #X msg -5574 -2545 hotspot_down5;
 #X msg -5954 -2384 /hotspot_down5 debug;
-#X msg -5889 -2217 /patient-targets debug;
 #X msg -5885 -2196 /patient-cube debug;
 #X msg -5405 -2464 con198;
 #X msg -5906 -2244 /menu debug;
 #X msg -5564 -2519 hostname;
-#X obj -5881 -1983 route /hostname;
 #X obj -6069 -2535 anyreg g_hostname;
 #X msg -6069 -2516 /\$1 debug;
 #X obj -5960 -2545 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
@@ -7559,6 +7557,8 @@ them all over the place.;
 #X restore -5358 -2564 pd POSITION STUFF;
 #X msg -5465 -2226 mainLight4;
 #X msg -5459 -2204 mainLight1;
+#X obj -5861 -1983 route /David-Duguay-4;
+#X msg -5889 -2217 /menuOffset debug;
 #X connect 1 0 0 0;
 #X connect 2 0 0 0;
 #X connect 4 0 8 0;
@@ -7601,7 +7601,7 @@ them all over the place.;
 #X connect 45 0 37 0;
 #X connect 46 0 0 0;
 #X connect 47 0 0 0;
-#X connect 48 0 79 0;
+#X connect 48 0 89 0;
 #X connect 49 0 37 0;
 #X connect 50 0 0 0;
 #X connect 55 0 57 0;
@@ -7623,19 +7623,20 @@ them all over the place.;
 #X connect 72 0 37 0;
 #X connect 73 0 0 0;
 #X connect 74 0 0 0;
-#X connect 75 0 0 0;
-#X connect 76 0 37 0;
-#X connect 77 0 0 0;
-#X connect 78 0 37 0;
-#X connect 80 0 81 0;
+#X connect 75 0 37 0;
+#X connect 76 0 0 0;
+#X connect 77 0 37 0;
+#X connect 78 0 79 0;
+#X connect 79 0 0 0;
+#X connect 80 0 78 0;
 #X connect 81 0 0 0;
-#X connect 82 0 80 0;
-#X connect 83 0 0 0;
-#X connect 84 0 86 0;
-#X connect 85 0 84 0;
-#X connect 86 0 0 0;
-#X connect 89 0 37 0;
-#X connect 90 0 37 0;
+#X connect 82 0 84 0;
+#X connect 83 0 82 0;
+#X connect 84 0 0 0;
+#X connect 87 0 37 0;
+#X connect 88 0 37 0;
+#X connect 89 0 5 0;
+#X connect 90 0 0 0;
 #X restore 694 118 pd debug;
 #N canvas 0 22 507 593 main_nodes 0;
 #X obj 43 21 inlet;
@@ -7688,7 +7689,7 @@ menuOffset \, /menu setTranslation 0 0.1 -0.02 \, /menu setBillboard
 #X connect 15 0 17 0;
 #X connect 16 0 15 0;
 #X connect 17 0 18 0;
-#X restore 63 327 pd main_nodes;
+#X restore 63 337 pd main_nodes;
 #N canvas 0 22 618 393 models 0;
 #X obj 55 26 inlet;
 #N canvas 0 60 739 754 pointers 0;
@@ -8039,8 +8040,8 @@ setRenderBin 100 \, /spacecraft setScale 0.1 0.1 0.1;
 #X connect 11 0 7 0;
 #X connect 12 0 4 0;
 #X connect 12 1 7 0;
-#X restore 48 367 pd models;
-#X obj 18 441 bng 20 250 50 0 empty empty loading_DONE 25 10 0 20 -4034
+#X restore 48 377 pd models;
+#X obj 18 451 bng 20 250 50 0 empty empty loading_DONE 25 10 0 20 -4034
 -1 -1;
 #N canvas 50 154 427 481 texts 0;
 #X obj 140 60 inlet;
@@ -8740,10 +8741,10 @@ soleil_group;
 #X connect 12 0 14 0;
 #X connect 13 0 11 0;
 #X connect 15 0 11 0;
-#X restore 33 407 pd texts;
-#X obj 115 357 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X restore 33 417 pd texts;
+#X obj 115 367 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 153 317 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 153 327 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #N canvas 0 22 916 412 tests_and_stuff 0;
 #X obj 175 283 nbx 4 14 -1e+37 1e+37 0 0 empty empty scale 0 -8 1 11
@@ -8862,9 +8863,9 @@ soleil_group;
 #X connect 3 2 4 0;
 #X connect 4 0 2 0;
 #X connect 6 0 3 0;
-#X restore 78 292 pd sound;
-#X obj 78 272 delay 4000;
-#X obj 151 282 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X restore 78 302 pd sound;
+#X obj 78 282 delay 4000;
+#X obj 151 292 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #N canvas 0 22 633 526 TODO_stuff 0;
 #N canvas 0 22 648 620 rotate 0;
@@ -9850,10 +9851,10 @@ setParent start_group \, /mainLight\$1 setTranslation \$2 \$3 100 \,
 #X connect 14 0 15 0;
 #X connect 15 0 3 0;
 #X connect 15 0 0 0;
-#X restore 129 178 pd lights;
-#X obj 18 101 t b b b b b b;
-#X obj 78 151 t b b b b;
-#X obj 191 168 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X restore 129 188 pd lights;
+#X obj 18 111 t b b b b b b;
+#X obj 78 161 t b b b b;
+#X obj 191 178 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X connect 1 0 6 0;
 #X connect 7 0 21 0;
