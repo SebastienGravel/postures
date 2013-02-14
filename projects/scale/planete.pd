@@ -1,30 +1,35 @@
-#N canvas 342 139 680 409 10;
-#X obj 130 119 t b s;
+#N canvas 370 488 680 409 10;
 #X text 353 36 Arguments: name of the planet;
-#X obj 100 151 symbol \$1;
-#X obj 135 194 pack s s;
-#X obj 131 68 delay;
+#X obj 130 68 delay;
 #X obj 253 9 loadbang;
 #X obj 253 37 random 5000;
 #X obj 253 62 + 5000;
 #X text 313 67 <-- to avoid loading 10 obj at the same time;
-#X text 187 154 <-- first symbol is node name;
-#X text 201 192 <-- second symbol is current directory (folder) to
-look for .ac file;
-#X msg 134 242 deleteNode \$1 \, createNode \$1 ModelNode \, /\$1 setModelFromFile
-\$2/\$1.ac \, deleteNode \$1_group \, createNode \$1_group GroupNode
-\, /\$1 setParent \$1_group \, /\$1_group setParent soleil_group;
-#X obj 130 93 anyreg gProjectPath;
-#X obj 136 27 inlet;
-#X obj 182 378 s \$0-to-SPIN-TCP;
-#X connect 0 0 2 0;
-#X connect 0 1 3 1;
+#X obj 130 37 inlet;
+#X obj 193 145 anyreg gProjectPath;
+#X obj 224 300 p;
+#X obj 130 100 t b b;
+#X obj 170 90 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 130 168 list append;
+#X obj 130 303 outlet;
+#X obj 130 122 list append \$1 \$2 \$3 \$4 \$5 \$6 \$7 \$8 \$9 \$10
+\$11 \$12 \$13;
+#X msg 130 202 createNode \$1 ModelNode \, /\$1 setModelFromFile \$14/\$1.ac
+\, createNode \$1_group GroupNode \, /\$1 setParent \$1_group \, /\$1_group
+setParent soleil_group \, /\$1_group setTranslation \$2 \$3 \$4 \,
+/\$1_group setOrientation \$5 \$6 \$7 \, /\$1 setTranslation \$8 \$9
+\$10 \, /\$1 setOrientation \$11 \$12 \$13;
+#X connect 1 0 9 0;
 #X connect 2 0 3 0;
-#X connect 3 0 11 0;
-#X connect 4 0 12 0;
-#X connect 5 0 6 0;
-#X connect 6 0 7 0;
-#X connect 7 0 4 1;
+#X connect 3 0 4 0;
+#X connect 4 0 1 1;
+#X connect 6 0 1 0;
+#X connect 7 0 11 1;
+#X connect 9 0 13 0;
+#X connect 9 1 7 0;
+#X connect 10 0 9 0;
 #X connect 11 0 14 0;
-#X connect 12 0 0 0;
-#X connect 13 0 4 0;
+#X connect 13 0 11 0;
+#X connect 14 0 8 0;
+#X connect 14 0 12 0;
