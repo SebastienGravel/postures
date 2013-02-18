@@ -1,4 +1,4 @@
-#N canvas 887 328 700 461 10;
+#N canvas 740 328 700 461 10;
 #X obj 21 41 widget-spinConnect \$0;
 #N canvas 599 190 487 526 iphone_setup 0;
 #X obj 49 180 pack s s;
@@ -244,8 +244,8 @@ computer name \, etc.);
 #X connect 81 0 0 0;
 #X connect 82 0 0 0;
 #X restore 273 107 pd debug;
-#N canvas 207 110 772 487 user_setup 0;
-#X obj 69 175 s \$0-to-SPIN-TCP;
+#N canvas 565 354 772 487 user_setup 0;
+#X obj 69 195 s \$0-to-SPIN-TCP;
 #X msg 86 87 setNotifyLevel 1;
 #X obj 155 -32 vradio 15 1 0 7 empty empty empty 0 -8 0 10 -262144
 -1 -1 0;
@@ -258,18 +258,19 @@ computer name \, etc.);
 #X text 172 61 DEBUG_FP;
 #X obj 35 0 inlet;
 #X obj 35 39 t b b b b;
-#X msg 69 155 /\$1 setComputationMode 0;
 #X obj 69 135 anyreg g_hostname;
 #X obj 186 125 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
+#X msg 69 155 /\$1 setComputationMode 1 \, /\$1 setVelocityScalars
+4 6 6 \, /\$1 setSpinScalars 0 0 0;
 #X connect 1 0 0 0;
 #X connect 2 0 1 0;
 #X connect 10 0 11 0;
-#X connect 11 2 13 0;
+#X connect 11 2 12 0;
 #X connect 11 3 1 0;
-#X connect 12 0 0 0;
+#X connect 12 0 14 0;
 #X connect 13 0 12 0;
-#X connect 14 0 13 0;
+#X connect 14 0 0 0;
 #X restore 84 179 pd user_setup;
 #X obj 21 129 t b b b b b;
 #N canvas 346 179 672 412 models-full 0;
