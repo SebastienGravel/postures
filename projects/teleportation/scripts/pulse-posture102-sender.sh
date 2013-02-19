@@ -19,7 +19,7 @@ sleep 2
 
 switcher-ctrl -S $SENDER_URL -C gstsrc mic
 sleep 1
-switcher-ctrl -S $SENDER_URL -i mic to_shmdata 'pulsesrc ! audioconvert'
+switcher-ctrl -S $SENDER_URL -i mic to_shmdata 'pulsesrc volume=1 ! capsfilter caps="audio/x-raw-int, endianness=(int)1234, signed=(boolean)true, width=(int)16, depth=(int)16, rate=(int)44100, channels=(int)1" !  audioresample ! audioconvert'
 sleep 1
 switcher-ctrl -S $SENDER_URL -C rtpsession pulsesender
 sleep 1
