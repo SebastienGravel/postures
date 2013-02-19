@@ -4,7 +4,7 @@
 RECEIVER_NAME=pclreceiver
 RECEIVER_PORT=8299
 RECEIVER_URL=`echo http://localhost:${RECEIVER_PORT}`
-SDP_FILE_LOCATION="http://posture102.local:8293/sdp?rtpsession=pclsender&destination=pclmixer"
+SDP_FILE_LOCATION="http://posture102.local:8292/sdp?rtpsession=pclsender&destination=pclmixer"
 SDP_GET_QUID=uridecodebin
 
 function startserver {

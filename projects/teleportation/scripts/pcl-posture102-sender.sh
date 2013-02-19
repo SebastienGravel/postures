@@ -2,7 +2,7 @@
 
 # Sending point clouds
 SENDER_NAME=posturesender
-SENDER_PORT=8293
+SENDER_PORT=8292
 SENDER_URL=`echo http://localhost:${SENDER_PORT}`
 
 # Local point clouds

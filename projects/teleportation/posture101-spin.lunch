@@ -1,0 +1,6 @@
+#!/usr/bin/env lunch
+
+add_command("spinserver --scene-id teleportation", identifier="server")
+add_command("spinviewer --scene-id teleportation --config panoscope_2nd_screen.xml", identifier="local_viewer", sleep_after=5)
+
+add_command("pd-extended main-teleportation.pd", identifier="pd")
