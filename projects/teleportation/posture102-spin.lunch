@@ -1,0 +1,3 @@
+#!/usr/bin/env lunch
+
+add_command("spinviewer --scene-id teleportation --config panoscope_2nd_screen.xml", identifier="local_viewer")
