@@ -1,0 +1,11 @@
+#!/usr/bin/env lunch
+
+_user = "posture101"
+_projectPath = "~/src/postures/projects/scale"
+
+# disable screensaver:
+#add_command("xset s off; xset s noblank; xset -dpms;", identifier="screenBlankOFF", user=_user, respawn=False, sleep_after=1.0)
+
+add_command("spinserver --scene-id DD", identifier="server", sleep_after=1.0)
+add_command("spinviewer --scene-id DD --config ~/src/postures/projects/scale/panoscope_2nd_screen.xml", identifier="viewer", sleep_after=5.0)
+add_command("pd-extended ~/src/postures/projects/scale/main-scale-NEW.pd", identifier="pd")

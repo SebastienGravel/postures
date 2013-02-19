@@ -1,0 +1,35 @@
+#N canvas 709 419 577 409 10;
+#X text 353 36 Arguments: name of the planet;
+#X obj 130 71 delay;
+#X obj 253 9 loadbang;
+#X text 313 67 <-- to avoid loading 10 obj at the same time;
+#X obj 253 37 random 500;
+#X obj 253 62 + 500;
+#X obj 193 144 anyreg gProjectPath;
+#X obj 224 299 p;
+#X obj 130 49 inlet;
+#X obj 130 299 outlet;
+#X obj 130 99 t b b;
+#X obj 170 89 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 130 167 list append;
+#X obj 130 121 list append \$1 \$2 \$3 \$4 \$5 \$6 \$7 \$8 \$9 \$10
+\$11 \$12 \$13;
+#X msg 130 201 createNode \$1 ModelNode \, /\$1 setModelFromFile \$14/\$1.ac
+\, createNode \$1_group GroupNode \, /\$1 setParent \$1_group \, /\$1_group
+setTranslation \$2 \$3 \$4 \, /\$1_group setTranslation \$5 \$6 \$7
+\, /\$1 setTranslation \$8 \$9 \$10 \, /\$1 setOrientation \$11 \$12
+\$13;
+#X connect 1 0 10 0;
+#X connect 2 0 4 0;
+#X connect 4 0 5 0;
+#X connect 5 0 1 1;
+#X connect 6 0 12 1;
+#X connect 8 0 1 0;
+#X connect 10 0 13 0;
+#X connect 10 1 6 0;
+#X connect 11 0 10 0;
+#X connect 12 0 14 0;
+#X connect 13 0 12 0;
+#X connect 14 0 7 0;
+#X connect 14 0 9 0;
