@@ -27,4 +27,4 @@ switcher-ctrl -S $SENDER_URL -i pulsesender add_data_stream /tmp/switcher_pulses
 sleep 1
 switcher-ctrl -S $SENDER_URL -i pulsesender add_destination pulsemixer ${DESTINATION_IP}
 sleep 1
-switcher-ctrl -S $SENDER_URL -i pulsesender add_udp_stream_to_dest /tmp/switcher_pulsesender_mic_gstsrc pulsemixer 21610
+switcher-ctrl -S $SENDER_URL -i pulsesender add_udp_stream_to_dest /tmp/switcher_pulsesender_mic_gstsrc pulsemixer 21640

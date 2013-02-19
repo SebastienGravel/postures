@@ -28,4 +28,4 @@ switcher-ctrl -S $SENDER_URL -i pclsender add_data_stream /tmp/pcl
 sleep 1
 switcher-ctrl -S $SENDER_URL -i pclsender add_destination pclmixer ${DESTINATION_IP}
 sleep 1
-switcher-ctrl -S $SENDER_URL -i pclsender add_udp_stream_to_dest /tmp/pcl pclmixer 21610
+switcher-ctrl -S $SENDER_URL -i pclsender add_udp_stream_to_dest /tmp/pcl pclmixer 21650
