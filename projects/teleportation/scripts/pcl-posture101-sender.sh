@@ -10,10 +10,6 @@ PCL_NAME=pcl
 
 DESTINATION_IP=posture102.local
 
-# Cleaning things
-killall switcher
-rm /tmp/switcher_*
-
 function startserver {
     log_file=`echo switcher_$1_log`
     echo "--------" >> $log_file
