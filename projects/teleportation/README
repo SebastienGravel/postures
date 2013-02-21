@@ -1,0 +1,4 @@
+Pour lancer Teleportation :
+- Lancer, sur chaque machine, posture101-sender.sh et posture102-sender.sh (respectivement pour chaque machine)
+- Puis ensuite seulement, une fois que les deux scripts precedents sont lances sur chaque machine, lancer posture101-receiver.sh et posture102-receiver.sh (respectivement toujours)
+- Enfin, lancer posture101-spin.lunch et posture102-spin.lunch (respectivement encore)
