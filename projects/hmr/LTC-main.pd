@@ -1,152 +1,152 @@
-#N canvas 366 242 1006 687 10;
+#N canvas 366 213 1006 687 10;
 #X obj 38 38 widget-spinConnect \$0;
 #X obj 38 18 loadbang1 HMR;
 #X obj 541 40 bng 30 250 50 0 reset empty RESET 40 17 0 35 -258113
 -1 -1;
-#N canvas 66 84 925 995 user_setup 0;
-#X obj 198 24 inlet;
-#X obj 198 77 anyreg g_hostname;
-#X obj 198 1031 s \$0-to-SPIN-TCP;
-#X obj 139 26 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#N canvas 181 22 680 837 user_setup 1;
+#X obj 138 24 inlet;
+#X obj 138 77 anyreg g_hostname;
+#X obj 138 1031 s \$0-to-SPIN-TCP;
+#X obj 79 26 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X msg 198 926 deleteNode mainLight2 \, createNode mainLight2 LightSource
+#X msg 138 926 deleteNode mainLight2 \, createNode mainLight2 LightSource
 \, /mainLight2 setParent \$1 \, /mainLight2 setTranslation 30 -30 12
 \, /mainLight2 setOrientation 0 0 0 \, /mainLight2 setCutoff 180 \,
 /mainLight2 setExponent 16 \, /mainLight2 setAttenuation 0.1 \, /mainLight2
 setAmbient 1 1 1 1 \, /mainLight2 setDiffuse 1 1 1 1 \, /mainLight2
 setSpecular 0 0 0 1;
-#X obj 630 475 p;
-#X obj 198 112 pack s s s;
-#X obj 320 77 anyreg gProjectPath;
-#X obj 460 77 anyreg shader;
-#X obj 198 44 t b b b;
-#X obj 1013 416 loadbang;
-#X obj 1006 448 delay 2000;
-#X obj 795 558 t b f;
-#X obj 777 578 pack f f;
-#X obj 777 502 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+#X obj 570 475 p;
+#X obj 138 112 pack s s s;
+#X obj 260 77 anyreg gProjectPath;
+#X obj 400 77 anyreg shader;
+#X obj 138 44 t b b b;
+#X obj 953 416 loadbang;
+#X obj 946 448 delay 2000;
+#X obj 735 558 t b f;
+#X obj 717 578 pack f f;
+#X obj 717 502 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
 -1 -1 0 1;
-#X obj 792 502 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+#X obj 732 502 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
 -1 -1 0 1;
-#X obj 963 557 t b f;
-#X obj 945 577 pack f f;
-#X obj 945 497 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+#X obj 903 557 t b f;
+#X obj 885 577 pack f f;
+#X obj 885 497 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
 -1 -1 0 1;
-#X obj 960 497 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+#X obj 900 497 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
 -1 -1 0 1;
-#X obj 1082 556 t b f;
-#X obj 1064 576 pack f f;
-#X obj 1064 500 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+#X obj 1022 556 t b f;
+#X obj 1004 576 pack f f;
+#X obj 1004 500 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
 -1 -1 0 1;
-#X obj 1079 500 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
+#X obj 1019 500 vsl 15 50 0 1 0 0 empty empty empty 0 -9 0 10 -191407
 -1 -1 0 1;
-#X msg 1006 467 0.5;
-#X obj 1009 234 vsl 15 150 0 0.1 0 0 empty empty Size 0 -9 0 10 -4032
+#X msg 946 467 0.5;
+#X obj 949 234 vsl 15 150 0 0.1 0 0 empty empty Size 0 -9 0 10 -4032
 -1 -1 0 1;
-#X obj 1055 233 vsl 15 150 0 1 0 0 empty empty Distance 0 -9 0 10 -4032
+#X obj 995 233 vsl 15 150 0 1 0 0 empty empty Distance 0 -9 0 10 -4032
 -1 -1 0 1;
-#X obj 1069 181 line;
-#X obj 1026 52 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 1009 181 line;
+#X obj 966 52 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 1067 133 / 1000;
-#X obj 1066 112 random 100;
-#X obj 999 181 line;
-#X obj 997 133 / 1000;
-#X obj 996 112 random 100;
-#X obj 1027 73 metro 2000;
-#X msg 1067 157 \$1 2000;
-#X msg 997 157 \$1 2000;
-#X obj 1179 346 hradio 15 1 0 6 empty empty Voxelize_method 0 -8 0
+#X obj 1007 133 / 1000;
+#X obj 1006 112 random 100;
+#X obj 939 181 line;
+#X obj 937 133 / 1000;
+#X obj 936 112 random 100;
+#X obj 967 73 metro 2000;
+#X msg 1007 157 \$1 2000;
+#X msg 937 157 \$1 2000;
+#X obj 1119 346 hradio 15 1 0 6 empty empty Voxelize_method 0 -8 0
 10 -4032 -1 -1 0;
-#X text 1058 199 comment;
-#X obj 1286 346 tgl 15 0 empty empty Activate_texture 17 7 0 10 -4032
+#X text 998 199 comment;
+#X obj 1226 346 tgl 15 0 empty empty Activate_texture 17 7 0 10 -4032
 -1 -1 0 1;
-#X obj 1411 344 hradio 15 1 0 2 empty empty Voxel_type 0 -8 0 10 -4032
+#X obj 1351 344 hradio 15 1 0 2 empty empty Voxel_type 0 -8 0 10 -4032
 -1 -1 0;
-#X obj 1531 230 vsl 15 150 0.1 2 0 0 empty empty Ratio 0 -9 0 10 -4032
+#X obj 1471 230 vsl 15 150 0.1 2 0 0 empty empty Ratio 0 -9 0 10 -4032
 -1 -1 0 1;
-#X msg 777 598 /voxShader setUniform_vec2 voxels_size \$1 \$2;
-#X msg 945 621 /voxShader setUniform_vec2 voxels_offset \$1 \$2;
-#X msg 1064 596 /voxShader setUniform_vec2 voxels_distance \$1 \$2
+#X msg 717 598 /voxShader setUniform_vec2 voxels_size \$1 \$2;
+#X msg 885 621 /voxShader setUniform_vec2 voxels_offset \$1 \$2;
+#X msg 1004 596 /voxShader setUniform_vec2 voxels_distance \$1 \$2
 ;
-#X msg 1286 498 /voxShader setUniform_int vShowTexture \$1;
-#X msg 1179 534 /voxShader setUniform_int vMethod \$1;
-#X msg 1411 530 /voxShader setUniform_int vVoxelType \$1;
-#X msg 1549 499 /voxShader setUniform_float vRatio \$1;
-#X floatatom 873 342 10 0 0 0 - - -;
-#X floatatom 1039 392 10 0 0 0 - - -;
-#X floatatom 1518 399 10 0 0 0 - - -;
-#X floatatom 920 205 10 0 0 0 - - -;
-#X floatatom 1111 242 10 0 0 0 - - -;
-#X floatatom 1579 181 10 0 0 0 - - -;
-#X obj 966 697 s \$0-to-SPIN;
-#X obj 280 358 list append voxShader;
-#X obj 266 500 list append voxShader2;
-#X obj 252 622 list append voxShader3;
-#X obj 225 813 s \$0-to-SPIN-TCP;
-#X obj 252 742 s \$0-to-SPIN-TCP;
-#X msg 239 773 /\$1 setVelocityScalars 4 6 6 \, /\$1 setSpinScalars
+#X msg 1226 498 /voxShader setUniform_int vShowTexture \$1;
+#X msg 1119 534 /voxShader setUniform_int vMethod \$1;
+#X msg 1351 530 /voxShader setUniform_int vVoxelType \$1;
+#X msg 1489 499 /voxShader setUniform_float vRatio \$1;
+#X floatatom 813 342 10 0 0 0 - - -;
+#X floatatom 979 392 10 0 0 0 - - -;
+#X floatatom 1458 399 10 0 0 0 - - -;
+#X floatatom 860 205 10 0 0 0 - - -;
+#X floatatom 1051 242 10 0 0 0 - - -;
+#X floatatom 1519 181 10 0 0 0 - - -;
+#X obj 906 697 s \$0-to-SPIN;
+#X obj 220 358 list append voxShader;
+#X obj 206 500 list append voxShader2;
+#X obj 192 622 list append voxShader3;
+#X obj 165 813 s \$0-to-SPIN-TCP;
+#X obj 192 742 s \$0-to-SPIN-TCP;
+#X msg 179 773 /\$1 setVelocityScalars 4 6 6 \, /\$1 setSpinScalars
 0 0 0;
-#X msg 225 793 setNotifyLevel 1;
-#X obj 628 668 vradio 15 1 0 7 empty empty empty 0 -8 0 10 -262144
+#X msg 165 793 setNotifyLevel 1;
+#X obj 568 668 vradio 15 1 0 7 empty empty empty 0 -8 0 10 -262144
 -1 -1 0;
-#X text 645 682 FATAL;
-#X text 645 666 ALWAYS;
-#X text 645 698 WARN;
-#X text 645 714 NOTICE;
-#X text 645 729 INFO;
-#X text 645 745 DEBUG_INFO;
-#X text 645 761 DEBUG_FP;
-#X msg 211 840 deleteNode mainLight \, createNode mainLight LightSource
+#X text 585 682 FATAL;
+#X text 585 666 ALWAYS;
+#X text 585 698 WARN;
+#X text 585 714 NOTICE;
+#X text 585 729 INFO;
+#X text 585 745 DEBUG_INFO;
+#X text 585 761 DEBUG_FP;
+#X msg 151 840 deleteNode mainLight \, createNode mainLight LightSource
 \, /mainLight setParent \$1 \, /mainLight setTranslation -30 -30 12
 \, /mainLight setOrientation 0 0 0 \, /mainLight setCutoff 180 \, /mainLight
 setExponent 16 \, /mainLight setAttenuation 0.1 \, /mainLight setAmbient
 1 1 1 1 \, /mainLight setDiffuse 1 1 1 1 \, /mainLight setSpecular
 0 0 0 1;
-#X obj 605 864 r creat_manLight3;
-#X text 720 862 <-- From model creation patch sent;
-#X text 744 875 after creationg main nodes;
-#X obj 347 251 s \$0-to-SPIN-TCP;
-#X obj 96 96 shell;
-#X msg 96 76 hostname -s;
-#X obj 96 116 symbol;
-#X msg 625 252 /voxShader setUniform_int vNumberOfLights 3;
-#X msg 252 644 createStateSet \$4 Shader \, /\$4 setShader \$2/models/shaders/\$3
+#X obj 545 864 r creat_manLight3;
+#X text 660 862 <-- From model creation patch sent;
+#X text 684 875 after creationg main nodes;
+#X obj 287 251 s \$0-to-SPIN-TCP;
+#X obj 36 96 shell;
+#X msg 36 76 hostname -s;
+#X obj 36 116 symbol;
+#X msg 565 252 /voxShader setUniform_int vNumberOfLights 3;
+#X msg 192 644 createStateSet \$4 Shader \, /\$4 setShader \$2/models/shaders/\$3
 \, /\$4 setUniform_int vMethod 4 \, /\$4 setUniform_int vShowTexture
 1 \, /\$4 setUniform_int vVoxelType 1 \, /\$4 setUniform_float vRatio
 1.75 \, /\$4 setUniform_int vVoxelType 1 \, /\$4 setUniform_vec2 voxels_size
 1 1 \, /\$4 setUniform_vec2 voxels_distance 0 0 \, /\$4 setTransparent
 1 \, /\$4 setUniform_int vNumberOfLights 3;
-#X msg 266 522 createStateSet \$4 Shader \, /\$4 setShader \$2/models/shaders/\$3
+#X msg 206 522 createStateSet \$4 Shader \, /\$4 setShader \$2/models/shaders/\$3
 \, /\$4 setUniform_int vMethod 4 \, /\$4 setUniform_int vShowTexture
 1 \, /\$4 setUniform_int vVoxelType 1 \, /\$4 setUniform_float vRatio
 1.75 \, /\$4 setUniform_int vVoxelType 1 \, /\$4 setUniform_vec2 voxels_size
 1 1 \, /\$4 setUniform_vec2 voxels_distance 0 0 \, /\$4 setTransparent
 1 \, /\$4 setUniform_int vNumberOfLights 2;
-#X msg 280 380 createStateSet \$4 Shader \, /\$4 setShader \$2/models/shaders/\$3
+#X msg 220 380 createStateSet \$4 Shader \, /\$4 setShader \$2/models/shaders/\$3
 \, /\$4 setUniform_int vMethod 4 \, /\$4 setUniform_int vShowTexture
 1 \, /\$4 setUniform_int vVoxelType 1 \, /\$4 setUniform_float vRatio
 1.75 \, /\$4 setUniform_int vVoxelType 1 \, /\$4 setUniform_vec2 voxels_size
 0.0057 0.0057 \, /\$4 setUniform_vec2 voxels_distance 0.04 0.04 \,
 /\$4 setTransparent 1 \, /\$4 setUniform_int vNumberOfLights 2;
-#X obj 149 54 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 89 54 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X msg 389 149 createNode \$1 UserNode \, createNode \$1-anim AnimationNode
+#X msg 329 149 createNode \$1 UserNode \, createNode \$1-anim AnimationNode
 \, /\$1 setParent \$1-anim \, /\$1 setSpaceNavigatorNode \$1-anim \,
 /\$1-anim setConstraintMode 5 \, /\$1-anim setComputationMode 0;
-#X msg 293 275 deleteNode \$1-reporter \, createNode \$1-reporter ReporterNode
+#X msg 233 275 deleteNode \$1-reporter \, createNode \$1-reporter ReporterNode
 \, /\$1-reporter setParent \$1 \, /\$1-reporter setReporting CONTAINMENT
 1 \, /\$1 setcontainmentMode 1 \, /\$1 setCubeOffset 0 0 0 \, /\$1
 setCubeSize 100 100 100 \, /\$1 setTranslation 0 0 0 \, /\$1 setConstraintMode
 5;
-#X obj 198 151 t a a a a a a a a a a;
-#X msg 605 896 deleteNode mainLight3 \, createNode mainLight3 LightSource
+#X obj 138 151 t a a a a a a a a a a;
+#X msg 545 896 deleteNode mainLight3 \, createNode mainLight3 LightSource
 \, /mainLight3 setParent step4 \, /mainLight3 setTranslation 1000 3000
 0 \, /mainLight3 setOrientation 0 0 0 \, /mainLight3 setCutoff 180
 \, /mainLight3 setExponent 2 \, /mainLight3 setAttenuation 0.1 \, /mainLight3
 setAmbient 0 0 0 0 \, /mainLight3 setDiffuse 1 1 1 1 \, /mainLight3
 setSpecular 0 0 0 0;
-#X msg 347 198 load anim.xml \, /\$1-anim setPlay 0 \, /\$1-anim setParent
+#X msg 287 198 load anim.xml \, /\$1-anim setPlay 0 \, /\$1-anim setParent
 world \, /\$1 setParent \$1-anim \, /\$1 setSpaceNavigatorNode \$1-anim
 \, /\$1-anim setLoopMode 1;
 #X connect 0 0 9 0;
@@ -559,7 +559,7 @@ world \, /\$1 setParent \$1-anim \, /\$1 setSpaceNavigatorNode \$1-anim
 #X connect 41 4 30 0;
 #X connect 41 5 39 0;
 #X restore 541 95 pd control_ssao;
-#N canvas 657 163 956 773 animation 1;
+#N canvas 484 22 956 773 animation 0;
 #X obj 50 372 s \$0-to-SPIN;
 #X obj 69 151 hsl 128 15 0 1 0 0 empty empty scrubber -2 -8 0 10 -262144
 -1 -1 0 1;
@@ -816,7 +816,7 @@ them all over the place.;
 -1;
 #X obj 108 284 delay 2000;
 #X obj 544 260 nbx 4 16 0 1e+37 0 0 FloatSpeed FloatSpeed-set FloatSpeed
-57 10 1 14 -261682 -1 -1 10 256;
+57 10 1 14 -261682 -1 -1 0 256;
 #X floatatom 544 318 5 0 0 1 Number Number-set Number;
 #N canvas 1184 525 680 515 CETC-models 0;
 #X obj -131 14 inlet;
@@ -2140,7 +2140,7 @@ and 2 types of lisosomes);
 #X text 118 100 <-- This updates web database at start. Shell is unstable
 and may cause pd to crash in this case. But once it works it stays
 stable. This is why it is banged first.;
-#N canvas 444 603 1089 391 hotspot_triggers 0;
+#N canvas 230 214 1089 391 hotspot_triggers 0;
 #X obj -132 354 s \$0-to-SPIN-TCP;
 #X obj 575 53 r gotoPos;
 #X obj 575 195 s \$0-to-SPIN-TCP;
@@ -2214,7 +2214,6 @@ stable. This is why it is banged first.;
 #X connect 19 0 21 0;
 #X connect 20 0 22 0;
 #X connect 21 0 24 0;
-#X connect 22 0 19 1;
 #X connect 23 0 19 0;
 #X connect 23 1 20 0;
 #X connect 24 0 29 0;
@@ -2354,7 +2353,7 @@ stable. This is why it is banged first.;
 -1 -1;
 #X obj -207 68 s fogOFF;
 #X obj -119 -152 tgl 30 0 empty empty LABO/PATIENT_SWITCH 35 16 0 20
--4034 -1 -1 1 1;
+-4034 -1 -1 0 1;
 #X obj -119 -116 sel 0 1;
 #X obj -111 -63 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
@@ -2401,7 +2400,6 @@ setScale 0 0 0;
 #X connect 19 0 21 0;
 #X connect 20 0 22 0;
 #X connect 21 0 25 0;
-#X connect 22 0 19 1;
 #X connect 23 0 19 0;
 #X connect 23 1 20 0;
 #X connect 24 0 23 0;
@@ -2523,7 +2521,6 @@ setScale 0 0 0;
 #X connect 27 0 24 0;
 #X connect 28 0 5 0;
 #X connect 29 0 24 0;
-#X connect 30 0 31 1;
 #X connect 31 0 17 0;
 #X connect 34 0 11 0;
 #X connect 35 0 38 1;
@@ -2599,7 +2596,6 @@ setScale 0 0 0;
 #X connect 22 0 24 0;
 #X connect 23 0 25 0;
 #X connect 24 0 28 0;
-#X connect 25 0 22 1;
 #X connect 26 0 22 0;
 #X connect 26 1 23 0;
 #X connect 27 0 26 0;
@@ -2684,7 +2680,6 @@ setScale 0 0 0;
 #X connect 24 0 26 0;
 #X connect 25 0 27 0;
 #X connect 26 0 30 0;
-#X connect 27 0 24 1;
 #X connect 28 0 24 0;
 #X connect 28 1 25 0;
 #X connect 29 0 28 0;
@@ -2765,7 +2760,6 @@ setScale 0 0 0;
 #X connect 18 0 20 0;
 #X connect 19 0 21 0;
 #X connect 20 0 24 0;
-#X connect 21 0 18 1;
 #X connect 22 0 18 0;
 #X connect 22 1 19 0;
 #X connect 23 0 22 0;
@@ -2868,7 +2862,6 @@ setScale 0 0 0;
 #X connect 19 0 21 0;
 #X connect 20 0 22 0;
 #X connect 21 0 25 0;
-#X connect 22 0 19 1;
 #X connect 23 0 19 0;
 #X connect 23 1 20 0;
 #X connect 25 0 37 0;
@@ -2951,7 +2944,6 @@ setScale 0 0 0;
 #X connect 17 0 19 0;
 #X connect 18 0 22 0;
 #X connect 18 0 31 0;
-#X connect 19 0 16 1;
 #X connect 20 0 16 0;
 #X connect 20 1 17 0;
 #X connect 21 0 20 0;
@@ -3034,7 +3026,6 @@ setScale 0 0 0;
 #X connect 18 0 20 0;
 #X connect 19 0 21 0;
 #X connect 20 0 24 0;
-#X connect 21 0 18 1;
 #X connect 22 0 18 0;
 #X connect 22 1 19 0;
 #X connect 23 0 22 0;

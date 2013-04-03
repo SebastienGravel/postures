@@ -1,4 +1,4 @@
-#N canvas 3075 476 826 610 10;
+#N canvas 595 229 826 610 10;
 #X obj 368 41 inlet;
 #X msg 143 188 0;
 #X obj 98 212 spigot;
@@ -45,6 +45,8 @@
 #X obj 578 378 s ALL_BUBBLES_LOADED;
 #X obj 98 292 t b b b;
 #X obj 344 499 s t-stop;
+#X obj 709 363 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
 #X connect 0 0 2 0;
 #X connect 0 0 8 0;
 #X connect 0 0 14 0;
@@ -63,7 +65,7 @@
 #X connect 9 0 13 0;
 #X connect 10 0 40 0;
 #X connect 11 0 33 0;
-#X connect 11 0 43 0;
+#X connect 11 0 30 0;
 #X connect 12 0 26 0;
 #X connect 13 0 10 0;
 #X connect 14 0 15 0;
@@ -90,7 +92,7 @@
 #X connect 31 0 8 1;
 #X connect 36 1 37 0;
 #X connect 39 0 32 0;
-#X connect 39 0 31 0;
+#X connect 39 0 43 0;
 #X connect 40 0 11 0;
 #X connect 40 1 38 0;
 #X connect 40 2 26 0;
@@ -103,3 +105,4 @@
 #X connect 44 0 39 0;
 #X connect 44 1 38 0;
 #X connect 44 2 1 0;
+#X connect 46 0 43 0;
