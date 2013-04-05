@@ -120,3 +120,6 @@ typedef enum { DISABLED, LOCATION_MANAGER, MOTION_MANAGER } MotionMode;
 
 @end
 
+int nodelist_handler(const char *path, const char *types, lo_arg **argv, int argc, void *data, void *user_data);
+int menu_handler(const char *path, const char *types, lo_arg **argv, int argc, void *data, void *user_data);
+int info_handler(const char *path, const char *types, lo_arg **argv, int argc, void *data, void *user_data);
