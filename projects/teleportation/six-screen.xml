@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE soundEngine SYSTEM>
+<camConfig>
+    <window id="window01">
+        <screen>0</screen>
+        <windowPosition>0 0</windowPosition>
+        <windowSize>100% 100%</windowSize>
+        <windowDecoration>false</windowDecoration>
+        <useCursor>true</useCursor>
+        <supportsResize>true</supportsResize>
+        <camera id="cam01">
+            <eye>0 0 0</eye>
+            <lookat>0.0000001 0 0</lookat>
+            <up>0 0 1</up>
+            <viewport>0% 0% 100% 100%</viewport>
+            <frustum>-0.05773 0.05773 -0.032476 0.032476 0.1 2000</frustum>
+            <!--<frustum>-0.01 0.01 -0.006666 0.0066666 0.01 10000</frustum>-->
+            <clearColor>0 0 0 0</clearColor>
+	    <!-- <clipping>0.000001 1000.0</clipping> -->
+        </camera>
+    </window>
+    <window id="window02">
+        <screen>1</screen>
+        <fullscreen>false</fullscreen>
+        <windowPosition>0% 0%</windowPosition>
+        <windowSize>50% 100%</windowSize>
+        <windowDecoration>false</windowDecoration>
+        <useCursor>true</useCursor>
+        <supportsResize>true</supportsResize>
+        <camera id="cam02">
+            <eye>0 0 0</eye>
+            <lookat>0.00000005 -0.000000086602 0</lookat>
+            <up>0 0 1</up>
+            <viewport>0% 0% 100% 100%</viewport>
+            <frustum>-0.05773 0.05773 -0.032476 0.032476 0.1 2000</frustum>
+            <clearColor>0 0 0 0</clearColor>
+        </camera>
+    </window>
+    <window id="window03">
+        <screen>1</screen>
+        <fullscreen>false</fullscreen>
+        <windowPosition>50% 0%</windowPosition>
+        <windowSize>50% 100%</windowSize>
+        <windowDecoration>false</windowDecoration>
+        <useCursor>true</useCursor>
+        <supportsResize>true</supportsResize>
+        <camera id="cam03">
+            <eye>0 0 0</eye>
+            <lookat>-0.00000005 -0.000000086602 0</lookat>
+            <up>0 0 1</up>
+            <viewport>0% 0% 100% 100%</viewport>
+            <frustum>-0.05773 0.05773 -0.032476 0.032476 0.1 2000</frustum>
+            <clearColor>0 0 0 0</clearColor>
+        </camera>
+    </window>
+    <window id="window04">
+        <screen>2</screen>
+        <fullscreen>false</fullscreen>
+        <windowPosition>0 0</windowPosition>
+        <windowSize>100% 100%</windowSize>
+        <windowDecoration>false</windowDecoration>
+        <useCursor>true</useCursor>
+        <supportsResize>true</supportsResize>
+        <camera id="cam04">
+            <eye>0 0 0</eye>
+            <lookat>-0.0000001 0 0</lookat>
+            <up>0 0 1</up>
+            <viewport>0% 0% 100% 100%</viewport>
+            <frustum>-0.05773 0.05773 -0.032476 0.032476 0.1 2000</frustum>
+            <clearColor>0 0 0 0</clearColor>
+        </camera>
+    </window>
+    <window id="window05">
+        <screen>3</screen>
+        <fullscreen>false</fullscreen>
+        <windowPosition>0% 0%</windowPosition>
+        <windowSize>50% 100%</windowSize>
+        <windowDecoration>false</windowDecoration>
+        <useCursor>true</useCursor>
+        <supportsResize>true</supportsResize>
+        <camera id="cam05">
+            <eye>0 0 0</eye>
+            <lookat>-0.00000005 0.000000086602 0</lookat>
+            <up>0 0 1</up>
+            <viewport>0% 0% 100% 100%</viewport>
+            <frustum>-0.05773 0.05773 -0.032476 0.032476 0.1 2000</frustum>
+            <clearColor>0 0 0 0</clearColor>
+        </camera>
+    </window>
+    <window id="window06">
+        <screen>3</screen>
+        <fullscreen>false</fullscreen>
+        <windowPosition>50% 0%</windowPosition>
+        <windowSize>50% 100%</windowSize>
+        <windowDecoration>false</windowDecoration>
+        <useCursor>true</useCursor>
+        <supportsResize>true</supportsResize>
+        <camera id="cam06">
+            <eye>0 0 0</eye>
+            <lookat>0.00000005 0.000000086602 0</lookat>
+            <up>0 0 1</up>
+            <viewport>0% 0% 100% 100%</viewport>
+            <frustum>-0.05773 0.05773 -0.032476 0.032476 0.1 2000</frustum>
+            <clearColor>0 0 0 0</clearColor>
+        </camera>
+    </window>
+</camConfig>
