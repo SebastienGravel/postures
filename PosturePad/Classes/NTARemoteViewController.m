@@ -221,6 +221,14 @@ UIActionSheet *nodesListSheet, *setNorthSheet;
         NSLog(@"Sending to manual address: %s", lo_address_get_url(udpAddr));
         NSLog(@"Sending to manual address: %s", lo_address_get_url(tcpAddr));
         
+        // add server to receive messages
+        lo_server_thread tServer = lo_server_thread_new_multicast("239.0.0.1", "54323", NULL);
+		lo_server_thread_add_method(tServer, [[NSString stringWithFormat:@"/SPIN/%@", serverName] UTF8String], NULL, nodelist_handler, self);
+		lo_server_thread_add_method(tServer, [[NSString stringWithFormat:@"/SPIN/%@/menu", serverName] UTF8String], NULL, menu_handler, self);
+		lo_server_thread_start(tServer);
+		NSLog(@"Created OSC receive server for SPIN messages at: %s", lo_server_thread_get_url(tServer));
+        
+        
         connected = YES;
     }
     
@@ -710,16 +718,16 @@ int nodelist_handler(const char *path, const char *types, lo_arg **argv, int arg
 
 int menu_handler(const char *path, const char *types, lo_arg **argv, int argc, void *data, void *user_data)
 {
-	/*
+	
 	int i;
-	printf("path: <%s>\n", path);
+	printf("menu_handler got msg: <%s>\n", path);
 	for (i=0; i<argc; i++) {
 		printf("arg %d '%c' ", i, types[i]);
 		lo_arg_pp(types[i], argv[i]);
 		printf("\n");
 	}
 	printf("\n");
-	*/
+	
 	
 	NTARemoteViewController *self = (NTARemoteViewController*)user_data;
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
