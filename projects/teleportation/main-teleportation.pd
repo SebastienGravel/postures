@@ -82,10 +82,10 @@ step4 \, /step4 setEnabled house 0 \, /house setCastShadows 1;
 #X connect 23 0 0 0;
 #X connect 24 0 23 0;
 #X connect 25 0 0 0;
-#X restore 641 211 pd models;
-#N canvas 0 22 703 577 assets 0;
+#X restore 614 295 pd models;
+#N canvas 0 22 430 519 assets 1;
 #X text 21 25 Project Path must be applied here only once;
-#X symbolatom 22 318 10 0 0 0 - - -;
+#X symbolatom 22 355 10 0 0 0 - - -;
 #X obj 22 167 shell;
 #X msg 22 147 hostname -s;
 #X obj 22 187 symbol;
@@ -94,21 +94,28 @@ step4 \, /step4 setEnabled house 0 \, /house setCastShadows 1;
 -1 -1;
 #X obj 169 227 p;
 #X obj 22 210 makefilename %s-anim;
-#X symbolatom 322 318 10 0 0 0 - - -;
-#X obj 22 294 anyreg user1 posture101;
-#X obj 322 294 anyreg user2 posture102;
-#X text 172 293 <--User1 name;
-#X text 472 293 <--User2 name;
+#X symbolatom 22 405 10 0 0 0 - - -;
+#X obj 22 334 anyreg user1 posture101;
+#X obj 22 384 anyreg user2 posture102;
+#X text 172 333 <--User1 name;
+#X text 172 383 <--User2 name;
 #X obj 22 49 anyreg gProjectPath ~/Documents/Metalab/teleportation-assets
 ;
+#X symbolatom 22 230 20 0 0 0 - - -;
+#X text 19 306 --------USERS--------;
+#X symbolatom 22 455 10 0 0 0 - - -;
+#X text 172 433 <--User3 name;
+#X obj 22 434 anyreg user3 posture103;
 #X connect 2 0 4 0;
 #X connect 3 0 2 0;
 #X connect 4 0 8 0;
 #X connect 6 0 3 0;
 #X connect 8 0 7 0;
+#X connect 8 0 15 0;
 #X connect 10 0 1 0;
 #X connect 11 0 9 0;
-#X restore 641 121 pd assets;
+#X connect 19 0 17 0;
+#X restore 614 205 pd assets;
 #N canvas 151 380 1310 817 debug 0;
 #X obj 25 551 s \$0-to-SPIN-TCP;
 #X msg 95 146 /experience debug;
@@ -287,7 +294,7 @@ step4 \, /step4 setEnabled house 0 \, /house setCastShadows 1;
 #X connect 83 0 0 0;
 #X connect 84 0 0 0;
 #X connect 85 0 0 0;
-#X restore 641 101 pd debug;
+#X restore 614 185 pd debug;
 #N canvas 0 22 916 795 pointcloud 0;
 #X obj 18 71 cnv 15 24 24 empty empty 1 4 12 1 24 -99865 -262144 0
 ;
@@ -419,11 +426,11 @@ to rgba in the FIELDS \, and set the TYPE to F F F U;
 #X connect 65 0 67 0;
 #X connect 70 0 71 0;
 #X connect 71 0 67 0;
-#X restore 641 141 pd pointcloud control;
+#X restore 614 225 pd pointcloud control;
 #X obj 18 28 widget-spinConnect \$0;
 #X obj 107 248 bng 20 250 50 0 load_scene1 empty STEP_1 25 10 0 17
 -260097 -1 -1;
-#X obj 107 138 bng 20 250 50 0 load_main-scene empty load_main-scene
+#X obj 107 148 bng 20 250 50 0 load_main-scene empty load_main-scene
 25 10 0 17 -260097 -1 -1;
 #X obj 107 278 bng 20 250 50 0 load_scene2 empty STEP_2 25 10 0 17
 -260097 -1 -1;
@@ -433,7 +440,7 @@ to rgba in the FIELDS \, and set the TYPE to F F F U;
 -260097 -1 -1;
 #X text 207 309 <--statue appears;
 #X text 207 339 <--house and doors appear;
-#X text 297 139 <--setup whole scene;
+#X text 297 149 <--setup whole scene;
 #X text 207 279 <--cube appears + letters disappear;
 #N canvas 368 414 892 486 step_logic 0;
 #X obj 55 25 r load_scene1;
@@ -483,7 +490,7 @@ setAll 0;
 #X connect 17 0 15 0;
 #X connect 17 1 16 0;
 #X connect 18 0 4 0;
-#X restore 641 231 pd step_logic;
+#X restore 614 315 pd step_logic;
 #X text 207 249 <--the bigwall disappears;
 #N canvas 1202 303 580 592 user2 0;
 #X text 8 12 On the sender machine (the one with the Kinect):;
@@ -528,7 +535,7 @@ setOrientation 0 90 0 \, /\$1-avatar setTranslation 0.05 0 -1.3 \,
 #X connect 19 0 14 0;
 #X connect 20 0 21 0;
 #X connect 21 0 10 0;
-#X restore 684 363 pd user2;
+#X restore 614 420 pd user2;
 #N canvas 517 248 580 592 user1 0;
 #X text 8 12 On the sender machine (the one with the Kinect):;
 #X text 57 55 ./posture-capture -v -s /tmp/pcd_to_read;
@@ -572,12 +579,12 @@ setOrientation 0 90 90 \, /\$1-avatar setTranslation 0.05 0 -1.3 \,
 #X connect 19 0 10 0;
 #X connect 20 0 21 0;
 #X connect 21 0 10 0;
-#X restore 684 343 pd user1;
-#X obj 741 333 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X restore 614 400 pd user1;
+#X obj 671 390 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 741 353 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 671 410 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 18 71 t b b b;
+#X obj 18 81 t b b b;
 #N canvas 268 22 1012 618 users_setup 0;
 #X obj 89 36 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
@@ -635,17 +642,17 @@ setOrientation 0 90 -330 \, /\$2-avatar setTranslation 0.05 0 -2 \,
 \, /\$1 setTranslation 0 -5 0 \, /\$1 setCubeOffset 0 0 3.6 \, /\$1
 setCubeSize 400 400 10 \, /\$1 setConstraintMode 2 \, /\$1 setComputationMode
 1;
-#X msg 55 168 createNode \$1-avatar PointCloud \, /\$1-avatar setParent
-\$1 \, /\$1-avatar setURI shm:///tmp/posture101-readsm \, /\$1-avatar
-setOrientation 0 90 115 \, /\$1-avatar setTranslation 0.05 0 -0.45
-\, /\$1-avatar setPointSize 2 \, /\$1-avatar setDistCrop -15 15;
 #X obj 55 66 t a a;
 #X obj 55 41 inlet;
+#X msg 55 168 createNode \$1-avatar PointCloud \, /\$1-avatar setParent
+\$1 \, /\$1-avatar setURI shm:///tmp/\$1-readsm \, /\$1-avatar setOrientation
+0 90 115 \, /\$1-avatar setTranslation 0.05 0 -0.45 \, /\$1-avatar
+setPointSize 2 \, /\$1-avatar setDistCrop -15 15;
 #X connect 1 0 0 0;
-#X connect 2 0 0 0;
+#X connect 2 0 4 0;
+#X connect 2 1 1 0;
 #X connect 3 0 2 0;
-#X connect 3 1 1 0;
-#X connect 4 0 3 0;
+#X connect 4 0 0 0;
 #X restore 195 352 pd user1-settings;
 #N canvas 0 22 468 304 user2-settings 0;
 #X obj 55 250 s \$0-to-SPIN-TCP;
@@ -656,9 +663,9 @@ setOrientation 0 90 115 \, /\$1-avatar setTranslation 0.05 0 -0.45
 setCubeSize 400 400 10 \, /\$2 setConstraintMode 2 \, /\$2 setComputationMode
 1;
 #X msg 55 168 createNode \$2-avatar PointCloud \, /\$2-avatar setParent
-\$2 \, /\$2-avatar setURI shm:///tmp/posture102-readsm \, /\$2-avatar
-setOrientation 0 90 -235 \, /\$2-avatar setTranslation 0.05 0 -1.4
-\, /\$2-avatar setPointSize 2 \, /\$2-avatar setDistCrop -15 15;
+\$2 \, /\$2-avatar setURI shm:///tmp/\$2-readsm \, /\$2-avatar setOrientation
+0 90 -235 \, /\$2-avatar setTranslation 0.05 0 -1.4 \, /\$2-avatar
+setPointSize 2 \, /\$2-avatar setDistCrop -15 15;
 #X connect 1 0 4 0;
 #X connect 1 1 3 0;
 #X connect 2 0 1 0;
@@ -712,9 +719,9 @@ setOrientation 0 90 -235 \, /\$2-avatar setTranslation 0.05 0 -1.4
 setCubeSize 400 400 10 \, /\$3 setConstraintMode 2 \, /\$3 setComputationMode
 1;
 #X msg 55 168 createNode \$3-avatar PointCloud \, /\$3-avatar setParent
-\$3 \, /\$3-avatar setURI shm:///tmp/posture103-readsm \, /\$3-avatar
-setOrientation 0 90 -235 \, /\$3-avatar setTranslation 0.05 0 -1.4
-\, /\$3-avatar setPointSize 2 \, /\$3-avatar setDistCrop -15 15;
+\$3 \, /\$3-avatar setURI shm:///tmp/\$3-readsm \, /\$3-avatar setOrientation
+0 90 -235 \, /\$3-avatar setTranslation 0.05 0 -1.4 \, /\$3-avatar
+setPointSize 2 \, /\$3-avatar setDistCrop -15 15;
 #X connect 1 0 4 0;
 #X connect 1 1 3 0;
 #X connect 2 0 1 0;
@@ -749,15 +756,15 @@ setOrientation 0 90 -235 \, /\$3-avatar setTranslation 0.05 0 -1.4
 #X connect 40 1 24 0;
 #X connect 40 2 38 0;
 #X connect 40 3 22 0;
-#X restore 641 191 pd users_setup;
-#X obj 107 108 bng 20 250 50 0 setup_users empty setup_users 25 10
+#X restore 614 275 pd users_setup;
+#X obj 107 118 bng 20 250 50 0 setup_users empty setup_users 25 10
 0 17 -260097 -1 -1;
-#X text 707 119 <--project path and users name;
+#X text 680 203 <--project path and users name;
 #X obj 18 8 loadbang1 teleportation;
 #X obj 107 218 bng 20 250 50 0 reset empty STEP_0 25 10 0 17 -260097
 -1 -1;
 #X text 207 219 <--resets scene;
-#X text 682 304 These are for backup --> NOT USED;
+#X text 612 361 These are for backup --> NOT USED;
 #X connect 5 0 21 0;
 #X connect 19 0 18 0;
 #X connect 20 0 17 0;
