@@ -1,7 +1,9 @@
 #!/bin/bash
 
-SENDER_NAME=posturesender
-SENDER_PORT=$1
+killall switcher
+
+SERVER_NAME=posturesender
+SERVER_PORT=$1
 
 function startserver {
     log_file=`echo switcher_$1_log`
@@ -11,4 +13,4 @@ function startserver {
     switcher -s $1 -p $2 -d >> $log_file
 }
 
-startserver $SENDER_NAME $SENDER_PORT &
+startserver $SERVER_NAME $SERVER_PORT &
