@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #SENDER_URL=`echo http://localhost:${SENDER_PORT}`
-DESTINATION_IP_1=posture102.local
-DESTINATION_IP_2=Linux-Desktop-2.local
+DESTINATION_IP_1=posture101.local
+DESTINATION_IP_2=posture102.local
 PCL_NAME=/tmp/pcl
 
 # Send point clouds
@@ -15,9 +15,9 @@ switcher-ctrl -i pclsender add_destination pclmixer_1 $DESTINATION_IP_1
 sleep 1
 switcher-ctrl -i pclsender add_destination pclmixer_2 $DESTINATION_IP_2
 sleep 1
-switcher-ctrl -i pclsender add_udp_stream_to_dest $PCL_NAME pclmixer_1 21650
+switcher-ctrl -i pclsender add_udp_stream_to_dest $PCL_NAME pclmixer_1 21670
 sleep 1
-switcher-ctrl -i pclsender add_udp_stream_to_dest $PCL_NAME pclmixer_2 21652
+switcher-ctrl -i pclsender add_udp_stream_to_dest $PCL_NAME pclmixer_2 21672
 
 # Send sound
 echo "------ PULSE ------"
@@ -33,6 +33,6 @@ switcher-ctrl -i pulsesender add_destination pulsemixer_1 $DESTINATION_IP_1
 sleep 1
 switcher-ctrl -i pulsesender add_destination pulsemixer_2 $DESTINATION_IP_2
 sleep 1
-switcher-ctrl -i pulsesender add_udp_stream_to_dest /tmp/switcher_pulsesender_mic_gstsrc pulsemixer_1 21654
+switcher-ctrl -i pulsesender add_udp_stream_to_dest /tmp/switcher_pulsesender_mic_gstsrc pulsemixer_1 21674
 sleep 1
-switcher-ctrl -i pulsesender add_udp_stream_to_dest /tmp/switcher_pulsesender_mic_gstsrc pulsemixer_2 21656
+switcher-ctrl -i pulsesender add_udp_stream_to_dest /tmp/switcher_pulsesender_mic_gstsrc pulsemixer_2 21676
