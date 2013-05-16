@@ -1,9 +1,9 @@
-#N canvas 399 232 903 790 10;
+#N canvas 347 51 903 790 10;
 #X text 385 11 This example shows how to load a "point cloud" \, which
 can be rendered with several different draw modes. The default is POINTS
 \, which are the lightest. Be careful of using LIGHTPOINTS \, BOXES
 \, and especially CUSTOM drawing. These modes are expensive.;
-#N canvas 66 117 748 834 models 0;
+#N canvas 65 37 748 834 models 0;
 #X obj 88 810 s \$0-to-SPIN-TCP;
 #X obj 92 112 list append;
 #X obj 155 87 anyreg gProjectPath;
@@ -435,7 +435,7 @@ to rgba in the FIELDS \, and set the TYPE to F F F U;
 #X text 207 339 <--house and doors appear;
 #X text 297 139 <--setup whole scene;
 #X text 207 279 <--cube appears + letters disappear;
-#N canvas 368 713 892 486 step_logic 0;
+#N canvas 368 414 892 486 step_logic 0;
 #X obj 55 25 r load_scene1;
 #X obj 95 95 r load_scene2;
 #X obj 145 165 r load_scene3;
@@ -578,150 +578,189 @@ setOrientation 0 90 90 \, /\$1-avatar setTranslation 0.05 0 -1.3 \,
 #X obj 741 353 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 18 71 t b b b;
-#N canvas 756 134 1125 1065 users_setup 1;
-#X obj 108 951 s \$0-to-SPIN-TCP;
+#N canvas 268 22 1012 618 users_setup 0;
 #X obj 89 36 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 148 54 t b b b;
-#X obj 598 125 s \$0-to-SPIN-TCP;
-#X msg 621 105 /\$1 setVelocityScalars 4 6 6 \, /\$1 setSpinScalars
+#X obj 211 322 s \$0-to-SPIN-TCP;
+#X msg 556 78 /\$1 setVelocityScalars 4 6 6 \, /\$1 setSpinScalars
 0 0 0;
-#X msg 598 85 setNotifyLevel 1;
-#X obj 711 -20 vradio 15 1 0 7 empty empty empty 0 -8 0 10 -262144
+#X msg 211 302 setNotifyLevel 1;
+#X obj 324 197 vradio 15 1 0 7 empty empty empty 0 -8 0 10 -262144
 -1 -1 0;
-#X text 728 -6 FATAL;
-#X text 728 -22 ALWAYS;
-#X text 728 10 WARN;
-#X text 728 26 NOTICE;
-#X text 728 41 INFO;
-#X text 728 57 DEBUG_INFO;
-#X text 728 73 DEBUG_FP;
-#X obj 555 604 r creat_manLight3;
-#X text 670 602 <-- From model creation patch sent;
-#X text 694 615 after creationg main nodes;
-#X obj 721 270 s \$0-to-SPIN-TCP;
+#X text 341 211 FATAL;
+#X text 341 195 ALWAYS;
+#X text 341 227 WARN;
+#X text 341 243 NOTICE;
+#X text 341 258 INFO;
+#X text 341 274 DEBUG_INFO;
+#X text 341 290 DEBUG_FP;
+#X obj 550 422 r creat_manLight3;
+#X text 665 420 <-- From model creation patch sent;
+#X text 689 433 after creationg main nodes;
+#X obj 558 217 s \$0-to-SPIN-TCP;
 #X obj 46 106 shell;
 #X msg 46 86 hostname -s;
 #X obj 46 126 symbol;
-#X msg 763 168 createNode \$1 UserNode \, createNode \$1-anim AnimationNode
+#X msg 600 115 createNode \$1 UserNode \, createNode \$1-anim AnimationNode
 \, /\$1 setParent \$1-anim \, /\$1 setSpaceNavigatorNode \$1-anim \,
 /\$1-anim setConstraintMode 5 \, /\$1-anim setComputationMode 0;
-#X obj 148 161 t a a a a a a a a a a;
-#X msg 555 636 deleteNode mainLight3 \, createNode mainLight3 LightSource
+#X msg 550 454 deleteNode mainLight3 \, createNode mainLight3 LightSource
 \, /mainLight3 setParent step4 \, /mainLight3 setTranslation 1000 3000
 0 \, /mainLight3 setOrientation 0 0 0 \, /mainLight3 setCutoff 180
 \, /mainLight3 setExponent 2 \, /mainLight3 setAttenuation 0.1 \, /mainLight3
 setAmbient 0 0 0 0 \, /mainLight3 setDiffuse 1 1 1 1 \, /mainLight3
 setSpecular 0 0 0 0;
-#X msg 721 217 load anim.xml \, /\$1-anim setPlay 0 \, /\$1-anim setParent
+#X msg 558 164 load anim.xml \, /\$1-anim setPlay 0 \, /\$1-anim setParent
 world \, /\$1 setParent \$1-anim \, /\$1 setSpaceNavigatorNode \$1-anim
 \, /\$1-anim setLoopMode 1;
-#X obj 148 122 pack s s s;
-#X obj 400 87 anyreg gProjectPath;
+#X obj 217 147 anyreg gProjectPath;
 #X obj 148 87 anyreg user1;
-#X obj 270 87 anyreg user2;
-#X obj 257 327 s \$0-to-SPIN-TCP;
-#X obj 229 517 s \$0-to-SPIN-TCP;
+#X obj 171 107 anyreg user2;
 #X obj 148 34 r setup_users;
-#X msg 151 590 deleteNode mainLight \, createNode mainLight LightSource
+#X msg 562 278 createNode \$2 UserNode \, /\$2 setTarget step_collider
+\, /\$2 setTranslation 0 5 0 \, /\$2 setCubeOffset 0 0 1.35 \, /\$2
+setCubeSize 200 200 5 \, \, /\$2 setConstraintMode 2 \, /\$2 setComputationMode
+1;
+#X msg 549 349 createNode \$2-avatar PointCloud \, /\$2-avatar setParent
+\$2 \, /\$2-avatar setURI shm:///tmp/posture102-readsm \, /\$2-avatar
+setOrientation 0 90 -330 \, /\$2-avatar setTranslation 0.05 0 -2 \,
+/\$2-avatar setPointSize 3 \, /\$2-avatar setDistCrop -15 15;
+#X text 291 379 --------USER 2 settings--------;
+#X text 307 351 --------USER 1 settings--------;
+#X text 262 440 --------LIGHTS settings--------;
+#X text 620 254 --------USERS settings (backup)--------;
+#N canvas 0 22 468 304 user1-settings 0;
+#X obj 55 250 s \$0-to-SPIN-TCP;
+#X msg 82 97 createNode \$1 UserNode \, /\$1 setTarget step_collider
+\, /\$1 setTranslation 0 -5 0 \, /\$1 setCubeOffset 0 0 3.6 \, /\$1
+setCubeSize 400 400 10 \, /\$1 setConstraintMode 2 \, /\$1 setComputationMode
+1;
+#X msg 55 168 createNode \$1-avatar PointCloud \, /\$1-avatar setParent
+\$1 \, /\$1-avatar setURI shm:///tmp/posture101-readsm \, /\$1-avatar
+setOrientation 0 90 115 \, /\$1-avatar setTranslation 0.05 0 -0.45
+\, /\$1-avatar setPointSize 2 \, /\$1-avatar setDistCrop -15 15;
+#X obj 55 66 t a a;
+#X obj 55 41 inlet;
+#X connect 1 0 0 0;
+#X connect 2 0 0 0;
+#X connect 3 0 2 0;
+#X connect 3 1 1 0;
+#X connect 4 0 3 0;
+#X restore 195 352 pd user1-settings;
+#N canvas 0 22 468 304 user2-settings 0;
+#X obj 55 250 s \$0-to-SPIN-TCP;
+#X obj 55 66 t a a;
+#X obj 55 41 inlet;
+#X msg 82 97 createNode \$2 UserNode \, /\$2 setTarget step_collider
+\, /\$2 setTranslation 0 5 0 \, /\$2 setCubeOffset 0 0 3.6 \, /\$2
+setCubeSize 400 400 10 \, /\$2 setConstraintMode 2 \, /\$2 setComputationMode
+1;
+#X msg 55 168 createNode \$2-avatar PointCloud \, /\$2-avatar setParent
+\$2 \, /\$2-avatar setURI shm:///tmp/posture102-readsm \, /\$2-avatar
+setOrientation 0 90 -235 \, /\$2-avatar setTranslation 0.05 0 -1.4
+\, /\$2-avatar setPointSize 2 \, /\$2-avatar setDistCrop -15 15;
+#X connect 1 0 4 0;
+#X connect 1 1 3 0;
+#X connect 2 0 1 0;
+#X connect 3 0 0 0;
+#X connect 4 0 0 0;
+#X restore 179 380 pd user2-settings;
+#N canvas 0 22 535 499 lights-settings 0;
+#X obj 55 41 inlet;
+#X obj 55 444 s \$0-to-SPIN-TCP;
+#X msg 106 100 deleteNode mainLight \, createNode mainLight LightSource
 \, /mainLight setTranslation -30 0 10 \, /mainLight setOrientation
 -90 0 0 \, /mainLight setCutoff 180 \, /mainLight setExponent 0.1 \,
 /mainLight setAttenuation 0.01 \, /mainLight setAmbient 1 1 1 1 \,
 /mainLight setDiffuse 1 1 1 1 \, /mainLight setSpecular 1 1 1 1;
-#X msg 138 676 deleteNode mainLight2 \, createNode mainLight2 LightSource
+#X msg 89 186 deleteNode mainLight2 \, createNode mainLight2 LightSource
 \, /mainLight2 setTranslation 30 0 10 \, /mainLight2 setOrientation
 -90 0 0 \, /mainLight2 setCutoff 180 \, /mainLight2 setExponent 0.1
 \, /mainLight2 setAttenuation 0.01 \, /mainLight2 setAmbient 1 1 1
 1 \, /mainLight2 setDiffuse 1 1 1 1 \, /mainLight2 setSpecular 1 1
 1 1;
-#X msg 121 760 deleteNode mainLight3 \, createNode mainLight3 LightSource
+#X msg 72 272 deleteNode mainLight3 \, createNode mainLight3 LightSource
 \, /mainLight3 setTranslation 0 30 10 \, /mainLight3 setOrientation
 -90 0 0 \, /mainLight3 setCutoff 180 \, /mainLight3 setExponent 0.1
 \, /mainLight3 setAttenuation 0.01 \, /mainLight3 setAmbient 1 1 1
 1 \, /mainLight3 setDiffuse 1 1 1 1 \, /mainLight3 setSpecular 1 1
 1 1;
-#X msg 108 846 deleteNode mainLight4 \, createNode mainLight4 LightSource
+#X msg 55 358 deleteNode mainLight4 \, createNode mainLight4 LightSource
 \, /mainLight4 setTranslation 0 -30 10 \, /mainLight4 setOrientation
 -90 0 0 \, /mainLight4 setCutoff 180 \, /mainLight4 setExponent 0.1
 \, /mainLight4 setAttenuation 0.01 \, /mainLight4 setAmbient 1 1 1
 1 \, /mainLight4 setDiffuse 1 1 1 1 \, /mainLight4 setSpecular 1 1
 1 1;
-#X msg 650 369 createNode \$2 UserNode \, /\$2 setTarget step_collider
-\, /\$2 setTranslation 0 5 0 \, /\$2 setCubeOffset 0 0 1.35 \, /\$2
-setCubeSize 200 200 5 \, \, /\$2 setConstraintMode 2 \, /\$2 setComputationMode
-1;
-#X msg 637 440 createNode \$2-avatar PointCloud \, /\$2-avatar setParent
-\$2 \, /\$2-avatar setURI shm:///tmp/posture102-readsm \, /\$2-avatar
-setOrientation 0 90 -330 \, /\$2-avatar setTranslation 0.05 0 -2 \,
-/\$2-avatar setPointSize 3 \, /\$2-avatar setDistCrop -15 15;
-#X text 328 351 --------USER 2 settings--------;
-#X text 348 161 --------USER 1 settings--------;
-#X text 228 566 --------LIGHTS settings--------;
-#X text 708 345 --------USERS settings (backup)--------;
-#X msg 243 374 createNode \$2 UserNode \, /\$2 setTarget step_collider
-\, /\$2 setTranslation 0 5 0 \, /\$2 setCubeOffset 0 0 3.6 \, /\$2
-setCubeSize 400 400 10 \, /\$2 setConstraintMode 2 \, /\$2 setComputationMode
-1;
-#X msg 270 184 createNode \$1 UserNode \, /\$1 setTarget step_collider
-\, /\$1 setTranslation 0 -5 0 \, /\$1 setCubeOffset 0 0 3.6 \, /\$1
-setCubeSize 400 400 10 \, /\$1 setConstraintMode 2 \, /\$1 setComputationMode
-1;
-#X msg 257 255 createNode \$1-avatar PointCloud \, /\$1-avatar setParent
-\$1 \, /\$1-avatar setURI shm:///tmp/posture101-readsm \, /\$1-avatar
-setOrientation 0 90 115 \, /\$1-avatar setTranslation 0.05 0 -0.45
-\, /\$1-avatar setPointSize 2 \, /\$1-avatar setDistCrop -15 15;
-#X msg 230 445 createNode \$2-avatar PointCloud \, /\$2-avatar setParent
-\$2 \, /\$2-avatar setURI shm:///tmp/posture102-readsm \, /\$2-avatar
-setOrientation 0 90 -235 \, /\$2-avatar setTranslation 0.05 0 -1.4
-\, /\$2-avatar setPointSize 2 \, /\$2-avatar setDistCrop -15 15;
-#X connect 1 0 2 0;
-#X connect 2 0 27 0;
-#X connect 2 1 28 0;
-#X connect 2 2 26 0;
-#X connect 4 0 3 0;
-#X connect 5 0 3 0;
+#X obj 55 66 t a a a a;
+#X connect 0 0 6 0;
+#X connect 2 0 1 0;
+#X connect 3 0 1 0;
+#X connect 4 0 1 0;
+#X connect 5 0 1 0;
 #X connect 6 0 5 0;
-#X connect 14 0 23 0;
-#X connect 18 0 20 0;
-#X connect 19 0 18 0;
-#X connect 20 0 25 0;
-#X connect 21 0 17 0;
-#X connect 22 1 35 0;
-#X connect 22 2 34 0;
-#X connect 22 3 33 0;
-#X connect 22 4 32 0;
-#X connect 22 5 5 0;
-#X connect 22 6 45 0;
-#X connect 22 7 42 0;
-#X connect 22 8 44 0;
-#X connect 22 9 43 0;
-#X connect 23 0 0 0;
-#X connect 24 0 17 0;
-#X connect 25 0 22 0;
-#X connect 26 0 25 2;
-#X connect 27 0 25 0;
-#X connect 28 0 25 1;
-#X connect 31 0 2 0;
-#X connect 32 0 0 0;
-#X connect 33 0 0 0;
-#X connect 34 0 0 0;
-#X connect 35 0 0 0;
-#X connect 42 0 30 0;
-#X connect 43 0 29 0;
-#X connect 44 0 29 0;
-#X connect 45 0 30 0;
+#X connect 6 1 4 0;
+#X connect 6 2 3 0;
+#X connect 6 3 2 0;
+#X restore 148 439 pd lights-settings;
+#X obj 148 196 t a a a a a;
+#N canvas 9 335 468 304 user3-settings 0;
+#X obj 55 250 s \$0-to-SPIN-TCP;
+#X obj 55 66 t a a;
+#X obj 55 41 inlet;
+#X msg 82 97 createNode \$3 UserNode \, /\$3 setTarget step_collider
+\, /\$3 setTranslation 0 5 0 \, /\$3 setCubeOffset 0 0 3.6 \, /\$3
+setCubeSize 400 400 10 \, /\$3 setConstraintMode 2 \, /\$3 setComputationMode
+1;
+#X msg 55 168 createNode \$3-avatar PointCloud \, /\$3-avatar setParent
+\$3 \, /\$3-avatar setURI shm:///tmp/posture103-readsm \, /\$3-avatar
+setOrientation 0 90 -235 \, /\$3-avatar setTranslation 0.05 0 -1.4
+\, /\$3-avatar setPointSize 2 \, /\$3-avatar setDistCrop -15 15;
+#X connect 1 0 4 0;
+#X connect 1 1 3 0;
+#X connect 2 0 1 0;
+#X connect 3 0 0 0;
+#X connect 4 0 0 0;
+#X restore 163 409 pd user3-settings;
+#X text 275 408 --------USER 3 settings--------;
+#X obj 194 127 anyreg user3;
+#X obj 148 177 pack s s s s;
+#X obj 148 54 t b b b b;
+#X connect 0 0 40 0;
+#X connect 3 0 1 0;
+#X connect 4 0 3 0;
+#X connect 12 0 20 0;
+#X connect 16 0 18 0;
+#X connect 17 0 16 0;
+#X connect 18 0 39 0;
+#X connect 19 0 15 0;
+#X connect 21 0 15 0;
+#X connect 22 0 39 3;
+#X connect 23 0 39 0;
+#X connect 24 0 39 1;
+#X connect 25 0 40 0;
+#X connect 35 0 34 0;
+#X connect 35 1 36 0;
+#X connect 35 2 33 0;
+#X connect 35 3 32 0;
+#X connect 35 4 3 0;
+#X connect 38 0 39 2;
+#X connect 39 0 35 0;
+#X connect 40 0 23 0;
+#X connect 40 1 24 0;
+#X connect 40 2 38 0;
+#X connect 40 3 22 0;
 #X restore 641 191 pd users_setup;
 #X obj 107 108 bng 20 250 50 0 setup_users empty setup_users 25 10
 0 17 -260097 -1 -1;
 #X text 707 119 <--project path and users name;
-#X text 682 304 These are for backup NOT USED;
 #X obj 18 8 loadbang1 teleportation;
 #X obj 107 218 bng 20 250 50 0 reset empty STEP_0 25 10 0 17 -260097
 -1 -1;
 #X text 207 219 <--resets scene;
+#X text 682 304 These are for backup --> NOT USED;
 #X connect 5 0 21 0;
 #X connect 19 0 18 0;
 #X connect 20 0 17 0;
 #X connect 21 1 7 0;
 #X connect 21 2 23 0;
-#X connect 26 0 5 0;
+#X connect 25 0 5 0;
