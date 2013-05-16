@@ -20,7 +20,7 @@ sleep 1
 switcher-ctrl -S $SENDER_URL -i pclsender add_udp_stream_to_dest $PCL_NAME pclmixer_2 21652
 
 # Send sound
-echo '------  -S $SENDER_URLPULSE ------'
+echo '------  PULSE ------'
 switcher-ctrl -S $SENDER_URL -C gstsrc mic
 sleep 1
 switcher-ctrl -S $SENDER_URL -i mic to_shmdata 'pulsesrc device=alsa_input.usb-PreSonus_Audio_AudioBox_USB-01-USB.analog-stereo volume=1 ! capsfilter caps="audio/x-raw-int, endianness=(int)1234, signed=(boolean)true, width=(int)16, depth=(int)16, rate=(int)44100, channels=(int)1" !  audioresample ! audioconvert'
