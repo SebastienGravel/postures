@@ -17,6 +17,10 @@ sleep 1
 switcher-ctrl -i pclstream_2 to_shmdata $SDP_FILE_LOCATION_2
 sleep 2
 
+rm /tmp/posture*
+ln -s /tmp/switcher_pclreceiver_pclstream_1_custom_0 /tmp/posture102-readsm
+ln -s /tmp/switcher_pclreceiver_pclstream_2_custom_0 /tmp/posture103-readsm
+
 # Pulse
 switcher-ctrl -C $SDP_GET_QUID pulsestream_1
 sleep 1
