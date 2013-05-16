@@ -27,12 +27,12 @@ switcher-ctrl -S $SENDER_URL -i mic to_shmdata 'pulsesrc device=alsa_input.usb-P
 sleep 1
 switcher-ctrl -S $SENDER_URL -C rtpsession pulsesender
 sleep 1
-switcher-ctrl -S $SENDER_URL -i pulsesender add_data_stream /tmp/switcher_pulsesender_mic_gstsrc
+switcher-ctrl -S $SENDER_URL -i pulsesender add_data_stream /tmp/switcher_default_mic_gstsrc
 sleep 1
 switcher-ctrl -S $SENDER_URL -i pulsesender add_destination pulsemixer_1 $DESTINATION_IP_1
 sleep 1
 switcher-ctrl -S $SENDER_URL -i pulsesender add_destination pulsemixer_2 $DESTINATION_IP_2
 sleep 1
-switcher-ctrl -S $SENDER_URL -i pulsesender add_udp_stream_to_dest /tmp/switcher_pulsesender_mic_gstsrc pulsemixer_1 21674
+switcher-ctrl -S $SENDER_URL -i pulsesender add_udp_stream_to_dest /tmp/switcher_default_mic_gstsrc pulsemixer_1 21674
 sleep 1
-switcher-ctrl -S $SENDER_URL -i pulsesender add_udp_stream_to_dest /tmp/switcher_pulsesender_mic_gstsrc pulsemixer_2 21676
+switcher-ctrl -S $SENDER_URL -i pulsesender add_udp_stream_to_dest /tmp/switcher_default_mic_gstsrc pulsemixer_2 21676

@@ -19,8 +19,8 @@ switcher-ctrl -S $SENDER_URL -i pclstream_2 to_shmdata $SDP_PCL_FILE_LOCATION_2
 sleep 2
 
 rm /tmp/posture*
-ln -s /tmp/switcher_pclreceiver_pclstream_1_custom_0 /tmp/posture101-readsm
-ln -s /tmp/switcher_pclreceiver_pclstream_2_custom_0 /tmp/posture102-readsm
+ln -s /tmp/switcher_default_pclstream_1_custom_0 /tmp/posture101-readsm
+ln -s /tmp/switcher_default_pclstream_2_custom_0 /tmp/posture102-readsm
 
 # Pulse
 switcher-ctrl -S $SENDER_URL -C $SDP_GET_QUID pulsestream_1
