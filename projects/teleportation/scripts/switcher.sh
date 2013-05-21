@@ -13,4 +13,4 @@ function startserver {
     switcher -p $1 -d >> $log_file
 }
 
-startserver $SERVER_PORT &
+startserver $SERVER_PORT
