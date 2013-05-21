@@ -19,14 +19,14 @@ add_command("/home/metalab/src/postures/projects/teleportation/scripts/switcher.
 add_command("/home/metalab/src/postures/projects/teleportation/scripts/switcher.sh 8270", user=_user, host=_103, identifier="switcher_103", sleep_after=3)
 
 # Launch senders
-add_command("./scripts/posture101-sender.sh", identifier="sender_101")
-add_command("/home/metalab/src/postures/projects/teleportation/scripts/posture102-sender.sh", user=_user, host=_102, identifier="sender_102")
-add_command("/home/metalab/src/postures/projects/teleportation/scripts/posture103-sender.sh", user=_user, host=_103, identifier="sender_103", sleep_after=10)
+add_command("./scripts/posture101-sender.sh", identifier="sender_101", respawn=False)
+add_command("/home/metalab/src/postures/projects/teleportation/scripts/posture102-sender.sh", user=_user, host=_102, identifier="sender_102", respawn=False)
+add_command("/home/metalab/src/postures/projects/teleportation/scripts/posture103-sender.sh", user=_user, host=_103, identifier="sender_103", respawn=False, sleep_after=10)
 
 ## Launch receivers
-add_command("./scripts/posture101-receiver.sh", identifier="receiver_101")
-add_command("/home/metalab/src/postures/projects/teleportation/scripts/posture102-receiver.sh", user=_user, host=_102, identifier="receiver_102")
-add_command("/home/metalab/src/postures/projects/teleportation/scripts/posture103-receiver.sh", user=_user, host=_103, identifier="receiver_103", sleep_after=10)
+add_command("./scripts/posture101-receiver.sh", identifier="receiver_101", respawn=False)
+add_command("/home/metalab/src/postures/projects/teleportation/scripts/posture102-receiver.sh", user=_user, host=_102, identifier="receiver_102", respawn=False)
+add_command("/home/metalab/src/postures/projects/teleportation/scripts/posture103-receiver.sh", user=_user, host=_103, identifier="receiver_103", respawn=False, sleep_after=10)
 
 # Launch shmaudio
 add_command("./scripts/readAudio.sh", identifier="audio_101")
@@ -37,9 +37,9 @@ add_command("/home/metalab/src/postures/projects/teleportation/scripts/readAudio
 add_command("spinserver --scene-id teleportation", identifier="spinserver", sleep_after=3)
 
 # Launch spinviewers
-add_command("spinviewer --scene-id teleportation --config=/home/metalab/src/postures/projects/teleportation/panoscope_2nd_screen.xml --display-fps terminal 0.0166667", identifier="spinviewer_101")
-add_command("spinviewer --scene-id teleportation --config=/home/metalab/src/postures/projects/teleportation/panoscope_2nd_screen.xml --display-fps terminal 0.0166667", user=_user, host=_102, identifier="spinviewer_102")
-add_command("spinviewer --scene-id teleportation --config=/home/metalab/src/postures/projects/teleportation/panoscope_2nd_screen.xml --user-id=posture103 --display-fps terminal 0.0166667", user=_user, host=_103, identifier="spinviewer_103", sleep_after=5)
+add_command("spinviewer --scene-id teleportation --config /home/metalab/src/postures/projects/teleportation/panoscope_2nd_screen.xml --display-fps terminal 0.0166667", identifier="spinviewer_101")
+add_command("spinviewer --scene-id teleportation --config /home/metalab/src/postures/projects/teleportation/panoscope_2nd_screen.xml --display-fps terminal 0.0166667", user=_user, host=_102, identifier="spinviewer_102")
+add_command("spinviewer --scene-id teleportation --config /home/metalab/src/postures/projects/teleportation/six-screen.xml --display-fps terminal 0.0166667", user=_user, host=_103, identifier="spinviewer_103", sleep_after=5)
 
 # Launch Pd
 add_command("pd-extended main-teleportation.pd", identifier="pd-extended")
