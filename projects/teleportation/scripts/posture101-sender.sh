@@ -2,7 +2,7 @@
 
 SENDER_URL=`echo http://localhost:8250`
 DESTINATION_IP_1=posture102.local
-DESTINATION_IP_2=Linux-Desktop-2.local
+DESTINATION_IP_2=posture103.local
 PCL_NAME=/tmp/pcl
 
 # Send point clouds

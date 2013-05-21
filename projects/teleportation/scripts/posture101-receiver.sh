@@ -3,9 +3,9 @@
 # Parameters
 SENDER_URL=`echo http://localhost:8250`
 SDP_PCL_FILE_LOCATION_1="http://posture102.local:8260/sdp?rtpsession=pclsender&destination=pclmixer_1"
-SDP_PCL_FILE_LOCATION_2="http://Linux-Desktop-2.local:8270/sdp?rtpsession=pclsender&destination=pclmixer_1"
+SDP_PCL_FILE_LOCATION_2="http://posture103.local:8270/sdp?rtpsession=pclsender&destination=pclmixer_1"
 SDP_PULSE_FILE_LOCATION_1="http://posture102.local:8260/sdp?rtpsession=pulsesender&destination=pulsemixer_1"
-SDP_PULSE_FILE_LOCATION_2="http://Linux-Desktop-2.local:8270/sdp?rtpsession=pulsesender&destination=pulsemixer_1"
+SDP_PULSE_FILE_LOCATION_2="http://posture103.local:8270/sdp?rtpsession=pulsesender&destination=pulsemixer_1"
 SDP_GET_QUID=uridecodebin
 
 # Point clouds
