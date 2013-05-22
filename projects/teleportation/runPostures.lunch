@@ -21,17 +21,20 @@ add_command("/home/metalab/src/postures/projects/teleportation/scripts/switcher.
 # Launch senders
 add_command("./scripts/posture101-sender.sh", identifier="sender_101", respawn=False)
 add_command("/home/metalab/src/postures/projects/teleportation/scripts/posture102-sender.sh", user=_user, host=_102, identifier="sender_102", respawn=False)
-add_command("/home/metalab/src/postures/projects/teleportation/scripts/posture103-sender.sh", user=_user, host=_103, identifier="sender_103", respawn=False, sleep_after=10)
+add_command("/home/metalab/src/postures/projects/teleportation/scripts/posture103-sender.sh", user=_user, host=_103, identifier="sender_103", respawn=False, sleep_after=20)
 
 ## Launch receivers
 add_command("./scripts/posture101-receiver.sh", identifier="receiver_101", respawn=False)
 add_command("/home/metalab/src/postures/projects/teleportation/scripts/posture102-receiver.sh", user=_user, host=_102, identifier="receiver_102", respawn=False)
-add_command("/home/metalab/src/postures/projects/teleportation/scripts/posture103-receiver.sh", user=_user, host=_103, identifier="receiver_103", respawn=False, sleep_after=10)
+add_command("/home/metalab/src/postures/projects/teleportation/scripts/posture103-receiver.sh", user=_user, host=_103, identifier="receiver_103", respawn=False, sleep_after=20)
 
 # Launch shmaudio
-add_command("./scripts/readAudio.sh", identifier="audio_101")
-add_command("/home/metalab/src/postures/projects/teleportation/scripts/readAudio.sh", identifier="audio_102")
-add_command("/home/metalab/src/postures/projects/teleportation/scripts/readAudio.sh", identifier="audio_103")
+add_command("./scripts/readAudio_1.sh", identifier="audio_101_1")
+add_command("./scripts/readAudio_2.sh", identifier="audio_101_2")
+add_command("/home/metalab/src/postures/projects/teleportation/scripts/readAudio_1.sh", identifier="audio_102_1")
+add_command("/home/metalab/src/postures/projects/teleportation/scripts/readAudio_2.sh", identifier="audio_102_2")
+add_command("/home/metalab/src/postures/projects/teleportation/scripts/readAudio_1.sh", identifier="audio_103_1")
+add_command("/home/metalab/src/postures/projects/teleportation/scripts/readAudio_2.sh", identifier="audio_103_2")
 
 # Launch spinserver
 add_command("spinserver --scene-id teleportation", identifier="spinserver", sleep_after=3)
