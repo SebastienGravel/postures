@@ -1,4 +1,4 @@
-#N canvas 471 241 896 468 10;
+#N canvas 537 65 903 790 10;
 #X text 385 11 This example shows how to load a "point cloud" \, which
 can be rendered with several different draw modes. The default is POINTS
 \, which are the lightest. Be careful of using LIGHTPOINTS \, BOXES
@@ -116,7 +116,7 @@ step4 \, /step4 setEnabled house 0 \, /house setCastShadows 1;
 #X connect 11 0 9 0;
 #X connect 19 0 17 0;
 #X restore 614 205 pd assets;
-#N canvas 151 380 1310 817 debug 0;
+#N canvas 130 83 1310 817 debug 0;
 #X obj 25 551 s \$0-to-SPIN-TCP;
 #X msg 95 146 /experience debug;
 #X msg 38 74 /chantalbaron setCubeSize 10000 10000 10000;
@@ -767,6 +767,977 @@ setCubeSize 400 400 10 \, /\$3 setConstraintMode 2 \, /\$3 setComputationMode
 -1 -1;
 #X text 207 219 <--resets scene;
 #X text 612 361 These are for backup --> NOT USED;
+#X obj 594 165 bng 17 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#N canvas 590 58 772 643 snow 0;
+#X obj 209 593 s \$0-to-SPIN-TCP;
+#X obj 242 49 bng 20 250 50 0 empty empty CreateExample 24 11 1 14
+-257985 -1 -1;
+#X obj 242 19 inlet;
+#X obj 242 75 t b b b;
+#X obj 42 238 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 348 131 clear \, createNode grid GridNode \, createNode ps_snow
+ParticleSystem;
+#X obj 209 569 list prepend /ps_snow;
+#X obj 9 124 symbol;
+#X msg 9 208 0;
+#X msg 75 208 1;
+#X msg 42 304 setFluidDirection \$1 0 0;
+#X obj 9 82 r \$0-from-SPIN;
+#X obj 9 103 route deleteNode;
+#X obj 9 144 sel ps_snow;
+#X text -29 57 stop metro if example is cleared;
+#X obj 75 185 delay 200;
+#X text 83 324 simulate changing wind speed;
+#X obj 348 225 s \$0-to-SPIN-TCP;
+#X text 348 259 generate snow from above with cubic range:;
+#X text 350 332 small flakes fall according to acceleration from gravity
+;
+#X text 353 446 simulate wind and fluid properties:;
+#X text 343 495 nice image that looks like snow:;
+#X msg 344 463 enableFluidFriction 1 \, setFluidViscosity 0.1;
+#X obj 42 260 metro 2000;
+#X text 352 391 let snow accumulate on ground:;
+#X msg 333 512 setStateSetFromFile smoke.rgb \, setLighting 0 \, setParticleAlphaRange
+0.5 0.5;
+#X obj 42 282 randomR -1 1;
+#X msg 345 408 enableBouncer 1 \, removeAllBounceTargets \, addBounceTarget
+ground \, setLifeTime 10;
+#X msg 356 186 createNode ground ShapeNode \, /ground setShape 6 \,
+/ground setOrientation 90 0 0 \, /ground setTranslation 0 0 -3;
+#X msg 338 277 setPlacerType 1 \, setCubicXRange -200 200 \, setCubicYRange
+-200 200 \, setCubicZRange 100 10;
+#X msg 342 350 setParticleSizeRange 0.05 0.05 \, setShooterSpeedRange
+0 0 \, setFrequencyRange 1000 1000 \, enableAccelerator 1;
+#N canvas 125 38 959 699 particle-settings 0;
+#X obj 3 73 cnv 15 24 24 empty empty 1 4 12 1 24 -99865 -262144 0;
+#X obj 4 212 cnv 15 24 24 empty empty 2 4 12 1 24 -99865 -262144 0
+;
+#X obj 373 41 loadbang;
+#X text 35 77 Create a ParticleSystem called 'ps':;
+#X obj 602 244 cnv 15 320 220 empty empty SHOOTER: 5 12 1 14 -261234
+-66577 0;
+#X text 725 306 (meters/sec);
+#X obj 633 309 2nbx;
+#X obj 649 347 2nbx;
+#X obj 659 384 2nbx;
+#X obj 611 272 2nbx;
+#X text 703 270 particles/sec;
+#X obj 39 177 s \$0-to-SPIN;
+#X obj 3 470 cnv 15 920 190 empty empty PLACER: 5 12 1 14 -261234 -66577
+0;
+#X obj 3 244 cnv 15 590 220 empty empty PARTICLE: 5 12 1 14 -261234
+-66577 0;
+#X obj 165 247 2nbx;
+#X obj 245 398 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 212 326 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 227 362 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 239 540 2nbx;
+#X obj 251 577 2nbx;
+#N canvas 2073 135 932 703 OPERATORS 0;
+#X obj 278 207 cnv 15 300 200 empty empty OPERATOR_FluidFriction: 5
+12 1 14 -203904 -66577 0;
+#X obj 350 299 nbx 5 14 0 1e+37 0 0 empty empty empty 0 -8 0 10 -262144
+-1 -1 0 256;
+#X obj 360 339 nbx 5 14 0 1e+37 0 0 empty empty empty 0 -8 0 10 -262144
+-1 -1 0 256;
+#X obj 346 256 3nbx;
+#X obj 278 2 cnv 15 300 200 empty empty OPERATOR_Orbiter: 5 12 1 14
+-203904 -66577 0;
+#X obj 414 89 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 424 126 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 434 163 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 369 50 3nbx;
+#X obj -27 2 cnv 15 300 125 empty empty OPERATOR_Accelerator: 5 12
+1 14 -203904 -66577 0;
+#X obj 37 55 3nbx;
+#X obj -13 27 tgl 17 0 empty empty empty 17 7 0 10 -257985 -1 -1 0
+1;
+#X obj 283 233 tgl 17 0 empty empty empty 17 7 0 10 -257985 -1 -1 0
+1;
+#X obj 283 26 tgl 17 0 empty empty empty 17 7 0 10 -257985 -1 -1 0
+1;
+#X obj -27 132 cnv 15 300 125 empty empty OPERATOR_AngularAccelerator:
+5 12 1 14 -203904 -66577 0;
+#X obj 2 157 tgl 17 0 empty empty empty 17 7 0 10 -257985 -1 -1 0 1
+;
+#X obj -27 262 cnv 15 300 125 empty empty OPERATOR_AngularDamping:
+5 12 1 14 -203904 -66577 0;
+#X obj -2 292 tgl 17 0 empty empty empty 17 7 0 10 -257985 -1 -1 0
+1;
+#X obj 38 321 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj -27 392 cnv 15 300 125 empty empty OPERATOR_Damping: 5 12 1
+14 -203904 -66577 0;
+#X obj -2 422 tgl 17 0 empty empty empty 17 7 0 10 -257985 -1 -1 0
+1;
+#X obj 38 451 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 10 98 s to-particleSystem;
+#X obj 26 227 s to-particleSystem;
+#X obj 22 362 s to-particleSystem;
+#X obj 22 492 s to-particleSystem;
+#X obj 307 384 s to-particleSystem;
+#X obj 298 162 s to-particleSystem;
+#X msg 10 27 enableAccelerator \$1;
+#X msg 37 74 setAccel \$1 \$2 \$3;
+#X msg 26 157 enableAngularAccelerator \$1;
+#X msg 22 292 enableAngularDamping \$1;
+#X msg 38 338 setAngularDamping \$1;
+#X msg 22 422 enableDamping \$1;
+#X msg 38 468 setDamping \$1;
+#X msg 307 26 enableOrbiter \$1;
+#X msg 369 66 setOrbitCenter \$1 \$2 \$3;
+#X msg 414 104 setOrbitMagnitude \$1;
+#X msg 424 141 setOrbitEpsilon \$1;
+#X msg 434 178 setOrbitMaxRadius \$1;
+#X msg 360 356 setFluidViscosity \$1;
+#X msg 350 316 setFluidDensity \$1;
+#X msg 346 275 setFluidDirection \$1 \$2 \$3;
+#X msg 307 233 enableFluidFriction \$1;
+#X obj 583 2 cnv 15 300 250 empty empty OPERATOR_Explosion: 5 12 1
+14 -203904 -66577 0;
+#X obj 719 126 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 729 162 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 739 199 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 709 90 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 701 52 3nbx;
+#X obj 598 26 tgl 17 0 empty empty empty 17 7 0 10 -257985 -1 -1 0
+1;
+#X obj 602 227 s to-particleSystem;
+#X msg 739 214 setExplosionSigma \$1;
+#X msg 729 177 setExplosionEpsilon \$1;
+#X msg 719 141 setExplosionMagnitude \$1;
+#X msg 709 105 setExplosionRadius \$1;
+#X msg 701 68 setExplosionCenter \$1 \$2 \$3;
+#X msg 622 26 enableExplosion \$1;
+#X obj 583 257 cnv 15 300 240 empty empty OPERATOR_Bouncer: 5 12 1
+14 -203904 -66577 0;
+#X obj 589 282 tgl 17 0 empty empty empty 17 7 0 10 -257985 -1 -1 0
+1;
+#X obj 613 475 s to-particleSystem;
+#X msg 613 282 enableBouncer \$1;
+#X obj 655 364 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 665 400 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 675 436 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X msg 655 379 setBounceFriction \$1;
+#X msg 665 415 setBounceResilience \$1;
+#X msg 675 451 setBounceCutoff \$1;
+#X text 794 199 degrees;
+#X obj 43 186 3nbx;
+#X msg 42 203 setAngularAccel \$1 \$2 \$3;
+#X obj 278 412 cnv 15 300 235 empty empty OPERATOR_Attractor: 5 12
+1 14 -203904 -66577 0;
+#X obj -27 522 cnv 15 300 125 empty empty OPERATOR_Force: 5 12 1 14
+-203904 -66577 0;
+#X obj -22 548 tgl 17 0 empty empty empty 17 7 0 10 -257985 -1 -1 0
+1;
+#X obj 2 618 s to-particleSystem;
+#X msg 2 548 enableForce \$1;
+#X obj 18 577 3nbx;
+#X msg 18 594 setForce \$1 \$2 \$3;
+#X obj 583 502 cnv 15 300 180 empty empty OPERATOR_Oscillator: 5 12
+1 14 -203904 -66577 0;
+#X obj 597 527 tgl 17 0 empty empty empty 17 7 0 10 -257985 -1 -1 0
+1;
+#X obj 620 660 s to-particleSystem;
+#X obj 641 550 nbx 5 14 0 100 0 0 empty empty empty 0 -8 0 10 -262144
+-1 -1 0 256;
+#X obj 651 586 nbx 5 14 -10000 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 338 463 3nbx;
+#X obj 292 437 tgl 17 0 empty empty empty 17 7 0 10 -257985 -1 -1 0
+1;
+#X obj 315 624 s to-particleSystem;
+#X obj 370 503 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X msg 315 437 enableAttractor \$1;
+#X msg 338 480 setAttractorCenter \$1 \$2 \$3;
+#X msg 370 518 setAttractorMagnitude \$1;
+#X obj 380 541 nbx 5 14 0 1 0 0 empty empty empty 0 -8 0 10 -262144
+-1 -1 0 256;
+#X msg 380 556 setAttractorRatio \$1;
+#X obj 393 580 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 393 598 setAttractorKillSink \$1;
+#X obj 666 622 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 620 527 enableOscillator \$1;
+#X msg 641 565 setOscillatorAmplitude \$1;
+#X msg 649 601 setOscillatorFrequency \$1;
+#X msg 666 638 setOscillatorAngleLock \$1;
+#N canvas 47 285 550 247 make_ground_plane 0;
+#X obj 91 20 inlet;
+#X obj 118 126 s \$0-to-SPIN;
+#X msg 118 73 createNode groundPlane ShapeNode \, /groundPlane setShape
+6 \, /groundPlane setOrientation -90 0 0 \, /groundPlane setColor 1
+1 1 0.5;
+#X obj 91 180 outlet;
+#X obj 91 42 t b b;
+#X connect 0 0 4 0;
+#X connect 2 0 1 0;
+#X connect 4 0 3 0;
+#X connect 4 1 2 0;
+#X restore 635 322 pd make_ground_plane;
+#X obj 635 304 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 635 342 addBounceTarget groundPlane;
+#X text 781 306 (order matters);
+#X text 723 280 Hint:;
+#X text 723 293 Enable Accelerator first!;
+#X connect 1 0 41 0;
+#X connect 2 0 40 0;
+#X connect 3 0 42 0;
+#X connect 5 0 37 0;
+#X connect 6 0 38 0;
+#X connect 7 0 39 0;
+#X connect 8 0 36 0;
+#X connect 10 0 29 0;
+#X connect 11 0 28 0;
+#X connect 12 0 43 0;
+#X connect 13 0 35 0;
+#X connect 15 0 30 0;
+#X connect 17 0 31 0;
+#X connect 18 0 32 0;
+#X connect 20 0 33 0;
+#X connect 21 0 34 0;
+#X connect 28 0 22 0;
+#X connect 29 0 22 0;
+#X connect 30 0 23 0;
+#X connect 31 0 24 0;
+#X connect 32 0 24 0;
+#X connect 33 0 25 0;
+#X connect 34 0 25 0;
+#X connect 35 0 27 0;
+#X connect 36 0 27 0;
+#X connect 37 0 27 0;
+#X connect 38 0 27 0;
+#X connect 39 0 27 0;
+#X connect 40 0 26 0;
+#X connect 41 0 26 0;
+#X connect 42 0 26 0;
+#X connect 43 0 26 0;
+#X connect 45 0 54 0;
+#X connect 46 0 53 0;
+#X connect 47 0 52 0;
+#X connect 48 0 55 0;
+#X connect 49 0 56 0;
+#X connect 50 0 57 0;
+#X connect 52 0 51 0;
+#X connect 53 0 51 0;
+#X connect 54 0 51 0;
+#X connect 55 0 51 0;
+#X connect 56 0 51 0;
+#X connect 57 0 51 0;
+#X connect 59 0 61 0;
+#X connect 61 0 60 0;
+#X connect 62 0 65 0;
+#X connect 63 0 66 0;
+#X connect 64 0 67 0;
+#X connect 65 0 60 0;
+#X connect 66 0 60 0;
+#X connect 67 0 60 0;
+#X connect 69 0 70 0;
+#X connect 70 0 23 0;
+#X connect 73 0 75 0;
+#X connect 75 0 74 0;
+#X connect 76 0 77 0;
+#X connect 77 0 74 0;
+#X connect 79 0 95 0;
+#X connect 81 0 96 0;
+#X connect 82 0 97 0;
+#X connect 83 0 88 0;
+#X connect 84 0 87 0;
+#X connect 86 0 89 0;
+#X connect 87 0 85 0;
+#X connect 88 0 85 0;
+#X connect 89 0 85 0;
+#X connect 90 0 91 0;
+#X connect 91 0 85 0;
+#X connect 92 0 93 0;
+#X connect 93 0 85 0;
+#X connect 94 0 98 0;
+#X connect 95 0 80 0;
+#X connect 96 0 80 0;
+#X connect 97 0 80 0;
+#X connect 98 0 80 0;
+#X connect 99 0 101 0;
+#X connect 100 0 99 0;
+#X connect 101 0 60 0;
+#X restore 599 218 pd OPERATORS;
+#X obj 425 389 tgl 17 0 empty empty empty 17 7 0 10 -257985 -1 -1 0
+1;
+#X obj 15 275 vradio 13 1 0 6 empty empty empty 0 -8 0 10 -262144 -1
+-1 0;
+#X text 32 274 POINT;
+#X text 32 287 QUAD;
+#X text 32 300 QUAD_TRIANDLESTRIP;
+#X text 32 313 HEXAGON;
+#X text 32 326 LINE;
+#X text 32 339 USER;
+#X obj 58 129 r to-particleSystem;
+#X obj 58 150 list prepend /ps*;
+#X obj 81 445 s to-particleSystem;
+#X msg 245 413 setLifeTime \$1;
+#X msg 227 377 setMass \$1;
+#X msg 212 341 setRadius \$1;
+#X msg 165 263 setParticleSizeRange \$1 \$2;
+#X msg 15 357 setShape \$1;
+#X msg 426 410 setLighting \$1;
+#X msg 611 287 setFrequencyRange \$1 \$2;
+#X msg 633 324 setShooterSpeedRange \$1 \$2;
+#X msg 659 399 setShooterPhiRange \$1 \$2;
+#X obj 611 443 s to-particleSystem;
+#X obj 224 620 s to-particleSystem;
+#X obj 42 524 vradio 15 1 0 3 empty empty empty 0 -8 0 10 -258113 -1
+-1 0;
+#X obj 42 593 s to-particleSystem;
+#X msg 42 573 setPlacerType \$1;
+#X text 59 523 RADIAL;
+#X text 59 538 CUBIC;
+#X text 59 553 LINEAR;
+#X msg 239 557 setRadialRange \$1 \$2;
+#X msg 714 565 removeLinearPlacerVertices;
+#X obj 687 615 s to-particleSystem;
+#X msg 251 594 setRadialPhiRange \$1 \$2;
+#X obj 489 509 2nbx;
+#X msg 489 526 setCubicZRange \$1 \$2;
+#X obj 499 546 2nbx;
+#X msg 499 563 setCubicZRange \$1 \$2;
+#X obj 509 583 2nbx;
+#X msg 509 600 setCubicZRange \$1 \$2;
+#X obj 450 623 s to-particleSystem;
+#X msg 685 522 addLinearPlacerVertex -5 0 0;
+#X msg 696 543 addLinearPlacerVertex 5 0 0;
+#X text 233 518 RADIAL PLACER:;
+#X text 479 487 CUBIC PLACER:;
+#X text 685 492 LINEAR PLACER:;
+#X text 707 246 (speed and direction of particles);
+#X text 77 472 (initial position range for particles);
+#X text 26 503 CHOOSE ONE;
+#X msg 39 102 createNode ps ParticleSystem;
+#X text 36 218 Play with PARTICLE \, SHOOTER \, and PLACER properties:
+;
+#X obj 437 212 cnv 15 24 24 empty empty 3 4 12 1 24 -99865 -262144
+0;
+#X text 469 218 Play with Operators:;
+#X obj 372 87 subwidget-PAT \$0;
+#X obj 369 440 s to-particleSystem;
+#X obj 364 273 openpanel;
+#X obj 364 254 bng 16 250 50 0 empty empty BROWSE 20 10 1 12 -262144
+-1 -1;
+#X msg 373 63 ps;
+#X text 378 317 two other nice test images:;
+#N canvas 598 259 699 464 EXAMPLE_explosion 0;
+#X obj 231 335 s \$0-to-SPIN-TCP;
+#X obj 305 296 list prepend /ps;
+#X obj 242 80 bng 20 250 50 0 empty empty CreateExample 24 11 1 14
+-257985 -1 -1;
+#X msg 305 134 clear \, createNode grid GridNode \, createNode ps ParticleSystem
+;
+#X obj 242 108 t b b b b;
+#X obj 242 30 inlet;
+#X msg 305 204 setParticleSizeRange 0.1 0.1 \, setShooterSpeedRange
+10 15 \, setFrequencyRange 100 1000 \, enableExplosion 1 \, setExplosionTarget
+shp \, setExplosionRadius 1 \, setExplosionMagnitude 1000 \, setExplosionEpsilon
+0.001 \, setExplosionSigma 180;
+#X obj 53 104 r \$0-from-SPIN;
+#X obj 53 124 route /shp;
+#X obj 52 224 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 52 243 expr ($f1*2)-1;
+#X obj 53 144 route event;
+#X msg 52 204 bang;
+#X msg 312 171 createNode shp ShapeNode \, /shp setShape 1;
+#X msg 52 264 /shp translateTo \$1 0 1.5 1;
+#X connect 1 0 0 0;
+#X connect 2 0 4 0;
+#X connect 3 0 0 0;
+#X connect 4 0 12 0;
+#X connect 4 1 6 0;
+#X connect 4 2 13 0;
+#X connect 4 3 3 0;
+#X connect 5 0 2 0;
+#X connect 6 0 1 0;
+#X connect 7 0 8 0;
+#X connect 8 0 11 0;
+#X connect 9 0 10 0;
+#X connect 10 0 14 0;
+#X connect 11 0 12 0;
+#X connect 12 0 9 0;
+#X connect 13 0 0 0;
+#X connect 14 0 0 0;
+#X restore 766 112 pd EXAMPLE_explosion;
+#X obj 746 112 bng 17 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#N canvas 1662 80 831 523 EXAMPLE_fountain 0;
+#X obj 125 316 s \$0-to-SPIN-TCP;
+#X obj 126 70 bng 20 250 50 0 empty empty CreateExample 24 11 1 14
+-257985 -1 -1;
+#X obj 126 40 inlet;
+#X msg 208 134 clear \, createNode grid GridNode \, createNode ps ParticleSystem
+\, createNode ground ShapeNode \, createNode fountain ShapeNode;
+#X obj 38 340 delay 100;
+#X obj 126 94 t b b b;
+#X obj 125 194 delay 100;
+#X obj 208 182 s \$0-to-SPIN-TCP;
+#X obj 38 471 s \$0-to-SPIN-TCP;
+#X obj 38 450 list prepend /ps;
+#X text 426 336 - enableAccelerator is used to simulate gravity (0
+0 -9.81);
+#X text 426 316 NOTES:;
+#X msg 157 218 /ground setShape 6 \, /ground setOrientation -90 0 0
+\, /ground setColor 1 1 1 0.5;
+#X msg 156 258 /fountain setShape 7 \, /fountain setTranslation 0 0
+0.4 \, /fountain setOrientation -90 0 0 \, /fountain setScale 0.2 0.2
+0.2;
+#X msg 38 362 enableAccelerator 1 \, setAccel 0 0 -9.81 \, setTranslation
+0 0 0.5 \, setShooterThetaRange -20 20 \, setParticleSizeRange 0.01
+0.05 \, setShooterSpeedRange 1 2 \, setFrequencyRange 50 2000 \, enableBouncer
+1 \, setBounceFriction 0.1 \, setBounceResilience 0.1 \, addBounceTarget
+fountain \, addBounceTarget ground \, setStateSetFromFile smoke.rgb
+\, setLighting 0;
+#X text 426 401 - You MUST enable the Accelerator first. Order matters.
+Otherwise \, acceleration will be applied after the bounce operator
+and may result in particles breaking through if the accerlation is
+applied right at the bounce point.;
+#X text 426 356 - enableBouncer is used to turn on collisions for particles.
+Each of the ShapeNodes are added as a bounce target.;
+#X connect 1 0 5 0;
+#X connect 2 0 1 0;
+#X connect 3 0 7 0;
+#X connect 4 0 14 0;
+#X connect 5 0 4 0;
+#X connect 5 1 6 0;
+#X connect 5 2 3 0;
+#X connect 6 0 12 0;
+#X connect 6 0 13 0;
+#X connect 9 0 8 0;
+#X connect 12 0 0 0;
+#X connect 13 0 0 0;
+#X connect 14 0 9 0;
+#X restore 766 132 pd EXAMPLE_fountain;
+#N canvas 442 26 541 506 EXAMPLE_fireflies 0;
+#X obj 42 461 s \$0-to-SPIN-TCP;
+#X obj 125 391 list prepend /ps;
+#X obj 52 89 bng 20 250 50 0 empty empty CreateExample 24 11 1 14 -257985
+-1 -1;
+#X msg 115 143 clear \, createNode grid GridNode \, createNode ps ParticleSystem
+;
+#X obj 52 39 inlet;
+#X msg 127 194 setPlacerType 1 \, setCubicXRange -10 10 \, setCubicYRange
+-10 10 \, setCubicZRange -10 10;
+#X obj 53 120 t b b b;
+#X msg 137 263 setParticleSizeRange 0.3 0.3 \, setShooterSpeedRange
+15 20 \, setFrequencyRange 100 1000 \, setShooterThetaRange 0 360 \,
+setLifeTime 0.5;
+#X msg 146 352 setStateSetFromFile spark03.png \, setLighting 0 \,
+setParticleAlphaRange 1 1;
+#X text 158 333 appearance:;
+#X connect 1 0 0 0;
+#X connect 2 0 6 0;
+#X connect 3 0 0 0;
+#X connect 4 0 2 0;
+#X connect 5 0 1 0;
+#X connect 6 1 7 0;
+#X connect 6 1 5 0;
+#X connect 6 1 8 0;
+#X connect 6 2 3 0;
+#X connect 7 0 1 0;
+#X connect 8 0 1 0;
+#X restore 766 92 pd EXAMPLE_fireflies;
+#X msg 404 355 setStateSetFromFile smoke.rgb;
+#X msg 395 335 setStateSetFromFile spark03.png;
+#X obj 746 132 bng 17 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 746 72 bng 17 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 746 92 bng 17 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#N canvas 590 58 772 643 EXAMPLE_snow 0;
+#X obj 209 593 s \$0-to-SPIN-TCP;
+#X obj 242 49 bng 20 250 50 0 empty empty CreateExample 24 11 1 14
+-257985 -1 -1;
+#X obj 242 19 inlet;
+#X obj 242 75 t b b b;
+#X obj 42 238 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 209 569 list prepend /ps_snow;
+#X obj 9 124 symbol;
+#X msg 9 208 0;
+#X msg 75 208 1;
+#X msg 42 304 setFluidDirection \$1 0 0;
+#X obj 9 82 r \$0-from-SPIN;
+#X obj 9 103 route deleteNode;
+#X obj 9 144 sel ps_snow;
+#X text -29 57 stop metro if example is cleared;
+#X obj 75 185 delay 200;
+#X text 83 324 simulate changing wind speed;
+#X obj 348 225 s \$0-to-SPIN-TCP;
+#X text 348 259 generate snow from above with cubic range:;
+#X text 350 332 small flakes fall according to acceleration from gravity
+;
+#X text 353 446 simulate wind and fluid properties:;
+#X text 343 495 nice image that looks like snow:;
+#X msg 344 463 enableFluidFriction 1 \, setFluidViscosity 0.1;
+#X obj 42 260 metro 2000;
+#X text 352 391 let snow accumulate on ground:;
+#X msg 333 512 setStateSetFromFile smoke.rgb \, setLighting 0 \, setParticleAlphaRange
+0.5 0.5;
+#X obj 42 282 randomR -1 1;
+#X msg 345 408 enableBouncer 1 \, removeAllBounceTargets \, addBounceTarget
+ground \, setLifeTime 10;
+#X msg 356 186 createNode ground ShapeNode \, /ground setShape 6 \,
+/ground setOrientation 90 0 0 \, /ground setTranslation 0 0 -3;
+#X msg 338 277 setPlacerType 1 \, setCubicXRange -200 200 \, setCubicYRange
+-200 200 \, setCubicZRange 100 10;
+#X msg 342 350 setParticleSizeRange 0.05 0.05 \, setShooterSpeedRange
+0 0 \, setFrequencyRange 1000 10000 \, enableAccelerator 1;
+#X msg 348 131 createNode grid GridNode \, createNode ps_snow ParticleSystem
+;
+#X connect 1 0 3 0;
+#X connect 2 0 1 0;
+#X connect 3 0 14 0;
+#X connect 3 0 26 0;
+#X connect 3 0 24 0;
+#X connect 3 1 29 0;
+#X connect 3 1 28 0;
+#X connect 3 1 21 0;
+#X connect 3 2 30 0;
+#X connect 3 2 27 0;
+#X connect 4 0 22 0;
+#X connect 5 0 0 0;
+#X connect 6 0 12 0;
+#X connect 7 0 4 0;
+#X connect 8 0 4 0;
+#X connect 9 0 5 0;
+#X connect 10 0 11 0;
+#X connect 11 0 6 0;
+#X connect 12 0 7 0;
+#X connect 14 0 8 0;
+#X connect 21 0 5 0;
+#X connect 22 0 25 0;
+#X connect 24 0 5 0;
+#X connect 25 0 9 0;
+#X connect 26 0 5 0;
+#X connect 27 0 16 0;
+#X connect 28 0 5 0;
+#X connect 29 0 5 0;
+#X connect 30 0 16 0;
+#X restore 766 72 pd EXAMPLE_snow;
+#X msg 364 292 setStateSetFromFile \$1;
+#X msg 658 421 setShooterRotationalSpeedRange 0 0 0 3 3 3;
+#X text 737 44 Try these FULL examples:;
+#X text 738 345 (degrees);
+#X obj 746 152 bng 17 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#N canvas 571 326 536 552 EXAMPLE_ring_of_fire 0;
+#X obj 42 461 s \$0-to-SPIN-TCP;
+#X obj 82 410 list prepend /ps;
+#X obj 52 89 bng 20 250 50 0 empty empty CreateExample 24 11 1 14 -257985
+-1 -1;
+#X msg 115 143 clear \, createNode grid GridNode \, createNode ps ParticleSystem
+;
+#X obj 52 39 inlet;
+#X obj 53 120 t b b b;
+#X msg 131 365 setStateSetFromFile spark03.png \, setLighting 0;
+#X msg 126 194 setTranslation 0 0 10 \, setOrientation -90 0 0 \, setPlacerType
+0 \, setRadialRange 2 2.2;
+#X msg 137 326 enableForce 1 \, setForce 0 0 -0.3;
+#X msg 136 262 setParticleSizeRange 0.3 1 \, setShooterSpeedRange 0
+1 \, setFrequencyRange 500 2500 \, setShooterThetaRange 0 360 \, setLifeTime
+0.5;
+#X connect 1 0 0 0;
+#X connect 2 0 5 0;
+#X connect 3 0 0 0;
+#X connect 4 0 2 0;
+#X connect 5 1 9 0;
+#X connect 5 1 7 0;
+#X connect 5 1 6 0;
+#X connect 5 1 8 0;
+#X connect 5 2 3 0;
+#X connect 6 0 1 0;
+#X connect 7 0 1 0;
+#X connect 8 0 1 0;
+#X connect 9 0 1 0;
+#X restore 766 152 pd EXAMPLE_ring_of_fire;
+#X obj 746 172 bng 17 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#N canvas 447 80 941 810 EXAMPLE_firefly_swarm 0;
+#X obj 42 461 s \$0-to-SPIN-TCP;
+#X obj 52 89 bng 20 250 50 0 empty empty CreateExample 24 11 1 14 -257985
+-1 -1;
+#X obj 52 39 inlet;
+#X obj 53 120 t b b b;
+#X msg 334 466 setPlacerType 1 \, setCubicXRange -\$1 \$1 \, setCubicYRange
+-\$1 \$1 \, setCubicZRange -\$1 \$1;
+#X obj 586 669 expr random(-5 \, 5) \; random(10 \, 50) \; random(-5
+\, 5);
+#X obj 651 720 pack 0 0 0 s;
+#X obj 693 644 t b s;
+#X obj 693 624 symbol;
+#X msg 759 80 OutQuadMotion;
+#X msg 759 100 InQuadMotion;
+#X msg 759 120 InOutQuadMotion;
+#X msg 759 140 OutCubicMotion;
+#X msg 759 160 InCubicMotion;
+#X msg 759 180 InOutCubicMotion;
+#X msg 759 200 OutQuartMotion;
+#X msg 759 220 InQuartMotion;
+#X msg 759 240 InOutQuartMotion;
+#X msg 759 260 OutBounceMotion;
+#X msg 759 280 InBounceMotion;
+#X msg 759 300 InOutBounceMotion;
+#X msg 759 320 OutElasticMotion;
+#X msg 759 340 InElasticMotion;
+#X msg 759 360 InOutElasticMotion;
+#X msg 759 380 OutSineMotion;
+#X msg 759 400 InSineMotion;
+#X msg 759 420 InOutSineMotion;
+#X msg 759 440 OutBackMotion;
+#X msg 759 460 InBackMotion;
+#X msg 759 480 InOutBackMotion;
+#X msg 759 500 OutCircMotion;
+#X msg 759 520 InCircMotion;
+#X msg 759 540 InOutCircMotion;
+#X msg 759 560 OutExpoMotion;
+#X msg 759 580 InExpoMotion;
+#X msg 759 600 InOutExpoMotion;
+#X obj 651 761 s \$0-to-SPIN;
+#X msg 759 60 LinearMotion;
+#X obj 332 711 s \$0-to-SPIN;
+#X obj 529 207 metro 2000;
+#X obj 529 188 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 651 740 /ps translateTo \$1 \$2 \$3 3 \$4;
+#X msg 37 190 1;
+#X obj 263 559 / 1000;
+#X obj 115 542 expr random(-5 \, 5) \; random(5 \, 15) \; random(-5
+\, 5);
+#X obj 180 593 pack 0 0 0 6.5;
+#X msg 138 262 setParticleSizeRange 0.2 0.2 \, setShooterSpeedRange
+5 5 \, setFrequencyRange 100 500 \, setShooterThetaRange 0 360 \, setLifeTime
+0.5;
+#X obj 582 99 symbol;
+#X msg 582 183 0;
+#X obj 582 57 r \$0-from-SPIN;
+#X obj 582 78 route deleteNode;
+#X text 544 32 stop metro if example is cleared;
+#X msg 115 143 clear \, createNode grid GridNode \, createNode ps_swarm
+ParticleSystem;
+#X obj 125 391 list prepend /ps_swarm;
+#X obj 332 690 list prepend /ps_swarm;
+#X msg 180 613 translateTo \$1 \$2 \$3 \$4 OutElasticMotion;
+#X text 414 713 high-rate \, so send UDP;
+#X obj 582 119 sel ps_swarm;
+#X msg 144 357 setStateSetFromFile spark03.png \, setLighting 0 \,
+setParticleAlphaRange 1 1;
+#X obj 534 392 sin;
+#X obj 534 372 line 1 100;
+#X obj 534 413 * 1;
+#X obj 534 317 t b f;
+#X msg 534 350 0 \, -3.14159 4000;
+#X obj 532 293 randomR 2 7;
+#X connect 1 0 3 0;
+#X connect 2 0 1 0;
+#X connect 3 0 42 0;
+#X connect 3 1 46 0;
+#X connect 3 1 58 0;
+#X connect 3 2 52 0;
+#X connect 4 0 54 0;
+#X connect 5 0 6 0;
+#X connect 5 1 6 1;
+#X connect 5 2 6 2;
+#X connect 6 0 41 0;
+#X connect 7 0 5 0;
+#X connect 7 1 6 3;
+#X connect 8 0 7 0;
+#X connect 9 0 8 0;
+#X connect 10 0 8 0;
+#X connect 11 0 8 0;
+#X connect 12 0 8 0;
+#X connect 13 0 8 0;
+#X connect 14 0 8 0;
+#X connect 15 0 8 0;
+#X connect 16 0 8 0;
+#X connect 17 0 8 0;
+#X connect 18 0 8 0;
+#X connect 19 0 8 0;
+#X connect 20 0 8 0;
+#X connect 21 0 8 0;
+#X connect 22 0 8 0;
+#X connect 23 0 8 0;
+#X connect 24 0 8 0;
+#X connect 25 0 8 0;
+#X connect 26 0 8 0;
+#X connect 27 0 8 0;
+#X connect 28 0 8 0;
+#X connect 29 0 8 0;
+#X connect 30 0 8 0;
+#X connect 31 0 8 0;
+#X connect 32 0 8 0;
+#X connect 33 0 8 0;
+#X connect 34 0 8 0;
+#X connect 35 0 8 0;
+#X connect 37 0 8 0;
+#X connect 39 0 44 0;
+#X connect 39 0 64 0;
+#X connect 40 0 39 0;
+#X connect 41 0 36 0;
+#X connect 42 0 40 0;
+#X connect 43 0 45 3;
+#X connect 44 0 45 0;
+#X connect 44 1 45 1;
+#X connect 44 2 45 2;
+#X connect 45 0 55 0;
+#X connect 46 0 53 0;
+#X connect 47 0 57 0;
+#X connect 48 0 40 0;
+#X connect 49 0 50 0;
+#X connect 50 0 47 0;
+#X connect 52 0 0 0;
+#X connect 53 0 0 0;
+#X connect 54 0 38 0;
+#X connect 55 0 54 0;
+#X connect 57 0 48 0;
+#X connect 58 0 53 0;
+#X connect 59 0 61 0;
+#X connect 60 0 59 0;
+#X connect 61 0 4 0;
+#X connect 62 0 63 0;
+#X connect 62 1 61 1;
+#X connect 63 0 60 0;
+#X connect 64 0 62 0;
+#X restore 766 172 pd EXAMPLE_firefly_swarm;
+#X obj 175 287 2nbx;
+#X msg 175 302 setParticleAlphaRange \$1 \$2;
+#X text 765 383 (degrees);
+#N canvas 787 58 450 300 color_range 0;
+#X obj 91 83 rgbaPicker 1 1 1 1;
+#X obj 212 83 rgbaPicker 1 1 1 1;
+#X obj 91 127 unpack 0 0 0 0;
+#X obj 212 154 unpack 0 0 0 0;
+#X obj 212 122 t b a;
+#X msg 118 218 setParticleColorRange \$1 \$2 \$3 \$4 \$5 \$6;
+#X text 91 63 min:;
+#X text 211 63 max:;
+#X obj 118 195 pack 1 1 1 1 1 1;
+#X obj 118 242 outlet;
+#X connect 0 0 2 0;
+#X connect 1 0 4 0;
+#X connect 2 0 8 0;
+#X connect 2 1 8 1;
+#X connect 2 2 8 2;
+#X connect 3 0 8 3;
+#X connect 3 1 8 4;
+#X connect 3 2 8 5;
+#X connect 4 0 8 0;
+#X connect 4 1 3 0;
+#X connect 5 0 9 0;
+#X connect 8 0 5 0;
+#X restore 55 384 pd color_range;
+#X msg 649 362 setShooterThetaRange \$1 \$2;
+#X obj 746 192 bng 17 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#N canvas 251 55 787 599 EXAMPLE_attractor 0;
+#X obj 329 112 bng 20 250 50 0 empty empty CreateExample 24 11 1 14
+-257985 -1 -1;
+#X obj 329 62 inlet;
+#X obj 330 143 t b b b;
+#X obj 93 446 s \$0-to-SPIN;
+#X obj 93 345 metro 2000;
+#X obj 93 326 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 116 291 1;
+#X obj 76 207 symbol;
+#X msg 76 291 0;
+#X obj 76 165 r \$0-from-SPIN;
+#X obj 76 186 route deleteNode;
+#X text 38 140 stop metro if example is cleared;
+#X obj 76 227 sel ps_swarm;
+#X msg 421 380 setStateSetFromFile spark03.png \, setLighting 0 \,
+setParticleAlphaRange 1 1;
+#X msg 392 166 clear \, createNode grid GridNode \, createNode ps_attract
+ParticleSystem;
+#X msg 415 285 setParticleSizeRange 0.2 0.2 \, setShooterSpeedRange
+5 5 \, setFrequencyRange 100 500;
+#X obj 393 425 list prepend /ps_attract;
+#X msg 427 327 enableAttractor 1 \, setAttractorCenter -3 0 3 \, setAttractorMagnitude
+3;
+#X obj 93 425 list prepend /ps_attract;
+#X obj 93 368 randomr -5 5;
+#X msg 93 401 setAttractorCenter \$1 0 2;
+#X obj 319 485 s \$0-to-SPIN-TCP;
+#X connect 0 0 2 0;
+#X connect 1 0 0 0;
+#X connect 2 0 6 0;
+#X connect 2 1 15 0;
+#X connect 2 1 13 0;
+#X connect 2 1 17 0;
+#X connect 2 2 14 0;
+#X connect 4 0 19 0;
+#X connect 5 0 4 0;
+#X connect 6 0 5 0;
+#X connect 7 0 12 0;
+#X connect 8 0 5 0;
+#X connect 9 0 10 0;
+#X connect 10 0 7 0;
+#X connect 12 0 8 0;
+#X connect 13 0 16 0;
+#X connect 14 0 21 0;
+#X connect 15 0 16 0;
+#X connect 16 0 21 0;
+#X connect 17 0 16 0;
+#X connect 18 0 3 0;
+#X connect 19 0 20 0;
+#X connect 20 0 18 0;
+#X restore 766 192 pd EXAMPLE_attractor;
+#X msg 192 160 /ps* debug;
+#X obj 746 212 bng 17 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#N canvas 114 223 787 599 EXAMPLE_wiggles 0;
+#X obj 329 112 bng 20 250 50 0 empty empty CreateExample 24 11 1 14
+-257985 -1 -1;
+#X obj 329 62 inlet;
+#X obj 330 143 t b b b;
+#X msg 421 380 setStateSetFromFile spark03.png \, setLighting 0 \,
+setParticleAlphaRange 1 1;
+#X obj 319 485 s \$0-to-SPIN;
+#X msg 427 326 enableOscillator 1 \, setOscillatorFrequency 20 \, setOscillatorAmplitude
+5;
+#X msg 415 285 setParticleSizeRange 0.2 0.2 \, setShooterSpeedRange
+5 5 \, setFrequencyRange 0 100 \, setShooterThetaRange 0 90;
+#X msg 393 166 clear \, createNode grid GridNode \, createNode ps_wiggles
+ParticleSystem;
+#X obj 393 425 list prepend /ps_wiggles;
+#X connect 0 0 2 0;
+#X connect 1 0 0 0;
+#X connect 2 0 3 0;
+#X connect 2 1 6 0;
+#X connect 2 1 5 0;
+#X connect 2 2 7 0;
+#X connect 3 0 8 0;
+#X connect 5 0 8 0;
+#X connect 6 0 8 0;
+#X connect 7 0 4 0;
+#X connect 8 0 4 0;
+#X restore 766 212 pd EXAMPLE_wiggles;
+#N canvas 19 600 450 300 EXPERIMENTAL 0;
+#X obj 57 185 s to-particleSystem;
+#X msg 57 147 setConnected \$1;
+#X obj 57 128 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 52 33 You can "connect" particles to generate effects like
+jetstreams \, but this can currently cause crashes if you toggle it
+on and off many times. Also \, texture coordinates don't work well
+in this case \, so it's better to test this without any stateset applied.
+;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X restore 829 664 pd EXPERIMENTAL;
+#X connect 2 0 76 0;
+#X connect 6 0 39 0;
+#X connect 7 0 100 0;
+#X connect 8 0 40 0;
+#X connect 9 0 38 0;
+#X connect 14 0 35 0;
+#X connect 15 0 32 0;
+#X connect 16 0 34 0;
+#X connect 17 0 33 0;
+#X connect 18 0 49 0;
+#X connect 19 0 52 0;
+#X connect 21 0 37 0;
+#X connect 22 0 36 0;
+#X connect 29 0 30 0;
+#X connect 30 0 11 0;
+#X connect 32 0 31 0;
+#X connect 33 0 31 0;
+#X connect 34 0 31 0;
+#X connect 35 0 31 0;
+#X connect 36 0 31 0;
+#X connect 37 0 73 0;
+#X connect 38 0 41 0;
+#X connect 39 0 41 0;
+#X connect 40 0 41 0;
+#X connect 43 0 45 0;
+#X connect 45 0 44 0;
+#X connect 49 0 42 0;
+#X connect 50 0 51 0;
+#X connect 52 0 42 0;
+#X connect 53 0 54 0;
+#X connect 54 0 59 0;
+#X connect 55 0 56 0;
+#X connect 56 0 59 0;
+#X connect 57 0 58 0;
+#X connect 58 0 59 0;
+#X connect 60 0 51 0;
+#X connect 61 0 51 0;
+#X connect 68 0 11 0;
+#X connect 74 0 88 0;
+#X connect 75 0 74 0;
+#X connect 76 0 72 0;
+#X connect 79 0 78 0;
+#X connect 82 0 73 0;
+#X connect 83 0 73 0;
+#X connect 84 0 80 0;
+#X connect 85 0 87 0;
+#X connect 86 0 81 0;
+#X connect 88 0 73 0;
+#X connect 89 0 41 0;
+#X connect 92 0 93 0;
+#X connect 94 0 95 0;
+#X connect 96 0 97 0;
+#X connect 97 0 31 0;
+#X connect 99 0 31 0;
+#X connect 100 0 41 0;
+#X connect 101 0 102 0;
+#X connect 103 0 11 0;
+#X connect 104 0 105 0;
+#X restore 461 43 pd particle-settings;
+#X connect 1 0 3 0;
+#X connect 2 0 1 0;
+#X connect 3 0 15 0;
+#X connect 3 0 27 0;
+#X connect 3 0 25 0;
+#X connect 3 1 30 0;
+#X connect 3 1 29 0;
+#X connect 3 1 22 0;
+#X connect 3 2 5 0;
+#X connect 3 2 28 0;
+#X connect 4 0 23 0;
+#X connect 5 0 17 0;
+#X connect 6 0 0 0;
+#X connect 7 0 13 0;
+#X connect 8 0 4 0;
+#X connect 9 0 4 0;
+#X connect 10 0 6 0;
+#X connect 11 0 12 0;
+#X connect 12 0 7 0;
+#X connect 13 0 8 0;
+#X connect 15 0 9 0;
+#X connect 22 0 6 0;
+#X connect 23 0 26 0;
+#X connect 25 0 6 0;
+#X connect 26 0 10 0;
+#X connect 27 0 6 0;
+#X connect 28 0 17 0;
+#X connect 29 0 6 0;
+#X connect 30 0 6 0;
+#X restore 614 165 pd snow;
 #X connect 5 0 21 0;
 #X connect 19 0 18 0;
 #X connect 20 0 17 0;
@@ -774,3 +1745,4 @@ setCubeSize 400 400 10 \, /\$3 setConstraintMode 2 \, /\$3 setComputationMode
 #X connect 21 1 7 0;
 #X connect 21 2 23 0;
 #X connect 25 0 5 0;
+#X connect 29 0 30 0;
