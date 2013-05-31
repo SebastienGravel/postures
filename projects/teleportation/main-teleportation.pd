@@ -3,7 +3,7 @@
 can be rendered with several different draw modes. The default is POINTS
 \, which are the lightest. Be careful of using LIGHTPOINTS \, BOXES
 \, and especially CUSTOM drawing. These modes are expensive.;
-#N canvas 991 267 748 834 models 0;
+#N canvas 694 22 748 834 models 0;
 #X obj 88 810 s \$0-to-SPIN-TCP;
 #X obj 92 112 list append;
 #X obj 155 87 anyreg gProjectPath;
@@ -636,7 +636,7 @@ setOrientation 0 90 -330 \, /\$2-avatar setTranslation 0.05 0 -2 \,
 #X text 307 351 --------USER 1 settings--------;
 #X text 262 440 --------LIGHTS settings--------;
 #X text 620 254 --------USERS settings (backup)--------;
-#N canvas 1418 886 468 304 user1-settings 1;
+#N canvas 972 596 468 304 user1-settings 0;
 #X obj 55 250 s \$0-to-SPIN-TCP;
 #X msg 82 97 createNode \$1 UserNode \, /\$1 setTarget step_collider
 \, /\$1 setTranslation 0 -5 0 \, /\$1 setCubeOffset 0 0 3.6 \, /\$1
@@ -656,7 +656,7 @@ setCubeSize 400 400 10 \, /\$1 setConstraintMode 2 \, /\$1 setComputationMode
 #X connect 4 0 0 0;
 #X connect 5 0 0 0;
 #X restore 195 352 pd user1-settings;
-#N canvas 906 890 468 304 user2-settings 1;
+#N canvas 923 350 468 304 user2-settings 0;
 #X obj 55 250 s \$0-to-SPIN-TCP;
 #X obj 55 66 t a a;
 #X obj 55 41 inlet;
@@ -712,7 +712,7 @@ setCubeSize 400 400 10 \, /\$2 setConstraintMode 2 \, /\$2 setComputationMode
 #X connect 6 3 2 0;
 #X restore 148 439 pd lights-settings;
 #X obj 148 196 t a a a a a;
-#N canvas 1392 457 468 304 user3-settings 1;
+#N canvas 972 457 468 304 user3-settings 0;
 #X obj 55 250 s \$0-to-SPIN-TCP;
 #X obj 55 66 t a a;
 #X obj 55 41 inlet;
@@ -769,15 +769,15 @@ setCubeSize 400 400 10 \, /\$3 setConstraintMode 2 \, /\$3 setComputationMode
 #X text 612 361 These are for backup --> NOT USED;
 #X obj 594 165 bng 17 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#N canvas 586 87 772 643 snow 1;
-#X obj 209 593 s \$0-to-SPIN-TCP;
+#N canvas 270 138 772 643 snow 1;
+#X obj 209 603 s \$0-to-SPIN-TCP;
 #X obj 242 49 bng 20 250 50 0 empty empty CreateExample 24 11 1 14
 -257985 -1 -1;
 #X obj 242 19 inlet;
 #X obj 242 75 t b b b;
 #X obj 42 238 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
-#X obj 209 569 list prepend /ps_snow;
+#X obj 209 579 list prepend /ps_snow;
 #X obj 9 124 symbol;
 #X msg 9 208 0;
 #X msg 75 208 1;
@@ -797,8 +797,6 @@ setCubeSize 400 400 10 \, /\$3 setConstraintMode 2 \, /\$3 setComputationMode
 #X msg 344 463 enableFluidFriction 1 \, setFluidViscosity 0.1;
 #X obj 42 260 metro 2000;
 #X text 352 391 let snow accumulate on ground:;
-#X msg 333 512 setStateSetFromFile smoke.rgb \, setLighting 0 \, setParticleAlphaRange
-0.5 0.5;
 #X obj 42 282 randomR -1 1;
 #X msg 345 408 enableBouncer 1 \, removeAllBounceTargets \, addBounceTarget
 ground \, setLifeTime 10;
@@ -1073,7 +1071,7 @@ ground \, setLifeTime 10;
 #X connect 100 0 99 0;
 #X connect 101 0 60 0;
 #X restore 599 218 pd OPERATORS;
-#X obj 425 389 tgl 17 0 empty empty empty 17 7 0 10 -257985 -1 -1 1
+#X obj 425 389 tgl 17 0 empty empty empty 17 7 0 10 -257985 -1 -1 0
 1;
 #X obj 15 275 vradio 13 1 0 6 empty empty empty 0 -8 0 10 -262144 -1
 -1 0;
@@ -1708,16 +1706,21 @@ in this case \, so it's better to test this without any stateset applied.
 -10 10 \, setCubicZRange 100 10;
 #X msg 342 350 setParticleSizeRange 0.05 0.05 \, setShooterSpeedRange
 0 0 \, setFrequencyRange 100 1000 \, enableAccelerator 1;
+#X obj 333 512 anyreg gProjectPath;
+#X msg 356 587 setStateSetFromFile \$1/main/snow-pixel.png \, setLighting
+0 \, setParticleAlphaRange 0.5 0.5;
+#X msg 333 532 setStateSetFromFile \$1/main/snow-pixel.png \, setLighting
+0 \, setParticleAlphaRange 0.5 0.5;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
 #X connect 3 0 14 0;
-#X connect 3 0 26 0;
-#X connect 3 0 24 0;
-#X connect 3 1 31 0;
+#X connect 3 0 25 0;
+#X connect 3 0 31 0;
 #X connect 3 1 30 0;
+#X connect 3 1 29 0;
 #X connect 3 1 21 0;
-#X connect 3 2 29 0;
-#X connect 3 2 27 0;
+#X connect 3 2 28 0;
+#X connect 3 2 26 0;
 #X connect 4 0 22 0;
 #X connect 5 0 0 0;
 #X connect 6 0 12 0;
@@ -1729,16 +1732,18 @@ in this case \, so it's better to test this without any stateset applied.
 #X connect 12 0 7 0;
 #X connect 14 0 8 0;
 #X connect 21 0 5 0;
-#X connect 22 0 25 0;
-#X connect 24 0 5 0;
-#X connect 25 0 9 0;
-#X connect 26 0 5 0;
-#X connect 27 0 16 0;
-#X connect 29 0 16 0;
+#X connect 22 0 24 0;
+#X connect 24 0 9 0;
+#X connect 25 0 5 0;
+#X connect 26 0 16 0;
+#X connect 28 0 16 0;
+#X connect 29 0 5 0;
 #X connect 30 0 5 0;
-#X connect 31 0 5 0;
+#X connect 31 0 33 0;
+#X connect 33 0 5 0;
 #X restore 614 165 pd snow;
-#X connect 5 0 21 0;
+#X obj 69 71 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
 #X connect 19 0 18 0;
 #X connect 20 0 17 0;
 #X connect 21 0 6 0;
@@ -1746,3 +1751,4 @@ in this case \, so it's better to test this without any stateset applied.
 #X connect 21 2 23 0;
 #X connect 25 0 5 0;
 #X connect 29 0 30 0;
+#X connect 31 0 21 0;
