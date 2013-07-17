@@ -1,4 +1,4 @@
-#N canvas 43 305 903 711 10;
+#N canvas 43 189 903 711 10;
 #X obj 18 28 widget-spinConnect \$0;
 #X obj 18 8 loadbang1 teleportation;
 #X obj 18 77 cnv 15 500 150 empty empty MAIN_CONTROLS 20 12 0 14 -204786
@@ -19,11 +19,11 @@ can be rendered with several different draw modes. The default is POINTS
 \, and especially CUSTOM drawing. These modes are expensive.;
 #X obj 530 77 cnv 15 300 150 empty empty MAIN_PATCHES 20 12 0 14 -204786
 -66577 0;
-#N canvas 122 246 980 867 models 1;
+#N canvas 122 33 980 867 models 0;
 #X obj 28 810 s \$0-to-SPIN-TCP;
-#X obj 32 112 list append;
-#X obj 95 87 anyreg gProjectPath;
-#X obj 32 62 t b b;
+#X obj 32 102 list append;
+#X obj 95 77 anyreg gProjectPath;
+#X obj 32 52 t b b;
 #X obj 32 20 r load_main-scene;
 #X text 482 406 <--set collision ON;
 #X text 502 336 <--set collision ON;
@@ -34,7 +34,6 @@ can be rendered with several different draw modes. The default is POINTS
 #X msg 136 395 createNode bigwall ModelNode \, /bigwall setModelFromFile
 \$1/main/bigwall.ac \, /bigwall setOrientation 90 0 0 \, /bigwall setParent
 step1 \, /step1 setEnabled bigwall 1;
-#X obj 32 138 t a a a a a a a a a;
 #X text 462 526 <--set collision ON;
 #X msg 198 175 createNode step_collider ConstraintsNode \, createNode
 step1 SwitchNode \, createNode step2 SwitchNode \, createNode step3
@@ -63,7 +62,7 @@ setParent step3 \, /step3 setEnabled sculpture 0 \, /sculpture setCastShadows
 #X msg 56 675 createNode house ModelNode \, /house setModelFromFile
 \$1/main/house.ac \, /house setOrientation 90 0 0 \, /house setParent
 step4 \, /step4 setEnabled house 0 \, /house setCastShadows 1;
-#X obj 72 52 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 72 42 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X msg 178 265 createNode forest ModelNode \, /forest setModelFromFile
 \$1/main/forest.ac \, /forest setOrientation 90 0 0 \, /forest setScale
@@ -72,62 +71,380 @@ step4 \, /step4 setEnabled house 0 \, /house setCastShadows 1;
 #X floatatom 355 41 5 0 0 0 - - -;
 #X msg 365 126 /posture101 setCubeSize 400 400 50;
 #X text 142 17 > FROM MAIN PATCH BUTTON;
-#X obj 600 31 anyreg gProjectPath;
-#X obj 723 21 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 32 128 t a a a a a a a a a a;
+#N canvas 25 119 637 633 3dgrid 0;
+#X obj 42 122 list append;
+#X obj 105 97 anyreg gProjectPath;
+#X obj 42 72 t b b;
+#X obj 82 62 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 611 112 anyreg gProjectPath;
-#X obj 734 102 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 42 29 inlet;
+#X obj 86 211 anyreg gProjectPath;
+#X obj 209 201 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 619 205 anyreg gProjectPath;
-#X obj 742 195 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 69 292 anyreg gProjectPath;
+#X obj 192 282 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg 611 133 createNode 3dgrid2 ModelNode \, /3dgrid2 setModelFromFile
+#X obj 52 385 anyreg gProjectPath;
+#X obj 175 375 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 59 313 createNode 3dgrid2 ModelNode \, /3dgrid2 setModelFromFile
 \$1/main/thingrid-6m.3ds \, /3dgrid2 setOrientation 90 0 0 \, /3dgrid2
 setScale 1 1 1 \, /3dgrid2 setTranslation 0 0 0;
-#X obj 602 285 s \$0-to-SPIN-TCP;
-#X msg 600 52 createNode 3dgrid ModelNode \, /3dgrid setModelFromFile
+#X obj 48 508 s \$0-to-SPIN-TCP;
+#X msg 76 232 createNode 3dgrid ModelNode \, /3dgrid setModelFromFile
 \$1/main/thingrid-6m.3ds \, /3dgrid setOrientation 0 0 0 \, /3dgrid
 setScale 1 1 1 \, /3dgrid setTranslation 0 0 0;
-#X msg 619 226 createNode 3dgrid3 ModelNode \, /3dgrid3 setModelFromFile
+#X msg 42 406 createNode 3dgrid3 ModelNode \, /3dgrid3 setModelFromFile
 \$1/main/thingrid-6m.3ds \, /3dgrid3 setOrientation 90 90 0 \, /3dgrid3
 setScale 1 1 1 \, /3dgrid3 setTranslation 0 0 0 \, /3dgrid3 setColor
 1 0 0 1;
-#X connect 1 0 12 0;
+#X obj 42 148 t a a a a;
+#N canvas 668 22 769 835 binary-counter 1;
+#X obj 60 -74 inlet;
+#X obj 291 -81 bng 30 250 50 0 reset_binary empty RESET_BINARY 32 15
+0 30 -260097 -1 -1;
+#X obj 33 -38 cnv 15 250 450 empty empty X_binary 20 12 0 14 -261682
+-66577 0;
+#X obj 60 189 f 0;
+#X msg 113 156 0;
+#X obj 110 104 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 92 189 + 6;
+#X obj 60 298 == 60;
+#X obj 60 352 spigot 0;
+#X obj 60 114 t b b b;
+#X obj 60 375 s next_Y;
+#X obj 60 83 spigot 1;
+#X obj 138 32 r finished_counting;
+#X msg 138 55 0;
+#X msg 105 56 1;
+#X obj 60 32 t b b;
+#X obj 87 274 s update_X;
+#X obj 293 -38 cnv 15 200 450 empty empty Y_binary 20 12 0 14 -261682
+-66577 0;
+#X obj 306 42 t b b;
+#X obj 306 85 f 0;
+#X obj 306 117 - 60;
+#X obj 346 32 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 338 85 + 6;
+#X obj 306 8 r next_Y;
+#X obj 325 240 spigot 0;
+#X obj 342 336 s next_Z;
+#X obj 366 134 p;
+#X msg 389 52 6;
+#X obj 345 172 s update_Y;
+#X obj 503 -38 cnv 15 200 450 empty empty Z_binary 20 12 0 14 -261682
+-66577 0;
+#X obj 516 43 t b b;
+#X obj 516 116 f 0;
+#X obj 516 148 - 60;
+#X obj 556 33 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 548 116 + 6;
+#X obj 516 8 r next_Z;
+#X obj 569 43 r reset_binary;
+#X obj 576 165 p;
+#X msg 569 83 6;
+#X obj 516 361 print finished counting;
+#X obj 516 290 spigot 0;
+#X obj 516 246 == 60;
+#X obj 549 337 s finished_counting;
+#X obj 551 313 s reset_binary;
+#X obj 535 223 s update_Z;
+#X obj 33 420 cnv 15 670 300 empty empty empty 20 12 0 14 -261682 -66577
+0;
+#X obj 342 563 p;
+#X obj 672 508 pack f f f;
+#X msg 810 467 -60;
+#X msg 839 467 -60;
+#X obj 810 444 r reset_binary;
+#X obj 672 443 r update_X;
+#X obj 700 463 r update_Y;
+#X obj 729 483 r update_Z;
+#X obj 97 22 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 306 384 s next_X;
+#X obj 60 243 t a a;
+#X obj 60 156 until;
+#X msg 60 134 21;
+#X msg 125 329 0;
+#X obj 60 318 t b a;
+#X obj 125 306 r next_Y;
+#X msg 185 329 1;
+#X obj 185 306 r next_Y;
+#X obj 389 13 r reset_binary;
+#X obj 415 33 r reset_Y;
+#X obj 590 63 r reset_Z;
+#X obj 376 287 s reset_Y;
+#X obj 126 481 f 0;
+#X obj 152 481 + 1;
+#X obj 63 503 list append;
+#X obj 63 695 s \$0-to-SPIN;
+#X obj 325 196 == 60;
+#X obj 151 155 r update_last_X;
+#X obj 162 239 p;
+#X obj 63 461 t a b;
+#X obj 359 312 s next_X;
+#X obj 325 216 t b a;
+#X obj 516 266 t b a;
+#X obj 516 176 t a a b;
+#X obj 325 261 t b b b b;
+#X obj 555 196 s reset_Y;
+#X obj 419 319 delay 1000;
+#X obj 306 363 delay 50;
+#X obj 306 147 t b a a;
+#X obj 405 243 delay 50;
+#X obj 60 221 - 60;
+#X obj 342 429 r update_X;
+#X obj 443 484 r update_Y;
+#X obj 445 512 r update_Z;
+#X obj 342 454 t b a;
+#X obj 342 478 list append;
+#X obj 139 -18 r next_X;
+#X obj 425 434 r next_X;
+#X obj 530 438 r reset_binary;
+#X obj 540 459 r reset_Y;
+#X obj 559 491 r reset_Z;
+#X obj 342 508 list append 0;
+#X obj 342 538 list append 0;
+#X msg 530 481 0;
+#X msg 559 511 0;
+#X msg 515 601 createNode txt_\$1\$2\$3 textNode \, /txt_\$1\$2\$3
+setText 101010 \, /txt_\$1\$2\$3 setTranslation \$1 \$2 \$3 \, /txt_\$1\$2\$3
+setBillboarded 1 \, /txt_\$1\$2\$3 setDrawMode 0 \, /txt_\$1\$2\$3
+setAlignment 4 \, /txt_\$1\$2\$3 setColor 1 1 1 1 \, /txt_\$1\$2\$3
+setLighting 1;
+#X obj 141 437 r reset_binary;
+#X msg 141 460 0;
+#X obj 63 559 list append;
+#X obj 63 527 t a b;
+#X obj 126 538 anyreg gProjectPath;
+#X obj 63 609 list append;
+#X obj 126 588 symbol binary1;
+#X msg 63 633 createNode txt_\$1\$2\$3 GeometryNode \, /txt_\$1\$2\$3
+setTranslation \$1 \$2 \$3 \, /txt_\$1\$2\$3 setStateSetFromFile \$4/main/\$5.png
+\, /\$5.png setLighting 0 \, /txt_\$1\$2\$3 setScale 1 1 0.25;
+#X connect 0 0 15 0;
+#X connect 3 0 6 0;
+#X connect 3 0 86 0;
+#X connect 4 0 3 1;
+#X connect 5 0 9 0;
+#X connect 6 0 3 1;
+#X connect 7 0 60 0;
+#X connect 8 0 10 0;
+#X connect 9 0 58 0;
+#X connect 9 1 4 0;
+#X connect 11 0 9 0;
+#X connect 12 0 13 0;
+#X connect 13 0 11 1;
+#X connect 14 0 11 1;
+#X connect 15 0 11 0;
+#X connect 15 1 14 0;
+#X connect 18 0 19 0;
+#X connect 19 0 20 0;
+#X connect 19 0 22 0;
+#X connect 20 0 84 0;
+#X connect 21 0 18 0;
+#X connect 22 0 19 1;
+#X connect 23 0 18 0;
+#X connect 24 0 80 0;
+#X connect 24 0 26 0;
+#X connect 27 0 19 1;
+#X connect 30 0 31 0;
+#X connect 31 0 32 0;
+#X connect 31 0 34 0;
+#X connect 32 0 37 0;
+#X connect 32 0 79 0;
+#X connect 33 0 30 0;
+#X connect 34 0 31 1;
+#X connect 35 0 30 0;
+#X connect 36 0 38 0;
+#X connect 38 0 31 1;
+#X connect 40 0 39 0;
+#X connect 40 0 42 0;
+#X connect 40 0 43 0;
+#X connect 41 0 78 0;
+#X connect 48 0 47 1;
+#X connect 49 0 47 2;
+#X connect 50 0 48 0;
+#X connect 50 0 49 0;
+#X connect 51 0 47 0;
+#X connect 52 0 47 1;
+#X connect 53 0 47 2;
+#X connect 54 0 15 0;
+#X connect 56 0 7 0;
+#X connect 56 1 16 0;
+#X connect 57 0 3 0;
+#X connect 58 0 57 0;
+#X connect 60 0 8 0;
+#X connect 60 1 8 1;
+#X connect 61 0 59 0;
+#X connect 63 0 62 0;
+#X connect 64 0 27 0;
+#X connect 65 0 27 0;
+#X connect 66 0 38 0;
+#X connect 68 0 69 0;
+#X connect 68 0 70 1;
+#X connect 69 0 68 0;
+#X connect 70 0 105 0;
+#X connect 72 0 77 0;
+#X connect 75 0 70 0;
+#X connect 75 1 68 0;
+#X connect 77 0 24 0;
+#X connect 77 1 24 1;
+#X connect 78 0 40 0;
+#X connect 78 1 40 1;
+#X connect 79 0 41 0;
+#X connect 79 1 44 0;
+#X connect 79 2 81 0;
+#X connect 80 1 25 0;
+#X connect 80 3 67 0;
+#X connect 82 0 25 0;
+#X connect 83 0 55 0;
+#X connect 84 0 83 0;
+#X connect 84 1 72 0;
+#X connect 84 2 28 0;
+#X connect 86 0 56 0;
+#X connect 87 0 90 0;
+#X connect 88 0 97 1;
+#X connect 89 0 98 1;
+#X connect 90 0 91 0;
+#X connect 90 1 91 1;
+#X connect 91 0 97 0;
+#X connect 94 0 99 0;
+#X connect 94 0 100 0;
+#X connect 95 0 99 0;
+#X connect 96 0 100 0;
+#X connect 97 0 98 0;
+#X connect 98 0 46 0;
+#X connect 98 0 105 0;
+#X connect 99 0 97 1;
+#X connect 100 0 98 1;
+#X connect 102 0 103 0;
+#X connect 103 0 68 1;
+#X connect 104 0 107 0;
+#X connect 105 0 104 0;
+#X connect 105 1 106 0;
+#X connect 105 1 108 0;
+#X connect 106 0 104 1;
+#X connect 107 0 109 0;
+#X connect 108 0 107 1;
+#X connect 109 0 71 0;
+#X restore 93 175 pd binary-counter;
+#N canvas 472 22 653 756 buildgrid 0;
+#X obj 240 24 inlet;
+#X obj 120 553 outlet;
+#X obj 214 219 until;
+#X obj 214 244 f;
+#X obj 240 195 t f b f;
+#X msg 263 219 0;
+#X obj 255 244 + 1;
+#X obj 240 97 sqrt;
+#X obj 214 265 expr $f1 - ($f2-1)/2;
+#X obj 57 340 until;
+#X obj 57 365 f;
+#X obj 83 316 t f b f;
+#X msg 106 340 0;
+#X obj 98 365 + 1;
+#X obj 57 386 expr $f1 - ($f2-1)/2;
+#X obj 214 318 t b f;
+#X obj 110 271 f;
+#X text 369 38 <- test;
+#X obj 240 126 t f f b;
+#X msg 408 276 1;
+#X obj 120 509 list prepend;
+#X obj 201 484 f;
+#X obj 242 484 + 1;
+#X obj 120 454 t a b;
+#X obj 120 433 pack 0 30 0;
+#X obj 267 543 p;
+#X msg 324 37 16;
+#X connect 0 0 7 0;
+#X connect 2 0 3 0;
+#X connect 3 0 6 0;
+#X connect 3 0 8 0;
+#X connect 4 0 2 0;
+#X connect 4 1 5 0;
+#X connect 4 2 8 1;
+#X connect 5 0 3 1;
+#X connect 6 0 3 1;
+#X connect 7 0 18 0;
+#X connect 8 0 15 0;
+#X connect 9 0 10 0;
+#X connect 10 0 13 0;
+#X connect 10 0 14 0;
+#X connect 11 0 9 0;
+#X connect 11 1 12 0;
+#X connect 11 2 14 1;
+#X connect 12 0 10 1;
+#X connect 13 0 10 1;
+#X connect 14 0 24 0;
+#X connect 15 0 16 0;
+#X connect 15 1 24 2;
+#X connect 16 0 11 0;
+#X connect 18 0 4 0;
+#X connect 18 1 16 1;
+#X connect 18 2 19 0;
+#X connect 19 0 21 1;
+#X connect 20 0 25 0;
+#X connect 21 0 22 0;
+#X connect 21 0 20 1;
+#X connect 22 0 21 1;
+#X connect 23 0 20 0;
+#X connect 23 1 21 0;
+#X connect 24 0 23 0;
+#X connect 26 0 7 0;
+#X restore 270 181 pd buildgrid;
+#X connect 0 0 15 0;
+#X connect 1 0 0 1;
+#X connect 2 0 0 0;
+#X connect 2 1 1 0;
+#X connect 3 0 2 0;
+#X connect 4 0 2 0;
+#X connect 5 0 13 0;
+#X connect 6 0 5 0;
+#X connect 7 0 11 0;
+#X connect 8 0 7 0;
+#X connect 9 0 14 0;
+#X connect 10 0 9 0;
+#X connect 11 0 12 0;
+#X connect 13 0 12 0;
+#X connect 14 0 12 0;
+#X connect 15 0 14 0;
+#X connect 15 1 11 0;
+#X connect 15 2 13 0;
+#X connect 15 3 16 0;
+#X restore 216 146 pd 3dgrid;
+#X connect 1 0 26 0;
 #X connect 2 0 1 1;
 #X connect 3 0 1 0;
 #X connect 3 1 2 0;
 #X connect 4 0 3 0;
 #X connect 11 0 0 0;
-#X connect 12 0 15 0;
-#X connect 12 1 20 0;
-#X connect 12 2 19 0;
-#X connect 12 3 18 0;
-#X connect 12 4 17 0;
-#X connect 12 5 11 0;
-#X connect 12 6 16 0;
-#X connect 12 7 22 0;
-#X connect 12 8 14 0;
+#X connect 13 0 0 0;
 #X connect 14 0 0 0;
 #X connect 15 0 0 0;
 #X connect 16 0 0 0;
 #X connect 17 0 0 0;
 #X connect 18 0 0 0;
 #X connect 19 0 0 0;
-#X connect 20 0 0 0;
-#X connect 21 0 3 0;
+#X connect 20 0 3 0;
+#X connect 21 0 0 0;
 #X connect 22 0 0 0;
-#X connect 23 0 0 0;
-#X connect 24 0 23 0;
-#X connect 25 0 0 0;
-#X connect 27 0 35 0;
-#X connect 28 0 27 0;
-#X connect 29 0 33 0;
-#X connect 30 0 29 0;
-#X connect 31 0 36 0;
-#X connect 32 0 31 0;
-#X connect 33 0 34 0;
-#X connect 35 0 34 0;
-#X connect 36 0 34 0;
+#X connect 23 0 22 0;
+#X connect 24 0 0 0;
+#X connect 26 0 14 0;
+#X connect 26 1 19 0;
+#X connect 26 2 18 0;
+#X connect 26 3 17 0;
+#X connect 26 4 16 0;
+#X connect 26 5 11 0;
+#X connect 26 6 15 0;
+#X connect 26 7 21 0;
+#X connect 26 8 13 0;
+#X connect 26 9 27 0;
 #X restore 565 133 pd models;
 #N canvas 364 424 892 486 step_logic 0;
 #X obj 55 25 r load_scene1;
@@ -178,7 +495,7 @@ setAll 0;
 #X connect 17 1 16 0;
 #X connect 18 0 4 0;
 #X restore 565 153 pd step_logic;
-#N canvas 186 144 1012 618 users_setup 1;
+#N canvas 186 144 1012 618 users_setup 0;
 #X obj 89 36 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 211 322 s \$0-to-SPIN-TCP;
@@ -229,7 +546,7 @@ setOrientation 0 90 -330 \, /\$2-avatar setTranslation 0.05 0 -2 \,
 #X text 307 351 --------USER 1 settings--------;
 #X text 262 440 --------LIGHTS settings--------;
 #X text 620 254 --------USERS settings (backup)--------;
-#N canvas 968 606 468 304 user1-settings 0;
+#N canvas 968 596 468 304 user1-settings 0;
 #X obj 55 250 s \$0-to-SPIN-TCP;
 #X obj 55 66 t a a;
 #X obj 55 41 inlet;
@@ -354,13 +671,13 @@ setCubeSize 400 400 10 \, /\$3 setConstraintMode 2 \, /\$3 setComputationMode
 #X restore 565 113 pd users_setup;
 #X obj 545 173 bng 17 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#N canvas 238 218 969 643 snow 1;
+#N canvas 238 218 969 643 snow 0;
 #X obj 209 603 s \$0-to-SPIN-TCP;
 #X obj 242 49 bng 20 250 50 0 empty empty CreateExample 24 11 1 14
 -257985 -1 -1;
 #X obj 242 19 inlet;
 #X obj 242 75 t b b b;
-#X obj 42 238 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 42 238 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 209 579 list prepend /ps_snow;
 #X obj 9 124 symbol;
@@ -1346,7 +1663,6 @@ ground \, setLifeTime 10000;
 #X connect 34 1 35 0;
 #X connect 35 0 37 0;
 #X connect 36 0 38 0;
-#X connect 37 0 36 1;
 #X connect 38 0 32 0;
 #X connect 40 0 39 0;
 #X connect 42 0 16 0;
@@ -1395,7 +1711,7 @@ ground \, setLifeTime 10000;
 #X connect 19 0 20 0;
 #X connect 20 0 14 0;
 #X restore 565 293 pd assets;
-#N canvas 128 88 1310 817 debug 0;
+#N canvas 130 22 1310 817 debug 0;
 #X obj 25 551 s \$0-to-SPIN-TCP;
 #X msg 95 146 /experience debug;
 #X msg 38 74 /chantalbaron setCubeSize 10000 10000 10000;
