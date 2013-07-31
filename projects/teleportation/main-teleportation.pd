@@ -1,4 +1,4 @@
-#N canvas 43 189 903 711 10;
+#N canvas 66 299 903 711 10;
 #X obj 18 28 widget-spinConnect \$0;
 #X obj 18 8 loadbang1 teleportation;
 #X obj 18 77 cnv 15 500 150 empty empty MAIN_CONTROLS 20 12 0 14 -204786
@@ -19,7 +19,7 @@ can be rendered with several different draw modes. The default is POINTS
 \, and especially CUSTOM drawing. These modes are expensive.;
 #X obj 530 77 cnv 15 300 150 empty empty MAIN_PATCHES 20 12 0 14 -204786
 -66577 0;
-#N canvas 122 33 980 867 models 0;
+#N canvas 92 152 980 867 models 1;
 #X obj 28 810 s \$0-to-SPIN-TCP;
 #X obj 32 102 list append;
 #X obj 95 77 anyreg gProjectPath;
@@ -72,7 +72,7 @@ step4 \, /step4 setEnabled house 0 \, /house setCastShadows 1;
 #X msg 365 126 /posture101 setCubeSize 400 400 50;
 #X text 142 17 > FROM MAIN PATCH BUTTON;
 #X obj 32 128 t a a a a a a a a a a;
-#N canvas 729 180 637 633 3dgrid 1;
+#N canvas 713 220 637 633 3dgrid 0;
 #X obj 42 122 list append;
 #X obj 105 97 anyreg gProjectPath;
 #X obj 42 72 t b b;
@@ -81,7 +81,7 @@ step4 \, /step4 setEnabled house 0 \, /house setCastShadows 1;
 #X obj 42 29 inlet;
 #X obj 42 351 s \$0-to-SPIN-TCP;
 #X obj 42 148 t a a a a;
-#N canvas 517 22 917 851 binary-counter 0;
+#N canvas 113 120 957 921 binary-counter 1;
 #X obj 60 -74 inlet;
 #X obj 291 -81 bng 30 250 50 0 reset_binary empty RESET_BINARY 32 15
 0 30 -260097 -1 -1;
@@ -130,7 +130,7 @@ step4 \, /step4 setEnabled house 0 \, /house setCastShadows 1;
 #X obj 549 337 s finished_counting;
 #X obj 551 313 s reset_binary;
 #X obj 535 223 s update_Z;
-#X obj 33 420 cnv 15 670 300 empty empty empty 20 12 0 14 -261682 -66577
+#X obj 33 420 cnv 15 670 400 empty empty empty 20 12 0 14 -261682 -66577
 0;
 #X obj 342 563 p;
 #X obj 672 508 pack f f f;
@@ -145,7 +145,6 @@ step4 \, /step4 setEnabled house 0 \, /house setCastShadows 1;
 #X obj 306 384 s next_X;
 #X obj 60 243 t a a;
 #X obj 60 156 until;
-#X msg 60 134 21;
 #X msg 125 329 0;
 #X obj 60 318 t b a;
 #X obj 125 306 r next_Y;
@@ -155,12 +154,8 @@ step4 \, /step4 setEnabled house 0 \, /house setCastShadows 1;
 #X obj 415 33 r reset_Y;
 #X obj 590 63 r reset_Z;
 #X obj 376 287 s reset_Y;
-#X obj 126 481 f 0;
-#X obj 152 481 + 1;
-#X obj 63 503 list append;
 #X obj 151 155 r update_last_X;
 #X obj 162 239 p;
-#X obj 63 461 t a b;
 #X obj 359 312 s next_X;
 #X obj 325 216 t b a;
 #X obj 516 266 t b a;
@@ -180,44 +175,59 @@ step4 \, /step4 setEnabled house 0 \, /house setCastShadows 1;
 #X obj 530 438 r reset_binary;
 #X obj 540 459 r reset_Y;
 #X obj 559 491 r reset_Z;
-#X msg 515 601 createNode txt_\$1\$2\$3 textNode \, /txt_\$1\$2\$3
+#X obj 93 569 list append;
+#X obj 156 548 anyreg gProjectPath;
+#X obj 93 619 list append;
+#X obj 379 123 p;
+#X obj 118 17 r reset_binary;
+#X msg 519 576 createNode txt_\$1\$2\$3 TextNode \, /txt_\$1\$2\$3
+setText 101010 \, /txt_\$1\$2\$3 setTranslation \$1 \$2 \$3;
+#X obj 158 -69 t b b;
+#X msg 512 612 createNode txt_\$1\$2\$3 GeometryNode \, /txt_\$1\$2\$3
+setTranslation \$1 \$2 \$3 \, /txt_\$1\$2\$3 setStateSetFromFile \$4/main/\$5.png
+\, /\$5.png setLighting 0 \, /txt_\$1\$2\$3 setScale 1 1 0.25;
+#X obj 156 598 symbol _00101010;
+#X obj 93 639 t a a;
+#X obj 156 500 f 0;
+#X obj 188 500 + 1;
+#X obj 93 477 t a b b b;
+#X obj 93 525 list append;
+#X obj 171 454 r reset_binary;
+#X msg 171 477 0;
+#X msg 490 678 createNode txt_\$1\$2\$3 TextNode \, /txt_\$1\$2\$3
 setText 101010 \, /txt_\$1\$2\$3 setTranslation \$1 \$2 \$3 \, /txt_\$1\$2\$3
 setBillboarded 1 \, /txt_\$1\$2\$3 setDrawMode 0 \, /txt_\$1\$2\$3
 setAlignment 4 \, /txt_\$1\$2\$3 setColor 1 1 1 1 \, /txt_\$1\$2\$3
 setLighting 1;
-#X obj 141 437 r reset_binary;
-#X msg 141 460 0;
-#X obj 63 559 list append;
-#X obj 63 527 t a b;
-#X obj 126 538 anyreg gProjectPath;
-#X obj 63 609 list append;
-#X obj 126 588 symbol binary1;
-#X msg 63 633 createNode txt_\$1\$2\$3 GeometryNode \, /txt_\$1\$2\$3
-setTranslation \$1 \$2 \$3 \, /txt_\$1\$2\$3 setStateSetFromFile \$4/main/\$5.png
-\, /\$5.png setLighting 0 \, /txt_\$1\$2\$3 setScale 1 1 0.25;
-#X obj 379 123 p;
-#X obj 118 17 r reset_binary;
-#X obj 63 695 s \$0-to-SPIN-TCP;
-#X obj 60 298 == 30;
-#X obj 60 221 - 30;
-#X obj 325 196 == 30;
-#X obj 306 117 - 30;
-#X obj 516 148 - 30;
-#X obj 516 246 == 30;
-#X obj 342 508 list append -30;
-#X obj 342 538 list append -30;
-#X msg 530 481 -30;
-#X msg 559 511 -30;
-#X obj 60 373 delay 10;
-#X obj 306 363 delay 10;
+#X obj 93 745 s \$0-to-SPIN-TCP;
+#X msg 120 661 createNode txt_\$4 TextNode \, /txt_\$4 setTranslation
+\$1 \$2 \$3;
+#X msg 312 767 /txt* setText _00101010 \, /txt* setBillboard 2 \, /txt*
+setAlignment 4 \, /txt* setColor 0 1 0 1 \, /txt* setLighting 0;
+#X obj 60 298 == 18;
+#X obj 325 196 == 18;
+#X obj 516 246 == 18;
+#X msg 60 134 7;
+#X obj 60 221 - 18;
+#X obj 306 117 - 18;
+#X obj 516 148 - 18;
+#X obj 342 508 list append -18;
+#X obj 342 538 list append -18;
+#X msg 530 481 -18;
+#X msg 559 511 -18;
+#X obj 60 373 delay 200;
+#X obj 306 363 delay 200;
+#X msg 93 683 /txt_\$4 setText _00101010 \, /txt_\$4 setBillboard 2
+\, /txt_\$4 setAlignment 4 \, /txt_\$4 setColor 0 1 0 1 \, /txt_\$4
+setLighting 0 \, /txt_\$4 setSingleSided 0;
 #X connect 0 0 14 0;
 #X connect 3 0 6 0;
-#X connect 3 0 102 0;
+#X connect 3 0 108 0;
 #X connect 4 0 3 1;
 #X connect 5 0 8 0;
 #X connect 6 0 3 1;
-#X connect 7 0 111 0;
-#X connect 8 0 54 0;
+#X connect 7 0 115 0;
+#X connect 8 0 107 0;
 #X connect 8 1 4 0;
 #X connect 10 0 8 0;
 #X connect 11 0 12 0;
@@ -226,16 +236,16 @@ setTranslation \$1 \$2 \$3 \, /txt_\$1\$2\$3 setStateSetFromFile \$4/main/\$5.pn
 #X connect 14 0 10 0;
 #X connect 17 0 18 0;
 #X connect 18 0 20 0;
-#X connect 18 0 104 0;
+#X connect 18 0 109 0;
 #X connect 19 0 17 0;
 #X connect 20 0 18 1;
 #X connect 21 0 17 0;
-#X connect 22 0 74 0;
+#X connect 22 0 69 0;
 #X connect 22 0 24 0;
 #X connect 25 0 18 1;
 #X connect 28 0 29 0;
 #X connect 29 0 31 0;
-#X connect 29 0 105 0;
+#X connect 29 0 110 0;
 #X connect 30 0 28 0;
 #X connect 31 0 29 1;
 #X connect 32 0 28 0;
@@ -251,72 +261,76 @@ setTranslation \$1 \$2 \$3 \, /txt_\$1\$2\$3 setStateSetFromFile \$4/main/\$5.pn
 #X connect 48 0 43 1;
 #X connect 49 0 43 2;
 #X connect 50 0 14 0;
-#X connect 52 0 101 0;
+#X connect 52 0 104 0;
 #X connect 52 1 15 0;
 #X connect 53 0 3 0;
-#X connect 54 0 53 0;
-#X connect 56 0 7 0;
-#X connect 56 1 7 1;
-#X connect 57 0 55 0;
-#X connect 59 0 58 0;
+#X connect 55 0 7 0;
+#X connect 55 1 7 1;
+#X connect 56 0 54 0;
+#X connect 58 0 57 0;
+#X connect 59 0 25 0;
 #X connect 60 0 25 0;
-#X connect 61 0 25 0;
-#X connect 62 0 35 0;
-#X connect 64 0 65 0;
-#X connect 64 0 66 1;
-#X connect 65 0 64 0;
-#X connect 66 0 93 0;
-#X connect 69 0 66 0;
-#X connect 69 1 64 0;
-#X connect 71 0 22 0;
-#X connect 71 1 22 1;
-#X connect 72 0 37 0;
-#X connect 72 1 37 1;
-#X connect 73 0 106 0;
-#X connect 73 1 40 0;
-#X connect 73 2 75 0;
-#X connect 74 1 23 0;
-#X connect 74 3 63 0;
-#X connect 76 0 23 0;
-#X connect 77 0 112 0;
-#X connect 77 1 103 0;
-#X connect 77 2 26 0;
-#X connect 79 0 82 0;
-#X connect 80 0 107 1;
-#X connect 81 0 108 1;
-#X connect 82 0 83 0;
-#X connect 82 1 83 1;
-#X connect 83 0 107 0;
-#X connect 84 0 14 0;
-#X connect 86 0 109 0;
-#X connect 86 0 110 0;
-#X connect 87 0 109 0;
-#X connect 88 0 110 0;
-#X connect 90 0 91 0;
-#X connect 91 0 64 1;
-#X connect 92 0 95 0;
-#X connect 93 0 92 0;
-#X connect 93 1 94 0;
-#X connect 93 1 96 0;
-#X connect 94 0 92 1;
-#X connect 95 0 97 0;
-#X connect 96 0 95 1;
-#X connect 97 0 100 0;
-#X connect 99 0 13 0;
-#X connect 101 0 56 0;
-#X connect 102 0 52 0;
-#X connect 103 0 71 0;
-#X connect 104 0 77 0;
-#X connect 105 0 34 0;
-#X connect 105 0 73 0;
-#X connect 106 0 72 0;
-#X connect 107 0 108 0;
-#X connect 108 0 42 0;
-#X connect 108 0 93 0;
-#X connect 109 0 107 1;
-#X connect 110 0 108 1;
-#X connect 111 0 9 0;
-#X connect 112 0 51 0;
+#X connect 61 0 35 0;
+#X connect 66 0 22 0;
+#X connect 66 1 22 1;
+#X connect 67 0 37 0;
+#X connect 67 1 37 1;
+#X connect 68 0 106 0;
+#X connect 68 1 40 0;
+#X connect 68 2 70 0;
+#X connect 69 1 23 0;
+#X connect 69 3 62 0;
+#X connect 71 0 23 0;
+#X connect 72 0 116 0;
+#X connect 72 1 105 0;
+#X connect 72 2 26 0;
+#X connect 74 0 77 0;
+#X connect 75 0 111 1;
+#X connect 76 0 112 1;
+#X connect 77 0 78 0;
+#X connect 77 1 78 1;
+#X connect 78 0 111 0;
+#X connect 79 0 14 0;
+#X connect 81 0 113 0;
+#X connect 81 0 114 0;
+#X connect 82 0 113 0;
+#X connect 83 0 114 0;
+#X connect 84 0 86 0;
+#X connect 85 0 84 1;
+#X connect 86 0 93 0;
+#X connect 88 0 13 0;
+#X connect 92 0 86 1;
+#X connect 93 0 117 0;
+#X connect 93 1 102 0;
+#X connect 94 0 95 0;
+#X connect 94 0 97 1;
+#X connect 95 0 94 1;
+#X connect 96 0 97 0;
+#X connect 96 1 92 0;
+#X connect 96 2 85 0;
+#X connect 96 3 94 0;
+#X connect 97 0 84 0;
+#X connect 98 0 99 0;
+#X connect 99 0 94 1;
+#X connect 102 0 42 0;
+#X connect 102 0 101 0;
+#X connect 103 0 101 0;
+#X connect 104 0 55 0;
+#X connect 105 0 66 0;
+#X connect 106 0 67 0;
+#X connect 107 0 53 0;
+#X connect 108 0 52 0;
+#X connect 109 0 72 0;
+#X connect 110 0 34 0;
+#X connect 110 0 68 0;
+#X connect 111 0 112 0;
+#X connect 112 0 96 0;
+#X connect 113 0 111 1;
+#X connect 114 0 112 1;
+#X connect 115 0 9 0;
+#X connect 116 0 51 0;
+#X connect 117 0 42 0;
+#X connect 117 0 101 0;
 #X restore 93 175 pd binary-counter;
 #N canvas 472 22 653 756 buildgrid 0;
 #X obj 240 24 inlet;
@@ -397,12 +411,13 @@ setTranslation \$1 \$2 \$3 \, /txt_\$1\$2\$3 setStateSetFromFile \$4/main/\$5.pn
 #X connect 6 0 9 0;
 #X connect 6 1 10 0;
 #X connect 6 2 11 0;
-#X connect 6 3 7 0;
 #X connect 9 0 12 0;
 #X connect 10 0 12 0;
 #X connect 11 0 12 0;
 #X connect 12 0 5 0;
 #X restore 216 146 pd 3dgrid;
+#X obj 279 136 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
 #X connect 1 0 26 0;
 #X connect 2 0 1 1;
 #X connect 3 0 1 0;
@@ -431,6 +446,7 @@ setTranslation \$1 \$2 \$3 \, /txt_\$1\$2\$3 setStateSetFromFile \$4/main/\$5.pn
 #X connect 26 7 21 0;
 #X connect 26 8 13 0;
 #X connect 26 9 27 0;
+#X connect 28 0 27 0;
 #X restore 565 133 pd models;
 #N canvas 364 424 892 486 step_logic 0;
 #X obj 55 25 r load_scene1;
@@ -657,13 +673,13 @@ setCubeSize 400 400 10 \, /\$3 setConstraintMode 2 \, /\$3 setComputationMode
 #X restore 565 113 pd users_setup;
 #X obj 545 173 bng 17 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#N canvas 238 218 969 643 snow 0;
+#N canvas 830 298 969 643 snow 0;
 #X obj 209 603 s \$0-to-SPIN-TCP;
 #X obj 242 49 bng 20 250 50 0 empty empty CreateExample 24 11 1 14
 -257985 -1 -1;
 #X obj 242 19 inlet;
 #X obj 242 75 t b b b;
-#X obj 42 238 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 42 238 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 209 579 list prepend /ps_snow;
 #X obj 9 124 symbol;
@@ -1605,22 +1621,28 @@ in this case \, so it's better to test this without any stateset applied.
 #X msg 501 18 createNode ps_snow ParticleSystem \, /ps_snow setParent
 \$1;
 #X msg 327 72 createNode ps_snow ParticleSystem;
-#X msg 356 195 createNode ground ShapeNode \, /ground setShape 6 \,
-/ground setOrientation 90 0 0 \, /ground setTranslation 0 0 1;
 #X msg 338 277 setPlacerType 1 \, setCubicXRange -10 10 \, setCubicYRange
 -10 10 \, setCubicZRange 1.1 1.1;
-#X msg 348 131 /\$1 setTranslation 0 0 1 \, /\$1 setCubeSize 20 20
-1 \, /\$1 setCubeOffset 0 0 1;
 #X msg 345 408 enableBouncer 1 \, removeAllBounceTargets \, addBounceTarget
 ground \, setLifeTime 10000;
+#X msg 348 131 /\$1 setTranslation 0 0 1 \, /\$1 setCubeSize 50 50
+50 \, /\$1 setCubeOffset 0 0 1;
+#X msg 356 195 createNode ground ShapeNode \, /ground setShape 6 \,
+/ground setOrientation 90 0 0 \, /ground setTranslation 0 0 0;
 #X msg 342 349 setParticleSizeRange 0.1 0.1 \, setShooterSpeedRange
+0 0 \, setFrequencyRange 2000 2000 \, enableAccelerator 1;
+#X obj 314 19 r start_snow;
+#X msg 649 484 setParticleSizeRange 0.1 0.1 \, setShooterSpeedRange
 0 0 \, setFrequencyRange 0 0 \, enableAccelerator 1;
+#X obj 649 463 r stop_snow;
+#X obj 649 544 s \$0-to-SPIN-TCP;
+#X obj 649 520 list prepend /ps_snow;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
 #X connect 3 0 14 0;
-#X connect 3 0 46 0;
+#X connect 3 0 44 0;
 #X connect 3 0 26 0;
-#X connect 3 1 44 0;
+#X connect 3 1 43 0;
 #X connect 3 1 21 0;
 #X connect 3 1 47 0;
 #X connect 3 2 29 0;
@@ -1642,7 +1664,7 @@ ground \, setLifeTime 10000;
 #X connect 26 0 28 0;
 #X connect 28 0 5 0;
 #X connect 29 0 45 0;
-#X connect 30 0 43 0;
+#X connect 30 0 46 0;
 #X connect 31 0 29 0;
 #X connect 33 0 34 0;
 #X connect 34 0 36 0;
@@ -1652,11 +1674,15 @@ ground \, setLifeTime 10000;
 #X connect 38 0 32 0;
 #X connect 40 0 39 0;
 #X connect 42 0 16 0;
-#X connect 43 0 16 0;
+#X connect 43 0 5 0;
 #X connect 44 0 5 0;
 #X connect 45 0 16 0;
-#X connect 46 0 5 0;
+#X connect 46 0 16 0;
 #X connect 47 0 5 0;
+#X connect 48 0 1 0;
+#X connect 49 0 52 0;
+#X connect 50 0 49 0;
+#X connect 52 0 51 0;
 #X restore 565 173 pd snow;
 #X text 621 171 <--particle effects;
 #X obj 530 237 cnv 15 300 200 empty empty OTHER_PATCHES 20 12 0 14
@@ -1697,7 +1723,7 @@ ground \, setLifeTime 10000;
 #X connect 19 0 20 0;
 #X connect 20 0 14 0;
 #X restore 565 293 pd assets;
-#N canvas 130 22 1310 817 debug 0;
+#N canvas 128 82 1310 817 debug 0;
 #X obj 25 551 s \$0-to-SPIN-TCP;
 #X msg 95 146 /experience debug;
 #X msg 38 74 /chantalbaron setCubeSize 10000 10000 10000;
@@ -2106,7 +2132,7 @@ setOrientation 0 90 90 \, /\$1-avatar setTranslation 0.05 0 -1.3 \,
 0 1;
 #X obj 432 103 tgl 15 0 empty g_motionToggle MOTION? 17 7 1 10 -4034
 -1 -1 0 1;
-#N canvas 66 205 873 599 fog 0;
+#N canvas 66 215 873 599 fog 0;
 #X obj 46 24 inlet;
 #X obj 246 34 inlet;
 #X obj 376 24 inlet;
@@ -2147,7 +2173,7 @@ setOrientation 0 90 90 \, /\$1-avatar setTranslation 0.05 0 -1.3 \,
 #X obj 46 164 t b b b;
 #X obj 46 44 t b b;
 #X obj 86 44 print CREATING_FOG;
-#X msg 46 197 createStateSet fog Fog \, /fog setFogColor 0.1 0.1 0.5
+#X msg 46 197 createStateSet fog Fog \, /fog setFogColor 0.1 0.1 0.4
 1 \, /fog setFogDensity 0.95;
 #X connect 0 0 33 0;
 #X connect 1 0 3 0;
@@ -2209,6 +2235,10 @@ setOrientation 0 90 90 \, /\$1-avatar setTranslation 0.05 0 -1.3 \,
 #X text 651 151 <--controls experience;
 #X text 621 271 <--for tests and debug (general);
 #X text 701 311 <--pcl tests;
+#X obj 565 202 bng 17 250 50 0 start_snow empty START_SNOW 20 10 0
+15 -4034 -1 -1;
+#X obj 695 202 bng 17 250 50 0 stop_snow empty STOP_SNOW 20 10 0 15
+-258113 -1 -1;
 #X connect 1 0 0 0;
 #X connect 5 0 32 0;
 #X connect 5 1 3 0;
