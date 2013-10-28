@@ -1,11 +1,11 @@
-#N canvas 413 22 1027 833 10;
+#N canvas 769 137 1027 833 10;
 #X obj -138 -19 widget-spinConnect-gallery \$0;
 #X obj 216 -12 bng 30 250 50 0 reset reset-main RESET 35 15 0 30 -260097
 -1 -1;
 #X obj -139 -39 loadbang1 timeline-pierrebarouh;
 #X obj -138 37 cnv 15 500 700 empty empty empty 20 12 0 14 -204786
 -66577 0;
-#N canvas 679 227 450 300 assets 0;
+#N canvas 675 237 443 300 assets 0;
 #X text 26 14 ----PROJECT PATH----;
 #X obj 41 157 shell;
 #X msg 41 137 hostname -s;
@@ -21,7 +21,7 @@
 #X symbolatom 41 253 30 0 0 0 - - -;
 #X obj 150 223 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 39 33 anyreg gProjectPath ~/Documents/Metalab/timeline/timeline-pierrebarouh
+#X obj 39 33 anyreg gProjectPath ~/Documents/Metalab/timeline/pierrebarouh
 ;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
@@ -35,7 +35,7 @@
 #X restore 153 98 pd assets;
 #X text 216 98 <--Important assets are stored here (project path \,
 computer name \, etc.);
-#N canvas 0 47 1503 817 debug 0;
+#N canvas 377 137 1503 817 debug 0;
 #X obj 25 551 s \$0-to-SPIN;
 #X msg 95 146 /experience debug;
 #X msg 38 74 /chantalbaron setCubeSize 10000 10000 10000;
@@ -126,7 +126,6 @@ computer name \, etc.);
 #X msg 680 169 sh3;
 #X msg 205 324 /sh3 debug;
 #X msg 542 72 hotspot_down4;
-#X msg 532 45 hotspot_up4;
 #X msg 564 95 hotspot_down5;
 #X msg 184 256 /hotspot_down5 debug;
 #X msg 232 396 /step6 debug;
@@ -140,6 +139,7 @@ computer name \, etc.);
 #X floatatom 845 401 5 0 0 0 - - -;
 #X msg 983 226 setFrustum -0.3333 0.3333 -0.2222 0.2222 1e-05 1000
 ;
+#X msg 532 45 timeline_texts_61;
 #X connect 1 0 0 0;
 #X connect 2 0 0 0;
 #X connect 3 0 0 0;
@@ -205,18 +205,18 @@ computer name \, etc.);
 #X connect 73 0 0 0;
 #X connect 74 0 37 0;
 #X connect 75 0 37 0;
-#X connect 76 0 37 0;
+#X connect 76 0 0 0;
 #X connect 77 0 0 0;
 #X connect 78 0 0 0;
 #X connect 79 0 0 0;
 #X connect 80 0 0 0;
-#X connect 81 0 0 0;
-#X connect 83 0 37 0;
-#X connect 85 0 37 0;
-#X connect 86 0 85 0;
-#X connect 87 0 12 0;
+#X connect 82 0 37 0;
+#X connect 84 0 37 0;
+#X connect 85 0 84 0;
+#X connect 86 0 12 0;
+#X connect 87 0 37 0;
 #X restore 153 78 pd debug;
-#N canvas 342 184 672 412 models-full 0;
+#N canvas 340 189 672 412 models-full 0;
 #X obj 33 -18 inlet;
 #X obj 33 277 s \$0-to-SPIN;
 #X obj 33 4 anyreg gProjectPath;
@@ -264,19 +264,7 @@ could be hardcoded in PD;
 #X floatatom 569 148 5 0 0 0 - fogDensity-set -;
 #X floatatom 436 165 5 0 0 3 min minFog-set minFog;
 #X floatatom 472 165 5 0 0 3 max maxFog-set maxFog;
-#X obj 598 526 s \$0-to-usernode;
-#X msg 598 509 setParam shader \$1;
-#X obj 598 492 pack s;
-#X obj 598 448 thisdir;
-#X obj 598 433 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X msg 598 465 \$1/shaders/ppu;
-#X obj 432 517 s \$0-to-SPIN;
-#X obj 432 446 r \$0-to-usernode;
-#X obj 432 500 OSCprepend;
-#X obj 489 483 hostname -s;
-#X obj 489 466 loadbang;
-#N canvas 30 117 1410 415 reset 0;
+#N canvas 28 122 1410 415 reset 0;
 #X obj 753 93 r \$0-from-SPIN;
 #X obj 864 128 anyreg g_hostname;
 #X obj 753 124 t a b;
@@ -347,14 +335,12 @@ could be hardcoded in PD;
 #X connect 5 0 6 0;
 #X connect 6 0 12 0;
 #X connect 7 0 11 0;
-#X connect 8 0 40 0;
 #X connect 9 0 10 0;
 #X connect 10 0 8 0;
 #X connect 11 0 9 0;
 #X connect 12 0 13 0;
 #X connect 13 0 9 0;
 #X connect 13 1 9 1;
-#X connect 14 0 52 0;
 #X connect 16 1 17 0;
 #X connect 17 0 19 0;
 #X connect 18 0 46 0;
@@ -362,20 +348,17 @@ could be hardcoded in PD;
 #X connect 19 0 57 0;
 #X connect 21 0 46 0;
 #X connect 24 0 25 0;
-#X connect 25 0 34 0;
 #X connect 29 0 30 1;
 #X connect 29 0 32 1;
 #X connect 30 0 47 0;
 #X connect 31 0 30 0;
 #X connect 31 1 29 0;
 #X connect 32 0 33 0;
-#X connect 33 0 35 0;
 #X connect 41 0 56 0;
 #X connect 42 0 44 1;
 #X connect 43 0 44 0;
 #X connect 43 1 42 0;
 #X connect 44 0 17 0;
-#X connect 46 0 39 0;
 #X connect 47 0 24 0;
 #X connect 49 0 48 0;
 #X connect 51 0 49 0;
@@ -386,7 +369,7 @@ could be hardcoded in PD;
 #X connect 55 0 52 0;
 #X connect 57 0 18 0;
 #X restore 153 118 pd reset;
-#N canvas 591 200 487 526 iphone_setup 0;
+#N canvas 589 205 487 526 iphone_setup 0;
 #X obj 49 180 pack s s;
 #X obj 204 127 list2symbol;
 #X obj 108 57 shell;
@@ -426,9 +409,7 @@ TextNode;
 #X restore 64 317 pd iphone_setup;
 #X obj -98 79 delay 2000;
 #X obj -98 59 t b;
-#X obj -98 621 s \$0-to-SPIN;
-#X msg -98 600 refreshSubscribers;
-#N canvas 314 251 772 487 user_setup 0;
+#N canvas 302 281 772 487 user_setup 0;
 #X msg 86 87 setNotifyLevel 1;
 #X obj 155 -32 vradio 15 1 0 7 empty empty empty 0 -8 0 10 -262144
 -1 -1 0;
@@ -450,37 +431,39 @@ TextNode;
 #X msg 253 284 /\$1 setVelocityScalars 4 6 6 \, /\$1 setSpinScalars
 0 0 0;
 #X obj 254 321 s \$0-toCamera;
-#X obj 52 110 delay 10000;
 #X obj 69 235 s \$0-to-SPIN-TCP;
 #X obj 254 100 r reset-user;
 #X obj 357 11 anyreg g_hostname;
 #X obj 474 1 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X msg 69 155 /\$1 setTranslation 0 12 0.25 \, /\$1 setComputationMode
+#X msg 357 31 /\$1 setOrientation 0 0 0;
+#X msg 372 74 /\$1 setTranslation 0 12 0.25 \, /\$1 setComputationMode
 1 \, /\$1 setVelocityScalars 4 6 6 \, /\$1 setSpinScalars 0 0 0 \,
 /\$1 setOrientation 0 0 0 \, /\$1 setCubeSize 1900 1900 300 \, /\$1
 setCubeOffset 0 -5 0;
-#X msg 357 31 /\$1 setOrientation 0 0 0;
-#X connect 0 0 18 0;
+#X msg 69 155 /\$1 setTranslation 0 0 0.25 \, /\$1 setComputationMode
+1 \, /\$1 setVelocityScalars 4 6 6 \, /\$1 setSpinScalars 0 0 0 \,
+/\$1 setOrientation 0 0 0;
+#X obj 52 110 delay 10;
+#X connect 0 0 17 0;
 #X connect 1 0 0 0;
 #X connect 9 0 10 0;
-#X connect 10 1 17 0;
+#X connect 10 1 24 0;
 #X connect 10 2 11 0;
 #X connect 10 3 0 0;
-#X connect 11 0 22 0;
+#X connect 11 0 23 0;
 #X connect 12 0 11 0;
 #X connect 13 0 15 0;
 #X connect 14 0 13 0;
 #X connect 15 0 16 0;
-#X connect 17 0 11 0;
-#X connect 19 0 11 0;
-#X connect 20 0 23 0;
-#X connect 21 0 20 0;
-#X connect 22 0 18 0;
-#X connect 23 0 18 0;
+#X connect 19 0 21 0;
+#X connect 20 0 19 0;
+#X connect 21 0 17 0;
+#X connect 23 0 17 0;
+#X connect 24 0 11 0;
 #X restore -35 159 pd user_setup;
 #X obj -98 109 t b b b b b;
-#N canvas 361 185 649 602 models-lod 0;
+#N canvas 337 245 649 602 models-lod 0;
 #X obj 33 -6 inlet;
 #X obj 33 14 anyreg gProjectPath;
 #X text 211 362 <--Timeline + numbers \, maybe not necessary. Numbers
@@ -495,9 +478,8 @@ could be hardcoded in PD;
 #X obj 60 236 makeTimeline \$0 timeline_texts;
 #X text 294 89 x y z offsetX offsetY offsetZ startValue increment count
 ;
-#X msg 111 115 348 -21.5 -0.1 -6 0 0 0 1 101;
 #X obj 60 91 t b b b b;
-#X text 300 113 <--side years 0 to 100 (step = 1);
+#X text 310 113 <--side years 0 to 100 (step = 1);
 #X msg 202 35 /timeline_texts_* setDrawMode 0 \, /timeline_texts_*
 setLighting 0 \, /timeline_texts_* setColor 1 1 1 1;
 #X obj 33 449 s \$0-to-SPIN-TCP;
@@ -507,8 +489,6 @@ setLighting 0 \, /timeline_texts_* setColor 1 1 1 1;
 #X text 258 145 <--main years 1750 to 1900 (step = 50);
 #X msg 77 175 -261 0 0 -21 0 0 2050 50 3;
 #X text 248 175 <--main years 2050 to 2150 (step = 50);
-#X text 228 205 <--main years 1934 to 2034 (step = 1);
-#X msg 60 205 360 0 0 -6 0 0 1934 1 101;
 #X obj 33 259 t a a a;
 #X obj 227 314 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
@@ -520,33 +500,35 @@ setLighting 0 \, /timeline_texts_* setColor 1 1 1 1;
 #X msg 33 396 deleteNode \$2 \, createNode \$2 ModelNode \, /\$2 setModelFromFile
 \$1/PIERRE_\$2.ac \, /\$2 setOrientation 90 0 0 \, /\$2 setLightingMode
 1;
+#X msg 60 205 360 0 0 -6 0 0 1932 1 101;
+#X text 228 205 <--main years 1932 to 2032 (step = 1);
+#X msg 111 115 347.9 -21.3 0 -6 0 0 0 1 101;
 #X connect 0 0 1 0;
 #X connect 1 0 4 0;
 #X connect 3 0 1 0;
-#X connect 4 0 22 0;
+#X connect 4 0 19 0;
 #X connect 4 1 5 0;
-#X connect 5 0 11 0;
+#X connect 5 0 10 0;
 #X connect 7 0 5 0;
-#X connect 8 0 14 0;
-#X connect 10 0 8 0;
-#X connect 11 0 21 0;
-#X connect 11 1 18 0;
-#X connect 11 2 16 0;
-#X connect 11 3 10 0;
-#X connect 13 0 14 0;
-#X connect 15 0 27 0;
-#X connect 16 0 8 0;
-#X connect 18 0 8 0;
-#X connect 21 0 8 0;
-#X connect 22 0 27 0;
-#X connect 22 1 26 0;
-#X connect 22 2 24 0;
-#X connect 23 0 26 0;
-#X connect 24 0 28 0;
-#X connect 25 0 24 0;
-#X connect 26 0 28 0;
-#X connect 27 0 28 0;
-#X connect 28 0 14 0;
+#X connect 8 0 13 0;
+#X connect 10 0 26 0;
+#X connect 10 1 17 0;
+#X connect 10 2 15 0;
+#X connect 10 3 28 0;
+#X connect 12 0 13 0;
+#X connect 14 0 24 0;
+#X connect 15 0 8 0;
+#X connect 17 0 8 0;
+#X connect 19 0 24 0;
+#X connect 19 1 23 0;
+#X connect 20 0 23 0;
+#X connect 21 0 25 0;
+#X connect 22 0 21 0;
+#X connect 23 0 25 0;
+#X connect 24 0 25 0;
+#X connect 25 0 13 0;
+#X connect 26 0 8 0;
+#X connect 28 0 8 0;
 #X restore -67 504 pd models-lod;
 #X obj 22 494 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
@@ -554,7 +536,165 @@ setLighting 0 \, /timeline_texts_* setColor 1 1 1 1;
 -1;
 #X obj -22 99 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#N canvas 951 211 952 776 pcl-image 0;
+#X obj 36 428 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#N canvas 170 301 580 592 pcl-video 0;
+#X text 8 12 On the sender machine (the one with the Kinect):;
+#X text 57 55 ./posture-capture -v -s /tmp/pcd_to_read;
+#X text 48 122 Then send it;
+#X text 8 182 On the receiver machine (the one with spinviewer):;
+#X text 8 252 On the receiver machine (the one with spinviewer):;
+#X text 48 42 Capture kinect and right to shared memory:;
+#X text 48 82 Or \, test with random noise of 10 \, 0 points (ie \,
+100x100):;
+#X text 57 205 ./posture-rtpreceive -v -s /tmp/pcd_to_read -r <sender
+IP>;
+#X text 57 96 ./posture-capture -v -s /tmp/pcd_to_write -n 100;
+#X text 58 135 ./posture-rtpsend -v -s /tmp/pcd_to_write -r <receiver
+IP>;
+#X obj 42 528 s \$0-to-SPIN;
+#X obj 42 275 inlet;
+#X obj 161 295 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 106 439 p;
+#X obj 65 482 anyreg user1;
+#X obj 150 472 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X floatatom 255 429 5 0 0 0 - - -;
+#X obj 161 325 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 42 335 list prepend luc;
+#X obj 42 305 anyreg g_hostname;
+#X msg 255 452 /luc setOrientation 0 90 \$1;
+#X floatatom 360 432 5 0 0 0 - - -;
+#X floatatom 380 505 5 0 0 0 - - -;
+#X msg 379 528 /luc setScale \$1 \$1 \$1;
+#X msg 348 291 /luc;
+#X floatatom 349 549 5 0 0 0 - - -;
+#X msg 348 572 /luc setPointSize \$1;
+#X msg 259 476 /luc setTranslation 30 19 \$1;
+#X floatatom 415 283 5 0 0 0 - - -;
+#X msg 414 306 /luc setVoxelSize \$1;
+#X floatatom 430 330 5 0 0 0 - - -;
+#X msg 65 504 /\$1-avatar setURI shm:///tmp/pcl_play;
+#X msg 429 353 /luc setDrawMode \$1;
+#X msg 42 364 createNode \$1 PointCloud \, /\$1 setURI shm:///tmp/\$2-sm
+\, /\$1 setOrientation 0 90 79 \, /\$1 setTranslation 30 19 -200 \,
+/\$1 setScale 400 400 400 \, /\$1 setComputationMode 1 \, /\$1 setPointSize
+4 \, /\$1 setDistCrop -10 10 \, /\$1 setVoxelSize 0.01 \, /\$1 setDrawMode
+11;
+#X connect 11 0 19 0;
+#X connect 12 0 19 0;
+#X connect 14 0 31 0;
+#X connect 15 0 14 0;
+#X connect 16 0 20 0;
+#X connect 17 0 18 0;
+#X connect 18 0 33 0;
+#X connect 19 0 18 0;
+#X connect 20 0 10 0;
+#X connect 21 0 27 0;
+#X connect 22 0 23 0;
+#X connect 23 0 10 0;
+#X connect 25 0 26 0;
+#X connect 26 0 10 0;
+#X connect 27 0 10 0;
+#X connect 28 0 29 0;
+#X connect 29 0 10 0;
+#X connect 30 0 32 0;
+#X connect 31 0 10 0;
+#X connect 32 0 10 0;
+#X connect 33 0 10 0;
+#X connect 33 0 13 0;
+#X restore -48 438 pd pcl-video;
+#X text 46 437 <--select 1 for image or video point cloud;
+#X obj 45 380 tgl 15 0 empty empty VISIBLE? 17 7 1 10 -260097 -1 -1
+0 1;
+#N canvas 81 155 873 599 fog 0;
+#X obj 46 24 inlet;
+#X obj 246 34 inlet;
+#X obj 376 24 inlet;
+#X obj 246 76 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 376 46 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 46 276 s \$0-to-SPIN;
+#X obj 123 110 sel 1 0;
+#X msg 201 157 deleteNode fog;
+#X msg 508 356 /fog setFogDensity \$1;
+#X obj 496 129 metro 1000;
+#X obj 541 63 random 12000;
+#X obj 546 88 + 3999;
+#X obj 608 146 bng 40 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 508 266 \$1 6000;
+#X obj 508 377 s \$0-to-SPIN;
+#X floatatom 571 105 7 0 0 0 - - -;
+#X floatatom 508 326 5 0 0 0 - - -;
+#X obj 579 302 r fogDensity;
+#X obj 565 333 sendset fogDensity-set;
+#X obj 508 291 line 0 100;
+#X obj 527 212 r minFog;
+#X obj 769 213 r maxFog;
+#X obj 508 238 expr (0.001*random(0 \, 1000)*($f2+$f1)) + $f1;
+#X obj 468 212 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 308 468 s \$0-to-SPIN;
+#X obj 292 274 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 308 419 line 0 100;
+#X floatatom 236 413 5 0 0 0 - - -;
+#X msg 309 395 \$1 6000;
+#X obj 287 328 expr 0.001*random(0 \, 1000);
+#X msg 308 441 /fog setFogColor 0 0.03 \$1 1;
+#X msg 46 197 createStateSet fog Fog \, /fog setFogColor 0 0.02 0.12
+1;
+#X obj 309 370 * 0.1;
+#X obj 46 164 t b b b;
+#X obj 46 44 t b b;
+#X obj 86 44 print CREATING_FOG;
+#X connect 0 0 34 0;
+#X connect 1 0 3 0;
+#X connect 2 0 4 0;
+#X connect 3 0 6 0;
+#X connect 4 0 9 0;
+#X connect 6 0 33 0;
+#X connect 6 1 7 0;
+#X connect 7 0 5 0;
+#X connect 8 0 14 0;
+#X connect 9 0 12 0;
+#X connect 9 0 10 0;
+#X connect 9 0 22 0;
+#X connect 9 0 29 0;
+#X connect 10 0 11 0;
+#X connect 11 0 9 1;
+#X connect 11 0 15 0;
+#X connect 13 0 19 0;
+#X connect 16 0 8 0;
+#X connect 17 0 16 0;
+#X connect 19 0 16 0;
+#X connect 19 0 18 0;
+#X connect 20 0 22 0;
+#X connect 21 0 22 1;
+#X connect 22 0 13 0;
+#X connect 23 0 22 0;
+#X connect 25 0 29 0;
+#X connect 26 0 30 0;
+#X connect 28 0 26 0;
+#X connect 29 0 32 0;
+#X connect 30 0 24 0;
+#X connect 31 0 5 0;
+#X connect 32 0 28 0;
+#X connect 32 0 27 0;
+#X connect 33 0 16 0;
+#X connect 33 1 31 0;
+#X connect 34 0 33 0;
+#X connect 34 1 35 0;
+#X restore -28 398 pd fog __________________;
+#X obj -28 383 bng 12 250 50 0 empty empty empty 17 7 0 10 -257985
+-1 -1;
+#X obj -67 320 t b b b;
+#X obj -28 352 delay 50;
+#N canvas 947 221 952 776 pcl-image 0;
 #X obj 539 123 subwidget-PAT \$0;
 #X obj 539 82 loadbang;
 #X obj 338 381 vradio 11 1 0 14 empty empty empty 0 -8 0 10 -262144
@@ -657,593 +797,26 @@ fast.;
 #X connect 56 0 25 0;
 #X connect 57 0 40 0;
 #X restore -66 529 pd pcl-image;
-#X obj 36 428 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#N canvas 176 286 580 592 pcl-video 0;
-#X text 8 12 On the sender machine (the one with the Kinect):;
-#X text 57 55 ./posture-capture -v -s /tmp/pcd_to_read;
-#X text 48 122 Then send it;
-#X text 8 182 On the receiver machine (the one with spinviewer):;
-#X text 8 252 On the receiver machine (the one with spinviewer):;
-#X text 48 42 Capture kinect and right to shared memory:;
-#X text 48 82 Or \, test with random noise of 10 \, 0 points (ie \,
-100x100):;
-#X text 57 205 ./posture-rtpreceive -v -s /tmp/pcd_to_read -r <sender
-IP>;
-#X text 57 96 ./posture-capture -v -s /tmp/pcd_to_write -n 100;
-#X text 58 135 ./posture-rtpsend -v -s /tmp/pcd_to_write -r <receiver
-IP>;
-#X obj 42 528 s \$0-to-SPIN;
-#X obj 42 275 inlet;
-#X obj 161 295 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 106 439 p;
-#X obj 65 482 anyreg user1;
-#X obj 150 472 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X floatatom 255 429 5 0 0 0 - - -;
-#X obj 161 325 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 42 335 list prepend luc;
-#X obj 42 305 anyreg g_hostname;
-#X msg 255 452 /luc setOrientation 0 90 \$1;
-#X floatatom 360 432 5 0 0 0 - - -;
-#X floatatom 380 505 5 0 0 0 - - -;
-#X msg 379 528 /luc setScale \$1 \$1 \$1;
-#X msg 348 291 /luc;
-#X floatatom 349 549 5 0 0 0 - - -;
-#X msg 348 572 /luc setPointSize \$1;
-#X msg 259 476 /luc setTranslation 30 19 \$1;
-#X floatatom 415 283 5 0 0 0 - - -;
-#X msg 414 306 /luc setVoxelSize \$1;
-#X floatatom 430 330 5 0 0 0 - - -;
-#X msg 65 504 /\$1-avatar setURI shm:///tmp/pcl_play;
-#X msg 429 353 /luc setDrawMode \$1;
-#X msg 42 364 createNode \$1 PointCloud \, /\$1 setURI shm:///tmp/\$2-sm
-\, /\$1 setOrientation 0 90 79 \, /\$1 setTranslation 30 19 -200 \,
-/\$1 setScale 400 400 400 \, /\$1 setComputationMode 1 \, /\$1 setPointSize
-4 \, /\$1 setDistCrop -10 10 \, /\$1 setVoxelSize 0.01 \, /\$1 setDrawMode
-11;
-#X connect 11 0 19 0;
-#X connect 12 0 19 0;
-#X connect 14 0 31 0;
-#X connect 15 0 14 0;
-#X connect 16 0 20 0;
-#X connect 17 0 18 0;
-#X connect 18 0 33 0;
-#X connect 19 0 18 0;
-#X connect 20 0 10 0;
-#X connect 21 0 27 0;
-#X connect 22 0 23 0;
-#X connect 23 0 10 0;
-#X connect 25 0 26 0;
-#X connect 26 0 10 0;
-#X connect 27 0 10 0;
-#X connect 28 0 29 0;
-#X connect 29 0 10 0;
-#X connect 30 0 32 0;
-#X connect 31 0 10 0;
-#X connect 32 0 10 0;
-#X connect 33 0 10 0;
-#X connect 33 0 13 0;
-#X restore -48 438 pd pcl-video;
 #X obj 18 519 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X text 46 437 <--select 1 for image or video point cloud;
-#N canvas 427 302 1013 526 picture-gallery 0;
-#N canvas 432 75 1131 999 setup 0;
-#X obj 92 125 shell;
-#X obj 92 82 thisdir;
-#X obj 69 42 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 92 62 t b b;
-#X obj 91 600 pack f s;
-#X msg 92 104 ls \$1/lorez/ | wc -l;
-#X obj 10 118 print shell;
-#X obj 160 331 playlist all 400 300 {Helvetica 10 bold} #457782 yellow
-black red;
-#X obj 177 220 thisdir;
-#X obj 176 197 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 80 202 until;
-#X obj 92 230 f;
-#X obj 131 230 + 1;
-#X msg 118 275 seek \$1;
-#X obj 91 253 t a a;
-#X obj 91 623 t a a b;
-#X obj 91 647 unpack f s;
-#X msg 357 245 font Helvetica normal 12;
-#X msg 177 277 location \$1;
-#X obj 244 43 inlet;
-#X msg 135 204 0;
-#X obj 128 150 r num_spheres;
-#X obj 107 171 f 20;
-#X obj 244 65 t b b;
-#X msg 517 815 /sphere* setLighting 0 \, /sphere* setColor 1 1 1 1
-;
-#X msg 542 778 /sphere* setSingleSided 0;
-#X msg 538 751 /sphere* setScale \$1 \$1 \$1;
-#X floatatom 535 720 5 0 0 0 - - -;
-#X obj 28 456 thisdir;
-#X msg 273 150 20;
-#X obj 395 670 randomR -20 20;
-#X obj 508 670 randomR -20 20;
-#X obj 91 688 pack f s f f;
-#X obj 193 32 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X msg 257 186 1;
-#X msg 309 111;
-#X msg 147 718 createStateSet texture\$1 ImageTexture \, /texture\$1
-setPath \$2;
-#X obj 90 710 t a a;
-#X floatatom 735 709 5 0 0 0 - - -;
-#X msg 738 740 /sphere* setDetailRatio 1;
-#X obj 176 245 makefilename %s/NIP_Sphere_30;
-#X obj 92 870 s \$0-to-SPIN-TCP;
-#X msg 253 851 createNode sphere\$1 ModelNode \, /sphere\$1 setModelFromFile
-sphere-low-res2.ac \, /sphere\$1 setStateRegistration 1 \, /sphere\$1
-setStateSet texture\$1 \, /sphere\$1 setLighting 0 \, /sphere\$1 setParent
-con\$1 \, /con\$1 setTranslation 0 18 0 \, /sphere\$1 setScale 0.05
-0.05 0.05;
-#X msg 595 140 createNode sphere\$1 ShapeNode \, /sphere\$1 setShape
-1 \, /sphere\$1 setStateRegistration 1 \, /sphere\$1 setStateSet texture\$1
-\, /sphere\$1 setDetailRatio 1 \, /sphere\$1 setLighting 0 \, /sphere\$1
-setSingleSided 0 \, /sphere\$1 setParent con\$1 \, /con\$1 setTranslation
-0 18 0 \, /sphere\$1 setScale 7 7 7;
-#X msg 90 762 createNode sphere\$1 ModelNode \, /sphere\$1 setModelFromFile
-sphere-low-res3.ac \, /sphere\$1 setStateRegistration 1 \, /sphere\$1
-setStateSet texture\$1 \, /sphere\$1 setLighting 0 \, /sphere\$1 setParent
-con\$1 \, /con\$1 setTranslation 0 18 0 \, /sphere\$1 setScale 10 10
-10 \, /sphere\$1 setOrientation 90 0 0;
-#X connect 0 0 6 0;
-#X connect 0 0 10 0;
-#X connect 1 0 5 0;
-#X connect 2 0 3 0;
-#X connect 3 0 1 0;
-#X connect 3 1 9 0;
-#X connect 3 1 20 0;
-#X connect 4 0 15 0;
-#X connect 5 0 0 0;
-#X connect 7 0 4 1;
-#X connect 8 0 40 0;
-#X connect 9 0 8 0;
-#X connect 10 0 11 0;
-#X connect 11 0 12 0;
-#X connect 11 0 14 0;
-#X connect 12 0 11 1;
-#X connect 13 0 7 0;
-#X connect 14 0 4 0;
-#X connect 14 1 13 0;
-#X connect 15 0 16 0;
-#X connect 15 2 30 0;
-#X connect 15 2 31 0;
-#X connect 16 0 32 0;
-#X connect 16 1 32 1;
-#X connect 17 0 7 0;
-#X connect 18 0 7 0;
-#X connect 19 0 23 0;
-#X connect 20 0 11 1;
-#X connect 21 0 22 1;
-#X connect 22 0 10 0;
-#X connect 23 0 22 0;
-#X connect 23 1 9 0;
-#X connect 23 1 20 0;
-#X connect 24 0 41 0;
-#X connect 25 0 41 0;
-#X connect 26 0 41 0;
-#X connect 27 0 26 0;
-#X connect 29 0 22 1;
-#X connect 30 0 32 2;
-#X connect 31 0 32 3;
-#X connect 32 0 37 0;
-#X connect 33 0 23 0;
-#X connect 34 0 10 0;
-#X connect 36 0 41 0;
-#X connect 37 0 44 0;
-#X connect 37 1 36 0;
-#X connect 38 0 39 0;
-#X connect 39 0 41 0;
-#X connect 40 0 18 0;
-#X connect 44 0 41 0;
-#X restore 100 259 pd setup spheres;
-#N canvas 553 446 782 464 constraints 0;
-#X obj -6493 151 until;
-#X obj -6493 173 f;
-#X obj -6466 173 + 1;
-#X msg -6437 147 0;
-#X obj -6533 56 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj -6493 78 t b b;
-#X obj -6438 245 * 0.01;
-#X obj -6451 287 * 0.01;
-#X obj -6472 336 * 0.01;
-#X obj -6494 196 t a b b b;
-#X obj -6494 367 pack 0 0 0 0;
-#X obj -6494 411 s \$0-to-SPIN;
-#X obj -6495 28 inlet;
-#X obj -7012 38 inlet;
-#X obj -7012 111 f 20;
-#X obj -7012 60 t b b;
-#X obj -6991 86 r num_spheres;
-#X obj -7012 135 until;
-#X obj -7012 157 f;
-#X obj -6985 157 + 1;
-#X obj -7013 180 t a b b b;
-#X msg -6957 110 0;
-#X msg -7012 241 createNode con\$1 ConstraintsNode \, /con\$1 setTarget
-box \, /con\$1 setConstraintMode 3 \, /con\$1 setComputationMode 1
-;
-#X msg -6494 389 /con\$1 setVelocity \$2 \$3 \$4;
-#X obj -6493 127 f 20;
-#X obj -6472 102 r num_spheres;
-#X obj -6436 223 expr random(10 \, 20) - 10;
-#X obj -6451 265 expr random(10 \, 43) - 18;
-#X obj -6472 314 expr random(10 \, 30) - 13;
-#X floatatom -6343 152 5 0 0 0 - - -;
-#X obj -6345 125 r spheres_velo;
-#X obj -7007 326 s \$0-to-SPIN-TCP;
-#X connect 0 0 1 0;
-#X connect 1 0 2 0;
-#X connect 1 0 9 0;
-#X connect 2 0 1 1;
-#X connect 3 0 1 1;
-#X connect 4 0 5 0;
-#X connect 5 0 24 0;
-#X connect 5 1 3 0;
-#X connect 6 0 10 3;
-#X connect 7 0 10 2;
-#X connect 8 0 10 1;
-#X connect 9 0 10 0;
-#X connect 9 1 28 0;
-#X connect 9 2 27 0;
-#X connect 9 3 26 0;
-#X connect 10 0 23 0;
-#X connect 12 0 5 0;
-#X connect 13 0 15 0;
-#X connect 14 0 17 0;
-#X connect 15 0 14 0;
-#X connect 15 1 21 0;
-#X connect 16 0 14 1;
-#X connect 17 0 18 0;
-#X connect 18 0 19 0;
-#X connect 18 0 20 0;
-#X connect 19 0 18 1;
-#X connect 20 0 22 0;
-#X connect 21 0 18 1;
-#X connect 22 0 31 0;
-#X connect 23 0 11 0;
-#X connect 24 0 0 0;
-#X connect 25 0 24 1;
-#X connect 26 0 6 0;
-#X connect 27 0 7 0;
-#X connect 28 0 8 0;
-#X connect 29 0 6 1;
-#X connect 29 0 7 1;
-#X connect 29 0 8 1;
-#X connect 30 0 29 0;
-#X restore 256 294 pd constraints;
-#X obj 100 240 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 256 272 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#N canvas 479 653 450 300 cube 0;
-#X obj 70 18 inlet;
-#X obj 77 119 s \$0-to-SPIN-TCP;
-#X msg 77 65 createNode box ShapeNode \, /box setShape 2 \, /box setScale
-40 40 40 \, /box setLighting 0 \, /box setColor 0.3 0 0 0.01 \, /box
-setTranslation 0 18 0 \, /box setRenderBin 9999;
-#X connect 0 0 2 0;
-#X connect 2 0 1 0;
-#X restore 336 224 pd cube;
-#X obj 336 197 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 354 68 nbx 5 14 -1e+37 1e+37 0 1 num_spheres empty Number_of_spheres
-0 -8 0 10 -262144 -1 -1 29 256;
-#X obj 341 271 bng 15 250 50 0 empty empty move! 17 7 0 10 -262144
--1 -1;
-#X obj 138 98 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 138 120 t b b b b;
-#X obj 552 227 r \$0-toCamera;
-#X obj 552 274 spin.toCamera \$0;
-#X obj 613 105 vradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
--1 -1 0;
-#X text 632 105 NORMAL;
-#X text 632 120 POINT_TO_TARGET;
-#X text 632 135 POINT_TO_TARGET_CENTROID;
-#X text 632 150 POINT_TO_ORIGIN;
-#X msg 613 171 setOrientationMode \$1;
-#X obj 553 204 s \$0-toCamera;
-#X obj 566 78 cnv 15 24 24 empty empty 5 4 12 1 24 -99865 -262144 0
-;
-#X text 599 81 Choose POINT_TO_TARGET:;
-#X msg 553 52 setOrientationTarget grid;
-#X msg 110 347 /Linux-Desktop-2 setSpinScalars 0 0 0;
-#X msg 365 345 createNode ambient-light LightSource \, /ambient-light
-setCutoff 180;
-#X obj 131 10 inlet;
-#X obj 131 32 t b b;
-#X text 164 155 Just because for some reason it does not register at
-load;
-#X obj 109 367 s \$0-to-SPIN-TCP;
-#X msg 301 38 29;
-#X obj 255 207 del 500;
-#X obj 107 160 del 7000;
-#X obj 128 219 del 1500;
-#N canvas 440 75 1131 999 setup 0;
-#X obj 92 125 shell;
-#X obj 92 82 thisdir;
-#X obj 69 42 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 92 62 t b b;
-#X obj 91 600 pack f s;
-#X msg 92 104 ls \$1/lorez/ | wc -l;
-#X obj 10 118 print shell;
-#X obj 160 331 playlist all 400 300 {Helvetica 10 bold} #457782 yellow
-black red;
-#X obj 177 220 thisdir;
-#X obj 176 197 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 80 202 until;
-#X obj 92 230 f;
-#X obj 131 230 + 1;
-#X msg 118 275 seek \$1;
-#X obj 91 253 t a a;
-#X obj 91 623 t a a b;
-#X obj 91 647 unpack f s;
-#X msg 357 245 font Helvetica normal 12;
-#X msg 177 277 location \$1;
-#X obj 244 43 inlet;
-#X msg 135 204 0;
-#X obj 128 150 r num_spheres;
-#X obj 107 171 f 20;
-#X obj 244 65 t b b;
-#X msg 517 815 /sphere* setLighting 0 \, /sphere* setColor 1 1 1 1
-;
-#X msg 542 778 /sphere* setSingleSided 0;
-#X msg 538 751 /sphere* setScale \$1 \$1 \$1;
-#X floatatom 535 720 5 0 0 0 - - -;
-#X obj 28 456 thisdir;
-#X msg 273 150 20;
-#X obj 395 670 randomR -20 20;
-#X obj 508 670 randomR -20 20;
-#X obj 91 688 pack f s f f;
-#X obj 193 32 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X msg 257 186 1;
-#X msg 309 111;
-#X msg 147 718 createStateSet texture\$1 ImageTexture \, /texture\$1
-setPath \$2;
-#X obj 90 710 t a a;
-#X floatatom 735 709 5 0 0 0 - - -;
-#X msg 738 740 /sphere* setDetailRatio 1;
-#X obj 176 245 makefilename %s/NIP_Sphere_30;
-#X obj 92 870 s \$0-to-SPIN-TCP;
-#X msg 253 851 createNode sphere\$1 ModelNode \, /sphere\$1 setModelFromFile
-sphere-low-res2.ac \, /sphere\$1 setStateRegistration 1 \, /sphere\$1
-setStateSet texture\$1 \, /sphere\$1 setLighting 0 \, /sphere\$1 setParent
-con\$1 \, /con\$1 setTranslation 0 18 0 \, /sphere\$1 setScale 0.05
-0.05 0.05;
-#X msg 595 140 createNode sphere\$1 ShapeNode \, /sphere\$1 setShape
-1 \, /sphere\$1 setStateRegistration 1 \, /sphere\$1 setStateSet texture\$1
-\, /sphere\$1 setDetailRatio 1 \, /sphere\$1 setLighting 0 \, /sphere\$1
-setSingleSided 0 \, /sphere\$1 setParent con\$1 \, /con\$1 setTranslation
-0 18 0 \, /sphere\$1 setScale 7 7 7;
-#X msg 90 762 createNode sphere\$1 ModelNode \, /sphere\$1 setModelFromFile
-sphere-low-res3.ac \, /sphere\$1 setStateRegistration 1 \, /sphere\$1
-setStateSet texture\$1 \, /sphere\$1 setLighting 0 \, /sphere\$1 setParent
-con\$1 \, /con\$1 setTranslation 0 18 0 \, /sphere\$1 setScale 10 10
-10 \, /sphere\$1 setOrientation 90 0 0;
-#X connect 0 0 6 0;
-#X connect 0 0 10 0;
-#X connect 1 0 5 0;
-#X connect 2 0 3 0;
-#X connect 3 0 1 0;
-#X connect 3 1 9 0;
-#X connect 3 1 20 0;
-#X connect 4 0 15 0;
-#X connect 5 0 0 0;
-#X connect 7 0 4 1;
-#X connect 8 0 40 0;
-#X connect 9 0 8 0;
-#X connect 10 0 11 0;
-#X connect 11 0 12 0;
-#X connect 11 0 14 0;
-#X connect 12 0 11 1;
-#X connect 13 0 7 0;
-#X connect 14 0 4 0;
-#X connect 14 1 13 0;
-#X connect 15 0 16 0;
-#X connect 15 2 30 0;
-#X connect 15 2 31 0;
-#X connect 16 0 32 0;
-#X connect 16 1 32 1;
-#X connect 17 0 7 0;
-#X connect 18 0 7 0;
-#X connect 19 0 23 0;
-#X connect 20 0 11 1;
-#X connect 21 0 22 1;
-#X connect 22 0 10 0;
-#X connect 23 0 22 0;
-#X connect 23 1 9 0;
-#X connect 23 1 20 0;
-#X connect 24 0 41 0;
-#X connect 25 0 41 0;
-#X connect 26 0 41 0;
-#X connect 27 0 26 0;
-#X connect 29 0 22 1;
-#X connect 30 0 32 2;
-#X connect 31 0 32 3;
-#X connect 32 0 37 0;
-#X connect 33 0 23 0;
-#X connect 34 0 10 0;
-#X connect 36 0 41 0;
-#X connect 37 0 44 0;
-#X connect 37 1 36 0;
-#X connect 38 0 39 0;
-#X connect 39 0 41 0;
-#X connect 40 0 18 0;
-#X connect 44 0 41 0;
-#X restore 88 302 pd setup spheres;
-#X obj 88 283 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X connect 2 0 0 0;
-#X connect 3 0 1 0;
-#X connect 5 0 4 0;
-#X connect 7 0 1 1;
-#X connect 8 0 9 0;
-#X connect 9 0 30 0;
-#X connect 9 1 31 0;
-#X connect 9 2 29 0;
-#X connect 9 3 5 0;
-#X connect 10 0 11 0;
-#X connect 12 0 17 0;
-#X connect 17 0 18 0;
-#X connect 21 0 18 0;
-#X connect 22 0 27 0;
-#X connect 23 0 27 0;
-#X connect 24 0 25 0;
-#X connect 25 0 8 0;
-#X connect 25 1 28 0;
-#X connect 28 0 6 0;
-#X connect 29 0 3 0;
-#X connect 30 0 7 0;
-#X connect 31 0 2 0;
-#X connect 33 0 32 0;
-#X restore -51 264 pd picture-gallery;
-#X obj 69 254 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 45 380 tgl 15 0 empty empty VISIBLE? 17 7 1 10 -260097 -1 -1
-0 1;
-#N canvas 81 155 873 599 fog 0;
-#X obj 46 24 inlet;
-#X obj 246 34 inlet;
-#X obj 376 24 inlet;
-#X obj 246 76 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X obj 376 46 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X obj 46 276 s \$0-to-SPIN;
-#X obj 123 110 sel 1 0;
-#X msg 201 157 deleteNode fog;
-#X msg 508 356 /fog setFogDensity \$1;
-#X obj 496 129 metro 1000;
-#X obj 541 63 random 12000;
-#X obj 546 88 + 3999;
-#X obj 608 146 bng 40 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X msg 508 266 \$1 6000;
-#X obj 508 377 s \$0-to-SPIN;
-#X floatatom 571 105 7 0 0 0 - - -;
-#X floatatom 508 326 5 0 0 0 - - -;
-#X obj 579 302 r fogDensity;
-#X obj 565 333 sendset fogDensity-set;
-#X obj 508 291 line 0 100;
-#X obj 527 212 r minFog;
-#X obj 769 213 r maxFog;
-#X obj 508 238 expr (0.001*random(0 \, 1000)*($f2+$f1)) + $f1;
-#X obj 468 212 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 308 468 s \$0-to-SPIN;
-#X obj 292 274 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 308 419 line 0 100;
-#X floatatom 236 413 5 0 0 0 - - -;
-#X msg 309 395 \$1 6000;
-#X obj 287 328 expr 0.001*random(0 \, 1000);
-#X msg 308 441 /fog setFogColor 0 0.03 \$1 1;
-#X msg 46 197 createStateSet fog Fog \, /fog setFogColor 0 0.02 0.12
-1;
-#X obj 309 370 * 0.1;
-#X obj 46 164 t b b b;
-#X obj 46 44 t b b;
-#X obj 86 44 print CREATING_FOG;
-#X connect 0 0 34 0;
-#X connect 1 0 3 0;
-#X connect 2 0 4 0;
-#X connect 3 0 6 0;
-#X connect 4 0 9 0;
-#X connect 6 0 33 0;
-#X connect 6 1 7 0;
-#X connect 7 0 5 0;
-#X connect 8 0 14 0;
-#X connect 9 0 12 0;
-#X connect 9 0 10 0;
-#X connect 9 0 22 0;
-#X connect 9 0 29 0;
-#X connect 10 0 11 0;
-#X connect 11 0 9 1;
-#X connect 11 0 15 0;
-#X connect 13 0 19 0;
-#X connect 16 0 8 0;
-#X connect 17 0 16 0;
-#X connect 19 0 16 0;
-#X connect 19 0 18 0;
-#X connect 20 0 22 0;
-#X connect 21 0 22 1;
-#X connect 22 0 13 0;
-#X connect 23 0 22 0;
-#X connect 25 0 29 0;
-#X connect 26 0 30 0;
-#X connect 28 0 26 0;
-#X connect 29 0 32 0;
-#X connect 30 0 24 0;
-#X connect 31 0 5 0;
-#X connect 32 0 28 0;
-#X connect 32 0 27 0;
-#X connect 33 0 16 0;
-#X connect 33 1 31 0;
-#X connect 34 0 33 0;
-#X connect 34 1 35 0;
-#X restore -28 398 pd fog __________________;
-#X obj -28 383 bng 12 250 50 0 empty empty empty 17 7 0 10 -257985
--1 -1;
-#X msg 70 569 debug;
-#X obj -2 227 s \$0-reliableBroadcast-set;
-#X obj -24 228 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X obj -51 182 t b b;
-#X msg -24 207 1;
-#X obj -83 575 s reset-main;
-#X msg 70 607 /timeline setLightingMode 0;
-#X obj -67 320 t b b b;
-#X obj -83 554 delay 120000;
-#X obj -67 298 del 1000;
-#X obj -28 352 delay 50;
-#X obj -67 468 del 50;
+#X obj -67 298 del 100;
+#X obj -67 468 del 100;
+#X connect 0 0 20 0;
 #X connect 2 0 0 0;
 #X connect 9 0 7 0;
-#X connect 16 0 15 0;
-#X connect 17 0 16 0;
-#X connect 18 0 20 0;
-#X connect 19 0 18 0;
-#X connect 20 0 17 0;
-#X connect 22 0 23 0;
-#X connect 23 0 21 0;
-#X connect 24 0 23 1;
-#X connect 25 0 24 0;
-#X connect 28 0 33 0;
-#X connect 29 0 28 0;
-#X connect 31 0 30 0;
-#X connect 33 2 57 0;
-#X connect 33 4 32 0;
-#X connect 35 0 34 0;
-#X connect 36 0 32 0;
-#X connect 37 0 33 0;
-#X connect 39 0 40 0;
-#X connect 41 0 38 0;
-#X connect 44 0 43 0;
-#X connect 45 0 46 1;
-#X connect 47 0 46 0;
-#X connect 48 0 30 0;
-#X connect 50 0 49 0;
-#X connect 51 0 43 0;
-#X connect 51 1 52 0;
-#X connect 52 0 50 0;
-#X connect 54 0 30 0;
-#X connect 55 0 59 0;
-#X connect 55 2 58 0;
-#X connect 56 0 53 0;
-#X connect 57 0 55 0;
-#X connect 58 0 47 0;
-#X connect 59 0 34 0;
+#X connect 17 0 20 0;
+#X connect 18 0 17 0;
+#X connect 20 2 35 0;
+#X connect 20 4 19 0;
+#X connect 22 0 21 0;
+#X connect 23 0 19 0;
+#X connect 24 0 20 0;
+#X connect 25 0 26 0;
+#X connect 28 0 29 1;
+#X connect 30 0 29 0;
+#X connect 31 0 36 0;
+#X connect 31 2 32 0;
+#X connect 32 0 30 0;
+#X connect 34 0 33 0;
+#X connect 35 0 31 0;
+#X connect 36 0 21 0;

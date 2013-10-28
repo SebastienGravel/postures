@@ -2,10 +2,10 @@
 <!DOCTYPE spinframework SYSTEM>
 <camConfig>
     <window id="Panoscope View">
-        <screen>1</screen>
-        <fullscreen>true</fullscreen>
-        <windowPosition>0 0</windowPosition>
-        <windowSize>100% 100%</windowSize>
+        <screen>0</screen>
+        <fullscreen>false</fullscreen>
+        <windowPosition>1920 0</windowPosition>
+        <windowSize>1400 1050</windowSize>
         <windowDecoration>false</windowDecoration>
         <useCursor>true</useCursor>
         <supportsResize>true</supportsResize>
