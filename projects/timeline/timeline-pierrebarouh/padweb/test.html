@@ -1,0 +1,63 @@
+<html>
+<head>
+	<title>TEST</title>
+
+	<!-- //** META **// -->
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<!-- <meta name = "viewport" content = "width = 320, initial-scale = 2.3, user-scalable = no"> -->
+	<meta name = "viewport" content = "width = device-width, user-scalable = no">
+
+
+	<!-- //** CSS **// -->
+
+	<link rel="stylesheet" type="text/css" href="/assets/css/stylesheets/jquery.mobile-1.3.1.min.css">
+	<link href="/assets/css/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+	<link href="/assets/css/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+
+	<!-- //** JAVSCRIPT **// -->
+	<script type="text/javascript" src="/assets/libs/jquery-min.js"></script>
+
+	<script type="text/javascript" src="/assets/libs/jquery.mobile-1.3.1.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <!--  <script data-main="/js/main.js" src="/assets/libs/require-jquery.js"></script> -->
+    <style type="text/css">
+    #btn{
+    	margin : 100px auto;
+    	background : #aaa;
+    	color : white;
+    	border-radius : 5px;
+    	width : 200px;
+    	height : 30px;
+    	line-height : 30px;
+
+    }
+    </style>
+    <script type="text/javascript">
+    $(document).ready(function()
+    {
+		$("body").on('touchstart', function(e)
+		{
+			e.preventDefault();
+			$("#btn").css({backgroundColor : "#be2620"});
+            socket.emit("pressBtn", 1);
+
+		});
+
+		$("body").on('touchend', function(e) 
+		{
+			e.preventDefault();
+			$("#btn").css({backgroundColor : "#333"});
+          	socket.emit("pressBtn", 0);
+
+		});
+	});
+    </script>
+
+
+</head>
+<body>
+	<div id="btn"></div>
+</body>
+</html>

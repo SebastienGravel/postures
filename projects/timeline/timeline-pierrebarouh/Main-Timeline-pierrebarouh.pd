@@ -1,11 +1,11 @@
-#N canvas 769 137 1027 833 10;
+#N canvas 359 246 1027 833 10;
 #X obj -138 -19 widget-spinConnect-gallery \$0;
 #X obj 216 -12 bng 30 250 50 0 reset reset-main RESET 35 15 0 30 -260097
 -1 -1;
-#X obj -139 -39 loadbang1 timeline-pierrebarouh;
-#X obj -138 37 cnv 15 500 700 empty empty empty 20 12 0 14 -204786
+#X obj -138 -39 loadbang1 timeline-pierrebarouh;
+#X obj -137 37 cnv 15 500 700 empty empty empty 20 12 0 14 -204786
 -66577 0;
-#N canvas 675 237 443 300 assets 0;
+#N canvas 671 247 443 300 assets 0;
 #X text 26 14 ----PROJECT PATH----;
 #X obj 41 157 shell;
 #X msg 41 137 hostname -s;
@@ -35,7 +35,7 @@
 #X restore 153 98 pd assets;
 #X text 216 98 <--Important assets are stored here (project path \,
 computer name \, etc.);
-#N canvas 377 137 1503 817 debug 0;
+#N canvas 373 147 1503 817 debug 0;
 #X obj 25 551 s \$0-to-SPIN;
 #X msg 95 146 /experience debug;
 #X msg 38 74 /chantalbaron setCubeSize 10000 10000 10000;
@@ -264,7 +264,7 @@ could be hardcoded in PD;
 #X floatatom 569 148 5 0 0 0 - fogDensity-set -;
 #X floatatom 436 165 5 0 0 3 min minFog-set minFog;
 #X floatatom 472 165 5 0 0 3 max maxFog-set maxFog;
-#N canvas 28 122 1410 415 reset 0;
+#N canvas 66 127 1410 415 reset 0;
 #X obj 753 93 r \$0-from-SPIN;
 #X obj 864 128 anyreg g_hostname;
 #X obj 753 124 t a b;
@@ -407,9 +407,7 @@ TextNode;
 #X connect 11 0 0 0;
 #X connect 12 0 11 1;
 #X restore 64 317 pd iphone_setup;
-#X obj -98 79 delay 2000;
-#X obj -98 59 t b;
-#N canvas 302 281 772 487 user_setup 0;
+#N canvas 298 291 772 487 user_setup 0;
 #X msg 86 87 setNotifyLevel 1;
 #X obj 155 -32 vradio 15 1 0 7 empty empty empty 0 -8 0 10 -262144
 -1 -1 0;
@@ -441,17 +439,17 @@ TextNode;
 1 \, /\$1 setVelocityScalars 4 6 6 \, /\$1 setSpinScalars 0 0 0 \,
 /\$1 setOrientation 0 0 0 \, /\$1 setCubeSize 1900 1900 300 \, /\$1
 setCubeOffset 0 -5 0;
-#X msg 69 155 /\$1 setTranslation 0 0 0.25 \, /\$1 setComputationMode
+#X obj 52 110 delay 10;
+#X msg 69 155 /\$1 setTranslation -2 -350 0.25 \, /\$1 setComputationMode
 1 \, /\$1 setVelocityScalars 4 6 6 \, /\$1 setSpinScalars 0 0 0 \,
 /\$1 setOrientation 0 0 0;
-#X obj 52 110 delay 10;
 #X connect 0 0 17 0;
 #X connect 1 0 0 0;
 #X connect 9 0 10 0;
-#X connect 10 1 24 0;
+#X connect 10 1 23 0;
 #X connect 10 2 11 0;
 #X connect 10 3 0 0;
-#X connect 11 0 23 0;
+#X connect 11 0 24 0;
 #X connect 12 0 11 0;
 #X connect 13 0 15 0;
 #X connect 14 0 13 0;
@@ -459,76 +457,102 @@ setCubeOffset 0 -5 0;
 #X connect 19 0 21 0;
 #X connect 20 0 19 0;
 #X connect 21 0 17 0;
-#X connect 23 0 17 0;
-#X connect 24 0 11 0;
+#X connect 23 0 11 0;
+#X connect 24 0 17 0;
 #X restore -35 159 pd user_setup;
 #X obj -98 109 t b b b b b;
-#N canvas 337 245 649 602 models-lod 0;
+#N canvas 412 82 881 998 models-lod 0;
 #X obj 33 -6 inlet;
-#X obj 33 14 anyreg gProjectPath;
-#X text 211 362 <--Timeline + numbers \, maybe not necessary. Numbers
+#X obj 33 579 anyreg gProjectPath;
+#X text 211 595 <--Timeline + numbers \, maybe not necessary. Numbers
 could be hardcoded in PD;
-#X obj 155 4 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 155 569 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 84 73 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 33 34 t a b;
-#X obj 60 73 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X text 125 89 create TextNodes for years:;
-#X obj 90 45 delay 10000;
-#X obj 60 236 makeTimeline \$0 timeline_texts;
-#X text 294 89 x y z offsetX offsetY offsetZ startValue increment count
+#X text 149 89 create TextNodes for years:;
+#X obj 114 45 delay 10000;
+#X obj 84 236 makeTimeline \$0 timeline_texts;
+#X text 318 89 x y z offsetX offsetY offsetZ startValue increment count
 ;
-#X obj 60 91 t b b b b;
-#X text 310 113 <--side years 0 to 100 (step = 1);
-#X msg 202 35 /timeline_texts_* setDrawMode 0 \, /timeline_texts_*
+#X obj 84 91 t b b b b;
+#X text 334 113 <--side years 0 to 100 (step = 1);
+#X msg 537 422 /timeline_texts_* setDrawMode 0 \, /timeline_texts_*
 setLighting 0 \, /timeline_texts_* setColor 1 1 1 1;
-#X obj 33 449 s \$0-to-SPIN-TCP;
-#X obj 208 356 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 33 662 s \$0-to-SPIN-TCP;
+#X obj 208 589 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg 94 146 444 0 0 -21 0 0 1750 50 4;
-#X text 258 145 <--main years 1750 to 1900 (step = 50);
-#X msg 77 175 -261 0 0 -21 0 0 2050 50 3;
-#X text 248 175 <--main years 2050 to 2150 (step = 50);
-#X obj 33 259 t a a a;
-#X obj 227 314 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X text 282 145 <--main years 1750 to 1900 (step = 50);
+#X text 272 175 <--main years 2050 to 2150 (step = 50);
+#X obj 33 599 list append images1971-2014;
+#X text 252 205 <--main years 1932 to 2032 (step = 1);
+#X obj 381 242 anyreg gProjectPath;
+#X obj 503 232 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 72 284 list append timeline;
-#X obj 207 274 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+#X msg 135 115 347.9 -21.3 5 -6 0 0 0 1 101;
+#X msg 118 146 444 0 5 -21 0 0 1750 50 4;
+#X msg 101 175 -261 0 5 -21 0 0 2050 50 3;
+#X msg 84 205 360 0 5 -6 0 0 1932 1 101;
+#X obj 84 258 s \$0-to-SPIN-TCP;
+#X obj 50 444 anyreg gProjectPath;
+#X obj 172 434 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 52 324 list append images1930-1970;
-#X obj 33 366 list append images1971-2014;
-#X msg 33 396 deleteNode \$2 \, createNode \$2 ModelNode \, /\$2 setModelFromFile
+#X obj 225 454 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 50 464 list append images1930-1970;
+#X obj 50 517 s \$0-to-SPIN-TCP;
+#X obj 67 309 anyreg gProjectPath;
+#X obj 189 299 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 67 329 list append timeline-empty;
+#X obj 33 14 t b b b b;
+#X obj 67 395 s \$0-to-SPIN-TCP;
+#X msg 474 486 deleteNode \$2 \, createNode \$2 ModelNode \, /\$2 setModelFromFile
 \$1/PIERRE_\$2.ac \, /\$2 setOrientation 90 0 0 \, /\$2 setLightingMode
 1;
-#X msg 60 205 360 0 0 -6 0 0 1932 1 101;
-#X text 228 205 <--main years 1932 to 2032 (step = 1);
-#X msg 111 115 347.9 -21.3 0 -6 0 0 0 1 101;
-#X connect 0 0 1 0;
-#X connect 1 0 4 0;
+#X msg 67 349 createNode \$2 ModelNode \, /\$2 setModelFromFile \$1/PIERRE_\$2.ac
+\, /\$2 setOrientation 90 0 0 \, /\$2 setTranslation 0 0 5;
+#X msg 50 484 createNode \$2 ModelNode \, /\$2 setModelFromFile \$1/PIERRE_\$2.ac
+\, /\$2 setOrientation 90 0 0;
+#X msg 33 629 createNode \$2 ModelNode \, /\$2 setModelFromFile \$1/PIERRE_\$2.ac
+\, /\$2 setOrientation 90 0 0;
+#X obj 67 289 delay 1000;
+#X obj 50 424 delay 3000;
+#X obj 33 559 delay 10000;
+#X connect 0 0 33 0;
+#X connect 1 0 16 0;
 #X connect 3 0 1 0;
-#X connect 4 0 19 0;
-#X connect 4 1 5 0;
-#X connect 5 0 10 0;
-#X connect 7 0 5 0;
-#X connect 8 0 13 0;
-#X connect 10 0 26 0;
-#X connect 10 1 17 0;
-#X connect 10 2 15 0;
-#X connect 10 3 28 0;
-#X connect 12 0 13 0;
-#X connect 14 0 24 0;
-#X connect 15 0 8 0;
-#X connect 17 0 8 0;
-#X connect 19 0 24 0;
-#X connect 19 1 23 0;
-#X connect 20 0 23 0;
-#X connect 21 0 25 0;
-#X connect 22 0 21 0;
-#X connect 23 0 25 0;
-#X connect 24 0 25 0;
-#X connect 25 0 13 0;
-#X connect 26 0 8 0;
-#X connect 28 0 8 0;
+#X connect 4 0 9 0;
+#X connect 6 0 4 0;
+#X connect 7 0 24 0;
+#X connect 9 0 23 0;
+#X connect 9 1 22 0;
+#X connect 9 2 21 0;
+#X connect 9 3 20 0;
+#X connect 13 0 16 0;
+#X connect 16 0 38 0;
+#X connect 19 0 18 0;
+#X connect 20 0 7 0;
+#X connect 21 0 7 0;
+#X connect 22 0 7 0;
+#X connect 23 0 7 0;
+#X connect 25 0 28 0;
+#X connect 26 0 25 0;
+#X connect 27 0 28 0;
+#X connect 28 0 37 0;
+#X connect 30 0 32 0;
+#X connect 31 0 30 0;
+#X connect 32 0 36 0;
+#X connect 33 0 41 0;
+#X connect 33 1 40 0;
+#X connect 33 2 39 0;
+#X connect 33 3 4 0;
+#X connect 36 0 34 0;
+#X connect 37 0 29 0;
+#X connect 38 0 12 0;
+#X connect 39 0 30 0;
+#X connect 40 0 25 0;
+#X connect 41 0 1 0;
 #X restore -67 504 pd models-lod;
 #X obj 22 494 bng 10 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
@@ -609,7 +633,7 @@ IP>;
 #X text 46 437 <--select 1 for image or video point cloud;
 #X obj 45 380 tgl 15 0 empty empty VISIBLE? 17 7 1 10 -260097 -1 -1
 0 1;
-#N canvas 81 155 873 599 fog 0;
+#N canvas 66 225 873 599 fog 0;
 #X obj 46 24 inlet;
 #X obj 246 34 inlet;
 #X obj 376 24 inlet;
@@ -646,18 +670,20 @@ IP>;
 #X msg 309 395 \$1 6000;
 #X obj 287 328 expr 0.001*random(0 \, 1000);
 #X msg 308 441 /fog setFogColor 0 0.03 \$1 1;
-#X msg 46 197 createStateSet fog Fog \, /fog setFogColor 0 0.02 0.12
-1;
 #X obj 309 370 * 0.1;
 #X obj 46 164 t b b b;
 #X obj 46 44 t b b;
 #X obj 86 44 print CREATING_FOG;
-#X connect 0 0 34 0;
+#X msg 72 527 createStateSet fog Fog \, /fog setFogColor 0 0.02 0.12
+1;
+#X msg 46 197 createStateSet fog Fog \, /fog setFogColor 0 0.15 0.6
+1;
+#X connect 0 0 33 0;
 #X connect 1 0 3 0;
 #X connect 2 0 4 0;
 #X connect 3 0 6 0;
 #X connect 4 0 9 0;
-#X connect 6 0 33 0;
+#X connect 6 0 32 0;
 #X connect 6 1 7 0;
 #X connect 7 0 5 0;
 #X connect 8 0 14 0;
@@ -680,15 +706,15 @@ IP>;
 #X connect 25 0 29 0;
 #X connect 26 0 30 0;
 #X connect 28 0 26 0;
-#X connect 29 0 32 0;
+#X connect 29 0 31 0;
 #X connect 30 0 24 0;
-#X connect 31 0 5 0;
-#X connect 32 0 28 0;
-#X connect 32 0 27 0;
-#X connect 33 0 16 0;
-#X connect 33 1 31 0;
-#X connect 34 0 33 0;
-#X connect 34 1 35 0;
+#X connect 31 0 28 0;
+#X connect 31 0 27 0;
+#X connect 32 0 16 0;
+#X connect 32 1 36 0;
+#X connect 33 0 32 0;
+#X connect 33 1 34 0;
+#X connect 36 0 5 0;
 #X restore -28 398 pd fog __________________;
 #X obj -28 383 bng 12 250 50 0 empty empty empty 17 7 0 10 -257985
 -1 -1;
@@ -801,22 +827,25 @@ fast.;
 -1;
 #X obj -67 298 del 100;
 #X obj -67 468 del 100;
-#X connect 0 0 20 0;
+#X obj -98 79 delay 2000;
+#X obj -98 49 t b;
+#X text 347 -7 <--NOT USED;
+#X connect 0 0 36 0;
 #X connect 2 0 0 0;
 #X connect 9 0 7 0;
-#X connect 17 0 20 0;
-#X connect 18 0 17 0;
-#X connect 20 2 35 0;
-#X connect 20 4 19 0;
-#X connect 22 0 21 0;
-#X connect 23 0 19 0;
-#X connect 24 0 20 0;
-#X connect 25 0 26 0;
-#X connect 28 0 29 1;
-#X connect 30 0 29 0;
-#X connect 31 0 36 0;
-#X connect 31 2 32 0;
-#X connect 32 0 30 0;
-#X connect 34 0 33 0;
-#X connect 35 0 31 0;
-#X connect 36 0 21 0;
+#X connect 18 2 33 0;
+#X connect 18 4 17 0;
+#X connect 20 0 19 0;
+#X connect 21 0 17 0;
+#X connect 22 0 18 0;
+#X connect 23 0 24 0;
+#X connect 26 0 27 1;
+#X connect 28 0 27 0;
+#X connect 29 0 34 0;
+#X connect 29 2 30 0;
+#X connect 30 0 28 0;
+#X connect 32 0 31 0;
+#X connect 33 0 29 0;
+#X connect 34 0 19 0;
+#X connect 35 0 18 0;
+#X connect 36 0 35 0;

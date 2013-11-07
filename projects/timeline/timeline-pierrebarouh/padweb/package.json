@@ -1,0 +1,19 @@
+{
+  "name": "padweb",
+  "version": "0.0.1",
+  "description": "Controle remote for posture with webpage",
+  "main": "app.js",
+  "dependencies": {
+    "express": "~3.2.5",
+    "node-osc": "~0.1.2",
+    "socket.io": "~0.9.14",
+    "freeport": "~1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "Pierre-Antoine Chesnel (pacman)",
+  "license": "BSD"
+}

@@ -1,0 +1,132 @@
+@import compass/reset
+@import compass/css3
+
+body
+	background : #333
+	overflow : hidden
+	-webkit-user-select : none
+
+
+.ui-page
+	background : #444
+
+
+
+#global
+	background : #555
+	overflow : hidden
+	float : left
+	position : relative
+	#content
+		position : absolute
+		left : 0
+		top : 0
+	.page
+		background : #333
+		float : left
+
+	#arrows, #calibrage
+		height : 416px
+		width : 166px
+		margin : 0 auto
+		background : url(../../images/icon-arrows.png) no-repeat center center
+		color : white
+		text-align : center
+
+
+
+#posY
+	color : white
+
+.press, .switch
+	width : 230px
+	height : 230px
+	background : url(../../images/btn-big.png) no-repeat center center
+	position : relative
+	top : 20px
+	z-index : 2
+	margin : 0px auto
+	cursor : pointer
+	-webkit-user-select: none
+	&:hover
+		cursor : pointer
+
+
+	#cube
+		background : url(../../images/icon-cube.png) no-repeat center -163px
+		width : 70px
+		height : 80px
+		position : absolute
+		top : 70px
+		left : 78px
+
+	#cube.pressed 
+		background-position : center -73px
+
+
+	#pen
+		background : url(../../images/icon-pen.png) no-repeat center -163px
+		width : 70px
+		height : 80px
+		position : absolute
+		top : 60px
+		left : 78px
+	#pen.pressed
+		background-position : center -63px
+
+	#human
+		background : url(../../images/icon-human.png) no-repeat center 7px
+		width : 70px
+		height : 90px
+		position : absolute
+		top : 60px
+		left : 78px
+	#human.pressed
+		background-position : center -83px	
+
+
+
+
+#trash
+	width : 70px
+	height : 80px
+	margin : 20px auto 0
+	background : url(../../images/icon-trash.png) no-repeat center center
+	opacity : 0.6
+#trash.pressed
+	opacity : 1
+
+
+#menuDraw
+	margin : 35px auto 0px
+	width : 240px
+	.btnMenu
+		width : 60px
+		height : 60px
+		background : #222
+		+border-radius(4px)
+		margin : 0 10px
+		display : inline-block
+		opacity : 0.6
+
+	#pen
+		background : url(../../images/icon-pen.png) no-repeat center 10px
+	#cube
+		background : url(../../images/icon-cube.png) no-repeat center 10px
+	#grid
+		background : url(../../images/icon-grid.png) no-repeat center 10px
+
+	.btnMenu.pressed
+		opacity : 1
+
+
+#content-slider
+	width : 300px
+	height : 0.8em
+	margin : 40px auto 0
+	.ui-slider
+		margin-left : -40px
+	#slider-calibrage
+		display : none
+.hidden
+	display : none
