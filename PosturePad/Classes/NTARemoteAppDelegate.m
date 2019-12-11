@@ -20,7 +20,8 @@
 	[UIApplication sharedApplication].idleTimerDisabled = YES;
 	
     // Override point for customization after app launch    
-    [window addSubview:viewController.view];
+    //[window addSubview:viewController.view];
+    [self.window setRootViewController:viewController];
     [window makeKeyAndVisible];
 }
 
