@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,7 +19,6 @@
 		1C489577161BD5A90069EC79 /* icon_elev.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C489574161BD5A90069EC79 /* icon_elev.png */; };
 		1C489578161BD5A90069EC79 /* icon_speed.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C489575161BD5A90069EC79 /* icon_speed.png */; };
 		1C74C39F161B2A530048EF3A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C74C39E161B2A530048EF3A /* AVFoundation.framework */; };
-		1CA097D3135DFC5B00F22F17 /* liblo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA097D2135DFC5B00F22F17 /* liblo.a */; };
 		1CA0BB971295DC5A0083DA70 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA0BB961295DC5A0083DA70 /* CoreMotion.framework */; };
 		1CDDD2D112B7E81E008D90CD /* target.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CDDD2D012B7E81E008D90CD /* target.png */; };
 		1CDDD2D312B7E82D008D90CD /* compass.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CDDD2D212B7E82D008D90CD /* compass.png */; };
@@ -49,6 +48,7 @@
 		2899E5220DE3E06400AC0155 /* NTARemoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* NTARemoteViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* NTARemoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* NTARemoteViewController.m */; };
+		96F9737E23A1AF1400834374 /* liblo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA097D2135DFC5B00F22F17 /* liblo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,9 +115,9 @@
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
 				22F9C5AC1003B84100A97A19 /* CoreLocation.framework in Frameworks */,
 				22A05A18100512DB002062AC /* CFNetwork.framework in Frameworks */,
+				96F9737E23A1AF1400834374 /* liblo.a in Frameworks */,
 				22A05A19100512DB002062AC /* SystemConfiguration.framework in Frameworks */,
 				1CA0BB971295DC5A0083DA70 /* CoreMotion.framework in Frameworks */,
-				1CA097D3135DFC5B00F22F17 /* liblo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +159,7 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks and Libraries */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				224E89FC10F660380019EF30 /* Entitlements.plist */,
+				96F9737D23A1AF1400834374 /* Frameworks */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -221,6 +222,13 @@
 			name = "Frameworks and Libraries";
 			sourceTree = "<group>";
 		};
+		96F9737D23A1AF1400834374 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -246,15 +254,19 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1120;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "PosturePad" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			compatibilityVersion = "Xcode 10.0";
+			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
-				English,
-				Japanese,
-				French,
-				German,
+				en,
+				ja,
+				fr,
+				Base,
+				de,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -323,29 +335,37 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 4S2J6M2PP3;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PosturePad_Prefix.pch;
+				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
 					/opt/local/include,
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = "PosturePad-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 				);
 				OTHER_LDFLAGS = (
 					"-llo",
 					"-L/usr/local/lib",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lc.PosturePad;
 				PRODUCT_NAME = PosturePad;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -353,21 +373,26 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Luc Courchesne";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PosturePad_Prefix.pch;
+				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
 					/opt/local/include,
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = "PosturePad-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
 					"\"$(SRCROOT)/../../../../../Downloads\"",
+					"$(PROJECT_DIR)",
 				);
 				OTHER_LDFLAGS = "-llo";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.courchel.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = PosturePad;
 				PROVISIONING_PROFILE = "32AD73DB-2FA1-4B86-9156-E7B4611E463B";
 			};
@@ -377,6 +402,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Luc Courchesne";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Luc Courchesne";
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -388,10 +414,9 @@
 					/usr/local/include,
 					/opt/local/include,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-llo";
-				PREBINDING = NO;
 				PRIVATE_HEADERS_FOLDER_PATH = PosturePad.app/PrivateHeaders;
 				PROVISIONING_PROFILE = "4104AD7A-6DE5-405F-AF03-A20D1ACB5DAC";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4104AD7A-6DE5-405F-AF03-A20D1ACB5DAC";
@@ -404,25 +429,30 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Luc Courchesne";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PosturePad_Prefix.pch;
+				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
 					/opt/local/include,
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = "PosturePad-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 				);
 				OTHER_LDFLAGS = (
 					"-llo",
 					"-L/usr/local/lib",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.courchel.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = PosturePad;
 				PROVISIONING_PROFILE = "32AD73DB-2FA1-4B86-9156-E7B4611E463B";
 				SDKROOT = iphoneos;
@@ -433,6 +463,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Luc Courchesne";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Luc Courchesne";
@@ -445,10 +476,9 @@
 					/usr/local/include,
 					/opt/local/include,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-llo";
-				PREBINDING = NO;
 				PRIVATE_HEADERS_FOLDER_PATH = PosturePad.app/PrivateHeaders;
 				PROVISIONING_PROFILE = "C5158479-2D96-49D3-974D-08331D72B0DD";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C5158479-2D96-49D3-974D-08331D72B0DD";
@@ -461,25 +491,30 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Luc Courchesne";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PosturePad_Prefix.pch;
+				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
 					/opt/local/include,
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = "PosturePad-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 				);
 				OTHER_LDFLAGS = (
 					"-llo",
 					"-L/usr/local/lib",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.courchel.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = PosturePad;
 				PROVISIONING_PROFILE = "B6C4C32E-7F86-4430-8720-53F28297CA02";
 				SDKROOT = iphoneos;
@@ -490,8 +525,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
@@ -501,10 +538,9 @@
 					/usr/local/include,
 					/opt/local/include,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-llo";
-				PREBINDING = NO;
 				PRIVATE_HEADERS_FOLDER_PATH = PosturePad.app/PrivateHeaders;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -517,6 +553,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Luc Courchesne";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Luc Courchesne";
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -528,10 +565,9 @@
 					/usr/local/include,
 					/opt/local/include,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-llo";
-				PREBINDING = NO;
 				PRIVATE_HEADERS_FOLDER_PATH = PosturePad.app/PrivateHeaders;
 				PROVISIONING_PROFILE = "4104AD7A-6DE5-405F-AF03-A20D1ACB5DAC";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4104AD7A-6DE5-405F-AF03-A20D1ACB5DAC";
