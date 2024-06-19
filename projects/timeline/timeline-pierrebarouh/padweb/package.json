@@ -6,7 +6,7 @@
   "dependencies": {
     "express": "^4.17.3",
     "node-osc": "~0.1.2",
-    "socket.io": "~0.9.14",
+    "socket.io": "2.5.1",
     "freeport": "~1.0.0"
   },
   "devDependencies": {},
